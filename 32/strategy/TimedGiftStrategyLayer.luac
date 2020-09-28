@@ -1,0 +1,687 @@
+slot0 = class("TimedGiftStrategyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onRequesetGetInfo",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "xszflb_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 672.85,
+						y = 368.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "effectNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Effect",
+						params = {
+							scale = 0.6,
+							dataFile = "effect_zhenfaui_1502",
+							pos = {
+								x = 150,
+								y = 180
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "titleSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "zffont_1501.png",
+					pos = {
+						x = 155.92,
+						y = 257
+					}
+				},
+				children = {}
+			},
+			{
+				name = "specialLog",
+				cType = "Sprite",
+				params = {
+					image = "xszflb_5.png",
+					pos = {
+						x = 129.64,
+						y = 294.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 294.85,
+						y = 276.98
+					},
+					text = TR("活动倒计时：")
+				},
+				children = {}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					text = "00:00:00",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 199,
+						r = 223,
+						b = 42
+					},
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 421.75,
+						y = 277.88
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 290.83,
+						y = 219.92
+					},
+					text = TR("全体侠客：")
+				},
+				children = {}
+			},
+			{
+				name = "attrLabel",
+				cType = "Label",
+				params = {
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 390.52,
+						y = 189.09
+					},
+					size = {
+						width = 247.94,
+						height = 83.5
+					},
+					text = TR("属性")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Sprite",
+				params = {
+					image = "xszflb_2.png",
+					pos = {
+						x = 459.82,
+						y = 90.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					charCount = 11,
+					fontName = "xszflb_3.png",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 444.48,
+						y = 83.21
+					},
+					text = TR("123万")
+				},
+				children = {}
+			},
+			{
+				name = "buyBtn",
+				cType = "Button",
+				params = {
+					image = "xszflb_6.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 664.3,
+						y = 120.07
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPosParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 5.8,
+						y = 63.84
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 1,
+								name = "posId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "zj_55.png",
+							pos = {
+								x = 189.78,
+								y = 51.71
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.12,
+										y = 43.24
+									},
+									text = TR("前下")
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "attrLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 36.68,
+										y = 12.44
+									},
+									text = TR("速度+0")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 2,
+								name = "posId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "zj_55.png",
+							pos = {
+								x = 224.28,
+								y = 112.97
+							}
+						},
+						children = {
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.12,
+										y = 43.24
+									},
+									text = TR("前上")
+								},
+								children = {}
+							},
+							{
+								name = "untitled31",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "attrLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 36.68,
+										y = 12.44
+									},
+									text = TR("速度+0")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 3,
+								name = "posId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "zj_55.png",
+							pos = {
+								x = 47.21,
+								y = 28.62
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.12,
+										y = 43.24
+									},
+									text = TR("后下")
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "attrLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 36.68,
+										y = 12.44
+									},
+									text = TR("速度+0")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 4,
+								name = "posId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "zj_55.png",
+							pos = {
+								x = 89.43,
+								y = 88.95
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.12,
+										y = 43.24
+									},
+									text = TR("后中")
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "attrLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 36.68,
+										y = 12.44
+									},
+									text = TR("速度+0")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 5,
+								name = "posId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "zj_55.png",
+							pos = {
+								x = 135.6,
+								y = 144.16
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.12,
+										y = 43.24
+									},
+									text = TR("后上")
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "attrLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 36.68,
+										y = 12.44
+									},
+									text = TR("速度+0")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mPriceLabel",
+				cType = "Label",
+				params = {
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 666.04,
+						y = 137.21
+					},
+					text = TR("648元")
+				},
+				children = {}
+			},
+			{
+				name = "untitled33",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_zhenfalibao",
+					pos = {
+						x = 376.4,
+						y = 89.83
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eLimitGiftStrategyPoint) then
+		RedDotObj:seeRedDot("StrategyGift")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eZhenfaGift, function (slot0)
+		ui.showFlashView(TR("购买成功"))
+		PlayerAttrObj:changeAttr({
+			IsShowStrategyGift = false
+		})
+		LayerManager.removeLayer(slot0)
+
+		return 
+	end)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mActivityData.EndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString(TR("活动已结束"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			PlayerAttrObj:changeAttr({
+				IsShowStrategyGift = false
+			})
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.effectNode:removeAllChildren()
+	slot0.effectNode:addChild(slot3)
+	slot0.titleSprite:setTexture(ZhenfaModel.items[tonumber(string.splitBySep(StrategyGiftConfig.items[slot0.mActivityData.GiftId][slot0.mActivityData.NeedLv].sellStr, ",")[2])].namePic .. ".png")
+	slot0.createTimeUpdate(slot0)
+
+	slot4 = ""
+
+	for slot8, slot9 in ipairs(string.splitBySep(ZhenfaModel.items[tonumber(string.splitBySep(StrategyGiftConfig.items[slot0.mActivityData.GiftId][slot0.mActivityData.NeedLv].sellStr, ",")[2])].addAttrStr, ",")) do
+		slot4 = slot4 .. FightAttrTypeName[tonumber(string.splitBySep(slot9, "|")[1])] .. "+" .. string.splitBySep(slot9, "|")[2] .. "  "
+	end
+
+	slot0.attrLabel:setString(slot4)
+	slot0.fapLabel:setString(Utility.numberWithUnit(slot0.mActivityData.Fap))
+	slot0.mPriceLabel:setString(TR("%s元", slot1.priceRMB))
+
+	for slot9, slot10 in pairs(slot5) do
+		slot10.attrLabel:setString(TR("速度+%s", slot2["position" .. slot10.posId .. "Sp"]))
+	end
+
+	slot0.buyBtn:setEnabled(not slot0.mActivityData.IsBuy)
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	function slot1()
+		Utility.recharge({
+			chargeType = Enums.chargeType.eZhenfaGift,
+			price = StrategyGiftConfig.items[slot0.mActivityData.GiftId][slot0.mActivityData.NeedLv].priceRMB,
+			productId = slot0.mActivityData.ProductId
+		})
+
+		return 
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("IsShowNewFirstCharge") == 0 then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("#258711限时阵法礼包#45220d不能激活#dfc72a超值首充#45220d，是否确认继续购买？"),
+			msgBoxParams = {
+				cancelImage = "c_32.png",
+				okImage = "c_27.png",
+				cancelText = TR("确  定"),
+				okText = TR("超值首充")
+			},
+			okCallback = function (...)
+				LayerManager.showModuleLayer(ModuleSub.eNewFirstChager)
+
+				return 
+			end,
+			cancelCallback = function (...)
+				slot0()
+
+				return 
+			end
+		})
+	else
+		slot1()
+	end
+
+	return 
+end
+slot0.onRequesetGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "StrategyGift",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0.GiftInfo[1]
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

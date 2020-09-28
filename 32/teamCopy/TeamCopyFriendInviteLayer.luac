@@ -1,0 +1,324 @@
+slot0 = class("TeamCopyFriendInviteLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 560,
+				height = 430
+			},
+			titleText = TR("组队")
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 279.78,
+						y = 214.8
+					},
+					size = {
+						width = 510,
+						height = 360
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					bounce = true,
+					direction = true,
+					pos = {
+						x = 30,
+						y = 40
+					},
+					size = {
+						width = 500,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled24-text",
+								name = "nodeName",
+								type = "string"
+							},
+							{
+								value = "untitled25-text",
+								name = "leaderName",
+								type = "string"
+							},
+							{
+								value = "untitled26-text",
+								name = "leaderFap",
+								type = "string"
+							},
+							{
+								value = "untitled28-text",
+								name = "limitFap",
+								type = "string"
+							},
+							{
+								value = "untitled29-clickAction",
+								name = "onJoinBtnClick",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.03,
+								y = 132.23
+							},
+							size = {
+								width = 500,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled39",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									childName = "bgSprite",
+									capInsets = {
+										x = 30,
+										height = 6,
+										width = 20,
+										y = 20
+									},
+									pos = {
+										x = 250,
+										y = 55
+									},
+									size = {
+										width = 500,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "heroNode",
+									allowClick = false,
+									pos = {
+										x = 55,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									childName = "nodeNameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 110,
+										y = 85
+									},
+									text = TR("梅超风（困难）")
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									childName = "leaderNameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 110,
+										y = 55
+									},
+									text = TR("队长：不晓得叫啥子")
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									childName = "fapLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 110,
+										y = 25
+									},
+									text = TR("当前战力：1100万")
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 400,
+										y = 85
+									},
+									text = TR("战力限制")
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "limitFapLabel",
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 400,
+										y = 65
+									},
+									text = TR("1100万")
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Button",
+								params = {
+									isDisable = false,
+									clickAction = "cbTabAllowChange",
+									swallowTouch = false,
+									image = "c_27.png",
+									childName = "joinButton",
+									pos = {
+										x = 400,
+										y = 28.99
+									},
+									titleText = TR("加 入")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshListView(slot0)
+	EventAuto:registerAutoEvent(slot0.bgSprite, EventDefine.eTeamCopyFriendInviteChanged, handler(slot0, slot0.refreshListView))
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	slot0.listView:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot10 = slot6.FromPlayer.Vip or 0
+
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+		slot0.createLayoutTemplateNode(slot0, "itemLayout", {
+			nodeName = TeamCopyNodeModel.items[slot6.TeamCopyRoom.NodeId].name,
+			leaderName = TR("队长：%s", slot9.Name or ""),
+			leaderFap = TR("当前战力：%s", Utility.numberWithUnit((slot9.ExtendInfo and slot9.ExtendInfo.Fap) or 0)),
+			limitFap = Utility.numberWithUnit(slot7.FapLimit or 0),
+			onJoinBtnClick = function ()
+				if not Utility.moduleIsOpen(ModuleSub.eTeamCopy, true) then
+					return 
+				end
+
+				TeamCopyHelper:requestJoinRoom({
+					roomId = slot0.RoomId,
+					dependLayer = slot1,
+					successCallback = function (slot0)
+						LayerManager.addLayer({
+							name = "teamCopy.TeamCopyFormLayer",
+							data = slot0 or {}
+						})
+
+						return 
+					end
+				})
+
+				return 
+			end
+		}).heroNode:setPlayerHeader(slot9.HeadImageId, nil, {
+			fashionLv = slot9.FashionLevel,
+			headPicId = slot9.HeadPicId
+		})
+	end
+
+	return 
+end
+
+return slot0

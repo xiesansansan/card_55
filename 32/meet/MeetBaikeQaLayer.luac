@@ -1,0 +1,405 @@
+slot0 = class("MeetBaikeQaLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onClose",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 694,
+				height = 420
+			},
+			titleText = TR("江湖百科")
+		},
+		children = {
+			{
+				name = "qaNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_24.png",
+							pos = {
+								x = 347,
+								y = 190
+							},
+							size = {
+								width = 643,
+								height = 232
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mQuestionLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 347,
+								y = 345
+							},
+							size = {
+								width = 580,
+								height = 80
+							},
+							text = TR("校园歌曲《童年》的词曲作者是？")
+						},
+						children = {}
+					},
+					{
+						name = "mAnswerNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 347,
+								y = 190
+							}
+						},
+						children = {
+							{
+								name = "AnswerTemp",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled11-image",
+										name = "orderPic",
+										type = "string"
+									},
+									{
+										value = "untitled12-text",
+										name = "answerStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled6",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_98.png",
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 560,
+												height = 70
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Sprite",
+										params = {
+											image = "jhqy_wd_1.png",
+											pos = {
+												x = -215,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											text = TR("罗大佑")
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Sprite",
+										params = {
+											childName = "rightSprite",
+											image = "jhqy_wd_5.png",
+											hide = true,
+											pos = {
+												x = 235,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "Scale9Sprite",
+										params = {
+											opacity = 80,
+											hide = true,
+											image = "c_86.png",
+											childName = "blackSprite",
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 560,
+												height = 70
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Button",
+										params = {
+											childName = "answerBtn",
+											image = "c_pure.png",
+											clickAction = "onSelectAnswer",
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 560,
+												height = 70
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mNumLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 40,
+								y = 40
+							},
+							text = TR("答对：0/4")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallback = slot1.callback
+	slot0.mCurIndex = 1
+	slot0.mRightNum = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.mCurIndex = MeetObj:getMeetData().Finish
+	slot0.mQuestions = {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		table.insert(slot0.mQuestions, tonumber(slot8))
+	end
+
+	slot0.refreshQA(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.getAnswers = function (slot0)
+	slot1 = 3
+	slot2 = {}
+	slot3 = 1
+
+	while slot0["answer" .. slot3] do
+		table.insert(slot2, slot0["answer" .. slot3])
+
+		slot3 = slot3 + 1
+	end
+
+	if slot1 < #slot2 then
+		slot4 = slot2[slot0.rightAnswer]
+
+		table.remove(slot2, slot0.rightAnswer)
+
+		for slot9 = 1, (#slot2 + 1) - slot1, 1 do
+			table.remove(slot2, math.random(1, #slot2))
+		end
+
+		table.insert(slot2, slot4)
+	end
+
+	return slot2
+end
+slot0.createAnswers = function (slot0)
+	slot0.mAnswerNode:removeAllChildren()
+
+	slot3 = slot0.getAnswers(slot2)
+	slot4 = Utility.getExtendPos({
+		direction = true,
+		offset = 75,
+		num = #slot3
+	})
+	slot5 = {
+		"jhqy_wd_1.png",
+		"jhqy_wd_2.png",
+		"jhqy_wd_3.png"
+	}
+
+	if math.random(1, #slot3) ~= #slot3 then
+		slot3[#slot3] = slot3[slot6]
+		slot3[slot6] = slot3[#slot3]
+	end
+
+	slot0.mAnswerNodes = {}
+
+	for slot10, slot11 in ipairs(slot3) do
+		slot12 = slot0.createLayoutTemplateNode(slot0, "AnswerTemp", {
+			orderPic = slot5[slot10] or slot5[1],
+			answerStr = slot11
+		})
+
+		slot12.setPosition(slot12, slot4[#slot4 - slot10 + 1])
+		slot0.mAnswerNode:addChild(slot12)
+
+		slot12.answerBtn.isRight = slot10 == slot6
+		slot12.answerBtn.index = slot10
+
+		table.insert(slot0.mAnswerNodes, slot12)
+	end
+
+	return 
+end
+slot0.refreshQA = function (slot0)
+	if #slot0.mQuestions < slot0.mCurIndex then
+		return 
+	end
+
+	slot0.mQuestionLabel:setString(MeetingBaikeQuestionRelation.items[slot0.mQuestions[slot0.mCurIndex]].question)
+	slot0.createAnswers(slot0)
+	slot0.mNumLabel:setString(TR("答题：%s/%s", slot0.mCurIndex, #slot0.mQuestions))
+
+	return 
+end
+slot0.onSelectAnswer = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot0.mAnswerNodes) do
+		slot6.blackSprite:setVisible(slot6.answerBtn.index ~= slot1.index)
+		slot6.rightSprite:setVisible(slot6.answerBtn.index == slot1.index)
+
+		if slot6.answerBtn.index == slot1.index then
+			slot6.rightSprite:setTexture((slot1.isRight and "jhqy_wd_5.png") or "jhqy_wd_4.png")
+		end
+	end
+
+	if slot0.isSelecting then
+		return 
+	end
+
+	slot0.isSelecting = true
+
+	slot0.requestRewardCallback(slot0, slot1.isRight)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	if #slot0.mQuestions < slot0.mCurIndex then
+		if math.floor(#slot0.mQuestions/2) < MeetObj:getMeetRightNum() then
+			MeetObj:setTalkStatus(MeetObj.TalkStatus.eWin)
+		else
+			MeetObj:setTalkStatus(MeetObj.TalkStatus.eLose)
+		end
+	end
+
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestRewardCallback = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "Meeting",
+		methodData = {
+			MeetObj.MeetType.eBaiKe,
+			(slot1 and 1) or 0,
+			0
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			MeetObj:updateMeet(slot0.Meeting)
+			PlayerAttrObj:checkLvUp()
+
+			slot0.mCurIndex = slot0.mCurIndex + 1
+
+			if #slot0.mQuestions < slot0.mCurIndex then
+				slot0:onClose()
+			else
+				Utility.performWithDelay(slot0, function ()
+					slot0:refreshQA()
+
+					slot0.refreshQA.isSelecting = false
+
+					return 
+				end, 1)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,307 @@
+slot0 = class("ActivityHeroRecruitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled23",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "jg_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "rightBg",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_68.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 372.56,
+						y = -46.77
+					}
+				},
+				children = {
+					{
+						name = "campSprite",
+						cType = "Sprite",
+						params = {
+							image = "xkxx_20.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = -20,
+								y = 75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "cqzm_17.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 33,
+								y = 205
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 42,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 22,
+								y = 207
+							},
+							size = {
+								width = 20,
+								height = 0
+							},
+							text = TR("杨过")
+						},
+						children = {}
+					},
+					{
+						name = "skillBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onEffectShowClick",
+							image = "tb_gn_121.png",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 33,
+								y = 40
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = -381.35,
+						y = 220.48
+					},
+					text = TR("活动倒计时：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				params = {
+					image = "jgzm_4.png",
+					pos = {
+						x = -256.31,
+						y = -48.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHintLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					hide = true,
+					pos = {
+						x = -96.48,
+						y = -29.45
+					},
+					size = {
+						width = 20,
+						height = 0
+					},
+					text = TR("活动期间酒馆招募杨过概率提升！")
+				},
+				children = {}
+			},
+			{
+				name = "untitled27",
+				cType = "Button",
+				params = {
+					image = "tzsj_18.png",
+					clickAction = "onGoClick",
+					pos = {
+						x = 317.78,
+						y = -215.14
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimeLimitRecruit
+	slot0.mActivityType = slot1.activityType or 1
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getTimeRecruitInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshRightHero(slot0)
+	slot0.createActivityUpdateTime(slot0)
+
+	return 
+end
+slot0.createActivityUpdateTime = function (slot0)
+	if slot0.mActivtyUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mActivtyUpdate)
+
+		slot0.mActivtyUpdate = nil
+	end
+
+	slot0.mActivtyUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mTimedRecruitInfo.EndDate - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(TR("活动倒计时：%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeLabel:setString(TR("活动已结束"))
+
+			if slot0.mActivtyUpdate then
+				slot0.mTimeLabel:stopAction(slot0.mActivtyUpdate)
+
+				slot0.mActivtyUpdate = nil
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshRightHero = function (slot0)
+	if cc.FileUtils:getInstance():isFileExist(HeroModel.items[slot0.mHeroModelId].drawingPicB .. ".skel") then
+		if slot0.heroEffect then
+			slot0.heroEffect:removeFromParent()
+
+			slot0.heroEffect = nil
+		end
+
+		slot0.heroEffect = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 0.6,
+			dataFile = slot2.drawingPicB
+		})
+
+		slot0.heroEffect:setPosition(cc.p(-150, -300))
+		slot0.rightBg:addChild(slot0.heroEffect, -1)
+	end
+
+	slot0.nameLabel:setString(slot2.name)
+	slot0.skillBtn:setPositionY(slot0.nameLabel:getContentSize().height - 207)
+	slot0.campSprite:setTexture(Utility.getHeroQualityImage(slot1))
+
+	return 
+end
+slot0.onEffectShowClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot0.mHeroModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGoClick = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eRecuit)
+
+	return 
+end
+slot0.getTimeRecruitInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedRecruit",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mTimedRecruitInfo = slot0 or {}
+			slot0.mHeroModelId = slot0.mTimedRecruitInfo.UpHeroModelId
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

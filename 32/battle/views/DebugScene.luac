@@ -1,0 +1,198 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.ResDefine")
+slot2 = require("common.SpineManager")
+slot3 = require("battle.managers.BattleManager")
+slot4 = require("battle.managers.ReplayManager")
+slot5 = require("battle.common.UIHelper")
+slot6 = nil
+
+if fc then
+	slot6 = require("common.EventManager")
+end
+
+slot8 = class("DebugScene", require("battle.views.GameScene"))
+slot8.ctor = function (slot0, slot1, slot2)
+	slot0.super.ctor(slot0, slot1)
+
+	if slot2 then
+		slot0.new(slot2.record)
+	else
+		slot0.new({})
+	end
+
+	slot0.speed = 1
+
+	return 
+end
+slot8.onCreate = function (slot0)
+	slot0.super.onCreate(slot0)
+
+	if cc.FileUtils:getInstance():isFileExist("mask.png") then
+		slot0.uiNode:addChild(cc.Sprite:create("mask.png"), 60000)
+	end
+
+	return 
+end
+slot8.addDebugButton = function (slot0)
+	slot1 = ccui.Button:create("c_31.png", "c_31.png", "c_31.png")
+
+	slot1.setPosition(slot1, slot0.autoPos({
+		midY = 480,
+		midX = 250
+	}))
+	slot1.setTitleText(slot1, "暂停")
+	slot1.setTitleFontSize(slot1, 25)
+	slot1.setPressedActionEnabled(slot1, true)
+	slot1.setScale(slot1, display.minScale)
+	slot1.addClickEventListener(slot1, function (slot0)
+		slot0.manualLogic = not slot0.manualLogic
+
+		if slot0.manualLogic == false then
+			slot1:setTitleText("暂停")
+		else
+			slot1:setTitleText("继续")
+		end
+
+		return 
+	end)
+	slot0.addChild(slot0, slot1)
+
+	slot2 = ccui.Button:create("c_31.png", "c_31.png", "c_31.png")
+
+	slot2.setPosition(slot2, slot0.autoPos({
+		midY = 480,
+		midX = 440
+	}))
+	slot2.setTitleText(slot2, "1x")
+	slot2.setTitleFontSize(slot2, 25)
+	slot2.setScale(slot2, display.minScale)
+	slot2.setPressedActionEnabled(slot2, true)
+	slot2.addClickEventListener(slot2, function (slot0)
+		slot0.speed = 1
+
+		return 
+	end)
+	slot0.addChild(slot0, slot2)
+
+	slot3 = ccui.Button:create("c_31.png", "c_31.png", "c_31.png")
+
+	slot3.setPosition(slot3, slot0.autoPos({
+		midY = 400,
+		midX = 440
+	}))
+	slot3.setTitleText(slot3, "2x")
+	slot3.setTitleFontSize(slot3, 25)
+	slot3.setScale(slot3, display.minScale)
+	slot3.setPressedActionEnabled(slot3, true)
+	slot3.addClickEventListener(slot3, function (slot0)
+		slot0.speed = 2
+
+		return 
+	end)
+	slot0.addChild(slot0, slot3)
+
+	if not fc then
+		slot4 = ccui.Button:create("c_31.png", "c_31.png", "c_31.png")
+
+		slot4.setPosition(slot4, slot0.autoPos({
+			midY = 400,
+			midX = 250
+		}))
+		slot4.setTitleText(slot4, "Reset")
+		slot4.setTitleFontSize(slot4, 25)
+		slot4.setScale(slot4, display.minScale)
+		slot4.setPressedActionEnabled(slot4, true)
+		slot4.addClickEventListener(slot4, function (slot0)
+			LayerManager.addLayer({
+				name = "battle.views.DebugScene",
+				data = slot0.originData
+			})
+
+			return 
+		end)
+		slot0.addChild(slot0, slot4)
+
+		slot5 = ccui.Button:create("c_31.png", "c_31.png", "c_31.png")
+
+		slot5.setPosition(slot5, slot0.autoPos({
+			midY = 320,
+			midX = 250
+		}))
+		slot5.setTitleText(slot5, "Return")
+		slot5.setTitleFontSize(slot5, 25)
+		slot5.setScale(slot5, display.minScale)
+		slot5.setPressedActionEnabled(slot5, true)
+		slot5.addClickEventListener(slot5, function (slot0)
+			LayerManager.addLayer({
+				name = "battle.test.TestLayer",
+				data = slot0.originData
+			})
+
+			return 
+		end)
+		slot0.addChild(slot0, slot5)
+	end
+
+	return 
+end
+slot8.startGame = function (slot0)
+	slot0.super.startGame(slot0)
+	slot0.unscheduleUpdate(slot0)
+
+	slot1 = 0
+
+	slot0.onUpdate(slot0, function (slot0)
+		for slot5 = 1, slot1.speed, 1 do
+			slot2 = slot2 + slot0*slot1*slot1.preTimeScale
+
+			while slot0.FrameTime <= slot2 do
+				slot3.update(slot4.dt)
+				slot4.update(slot0.FrameTime)
+
+				slot2 = slot2 - slot0.FrameTime
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot8.setUnitState = function (slot0, slot1, slot2)
+	slot0.super.setUnitState(slot0, slot1, slot2)
+
+	if slot0 and slot2 == slot1.UnitState.REMOVED then
+		slot0:emit(slot0.EventType.UNITLIST_REMOVE, slot1)
+	end
+
+	return 
+end
+slot8.addUnit = function (slot0, slot1)
+	slot0.super.addUnit(slot0, slot1)
+
+	if slot0 then
+		slot0:emit(slot0.EventType.UNITLIST_ADD, slot1)
+	end
+
+	return 
+end
+slot8.addBuff = function (slot0, slot1)
+	slot0.super.addBuff(slot0, slot1)
+
+	if slot0 then
+		slot0:emit(slot0.EventType.UNITLIST_ADDBUFF, slot1)
+	end
+
+	return 
+end
+slot8.removeBuff = function (slot0, slot1)
+	slot0.super.removeBuff(slot0, slot1)
+
+	if slot0 then
+		slot0:emit(slot0.EventType.UNITLIST_REMOVEBUFF, slot1)
+	end
+
+	return 
+end
+
+return slot8

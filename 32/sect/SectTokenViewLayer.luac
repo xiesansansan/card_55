@@ -1,0 +1,311 @@
+slot0 = class("SectTokenViewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("宝物总览")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423,
+						y = 263.5
+					},
+					size = {
+						width = 800,
+						height = 455
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 0.67,
+								y = -3.16
+							},
+							size = {
+								width = 800,
+								height = 455
+							}
+						},
+						children = {
+							{
+								name = "layout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled17-dataFile",
+										name = "effect",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 237,
+										height = 455
+									}
+								},
+								children = {
+									{
+										name = "untitled5",
+										cType = "Sprite",
+										params = {
+											image = "zm_73.png",
+											pos = {
+												x = 118.5,
+												y = 227.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "Effect",
+										params = {
+											scale = 0.8,
+											childName = "tokenEffect",
+											dataFile = "effect_zongmen_tiaohuayuxiao",
+											pos = {
+												x = 118.5,
+												y = 272.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled7",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											childName = "nameLabel",
+											text = "Label",
+											pos = {
+												x = 118.5,
+												y = 410
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Sprite",
+										params = {
+											image = "zm_74.png",
+											childName = "activeSprite",
+											pos = {
+												x = 50.84,
+												y = 354
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											image = "xkzw_5.png",
+											pos = {
+												x = 100,
+												y = 195
+											}
+										},
+										children = {
+											{
+												name = "untitled10",
+												cType = "Label",
+												params = {
+													pos = {
+														x = 62,
+														y = 15.5
+													},
+													text = TR("基础属性")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled14",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "Label",
+											childName = "attrLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 18.86,
+												y = 168.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Sprite",
+										params = {
+											image = "xkzw_5.png",
+											pos = {
+												x = 100,
+												y = 141
+											}
+										},
+										children = {
+											{
+												name = "untitled12",
+												cType = "Label",
+												params = {
+													pos = {
+														x = 62,
+														y = 15.5
+													},
+													text = TR("特殊技能")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											align = 0,
+											text = "Label",
+											childName = "desLabel",
+											valign = 0,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 18.86,
+												y = 87.5
+											},
+											size = {
+												width = 190,
+												height = 80
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.data = slot1.data or {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.isActived = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	for slot7, slot8 in pairs(slot0.data) do
+		if slot8.SectId == slot1 then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	if slot3 then
+		for slot7, slot8 in ipairs(slot3.TokenIds) do
+			if slot8 == slot2 then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(SectTokenModel.items) do
+		for slot10, slot11 in ipairs(slot6) do
+			table.insert(slot1, slot11)
+		end
+	end
+
+	slot0.listView:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "layout", {
+			effect = slot6.tokenPic
+		}).nameLabel:setString(slot6.tokenName)
+		slot0.createLayoutTemplateNode(slot0, "layout", {
+			effect = slot6.tokenPic
+		}).activeSprite:setTexture((slot0.isActived(slot0, slot6.sectId, slot6.ID) and "zm_74.png") or "zm_75.png")
+
+		slot10 = ""
+
+		for slot14, slot15 in ipairs(slot9) do
+			slot16 = ""
+
+			if 1 < slot14 then
+				slot16 = " "
+			end
+
+			slot10 = slot10 .. ((Utility.isAttrNeedPercent(slot15.fightattr) and slot16 .. string.format("%s+%s%%", FightAttrTypeName[slot15.fightattr], slot15.value/100)) or slot16 .. string.format("%s+%s", FightAttrTypeName[slot15.fightattr], slot15.value))
+		end
+
+		slot8.attrLabel:setString(slot10)
+		ui.createLabelClipRoll({
+			label = slot8.attrLabel,
+			dimensions = cc.size(190, 20),
+			anchorPoint = cc.p(0, 0.5)
+		})
+		slot8.desLabel:setString(SkillModel.items[tonumber(slot6.actSkillId)].skillIntro)
+		slot0.listView:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+
+return slot0

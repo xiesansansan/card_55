@@ -1,0 +1,295 @@
+Live2dAnimation = {
+	create = function (slot0)
+		if not slot0.file then
+			dump("-----错误:没有文件路径")
+
+			return nil
+		end
+
+		if not cc.FileUtils:getInstance():isFileExist(slot0.file) then
+			error("-----错误:找不到对应文件")
+		end
+
+		function slot2(slot0)
+			if slot0.parent then
+				if tolua.isnull(slot0.parent) then
+					return 
+				else
+					slot0.parent:addChild(slot0, slot0.zOrder or 0)
+				end
+			end
+
+			if slot0.position then
+				slot0.setPosition(slot0, slot0.position)
+			end
+
+			if slot0.scale then
+				slot0.setScale(slot0, slot0.scale)
+			end
+
+			return 
+		end
+
+		slot3 = nil
+		mqlive2d.Live2DView:create(function (slot0)
+			if slot0.hitCallback_ then
+				slot0:hitCallback_(slot0)
+			end
+
+			return 
+		end).setHitCallback = function (slot0, slot1)
+			slot0.hitCallback_ = slot1
+
+			return 
+		end
+
+		if slot0.asyncfunc then
+			slot3.retain(slot3)
+			slot3.LoadAssetsAsync(slot3, slot1, function (slot0)
+				if slot0 then
+					slot0(slot0)
+					slot2.asyncfunc(slot2.asyncfunc)
+				else
+					slot2.asyncfunc(nil)
+				end
+
+				slot1:release()
+
+				return 
+			end)
+		else
+			if slot3.LoadAssets(slot3, slot1) then
+				slot2(slot3)
+
+				return slot3
+			end
+
+			return 
+		end
+
+		return 
+	end,
+	loadAnimation = function (slot0)
+		if not slot0.live2dAni then
+			error("-----错误:没有传入正确的参数")
+
+			return 
+		end
+
+		if not cc.FileUtils:getInstance():isFileExist(slot0.path) then
+			error("-----错误:找不到对应文件")
+		end
+
+		return slot0.live2dAni:GetMotion(slot0.path)
+	end,
+	runAnimation = function (slot0)
+		if not slot0.live2dAni then
+			error("-----错误:没有传入正确的参数")
+
+			return 
+		end
+
+		if not slot0.live2dAni:GetMotion(slot0.path) then
+			error("failed to load motion: " .. slot0.path)
+
+			return 
+		end
+
+		slot1.SetFadeInTime(slot1, 1)
+		slot1.SetFadeOutTime(slot1, 0.5)
+		slot0.live2dAni:StartMotion(slot1, slot0.trackIndex or 1, function ()
+			if slot0.endListener then
+				slot0.endListener(slot0.live2dAni)
+			end
+
+			return 
+		end, slot0.loop)
+
+		return 
+	end
+}
+Live2dAnimation.newL2dHero = function (slot0)
+	slot1 = slot0.filename
+
+	if slot0.skin then
+		slot1 = slot1 .. "_" .. slot0.skin
+	end
+
+	if not cc.FileUtils:getInstance():isFileExist("live2d/" .. slot1 .. "/" .. slot1 .. ".model3.json") then
+		return 
+	end
+
+	function slot3(slot0)
+		if not slot0 then
+			return 
+		end
+
+		slot0.filename = slot0
+		slot1 = {
+			"gaoxing",
+			"kunao",
+			"lianhong",
+			"nanguo",
+			"shengqi",
+			"xihuan",
+			"xinfen",
+			"zhipingmu"
+		}
+		slot3 = {
+			gaoxing = "kbn1_1.mp3",
+			xihuan = "kbn1_3.mp3",
+			zhipingmu = "kbn1_6.mp3",
+			lianhong = "kbn1_8.mp3",
+			nanguo = "kbn1_4.mp3",
+			xinfen = "kbn1_7.mp3",
+			shengqi = "kbn1_5.mp3",
+			kunao = "kbn1_2.mp3"
+		}
+		slot4 = 0
+
+		slot0.setHitCallback(slot0, function (slot0, slot1)
+			if #slot0 == 0 or slot1.isPlaying then
+				return 
+			end
+
+			slot1.isPlaying = true
+
+			Live2dAnimation.runL2dAnimation({
+				live2dAni = slot1,
+				name = slot0[math.random(1, #slot0)],
+				endListener = function ()
+					slot0.isPlaying = false
+
+					return 
+				end
+			})
+
+			if slot2[slot0[math.random(1, #slot0)]] then
+				MqAudio.stopEffect(MqAudio.stopEffect)
+
+				slot3 = MqAudio.playEffect(slot2[slot2])
+			end
+
+			return 
+		end)
+
+		if 0 < #{
+			"gaoxing",
+			"kunao",
+			"lianhong",
+			"nanguo",
+			"shengqi",
+			"xihuan",
+			"xinfen",
+			"zhipingmu"
+		} and not slot0.isPlaying then
+			Utility.schedule(slot0, function ()
+				math.random(1, #slot0).isPlaying = true
+
+				Live2dAnimation.runL2dAnimation({
+					live2dAni = slot1,
+					name = slot0[math.random(1, #slot0)],
+					endListener = function ()
+						slot0.isPlaying = false
+
+						return 
+					end
+				})
+
+				if slot2[slot0[math.random(1, #slot0)]] then
+					MqAudio.stopEffect(slot3)
+
+					slot3 = MqAudio.playEffect(slot3[slot0])
+				end
+
+				return 
+			end, 30)
+		end
+
+		if cc.FileUtils:getInstance():isFileExist("live2d/" .. slot0 .. "/motions/huxi.motion3.json") then
+			Live2dAnimation.runAnimation({
+				loop = true,
+				live2dAni = slot0,
+				path = slot5
+			})
+		end
+
+		return 
+	end
+
+	if not slot0.asyncfunc then
+		slot3(Live2dAnimation.create({
+			file = slot2,
+			parent = slot0.parent,
+			position = slot0.position,
+			scale = slot0.scale,
+			zorder = slot0.zorder
+		}))
+
+		return Live2dAnimation.create({
+			file = slot2,
+			parent = slot0.parent,
+			position = slot0.position,
+			scale = slot0.scale,
+			zorder = slot0.zorder
+		})
+	else
+		Live2dAnimation.create({
+			file = slot2,
+			parent = slot0.parent,
+			position = slot0.position,
+			scale = slot0.scale,
+			zorder = slot0.zorder,
+			asyncfunc = function (slot0)
+				slot0(slot0)
+				slot0.asyncfunc(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+Live2dAnimation.runL2dAnimation = function (slot0)
+	if not slot0.live2dAni then
+		return 
+	end
+
+	if not slot0.live2dAni.filename then
+		return 
+	end
+
+	if not slot0.name then
+		return 
+	end
+
+	if not cc.FileUtils:getInstance():isFileExist("live2d/" .. slot0.live2dAni.filename .. "/motions/" .. slot0.name .. ".motion3.json") then
+		return 
+	end
+
+	Live2dAnimation.runAnimation({
+		live2dAni = slot0.live2dAni,
+		endListener = function ()
+			if slot0.needReset ~= false then
+				Live2dAnimation.runL2dAnimation({
+					loop = true,
+					name = "huxi",
+					live2dAni = slot0.live2dAni
+				})
+			end
+
+			if slot0.endListener then
+				slot0.endListener()
+			end
+
+			return 
+		end,
+		loop = slot0.loop,
+		path = slot1
+	})
+
+	return 
+end
+
+return Live2dAnimation

@@ -1,0 +1,596 @@
+slot0 = class("ActivityPointsMallLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled18",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled32",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled33",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnAction",
+					pos = {
+						x = 275,
+						y = 615
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					scale = 1.3,
+					image = "lh_13104.png",
+					pos = {
+						x = -217.6,
+						y = -186.01
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -230.62,
+						y = 191.89
+					},
+					size = {
+						width = 356,
+						height = 97
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 73
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 79.41,
+								y = 45
+							},
+							text = TR("当前积分：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled19",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 132.41,
+								y = 19
+							},
+							text = TR("每充值1元可获得1积分")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 155.46,
+								y = 73
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mScoreLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							pos = {
+								x = 155.46,
+								y = 45
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 257.02,
+						y = -25.82
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 28.14,
+								y = 40.45
+							},
+							size = {
+								width = 519,
+								height = 470
+							}
+						},
+						children = {
+							{
+								name = "mGridView",
+								cType = "GridView",
+								params = {
+									createColCb = "onCreateCell",
+									itemNum = 1,
+									selectIndex = 1,
+									colCount = 3,
+									celHeight = 235,
+									pos = {
+										x = 259.5,
+										y = 235
+									},
+									size = {
+										width = 519,
+										height = 470
+									}
+								},
+								children = {
+									{
+										name = "GoodsTemNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 100,
+												y = 100
+											},
+											size = {
+												width = 133,
+												height = 225
+											}
+										},
+										children = {
+											{
+												name = "untitled22",
+												cType = "Scale9Sprite",
+												params = {
+													image = "xshd_4.png",
+													pos = {
+														x = 66.5,
+														y = 112.5
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled23",
+												cType = "Scale9Sprite",
+												params = {
+													image = "c_11.png",
+													pos = {
+														x = 66.5,
+														y = 190.43
+													},
+													size = {
+														width = 130,
+														height = 1
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled24",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "nameLabel",
+													text = "Label",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 66.5,
+														y = 208.03
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled25",
+												cType = "CardNode",
+												params = {
+													childName = "goodsCard",
+													allowClick = true,
+													pos = {
+														x = 66.5,
+														y = 144
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled26",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													emptyInit = true,
+													text = "label",
+													childName = "tigLabel",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 66.5,
+														y = 90
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled27",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													childName = "numLabel",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 66.5,
+														y = 68
+													},
+													text = TR("购买次数：")
+												},
+												children = {}
+											},
+											{
+												name = "untitled29",
+												cType = "Button",
+												params = {
+													childName = "buyBtn",
+													image = "c_32.png",
+													clickAction = "onBuyAction",
+													pos = {
+														x = 66.5,
+														y = 26
+													},
+													titleText = TR("购 买")
+												},
+												children = {}
+											},
+											{
+												name = "untitled31",
+												cType = "BadgeText",
+												params = {
+													hide = true,
+													image = "c_76.png",
+													childName = "discountBadgeText",
+													anchor = {
+														x = 1,
+														y = 1
+													},
+													pos = {
+														x = 131.24,
+														y = 225.36
+													},
+													text = TR("推荐")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedPointsMall
+	slot0.mActivityType = slot1.activityType
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mGridView:setItemNum(#slot0.mGoodsList)
+	slot0.mScoreLabel:setString(slot0.totalScore)
+	slot0.createTimeUpdate(slot0)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString("00:00:00")
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.活动期间，充值任意金额都会获取对应充值积分，每充值1元即可获得1积分，积分可在积分商城中用于兑换道具。"),
+			TR("2.积分商城中的所有道具每日都存在购买次数限制，每日的24点会刷新购买次数。"),
+			TR("3.活动结束后，当前积分将重置为0，请各位侠客在活动结束前使用积分兑换道具。")
+		}
+	})
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	if slot0.mGoodsList[slot1.index].Num <= 0 then
+		ui.showFlashView(TR("道具可购买次数不足"))
+
+		return 
+	end
+
+	if slot0.totalScore < slot2.NeedScore then
+		ui.showFlashView(TR("积分不足"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.GoodsCountSelectLayer",
+		data = {
+			goodsInfo = Utility.analysisStrResList(slot2.Reward)[1],
+			price = slot2.NeedScore,
+			coinName = TR("积分"),
+			maxCount = math.min(slot2.Num, math.floor(slot0.totalScore/slot2.NeedScore)),
+			operaCallback = function (slot0)
+				slot0:requestBuyGoods(slot1.Serial, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCreateCell = function (slot0, slot1, slot2)
+	slot4 = slot0.createLayoutTemplateNode(slot0, "GoodsTemNode")
+
+	slot4.setAnchorPoint(slot4, cc.p(0.5, 0.5))
+	slot4.setPosition(slot4, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot4)
+	slot4.nameLabel:setString(Resource.getModelInfo(Utility.analysisStrResList(slot0.mGoodsList[slot2].Reward)[1].resourceId).name)
+	ui.createLabelClipRoll({
+		label = slot4.nameLabel,
+		dimensions = cc.size(90, 30),
+		anchorPoint = cc.p(0.5, 0.5),
+		position = cc.p(66.5, 208)
+	})
+	slot4.goodsCard:setCardData(slot5, {
+		Enums.CardShowAttr.eNum
+	})
+	slot4.numLabel:setString(TR("购买次数：%s", slot0.mGoodsList[slot2].Num))
+	slot4.buyBtn:setTitleText(TR("%s积分", slot0.mGoodsList[slot2].NeedScore))
+
+	slot4.buyBtn.index = slot2
+
+	slot4.discountBadgeText:setScale(0.7)
+
+	if slot0.mGoodsList[slot2].Discount and 0 < slot3.Discount then
+		slot4.discountBadgeText:setVisible(true)
+		slot4.discountBadgeText:setText(TR("%.1f折", slot3.Discount))
+	else
+		slot4.discountBadgeText:setVisible(false)
+	end
+
+	slot4.tigLabel:setString("")
+
+	if Resource.getSubType(slot5.resourceId) == ResourceTypeSub.eKongFuDebris then
+		slot4.tigLabel:setString(TR("合成：%s%s%s/%s", (slot6.outputNeedNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot6.outputNeedNum))
+	elseif slot7 == ResourceTypeSub.eTitleDebris then
+		slot8 = TitleConfig.items[slot6.outputModelID]
+		slot9 = false
+
+		for slot13, slot14 in ipairs(PlayerAttrObj:getPlayerAttrByName("AllTitleId")) do
+			if slot6.outputModelID == slot14 then
+				slot9 = true
+
+				break
+			end
+		end
+
+		if slot9 then
+			slot4.tigLabel:setString(TR("%s已拥有", "#258711"))
+		else
+			slot4.tigLabel:setString(TR("合成：%s%s%s/%s", (slot6.outputNeedNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot6.outputNeedNum))
+		end
+	elseif slot7 == ResourceTypeSub.eHeroDebris then
+		if HeroObj:isHaveModel(slot6.outputModelID) then
+			if HeroObj:getItem(slot8).Star < #HeroStarRelation.items[slot8] then
+				slot4.tigLabel:setString(TR("升星：%s%s%s/%s", (slot10[slot9.Star + 1].needDebrisNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot10[slot9.Star + 1].needDebrisNum))
+			else
+				slot4.tigLabel:setString(TR("%s已满星", "#258711"))
+			end
+		else
+			slot4.tigLabel:setString(TR("合成：%s%s%s/%s", (slot6.outputNeedNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot6.outputNeedNum))
+		end
+	elseif slot7 == ResourceTypeSub.eFashionDebris then
+		slot9 = false
+
+		for slot13, slot14 in pairs(slot8) do
+			if slot6.outputModelID == slot14 then
+				slot9 = true
+
+				break
+			end
+		end
+
+		if slot9 then
+			slot4.tigLabel:setString(TR("%s已拥有", "#258711"))
+		else
+			slot4.tigLabel:setString(TR("合成：%s%s%s/%s", (slot6.outputNeedNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot6.outputNeedNum))
+		end
+	elseif slot7 == ResourceTypeSub.eFriendDebris then
+		slot8 = PlayerAttrObj:getPlayerAttrByName("FriendMeinvActivedModelIds") or {}
+		slot9 = false
+
+		for slot13, slot14 in pairs(slot8) do
+			if slot6.outputModelID == slot14 then
+				slot9 = true
+
+				break
+			end
+		end
+
+		if slot9 then
+			slot4.tigLabel:setString(TR("%s已拥有", "#258711"))
+		else
+			slot4.tigLabel:setString(TR("合成：%s%s%s/%s", (slot6.outputNeedNum <= GoodsObj:getItemCount(slot5.resourceId) and "#258711") or "#ea2c00", GoodsObj:getItemCount(slot5.resourceId), "#252525", slot6.outputNeedNum))
+		end
+	end
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRewardList",
+		moduleName = "TimedChargeScore",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.totalScore = slot0.Score
+			slot0.mGoodsList = slot0.GoodsInfo
+			slot0.mEndTime = slot0.EndDate
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyGoods = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyGoods",
+		moduleName = "TimedChargeScore",
+		methodData = {
+			slot0.mActivityId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.totalScore = slot0.Score
+			slot0.mGoodsList = slot0.GoodsInfo
+
+			slot0:refreshUI()
+			ui.showFlashReward(slot0)
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

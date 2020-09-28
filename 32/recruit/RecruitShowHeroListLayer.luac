@@ -1,0 +1,434 @@
+slot0 = class("RecruitShowHeroListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled13",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "c_pure.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = false,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = -557.76,
+						y = -217.67
+					},
+					size = {
+						width = 1136,
+						height = 480
+					}
+				},
+				children = {
+					{
+						name = "heroTemplateNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 30.36,
+								y = -480.56
+							},
+							size = {
+								width = 200,
+								height = 480
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Sprite",
+								params = {
+									image = "jg_28.png",
+									childName = "bgSprite",
+									pos = {
+										x = 104.15,
+										y = 244.32
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "ClippingNode",
+								params = {
+									childName = "clipNode",
+									alpha = 1,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 100,
+										y = 244
+									},
+									size = {
+										width = 160,
+										height = 412
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									image = "jg_29.png",
+									pos = {
+										x = 103,
+										y = 246
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_30.png",
+									childName = "professionSprite",
+									pos = {
+										x = 103.12,
+										y = 148.29
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									pos = {
+										x = 103.18,
+										y = 64.36
+									},
+									text = TR("角色名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_20.png",
+									childName = "qualitySprite",
+									pos = {
+										x = 16.24,
+										y = 374.42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "heroModelId",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_pure.png",
+									swallowTouch = false,
+									childName = "button",
+									pos = {
+										x = 102.96,
+										y = 243.92
+									},
+									size = {
+										width = 157.27,
+										height = 423.47
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "touchNode",
+				cType = "Node",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = 17
+					},
+					size = {
+						width = 1136,
+						height = 480
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 0.68,
+						y = -261.55
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTypeId = slot1.typeId or 2
+	slot0.mData = slot1.data or {}
+	slot0.mGroupData = slot1.groupData or {}
+	slot0.mGroupWidth = slot1.groupWidth
+	slot0.mContentOffsetX = slot1.contentOffsetX
+	slot0.extraHeros = slot1.extraHeros or {}
+	slot0.moving = true
+	slot0.speed = 113.6
+
+	slot0.super.ctor(slot0)
+
+	if not next(slot0.mData) then
+		slot0.dealData(slot0)
+	end
+
+	slot0.initUI(slot0)
+
+	if not slot0.mGroupWidth then
+		slot0.mGroupWidth = slot0.tableView:getContainer():getContentSize().width
+	end
+
+	slot0.onUpdate(slot0, function (slot0)
+		slot0.mCurrOffsetX = slot0.tableView:getContentOffset().x
+
+		if slot0.tableView.getContentOffset().x <= slot0.tableView:minContainerOffset().x then
+			table.insertto(slot0.mData, slot0.mGroupData)
+			slot0.tableView:reloadData()
+
+			if not slot0.touchBegan then
+				slot0:startAutoMoveLeft()
+			end
+		elseif slot0.mCurrOffsetX <= -slot0.mGroupWidth then
+			slot0.mData = clone(slot0.mGroupData)
+
+			slot0.tableView:reloadData()
+			slot0.tableView:setContentOffset(cc.p(0, slot0.tableView:getContentOffset().y))
+
+			if not slot0.touchBegan then
+				slot0:startAutoMoveLeft()
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		contentOffsetX = slot0.mCurrOffsetX,
+		groupData = slot0.mGroupData,
+		data = slot0.mData,
+		groupWidth = slot0.mGroupWidth
+	}
+end
+slot0.dealData = function (slot0)
+	slot1 = false
+
+	for slot5, slot6 in pairs(RecruitModel.items) do
+		if slot6.classId == slot0.mTypeId then
+			slot0.mGroupData = string.splitBySep(slot6.recruitShow, ",")
+			slot1 = true
+
+			break
+		end
+
+		if slot1 then
+			break
+		end
+	end
+
+	for slot5, slot6 in pairs(slot0.extraHeros) do
+		if not table.indexof(slot0.mGroupData, tostring(slot6)) then
+			table.insert(slot0.mGroupData, tostring(slot6))
+		end
+	end
+
+	table.sort(slot0.mGroupData, function (slot0, slot1)
+		return HeroModel.items[tonumber(slot1)].quality < HeroModel.items[tonumber(slot0)].quality
+	end)
+
+	slot0.mData = clone(slot0.mGroupData)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.tableView:reloadData()
+
+	if slot0.mContentOffsetX then
+		slot0.tableView:setContentOffset(cc.p(slot0.mContentOffsetX, slot0.tableView:getContentOffset().y))
+	end
+
+	slot0.startAutoMoveLeft(slot0)
+
+	slot3 = cc.EventListenerTouchOneByOne:create()
+
+	slot3.setSwallowTouches(slot3, false)
+	slot3.registerScriptHandler(slot3, slot1, cc.Handler.EVENT_TOUCH_BEGAN)
+	slot3.registerScriptHandler(slot3, slot2, cc.Handler.EVENT_TOUCH_ENDED)
+	slot0.touchNode:getEventDispatcher():addEventListenerWithSceneGraphPriority(slot3, slot0.touchNode)
+
+	return 
+end
+slot0.startAutoMoveLeft = function (slot0)
+	slot0.tableView:moveToPercent(100, (math.abs(slot4) - math.abs(slot0.tableView:getContentOffset().x))/slot0.speed)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 200, 480
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mData
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "heroTemplateNode")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		slot2 = tonumber(slot1)
+		slot3 = HeroModel.items[slot2]
+		slot1.button.heroModelId = slot2
+		slot4 = false
+		slot5 = HeroObj:getList()
+
+		if not Utility.isHeroHide(slot2) and slot5[slot2] then
+			slot4 = true
+		end
+
+		slot1.button:setClickAction(function (slot0)
+			if not slot0 then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "hero.HeroDetialViewLayer",
+					data = {
+						heroModelId = slot0.heroModelId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			else
+				LayerManager.addLayer({
+					cleanUp = true,
+					name = "hero.HeroMainLayer",
+					data = {
+						defModelId = slot0.heroModelId
+					}
+				})
+			end
+
+			return 
+		end)
+
+		if slot1.badgeText and not tolua.isnull(slot1.badgeText) then
+			slot1.badgeText:removeFromParent()
+
+			slot1.badgeText = nil
+		end
+
+		if not slot4 then
+			slot7 = UIWrap.newControl("BadgeText", {
+				fontSize = 16,
+				text = TR("未拥有")
+			})
+
+			slot7.setAnchorPoint(slot7, cc.p(1, 1))
+			slot7.setScale(slot7, 1.5)
+			slot7.setPosition(slot7, cc.p(182, 451))
+			slot1:addChild(slot7)
+
+			slot1.badgeText = slot7
+		end
+
+		if not slot1.heroSprite then
+			slot1.clipNode:addChild(UIWrap.newControl("Sprite", {
+				image = slot3.halfBodyPic .. ".png",
+				pos = cc.p(80, 213)
+			}))
+
+			slot1.heroSprite = UIWrap.newControl("Sprite", {
+				image = slot3.halfBodyPic .. ".png",
+				pos = cc.p(80, 213)
+			})
+		else
+			slot1.heroSprite:setTexture(slot3.halfBodyPic .. ".png")
+		end
+
+		slot1.professionSprite:setTexture(({
+			[ProfessionType.eDao] = "xkxx_91.png",
+			[ProfessionType.eJian] = "xkxx_90.png",
+			[ProfessionType.eLi] = "xkxx_92.png",
+			[ProfessionType.eQi] = "xkxx_93.png",
+			[ProfessionType.eJi] = "xkxx_94.png"
+		})[slot3.profession])
+		slot1.qualitySprite:setTexture(slot8)
+		slot1.bgSprite:setTexture(({
+			nil,
+			"jg_24.png",
+			"jg_25.png",
+			"jg_26.png",
+			"jg_27.png",
+			"jg_28.png"
+		})[Resource.getQualityColorLv(slot3.quality)] or slot9[2])
+		slot1.nameLabel:setColor(slot1.bgSprite.setTexture)
+		slot1.nameLabel:setString(slot3.name)
+
+		if slot1.starNode and not tolua.isnull(slot1.starNode) then
+			slot1.starNode:removeFromParent()
+
+			slot1.starNode = nil
+		end
+
+		slot1:addChild(ui.showHeroStarShow(slot11, slot12, cc.p(109, 77), false, slot3.initStar))
+
+		slot1.starNode = ui.showHeroStarShow(slot11, slot12, cc.p(109, 77), false, slot3.initStar)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,208 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.UIHelper")
+slot2 = require("common.SpineManager")
+slot3 = require("common.ShaderManager")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.managers.BuffManager")
+
+function slot6(slot0, slot1, slot2)
+	return cc.p((display.xSafeScale*568)/display.minSafeScale - 568 + -(slot0*97)/2 - 97/2 + slot2.x + slot1*97, ((slot2.y + -260)*display.ySafeScale)/display.minSafeScale)
+end
+
+slot7 = class("SkillButton", function ()
+	return cc.Node:create()
+end)
+slot7.ctor = function (slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7)
+	slot0.order = slot5
+	slot0.isPvp = slot6
+	slot0.preUse = false
+
+	slot0.setPosition(slot0, slot9)
+
+	slot0.headSprite = cc.Sprite:create(slot13)
+
+	slot0.addChild(slot0, slot14)
+
+	slot15 = cc.Node:create()
+
+	slot0.addChild(slot0, slot15)
+
+	slot0.skillBtn = slot2.newButton({
+		image = HeroModel.items[slot0.getUnitByUid(slot1).heroId].smallPic .. ".png",
+		clickAction = function ()
+			slot0:releaseSkill()
+
+			return 
+		end
+	})
+
+	slot0.skillBtn:setTouchEnabled(false)
+	slot15.addChild(slot15, slot16)
+
+	slot0.btnEffect = slot3.createAnimation("effect_ui_xiakekuang")
+
+	slot0.btnEffect:setScale(1.05)
+	slot0.btnEffect:setPosition(cc.p(-1.3, 0))
+	slot0.btnEffect:setVisible(false)
+	slot0.addChild(slot0, slot17)
+	slot0.btnEffect:registerLuaHandler("complete", function (slot0)
+		if slot0.animation == "chufa" then
+			slot0.isPlaying = false
+
+			slot0:resetStatus()
+		end
+
+		return 
+	end)
+
+	slot0.curAnim = ""
+
+	return 
+end
+slot7.releaseSkill = function (slot0)
+	if slot0.isPvp == true then
+		return false
+	end
+
+	if slot0.preUse == true then
+		return false
+	end
+
+	if slot0.getUnitByGroupOrder(slot1.UnitGroup.ATTACKER, slot0.order) then
+		slot0.updatePendingUnits(slot1)
+	end
+
+	slot0.useEffect(slot0)
+
+	return true
+end
+slot7.useEffect = function (slot0)
+	if slot0.preUse == true then
+		return 
+	end
+
+	slot0.isPlaying = true
+
+	if slot0.curAnim ~= "chufa" then
+		slot0.curAnim = "chufa"
+
+		slot0.btnEffect:playAnimation("chufa", 1)
+	end
+
+	if slot0.fingerAnim then
+		slot0.fingerAnim:setVisible(false)
+	end
+
+	slot0.preUse = true
+
+	return 
+end
+slot7.showFullStatus = function (slot0)
+	if not slot0.isEffectEnabled then
+		slot0.isEffectEnabled = not slot0.isEffectEnabled
+
+		slot0.setCardShader(slot0, slot0, slot0.Normal)
+		slot0.setCardShader(slot0, slot0.headSprite, slot0.Normal)
+		slot0.skillBtn:setTouchEnabled(true)
+
+		if slot0.curAnim ~= "daiji" then
+			slot0.curAnim = "daiji"
+
+			slot0.btnEffect:playAnimation("daiji")
+		end
+
+		slot0.btnEffect:setVisible(true)
+
+		if slot0.fingerAnim then
+			slot0.fingerAnim:setVisible(true)
+		end
+	end
+
+	slot0.skillBtn:setBright(true)
+
+	return 
+end
+slot7.resetStatus = function (slot0)
+	if slot0.isPlaying then
+		return 
+	end
+
+	if slot0.isEffectEnabled then
+		slot0.isEffectEnabled = not slot0.isEffectEnabled
+
+		slot0.skillBtn:setTouchEnabled(false)
+		slot0.btnEffect:setVisible(false)
+
+		if slot0.fingerAnim then
+			slot0.fingerAnim:setVisible(false)
+		end
+	end
+
+	if slot0.getUnitByGroupOrder(slot1.UnitGroup.ATTACKER, slot0.order) == nil then
+		slot0.skillBtn:setBright(false)
+		slot0.setCardShader(slot0, slot0.headSprite, slot2.Gray)
+	else
+		slot0.skillBtn:setBright(true)
+		slot0.setCardShader(slot0, slot0.headSprite, slot2.Normal)
+	end
+
+	return 
+end
+slot7.setCardShader = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	function (slot0)
+		if slot0.setGLProgram then
+			slot0.setGLProgram(slot0, slot0.loadShader(slot0.loadShader))
+		end
+
+		for slot4, slot5 in pairs(slot0) do
+			slot2(slot5)
+		end
+
+		return 
+	end(slot1)
+
+	return 
+end
+slot7.canUseSkill = function (slot0)
+	slot2 = false
+
+	if slot0.getUnitByGroupOrder(slot1.UnitGroup.ATTACKER, slot0.order) and slot1.EnergyFull <= slot1.attr.mp then
+		slot3, slot4 = slot2.getControlState(slot1.uid)
+
+		if not slot4 then
+			slot2 = true
+		end
+	end
+
+	if slot1 and slot0.isPendingUnits(slot1) == false then
+		slot0.preUse = false
+	end
+
+	return slot2
+end
+slot7.update = function (slot0)
+	if slot0.canUseSkill(slot0) and slot0.preUse == false then
+		slot0.showFullStatus(slot0)
+	else
+		slot0.resetStatus(slot0)
+	end
+
+	return 
+end
+slot7.collidePos = function (slot0, slot1)
+	if slot0.canUseSkill(slot0) == false then
+		return 
+	end
+
+	slot7, slot8 = slot0.getPosition(slot0)
+
+	if cc.pGetDistance(cc.p(slot3, slot4), slot1) < 50 then
+		slot0.releaseSkill(slot0)
+	end
+
+	return 
+end
+
+return slot7

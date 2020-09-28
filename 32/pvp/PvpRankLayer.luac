@@ -1,0 +1,599 @@
+slot0 = class("PvpRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallBack",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "untitled32",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 426.23,
+						y = 423.44
+					},
+					size = {
+						width = 770,
+						height = 35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rankTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 36.11,
+						y = 53.27
+					},
+					size = {
+						width = 780,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "rankNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -114
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 388.72,
+										y = 55
+									},
+									size = {
+										width = 780,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rankBgSprite",
+								cType = "Sprite",
+								params = {
+									image = "c_58.png",
+									pos = {
+										x = 56.31,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rankLabel",
+								cType = "Label",
+								params = {
+									text = "19",
+									isRichText = false,
+									fontName = "c_54.png",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 65.95,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "playerHead",
+								cType = "CardNode",
+								params = {
+									clickAction = "onClickHead",
+									allowClick = true,
+									pos = {
+										x = 168.84,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "nameLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 219.14,
+										y = 55.09
+									},
+									text = TR("六个字的名字")
+								},
+								children = {}
+							},
+							{
+								name = "guildLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 365.14,
+										y = 55.09
+									},
+									text = TR("六个字的名字")
+								},
+								children = {}
+							},
+							{
+								name = "fapLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 522,
+										y = 55.09
+									},
+									text = TR("99999万")
+								},
+								children = {}
+							},
+							{
+								name = "rewardListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 698,
+										y = 55
+									},
+									size = {
+										width = 150,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "goodLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "goodCard-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "goodCard",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 50,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled31",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 92.41,
+						y = 424.12
+					},
+					text = TR("排名")
+				},
+				children = {}
+			},
+			{
+				name = "untitled20",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 250,
+						y = 424.12
+					},
+					text = TR("玩家名称")
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 441,
+						y = 424.12
+					},
+					text = TR("帮派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 585,
+						y = 424.12
+					},
+					text = TR("战力")
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 745,
+						y = 424.12
+					},
+					text = TR("奖励")
+				},
+				children = {}
+			},
+			{
+				name = "myRankLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 60.05,
+						y = 35.25
+					},
+					text = TR("我的排名：")
+				},
+				children = {}
+			},
+			{
+				name = "rewardLabel",
+				cType = "Label",
+				params = {
+					imageScale = 0.9,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 300,
+						y = 38.25
+					},
+					text = TR("奖励：")
+				},
+				children = {}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					lightedImage = "c_30.png",
+					direction = false,
+					delayInit = true,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = "Test"
+						},
+						{
+							title = "Test"
+						},
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 42.26,
+						y = 445.78
+					},
+					size = {
+						width = 500,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mMyRank = slot1.myRank
+	slot0.mMyStep = slot1.myStep
+	slot0.mSelectTag = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.onActionCallBack = function (slot0)
+	slot0.requestGetPvpTopRankList(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.myRankLabel:setString(TR("我的排名：%s", slot0.mMyRank))
+
+	slot2 = ""
+
+	slot0.rewardLabel:setString(TR("奖励：{%s}%s", Resource.getDaibiImg(Utility.analysisStrResList((not PvpRankRewardRelation.items[slot0.mMyStep][slot0.mMyRank] or slot1.rewardStr) and PvpRankRewardRelation.items[slot0.mMyStep][#PvpRankRewardRelation.items[slot0.mMyStep]].rewardStr)[1].resourceId), Utility.analysisStrResList((not PvpRankRewardRelation.items[slot0.mMyStep][slot0.mMyRank] or slot1.rewardStr) and PvpRankRewardRelation.items[slot0.mMyStep][#PvpRankRewardRelation.items[slot0.mMyStep]].rewardStr)[1].num))
+
+	return 
+end
+slot1 = {
+	"c_51.png",
+	"c_52.png",
+	"c_53.png"
+}
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 780, 114
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mRankList[slot0.mSelectTag]
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rankNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.rankBgSprite:setTexture(slot1[slot0.mRankList[slot0.mSelectTag][slot1 + 1].Rank] or "c_58.png")
+		slot0.rankLabel:setVisible(3 < slot2.Rank)
+		slot0.rankLabel:setString(slot2.Rank)
+		slot0.playerHead:setPlayerHeader(slot2.HeadImageId, nil, {
+			headPicId = slot2.HeadPicId
+		})
+		slot0.nameLabel:setString(slot2.Name)
+
+		if Utility.isEntityId(slot2.GuildId) then
+			slot0.guildLabel:setString(slot2.GuildName)
+		else
+			slot0.guildLabel:setString(TR("暂无帮派"))
+		end
+
+		slot0.fapLabel:setString(Utility.numberWithUnit(slot2.Fap))
+
+		slot0.playerHead.playerInfo = slot2
+		slot5 = #Utility.analysisStrResList(PvpRankRewardRelation.items[slot0.mSelectTag][slot2.Rank].rewardStr)*110
+
+		if 2 <= #Utility.analysisStrResList(PvpRankRewardRelation.items[slot0.mSelectTag][slot2.Rank].rewardStr) then
+			slot5 = 150
+		end
+
+		slot0.rewardListView:setContentSize(cc.size(slot5, 100))
+		slot0.rewardListView:removeAllChildren()
+
+		for slot9, slot10 in ipairs(slot4) do
+			slot0.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("goodLayout", {
+				cardInfo = {
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					},
+					instanceData = {
+						modelId = slot10.resourceId,
+						num = slot10.num
+					}
+				}
+			}))
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onClickHead = function (slot0, slot1)
+	if slot1.playerInfo.IsRobot then
+		ui.showFlashView(TR("机器人无法查看信息"))
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.OtherPlayerInfoLayer",
+			data = {
+				playerId = slot1.playerInfo.PlayerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.mSelectTag = slot1
+
+	slot0.rankTableView:reloadData()
+	slot0.rankTableView:jumpToTop()
+
+	return 
+end
+slot0.creareTabs = function (slot0)
+	slot0.mBtnInfos = {}
+
+	for slot4, slot5 in ipairs(PvpStepRelation.items) do
+		table.insert(slot0.mBtnInfos, {
+			title = slot5.stepName,
+			tag = slot5.step
+		})
+	end
+
+	slot0.createUISubTree(slot0, "mTabView", function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0.mBtnInfos
+		end
+
+		return 
+	end)
+	slot0.mTabView:activeTabBtnByTag2(slot0.mMyStep)
+
+	return 
+end
+slot0.requestGetPvpTopRankList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPvpTopRankList",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRankList = {}
+
+			for slot4, slot5 in ipairs(slot0.TopRankList) do
+				slot6 = {}
+
+				for slot10, slot11 in ipairs(slot5.RankList) do
+					table.insert(slot6, slot11)
+				end
+
+				table.insert(slot0.mRankList, slot6)
+			end
+
+			for slot4, slot5 in ipairs(slot0.mRankList) do
+				if next(slot5) then
+					table.sort(slot5, function (slot0, slot1)
+						return slot0.Rank < slot1.Rank
+					end)
+				end
+			end
+
+			slot0:refreshLayer()
+			slot0:creareTabs()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

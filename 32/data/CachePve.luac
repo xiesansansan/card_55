@@ -1,0 +1,112 @@
+slot0 = class("CachePve", {})
+slot0.ctor = function (slot0)
+	slot0.mChapterList = {}
+	slot0.mNodeFormationStr = "0,0,0,0,0,0"
+	slot0.mBanditsFormationStr = "0,0,0,0,0,0"
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mChapterList = {}
+	slot0.mNodeFormationStr = "0,0,0,0,0,0"
+	slot0.mBanditsFormationStr = "0,0,0,0,0,0"
+
+	return 
+end
+slot0.getChapterList = function (slot0, slot1)
+	if next(slot0.mChapterList) then
+		if slot1 then
+			slot1(clone(slot0.mChapterList))
+		end
+	else
+		require("network.GameSocket"):socketRequest({
+			methodName = "PveChapterInfo",
+			moduleName = "PveChapter",
+			ignoreNode = true,
+			methodData = {},
+			successCallback = function (slot0)
+				for slot4, slot5 in pairs(slot0.FormationInfo) do
+					if tonumber(slot4) == FightType.ePve then
+						slot0:setNodeFormationStr(slot5)
+					elseif tonumber(slot4) == FightType.ePveBandits then
+						slot0:setBanditsFormationStr(slot5)
+					end
+				end
+
+				for slot4, slot5 in pairs(slot0.PveChapterInfo) do
+					slot0.mChapterList[slot5.ChapterModelId] = slot5
+				end
+
+				if slot1 then
+					slot1(clone(slot0.mChapterList))
+				end
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.getCurrFightChapterId = function (slot0)
+	slot1 = nil
+
+	table.sort(table.keys(slot0.mChapterList) or {}, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	if #slot2 == 0 then
+		return 
+	end
+
+	if PveChapterModel.items[slot2[#slot2]] and slot0.mChapterList[slot1].FirstPass and PveChapterModel.items[slot1 + 1] then
+		slot1 = slot1 + 1
+	end
+
+	return slot1
+end
+slot0.modifyOneChapterInfo = function (slot0, slot1)
+	if slot1 and type(slot1) == "table" and slot1.ChapterModelId then
+		slot0.mChapterList[slot1.ChapterModelId] = slot1
+	end
+
+	return 
+end
+slot0.getOneChapterInfo = function (slot0, slot1)
+	return clone(slot0.mChapterList[slot1] or {})
+end
+slot0.getCurrFightChapterId = function (slot0)
+	slot1 = nil
+
+	table.sort(table.keys(slot0.mChapterList) or {}, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	if #slot2 == 0 then
+		return 
+	end
+
+	if PveChapterModel.items[slot2[#slot2]] and slot0.mChapterList[slot1].FirstPass and PveChapterModel.items[slot1 + 1] then
+		slot1 = slot1 + 1
+	end
+
+	return slot1
+end
+slot0.setNodeFormationStr = function (slot0, slot1)
+	slot0.mNodeFormationStr = slot1
+
+	return 
+end
+slot0.getNodeFormationStr = function (slot0)
+	return slot0.mNodeFormationStr
+end
+slot0.setBanditsFormationStr = function (slot0, slot1)
+	slot0.mBanditsFormationStr = slot1
+
+	return 
+end
+slot0.getBanditsFormationStr = function (slot0)
+	return slot0.mBanditsFormationStr
+end
+
+return slot0

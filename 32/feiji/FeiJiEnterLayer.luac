@@ -1,0 +1,230 @@
+slot0 = class("FeiJiEnterLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			titleText = TR("跨服战")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_144.png",
+					pos = {
+						x = 296,
+						y = 267
+					},
+					size = {
+						width = 534,
+						height = 480
+					}
+				},
+				children = {}
+			},
+			{
+				name = "moduleList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 296,
+						y = 267
+					},
+					size = {
+						width = 534,
+						height = 460
+					}
+				},
+				children = {
+					{
+						name = "moduleLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "button-image",
+								name = "btnImage",
+								type = "string"
+							},
+							{
+								value = "untitled7-hide",
+								name = "isHideTimeBg",
+								type = "string"
+							},
+							{
+								value = "untitled8-text",
+								name = "timeStr",
+								type = "string"
+							},
+							{
+								value = "button-moduleId",
+								name = "moduleId",
+								type = "string"
+							},
+							{
+								value = "button-isGray",
+								name = "isBtnDisable",
+								type = "string"
+							},
+							{
+								value = "untitled10-hide",
+								name = "isHideSprite",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 534,
+								height = 230
+							}
+						},
+						children = {
+							{
+								name = "button",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "moduleId",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "jzthd_91.png",
+									isGray = false,
+									pressedAction = false,
+									clickAction = "onEnterAction",
+									pos = {
+										x = 267,
+										y = 115
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_158.png",
+									hide = false,
+									pos = {
+										x = 399.82,
+										y = 78.13
+									},
+									size = {
+										width = 250,
+										height = 40
+									}
+								},
+								children = {
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 1,
+												y = 0.5
+											},
+											color = {
+												g = 231,
+												r = 255,
+												b = 72
+											},
+											pos = {
+												x = 230,
+												y = 20
+											},
+											text = TR("每日18:00~23:00开放")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "jzthd_90.png",
+									hide = false,
+									pos = {
+										x = 271.88,
+										y = 128.21
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.addModuleInfo(slot0)
+
+	return 
+end
+slot0.addModuleInfo = function (slot0)
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.moduleList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "moduleLayout", {
+			btnImage = slot6.btnImage,
+			isHideTimeBg = slot6.timeStr == nil,
+			timeStr = slot6.timeStr or "",
+			moduleId = slot6.moduleId or 0,
+			isHideSprite = slot6.moduleId ~= nil,
+			isBtnDisable = slot6.moduleId == nil
+		}))
+
+		if slot6.moduleId and 0 < slot6.moduleId then
+			slot7.button:addChild(UIWrap.newControl("RedDot", {
+				moduleId = slot6.moduleId,
+				visibleFunc = function (slot0)
+					slot0.setVisible(slot0, RedDotObj:isValid(slot0.moduleId))
+
+					return 
+				end
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onEnterAction = function (slot0, slot1)
+	if not slot1.moduleId or slot2 == 0 then
+		ui.showFlashView(TR("暂未开放，敬请期待~"))
+
+		return 
+	end
+
+	if Utility.moduleIsOpen(slot2, true) == false then
+		return 
+	end
+
+	LayerManager.showModuleLayer(slot2)
+
+	return 
+end
+
+return slot0

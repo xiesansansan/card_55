@@ -1,0 +1,352 @@
+slot0 = class("ActivitySubSuperDinnerLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_101.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "fuli_11.png",
+					pos = {
+						x = 207.28,
+						y = 57.51
+					}
+				},
+				children = {}
+			},
+			{
+				name = "foodBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onGetFoodAction",
+					pos = {
+						x = 32.17,
+						y = -0.72
+					},
+					size = {
+						width = 180.16,
+						height = 172.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "eatEffect",
+				cType = "Effect",
+				params = {
+					isPlayAnimation = false,
+					dataFile = "effect_ui_jiaohuaji",
+					pos = {
+						x = -92.44,
+						y = -78.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTitleSprite",
+				cType = "Sprite",
+				params = {
+					image = "fuli_101.png",
+					pos = {
+						x = 78.22,
+						y = 211.96
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled8",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 100
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 60,
+						y = 40.2
+					},
+					text = TR("进餐时间：12:00-18:00，18:00-21:00，21:00-23:00")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 60,
+						y = 9.52
+					},
+					text = TR("1-59级每次领取#ffe74810万#ffffff干粮，60-79级每次领取#ffe74815万#ffffff干粮")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 60,
+						y = -21.48
+					},
+					text = TR("80-99级每次领取#ffe74820万#ffffff干粮，100级后每次领取#ffe74825万#ffffff干粮")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled11",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			hide = true,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "fuli_102.png",
+					pos = {
+						x = -68.03,
+						y = 37.02
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -67.74,
+						y = 155.29
+					},
+					text = TR("额外奖励")
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = -106.52,
+						y = -84.46
+					},
+					size = {
+						width = 80,
+						height = 220.77
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled16-initParams",
+								name = "head",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 7.98,
+								y = 140.56
+							},
+							size = {
+								width = 80,
+								height = 78.34
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 38.75,
+										y = 39.09
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.onGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if ModuleVisibleObj:moduleIsVisible(ModuleSub.eExtraActivityVit) then
+		slot0.eatEffect:playAnimation("ji")
+	else
+		slot0.eatEffect:playAnimation("gujia")
+		slot0.foodBtn:setClickAction(function ()
+			ui.showFlashView(TR("你已经领取干粮"))
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.onGetFoodAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveVit",
+		moduleName = "PlayerVit",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.foodBtn:setEnabled(false)
+			MqAudio.playEffect("jiaohuaji.mp3")
+			slot0.eatEffect:playAnimation("chiji", 1)
+			slot0.eatEffect:registerLuaHandler("complete", function ()
+				slot0.eatEffect:setTimePercent(1)
+				slot0.eatEffect.setTimePercent:onEffectFinish()
+				slot0.foodBtn:setEnabled(true)
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "PlayerVit",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+			slot0.mTitleSprite:setTexture(slot0.TitlePic)
+
+			slot0.reward = slot0.PlayerVitList.Reward
+
+			for slot5, slot6 in pairs(slot1) do
+				slot0.mListView:pushBackCustomItem(slot0:createLayoutTemplateNode("itemLayout", {
+					head = {
+						cardInfo = {
+							modelId = slot6.resourceId,
+							num = slot6.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onEffectFinish = function (slot0)
+	slot0.foodBtn:setClickAction(function ()
+		ui.showFlashView(TR("你已经领取干粮"))
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

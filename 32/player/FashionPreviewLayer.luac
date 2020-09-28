@@ -1,0 +1,150 @@
+slot0 = class("FashionPreviewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568.39,
+				y = 319.61
+			},
+			titleText = TR("天赋预览")
+		},
+		children = {
+			{
+				name = "arrowSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_77.png",
+					pos = {
+						x = 256,
+						y = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "attrListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 26,
+						y = 60
+					},
+					size = {
+						width = 460,
+						height = 240
+					}
+				},
+				children = {
+					{
+						name = "attrLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "introStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 460,
+								height = 45
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "c_78.png",
+									childName = "tempSprite",
+									pos = {
+										x = 13,
+										y = 30.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "tempLabel",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 27,
+										y = 41.28
+									},
+									size = {
+										width = 420,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurLv = slot1.curLv or 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(FashionLvupConfig.items) do
+		if slot6.skillIntro ~= "" then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.Lv < slot1.Lv
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "attrLayout", {
+			introStr = TR("【%s阶】%s", slot6.Lv, slot6.skillIntro)
+		})
+		slot9 = slot8.tempLabel:getContentSize()
+
+		slot8.setContentSize(slot8, cc.size(460, slot9.height + 10))
+		slot8.tempLabel:setPosition(27, slot9.height)
+		slot8.tempLabel:setColor((slot6.Lv <= slot0.mCurLv and cc.c3b(103, 163, 30)) or cc.c3b(49, 49, 49))
+		slot8.tempSprite:setPosition(16, slot9.height - 10)
+		slot0.attrListView:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+
+return slot0

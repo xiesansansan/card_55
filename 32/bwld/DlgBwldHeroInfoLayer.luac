@@ -1,0 +1,535 @@
+slot0 = class("DlgBwldHeroInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "bwld_37.png",
+			titleText = TR("名字")
+		},
+		children = {
+			{
+				name = "untitled11",
+				cType = "ClippingNode",
+				params = {
+					alpha = 1,
+					image = "jzwl_14.png",
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 321,
+						y = 557
+					},
+					size = {
+						width = 592.01,
+						height = 463.39
+					}
+				},
+				children = {
+					{
+						name = "heroNode",
+						cType = "FigureHero",
+						params = {
+							heroModelId = 12011103,
+							scale = 0.4,
+							pos = {
+								x = -20,
+								y = -400
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "skillListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 321,
+						y = 165
+					},
+					size = {
+						width = 580,
+						height = 280
+					}
+				},
+				children = {
+					{
+						name = "skillLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled21-text",
+								name = "introStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 580,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Scale9Sprite",
+								params = {
+									image = "xkxx_3.png",
+									pos = {
+										x = 290,
+										y = 65
+									},
+									size = {
+										width = 580,
+										height = 130
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Lable",
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 350,
+										y = 65
+									},
+									size = {
+										width = 448.36,
+										height = 125
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "posId",
+										type = "integer"
+									}
+								},
+								params = {
+									titleAlign = 1,
+									fontSize = 16,
+									titleImage = "sk_0001_1.png",
+									image = "c_63.png",
+									titleValign = 1,
+									outlineSize = 2,
+									childName = "btn",
+									outlineColor = {
+										g = 33,
+										r = 42,
+										b = 16
+									},
+									pos = {
+										x = 58.91,
+										y = 67
+									},
+									titleColor = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									titleSize = {
+										width = 64,
+										height = 0
+									},
+									titleText = TR("绿色品质开启")
+								},
+								children = {
+									{
+										name = "untitled29",
+										cType = "Sprite",
+										params = {
+											image = "c_62.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -38
+											}
+										},
+										children = {
+											{
+												name = "untitled30",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													childName = "lvLabel",
+													text = "123",
+													emptyInit = true,
+													pos = {
+														x = 23.35,
+														y = 9.87
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled32",
+										cType = "Sprite",
+										params = {
+											childName = "fitSillSprite",
+											image = "xkxx_107.png",
+											hide = true,
+											pos = {
+												x = 34.79,
+												y = 20.42
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled33",
+										cType = "Effect",
+										params = {
+											hide = true,
+											childName = "effect",
+											dataFile = "effect_ui_shengongkuang",
+											pos = {
+												x = 0,
+												y = 3
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "roadBg",
+				cType = "Sprite",
+				params = {
+					image = "zj_2.png",
+					hide = true,
+					scale = 1.3,
+					pos = {
+						x = 93.24,
+						y = 719.57
+					}
+				},
+				children = {
+					{
+						name = "untitled48",
+						cType = "Sprite",
+						params = {
+							image = "zjm_11.png",
+							childName = "roadSprite",
+							pos = {
+								x = 37,
+								y = 36
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "shengongBtn",
+				cType = "Button",
+				params = {
+					pressedAction = false,
+					image = "tb_488.png",
+					hide = true,
+					pos = {
+						x = 520,
+						y = 715
+					}
+				},
+				children = {
+					{
+						name = "untitled39",
+						cType = "Label",
+						params = {
+							fontSize = 16,
+							text = "",
+							childName = "shengongName",
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = -50
+							}
+						},
+						children = {}
+					},
+					{
+						name = "shengongLvBg",
+						cType = "Sprite",
+						params = {
+							zOrder = 1,
+							image = "xsg_23.png",
+							pos = {
+								x = -28.01,
+								y = 30.61
+							}
+						},
+						children = {
+							{
+								name = "untitled49",
+								cType = "Label",
+								params = {
+									text = "5",
+									childName = "shengongLvLabel",
+									pos = {
+										x = 16.5,
+										y = 16.5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "wuxuebtn",
+				cType = "Button",
+				params = {
+					pressedAction = false,
+					image = "c_22.png",
+					hide = true,
+					pos = {
+						x = 520,
+						y = 597
+					}
+				},
+				children = {
+					{
+						name = "untitled43",
+						cType = "Sprite",
+						params = {
+							scale = 0.95,
+							image = "c_63.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled44",
+						cType = "Sprite",
+						params = {
+							image = "c_pure.png",
+							childName = "wuxueImage",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled45",
+						cType = "Label",
+						params = {
+							fontSize = 17,
+							childName = "wuxueName",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = -72.32
+							},
+							text = TR("套装名字")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mHeroInfo = slot1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "heroNode" then
+			slot1.heroModelId = slot0.mHeroInfo.heroId
+		elseif slot0.name == "msgBox" then
+			slot1.titleText = slot0.mHeroInfo.name
+		end
+
+		return 
+	end)
+	slot0.refreshSkillListView(slot0)
+	slot0.refreshModleSprite(slot0)
+
+	return 
+end
+slot0.refreshModleSprite = function (slot0)
+	if string.splitBySep(slot0.mHeroInfo.roadLv or "", "|")[1] and 0 < tonumber(slot1[1]) then
+		slot0.roadBg:setVisible(true)
+		slot0.roadBg.roadSprite:setTexture(HeroRoadDecRelation.items[HeroModel.items[slot0.mHeroInfo.heroId].profession][tonumber(slot1[1])].newProfessionPic .. ".png")
+	end
+
+	if string.splitBySep(slot0.mHeroInfo.kongFuId or "", "|")[1] and 0 < tonumber(slot2[1]) then
+		slot0.shengongBtn:setVisible(true)
+
+		if 18 <= NewKongfuModel.items[tonumber(slot2[1])].quality then
+			slot0.shengongBtn:loadTextures("xsg_17.png", "xsg_17.png")
+		else
+			slot0.shengongBtn:loadTextures("xsg_5.png", "xsg_5.png")
+		end
+
+		slot0.shengongBtn:setTitleImage(slot3.smallPic .. ".png")
+		slot0.shengongLvBg:setVisible(0 < tonumber(slot2[2]))
+		slot0.shengongLvBg.shengongLvLabel:setString(tonumber(slot2[2]))
+		slot0.shengongBtn.shengongName:setString(slot3.name)
+		slot0.shengongBtn.shengongName:setColor(Utility.getColorValue(slot3.colorLv))
+	end
+
+	if slot0.mHeroInfo.WuxueSuitId and 0 < slot0.mHeroInfo.WuxueSuitId then
+		slot0.wuxuebtn:setVisible(true)
+
+		slot3 = WuxueSuitIntroRelation.items[slot0.mHeroInfo.WuxueSuitId]
+		slot4 = 1
+
+		for slot8, slot9 in pairs(WuxueModel.items) do
+			if slot9.suitId == slot0.mHeroInfo.WuxueSuitId and slot9.ifOpen then
+				slot4 = slot9.colorLv
+
+				break
+			end
+		end
+
+		slot0.wuxuebtn:loadTextures(Resource.getBorderImgByColovLv(slot4), Resource.getBorderImgByColovLv(slot4))
+		slot0.wuxuebtn.wuxueName:setColor(Utility.getColorValue(slot4))
+		slot0.wuxuebtn.wuxueImage:setTexture(slot3.suitPic .. ".png")
+		slot0.wuxuebtn.wuxueName:setString(slot3.suitName)
+	end
+
+	return 
+end
+slot0.refreshSkillListView = function (slot0)
+	slot1 = clone(HeroModel.items[slot0.mHeroInfo.heroId])
+	slot2 = nil
+	slot3 = string.splitBySep
+	slot4 = slot0.mHeroInfo.kongFuId or ""
+
+	if slot3(slot4, "|")[1] and 0 < tonumber(slot3[1]) and tonumber(slot3[1]) == Utility.getKongfuIdByHeroId(slot0.mHeroInfo.heroId) then
+		slot2 = Utility.getNewKongfuSkillId({
+			ModelId = tonumber(slot3[1]),
+			Step = tonumber(slot3[2]),
+			HeroModelId = slot0.mHeroInfo.heroId
+		})
+	end
+
+	table.insert({}, {
+		needTrainLv = 0,
+		skillId = slot2 or slot1.skillAttackId
+	})
+
+	for slot8, slot9 in ipairs(string.splitBySep(slot1.skillId, ",")) do
+		table.insert(slot4, {
+			skillId = tonumber(string.splitBySep(slot9, "|")[1]),
+			needTrainLv = tonumber(string.splitBySep(slot9, "|")[2])
+		})
+	end
+
+	for slot8 = 1, 4, 1 do
+		slot0.skillListView:pushBackCustomItem(slot10)
+		slot0.createLayoutTemplateNode(slot0, "skillLayout", {
+			introStr = Resource.getSkillIntroStr(slot4[slot8].skillId, slot0.mHeroInfo.skillLv, slot0.mHeroInfo.star, "#45220d", "#258711")
+		}).btn.setTitleImage(slot11, clone(SkillModel.items[slot4[slot8].skillId]).skillPic .. ".png")
+
+		slot14, slot15 = Utility.getSkillBtnTexture(slot0.mHeroInfo.star)
+
+		if slot8 == 1 and slot11.fitSillSprite and slot2 then
+			if slot13.ifKongFuSkill then
+				slot14 = "xsg_26.png"
+			end
+
+			slot11.loadTextures(slot11, slot13.skillPic .. ".png", slot13.skillPic .. ".png")
+			slot11.setTitleImage(slot11, slot14)
+			slot11.effect:setVisible(true)
+		else
+			if slot11.effect then
+				slot11.effect:setVisible(false)
+			end
+
+			slot11.loadTextures(slot11, slot14, slot14)
+		end
+
+		if slot13.ifKongFuSkill and slot2 then
+			slot11.titleSprite:setPosition(cc.p(0, 3))
+		else
+			slot11.titleSprite:setPosition(cc.p(-slot15.x, -slot15.y))
+		end
+
+		if slot0.mHeroInfo.trainLv < slot4[slot8].needTrainLv then
+			slot11.titleSprite:setGray(true)
+
+			slot18, slot24 = Utility.getColorValue(slot16)
+
+			slot11.setTitleText(slot11, TR("%s%s#ffffff品质开启", slot19, Utility.getColorName(slot16)))
+			slot11.lvBg:setVisible(false)
+		else
+			slot11.titleSprite:setGray(false)
+			slot11.setTitleText(slot11, "")
+			slot11.lvBg:setVisible(true)
+			slot11.lvBg.lvLabel:setString(slot0.mHeroInfo.skillLv)
+		end
+	end
+
+	return 
+end
+
+return slot0

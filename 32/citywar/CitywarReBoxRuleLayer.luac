@@ -1,0 +1,272 @@
+slot0 = class("CitywarReBoxRuleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				children = {
+					{
+						name = "ruleList",
+						cType = "ListView",
+						children = {
+							{
+								name = "ruleItem",
+								cType = "Layout",
+								children = {
+									{
+										name = "untitled6",
+										cType = "Scale9Sprite",
+										children = {},
+										params = {
+											image = "xkxx_3.png",
+											pos = {
+												x = 249,
+												y = 80
+											},
+											size = {
+												width = 500,
+												height = 150
+											}
+										}
+									},
+									{
+										name = "untitled12",
+										cType = "Scale9Sprite",
+										children = {},
+										params = {
+											image = "slrw_2.png",
+											pos = {
+												x = 30,
+												y = 80
+											},
+											size = {
+												width = 40,
+												height = 130
+											}
+										}
+									},
+									{
+										name = "untitled9",
+										cType = "Label",
+										children = {},
+										params = {
+											fontSize = 20,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 32.5,
+												y = 80
+											},
+											size = {
+												width = 24,
+												height = 140
+											},
+											text = TR("小型门派")
+										}
+									},
+									{
+										name = "untitled10",
+										cType = "Sprite",
+										children = {},
+										params = {
+											scale = 0.7,
+											image = "sy_26.png",
+											pos = {
+												x = 110,
+												y = 80
+											}
+										}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										children = {},
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 180,
+												y = 110
+											}
+										}
+									},
+									{
+										name = "rewardList",
+										cType = "ListView",
+										children = {
+											{
+												name = "rewardItem",
+												cType = "Layout",
+												children = {
+													{
+														name = "cardNode",
+														cType = "CardNode",
+														children = {},
+														params = {
+															scale = 0.8,
+															allowClick = true,
+															pos = {
+																x = 40,
+																y = 45
+															}
+														}
+													}
+												},
+												params = {
+													size = {
+														width = 80,
+														height = 90
+													}
+												}
+											}
+										},
+										params = {
+											direction = false,
+											pos = {
+												x = 170,
+												y = 20
+											},
+											size = {
+												width = 320,
+												height = 90
+											}
+										}
+									}
+								},
+								custom = {
+									{
+										value = "untitled8-text",
+										name = "intro",
+										type = "string"
+									},
+									{
+										value = "untitled9-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "untitled10-image",
+										name = "icon",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 500,
+										height = 160
+									}
+								}
+							}
+						},
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 260,
+								y = 240
+							},
+							size = {
+								width = 500,
+								height = 480
+							}
+						}
+					}
+				},
+				params = {
+					image = "c_72.png",
+					pos = {
+						x = 295,
+						y = 268
+					},
+					size = {
+						width = 520,
+						height = 480
+					}
+				}
+			}
+		},
+		params = {
+			image = "tc_2.png",
+			titleText = TR("产出规则")
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot3 = {
+		"wc_66",
+		"wc_67",
+		"wc_68",
+		"wc_69",
+		"wc_70"
+	}
+	slot4 = {
+		TR("小型"),
+		TR("中型"),
+		TR("大型")
+	}
+	slot5 = {
+		"sy_26",
+		"sy_27",
+		"sy_28"
+	}
+
+	for slot9, slot10 in ipairs(slot2) do
+		slot0.ruleList:pushBackCustomItem(slot11)
+
+		for slot16, slot17 in ipairs(slot12) do
+			slot0.createLayoutTemplateNode(slot0, "rewardItem").cardNode.setCardData(slot19, {
+				resourceId = 0,
+				num = slot17.value
+			}, {
+				Enums.CardShowAttr.eBorder,
+				Enums.CardShowAttr.eNum
+			})
+			slot0.createLayoutTemplateNode(slot0, "rewardItem").cardNode.setExtraImg(slot19, TR("%s.png", slot3[slot17.fightattr]), Enums.CardShowAttr.eNum - 1)
+			slot0.createLayoutTemplateNode(slot0, "rewardItem").cardNode.mExtraSprite:setScale(0.8)
+			slot0.createLayoutTemplateNode(slot0, "rewardItem").cardNode.setAllowClick(slot19, false)
+			slot0.createLayoutTemplateNode(slot0, "rewardItem").cardNode.setBorder(slot19, Resource.getBorderImgByColovLv(slot17.fightattr + 1))
+			slot11.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardItem"))
+		end
+	end
+
+	return 
+end
+
+return slot0

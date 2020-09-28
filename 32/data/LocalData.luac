@@ -1,0 +1,172 @@
+slot0 = "UserData.txt"
+slot1 = "VersionData.txt"
+slot2 = "UserSelectServer.txt"
+LocalData = {
+	GSTool = false,
+	data = {},
+	gameCache = {},
+	readLocalData = function (slot0)
+		slot0.versionPath = device.writablePath .. slot0
+		slot0.userPath = device.writablePath .. 
+		slot0.userSelectServerPath = device.writablePath .. device.writablePath
+
+		if 0 < string.len(slot1) then
+			slot0.data = cjson.decode(slot1) or {}
+		else
+			slot0.data = {}
+		end
+
+		if slot0.data.setting == nil then
+			slot0.restoreSetting(slot0)
+		end
+
+		slot0.data.gameData = slot0.data.gameData or {}
+		slot0.data.loginInfo = slot0.data.loginInfo or {}
+
+		if device.platform == "android" and IPlatform and 0 < string.len(slot4) then
+			slot0.GSTool = json.decode(slot4) or {}.GSTool == "1"
+		end
+
+		return 
+	end,
+	setMQLoginInfo = function (slot0, slot1)
+		slot0.data.loginInfo = slot1
+
+		slot0.saveLocalData(slot0)
+
+		return 
+	end,
+	getMQLoginInfo = function (slot0)
+		return slot0.data.loginInfo
+	end,
+	getSetting = function (slot0)
+		return slot0.data.setting
+	end,
+	setMusicEnabled = function (slot0, slot1)
+		slot0.data.setting.musicEnabled = slot1
+
+		slot0.saveLocalData(slot0)
+
+		return 
+	end,
+	setEffectEnabled = function (slot0, slot1)
+		slot0.data.setting.effectEnabled = slot1
+
+		slot0.saveLocalData(slot0)
+
+		return 
+	end,
+	setPushEnabled = function (slot0, slot1)
+		slot0.data.setting.pushEnabled = slot1
+
+		slot0.saveLocalData(slot0)
+
+		return 
+	end,
+	getMusicEnabled = function (slot0)
+		return slot0.data.setting.musicEnabled
+	end,
+	getEffectEnabled = function (slot0)
+		return slot0.data.setting.effectEnabled
+	end,
+	getPushEnabled = function (slot0)
+		return slot0.data.setting.pushEnabled
+	end,
+	restoreSetting = function (slot0)
+		slot0.data.setting = {}
+		slot1 = slot0.data.setting
+
+		slot0.setMusicEnabled(slot0, true)
+		slot0.setEffectEnabled(slot0, true)
+		slot0.setPushEnabled(slot0, true)
+		slot0.saveLocalData(slot0)
+
+		return 
+	end,
+	saveGameDataValue = function (slot0, slot1, slot2, slot3)
+		if PlayerAttrObj:getPlayerAttrByName("PlayerId") or slot3 then
+			slot5[slot4] = slot0.data.gameData[slot4] or {}
+			slot5[slot4][slot1] = slot2
+
+			slot0.saveLocalData(slot0)
+		end
+
+		return 
+	end,
+	saveDataToFile = function (slot0, slot1, slot2)
+		slot2 = slot2 or {}
+		slot4 = cc.FileUtils:getInstance().getWritablePath(slot3) .. slot1
+
+		if not json then
+			require("cocos.cocos2d.json")
+		end
+
+		io.writefile(slot4, json.encode(slot2))
+
+		return 
+	end,
+	getGameDataValue = function (slot0, slot1, slot2)
+		return slot0.data.gameData[PlayerAttrObj:getPlayerAttrByName("PlayerId") or slot2] and slot0.data.gameData[PlayerAttrObj.getPlayerAttrByName("PlayerId") or slot2][slot1]
+	end,
+	getGameDataValueByUid = function (slot0, slot1, slot2)
+		return slot0.data.gameData[slot2] and slot0.data.gameData[slot2][slot1]
+	end,
+	saveLocalData = function (slot0)
+		cc.FileUtils:getInstance():writeStringToFile(cjson.encode(slot0.data), slot0.userPath)
+
+		return 
+	end,
+	getCacheData = function (slot0, slot1)
+		return slot0.gameCache[slot1]
+	end,
+	saveCacheData = function (slot0, slot1, slot2)
+		slot0.gameCache[slot1] = slot2
+
+		return 
+	end,
+	getResourceVerName = function (slot0)
+		if not slot0.mResourceName then
+			slot1 = require("network.AssetsMgr").new()
+			slot0.mResourceName = slot1.getLocalManifest(slot1):getVersion()
+
+			slot1.release(slot1)
+		end
+
+		return slot0.mResourceName or ""
+	end,
+	saveVersion = function (slot0, slot1)
+		slot0.mVersionData = slot1 or {}
+
+		cc.FileUtils:getInstance():writeStringToFile(cjson.encode(slot0.mVersionData), slot0.versionPath)
+
+		return 
+	end,
+	getVersion = function (slot0, slot1)
+		if not slot0.mVersionData then
+			slot0.mVersionData = (0 < string.len(slot2) and cjson.decode(slot2)) or {}
+		end
+
+		if slot1 == "ClientVersion" then
+			return slot0.mVersionData.clientVersion or ""
+		else
+			return slot0.mVersionData.gameVersion or 0
+		end
+
+		return 
+	end,
+	isGSTool = function (slot0)
+		return slot0.GSTool
+	end,
+	saveUserSelectServer = function (slot0, slot1)
+		cc.FileUtils:getInstance():writeStringToFile(cjson.encode(slot1 or {}), slot0.userSelectServerPath)
+
+		return 
+	end,
+	getUserSelectServer = function (slot0)
+		return (0 < string.len(slot1) and cjson.decode(slot1)) or {}
+	end
+}
+
+LocalData:readLocalData()
+
+return 

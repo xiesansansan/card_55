@@ -1,0 +1,1123 @@
+slot0 = class("HeroListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled15",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_31.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mRightArrowSprite",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_4.png",
+			scale = -1,
+			pos = {
+				x = 1106,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled24",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 195,
+				y = 545
+			}
+		},
+		children = {
+			{
+				name = "mCampCheckBox",
+				cType = "CampCheckBox",
+				params = {
+					fontSize = 24,
+					space = 20,
+					selectImage = "c_44.png",
+					callback = "onCampClickAction",
+					normalImage = "c_43.png",
+					campCellSize = {
+						width = 110,
+						height = 40
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "listNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mLeftArrowSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_4.png",
+					pos = {
+						x = 120,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = false,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 135,
+						y = -220
+					},
+					size = {
+						width = 950,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "mHeroTemplate",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled17-text",
+								name = "num",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = -440
+							},
+							size = {
+								width = 200,
+								height = 440
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mLeftBottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mCurTabBg",
+				cType = "Sprite",
+				params = {
+					image = "c_6.png",
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -2,
+						y = 208
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProfessionTabView",
+				cType = "ProfessionTabView",
+				params = {
+					onSelectChange = "onProfessionClickAction",
+					bgImage = "c_24.png",
+					space = 8,
+					lightedImage = "c_pure.png",
+					direction = true,
+					normalImage = "c_pure.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					btnSize = {
+						width = 100,
+						height = 72
+					},
+					imgOffset = {
+						x = 0.3,
+						y = 0.5
+					},
+					pos = {
+						x = 1,
+						y = -231
+					},
+					size = {
+						width = 100,
+						height = 485
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "closeBtn",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_1.png",
+					pos = {
+						x = 5.41,
+						y = 4.08
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "heroListChild",
+		cType = "FileLayer",
+		params = {
+			file = "hero.HeroListSubFileLayer",
+			initParams = {
+				type = 1
+			},
+			pos = {
+				z = 0,
+				x = 650,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled21",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled27",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 830,
+				y = 560
+			}
+		},
+		children = {
+			{
+				name = "mShowCheckbox",
+				cType = "Checkbox",
+				params = {
+					isSelect = true,
+					selectImage = "c_44.png",
+					callback = "onOnlyShowDebrisHeroClickAction",
+					normalImage = "c_43.png",
+					pos = {
+						x = 71.63,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled23",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 72.32,
+								y = 15
+							},
+							text = TR("未拥有")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mStarCbox",
+				cType = "Checkbox",
+				params = {
+					isSelect = true,
+					selectImage = "c_44.png",
+					hide = true,
+					callback = "onOnlyShowStarUpHeroClickAction",
+					normalImage = "c_43.png",
+					pos = {
+						x = 134.02,
+						y = 0.39
+					}
+				},
+				children = {
+					{
+						name = "untitled29",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 72.32,
+								y = 15
+							},
+							text = TR("可升星")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = cc.Director:getInstance():getScheduler()
+slot2 = {
+	canActive = 1,
+	notActive = 3,
+	yesActive = 2
+}
+slot3 = 15
+slot0.ctor = function (slot0, slot1)
+	slot0.fromNavigate = slot1.fromNavigate
+	slot0.professionFilter = slot1.professionFilter or {}
+	slot0.campUnCheck = slot1.campUnCheck or {}
+	slot0.cellSize = cc.size(200, 440)
+	slot0.tipsCellSize = cc.size(50, 440)
+	slot0.ShowProfessionID = 0
+	slot0.CampCheckStatus = {}
+	slot0.ProfessionBanStatus = {}
+	slot0.onlyShowDebrisHero = slot1.onlyShowDebrisHero or false
+	slot0.onlyShowStarUpHero = slot1.onlyShowStarUpHero or false
+	slot0.QualityBase = slot1.qualityBase or 0
+	slot0.currViewData = {
+		[slot0.canActive] = {},
+		[slot0.yesActive] = {},
+		[slot0.notActive] = {}
+	}
+	slot0.viewPercentage = 0
+
+	if slot1.lastViewStatus then
+		slot0.viewPercentage = slot1.lastViewStatus.viewPercentage or 0
+		slot0.ShowProfessionID = slot1.lastViewStatus.ShowProfessionID or 0
+		slot0.CampCheckStatus = slot1.lastViewStatus.CampCheckStatus or {}
+	end
+
+	slot0.initBanInfo(slot0)
+	slot0.initHeroData(slot0)
+	slot0.registerAutoResetData(slot0)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.onEnter = function (slot0)
+	Utility.performWithDelay(slot0, function ()
+		slot0.mHeroTableView:jumpToPercent(slot0.viewPercentage)
+		slot0.mHeroTableView.jumpToPercent:showPopAction()
+
+		return 
+	end, 0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		fromNavigate = slot0.fromNavigate,
+		professionFilter = slot0.professionFilter,
+		campUnCheck = slot0.campUnCheck,
+		qualityBase = slot0.QualityBase,
+		lastViewStatus = {
+			ShowProfessionID = slot0.ShowProfessionID,
+			CampCheckStatus = slot0.CampCheckStatus,
+			viewPercentage = slot0.mHeroTableView:getCurrPercentage()
+		}
+	}
+end
+slot0.showPopAction = function (slot0)
+	slot1 = {}
+
+	for slot5 = 0, slot0.cbNumOfCellsFunc(slot0) - 1, 1 do
+		if slot0.mHeroTableView:cellAtIndex(slot5) and not tolua.isnull(slot6) then
+			slot7 = slot6.getPositionX(slot6)
+			slot8 = slot0.mHeroTableView:getContentOffset()
+
+			table.insert(slot1, slot6)
+		end
+	end
+
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot1) do
+		if slot0.getHeroItemByIndex(slot0, slot7.heroNode.actIndex) == nil then
+			isUp = 0
+			slot2 = slot2 + 1
+		end
+
+		slot10 = (slot8%2 == 1 and 1) or -1
+
+		if slot2%2 == 1 then
+			slot10 = -slot10
+		end
+
+		if slot10 == 1 then
+			slot7.heroNode:setPositionY(400)
+			slot7.heroNode:runAction(cc.Sequence:create({
+				cc.EaseElasticOut:create(cc.MoveBy:create(1, cc.p(0, slot0 - 400)), 0.7)
+			}))
+		elseif (slot10 ~= 0 or false) and slot10 == -1 then
+			slot7.heroNode:setPositionY(-400)
+			slot7.heroNode:runAction(cc.EaseElasticOut:create(cc.MoveBy:create(1, cc.p(0, -slot0 + 400)), 0.7))
+		end
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mProfessionTabView" then
+			slot1.selectTag = slot0.ShowProfessionID or 0
+		end
+
+		if slot0.name == "mShowCheckbox" then
+			slot1.isSelect = slot0.onlyShowDebrisHero
+		end
+
+		if slot0.name == "mStarCbox" then
+			slot1.isSelect = slot0.onlyShowStarUpHero
+		end
+
+		if slot0.name == "heroListChild" then
+			slot1.initParams = {
+				type = 1,
+				callBack = function ()
+					slot0:executeGuide()
+
+					return 
+				end
+			}
+		end
+
+		if slot0.name == "mHeroTableView" then
+			slot1.size.width = (((LocalData:getCacheData("liuhaiWidth") or 0) - 950)/1136*display.sizeInPixels.width)/display.minSafeScale
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.initBanInfo = function (slot0)
+	for slot4 = 1, 3, 1 do
+		slot0.CampCheckStatus[slot4] = not table.keyof(slot0.campUnCheck, slot4)
+	end
+
+	for slot4 = 1, 5, 1 do
+		slot0.ProfessionBanStatus[slot4] = table.keyof(slot0.professionFilter, slot4)
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.resetCurrViewHeroData(slot0)
+	slot0.refreshHeroView(slot0)
+
+	return 
+end
+slot0.refreshHeroView = function (slot0)
+	slot0.mHeroTableView:reloadData()
+
+	return 
+end
+slot0.refreshFAPView = function (slot0)
+	return 
+end
+slot0.onCampClickAction = function (slot0, slot1)
+	slot0.CampCheckStatus = slot0.mCampCheckBox:getCampSelectStatus()
+
+	slot0.refreshLayer(slot0)
+	slot0.mHeroTableView:jumpToTop()
+
+	return 
+end
+slot0.onProfessionClickAction = function (slot0, slot1)
+	slot0.ShowProfessionID = slot1
+
+	slot0.mCurTabBg:setVisible(true)
+	slot0.mCurTabBg:setPositionY(slot1*80 - 208)
+	slot0.refreshLayer(slot0)
+	slot0.mHeroTableView:jumpToTop()
+
+	if slot1 == 0 then
+		slot0.executeGuide(slot0)
+	end
+
+	return 
+end
+slot0.onOnlyShowDebrisHeroClickAction = function (slot0, slot1)
+	slot0.onlyShowDebrisHero = not slot0.onlyShowDebrisHero
+
+	slot0.refreshLayer(slot0)
+	slot0.mHeroTableView:jumpToTop()
+
+	return 
+end
+slot0.onOnlyShowStarUpHeroClickAction = function (slot0, slot1)
+	slot0.onlyShowStarUpHero = not slot0.onlyShowStarUpHero
+
+	if slot0.onlyShowStarUpHero then
+		slot0.onlyShowDebrisHero = false
+
+		slot0.mShowCheckbox:setSelected(false)
+	end
+
+	slot0.refreshLayer(slot0)
+	slot0.mHeroTableView:jumpToTop()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	if slot0.mHasTips and slot2 + 1 == #slot0.currViewData[slot0.canActive] + #slot0.currViewData[slot0.yesActive] + 1 then
+		return slot0.tipsCellSize.width, slot0.tipsCellSize.height
+	end
+
+	return slot0.cellSize.width, slot0.cellSize.height
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.currViewData[slot0.canActive] + #slot0.currViewData[slot0.yesActive] + #slot0.currViewData[slot0.notActive]
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mHeroTemplate")
+	slot3.refresh = function (slot0, slot1)
+		slot2 = slot0:getHeroItemByIndex(slot1)
+		slot2.actIndex = slot1
+
+		slot2:setPosition((slot2 == nil and cc.p(0, 0)) or cc.p(0, ((slot1 + 1)%2 == 1 and slot1) or -slot1))
+
+		if slot4 and tolua.isnull(slot2.tipsCellNode) then
+			slot2:addChild(UIWrap.newControl("Sprite", {
+				image = "xkxx_70.png",
+				pos = cc.p(slot0.tipsCellSize.width/2, slot0.tipsCellSize.height/2)
+			}))
+
+			slot2.tipsCellNode = UIWrap.newControl("Sprite", {
+				image = "xkxx_70.png",
+				pos = cc.p(slot0.tipsCellSize.width/2, slot0.tipsCellSize.height/2)
+			})
+		end
+
+		if slot4 then
+			slot2.tipsCellNode:setVisible(slot4)
+
+			if not tolua.isnull(slot2.card) then
+				slot2.card:setVisible(not slot4)
+			end
+
+			return 
+		else
+			if not tolua.isnull(slot2.card) then
+				slot2.card:setVisible(not slot4)
+			end
+
+			if not tolua.isnull(slot2.tipsCellNode) then
+				slot2.tipsCellNode:setVisible(slot4)
+			end
+		end
+
+		slot0.mLeftArrowSprite:setVisible(not not tolua.isnull(slot0.mHeroTableView:cellAtIndex(1)))
+		slot0.mRightArrowSprite:setVisible(not not tolua.isnull(slot0.mHeroTableView:cellAtIndex(slot0:cbNumOfCellsFunc() - 1)))
+
+		if not tolua.isnull(slot2.card) then
+			slot2.card:setCardData({
+				ModelId = slot2.ModelId,
+				InstanceData = slot2.info,
+				ClickAction = function (slot0)
+					return 
+				end
+			})
+			slot2.card:setClickAction(function (slot0)
+				if slot0.tag == slot1.canActive then
+					slot2:requestCreateHero(slot3.card, slot0.ModelId)
+				elseif slot0.tag == slot1.notActive then
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "hero.HeroDetialViewLayer",
+						data = {
+							heroModelId = slot0.ModelId
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				else
+					LayerManager.addLayer({
+						cleanUp = true,
+						name = "hero.HeroMainLayer",
+						data = {
+							defModelId = slot0.ModelId
+						}
+					})
+				end
+
+				return 
+			end)
+
+			if not tolua.isnull(slot2.card.redDot) then
+				slot2.card.redDot:removeFromParent()
+			end
+
+			slot0:showHeroCanActiveEffect(slot2.card, slot2.tag)
+			slot2.card:addChild(slot7, 100)
+
+			slot2.card.redDot = UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eHeroAttrPoint,
+				subKey = tostring(slot2.ModelId),
+				offset = cc.p(0.9, 0.95)
+			})
+
+			slot0:addCanUpStarTips(slot2, slot2)
+
+			return 
+		end
+
+		slot7 = require("common.BustCard"):create({
+			ModelId = slot2.ModelId,
+			InstanceData = slot2.info,
+			ClickAction = function (slot0)
+				return 
+			end
+		})
+		slot2.card = slot7
+
+		slot7.setClickAction(slot7, function (slot0)
+			if slot0.tag == slot1.canActive then
+				slot2:requestCreateHero(slot3, slot0.ModelId)
+			elseif slot0.tag == slot1.notActive then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "hero.HeroDetialViewLayer",
+					data = {
+						heroModelId = slot0.ModelId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			else
+				LayerManager.addLayer({
+					name = "hero.HeroMainLayer",
+					data = {
+						defModelId = slot0.ModelId
+					}
+				})
+			end
+
+			return 
+		end)
+		slot7.setPosition(slot7, slot0.cellSize.width/2, slot0.cellSize.height/2)
+		slot2:addChild(slot7)
+		slot0:showHeroCanActiveEffect(slot7, slot2.tag)
+		slot7.addChild(slot7, slot8, 100)
+
+		slot7.redDot = UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eHeroAttrPoint,
+			subKey = tostring(slot2.ModelId),
+			offset = cc.p(0.9, 0.95)
+		})
+
+		slot0:addCanUpStarTips(slot2, slot2)
+
+		return 
+	end
+
+	slot1.addChild(slot1, slot3)
+	slot3.refresh(slot3, slot2)
+
+	slot1.heroNode = slot3
+
+	return 
+end
+slot0.addCanUpStarTips = function (slot0, slot1, slot2)
+	if not tolua.isnull(slot1.card.canUpStarNode) then
+		slot1.card.canUpStarNode:removeFromParent()
+	end
+
+	slot5 = UIWrap.newControl("Label", {
+		fontSize = 18,
+		text = TR("可升星"),
+		pos = cc.p(158, 345),
+		anchor = cc.p(0.5, 1),
+		size = cc.size(20, 0),
+		color = cc.c3b(55, 255, 64),
+		outlineColor = cc.c3b(51, 42, 24)
+	})
+
+	slot5.runAction(slot5, cc.RepeatForever:create(slot6))
+	slot1.card:addChild(slot5, 100)
+
+	slot1.card.canUpStarNode = slot5
+
+	slot7()
+	EventAuto:registerAutoEvent(slot1.card.canUpStarNode, RedDotObj:getEvents(ModuleSub.eHeroAttrPointStar, slot3), function ()
+		slot0()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot1.card.canUpStarNode, RedDotObj:getEvents(ModuleSub.eHeroAttrPointStar, tostring(slot2.ModelId) .. "_IfQualityUp"), function ()
+		slot0()
+
+		return 
+	end)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.heroNode:refresh(slot2)
+
+	return 
+end
+slot0.getHeroItemByIndex = function (slot0, slot1)
+	slot2 = nil
+
+	if slot1 <= #slot0.currViewData[slot0.canActive] then
+		return slot0.canActiveData[slot0.currViewData[slot0.canActive][slot1]]
+	elseif slot1 <= #slot0.currViewData[slot0.canActive] + #slot0.currViewData[slot0.yesActive] then
+		return slot0.yesActiveData[slot0.currViewData[slot0.yesActive][slot1 - #slot0.currViewData[slot0.canActive]]]
+	else
+		return slot0.notActiveData[slot0.currViewData[slot0.notActive][slot1 - #slot0.currViewData[slot0.canActive] - #slot0.currViewData[slot0.yesActive]]]
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0, slot1)
+	slot2, slot3 = Guide.manager:getGuideInfo()
+
+	if slot3 and slot3 == 20510 then
+		if LayerManager.layerStack[#LayerManager.layerStack - 1].name == "pve.PveChapterInfoLayer" then
+			LayerManager.removeLayer(slot0)
+		else
+			slot4 = nil
+
+			if slot3 == 20510 then
+				slot4 = 12
+			end
+
+			LayerManager.addLayer({
+				name = "pve.PveChapterInfoLayer",
+				data = {
+					chapterId = slot4
+				}
+			})
+		end
+	elseif slot3 and slot3 == 30103 then
+		LayerManager.addLayer({
+			name = "home.HomeLayer"
+		})
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.showHeroItem = function (slot0, slot1)
+	return slot0.CampCheckStatus[slot1.camp] and not slot0.ProfessionBanStatus[slot1.profession] and slot0.QualityBase <= HeroObj:getHeroRealQuality(slot1.ModelId) and ((slot0.ShowProfessionID == 0 and true) or slot0.ShowProfessionID == slot1.profession)
+end
+slot0.showHeroCanActiveEffect = function (slot0, slot1, slot2)
+	if slot1.canActiveEffect and not tolua.isnull(slot1.canActiveEffect) then
+		slot1.canActiveEffect:removeFromParent()
+
+		slot1.canActiveEffect = nil
+	end
+
+	if slot2 == slot0.canActive then
+		slot1.addChild(slot1, UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = "effect_ui_xiakehecheng",
+			pos = cc.p(slot1.getContentSize(slot1).width*0.5 - 2, slot1.getContentSize(slot1).height*0.5 - 5)
+		}), 3)
+
+		slot1.canActiveEffect = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = "effect_ui_xiakehecheng",
+			pos = cc.p(slot1.getContentSize(slot1).width*0.5 - 2, slot1.getContentSize(slot1).height*0.5 - 5)
+		})
+	end
+
+	return 
+end
+slot0.showHeroActiveEffect = function (slot0, slot1, slot2)
+	if slot1.canActiveEffect and not tolua.isnull(slot1.canActiveEffect) then
+		slot1.canActiveEffect:removeFromParent()
+
+		slot1.canActiveEffect = nil
+	end
+
+	slot1.addChild(slot1, UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "animation2",
+		autoDelete = true,
+		dataFile = "effect_ui_xiakehecheng",
+		pos = cc.p(slot1.getContentSize(slot1).width*0.5 - 1, slot1.getContentSize(slot1).height*0.5 - 5),
+		complete = function (...)
+			slot0:setGray(false)
+			Utility.performWithDelay(Utility.performWithDelay, function ()
+				if slot0 then
+					slot0()
+				end
+
+				return 
+			end, 0.5)
+
+			return 
+		end
+	}), 99)
+
+	return 
+end
+slot0.resetCurrViewHeroData = function (slot0)
+	slot1 = nil
+	slot0.currViewData = {
+		[slot0.canActive] = {},
+		[slot0.yesActive] = {},
+		[slot0.notActive] = {}
+	}
+
+	for slot5, slot6 in pairs(slot0.canActiveData) do
+		if not slot0.onlyShowStarUpHero and slot0.showHeroItem(slot0, slot6) then
+			table.insert(slot0.currViewData[slot0.canActive], #slot0.currViewData[slot0.canActive] + 1, slot5)
+		end
+	end
+
+	if not slot0.onlyShowDebrisHero then
+		for slot5, slot6 in pairs(slot0.yesActiveData) do
+			if slot0.showHeroItem(slot0, slot6) then
+				if slot0.onlyShowStarUpHero then
+					if RedDotObj:isValid(ModuleSub.eHeroAttrPointStar, tostring(slot6.ModelId) .. "_IfStarUp") then
+						table.insert(slot0.currViewData[slot0.yesActive], #slot0.currViewData[slot0.yesActive] + 1, slot5)
+					end
+				else
+					table.insert(slot0.currViewData[slot0.yesActive], #slot0.currViewData[slot0.yesActive] + 1, slot5)
+				end
+			end
+		end
+	end
+
+	slot2 = true
+
+	for slot6, slot7 in pairs(slot0.notActiveData) do
+		if not slot0.onlyShowStarUpHero and slot0.showHeroItem(slot0, slot7) then
+			if slot2 then
+				slot2 = false
+
+				table.insert(slot0.currViewData[slot0.notActive], #slot0.currViewData[slot0.notActive] + 1, -1)
+			end
+
+			table.insert(slot0.currViewData[slot0.notActive], #slot0.currViewData[slot0.notActive] + 1, slot6)
+		end
+	end
+
+	slot0.mHasTips = not slot2
+
+	return 
+end
+slot0.registerAutoResetData = function (slot0)
+	EventAuto:registerAutoEvent(slot0, {
+		EventDefine.eHeroListReset,
+		EventDefine.eHeroListModify
+	}, function ()
+		slot0:initHeroData()
+		slot0.initHeroData:refreshLayer()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eHeroCompoundOver, function (slot0)
+		slot0.mCreateHeroIng = false
+
+		return 
+	end)
+
+	return 
+end
+slot0.initHeroData = function (slot0)
+	slot0.canActiveData = {}
+	slot0.yesActiveData = {}
+	slot0.notActiveData = {}
+	slot1 = HeroObj:getList()
+
+	for slot5, slot6 in pairs(HeroModel.items) do
+		slot7 = HeroObj:getHeroRealQuality(slot6.modelId)
+
+		if not Utility.isHeroHide(slot5) then
+			if slot1[slot5] then
+				table.insert(slot0.yesActiveData, {
+					ModelId = slot5,
+					camp = slot6.camp,
+					quality = slot7,
+					profession = slot6.profession,
+					info = slot8,
+					tag = slot0.yesActive
+				})
+			elseif ({
+				ModelId = slot5,
+				curValue = GoodsObj:getItemCount(slot6.debrisId),
+				maxValue = GoodsModel.items[slot6.debrisId].outputNeedNum,
+				quality = slot7,
+				camp = slot6.camp,
+				profession = slot6.profession
+			})["maxValue"] <= ({
+				ModelId = slot5,
+				curValue = GoodsObj.getItemCount(slot6.debrisId),
+				maxValue = GoodsModel.items[slot6.debrisId].outputNeedNum,
+				quality = slot7,
+				camp = slot6.camp,
+				profession = slot6.profession
+			})["curValue"] then
+				slot10.tag = slot0.canActive
+
+				table.insert(slot0.canActiveData, slot10)
+			else
+				slot10.tag = slot0.notActive
+
+				table.insert(slot0.notActiveData, slot10)
+			end
+		end
+	end
+
+	slot2(slot0.canActiveData)
+	slot2(slot0.notActiveData)
+	slot3(slot0.notActiveData)
+
+	function slot4(slot0)
+		table.sort(slot0, function (slot0, slot1)
+			slot2 = HeroObj:getHeroRealQuality(slot0.ModelId)
+			slot3 = HeroObj:getHeroRealQuality(slot1.ModelId)
+			slot4 = (RedDotObj:isValid(ModuleSub.eHeroAttrPointStar, tostring(slot0.ModelId) .. "_IfStarUp") and 1) or 0
+
+			if slot4 ~= ((RedDotObj:isValid(ModuleSub.eHeroAttrPointStar, tostring(slot1.ModelId) .. "_IfStarUp") and 1) or 0) then
+				return slot5 < slot4
+			end
+
+			if slot0.info ~= nil and slot1.info ~= nil and slot0.info.Fap ~= slot1.info.Fap then
+				if 14 <= slot2 and 14 <= slot3 then
+					return slot1.info.Fap < slot0.info.Fap
+				elseif slot2 ~= slot3 then
+					return slot3 < slot2
+				end
+
+				return slot1.info.Fap < slot0.info.Fap
+			end
+
+			if slot2 ~= slot3 then
+				return slot3 < slot2
+			end
+
+			return slot1.ModelId < slot0.ModelId
+		end)
+
+		return 
+	end
+
+	if 10 < PlayerAttrObj:getPlayerAttrByName("Lv") then
+		slot4(slot0.yesActiveData)
+	else
+		slot2(slot0.yesActiveData)
+	end
+
+	slot0._sortNotActiveDataByDebrisCount = slot3
+	slot0._sortData = slot2
+
+	return 
+end
+slot0.requestCreateHero = function (slot0, slot1, slot2)
+	if slot0.mCreateHeroIng then
+		return 
+	end
+
+	slot0.mCreateHeroIng = true
+
+	Player:saveGameData("RecruitFap", 0)
+	slot0.socketRequest(slot0, {
+		methodName = "GoodsUse",
+		moduleName = "Goods",
+		methodData = {
+			Utility.EMPTY_ENTITY_ID,
+			HeroModel.items[slot2].debrisId,
+			GoodsModel.items[HeroModel.items[slot2].debrisId].outputNeedNum
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			MqAudio.playEffect("xiakehecheng.mp3")
+			slot0:showHeroActiveEffect(slot0.showHeroActiveEffect, function ()
+				slot0:initHeroData()
+				slot0.initHeroData:refreshLayer()
+				EventAuto:postEvent(EventDefine.eTotalFapLevelUp, {
+					fap = PlayerAttrObj:getPlayerAttrByName("TotalFap")
+				})
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "recruit.RecruitShowHeroLayer",
+					data = {
+						IsConvert = false,
+						showFap = true,
+						heroModelId = slot1,
+						callback = function ()
+							slot0:executeGuide()
+
+							return 
+						end
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 and 0 < slot2 then
+		slot0.mHeroTableView:setTouchEnabled(false)
+	else
+		slot0.mHeroTableView:setTouchEnabled(true)
+	end
+
+	slot3 = nil
+	slot4 = slot0.mHeroTableView:cellAtIndex(0)
+
+	if slot2 == 20505 then
+		slot3 = slot4 and slot4.heroNode.card
+	elseif slot2 == 20308 then
+		slot3 = slot4 and slot4.heroNode.card
+	elseif slot2 == 10305 then
+		slot3 = slot4 and slot4.heroNode.card
+	elseif slot2 == 20704 then
+		slot3 = slot4 and slot4.heroNode.card
+	else
+		Guide.manager:exeGuideList({
+			[10305] = {
+				clickNode = slot4 and slot4.heroNode.card
+			},
+			[10307] = {
+				clickNode = slot0.closeBtn
+			},
+			[20104] = {
+				saveStep = true,
+				clickNode = slot0.heroListChild.mButton
+			},
+			[20106] = {
+				clickNode = slot0.closeBtn
+			},
+			[20308] = {
+				clickNode = slot4 and slot4.heroNode.card
+			},
+			[20505] = {
+				clickNode = slot4 and slot4.heroNode.card
+			},
+			[20704] = {
+				clickNode = slot4 and slot4.heroNode.card
+			},
+			[20510] = {
+				clickNode = slot0.closeBtn
+			},
+			[201402] = {
+				clickNode = slot4 and slot4.heroNode.card
+			},
+			[201901] = {
+				clickNode = slot0.heroListChild.illBtn
+			}
+		})
+
+		return 
+	end
+end
+
+return slot0

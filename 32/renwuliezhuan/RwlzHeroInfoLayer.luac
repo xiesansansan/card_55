@@ -1,0 +1,932 @@
+slot0 = class("RwlzHeroInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "xklz_17.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroImage",
+				cType = "Sprite",
+				params = {
+					scale = 0.75,
+					image = "lh_12104.png",
+					pos = {
+						x = 167.7,
+						y = 337.71
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 450
+					},
+					text = TR("通过以下章节可获得更多拜访次数")
+				},
+				children = {}
+			},
+			{
+				name = "chapterLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255,
+						y = 410
+					}
+				},
+				children = {}
+			},
+			{
+				name = "dayNum",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 355
+					}
+				},
+				children = {}
+			},
+			{
+				name = "goodsNum",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 315
+					}
+				},
+				children = {}
+			},
+			{
+				name = "qiecuoNum",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 535,
+						y = 355
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 535,
+						y = 315
+					},
+					text = TR("人物列传共享次数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "c_20.png",
+					clickAction = "onSellClick",
+					hide = true,
+					pos = {
+						x = 717,
+						y = 355
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onXunXiaOneClick",
+					pos = {
+						x = 390,
+						y = 240
+					},
+					titleText = TR("拜 访")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onQieCuoOneClick",
+					pos = {
+						x = 630,
+						y = 240
+					},
+					titleText = TR("切 磋")
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onXunXiaTenClick",
+					pos = {
+						x = 390,
+						y = 170
+					},
+					titleText = TR("拜访十次")
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onQieCuoTenClick",
+					pos = {
+						x = 630,
+						y = 170
+					},
+					titleText = TR("切磋十次")
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtnClick",
+					pos = {
+						x = 769.64,
+						y = 519.22
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled16",
+				cType = "Sprite",
+				params = {
+					rotationAngle = -90,
+					image = "xklz_15.png",
+					pos = {
+						x = 170,
+						y = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "HeroName",
+				cType = "Label",
+				params = {
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 98,
+						y = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Sprite",
+				params = {
+					image = "jyt_43.png",
+					pos = {
+						x = 146.77,
+						y = 135.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "isSuiPian",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					pos = {
+						x = 61.46,
+						y = 136.14
+					},
+					text = TR("碎片")
+				},
+				children = {}
+			},
+			{
+				name = "myProgressBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_44.png",
+					pos = {
+						x = 165,
+						y = 135
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progressLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					text = "10/20",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 162.15,
+						y = 135.03
+					}
+				},
+				children = {}
+			},
+			{
+				name = "myListview",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 150.54,
+						y = 164.15
+					},
+					size = {
+						width = 180,
+						height = 30
+					}
+				},
+				children = {
+					{
+						name = "myLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 30,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "untitled25",
+								cType = "Sprite",
+								params = {
+									image = "c_5.png",
+									pos = {
+										x = 15,
+										y = 15
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "touchAreaNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 45.84,
+						y = 109.92
+					},
+					size = {
+						width = 700,
+						height = 420
+					}
+				},
+				children = {}
+			},
+			{
+				name = "paopaoNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 832.89,
+						y = 380
+					},
+					size = {
+						width = 240,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "untitled27",
+						cType = "Scale9Sprite",
+						params = {
+							image = "qxpqp.png",
+							childName = "bg",
+							pos = {
+								x = 100,
+								y = 20
+							},
+							size = {
+								width = 240,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "untitled28",
+								cType = "Label",
+								params = {
+									fontSize = 17,
+									align = 1,
+									childName = "tiplabel",
+									valign = 0,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 123.41,
+										y = 20.73
+									},
+									size = {
+										width = 220,
+										height = 0
+									},
+									text = TR("泡泡")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		endedEvent = function (slot0, slot1)
+			if not slot0.bgSprite then
+				return 
+			end
+
+			if not cc.rectContainsPoint(cc.rect(0, 0, slot0.touchAreaNode:getContentSize().width, slot0.touchAreaNode.getContentSize().height), slot0.touchAreaNode:convertToNodeSpace(slot0.getLocation(slot0))) then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	slot0.mAllChapterInfo = slot1.allChapterInfo
+	slot0.mQiecuoCount = slot1.qiecuoCount
+	slot0.mFightBuyNum = slot1.fightBuyNum
+	slot0.QunxiaNodeDataList = slot1.mQunxiaNodeDataList
+	slot0.heroId = slot1.heroId
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.heroImage:setTexture(TR("%s.png", HeroModel.items[slot0.heroId].drawingPicA))
+	slot0.refHeroInfo(slot0)
+	EventAuto:registerAutoEvent(slot0, "eXUNXIACOUNTEVENT", function (slot0, slot1)
+		slot0.mQiecuoCount = slot1.mFightNum
+		slot0.mFightBuyNum = slot1.mFightBuyNum
+
+		slot0:refHeroInfo()
+
+		return 
+	end)
+
+	return 
+end
+slot0.refHeroInfo = function (slot0)
+	slot0.qiecuoNum:setString(TR("切磋次数:%s/%s", (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount, slot3))
+
+	slot4, slot5 = slot0.foundCount(slot0, slot0.heroId)
+
+	slot0.dayNum:setString(TR("今日次数:%s/%s", slot5 - slot4, slot5))
+	slot0.goodsNum:setString(TR("拥有数量:{%s}%s", slot7, slot8))
+
+	slot9 = HeroObj:getItem(slot0.heroId)
+	slot10 = HeroModel.items[slot0.heroId].initStar
+	slot11 = Resource.getCount(HeroModel.items[slot0.heroId].debrisId)
+	slot12 = GoodsModel.items[HeroModel.items[slot0.heroId].debrisId].outputNeedNum
+
+	if HeroObj:isHaveModel(slot0.heroId) then
+		if table.maxn(HeroStarRelation.items[slot0.heroId]) <= slot9.Star then
+			slot0.isSuiPian:setString(TR("碎片"))
+			slot0.myProgressBar:setMaxValue(slot13)
+			slot0.myProgressBar:setCurrValue(slot11)
+			slot0.progressLabel:setString(TR("%s/%s", slot11, HeroStarRelation.items[slot0.heroId][slot9.Star].needDebrisNum))
+		else
+			slot0.isSuiPian:setString(TR("升星"))
+			slot0.myProgressBar:setMaxValue(slot13)
+			slot0.myProgressBar:setCurrValue(slot11)
+			slot0.progressLabel:setString(TR("%s/%s", slot11, HeroStarRelation.items[slot0.heroId][slot9.Star + 1].needDebrisNum))
+		end
+	else
+		slot0.isSuiPian:setString(TR("合成"))
+		slot0.myProgressBar:setMaxValue(slot12)
+		slot0.myProgressBar:setCurrValue(slot11)
+		slot0.progressLabel:setString(TR("%s/%s", slot11, slot12))
+	end
+
+	slot0.myListview:removeAllChildren()
+	slot0.HeroName:setString(slot1.name)
+	slot0.HeroName:setColor(slot13)
+
+	if HeroObj:isHaveModel(slot0.heroId) then
+		for slot17 = 1, slot9.Star, 1 do
+			slot0.myListview:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "myLayout"))
+		end
+	else
+		for slot17 = 1, HeroStarRelation.items[slot0.heroId][1].star, 1 do
+			slot0.myListview:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "myLayout"))
+		end
+	end
+
+	slot15 = ""
+
+	for slot19, slot20 in pairs(slot14) do
+		slot15 = slot15 .. "  " .. TR("%s第%s回", QunxiaChapterModel.items[slot20.matchChapterModelId].name, tonumber(slot20.nodeId)%tonumber(slot20.matchChapterModelId))
+	end
+
+	slot0.chapterLabel:setString(slot15)
+	slot0.addPrePaoPaoTips(slot0)
+
+	return 
+end
+slot0.foundCount = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot0.QunxiaNodeDataList) do
+		if slot8.matchHeroModelId == slot1 and slot8.NormalPass then
+			slot2 = slot2 + slot8.VisitNum
+			slot3 = slot3 + QunxiaConfig.items[1].nodeVisitNum
+		end
+	end
+
+	return slot2, slot3
+end
+slot0.addPrePaoPaoTips = function (slot0)
+	slot0.paopaoNode:stopAllActions()
+	slot0.paopaoNode:setVisible(false)
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(VipConfig.items) do
+		table.insert(slot1, clone(slot6))
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.Lv < slot1.Lv
+	end)
+
+	if slot1[#slot1].freeFightHeroNum == VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum then
+		return 
+	end
+
+	slot4 = slot1[#slot1].Lv
+	slot5 = slot2
+
+	for slot9, slot10 in ipairs(slot1) do
+		if slot3 < slot10.freeFightHeroNum then
+			slot5 = slot10.freeFightHeroNum
+			slot4 = slot10.Lv
+
+			break
+		end
+	end
+
+	slot0.paopaoNode.bg.tiplabel:setString(TR("会员%d增加切磋次数+%d", slot4, slot5 - slot3))
+	slot0.paopaoNode:setVisible(true)
+	slot0.paopaoNode:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.ScaleTo:create(0.5, 1.1),
+		cc.DelayTime:create(0.05),
+		cc.ScaleTo:create(0.5, 0.9)
+	})))
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onSellClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xunxia.XunXiaBuyCountLayer",
+		data = {
+			fightBuyNum = slot0.mFightBuyNum
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.playerAnimation = function (slot0, slot1)
+	slot2 = {
+		{
+			cc.p(510, 210),
+			cc.p(320, 500),
+			cc.p(140, 100)
+		}
+	}
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot1) do
+		for slot12 = 1, slot8.Num, 1 do
+			table.insert(slot3, slot8.ResourceId)
+
+			if 5 <= slot12 then
+				break
+			end
+		end
+
+		if 45 <= #slot3 then
+			break
+		end
+	end
+
+	slot4 = {}
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(slot3) do
+		table.insert(slot5, slot10)
+
+		if slot9%15 == 0 then
+			table.insert(slot4, slot5)
+
+			slot5 = {}
+		end
+	end
+
+	if next(slot5) ~= nil then
+		table.insert(slot4, slot5)
+	end
+
+	function slot6(slot0, slot1, slot2)
+		slot5 = cc.RotateTo:create(3, 1200)
+		slot8 = {
+			cc.DelayTime:create(slot1),
+			cc.Spawn:create(slot3, slot4)
+		}
+
+		if slot2 then
+			slot8 = {
+				slot7,
+				slot6,
+				cc.CallFunc:create(function ()
+					return 
+				end)
+			}
+		end
+
+		return cc.Sequence:create(slot8)
+	end
+
+	for slot10, slot11 in ipairs(slot4) do
+		slot12 = 0
+
+		for slot16, slot17 in ipairs(slot11) do
+			slot18 = UIWrap.newControl("CardNode", {
+				allowClick = false,
+				initParams = {
+					cardInfo = {
+						resourceId = slot17
+					}
+				}
+			})
+
+			slot18.setPosition(slot18, cc.p(510, 220))
+			slot18.setScale(slot18, 0.01)
+			slot0.bgSprite:addChild(slot18)
+
+			slot12 = slot16*0.1
+			slot19 = false
+
+			if slot16 == #slot11 then
+				slot19 = true
+			end
+
+			slot18.runAction(slot18, slot6(slot10, slot12, slot19))
+		end
+	end
+
+	return 
+end
+slot0.onXunXiaOneClick = function (slot0)
+	if Resource.getCount(slot1) < 1 then
+		if #Utility.getDropWayList(slot1) ~= 0 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.GoodsGetWaysLayer",
+				popRestore = true,
+				data = {
+					resourceId = slot1
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+
+		return 
+	end
+
+	slot3, slot4 = slot0.foundCount(slot0, slot0.heroId)
+
+	if slot4 - slot3 <= 0 then
+		ui.showFlashView(TR("今日寻侠次数不足!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoVisit",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot0.heroId,
+			1
+		},
+		successCallback = function (slot0)
+			slot0:playerAnimation(slot0.BaseGetGameResourceList[1].Goods)
+
+			slot0.mAllChapterInfo = slot0.QunxiaAllChapterInfo.QunxiaChapterInfo
+
+			for slot4, slot5 in pairs(slot0.mAllChapterInfo) do
+				for slot9, slot10 in pairs(slot5.QunxiaNodeInfo) do
+					slot0.QunxiaNodeDataList[slot10.NodeId].Draw = slot10.Draw
+					slot0.QunxiaNodeDataList[slot10.NodeId].VisitNum = slot10.VisitNum
+					slot0.QunxiaNodeDataList[slot10.NodeId].NormalPass = slot10.NormalPass
+				end
+			end
+
+			slot0:refHeroInfo()
+			EventAuto:postEvent("eXUNXIACHAPTEREVENT", slot0.mAllChapterInfo)
+			EventAuto:postEvent("eXUNXIACHAPTEREVENTONE", slot0.QunxiaNodeDataList)
+			MqAudio.playEffect("qunxiapu_bangfangdan.mp3")
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onXunXiaTenClick = function (slot0)
+	if Resource.getCount(slot1) < 1 then
+		if #Utility.getDropWayList(slot1) ~= 0 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.GoodsGetWaysLayer",
+				popRestore = true,
+				data = {
+					resourceId = slot1
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+
+		return 
+	end
+
+	slot3, slot4 = slot0.foundCount(slot0, slot0.heroId)
+
+	if slot4 - slot3 < 1 then
+		ui.showFlashView(TR("今日寻侠次数不足!"))
+
+		return 
+	end
+
+	slot6 = 10
+
+	if slot2 < 10 or slot5 < 10 then
+		slot0.socketRequest(slot0, {
+			methodName = "AutoVisit",
+			moduleName = "QunxiaChapter",
+			methodData = {
+				slot0.heroId,
+				(slot2 < slot5 and slot2) or slot5
+			},
+			successCallback = function (slot0)
+				slot0:playerAnimation(slot0.BaseGetGameResourceList[1].Goods)
+
+				slot0.mAllChapterInfo = slot0.QunxiaAllChapterInfo.QunxiaChapterInfo
+
+				for slot4, slot5 in pairs(slot0.mAllChapterInfo) do
+					for slot9, slot10 in pairs(slot5.QunxiaNodeInfo) do
+						slot0.QunxiaNodeDataList[slot10.NodeId].Draw = slot10.Draw
+						slot0.QunxiaNodeDataList[slot10.NodeId].VisitNum = slot10.VisitNum
+						slot0.QunxiaNodeDataList[slot10.NodeId].NormalPass = slot10.NormalPass
+					end
+				end
+
+				slot0:refHeroInfo()
+				EventAuto:postEvent("eXUNXIACHAPTEREVENT", slot0.mAllChapterInfo)
+				EventAuto:postEvent("eXUNXIACHAPTEREVENTONE", slot0.QunxiaNodeDataList)
+				MqAudio.playEffect("qunxiapu_bangfang.mp3")
+
+				return 
+			end
+		})
+
+		return 
+	end
+end
+slot0.onQieCuoOneClick = function (slot0)
+	if (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount < 1 then
+		ui.showFlashView(TR("提升会员等级，增加切磋次数!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoCompare",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot0.heroId,
+			1
+		},
+		successCallback = function (slot0)
+			slot0:playerAnimation(slot0.BaseGetGameResourceList[1].Goods)
+
+			slot0.mQiecuoCount = slot0.QunxiaInfo.FightNum
+			slot0.mFightBuyNum = slot0.QunxiaInfo.FightBuyNum
+
+			slot0:refHeroInfo()
+			EventAuto:postEvent("eXUNXIACOUNTEVENT", {
+				mFightNum = slot0.mQiecuoCount,
+				mFightBuyNum = slot0.mFightBuyNum
+			})
+			MqAudio.playEffect("qunxiapu_bangfangdan.mp3")
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onQieCuoTenClick = function (slot0)
+	if (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount < 1 then
+		ui.showFlashView(TR("提升会员等级，增加切磋次数!"))
+
+		return 
+	end
+
+	slot4 = 10
+
+	if slot3 < 10 then
+		slot4 = slot3
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoCompare",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot0.heroId,
+			slot4
+		},
+		successCallback = function (slot0)
+			slot0:playerAnimation(slot0.BaseGetGameResourceList[1].Goods)
+
+			slot0.mQiecuoCount = slot0.QunxiaInfo.FightNum
+			slot0.mFightBuyNum = slot0.QunxiaInfo.FightBuyNum
+
+			slot0:refHeroInfo()
+			EventAuto:postEvent("eXUNXIACOUNTEVENT", {
+				mFightNum = slot0.mQiecuoCount,
+				mFightBuyNum = slot0.mFightBuyNum
+			})
+			MqAudio.playEffect("qunxiapu_bangfang.mp3")
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.foundHeroOtherInfo = function (slot0, slot1)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		slot9 = {}
+
+		if slot8.matchHeroModelId == slot1 then
+			slot9.nodeId = slot8.nodeId
+			slot9.matchChapterModelId = slot8.matchChapterModelId
+
+			table.insert(slot3, slot9)
+		end
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		return slot0.nodeId < slot1.nodeId
+	end)
+
+	return slot3
+end
+
+return slot0

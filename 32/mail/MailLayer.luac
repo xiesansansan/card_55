@@ -1,0 +1,1135 @@
+slot0 = class("MailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled38",
+		cType = "Sprite",
+		params = {
+			isBgSprite = true,
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "xkxx_31.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled39",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled40",
+		cType = "Button",
+		params = {
+			clickAction = "onExitAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled41",
+				cType = "Sprite",
+				params = {
+					image = "yj_5.png",
+					pos = {
+						x = 3.4,
+						y = 2.39
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled42",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled43",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_14.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mailTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "cbTabTypeChange",
+					space = 0,
+					fontSize = 24,
+					lightedImage = "bb_4.png",
+					direction = true,
+					normalImage = "c_58.png",
+					btnInfos = {
+						{
+							title = TR("战报")
+						},
+						{
+							title = TR("系统")
+						},
+						{
+							title = TR("个人")
+						},
+						{
+							title = TR("帮派")
+						}
+					},
+					btnSize = {
+						width = 141,
+						height = 80
+					},
+					pos = {
+						x = -492.27,
+						y = -236.57
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 145,
+						height = 480
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.55,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled47",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 221.84,
+						y = 30.34
+					},
+					size = {
+						width = 480,
+						height = 390
+					}
+				},
+				children = {
+					{
+						name = "title",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 14.94,
+								y = 356.53
+							}
+						},
+						children = {}
+					},
+					{
+						name = "name",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 17.27,
+								y = 315.16
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled66",
+						cType = "Sprite",
+						params = {
+							image = "yj_3.png",
+							pos = {
+								x = 244.14,
+								y = 268.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled59",
+						cType = "Sprite",
+						params = {
+							image = "yj_3.png",
+							pos = {
+								x = 244.14,
+								y = 94.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "des",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "",
+							align = 0,
+							valign = 0,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 241.8,
+								y = 173.77
+							},
+							size = {
+								width = 450,
+								height = 170
+							}
+						},
+						children = {}
+					},
+					{
+						name = "getBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							hide = true,
+							pos = {
+								x = 399.67,
+								y = 45.49
+							},
+							titleText = TR("领取")
+						},
+						children = {}
+					},
+					{
+						name = "rewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							bounce = true,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 180.58,
+								y = 48.75
+							},
+							size = {
+								width = 300,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled65-initParams",
+										name = "cardInfo",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 90,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "untitled65",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 45,
+												y = 45
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tableview",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = -361.81,
+						y = -168.42
+					},
+					size = {
+						width = 330,
+						height = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oneKeyReadBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					hide = true,
+					clickAction = "onOneKeyReadAction",
+					pos = {
+						x = -279,
+						y = -203
+					},
+					titleText = TR("全部阅读")
+				},
+				children = {}
+			},
+			{
+				name = "oneKeyDeleteBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOneKeyDeleteAction",
+					pos = {
+						x = -72.31,
+						y = -203
+					},
+					titleText = TR("一键删除")
+				},
+				children = {}
+			},
+			{
+				name = "oneKeyGetBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onOneKeyDrawAction",
+					pos = {
+						x = 135.27,
+						y = -203.9
+					},
+					titleText = TR("一键领取")
+				},
+				children = {}
+			},
+			{
+				name = "deleteBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onDeleteAction",
+					pos = {
+						x = 135.27,
+						y = -203.9
+					},
+					titleText = TR("删除")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onWriteAction",
+					pos = {
+						x = 350,
+						y = -203
+					},
+					titleText = TR("写邮件")
+				},
+				children = {}
+			},
+			{
+				name = "selectAllBtn",
+				cType = "Checkbox",
+				params = {
+					selectImage = "c_44.png",
+					hide = true,
+					callback = "onSelectAllAction",
+					normalImage = "c_43.png",
+					pos = {
+						x = -334.87,
+						y = -205.53
+					}
+				},
+				children = {
+					{
+						name = "untitled27",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 43.41,
+								y = 13.89
+							},
+							text = TR("全选")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "emailLayout",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -358.58,
+						y = 113.25
+					},
+					size = {
+						width = 330,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "untitled50",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_98.png",
+							pos = {
+								x = 165,
+								y = 55
+							},
+							size = {
+								width = 330,
+								height = 110
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled51",
+						cType = "Sprite",
+						params = {
+							image = "yj_1.png",
+							childName = "logo",
+							pos = {
+								x = 46.61,
+								y = 55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled53",
+						cType = "Label",
+						params = {
+							text = "2020-10-20",
+							childName = "time",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 87.31,
+								y = 21.3
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "name",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 89.05,
+								y = 55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled55",
+						cType = "Sprite",
+						params = {
+							image = "yj_20.png",
+							pos = {
+								x = 180.15,
+								y = 87.51
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled56",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "title",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 91.33,
+								y = 88.32
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled60",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							swallowTouch = false,
+							childName = "button",
+							pos = {
+								x = 167.26,
+								y = 55.26
+							},
+							size = {
+								width = 330,
+								height = 110
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled61",
+						cType = "Checkbox",
+						params = {
+							normalImage = "c_43.png",
+							childName = "checkBox",
+							selectImage = "c_44.png",
+							pos = {
+								x = 292.62,
+								y = 55.54
+							}
+						},
+						children = {}
+					},
+					{
+						name = "tishi",
+						cType = "BadgeText",
+						params = {
+							fontRotation = -45,
+							hide = true,
+							image = "c_88.png",
+							anchor = {
+								x = 1,
+								y = 1
+							},
+							fontPos = {
+								x = 21,
+								y = 39
+							},
+							pos = {
+								x = 59.82,
+								y = 104.35
+							},
+							text = TR("已领取")
+						},
+						children = {}
+					},
+					{
+						name = "untitled62",
+						cType = "Scale9Sprite",
+						params = {
+							childName = "selectSprite",
+							hide = true,
+							image = "c_61.png",
+							pos = {
+								x = 165,
+								y = 55
+							},
+							size = {
+								width = 330,
+								height = 110
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.selectType = slot1.mailType or Enums.MailType.eSystem
+
+	slot0.super.ctor(slot0)
+
+	slot0.mSelectTag = 0
+	slot0.serverTag = {
+		2,
+		1,
+		3,
+		4
+	}
+
+	slot0.initUI(slot0)
+
+	slot0.selectList = {}
+
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.logoList = {
+		{
+			spPic = "yj_12.png",
+			spPicLight = "yj_13.png"
+		},
+		{
+			spPic = "yj_8.png",
+			spPicLight = "yj_9.png"
+		},
+		{
+			spPic = "yj_14.png",
+			spPicLight = "yj_15.png"
+		},
+		{
+			spPic = "yj_16.png",
+			spPicLight = "yj_17.png"
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mailTabView" then
+			slot1.selectTag = slot0.selectType
+		end
+
+		return 
+	end)
+
+	slot1 = {
+		ModuleSub.eEmailFight,
+		ModuleSub.eEmailSystem,
+		ModuleSub.eEmailPersonal,
+		ModuleSub.eEmailGuild
+	}
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = UIWrap.newControl("Sprite", {
+			image = "bb_5.png"
+		})
+
+		slot8.setPosition(slot8, -10, -41)
+		slot7.addChild(slot7, slot8)
+
+		slot9 = UIWrap.newControl("Sprite", {
+			image = (slot6 == 1 and slot0.logoList[slot6].spPicLight) or slot0.logoList[slot6].spPic
+		})
+
+		slot9.setPosition(slot9, -45, 0)
+		slot7.addChild(slot7, slot9)
+
+		slot7.boxSprite = slot9
+	end
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot2[slot6]:addChild(UIWrap.newControl("RedDot", {
+			moduleId = slot7
+		}))
+	end
+
+	return 
+end
+slot0.cbTabTypeChange = function (slot0, slot1)
+	dump(slot0.selectType)
+
+	if slot0.selectType ~= slot1 then
+		slot0.selectType = slot1
+
+		for slot6, slot7 in ipairs(slot2) do
+			if slot6 == slot1 then
+				slot7.boxSprite:setTexture(slot0.logoList[slot6].spPicLight)
+			else
+				slot7.boxSprite:setTexture(slot0.logoList[slot6].spPic)
+			end
+		end
+
+		slot0.requestInfo(slot0)
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 330, 110
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mailData
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "emailLayout")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		slot2 = os.date("*t", slot0.mailData[slot0 + 1].SendTime)
+
+		slot1.title:setString(slot0.mailData[slot0 + 1].Subject)
+		slot1.name:setString(slot0.mailData[slot0 + 1].SendPlayerName)
+		slot1.time:setString(string.format("%d-%d-%d", slot2.year, slot2.month, slot2.day))
+
+		if slot0.mailData[slot0 + 1].Reward and slot1.Reward ~= "" then
+			slot1.logo:setTexture((slot1.IsReceive and "yj_6.png") or "yj_7.png")
+			slot1.tishi:setVisible(not slot1.IsReceive)
+			slot1.tishi:setText(TR("未领取"))
+		else
+			slot1.logo:setTexture((slot1.IsRead and "yj_1.png") or "yj_2.png")
+			slot1.tishi:setVisible(not slot1.IsRead)
+			slot1.tishi:setText(TR("未读"))
+		end
+
+		slot1.checkBox:setSelected((table.indexof(slot0.selectList, slot0 + 1) and true) or false)
+
+		slot1.checkBox.mClickAction = function ()
+			slot1 = table.indexof(slot1.selectList, slot2 + 1)
+
+			if not slot0.checkBox:isSelected() and slot1 then
+				table.remove(slot1.selectList, slot1)
+			elseif slot0 and not slot1 then
+				table.insert(slot1.selectList, slot2 + 1)
+			end
+
+			return 
+		end
+
+		slot1.button:setClickAction(function ()
+			slot0.mSelectTag = slot1
+
+			slot0.selectSprite:setVisible(false)
+			slot2.selectSprite:setVisible(true)
+
+			slot2.selectSprite.setVisible.selectSprite = slot2.selectSprite
+
+			slot2.selectSprite.setVisible:showOneMailInfo(slot3, , function ()
+				slot0.refreshCell(slot1)
+
+				return 
+			end)
+
+			return 
+		end)
+
+		if slot0 == slot0.mSelectTag then
+			slot1.selectSprite:setVisible(true)
+
+			slot0.selectSprite = slot1.selectSprite
+
+			slot0:showOneMailInfo(slot1, slot1, function ()
+				slot0.refreshCell(slot1)
+
+				return 
+			end)
+		else
+			slot1.selectSprite:setVisible(false)
+		end
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.showOneMailInfo = function (slot0, slot1, slot2, slot3)
+	slot0.rewardListView:removeAllItems()
+
+	if slot1 then
+		slot0.title:setString(slot1.Subject)
+		slot0.name:setString(TR("发件人：%s", slot1.SendPlayerName))
+		slot0.des:setString(slot1.Content)
+
+		if not slot1.IsRead then
+			slot0.socketRequest(slot0, {
+				methodName = "ReadEmail",
+				moduleName = "PlayerEmail",
+				methodData = {
+					slot1.Id
+				},
+				successCallback = function (slot0)
+					for slot4, slot5 in ipairs(slot0.mailData) do
+						if slot5.Id == slot5.Id then
+							slot0.mailData[slot4].IsRead = true
+
+							break
+						end
+					end
+
+					if not slot1.Reward or slot1.Reward == "" then
+						slot2.logo:setTexture("yj_1.png")
+						slot2.tishi:setVisible(false)
+					end
+
+					return 
+				end
+			})
+		end
+
+		if slot1.Reward and slot1.Reward ~= "" then
+			for slot8, slot9 in pairs(slot4) do
+				slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = slot9.resourceId,
+							num = slot9.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+
+			if #slot4 <= 3 then
+				slot0.rewardListView:setContentSize(cc.size(#slot4*100, 90))
+			else
+				slot0.rewardListView:setContentSize(cc.size(300, 90))
+			end
+		end
+
+		if slot1.Reward and slot1.Reward ~= "" and not slot1.IsReceive then
+			slot0.getBtn:setVisible(true)
+			slot0.getBtn:setEnabled(true)
+			slot0.getBtn:setTitleText(TR("领取"))
+			slot0.getBtn:setClickAction(function ()
+				slot0:socketRequest({
+					methodName = "GetTargetEmailReward",
+					moduleName = "PlayerEmail",
+					methodData = {
+						slot0.selectType - 1,
+						slot1.Id
+					},
+					successCallback = function (slot0)
+						for slot4, slot5 in ipairs(slot0.mailData) do
+							if slot5.Id == slot1.Id then
+								slot0.mailData[slot4].IsReceive = true
+
+								slot0.getBtn:setEnabled(false)
+								slot0.getBtn:setTitleText(TR("已领取"))
+
+								if slot2 then
+									slot2()
+								end
+
+								break
+							end
+						end
+
+						ui.showFlashReward({
+							BaseGetGameResourceList = slot0.BaseGetGameResourceList
+						})
+						PlayerAttrObj:checkLvUp()
+
+						return 
+					end
+				})
+
+				return 
+			end)
+		elseif slot1.IsReceive and slot1.Reward ~= "" then
+			slot0.getBtn:setEnabled(false)
+			slot0.getBtn:setTitleText(TR("已领取"))
+		else
+			slot0.getBtn:setVisible(false)
+		end
+	else
+		slot0.title:setString("")
+		slot0.name:setString("")
+		slot0.des:setString("")
+		slot0.getBtn:setVisible(false)
+	end
+
+	return 
+end
+slot0.refreshList = function (slot0)
+	slot0.selectSprite = nil
+	slot0.mSelectTag = 0
+
+	slot0.tableview:reloadData()
+	slot0.tableview:jumpToTop()
+
+	if #slot0.mailData == 0 then
+		slot0.showOneMailInfo(slot0)
+	end
+
+	slot0.selectAllBtn:setVisible(slot0.serverTag[slot0.selectType] == Enums.MailType.ePerson)
+	slot0.deleteBtn:setVisible(slot0.serverTag[slot0.selectType] == Enums.MailType.ePerson)
+	slot0.oneKeyGetBtn:setVisible(slot0.serverTag[slot0.selectType] ~= Enums.MailType.ePerson)
+	slot0.oneKeyReadBtn:setVisible(slot0.serverTag[slot0.selectType] == Enums.MailType.eReport)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.selectList = {}
+
+	slot0.selectAllBtn:setSelected(false)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEmailsByPage",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot0.serverTag[slot0.selectType] - 1,
+			0,
+			30
+		},
+		successCallback = function (slot0)
+			slot0.mailData = slot0
+
+			slot0:refreshList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSelectAllAction = function (slot0, slot1)
+	slot0.selectList = {}
+
+	if slot1.isSelected(slot1) then
+		for slot5, slot6 in ipairs(slot0.mailData) do
+			table.insert(slot0.selectList, slot5)
+		end
+	end
+
+	slot0.tableview:reloadData()
+
+	return 
+end
+slot0.onWriteAction = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo") or {}
+
+	if slot0.selectType == Enums.MailType.eGuild and (not slot1.PositionId or slot1.PositionId == 0 or 3 < slot1.PositionId) then
+		ui.showFlashView(TR("只有帮派帮主和副帮主才能发送帮派邮件"))
+
+		return 
+	end
+
+	if slot0.selectType == Enums.MailType.eGuild and (PlayerAttrObj:getPlayerAttrByName("Lv") < 50 or PlayerAttrObj:getPlayerAttrByName("Vip") < 3) then
+		ui.showFlashView(TR("50级后且会员3可使用群发邮件"))
+
+		return 
+	end
+
+	if slot0.selectType ~= Enums.MailType.eGuild and PlayerAttrObj:getPlayerAttrByName("Lv") < 50 then
+		ui.showFlashView(TR("50级可使用"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "mail.MailWriteLayer",
+		data = {
+			mailType = (slot0.selectType == Enums.MailType.eGuild and Enums.MailType.eGuild) or Enums.MailType.ePerson
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onDeleteAction = function (slot0)
+	if #slot0.selectList == 0 then
+		ui.showFlashView(TR("还未选择任何邮件哦"))
+
+		return 
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.selectList) do
+		table.insert(slot1, slot0.mailData[slot6].Id)
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "DeleteTargetEmails",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:requestInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOneKeyDrawAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAllEmailReward",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot0.serverTag[slot0.selectType] - 1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			for slot4, slot5 in ipairs(slot0.mailData) do
+				slot5.IsReceive = true
+				slot5.IsRead = true
+			end
+
+			slot0.tableview:reloadData()
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOneKeyDeleteAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DeleteAllEmails",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot0.serverTag[slot0.selectType] - 1
+		},
+		successCallback = function (slot0)
+			slot0:requestInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOneKeyReadAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "OneKeyReadEmail",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot0.serverTag[slot0.selectType] - 1
+		},
+		successCallback = function (slot0)
+			slot0:requestInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

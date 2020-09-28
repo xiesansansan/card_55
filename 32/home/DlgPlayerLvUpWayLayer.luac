@@ -1,0 +1,668 @@
+slot0 = class("DlgPlayerLvUpWayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled31",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 626,
+				height = 494
+			},
+			titleText = TR("升级助手")
+		},
+		children = {
+			{
+				name = "untitled33",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 313,
+						y = 35
+					},
+					size = {
+						width = 574,
+						height = 376
+					}
+				},
+				children = {}
+			},
+			{
+				name = "needLvLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 455,
+						y = 422
+					},
+					text = TR("副本需要d级开启")
+				},
+				children = {}
+			},
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 26,
+						y = 35
+					},
+					size = {
+						width = 574,
+						height = 370
+					}
+				},
+				children = {
+					{
+						name = "tempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -0.84,
+								y = -167.79
+							},
+							size = {
+								width = 574,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 287,
+										y = 50
+									},
+									size = {
+										width = 570,
+										height = 96
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled43",
+								cType = "Node",
+								params = {
+									childName = "otherThingNode",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "BadgeText",
+								params = {
+									fontSize = 18,
+									hide = true,
+									image = "c_76.png",
+									childName = "badgetText",
+									fontPos = {
+										x = 35,
+										y = 35
+									},
+									pos = {
+										x = 568.09,
+										y = 93.91
+									},
+									text = TR("双 倍")
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									align = 0,
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 138,
+										y = 66
+									},
+									text = TR("每日任务")
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 0,
+									childName = "descLabel",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 138,
+										y = 55
+									},
+									size = {
+										width = 250,
+										height = 0
+									},
+									text = TR("完成每日任务可获得升级经验")
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Button",
+								params = {
+									childName = "goBtn",
+									image = "c_27.png",
+									clickAction = "onGoBtnClickAction",
+									pos = {
+										x = 493.71,
+										y = 51.14
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "Sprite",
+								params = {
+									image = "c_2.png",
+									childName = "header",
+									pos = {
+										x = 68.27,
+										y = 48.92
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mMyLv",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 455,
+						y = 447
+					},
+					text = TR("我的等级:50级")
+				},
+				children = {}
+			},
+			{
+				name = "textLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 27.42,
+						y = 422
+					},
+					text = TR("获得")
+				},
+				children = {}
+			},
+			{
+				name = "mWorldAddrStr",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					pos = {
+						x = 63.34,
+						y = 422
+					},
+					text = TR("经验加成:100%")
+				},
+				children = {}
+			},
+			{
+				name = "mProgressBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_2.png",
+					bgImage = "jyt_1.png",
+					hide = true,
+					pos = {
+						x = 146.93,
+						y = 424.5
+					}
+				},
+				children = {
+					{
+						name = "untitled30",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							outlineSize = 1,
+							childName = "remainLabel",
+							outlineColor = {
+								g = 0,
+								r = 0,
+								b = 0
+							},
+							pos = {
+								x = 134.73,
+								y = 8.03
+							},
+							text = TR("主公经验：0/0")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled32",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 27.42,
+						y = 447
+					},
+					text = TR("大侠可以通过下列方式获取经验")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mNeedLv = slot1 or {}.needLv
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	PveObj:getChapterList()
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.ePlayerLvUpLayerUI, function ()
+		print("进行UI的额外调整")
+		print:requestInfo()
+		print.requestInfo:refershUI()
+
+		return 
+	end)
+	slot0.refershUI(slot0)
+
+	return 
+end
+slot0.refershUI = function (slot0)
+	slot2 = PlayerAttrObj:getPlayerAttrByName("WorldLv") or 0
+
+	slot0.mWorldAddrStr:setString(TR("经验加成:+%s%%", PlayerAttrObj:getPlayerAttrByName("WorldLvAddR")*100))
+	slot0.mMyLv:setString(TR("我的等级:%s级", PlayerAttrObj:getPlayerAttrByName("Lv")))
+
+	slot3, slot4 = PlayerAttrObj:getCurrentLvExp()
+
+	slot0.mWorldAddrStr:setVisible(PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv"))
+	slot0.textLabel:setVisible(PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj.getPlayerAttrByName("Lv"))
+
+	return 
+end
+slot0.refreshActivityList = function (slot0)
+	if not slot0.mNeedLv or slot0.mNeedLv <= 0 then
+		slot0.needLvLabel:setString("")
+	else
+		slot0.needLvLabel:setString(TR("副本开启:%s级", slot0.mNeedLv))
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(UpgradeConfig.items) do
+		if Utility.moduleIsOpen(slot6.moudleId, false) then
+			if slot6.moudleId == ModuleSub.eTimedExpShop then
+				if Player:getCurrentTime() <= PlayerAttrObj:getPlayerAttrByName("ExpshopOpeningTime") + ExpshopConfig.items[1].duration*24*3600 then
+					table.insert(slot1, slot6)
+				end
+			else
+				table.insert(slot1, slot6)
+			end
+		end
+	end
+
+	slot0.tempList = slot1
+
+	slot0.tableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 574, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.tempList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "tempNode")
+	slot3.refreshNode = function (slot0, slot1)
+		slot2 = slot0.tempList[slot1 + 1]
+
+		if PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot3 and PlayerConfig.items[1].noEnjoyAnyExpAddsLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+			slot3 = slot3 + 1
+		end
+
+		if slot3 == 0 then
+			slot3 = 1
+		end
+
+		slot0.header:setTexture(slot2.pic .. ".png")
+		slot0.nameLabel:setString(slot2.moudleName)
+		slot0.descLabel:setString((ModuleSub.eMainTask and slot2.intro) or "")
+
+		slot0.goBtn.moduleId = slot2.moudleId
+
+		if ModuleSub.eElite == slot2.moudleId then
+			slot0.badgetText:setVisible(true)
+			slot0.badgetText:setVisible(slot0.mOpenModule == ModuleSub.eElite)
+		end
+
+		slot0.otherThingNode:removeAllChildren()
+
+		if slot2.moudleId == ModuleSub.eTimedExpShop then
+			UIWrap.newControl("Scale9Sprite", {
+				image = "jyt_50.png",
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("ProgressBar", {
+				normalImage = "jyt_51.png",
+				pos = cc.p(230, 25),
+				currValue = (slot0.mInfo.Expshop and slot0.mInfo.Expshop.TodayExpGained) or 0,
+				maxValue = (slot0.mInfo.Expshop and slot0.mInfo.Expshop.TodayAllExp) or 0
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 16,
+				outlineSize = 1,
+				text = TR("今日可购:%s/%s", (slot0.mInfo.Expshop and slot0.mInfo.Expshop.TodayExpGained) or 0, (slot0.mInfo.Expshop and slot0.mInfo.Expshop.TodayAllExp) or 0),
+				color = cc.c3b(255, 255, 255),
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+		elseif slot2.moudleId == ModuleSub.eDailyTask then
+			UIWrap.newControl("Scale9Sprite", {
+				image = "jyt_50.png",
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("ProgressBar", {
+				normalImage = "jyt_51.png",
+				pos = cc.p(230, 25),
+				currValue = (slot0.mInfo.DailytaskInfo and slot0.mInfo.DailytaskInfo.TodayExpGained) or 0,
+				maxValue = (slot0.mInfo.DailytaskInfo and slot0.mInfo.DailytaskInfo.TodayAllExp) or 0
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 16,
+				text = TR("今日经验:%s/%s", ((slot0.mInfo.DailytaskInfo and slot0.mInfo.DailytaskInfo.TodayExpGained) or 0)*slot3, ((slot0.mInfo.DailytaskInfo and slot0.mInfo.DailytaskInfo.TodayAllExp) or 0)*slot3),
+				color = cc.c3b(255, 255, 255),
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+		elseif slot2.moudleId == ModuleSub.ePveMoppingUp then
+			UIWrap.newControl("Label", {
+				fontSize = 18,
+				text = TR("挑战次数:%s", (slot0.mInfo.PveChapter and slot0.mInfo.PveChapter.FightCount) or 0),
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(138, 50)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 18,
+				text = TR("获得经验:%s", ((slot0.mInfo.PveChapter and slot0.mInfo.PveChapter.TodayExpGained) or 0)*slot3),
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(138, 23)
+			}):addTo(slot0.otherThingNode)
+			slot0.descLabel:setString("")
+		elseif slot2.moudleId == ModuleSub.eCityWar then
+			slot4 = (slot0.mInfo.CityWar and slot0.mInfo.CityWar.FightCount) or 0
+
+			UIWrap.newControl("ProgressBar", {
+				bgImage = "jyt_50.png",
+				normalImage = "jyt_51.png",
+				pos = cc.p(230, 20),
+				currValue = (slot0.mInfo.CityWar and slot0.mInfo.CityWar.TodayExpGained) or 0,
+				maxValue = slot0:getTotalExp()
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 16,
+				text = TR("获得经验:%s/%s", ((slot0.mInfo.CityWar and slot0.mInfo.CityWar.TodayExpGained) or 0)*slot3, slot6),
+				color = cc.c3b(255, 255, 255),
+				pos = cc.p(230, 20)
+			}):addTo(slot0.otherThingNode)
+		elseif slot2.moudleId == ModuleSub.eElite then
+			slot5 = (slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.AllFightCount) or 0
+
+			UIWrap.newControl("Label", {
+				fontSize = 18,
+				text = TR("剩余次数:%s", (slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.FightCount) or 0),
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(138, 50)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 19,
+				text = TR("获得经验:%s", ((slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.TodayExpGained) or 0)*slot3),
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(138, 23)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 19,
+				text = TR("可购次数:%s/%s", ((slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.BuyCount) or 0) - ((slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.BuyAddNum) or 0), (slot0.mInfo.EliteInfo and slot0.mInfo.EliteInfo.BuyCount) or 0),
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(260, 50)
+			}):addTo(slot0.otherThingNode)
+			slot0.descLabel:setString("")
+		elseif slot2.moudleId == ModuleSub.eWorldMonster then
+			UIWrap.newControl("Scale9Sprite", {
+				image = "jyt_50.png",
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("ProgressBar", {
+				normalImage = "jyt_51.png",
+				pos = cc.p(230, 25),
+				currValue = slot0.mInfo.MonsterKill.Exp,
+				maxValue = slot0.mInfo.MonsterKill.ExpMax
+			}):addTo(slot0.otherThingNode)
+			UIWrap.newControl("Label", {
+				fontSize = 16,
+				text = TR("今日经验:%d/%d", slot0.mInfo.MonsterKill.Exp*slot3, slot0.mInfo.MonsterKill.ExpMax*slot3),
+				color = cc.c3b(255, 255, 255),
+				pos = cc.p(230, 25)
+			}):addTo(slot0.otherThingNode)
+		end
+
+		return 
+	end
+
+	slot3.refreshNode(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.tempLayout = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.tempLayout:refreshNode(slot2)
+
+	return 
+end
+slot0.getTotalExp = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(CitywarKillDailyrewardConfig.items) do
+		if slot0.getExpConfig(slot0)[slot6.expRewardID] then
+			slot10 = Utility.analysisStrResList(slot9)
+
+			if slot6.needLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+				for slot14, slot15 in ipairs(slot10) do
+					if slot15.resourceId == ResourceTypeSub.eExp then
+						slot1 = (PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot16 and PlayerConfig.items[1].noEnjoyAnyExpAddsLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and slot1 + slot15.num*(slot16 + 1)) or slot1 + slot15.num
+					end
+				end
+			end
+		end
+	end
+
+	return slot1
+end
+slot0.getExpConfig = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot2 = 1
+	slot3 = {}
+
+	for slot7, slot8 in pairs(CitywarMonsterkillExpRelation.items) do
+		if slot2 <= slot7 and slot7 <= slot1 then
+			slot2 = slot7
+			slot3 = slot8
+		end
+	end
+
+	return slot3
+end
+slot0.onGoBtnClickAction = function (slot0, slot1)
+	if not Utility.moduleIsOpen(slot1.moduleId, true) then
+		ui.showFlashView(TR("功能未开启%s", slot1.moduleId))
+		dump(Player.mOpenModuleInfo)
+
+		return 
+	end
+
+	LayerManager.showModuleLayer(slot1.moduleId)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eExtraActivityDoubleIncome, false) then
+		slot0.mOpenModule = 0
+
+		slot0.requestLevelUpAssistant(slot0)
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "DoubleIncome",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mOpenModule = slot0.ModuleId
+
+			slot0:requestLevelUpAssistant()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLevelUpAssistant = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "LevelUpAssistant",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mInfo = slot0
+
+			slot0:refreshActivityList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,349 @@
+slot0 = class("RechargeHomeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "layerNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "rechargeLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/RechargeLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "drumLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/DrumBuyLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "specialCardLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/SpecialCardBuyLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "lvPlanLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/LvPlanLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "firstRechargeDrawLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/NewFirstRechargeDrawLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "giftRechargeLayer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/GiftRechargeLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "act136Layer",
+				cType = "FileLayer",
+				params = {
+					file = "recharge/Activity136Layer.lua",
+					delayInit = true
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled8",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled9",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					clickAction = "onExitAction",
+					image = "c_1.png",
+					titleisRichText = "false",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "titleSprite",
+						cType = "Sprite",
+						params = {
+							image = "cz_1.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = -33,
+								y = 3
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			isLiuHai = true,
+			posApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "cz_3.png",
+					pos = {
+						x = 117.11,
+						y = 314.43
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tempTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					space = 30,
+					isNeedOutline = false,
+					fontSize = 26,
+					selectTag = 1,
+					lightedImage = "cz_2.png",
+					direction = true,
+					normalImage = "c_58.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					btnSize = {
+						width = 110,
+						height = 46
+					},
+					pos = {
+						x = 1.67,
+						y = 103.85
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 130,
+						height = 433.21
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "arrow",
+				cType = "Sprite",
+				params = {
+					image = "c_77.png",
+					hide = true,
+					pos = {
+						x = 66.34,
+						y = 79.08
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mDefultPage = slot1.moduleId or 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tebBtnInfos = {
+		{
+			redDotModule = 0,
+			titlePic = "cz_1.png",
+			moduleId = 0,
+			layer = "rechargeLayer",
+			title = TR("充值")
+		}
+	}
+
+	for slot5, slot6 in ipairs(slot1) do
+		if Utility.moduleIsOpen(slot6.moduleId, false) then
+			table.insert(slot0.tebBtnInfos, slot6)
+		end
+	end
+
+	if ActivityObj:getActivityInfo(ModuleSub.eDiscount) ~= nil then
+		table.insert(slot0.tebBtnInfos, 2, {
+			titlePic = "cz_114.png",
+			layer = "giftRechargeLayer",
+			title = TR("超值礼包"),
+			moduleId = ModuleSub.eDiscount,
+			redDotModule = ModuleSub.eDiscount
+		})
+	end
+
+	for slot5, slot6 in ipairs(slot0.tebBtnInfos) do
+		slot0.tebBtnInfos[slot5].tag = slot5
+	end
+
+	for slot5, slot6 in ipairs(slot0.tebBtnInfos) do
+		if slot6.moduleId == slot0.mDefultPage then
+			slot0.mTag = slot6.tag
+		end
+	end
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tempTabView" then
+			slot1.btnInfos = slot0.tebBtnInfos
+			slot1.selectTag = slot0.mTag
+		end
+
+		return 
+	end)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = UIWrap.newControl("Sprite", {
+			image = "cz_5.png"
+		})
+
+		slot8.setPosition(slot8, 60, 0)
+		slot7.addChild(slot7, slot8)
+
+		slot7.selectedSprite = slot8
+
+		if slot0.tebBtnInfos[slot6].redDotModule ~= 0 then
+			slot7.addChild(slot7, UIWrap.newControl("RedDot", {
+				moduleId = slot0.tebBtnInfos[slot6].redDotModule
+			}))
+		end
+	end
+
+	slot0.arrow:setVisible(6 <= #slot0.tebBtnInfos)
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		if slot6 == slot1 then
+			slot7.selectedSprite:setTexture("cz_4.png")
+		else
+			slot7.selectedSprite:setTexture("cz_5.png")
+		end
+	end
+
+	print(slot1, "tag")
+
+	if slot0[slot0.mShowLayerName] then
+		slot0[slot0.mShowLayerName]:removeFromParent()
+
+		slot0[slot0.mShowLayerName] = nil
+	end
+
+	Player:reportCallActivityCount(slot0.tebBtnInfos[slot1].moduleId)
+	slot0.titleSprite:setTexture(slot0.tebBtnInfos[slot1].titlePic)
+	slot0.createUISubTree(slot0, slot0.tebBtnInfos[slot1].layer)
+
+	slot0.mShowLayerName = slot0.tebBtnInfos[slot1].layer
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

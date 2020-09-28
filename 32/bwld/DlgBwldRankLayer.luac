@@ -1,0 +1,1074 @@
+slot0 = class("DlgBwldRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行奖励")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onCbTabBtnAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("胜场")
+						},
+						{
+							title = TR("赛季奖励")
+						}
+					},
+					pos = {
+						x = 44.49,
+						y = 440.91
+					},
+					size = {
+						width = 567.06,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423.07,
+						y = 416.02
+					},
+					size = {
+						width = 772,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled31",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 90.87,
+								y = 16.56
+							},
+							text = TR("排名")
+						},
+						children = {}
+					},
+					{
+						name = "nameTitle",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 269,
+								y = 16.67
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 443,
+								y = 16.65
+							},
+							text = TR("胜场")
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 608.91,
+								y = 16.65
+							},
+							text = TR("排行奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "bottomBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_98.png",
+					pos = {
+						x = 424.8,
+						y = 75.88
+					},
+					size = {
+						width = 784,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "myRankLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 100.94,
+								y = 49.52
+							},
+							text = TR("我的排名：0")
+						},
+						children = {}
+					},
+					{
+						name = "myScoreLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							text = "0",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 443,
+								y = 49.87
+							}
+						},
+						children = {}
+					},
+					{
+						name = "myName",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 321.23,
+								y = 50.04
+							},
+							text = TR("我的名字")
+						},
+						children = {}
+					},
+					{
+						name = "rewardListView",
+						cType = "ListView",
+						params = {
+							hide = true,
+							direction = false,
+							swallowTouch = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 520,
+								y = 49.14
+							},
+							size = {
+								width = 250,
+								height = 91.94
+							}
+						},
+						children = {
+							{
+								name = "rewardListViewLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled30-initParams",
+										name = "cardInfo",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 11.13,
+										y = 5.48
+									},
+									size = {
+										width = 84,
+										height = 84
+									}
+								},
+								children = {
+									{
+										name = "untitled30",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 42.74,
+												y = 42.1
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "nonRankShow",
+				cType = "Label",
+				params = {
+					fontSize = 38,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423.52,
+						y = 237.95
+					},
+					text = TR("暂无排行数据")
+				},
+				children = {}
+			},
+			{
+				name = "rewardTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfRewardCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbRewardCellFillFunc",
+					pos = {
+						x = 32.24,
+						y = 32.28
+					},
+					size = {
+						width = 784,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "rewardListLayout",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -0.65,
+								y = -99.27
+							},
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled45",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 391.51,
+										y = 48.82
+									},
+									size = {
+										width = 784,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 103.18,
+										y = 68.51
+									},
+									text = TR("胜利次数")
+								},
+								children = {}
+							},
+							{
+								name = "untitled47",
+								cType = "Label",
+								params = {
+									childName = "winTime",
+									text = "0",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 99.72,
+										y = 32.77
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled48",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 217.59,
+										y = 8.15
+									},
+									size = {
+										width = 399.49,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										params = {
+											pos = {
+												z = 0,
+												x = -8.98,
+												y = -3.43
+											},
+											size = {
+												width = 84,
+												height = 84
+											}
+										},
+										children = {
+											{
+												name = "untitled50",
+												cType = "CardNode",
+												params = {
+													childName = "head",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 40.87,
+														y = 41.31
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled51",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "id",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "cbDrawCallback",
+									hide = true,
+									image = "c_27.png",
+									childName = "drawBtn",
+									pos = {
+										x = 686.86,
+										y = 48.27
+									},
+									titleText = TR("领取")
+								},
+								children = {}
+							},
+							{
+								name = "untitled52",
+								cType = "Sprite",
+								params = {
+									childName = "drawIcon",
+									image = "c_55.png",
+									hide = true,
+									pos = {
+										x = 687.59,
+										y = 48.18
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "rankTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					delayInit = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 31.8,
+						y = 127.36
+					},
+					size = {
+						width = 784,
+						height = 270
+					}
+				},
+				children = {
+					{
+						name = "myListLayout",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0.31,
+								y = -102.69
+							},
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 391.51,
+										y = 48.82
+									},
+									size = {
+										width = 784,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "rankSprite",
+									pos = {
+										x = 104.97,
+										y = 50.12
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 28,
+									charCount = 10,
+									isRichText = true,
+									text = "0",
+									childName = "rankText",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 96.2,
+										y = 49.3
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									childName = "nameText",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 269.23,
+										y = 49.34
+									},
+									text = TR("玩家名称")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									childName = "scoreText",
+									text = "0",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 443,
+										y = 49.42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "listView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 520,
+										y = 49.14
+									},
+									size = {
+										width = 250,
+										height = 91.94
+									}
+								},
+								children = {
+									{
+										name = "listViewLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled14-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 11.13,
+												y = 5.48
+											},
+											size = {
+												width = 84,
+												height = 84
+											}
+										},
+										children = {
+											{
+												name = "untitled14",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 42.74,
+														y = 42.1
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "headPicLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled37-image",
+												name = "headPic",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 137.36,
+												y = 48.11
+											},
+											size = {
+												width = 84,
+												height = 84
+											}
+										},
+										children = {
+											{
+												name = "untitled37",
+												cType = "Sprite",
+												params = {
+													scale = 0.6,
+													image = "txk_114.png",
+													pos = {
+														x = 42,
+														y = 42
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	"c_51.png",
+	"c_52.png",
+	"c_53.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mLayerData = slot1.layerData or {}
+	slot0.callBack = slot1.callBack
+	slot0.mMyWinNum = slot0.mLayerData.CrossData.PlyerInfo.WinNum or 0
+	slot0.myRank = 0
+	slot0.mRankViewData = {}
+	slot0.mListData = {}
+
+	slot0.handleWinNumRewardData(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:createUISubTree("rankTableView")
+		slot0.createUISubTree.rankTableView:setTouchEnabled(false)
+
+		return 
+	end, 2)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealRewardCfg(slot0)
+	slot0.requestGetRankInfo(slot0)
+	slot0.rewardTableView:setTouchEnabled(false)
+
+	return 
+end
+slot0.onCbTabBtnAction = function (slot0, slot1)
+	slot0.nonRankShow:setVisible(false)
+	slot0.titleBg:setVisible(slot1 ~= 1)
+	slot0.bottomBg:setVisible(slot1 ~= 1)
+
+	if (slot1 ~= 1 or false) and slot1 == 2 then
+		if slot0.mRankViewData then
+			if next(slot0.mRankViewData) == nil then
+				slot0.nonRankShow:setVisible(true)
+			else
+				slot0.nonRankShow:setVisible(false)
+			end
+		end
+
+		slot0.nameTitle:setString(TR("玩家名字"))
+	end
+
+	if slot1 == 2 then
+		slot0.myRankLabel:setString(TR("我的排名：%s", (slot0.myRank == 0 and TR("暂无")) or slot0.myRank))
+		slot0.myRankLabel:setVisible(true)
+		slot0.myName:setString("")
+		slot0.myScoreLabel:setString(TR("胜场：%s", slot0.mMyWinNum))
+		slot0.myScoreLabel:setVisible(true)
+
+		slot2 = nil
+
+		for slot6, slot7 in ipairs(BiwuRankRewardConfig.items) do
+			if slot7.rankMin <= slot0.myRank and slot0.myRank <= slot7.rankMax then
+				slot2 = slot7
+
+				break
+			end
+		end
+
+		if slot2 then
+			slot0.rewardListView:removeAllChildren()
+
+			for slot8, slot9 in ipairs(slot4) do
+				slot10, slot11 = Utility.getColorValue(Resource.getColorLv(slot9.resourceId))
+
+				slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardListViewLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = slot9.resourceId,
+							num = slot9.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+		end
+
+		slot0.rewardListView:setVisible(true)
+	end
+
+	slot0.mTag = slot1
+
+	if slot0.rankTableView and not tolua.isnull(slot0.rankTableView) then
+		slot0.rankTableView:setVisible(slot1 ~= 1)
+		slot0.rankTableView:setTouchEnabled(slot1 ~= 1)
+
+		if slot0.mTag ~= 1 then
+			slot0.rankTableView:reloadData()
+			slot0.rankTableView:jumpToTop()
+		end
+	end
+
+	if slot0.rewardTableView and not tolua.isnull(slot0.rewardTableView) then
+		slot0.rewardTableView:setVisible(slot1 == 1)
+		slot0.rewardTableView:setTouchEnabled(slot1 == 1)
+
+		if slot0.mTag == 1 then
+			slot0.rewardTableView:reloadData()
+			slot0.rewardTableView:jumpToTop()
+		end
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 784, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	if slot0.mTag == 2 then
+		return #slot0.mRankViewData
+	end
+
+	return 
+end
+slot0.cbNumOfRewardCellsFunc = function (slot0, slot1)
+	if slot0.mTag == 1 then
+		return #slot0.mListData
+	end
+
+	return 
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "myListLayout")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot3.setRankSprite = function (slot0, slot1, slot2)
+		if not slot2 then
+			slot0.rankSprite:setTexture((slot1 <= 3 and slot0[slot1]) or "c_58.png")
+			slot0.rankText:setString((slot1 <= 3 and "") or slot1)
+		else
+			slot0.rankSprite:setTexture((BiwuRankRewardConfig.items[slot1].rankMin <= 3 and slot0[slot3.rankMin]) or "c_58.png")
+			slot0.rankText:setString(slot3.rankMin .. "-" .. slot3.rankMax)
+		end
+
+		return 
+	end
+	slot3.setPlayerInfo = function (slot0, slot1)
+		slot0.nameText:setString((slot1.PlayerInfo and slot1.PlayerInfo.Name) or TR("暂无"))
+		slot0.scoreText:setString(TR("%s", slot1.WinNum or 0))
+
+		return 
+	end
+	slot3.setRewardInfo = function (slot0, slot1, slot2)
+		slot3 = slot1
+		slot4 = slot1.Rank
+
+		if not slot2 then
+			for slot8, slot9 in ipairs(BiwuRankRewardConfig.items) do
+				if slot9.rankMin <= slot1.Rank and slot1.Rank <= slot9.rankMax then
+					slot3 = slot9
+					slot4 = slot9.rankMin
+
+					break
+				end
+			end
+		end
+
+		if slot3 then
+			slot0.listView:removeAllChildren()
+
+			for slot9, slot10 in ipairs(slot5) do
+				slot11, slot12 = Utility.getColorValue(Resource.getColorLv(slot10.resourceId))
+
+				slot0.listView:pushBackCustomItem(slot1:createLayoutTemplateNode("listViewLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = slot10.resourceId,
+							num = slot10.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+
+			if ({
+				"txk_114.png",
+				"txk_115.png",
+				"txk_116.png"
+			})[slot4] then
+				slot0.listView:pushBackCustomItem(slot1:createLayoutTemplateNode("headPicLayout", {
+					headPic = slot6[slot4]
+				}))
+			end
+		end
+
+		return 
+	end
+	slot1.refreshCell = function (slot0)
+		nil:setRankSprite((((slot0.mRankViewData[slot0 + 1].num and true) or false) and nil.num) or nil.Rank, (slot0.mRankViewData[slot0 + 1].num and true) or false)
+		nil:setPlayerInfo(nil)
+		nil:setRewardInfo(nil, (slot0.mRankViewData[slot0 + 1].num and true) or false)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.dealRewardCfg = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(BiwuRankRewardConfig.items) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.num < slot1.num
+	end)
+
+	slot0.mRewardCfgList = slot1
+
+	return 
+end
+slot0.dealRankViewData = function (slot0)
+	slot1 = slot0.mRankList.RankInfo
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot0.mRewardCfgList) do
+		slot10 = false
+
+		for slot14 = slot7.rankMin, slot7.rankMax, 1 do
+			if slot1[slot14] then
+				slot10 = true
+
+				table.insert(slot2, #slot2 + 1, slot1[slot14])
+			end
+		end
+
+		if not slot10 then
+			table.insert(slot2, #slot2 + 1, slot7)
+		end
+	end
+
+	slot0.mRankViewData = slot2
+
+	return 
+end
+slot0.cbRewardCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rewardListLayout")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		slot1.winTime:setString(slot0.mListData[slot0 + 1].winNum)
+		slot1.listView:removeAllChildren()
+
+		for slot6, slot7 in ipairs(slot2) do
+			slot0:createLayoutTemplateNode("rewardLayout").head:setCardData({
+				resourceId = slot7.resourceId,
+				num = slot7.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot1.listView:pushBackCustomItem(slot0.createLayoutTemplateNode("rewardLayout"))
+
+			slot1.drawBtn.winNum = slot1.winNum
+		end
+
+		slot1.drawBtn:setVisible(slot1.rewardStatus ~= 3)
+		slot1.drawBtn:setEnabled(slot1.rewardStatus == 1)
+		slot1.drawIcon:setVisible(slot1.rewardStatus == 3)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbDrawCallback = function (slot0, slot1)
+	slot0.requesetReceiveReward(slot0, slot1.winNum)
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requesetReceiveReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "BiwuInfo",
+		methodData = {
+			tostring(slot1)
+		},
+		successCallback = function (slot0)
+			slot0.mLayerData.BiwuInfo = slot0.BiwuInfo or {}
+
+			slot0:handleWinNumRewardData()
+			slot0.rewardTableView:reloadData()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.callBack then
+				slot0.callBack(slot0.BiwuInfo or {})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.handleWinNumRewardData = function (slot0)
+	slot0.mListData = {}
+
+	for slot4, slot5 in pairs(BiwuRankWinnumConfig.items) do
+		if slot5.winRewardStr and slot5.winRewardStr ~= "" then
+			table.insert(slot0.mListData, clone(slot5))
+		end
+	end
+
+	slot1 = string.splitBySep(slot0.mLayerData.BiwuInfo.GetRewardStr or "", ",")
+
+	for slot5, slot6 in ipairs(slot0.mListData) do
+		if slot0.mMyWinNum < slot6.winNum then
+			slot6.rewardStatus = 2
+		else
+			slot6.rewardStatus = 1
+
+			for slot10, slot11 in ipairs(slot1) do
+				if tonumber(slot11) == slot6.winNum then
+					slot6.rewardStatus = 3
+
+					break
+				end
+			end
+		end
+	end
+
+	table.sort(slot0.mListData, function (slot0, slot1)
+		if slot0.rewardStatus ~= slot1.rewardStatus then
+			return slot0.rewardStatus < slot1.rewardStatus
+		end
+
+		return slot0.winNum < slot1.winNum
+	end)
+
+	return 
+end
+slot0.requestGetRankInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRank",
+		moduleName = "BiwuInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRankList = slot0 or {}
+			slot0.myRank = slot0.mRankList.Rank
+
+			slot0:dealRankViewData()
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

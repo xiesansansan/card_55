@@ -1,0 +1,1319 @@
+slot0 = class("ActivityConsumptionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgPic",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xfhl_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 941,
+						y = 295.44
+					}
+				},
+				children = {
+					{
+						name = "tabView",
+						cType = "TabView",
+						params = {
+							onSelectChange = "onTabChanged",
+							lightedImage = "c_30.png",
+							direction = false,
+							normalImage = "c_31.png",
+							btnInfos = {
+								{
+									title = "Test"
+								}
+							},
+							pos = {
+								x = 33.09,
+								y = 471.74
+							},
+							size = {
+								width = 513.87,
+								height = 51
+							},
+							titleOffset = {
+								x = 0.5,
+								y = 0.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xfhl_5.png",
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 288.88,
+								y = 120.84
+							}
+						},
+						children = {
+							{
+								name = "onRankLabel",
+								cType = "Label",
+								params = {
+									fontSize = 28,
+									hide = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 204.68,
+										y = 38.09
+									},
+									text = TR("暂无排名")
+								},
+								children = {}
+							},
+							{
+								name = "playerNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "playerRankPic",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											pos = {
+												x = 68.41,
+												y = 41.4
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerRank",
+										cType = "Label",
+										params = {
+											text = "0",
+											fontName = "c_54.png",
+											isRichText = true,
+											pos = {
+												x = 58.61,
+												y = 44.13
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerHead",
+										cType = "PlayerHeroNode",
+										custom = {
+											{
+												value = "",
+												name = "playerId",
+												type = "string"
+											}
+										},
+										params = {
+											modelId = 12011101,
+											scale = 0.9,
+											hide = false,
+											clickAction = "onCheckAction",
+											allowClick = true,
+											pos = {
+												x = 172.76,
+												y = 40.66
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerName",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											hide = false,
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 226.03,
+												y = 54.09
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "playerScore",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											hide = false,
+											text = "Label",
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 228.55,
+												y = 23.77
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerReward",
+										cType = "ListView",
+										params = {
+											direction = false,
+											swallowTouch = false,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 324.53,
+												y = 41.67
+											},
+											size = {
+												width = 190.68,
+												height = 80.28
+											}
+										},
+										children = {
+											{
+												name = "rewardLayout",
+												cType = "Layout",
+												params = {
+													size = {
+														width = 84.68,
+														height = 79.92
+													}
+												},
+												children = {
+													{
+														name = "untitled64",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															childName = "card",
+															allowClick = true,
+															pos = {
+																x = 43.68,
+																y = 39.65
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 290.56,
+								y = 467.32
+							},
+							size = {
+								width = 520,
+								height = 385.26
+							}
+						},
+						children = {
+							{
+								name = "item1",
+								cType = "Layout",
+								custom = {
+									{
+										value = "rankPic-image",
+										name = "rankPic",
+										type = "string"
+									},
+									{
+										value = "rank-text",
+										name = "rank",
+										type = "string"
+									},
+									{
+										value = "head-playerId",
+										name = "playerId",
+										type = "string"
+									},
+									{
+										value = "rankPic-hide|head-hide|name-hide|score-hide",
+										name = "ishide",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = -45.82,
+										y = 320.16
+									},
+									size = {
+										width = 520,
+										height = 82.83
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Scale9Sprite",
+										params = {
+											image = "xfhl_5.png",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 261.2,
+												y = 44.12
+											}
+										},
+										children = {
+											{
+												name = "rankPic",
+												cType = "Sprite",
+												params = {
+													image = "c_51.png",
+													pos = {
+														x = 68.41,
+														y = 41.4
+													}
+												},
+												children = {}
+											},
+											{
+												name = "rank",
+												cType = "Label",
+												params = {
+													text = "0",
+													fontName = "c_54.png",
+													isRichText = true,
+													pos = {
+														x = 58.61,
+														y = 44.13
+													}
+												},
+												children = {}
+											},
+											{
+												name = "head",
+												cType = "PlayerHeroNode",
+												custom = {
+													{
+														value = "",
+														name = "playerId",
+														type = "string"
+													}
+												},
+												params = {
+													modelId = 12011101,
+													scale = 0.9,
+													hide = false,
+													clickAction = "onCheckAction",
+													allowClick = true,
+													pos = {
+														x = 172.76,
+														y = 40.66
+													}
+												},
+												children = {}
+											},
+											{
+												name = "name",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													hide = false,
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 34,
+														r = 69,
+														b = 13
+													},
+													pos = {
+														x = 226.03,
+														y = 54.09
+													},
+													text = TR("名字")
+												},
+												children = {}
+											},
+											{
+												name = "score",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													hide = false,
+													text = "Label",
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 42,
+														r = 51,
+														b = 24
+													},
+													pos = {
+														x = 228.55,
+														y = 23.77
+													}
+												},
+												children = {}
+											},
+											{
+												name = "noRankInfoLabel",
+												cType = "Label",
+												params = {
+													fontSize = 28,
+													hide = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 219.48,
+														y = 42.46
+													},
+													text = TR("暂无")
+												},
+												children = {}
+											},
+											{
+												name = "rewardListView",
+												cType = "ListView",
+												params = {
+													direction = false,
+													swallowTouch = false,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 324.53,
+														y = 41.67
+													},
+													size = {
+														width = 190.68,
+														height = 80.28
+													}
+												},
+												children = {
+													{
+														name = "rewardItem",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 84.68,
+																height = 79.92
+															}
+														},
+														children = {
+															{
+																name = "card",
+																cType = "CardNode",
+																params = {
+																	scale = 0.9,
+																	allowClick = true,
+																	pos = {
+																		x = 43.68,
+																		y = 39.65
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "betweenLabel",
+												cType = "Label",
+												params = {
+													fontSize = 60,
+													text = "~",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 58.61,
+														y = 22.13
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "item2",
+								cType = "Layout",
+								custom = {
+									{
+										value = "receiveBtn-id",
+										name = "id",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 522,
+										height = 136
+									}
+								},
+								children = {
+									{
+										name = "untitled35",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 260.88,
+												y = 69.51
+											},
+											size = {
+												width = 522,
+												height = 136
+											}
+										},
+										children = {}
+									},
+									{
+										name = "receivedTig",
+										cType = "Sprite",
+										params = {
+											image = "c_55.png",
+											pos = {
+												x = 441.74,
+												y = 55.49
+											}
+										},
+										children = {}
+									},
+									{
+										name = "receiveBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "id",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "c_27.png",
+											clickAction = "onReceiveBtnAction",
+											pos = {
+												x = 442.11,
+												y = 55.46
+											},
+											titleText = TR("领  取")
+										},
+										children = {
+											{
+												name = "effect",
+												cType = "Effect",
+												params = {
+													dataFile = "effect_ui_anniu",
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "receivelistView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											swallowTouch = false,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 6.37,
+												y = 52.02
+											},
+											size = {
+												width = 338.52,
+												height = 83.48
+											}
+										},
+										children = {
+											{
+												name = "receiveItem",
+												cType = "Layout",
+												params = {
+													pos = {
+														z = 0,
+														x = -0.03,
+														y = -2.29
+													},
+													size = {
+														width = 86.41,
+														height = 88.29
+													}
+												},
+												children = {
+													{
+														name = "receiveCard",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															allowClick = true,
+															pos = {
+																x = 44,
+																y = 44
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "tig",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 5.85,
+												y = 118.55
+											},
+											text = TR("元宝消费达到2000可领取")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "infoBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_118.png",
+							pos = {
+								x = 289.47,
+								y = 56.2
+							},
+							size = {
+								width = 516,
+								height = 31
+							}
+						},
+						children = {
+							{
+								name = "ownRank",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 248,
+										r = 255,
+										b = 234
+									},
+									pos = {
+										x = 47.74,
+										y = 14.95
+									},
+									text = TR("我的排名：")
+								},
+								children = {}
+							},
+							{
+								name = "status",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 248,
+										r = 255,
+										b = 234
+									},
+									pos = {
+										x = 451.51,
+										y = 19.4
+									},
+									text = TR("我的消耗：")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled46",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled47",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleBtnAction",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 262.35,
+						y = -10.21
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "giveNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 317.41,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled45",
+				cType = "Sprite",
+				params = {
+					image = "xfhl_3.png",
+					pos = {
+						x = 94.73,
+						y = -244.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "giveNeedLabel",
+				cType = "Label",
+				params = {
+					text = "0",
+					fontName = "xfhl_4.png",
+					isRichText = true,
+					pos = {
+						x = 109.22,
+						y = -190.03
+					}
+				},
+				children = {}
+			},
+			{
+				name = "giveCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 93.76,
+						y = -301.95
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled50",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled49",
+				cType = "Sprite",
+				params = {
+					image = "xshd_29.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = -48.37,
+						y = -0.05
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled52",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 100,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled37",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = 206.27,
+						y = -103.44
+					},
+					size = {
+						width = 356,
+						height = 70
+					}
+				},
+				children = {}
+			},
+			{
+				name = "ownScore",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 69.07,
+						y = -116.73
+					},
+					text = TR("累计消费数：")
+				},
+				children = {}
+			},
+			{
+				name = "time",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 68.81,
+						y = -89.23
+					},
+					text = TR("活动倒计时：")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	eVit = 3,
+	eDiamond = 1,
+	eGold = 2
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTag = slot1.tag or 2
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eResConsuming, 1)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tabBtnInfos = {
+		{
+			tag = 2,
+			title = TR("消费豪礼")
+		},
+		{
+			tag = 1,
+			title = TR("消费排行")
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.tabBtnInfos
+			slot1.selectTag = slot0.mTag
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		if slot6.tag == 2 then
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				subKey = "CanDrawReward",
+				moduleId = ModuleSub.eResConsumingPoint
+			}))
+		end
+	end
+
+	return 
+end
+slot0.refreshTime = function (slot0)
+	slot0.time:stopAllActions()
+	Utility.schedule(slot0.time, function ()
+		if 0 < slot0.mData.EndDate - Player:getCurrentTime() then
+			slot0.time:setString(TR("活动倒计时：%s%s", "#ffe748", MqTime.formatAsDay(slot0)))
+		else
+			slot0.time:setString(TR("活动已结束"))
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshTime(slot0)
+
+	slot1, slot2 = nil
+
+	if slot0.mData.ResEnumType == slot0.eDiamond then
+		slot2 = "元宝"
+		slot1 = Resource.getDaibiImg(ResourceTypeSub.eDiamond)
+	elseif slot0.mData.ResEnumType == slot0.eGold then
+		slot2 = "金币"
+		slot1 = Resource.getDaibiImg(ResourceTypeSub.eGold)
+	elseif slot0.mData.ResEnumType == slot0.eVit then
+		slot2 = "干粮"
+		slot1 = Resource.getDaibiImg(ResourceTypeSub.eVit)
+	end
+
+	slot0.listView:removeAllChildren()
+	slot0.ownScore:setString(TR("累计消费数: {%s}%s%s", slot1, "#37FF40", Utility.numberWithUnit(slot0.mData.ConSumingNum)))
+	slot0.infoBg:setVisible(slot0.mTag == 1)
+
+	if slot0.mTag == 1 then
+		slot0.playerBg:setVisible(true)
+		slot0.listView:setContentSize(cc.size(slot0.listView:getContentSize().width, 306.37))
+
+		for slot6, slot7 in ipairs(slot0.mData.RankConfig) do
+			slot8 = slot0.mData.RankInfo[slot7.RankMax]
+			slot9 = slot7.RankMin == slot7.RankMax
+
+			if not slot9 then
+				break
+			end
+
+			slot11 = (slot6 <= 3 and ({
+				"c_51.png",
+				"c_52.png",
+				"c_53.png"
+			})[slot6]) or "c_pure.png"
+			slot12 = (slot8 and slot8.ConSumingNum) or 0
+			slot13 = string.format("%s %s", slot7.RankMin, slot7.RankMax)
+
+			if slot9 then
+				slot13 = tostring(slot7.RankMin)
+			end
+
+			slot14 = slot0.createLayoutTemplateNode(slot0, "item1", {
+				rankPic = slot11,
+				ishide = not slot9,
+				rank = slot13,
+				playerId = (slot8 and slot8.PlayerId) or ""
+			})
+
+			slot14.name:setString(string.format("%s%s", (slot8 and Utility.getPlayerNameColor(slot8.FashionLevel, true)) or "#F7F5F0", (slot8 and slot8.Name) or 0))
+			slot14.head:setPlayerHeader((slot8 and slot8.HeadImageId) or 12011101, nil, {
+				fashionLv = (slot8 and slot8.FashionLevel) or 0,
+				headPicId = (slot8 and slot8.HeadPicId) or 0
+			})
+
+			if slot9 then
+				slot14.score:setString(TR("{%s}%s", slot1, Utility.numberWithUnit(slot12)))
+				slot14.score:setVisible(slot9)
+			end
+
+			slot14.rank:setVisible(3 < slot6)
+
+			if slot9 then
+				slot14.betweenLabel:setVisible(false)
+			end
+
+			if slot9 and not slot8 then
+				slot14.head:setVisible(false)
+				slot14.name:setVisible(false)
+				slot14.score:setVisible(false)
+				slot14.noRankInfoLabel:setVisible(true)
+			end
+
+			slot0.listView:pushBackCustomItem(slot14)
+			slot14.rewardListView:removeAllChildren()
+
+			for slot21, slot22 in pairs(slot17) do
+				slot0.createLayoutTemplateNode(slot0, "rewardItem").card:setCardData({
+					modelId = slot22.resourceId,
+					num = slot22.num
+				}, {
+					Enums.CardShowAttr.eNum
+				})
+				slot14.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardItem"))
+			end
+		end
+
+		slot0.ownRank:setString(TR("我的排名: %s%s", "#37FF40", (slot0.mData.MyRank == 0 and "未上榜") or slot0.mData.MyRank))
+		slot0.status:setString(TR("当前消耗%s: %s{%s}%s", slot2, "#37FF40", slot1, Utility.numberWithUnit(slot0.mData.ConSumingNum)))
+
+		if slot0.mData.MyRank ~= 0 then
+			slot0.playerRank:setString((slot0.mData.MyRank == 0 and "") or slot0.mData.MyRank)
+			slot0.playerRankPic:setTexture((type((slot0.mData.MyRank == 0 and "") or slot0.mData.MyRank) == "number" and ((((slot0.mData.MyRank == 0 and "") or slot0.mData.MyRank) <= 3 and ({
+				"c_51.png",
+				"c_52.png",
+				"c_53.png"
+			})[slot0.mData.MyRank]) or "c_pure.png")) or "c_pure.png")
+			slot0.playerName:setString(string.format("%s%s", Utility.getPlayerNameColor(PlayerAttrObj:getPlayerAttrByName("FashionLevel"), true) or "#F7F5F0", PlayerAttrObj:getPlayerAttrByName("PlayerName") or 0))
+			slot0.playerHead:setPlayerHeader(PlayerAttrObj:getPlayerAttrByName("HeadImageId") or 12011101, nil, {
+				fashionLv = PlayerAttrObj:getPlayerAttrByName("FashionLevel") or 0,
+				headPicId = PlayerAttrObj:getPlayerAttrByName("HeadPicId") or 0
+			})
+			slot0.playerScore:setString(TR("{%s}%s", slot1, Utility.numberWithUnit(slot0.mData.ConSumingNum)))
+
+			if type(slot4) == "number" then
+				slot0.playerRank:setVisible(3 < slot4)
+			end
+
+			slot0.playerReward:removeAllChildren()
+
+			slot9 = nil
+
+			for slot13, slot14 in ipairs(slot0.mData.RankConfig) do
+				if slot4 <= slot14.RankMax and slot14.RankMin <= slot4 then
+					slot9 = slot14
+
+					break
+				end
+			end
+
+			for slot14, slot15 in pairs(slot10) do
+				slot0.createLayoutTemplateNode(slot0, "rewardLayout").card:setCardData({
+					modelId = slot15.resourceId,
+					num = slot15.num
+				}, {
+					Enums.CardShowAttr.eNum
+				})
+				slot0.playerReward:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+			end
+		else
+			slot0.playerNode:setVisible(false)
+			slot0.onRankLabel:setVisible(true)
+		end
+	elseif slot0.mTag == 2 then
+		slot0.playerBg:setVisible(false)
+		slot0.listView:setContentSize(cc.size(slot0.listView:getContentSize().width, 385.26))
+
+		for slot6, slot7 in ipairs(slot0.RewardList) do
+			slot8 = slot0.createLayoutTemplateNode(slot0, "item2", {
+				id = slot7.Id
+			})
+
+			slot8.tig:setString(TR("%s消费达到%s可领取", slot2, slot7.NeedTotalNum))
+			slot8.receivedTig:setVisible(false)
+			slot0.listView:pushBackCustomItem(slot8)
+
+			if slot7.Status == 0 then
+				slot8.receiveBtn:setEnabled(false)
+				slot8.receiveBtn:setEnabled(false)
+				slot8.effect:setVisible(false)
+				slot8.receivedTig:setVisible(false)
+			elseif slot7.Status == 1 then
+				slot8.receiveBtn:setEnabled(true)
+				slot8.receiveBtn:setVisible(true)
+				slot8.effect:setVisible(true)
+				slot8.receivedTig:setVisible(false)
+			elseif slot7.Status == 2 then
+				slot8.receiveBtn:setVisible(false)
+				slot8.effect:setVisible(false)
+				slot8.receivedTig:setVisible(true)
+			end
+
+			slot8.receivelistView:removeAllChildren()
+
+			for slot13, slot14 in pairs(slot9) do
+				slot0.createLayoutTemplateNode(slot0, "receiveItem").receiveCard:setCardData({
+					modelId = slot14.resourceId,
+					num = slot14.num
+				}, {
+					Enums.CardShowAttr.eNum
+				})
+				slot8.receivelistView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "receiveItem"))
+			end
+		end
+	end
+
+	if slot0.mData.ConsumeNum and 0 < slot0.mData.ConsumeNum then
+		slot0.giveNode:setVisible(true)
+		slot0.giveNeedLabel:setString(slot0.mData.ConsumeNum)
+		slot0.giveCard:setCardData(Utility.analysisStrResList(slot0.mData.Reward)[1], {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eName
+		})
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.mTag = slot1
+
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.onReceiveBtnAction = function (slot0, slot1)
+	slot0.receiveReward(slot0, slot1.id)
+
+	return 
+end
+slot0.onCheckAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = {
+			playerId = slot1.playerId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			"1.活动持续期间，消费对应的资源越多，排名越靠前，都一样则先达到的排名在前",
+			"2.活动结束，根据排名发放排名奖励，奖励通过邮件发放",
+			"3.活动结算当天，23点结算排名，23点之后的记录将不计入排名和消耗条件奖励。23点30分发放排名奖励"
+		}
+	})
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedResconsuming",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mData = {}
+			slot0.mData = slot0
+			slot0.RewardList = {}
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 1 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 0 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 2 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.receiveReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "TimedResconsuming",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mData = {}
+			slot0.mData = slot0
+			slot0.RewardList = {}
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 1 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 0 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			for slot4, slot5 in pairs(slot0.mData.RewardList) do
+				if slot5.Status == 2 then
+					table.insert(slot0.RewardList, slot5)
+				end
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

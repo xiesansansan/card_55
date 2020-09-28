@@ -1,0 +1,299 @@
+slot0 = class("BagWuxueLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					colCount = 4,
+					selectIndex = 1,
+					pos = {
+						x = -144,
+						y = -20
+					},
+					size = {
+						width = 400,
+						height = 410
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "bb_12.png",
+					pos = {
+						x = 100,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridCard",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -357.15,
+						y = -204.84
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "bb_3.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "CardNode",
+						params = {
+							childName = "cardNode",
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "introView",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_58.png",
+					pos = {
+						x = 329.21,
+						y = 0
+					},
+					size = {
+						width = 410.89,
+						height = 460.31
+					}
+				},
+				children = {
+					{
+						name = "headCard",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							pos = {
+								x = 75.04,
+								y = 364.18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = "false",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 141.61,
+								y = 376.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onGoBtn",
+							pos = {
+								x = 172,
+								y = 88
+							},
+							titleText = TR("装 备")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.mSelIndex = 1
+
+	slot0.getGoods(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.getGoods = function (slot0)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, slot7)
+	end
+
+	dump(slot1, "TESTSTSTSTST")
+	table.sort(slot2, function (slot0, slot1)
+		if slot0.IsCombat ~= slot1.IsCombat then
+			return slot0.IsCombat
+		end
+
+		if Resource.getModelInfo(slot0.ModelId).quality ~= Resource.getModelInfo(slot1.ModelId).quality then
+			return slot3.quality < slot2.quality
+		end
+
+		return 
+	end)
+
+	slot0.mGoodsList = slot2
+
+	if #slot0.mGoodsList < 16 then
+		for slot7 = 1, #slot0.mGoodsList - 16, 1 do
+			table.insert(slot0.mGoodsList, {})
+		end
+	elseif #slot0.mGoodsList%4 ~= 0 then
+		for slot7 = 1, slot3 - 4, 1 do
+			table.insert(slot0.mGoodsList, {})
+		end
+	end
+
+	slot0.mGridView:setItemNum(#slot0.mGoodsList)
+	slot0.introView:setVisible(0 < #slot0.mGoodsList)
+	slot0.mGridView:setSelect(slot0.mSelIndex)
+
+	if 0 < #slot0.mGoodsList then
+		slot0.showAttrLabel(slot0, slot0.mGoodsList[slot0.mSelIndex])
+	end
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "gridCard")
+
+	if next(slot0.mGoodsList[slot2]) == nil then
+		slot5.cardNode:removeFromParent()
+
+		slot5.cardNode = nil
+
+		slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+		slot1.addChild(slot1, slot5)
+
+		return 
+	end
+
+	slot6 = {}
+	slot6 = (not slot3 or {
+		Enums.CardShowAttr.eNum,
+		Enums.CardShowAttr.eSelected,
+		Enums.CardShowAttr.eBorder
+	}) and {
+		Enums.CardShowAttr.eNum,
+		Enums.CardShowAttr.eBorder
+	}
+
+	if slot4.IsCombat then
+		table.insert(slot6, Enums.CardShowAttr.eWork)
+	end
+
+	slot5.cardNode:setCardData({
+		modelId = slot4.ModelId,
+		num = slot4.Num
+	}, slot6)
+	slot5.cardNode:setClickAction(function ()
+		slot0:showAttrLabel(slot0)
+		slot0.showAttrLabel.mGridView:setSelect(slot0)
+
+		slot0.showAttrLabel.mGridView.setSelect.mSelIndex = slot2
+		slot0.showAttrLabel.mGridView.setSelect.mSelectId = slot2.EntityId
+
+		return 
+	end)
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.showAttrLabel = function (slot0, slot1)
+	if next(slot1) == nil then
+		slot0.introView:setVisible(false)
+
+		return 
+	end
+
+	if slot0.introLabel then
+		slot0.introLabel:removeFromParent()
+
+		slot0.introLabel = nil
+	end
+
+	slot0.headCard:setCardData({
+		modelId = slot1.ModelId
+	}, nil, slot1)
+	slot0.nameLabel:setString(Resource.getModelInfo(slot1.ModelId).name)
+	slot0.nameLabel:setColor(slot3)
+
+	slot0.introLabel = UIWrap.newControl("Label", {
+		isRichText = true,
+		text = Resource.getModelInfo(slot1.ModelId).intro,
+		pos = cc.p(30, 300),
+		anchor = cc.p(0, 1),
+		color = cc.c3b(25, 25, 25),
+		size = cc.size(300, 0)
+	})
+
+	slot0.introView:addChild(slot0.introLabel)
+
+	return 
+end
+slot0.onGoBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = true,
+		name = "hero.HeroListLayer"
+	})
+
+	return 
+end
+
+return slot0

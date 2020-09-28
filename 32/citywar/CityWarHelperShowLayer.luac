@@ -1,0 +1,157 @@
+slot0 = class("CityWarHelperShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮战规则")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "SliderTableView",
+				params = {
+					selectItemChanged = "onSelectItemChanged",
+					selectIndex = 1,
+					sliderItemAtIndex = "onCreateOneCell",
+					itemCountOfSlider = "onGetItems",
+					pos = {
+						x = 423.33,
+						y = 258.38
+					},
+					size = {
+						width = 800,
+						height = 450
+					}
+				},
+				children = {
+					{
+						name = "sliderNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled3-image",
+								name = "pic",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 586,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled3",
+								cType = "Sprite",
+								params = {
+									image = "c_11.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 8,
+										y = 5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "arrowR",
+				cType = "Sprite",
+				params = {
+					image = "c_4.png",
+					pos = {
+						x = 36.7,
+						y = 259.52
+					}
+				},
+				children = {}
+			},
+			{
+				name = "arrowL",
+				cType = "Sprite",
+				params = {
+					reverse = 1,
+					image = "c_4.png",
+					pos = {
+						x = 815.25,
+						y = 261.82
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.mSelectIndex = 1
+	slot0.mPicList = slot1.picList or {}
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.arrowL:runAction(slot0.arrowAction(slot0, true))
+	slot0.arrowR:runAction(slot0.arrowAction(slot0, false))
+
+	return 
+end
+slot0.onCreateOneCell = function (slot0, slot1, slot2)
+	return slot0.createLayoutTemplateNode(slot0, "sliderNode", {
+		pic = slot0.mPicList[slot1]
+	})
+end
+slot0.onGetItems = function (slot0)
+	return #slot0.mPicList
+end
+slot0.onSelectItemChanged = function (slot0, slot1)
+	slot0.mSelectIndex = slot1
+
+	slot0.arrowShow(slot0)
+
+	return 
+end
+slot0.arrowShow = function (slot0)
+	slot0.arrowL:setVisible(true)
+	slot0.arrowR:setVisible(true)
+
+	if #slot0.mPicList <= slot0.mSelectIndex then
+		slot0.arrowR:setVisible(false)
+	elseif slot0.mSelectIndex <= 1 then
+		slot0.arrowL:setVisible(false)
+	end
+
+	return 
+end
+slot0.arrowAction = function (slot0, slot1)
+	slot2 = (slot1 and -1) or 1
+
+	return cc.RepeatForever:create(cc.Sequence:create(slot3, slot4))
+end
+
+return slot0

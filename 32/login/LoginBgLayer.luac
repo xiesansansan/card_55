@@ -1,0 +1,53 @@
+slot0 = class("LoginBgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled14",
+		cType = "Effect",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			dataFile = "effect_ui_zhulingguidang",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "logo",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "dl_10.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 513
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if 0 < string.len(slot1) then
+		slot0.logo:setTexture(slot1)
+	end
+
+	return 
+end
+
+return slot0

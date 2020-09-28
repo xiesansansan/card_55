@@ -1,0 +1,111 @@
+slot0 = require("battle.common.Const")
+
+({
+	Init = function ()
+		slot0.data = {}
+		slot0.rands = {}
+
+		return 
+	end,
+	addRecord = function (slot0)
+		if slot0.dmgInfo then
+			slot1 = {}
+
+			for slot5, slot6 in pairs(slot0.dmgInfo) do
+				slot1[tostring(slot5)] = slot6
+			end
+
+			slot0.dmgInfo = slot1
+		end
+
+		table.insert(slot0.data, slot0)
+
+		return 
+	end,
+	addRandoms = function (slot0)
+		table.insert(slot0.rands, slot0)
+
+		return 
+	end,
+	dump = function ()
+		dump(slot0.data, "DebugManager")
+
+		return 
+	end,
+	dumpRandom = function ()
+		dump(slot0.rands, "dumpRandom")
+
+		return 
+	end,
+	saveData = function (slot0, slot1)
+		slot2 = require("battle.common.LogHelper")
+		({
+			formationData = clone(slot0),
+			resultData = clone(slot1)
+		})["formationData"].cb = nil
+
+		if slot1.isSkip == false then
+			slot3.hurtData = slot0.data
+			slot3.randsData = slot0.rands
+		end
+
+		slot2.writeFile(slot3)
+
+		return 
+	end
+})["Init"]()
+
+return {
+	Init = function ()
+		slot0.data = {}
+		slot0.rands = {}
+
+		return 
+	end,
+	addRecord = function (slot0)
+		if slot0.dmgInfo then
+			slot1 = {}
+
+			for slot5, slot6 in pairs(slot0.dmgInfo) do
+				slot1[tostring(slot5)] = slot6
+			end
+
+			slot0.dmgInfo = slot1
+		end
+
+		table.insert(slot0.data, slot0)
+
+		return 
+	end,
+	addRandoms = function (slot0)
+		table.insert(slot0.rands, slot0)
+
+		return 
+	end,
+	dump = function ()
+		dump(slot0.data, "DebugManager")
+
+		return 
+	end,
+	dumpRandom = function ()
+		dump(slot0.rands, "dumpRandom")
+
+		return 
+	end,
+	saveData = function (slot0, slot1)
+		slot2 = require("battle.common.LogHelper")
+		({
+			formationData = clone(slot0),
+			resultData = clone(slot1)
+		})["formationData"].cb = nil
+
+		if slot1.isSkip == false then
+			slot3.hurtData = slot0.data
+			slot3.randsData = slot0.rands
+		end
+
+		slot2.writeFile(slot3)
+
+		return 
+	end
+}

@@ -1,0 +1,863 @@
+slot0 = class("YTWLTaskMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallBack",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("主线任务")
+		},
+		children = {
+			{
+				name = "logo",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 207.74,
+						y = 363.79
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled27",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 217.54,
+						y = 108.08
+					},
+					size = {
+						width = 349,
+						height = 150
+					}
+				},
+				children = {
+					{
+						name = "untitled23",
+						cType = "Label",
+						params = {
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 174.5,
+								y = 165
+							},
+							text = TR("章节奖励")
+						},
+						children = {}
+					},
+					{
+						name = "getBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							hide = true,
+							clickAction = "onRequestGetChapterReward",
+							pos = {
+								x = 174.5,
+								y = 30
+							},
+							titleText = TR("领 取")
+						},
+						children = {
+							{
+								name = "effect",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_anniu",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled30",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 53,
+								y = 163
+							}
+						},
+						children = {}
+					},
+					{
+						name = "starLabel",
+						cType = "Label",
+						params = {
+							text = "0/0",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 300.94,
+								y = 30.09
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "c_5.png",
+							pos = {
+								x = 248.45,
+								y = 29.87
+							}
+						},
+						children = {}
+					},
+					{
+						name = "finishSpr",
+						cType = "Sprite",
+						params = {
+							image = "c_55.png",
+							hide = true,
+							pos = {
+								x = 173.11,
+								y = 30.51
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled29",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 297,
+								y = 163
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "headListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					bounce = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 62.46,
+						y = 131.88
+					},
+					size = {
+						width = 300,
+						height = 82
+					}
+				},
+				children = {
+					{
+						name = "headLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled18-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 82,
+								height = 82
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 41,
+										y = 41
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "extraLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled34-image",
+								name = "extarImage",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 82,
+								height = 82
+							}
+						},
+						children = {
+							{
+								name = "untitled36",
+								cType = "Sprite",
+								params = {
+									scale = 0.8,
+									image = "c_16.png",
+									pos = {
+										x = 41,
+										y = 41
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "Sprite",
+								params = {
+									scale = 0.8,
+									image = "c_pure.png",
+									pos = {
+										x = 41,
+										y = 41
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "reward",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 245.26,
+						y = 228.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled31",
+				cType = "Sprite",
+				params = {
+					image = "zxrw_1.png",
+					pos = {
+						x = 213.13,
+						y = 227.77
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				params = {
+					image = "zxrw_2.png",
+					pos = {
+						x = 91.13,
+						y = 396.61
+					}
+				},
+				children = {
+					{
+						name = "chapterName",
+						cType = "Label",
+						params = {
+							text = "",
+							pos = {
+								x = 23.66,
+								y = 53.85
+							},
+							size = {
+								width = 30,
+								height = 100
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "sgNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 198.91,
+						y = 321.34
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 610.7,
+						y = 28.92
+					},
+					size = {
+						width = 420,
+						height = 448
+					}
+				},
+				children = {
+					{
+						name = "mLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "infoLabel-text",
+								name = "infoText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 13,
+								y = 328
+							},
+							size = {
+								width = 420,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled32",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 210,
+										y = 60
+									},
+									size = {
+										width = 410,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "star",
+										cType = "Sprite",
+										params = {
+											image = "zxrw_5.png",
+											pos = {
+												x = 17.15,
+												y = 99
+											}
+										},
+										children = {}
+									},
+									{
+										name = "infoLabel",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 25,
+												y = 99
+											},
+											text = TR("描述描述描述描述")
+										},
+										children = {}
+									},
+									{
+										name = "rewardListView",
+										cType = "ListView",
+										params = {
+											margin = 6,
+											direction = false,
+											bounce = true,
+											swallowTouch = false,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 9,
+												y = 47
+											},
+											size = {
+												width = 290,
+												height = 75
+											}
+										},
+										children = {
+											{
+												name = "rewardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "cardNode-initParams",
+														name = "cardInfo",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 75,
+														height = 75
+													}
+												},
+												children = {
+													{
+														name = "cardNode",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 37.5,
+																y = 37.5
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "numLabel",
+										cType = "Label",
+										params = {
+											text = "0/0",
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 353.45,
+												y = 99
+											}
+										},
+										children = {}
+									},
+									{
+										name = "drawSprite",
+										cType = "Sprite",
+										params = {
+											image = "c_55.png",
+											pos = {
+												x = 352.91,
+												y = 53.58
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "btn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									pos = {
+										x = 355.55,
+										y = 49.61
+									},
+									titleText = TR("领 取")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.callback = slot1.callBack
+	slot0.expBar = slot1.expBar
+
+	slot0.initUI(slot0)
+
+	slot0.mTaskList, slot0.mInfo = MainTaskObj:getList()
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onActionCallBack = function (slot0)
+	if slot0.mInfo and next(slot0.mInfo) then
+		slot0.refreshLayer(slot0)
+	else
+		slot0.requestInfo(slot0)
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.chapterName:setString(TR("第%s章", Utility.getChineseNum(MaintaskChapterModel.items[slot0.mInfo.CurChapterId].chapterModelId)))
+	slot0.finishSpr:setVisible(slot0.mInfo.IsFinish)
+	slot0.headListView:removeAllItems()
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.headListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "headLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot7.resourceId,
+					num = slot7.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	slot0.starLabel:setString(TR("%s/%s", (slot0.mInfo.GetRewardIds ~= "" or 0) and #string.split(slot0.mInfo.GetRewardIds, ","), #MaintaskNodeModel.items[slot0.mInfo.CurChapterId]))
+	slot0.starLabel:setColor((((slot0.mInfo.GetRewardIds ~= "" or 0) and #string.split(slot0.mInfo.GetRewardIds, ",")) < #MaintaskNodeModel.items[slot0.mInfo.CurChapterId] and cc.c3b(234, 44, 0)) or cc.c3b(55, 255, 64))
+
+	if slot0.mInfo.GetRewardIds ~= "" and #slot3 == #MaintaskNodeModel.items[slot0.mInfo.CurChapterId] then
+		slot0.getBtn:setEnabled(true)
+		slot0.effect:setVisible(true)
+	else
+		slot0.effect:setVisible(false)
+		slot0.getBtn:setEnabled(false)
+	end
+
+	slot0.getBtn:setVisible(not slot0.mInfo.IsFinish)
+
+	if slot1.namePic then
+		slot0.logo:setTexture(slot1.namePic .. ".png")
+	end
+
+	if slot1.rewardPic then
+		slot0.reward:setTexture(slot1.rewardPic .. ".png")
+	end
+
+	slot0.sgNode:removeAllChildren()
+
+	slot6 = {
+		1,
+		5,
+		6,
+		7,
+		8,
+		9,
+		3
+	}
+
+	slot0.refreshBottomList(slot0)
+
+	return 
+end
+slot0.refreshBottomList = function (slot0)
+	slot0.mListView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "mLayout", {
+			infoText = slot6.infoText
+		}).numLabel:setString(slot6.numText)
+		slot0.createLayoutTemplateNode(slot0, "mLayout", {
+			infoText = slot6.infoText
+		}).numLabel:setColor((slot6.isCanDraw and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+
+		for slot12, slot13 in ipairs(slot8) do
+			slot7.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot13.resourceId,
+						num = slot13.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+
+			if slot13.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot15 then
+				slot14.cardNode:addChild(UIWrap.newControl("Label", {
+					fontSize = 15,
+					text = TR("经验+%s%%", slot15*100),
+					color = cc.c3b(55, 255, 64),
+					anchor = cc.p(1, 1),
+					outlineColor = cc.c3b(51, 42, 24),
+					pos = cc.p(85, 88)
+				}))
+			end
+		end
+
+		if not slot0.targetBtn and slot6.mainTaskModelId == 1 then
+			slot0.targetBtn = slot7.btn
+		end
+
+		if not slot6.isCanDraw then
+			slot7.btn:loadTextures("c_27.png", "c_27.png")
+			slot7.btn:setTitleText(TR("前 往"))
+			slot7.btn:setClickAction(function ()
+				if not Utility.moduleIsOpen(slot0.matchModuleId, true) then
+					return 
+				end
+
+				if slot0.mainTaskModelId == 33 then
+					LayerManager.addLayer({
+						name = "hero.HeroKongfuLayer",
+						data = {
+							kongfuModelId = tonumber(string.split(slot0.completeCondition, ",")[1])
+						}
+					})
+				elseif table.indexof(slot0, slot0.mainTaskModelId) then
+					LayerManager.addLayer({
+						name = "player.PlayerMainLayer",
+						data = {
+							defaultModuleId = slot0.matchModuleId
+						}
+					})
+				else
+					slot1:onGoAction(slot0.matchModuleId)
+				end
+
+				return 
+			end)
+		else
+			slot7.btn:loadTextures("c_32.png", "c_32.png")
+			slot7.btn:setTitleText(TR("领 取"))
+			slot7.btn:setClickAction(function ()
+				slot0:requestGetListReward(slot1.num, slot2.rewardListView:getItem(0))
+
+				return 
+			end)
+		end
+
+		slot7.numLabel:setVisible(not slot6.isDraw)
+		slot7.btn:setVisible(not slot6.isDraw)
+		slot7.drawSprite:setVisible(slot6.isDraw)
+		slot0.mListView:pushBackCustomItem(slot7)
+	end
+
+	slot2, slot3 = Guide.manager:getGuideInfo()
+
+	if slot3 == 200101 or slot3 == 30104 then
+		slot0.mListView:setTouchEnabled(false)
+		Utility.performWithDelay(slot0.bgSprite, handler(slot0, slot0.executeGuide), 0.01)
+	end
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Maintask",
+		methodData = {},
+		successCallback = function (slot0)
+			MainTaskObj:setList(slot0)
+
+			slot0.mTaskList, slot0.mInfo = MainTaskObj:getList()
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetListReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTaskReward",
+		moduleName = "Maintask",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			MainTaskObj:setList(slot0.MainTaskInfo)
+
+			if slot0.expBar and not tolua.isnull(slot0.expBar) then
+				slot0:expFly(slot0.expFly)
+			end
+
+			slot0.mTaskList, slot0.mInfo = MainTaskObj:getList()
+
+			slot0:refreshLayer()
+
+			if slot0.mInfo.CurChapterId == 2 and slot2 == 1 and Player:isAutoFightStart() == true then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "pve.PveAutoPopLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end
+
+			ui.showFlashReward(slot0)
+			PlayerAttrObj:checkLvUp()
+			EventAuto:postEvent(EventDefine.ePlayerLvUpLayerUI)
+
+			if slot0.callback then
+				slot0.callback()
+			end
+
+			EventAuto:postEvent(EventDefine.eMainTaskChanged)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestGetChapterReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChapterReward",
+		moduleName = "Maintask",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			MainTaskObj:setList(slot0.MainTaskInfo)
+
+			if slot0.BaseGetGameResourceList[1].Hero then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "recruit.RecruitShowHeroLayer",
+					data = {
+						IsConvert = false,
+						showFap = true,
+						heroModelId = slot0.BaseGetGameResourceList[1].Hero[1].ModelId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			PlayerAttrObj:checkVipLvUp()
+
+			slot0.mTaskList, slot0.mInfo = MainTaskObj:getList()
+
+			slot0:refreshLayer()
+
+			if slot0.callback then
+				slot0.callback()
+			end
+
+			EventAuto:postEvent(EventDefine.eMainTaskChanged)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGoAction = function (slot0, slot1)
+	LayerManager.showModuleLayer(slot1)
+
+	return 
+end
+slot0.expFly = function (slot0, slot1)
+	slot4 = display.getRunningScene().convertToNodeSpace(slot2, slot3)
+	slot5 = slot1.getParent(slot1):convertToWorldSpace(cc.p(slot1.getPositionX(slot1) + 36, slot1.getPositionY(slot1) + 36))
+	slot6 = 1
+
+	Utility.schedule(slot0, function ()
+		if 5 <= slot0 then
+			slot1:stopAllActions()
+		else
+			slot1 = UIWrap.newControl("Sprite", {
+				image = "dj_1101.png",
+				pos = cc.p(slot2.x + math.random(-50, 50), math.random(-50, 50).y + math.random(-50, 50)),
+				scale = display.minScale*0.8
+			})
+
+			slot1.runAction(slot1, cc.Sequence:create(cc.Spawn:create(cc.MoveTo:create(1, slot3), cc.ScaleTo:create(1, display.minScale*0.5), cc.RotateBy:create(1, 360)), cc.CallFunc:create(function ()
+				slot0:removeFromParent()
+
+				return 
+			end)))
+			slot4:addChild(slot1, Enums.ZOrderType.eAdapter + 1)
+		end
+
+		slot0 = slot0 + 1
+
+		return 
+	end, 0.05)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[200101] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.targetBtn
+		},
+		[30104] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.mListView:getItem(0).btn
+		}
+	})
+
+	return 
+end
+
+return slot0

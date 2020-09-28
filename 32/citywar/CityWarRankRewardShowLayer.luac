@@ -1,0 +1,313 @@
+slot0 = class("CityWarRankRewardShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 450,
+				height = 550
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 216.11,
+						y = 529.05
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 143.24,
+								y = 17.31
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 226.22,
+						y = 494.54
+					},
+					size = {
+						width = 400,
+						height = 24
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 75.52,
+								y = 11.77
+							},
+							text = TR("排行")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 276,
+								y = 11.77
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "list",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 25.72,
+						y = 39.52
+					},
+					size = {
+						width = 400,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "rewardItemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled11-image",
+								name = "rankBg",
+								type = "string"
+							},
+							{
+								value = "untitled12-text",
+								name = "rankLabel",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 400,
+								height = 76
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "fuli_36.png",
+									pos = {
+										x = 200,
+										y = 38
+									},
+									size = {
+										width = 395,
+										height = 74
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									pos = {
+										x = 85.48,
+										y = 38
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									childName = "rankLab",
+									text = "88",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 76.88,
+										y = 36
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "ListView",
+								params = {
+									childName = "rewardList",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 170.26,
+										y = -0.3
+									},
+									size = {
+										width = 220,
+										height = 75
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled15-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 70,
+												height = 76
+											}
+										},
+										children = {
+											{
+												name = "untitled15",
+												cType = "CardNode",
+												params = {
+													scale = 0.7,
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 35,
+														y = 38
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(CitymonsterRankRelation.items) do
+		for slot11, slot12 in pairs(slot7) do
+			table.insert(slot2, slot12)
+		end
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0.rankMin < slot1.rankMin
+	end)
+
+	slot0.curData = slot2
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0, ...)
+	slot0.list:removeAllItems()
+
+	for slot4, slot5 in pairs(slot0.curData) do
+		slot6 = "c_58.png"
+		slot7 = ""
+		slot8 = false
+
+		if slot4 == 1 then
+			slot6 = "c_51.png"
+		elseif slot4 == 2 then
+			slot6 = "c_52.png"
+		elseif slot4 == 3 then
+			slot6 = "c_53.png"
+		else
+			slot8 = true
+			slot7 = slot5.rankIntro
+		end
+
+		slot0.createLayoutTemplateNode(slot0, "rewardItemLayout", {
+			rankBg = slot6,
+			rankLabel = slot7
+		}).rankLab:setVisible(slot8)
+
+		for slot14, slot15 in ipairs(slot10) do
+			slot9.rewardList:setSwallowTouches(false)
+			slot9.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = slot15,
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot0.list:pushBackCustomItem(slot9)
+	end
+
+	return 
+end
+
+return slot0

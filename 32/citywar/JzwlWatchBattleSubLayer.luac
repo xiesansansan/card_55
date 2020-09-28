@@ -1,0 +1,408 @@
+slot0 = class("JzwlWatchBattleSubLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mParentNode",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 0.33,
+				y = -0.32
+			},
+			size = {
+				width = 640,
+				height = 95.04
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 54.15,
+						y = 70.75
+					},
+					text = TR("观战进度")
+				},
+				children = {}
+			},
+			{
+				name = "mProgressLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					text = "0%",
+					color = {
+						g = 255,
+						r = 55,
+						b = 64
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 53.77,
+						y = 36.96
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProgressBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "c_52.png",
+					bgImage = "c_51.png",
+					pos = {
+						x = 302.77,
+						y = 54.34
+					},
+					size = {
+						width = 400,
+						height = 22
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 579.23,
+						y = 72.95
+					},
+					text = TR("连续观战6秒")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 580.02,
+						y = 36.56
+					},
+					text = TR("进度增加1%")
+				},
+				children = {}
+			},
+			{
+				name = "templateNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled14-text",
+						name = "boxText",
+						type = "string"
+					},
+					{
+						value = "boxBtn-image",
+						name = "boxSprite",
+						type = "string"
+					},
+					{
+						value = "boxBtn-status",
+						name = "status",
+						type = "string"
+					},
+					{
+						value = "boxBtn-time",
+						name = "time",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 162.72,
+						y = 50.69
+					}
+				},
+				children = {
+					{
+						name = "boxEffect",
+						cType = "Effect",
+						params = {
+							scale = 0.6,
+							hide = true,
+							isPlayAnimation = false,
+							dataFile = "effect_ui_baoxiangtexiao",
+							pos = {
+								x = 10.17,
+								y = 8.61
+							}
+						},
+						children = {}
+					},
+					{
+						name = "boxBtn",
+						cType = "Button",
+						custom = {
+							{
+								value = 0,
+								name = "status",
+								type = "integer"
+							},
+							{
+								value = 0,
+								name = "time",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jzwl_107.png",
+							clickAction = "cbClickBox",
+							pos = {
+								x = 8.06,
+								y = 6.98
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							fontSize = 16,
+							text = "25%",
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 8.27,
+								y = -20.32
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mParams = slot1
+	slot0.mIsBattleLayer = slot0.mParams.inBattleLayer or false
+
+	slot0.super.ctor(slot0)
+
+	slot0.mBoxImgs = {
+		{
+			"jzwl_108.png",
+			"jzwl_107.png",
+			"jzwl_108.png"
+		},
+		{
+			"jzwl_112.png",
+			"jzwl_111.png",
+			"jzwl_112.png"
+		},
+		{
+			"jzwl_114.png",
+			"jzwl_113.png",
+			"jzwl_114.png"
+		},
+		{
+			"jzwl_110.png",
+			"jzwl_109.png",
+			"jzwl_110.png"
+		}
+	}
+	slot0.mBoxNodes = {}
+
+	slot0.initUI(slot0)
+	slot0.registerEvents(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.mParams.pos then
+		slot0.mParentNode:setPosition(slot0.mParams.pos)
+	end
+
+	if slot0.mParams.scaleValue then
+		slot0.mParentNode:setScale(slot0.mParams.scaleValue)
+	end
+
+	slot0.createRewardBoxes(slot0)
+
+	slot0.mWatchAction = Utility.schedule(slot0.mParentNode, function ()
+		slot0:requestOnLook()
+
+		return 
+	end, 6)
+
+	return 
+end
+slot0.registerEvents = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eLeaguetopGameOver, function (slot0, slot1)
+		if slot0.mWatchAction then
+			slot0:stopAction(slot0.mWatchAction)
+
+			slot0.mWatchAction = nil
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.createRewardBoxes = function (slot0)
+	slot2 = 100 + 95
+	slot3 = 45
+
+	for slot7 = 1, 4, 1 do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "templateNode", {
+			status = 0,
+			boxSprite = slot0.mBoxImgs[slot7][1],
+			boxText = TR("%d%%", slot7*25),
+			time = slot7*25*6
+		})
+
+		slot8.setPosition(slot8, slot2 + (slot7 - 1)*slot1, slot3)
+		slot0.mParentNode:addChild(slot8)
+
+		slot0.mBoxNodes[slot7] = slot8
+	end
+
+	return 
+end
+slot0.refreshBoxStatus = function (slot0)
+	slot0.mProgressLabel:setString(string.format("%d%%", math.min(math.floor(MqMath.showDecimal(slot0.mOnLookTimes/600*100, 2)), 100)))
+	slot0.mProgressBar:setMaxValue(100)
+	slot0.mProgressBar:setCurrValue(math.min(math.floor(MqMath.showDecimal(slot0.mOnLookTimes/600*100, 2)), 100))
+
+	for slot5, slot6 in ipairs(slot0.mBoxNodes) do
+		slot7 = slot0.getBoxStatus(slot0, slot5*25*6)
+
+		slot6.boxBtn:stopAllActions()
+		slot6.boxBtn:loadTextures(slot0.mBoxImgs[slot5][slot7], )
+
+		slot6.boxBtn.status = slot7
+
+		if slot7 == 3 then
+			slot6.boxEffect:playAnimation("animation")
+			slot6.boxEffect:setVisible(true)
+			ui.setWaveAnimation(slot6.boxBtn)
+		else
+			slot6.boxEffect:setVisible(false)
+		end
+	end
+
+	return 
+end
+slot0.getBoxStatus = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6 = 1, 4, 1 do
+		if slot6*25*6 <= slot0.mOnLookTimes then
+			slot2[slot7] = true
+		end
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot0.mOnLookDrawRecord) do
+		slot3[tonumber(slot8)] = true
+	end
+
+	if slot2[slot1] then
+		if slot3[slot1] then
+			return 2
+		else
+			return 3
+		end
+	else
+		return 1
+	end
+
+	return 
+end
+slot0.cbClickBox = function (slot0, slot1)
+	if slot1.status == 1 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.DlgRewardShowLayer",
+			data = {
+				title = TR("奖励预览"),
+				rewardStr = LeaguetopOnlookRelation.items[slot1.time].reward
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	elseif (slot1.status ~= 2 or false) and slot1.status == 3 then
+		slot0.requestReceiveBox(slot0, slot1.time)
+	end
+
+	return 
+end
+slot0.requestReceiveBox = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "DrawOnLookReward",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mOnLookTimes = slot0.OnLookTimes
+			slot0.mOnLookDrawRecord = slot0.OnLookDrawRecord
+
+			ui.showFlashReward(slot0)
+			slot0:refreshBoxStatus()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestOnLook = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "OnLook",
+		moduleName = "Leaguetop",
+		methodData = {
+			PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId
+		},
+		successCallback = function (slot0)
+			slot0.mOnLookTimes = slot0.OnLookTimes
+			slot0.mOnLookDrawRecord = slot0.OnLookDrawRecord
+
+			slot0:refreshBoxStatus()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

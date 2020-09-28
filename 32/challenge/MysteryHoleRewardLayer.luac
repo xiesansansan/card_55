@@ -1,0 +1,345 @@
+slot0 = class("MysteryHoleRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 618,
+				height = 520
+			},
+			titleText = TR("章节奖励")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 308.33,
+						y = 249.97
+					},
+					size = {
+						width = 560,
+						height = 436
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 34.28,
+						y = 34.25
+					},
+					size = {
+						width = 550,
+						height = 430
+					}
+				},
+				children = {
+					{
+						name = "chapterNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -134
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 546,
+										height = 134
+									}
+								},
+								children = {}
+							},
+							{
+								name = "titleLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 10.65,
+										y = 116.22
+									},
+									text = TR("通关第一章")
+								},
+								children = {}
+							},
+							{
+								name = "rewardListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									pos = {
+										x = 9.26,
+										y = 7.56
+									},
+									size = {
+										width = 300,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled9-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 90,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "untitled9",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 45,
+														y = 45
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_55.png",
+									childName = "gotSprite",
+									pos = {
+										x = 470.72,
+										y = 54.17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "getBtn",
+									pos = {
+										x = 471.85,
+										y = 53.33
+									},
+									titleText = TR("领 取")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterPassed = slot1.chapterPassed
+	slot0.mChapterId = slot1.chapterId
+	slot0.mFirstDrawNodelIdList = slot1.firstDrawNodelIdList or {}
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getData(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.getData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(XiangyangfightNodeModel.items) do
+		table.insert(slot1, clone(slot6))
+	end
+
+	slot0.mChapterList = slot1
+
+	for slot5, slot6 in ipairs(slot0.mChapterList) do
+		if slot6.modelId < slot0.mChapterId or (slot6.modelId == slot0.mChapterId and slot0.mChapterPassed) then
+			slot6.isDrawedFirstReward = 1
+		else
+			slot6.isDrawedFirstReward = 0
+		end
+
+		for slot10, slot11 in ipairs(slot0.mFirstDrawNodelIdList) do
+			if slot6.modelId == slot11 then
+				slot6.isDrawedFirstReward = -1
+			end
+		end
+	end
+
+	table.sort(slot0.mChapterList, function (slot0, slot1)
+		if slot0.isDrawedFirstReward ~= slot1.isDrawedFirstReward then
+			return slot1.isDrawedFirstReward < slot0.isDrawedFirstReward
+		end
+
+		if slot0.modelId ~= slot1.modelId then
+			return slot0.modelId < slot1.modelId
+		end
+
+		return 
+	end)
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 550, 134
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mChapterList
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "chapterNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot4 = #Utility.analysisStrResList(slot0.mChapterList[slot1 + 1].outPutReward)*110
+
+		if 3 <= #Utility.analysisStrResList(slot0.mChapterList[slot1 + 1].outPutReward) then
+			slot4 = 300
+		end
+
+		slot0.rewardListView:setContentSize(cc.size(slot4, 100))
+		slot0.rewardListView:removeAllChildren()
+
+		for slot8, slot9 in ipairs(slot3) do
+			slot0.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("rewardLayout", {
+				cardInfo = {
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					},
+					instanceData = {
+						modelId = slot9.resourceId,
+						num = slot9.num
+					}
+				}
+			}))
+		end
+
+		slot0.titleLabel:setString(TR("通关%s", slot2.chapterName))
+		slot0.getBtn:setVisible(true)
+		slot0.gotSprite:setVisible(false)
+
+		if slot2.isDrawedFirstReward == 0 then
+			slot0.getBtn:setEnabled(false)
+		elseif slot2.isDrawedFirstReward == -1 then
+			slot0.getBtn:setVisible(false)
+			slot0.gotSprite:setVisible(true)
+		else
+			slot0.getBtn:setEnabled(true)
+		end
+
+		slot0.getBtn:setClickAction(function ()
+			slot0:requestDrawChapterFirstReward(slot1.modelId)
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.requestDrawChapterFirstReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChapterFirstReward",
+		moduleName = "Xiangyangfight",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mFirstDrawNodelIdList = slot0.FirstDrawNodelIdList
+
+			slot0:getData()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.FirstDrawNodelIdList)
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

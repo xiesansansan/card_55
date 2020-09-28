@@ -1,0 +1,854 @@
+slot0 = class("AircraftChangeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "jzthd_93.png"
+		},
+		children = {
+			{
+				name = "untitled47",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onBtnCloseAction",
+					pos = {
+						x = 585,
+						y = 660
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabSelectChanged",
+					isNeedOutline = false,
+					lightedImage = "jzthd_95.png",
+					direction = false,
+					normalImage = "jzthd_94.png",
+					btnInfos = {
+						{
+							title = TR("升 级")
+						},
+						{
+							title = TR("更 换")
+						}
+					},
+					pos = {
+						x = 70,
+						y = 550
+					},
+					size = {
+						width = 320,
+						height = 60
+					},
+					titleColor = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.42
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "jzthd_96.png",
+					pos = {
+						x = 320,
+						y = 420
+					}
+				},
+				children = {
+					{
+						name = "mTextBgSprite",
+						cType = "Sprite",
+						params = {
+							image = "jzthd_97.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 252.5,
+								y = 5
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mChangeNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 60,
+						y = 50
+					},
+					size = {
+						width = 520,
+						height = 500
+					}
+				},
+				children = {
+					{
+						name = "untitled50",
+						cType = "Button",
+						params = {
+							image = "c_13.png",
+							childName = "button",
+							pos = {
+								x = 260,
+								y = 80
+							},
+							titleText = TR("更 换")
+						},
+						children = {}
+					},
+					{
+						name = "untitled68",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "nameLabel",
+							emptyInit = true,
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 260,
+								y = 200
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 80,
+								y = 160
+							},
+							text = TR("船只等级:")
+						},
+						children = {
+							{
+								name = "mBoatLevelLabel",
+								cType = "Label",
+								params = {
+									text = "0",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 100,
+										y = 13
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 240,
+								y = 160
+							},
+							text = TR("移动速度:")
+						},
+						children = {
+							{
+								name = "mBoatSpeedLabel",
+								cType = "Label",
+								params = {
+									text = "0",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 100,
+										y = 13
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 400,
+								y = 160
+							},
+							text = TR("速度加成:")
+						},
+						children = {
+							{
+								name = "mBoatAddLabel",
+								cType = "Label",
+								params = {
+									text = "0",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 100,
+										y = 13
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled65",
+						cType = "SliderTableView",
+						params = {
+							selectIndex = 1,
+							selectItemChanged = "onSliderItemChanged",
+							sliderItemAtIndex = "onSliderItemAtIndex",
+							childName = "sliderTableView",
+							itemCountOfSlider = "onSliderItemCount",
+							pos = {
+								x = 260,
+								y = 370
+							},
+							size = {
+								width = 490,
+								height = 240
+							}
+						},
+						children = {
+							{
+								name = "templateBoatNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled67-heroModelId",
+										name = "heroModelId",
+										type = "string"
+									},
+									{
+										value = "untitled67-boatModelId",
+										name = "boatModelId",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 490,
+										height = 240
+									}
+								},
+								children = {
+									{
+										name = "untitled67",
+										cType = "FeijiBoat",
+										params = {
+											boatModelId = 25010001,
+											hideNameHp = true,
+											heroModelId = 19010000,
+											pos = {
+												x = 245,
+												y = 10
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled69",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onBtnLeftAction",
+							childName = "leftBtn",
+							pos = {
+								x = 40,
+								y = 370
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled70",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onBtnRightAction",
+							childName = "rightBtn",
+							pos = {
+								x = 480,
+								y = 370
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mUpdateNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 60,
+						y = 50
+					},
+					size = {
+						width = 520,
+						height = 500
+					}
+				},
+				children = {
+					{
+						name = "untitled51",
+						cType = "Button",
+						params = {
+							image = "c_13.png",
+							childName = "button",
+							pos = {
+								x = 260,
+								y = 80
+							},
+							titleText = TR("升 级")
+						},
+						children = {}
+					},
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							hide = true,
+							childName = "maxLabel",
+							color = {
+								g = 44,
+								r = 234,
+								b = 0
+							},
+							pos = {
+								x = 260,
+								y = 180
+							},
+							text = TR("当前船只已经升级到最高")
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Label",
+						params = {
+							childName = "tipLabel",
+							hide = true,
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 260,
+								y = 225
+							},
+							text = TR("升级消耗")
+						},
+						children = {}
+					},
+					{
+						name = "untitled53",
+						cType = "ListView",
+						params = {
+							childName = "resListView",
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 260,
+								y = 110
+							},
+							size = {
+								width = 480,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "templateUpdateResCell",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 120,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled55",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 60,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mFeijiBoat",
+						cType = "FeijiBoat",
+						params = {
+							boatModelId = 25010001,
+							hideNameHp = true,
+							delayInit = true,
+							heroModelId = 19010000,
+							pos = {
+								x = 260,
+								y = 300
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled57",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "oldNameLabel",
+							emptyInit = true,
+							pos = {
+								x = 120,
+								y = 294
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled58",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							childName = "oldLvLabel",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 110,
+								y = 267
+							},
+							text = TR("等级")
+						},
+						children = {}
+					},
+					{
+						name = "untitled59",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							childName = "oldSpeedLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 130,
+								y = 267
+							},
+							text = TR("速度")
+						},
+						children = {}
+					},
+					{
+						name = "untitled60",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "newNameLabel",
+							emptyInit = true,
+							pos = {
+								x = 400,
+								y = 294
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled61",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							childName = "newLvLabel",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 390,
+								y = 267
+							},
+							text = TR("等级")
+						},
+						children = {}
+					},
+					{
+						name = "untitled62",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							childName = "newSpeedLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 410,
+								y = 267
+							},
+							text = TR("速度")
+						},
+						children = {}
+					},
+					{
+						name = "untitled56",
+						cType = "Sprite",
+						params = {
+							image = "c_117.png",
+							childName = "arrowSprite",
+							pos = {
+								x = 260,
+								y = 280
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mCallBack = slot1.callback
+	slot0.mAllPlaneList = {}
+
+	for slot5, slot6 in pairs(MountModel.items) do
+		table.insert(slot0.mAllPlaneList, slot6)
+	end
+
+	table.sort(slot0.mAllPlaneList, function (slot0, slot1)
+		return slot0.speedPro < slot1.speedPro
+	end)
+
+	slot2 = AircraftHelper:getMountModelId()
+	slot0.mSelectIndex = 1
+
+	for slot6, slot7 in ipairs(slot0.mAllPlaneList) do
+		if slot7.Id == slot2 then
+			slot0.mSelectIndex = slot6
+
+			break
+		end
+	end
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "SliderTableView" then
+			slot1.selectIndex = slot0.mSelectIndex
+		end
+
+		return 
+	end)
+	slot0.mChangeNode.leftBtn:setRotation(180)
+	slot0.refreshUpdateNode(slot0)
+	slot0.refreshChangeNode(slot0)
+
+	return 
+end
+slot0.refreshUpdateNode = function (slot0)
+	slot1 = AircraftHelper:getMountModelId()
+	slot3 = MountLvRelation.items[AircraftHelper:getMountLv()]
+
+	if slot0.mFeijiBoat == nil then
+		slot0.createUISubTree(slot0, "mFeijiBoat", function (slot0, slot1)
+			slot1.boatModelId = slot0
+			slot1.heroModelId = PlayerAttrObj:getPlayerAttrByName("FashionModelId")
+
+			return 
+		end)
+	end
+
+	slot0.mUpdateNode.oldNameLabel:setString(MountModel.items[slot1].name)
+	slot0.mUpdateNode.oldLvLabel:setString(TR("等级: %s%s", "#37FF40", slot2))
+	slot0.mUpdateNode.oldSpeedLabel:setString(TR("速度: %s%s", "#37FF40", math.floor(slot3.speed*MountModel.items[slot1].speedPro*10)))
+
+	if MountLvRelation.items[slot2 + 1] == nil then
+		for slot9, slot10 in ipairs(slot0.mUpdateNode:getChildren()) do
+			slot10.setVisible(slot10, false)
+		end
+
+		for slot9, slot10 in ipairs({
+			"oldNameLabel",
+			"oldLvLabel",
+			"oldSpeedLabel",
+			"maxLabel"
+		}) do
+			slot0.mUpdateNode[slot10]:setVisible(true)
+			slot0.mUpdateNode[slot10]:setPositionX(260)
+		end
+
+		slot0.mFeijiBoat:setVisible(true)
+		slot0.mUpdateNode.oldNameLabel:setPositionX(260)
+		slot0.mUpdateNode.oldLvLabel:setPositionX(250)
+		slot0.mUpdateNode.oldSpeedLabel:setPositionX(270)
+
+		return 
+	end
+
+	slot0.mUpdateNode.newNameLabel:setString(slot4.name)
+	slot0.mUpdateNode.newLvLabel:setString(TR("等级: %s%s", "#37FF40", slot2 + 1))
+	slot0.mUpdateNode.newSpeedLabel:setString(TR("速度: %s%s", "#37FF40", math.floor(slot5.speed*slot4.speedPro*10)))
+	slot0.mUpdateNode.tipLabel:setVisible(true)
+	slot0.mUpdateNode.resListView:removeAllChildren()
+	slot0.mUpdateNode.resListView:setContentSize(cc.size((#Utility.analysisStrResList(slot3.lvUpUseResource) <= 4 and slot7*120) or 500, 100))
+
+	for slot11, slot12 in ipairs(slot6) do
+		slot0.createLayoutTemplateNode(slot0, "templateUpdateResCell").cardNode:setCardData({
+			resourceId = slot12.resourceId,
+			num = slot12.num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot13.cardNode:getAttrCtrl(Enums.CardShowAttr.eNum).label.setString(slot16, string.format("%s%s/%s", (slot12.num <= Resource.getCount(slot12.resourceId) and "#37FF40") or "#EA2C00", Utility.numberWithUnit(slot14), Utility.numberWithUnit(slot12.num)))
+		slot0.mUpdateNode.resListView:pushBackCustomItem(slot13)
+	end
+
+	slot0.mUpdateNode.button:setClickAction(function ()
+		if 1 < AircraftHelper:getTeamState() then
+			ui.showFlashView(TR("正在匹配中，不能进行升级"))
+
+			return 
+		end
+
+		for slot3, slot4 in ipairs(ipairs) do
+			if Resource.isEnough(slot4.resourceId, slot4.num) == false then
+				return 
+			end
+		end
+
+		slot1:requestGodDomainPlaneLvUp()
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshChangeNode = function (slot0)
+	slot2 = AircraftHelper:getMountModelId()
+	slot6, slot12 = Utility.getColorValue(slot0.mAllPlaneList[slot0.mSelectIndex].colorLv)
+
+	slot0.mChangeNode.nameLabel:setString(string.format("%s%s", slot7, slot0.mAllPlaneList[slot0.mSelectIndex].name))
+	slot0.mBoatLevelLabel:setString(slot3)
+	slot0.mBoatSpeedLabel:setString(math.floor(MountLvRelation.items[AircraftHelper:getMountLv()].speed*slot0.mAllPlaneList[slot0.mSelectIndex].speedPro*10))
+	slot0.mBoatAddLabel:setString(string.format("%s%%", (tonumber(slot0.mAllPlaneList[slot0.mSelectIndex].speedPro) - 1)*100))
+	slot0.mChangeNode.button:setTitleText((AircraftHelper:isHaveOneMount(slot0.mAllPlaneList[slot0.mSelectIndex].Id) and TR("更 换")) or TR("去获取"))
+	slot0.mChangeNode.button:setBright(true)
+
+	if slot5 == false then
+		slot0.mChangeNode.button:setClickAction(function ()
+			if ActivityObj:getActivityInfo(ModuleSub.eTimedMountExchange) ~= nil then
+				LayerManager.addLayer({
+					name = "feiji.FeiJiAdvancedLayer"
+				})
+			else
+				ui.showFlashView("暂未开启，敬请期待！")
+			end
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot0.mChangeNode.button:setBright(slot2 ~= slot1.Id)
+	slot0.mChangeNode.button:setClickAction(function ()
+		if 1 < AircraftHelper:getTeamState() then
+			ui.showFlashView(TR("正在匹配中，不能进行更换"))
+
+			return 
+		end
+
+		AircraftHelper:changeMyMount(slot0.Id, function ()
+			slot0:refreshUpdateNode()
+			slot0.refreshUpdateNode:refreshChangeNode()
+
+			if slot0.refreshUpdateNode.refreshChangeNode.mCallBack then
+				slot0.mCallBack()
+			end
+
+			ui.showFlashView(TR("更换成功！"))
+
+			return 
+		end)
+
+		return 
+	end)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onTabSelectChanged = function (slot0, slot1)
+	slot0.mUpdateNode:setVisible(slot1 == 1)
+	slot0.mChangeNode:setVisible(slot1 == 2)
+	slot0.mTextBgSprite:setVisible(slot1 == 1)
+
+	return 
+end
+slot0.onSliderItemCount = function (slot0)
+	return #slot0.mAllPlaneList
+end
+slot0.onSliderItemAtIndex = function (slot0, slot1, slot2)
+	return slot0.createLayoutTemplateNode(slot0, "templateBoatNode", {
+		boatModelId = slot0.mAllPlaneList[slot1].Id,
+		heroModelId = PlayerAttrObj:getPlayerAttrByName("FashionModelId")
+	})
+end
+slot0.onSliderItemChanged = function (slot0, slot1)
+	slot0.mChangeNode.leftBtn:setVisible(1 < slot1)
+	slot0.mChangeNode.rightBtn:setVisible(slot1 < #slot0.mAllPlaneList)
+
+	slot0.mSelectIndex = slot1
+
+	slot0.refreshChangeNode(slot0)
+
+	return 
+end
+slot0.onBtnLeftAction = function (slot0, slot1)
+	if slot0.mSelectIndex - 1 < 1 then
+		slot2 = 1
+	end
+
+	slot0.mChangeNode.sliderTableView:setSelectItemIndex(slot2)
+
+	return 
+end
+slot0.onBtnRightAction = function (slot0, slot1)
+	if #slot0.mAllPlaneList < slot0.mSelectIndex + 1 then
+		slot2 = #slot0.mAllPlaneList
+	end
+
+	slot0.mChangeNode.sliderTableView:setSelectItemIndex(slot2)
+
+	return 
+end
+slot0.requestGodDomainPlaneLvUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GodDomainPlaneLvUp",
+		moduleName = "GodDomain",
+		methodData = {},
+		successCallback = function (slot0)
+			AircraftHelper:setMountModelId(slot0.ModelId)
+			AircraftHelper:setMountLv(slot0.MountLv)
+			slot0:refreshUpdateNode()
+			slot0:refreshChangeNode()
+			ui.showFlashView(TR("升级成功！"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

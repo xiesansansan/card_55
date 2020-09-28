@@ -1,0 +1,418 @@
+slot0 = require("battle.common.Const")
+slot1 = require("common.SpineManager")
+slot2 = require("battle.common.FrameConf")
+slot3 = require("common.ShaderManager")
+slot4 = require("battle.common.SpineConf")
+slot5 = require("battle.common.FxHelper")
+slot6 = require("battle.common.FigureConf")
+slot7 = cc.FileUtils:getInstance()
+slot8 = cc.SpriteFrameCache:getInstance()
+slot9 = class("FrameAnimation", function ()
+	slot0 = cc.Node:create()
+
+	slot0.enableNodeEvents(slot0)
+
+	return slot0
+end)
+slot9.ctor = function (slot0, slot1, slot2)
+	if not slot0:isFileExist(slot1 .. "_daiji.png") then
+		slot1 = "hero_yangguo"
+	end
+
+	slot0.heroName = slot1
+	slot0.timescale = 1
+	slot0.curAnim = ""
+	slot0.interval = 0.03333333333333333
+	slot0.tick = 0
+	slot0.index = 0
+	slot0.loop = false
+	slot0.sequence = {}
+	slot0.event = nil
+	slot0.frameList = {}
+	slot0.inBattle = false
+	slot0.tmpSpine = nil
+	slot0.callback = nil
+	slot0.cameracb = nil
+	slot0.eventcb = nil
+	slot0.bbox = cc.rect(0, 0, 0, 0)
+
+	slot0.addChild(slot0, slot3)
+
+	slot0.spriteFrame = cc.Sprite:create()
+
+	slot0.setCascadeOpacityEnabled(slot0, true)
+
+	slot0.figureScale = slot1[slot1] or 1
+
+	slot0.spriteFrame:setScale(slot0.figureScale)
+
+	if slot2[slot1] then
+		slot0.spriteFrame:setPosition(cc.p(slot4.x*slot0.figureScale, slot4.y*slot0.figureScale))
+	end
+
+	if slot1 ~= "" then
+		slot0.loadAnim(slot0, slot2 or "daiji", true)
+	end
+
+	return 
+end
+slot9.preloadAnim = function (slot0, slot1, slot2)
+	display.loadImage(slot0.heroName .. "_" .. slot1 .. ".png", function ()
+		slot0:loadAnim(slot0)
+
+		if slot0 then
+			slot2()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot9.parsePlistStr = function (slot0, slot1)
+	for slot7, slot8 in ipairs(slot3) do
+		slot3[slot7] = tonumber(slot8)
+	end
+
+	return slot3
+end
+slot9.setCompleteCallback = function (slot0, slot1)
+	slot0.callback = slot1
+
+	return 
+end
+slot9.setEventCallback = function (slot0, slot1)
+	slot0.eventcb = slot1
+
+	return 
+end
+slot9.setCameraCallback = function (slot0, slot1)
+	slot0.cameracb = slot1
+
+	return 
+end
+slot9.registerLuaHandler = function (slot0, slot1, slot2)
+	if slot1 == "complete" then
+		slot0.setCompleteCallback(slot0, slot2)
+	elseif slot1 == "event" then
+		slot0.setEventCallback(slot0, slot2)
+	end
+
+	return 
+end
+slot9.clearLuaHandler = function (slot0)
+	slot0.eventcb = nil
+	slot0.callback = nil
+
+	return 
+end
+slot9.setInBattle = function (slot0)
+	slot0.inBattle = true
+
+	if fc == nil then
+		slot0.spriteFrame:setCameraMask(slot0.CameraFlag)
+	end
+
+	return 
+end
+slot9.reset = function (slot0)
+	slot0.index = 0
+	slot0.loop = true
+	slot0.curAnim = "daiji"
+
+	if slot0.tmpSpine then
+		slot0.tmpSpine:removeFromParent()
+
+		slot0.tmpSpine = nil
+	end
+
+	slot0.spriteFrame:setVisible(true)
+
+	return 
+end
+slot9.loadAnim = function (slot0, slot1, slot2)
+	if slot0.frameList[slot1] then
+		print("已经加载过动画文件:", slot0.heroName, slot1)
+
+		return 
+	end
+
+	slot4 = slot0.heroName .. "_" .. slot1 .. ".png"
+
+	if not slot0:isFileExist(slot0.heroName .. "_" .. slot1 .. ".plist") or not slot0:isFileExist(slot4) then
+		print("动画文件不存在:", slot3)
+
+		return false
+	end
+
+	slot5 = display.loadImage(slot4)
+	slot7 = {}
+	slot8 = ""
+
+	for slot12, slot13 in pairs(slot0:getValueMapFromFile(slot0.heroName .. "_" .. slot1 .. ".plist").frames) do
+		slot14 = slot0.parsePlistStr(slot0, slot13.frame)
+		slot20 = cc.SpriteFrame:createWithTexture(slot5, slot15, slot13.rotated, slot19, cc.size(slot0.parsePlistStr(slot0, slot13.sourceSize)[1], slot0.parsePlistStr(slot0, slot13.sourceSize)[2]))
+
+		slot20.retain(slot20)
+		slot1:addSpriteFrame(slot20, slot4 .. "_" .. slot12)
+
+		if slot8 == "" then
+			slot8 = slot12
+		end
+
+		if tonumber(string.match(slot12, "%d+")) == nil then
+			slot22 = 0
+		end
+
+		slot20.order = slot22
+		slot20.frameName = slot12
+
+		table.insert(slot7, slot20)
+	end
+
+	table.sort(slot7, function (slot0, slot1)
+		return slot0.order < slot1.order
+	end)
+
+	if slot2 then
+		slot0.spriteFrame:setSpriteFrame(slot7[1])
+
+		slot0.bbox = cc.rect(0, 0, slot7[1]:getRect().width, slot7[1].getRect().height)
+	end
+
+	slot0.frameList[slot1] = slot7
+
+	return true
+end
+slot9.setLoop = function (slot0, slot1)
+	slot0.loop = slot1
+
+	return 
+end
+slot9.setGLProgram = function (slot0, slot1)
+	slot0.spriteFrame:setGLProgram(slot1)
+
+	return 
+end
+slot9.setTimeScale = function (slot0, slot1)
+	slot0.timescale = slot1
+
+	return 
+end
+slot9.selfUpdate = function (slot0)
+	slot0.onUpdate(slot0, function (slot0)
+		slot0:update(slot0)
+
+		return 
+	end)
+
+	return 
+end
+slot9.onExit = function (slot0)
+	slot0.curAnim = ""
+
+	slot0.unscheduleUpdate(slot0)
+
+	for slot4, slot5 in pairs(slot0.frameList) do
+		for slot9, slot10 in ipairs(slot5) do
+			slot10.release(slot10)
+		end
+	end
+
+	return 
+end
+slot9.getBoundingBox = function (slot0)
+	return slot0.bbox
+end
+slot9.getAnimationTime = function (slot0, slot1)
+	if slot0[slot0.heroName] and slot2[slot1] then
+		return slot2[slot1].totalTime
+	end
+
+	if slot0.frameList[slot1] == nil then
+		slot0.loadAnim(slot0, slot1)
+	end
+
+	if slot0.frameList[slot1] then
+		return #slot0.frameList[slot1]*slot0.interval
+	end
+
+	return 0
+end
+slot9.update = function (slot0, slot1)
+	if slot0.tmpSpine then
+		slot0.tmpSpine:update(slot1)
+
+		if slot0.event then
+			slot0.event.dt = slot0.event.dt + slot1*slot0.timescale
+			slot2 = slot0.event.dt
+
+			for slot6, slot7 in ipairs(slot0.event.events) do
+				if slot7.time <= slot2 then
+					if slot0.eventcb then
+						slot0.eventcb({
+							object = slot0,
+							time = slot7.time,
+							eventData = slot7,
+							triggerCnt = slot0.event.triggerCnt
+						})
+					end
+
+					table.remove(slot0.event.events, slot6)
+				end
+			end
+		end
+
+		return 
+	end
+
+	if slot0.curAnim == "" then
+		return 
+	end
+
+	if slot0.frameList[slot0.curAnim] == nil then
+		return 
+	end
+
+	if #slot2 == 0 then
+		return 
+	end
+
+	if slot0.loop == false and slot0.index == #slot2 then
+		if #slot0.sequence == 0 then
+			if slot0.callback then
+				slot0.callback({
+					object = slot0,
+					animName = slot0.curAnim
+				})
+			end
+
+			slot0.callback = nil
+
+			return 
+		end
+
+		slot0.index = 0
+		slot0.curAnim = slot0.sequence[1].animName
+		slot0.loop = slot0.sequence[1].isLoop
+
+		table.remove(slot0.sequence, 1)
+	end
+
+	slot0.tick = slot0.tick + slot1*slot0.timescale
+	slot3 = slot0.index
+
+	while slot0.interval < slot0.tick do
+		slot0.index = slot0.index + 1
+		slot0.tick = slot0.tick - slot0.interval
+
+		if #slot2 < slot0.index then
+			slot0.index = 1
+		end
+	end
+
+	if slot3 ~= slot0.index then
+		if slot2[slot0.index] then
+			slot0.spriteFrame:setSpriteFrame(slot2[slot0.index])
+		end
+
+		if slot0.index == #slot2 - 1 then
+			return true
+		end
+	end
+
+	return 
+end
+slot9.playAnimation = function (slot0, slot1, slot2)
+	if slot0.curAnim == slot1 then
+		slot0.index = 0
+
+		return 
+	end
+
+	slot3 = true
+
+	if slot2 and slot2 == 1 then
+		slot3 = false
+	end
+
+	slot0.event = nil
+
+	if slot0.isShenheFu() == false and (slot1 == "pugong" or slot1 == "nuji") then
+		slot0.spriteFrame:setVisible(false)
+
+		slot4 = slot1.createAnimation(slot0.heroName, 1, true)
+
+		slot4.playAnimation(slot4, slot1, 1)
+		slot4.setScale(slot4, slot0.figureScale)
+		slot0.addChild(slot0, slot4, 1)
+
+		if slot0.inBattle == true and fc == nil then
+			slot4.setCameraMask(slot4, slot2.CameraFlag)
+		end
+
+		if slot0.cameracb and fc == nil and slot1 == "nuji" and slot4.bindBoneNode(slot4, "camera") then
+			slot0.cameracb(slot5)
+		end
+
+		slot4.registerLuaHandler(slot4, "complete", function ()
+			slot0:removeFromParent()
+
+			slot0.tmpSpine = nil
+
+			if slot1.callback then
+				slot1.callback({
+					object = slot1,
+					animName = slot1
+				})
+			end
+
+			slot1:playAnimation("daiji")
+
+			return 
+		end)
+
+		if slot3[slot0.heroName] and slot5[slot1] and 0 < slot6.triggerCnt then
+			slot0.event = clone(slot6)
+			slot0.event.dt = 0
+		end
+
+		slot0.tmpSpine = slot4
+		slot0.curAnim = ""
+
+		return 
+	end
+
+	slot0.spriteFrame:setVisible(true)
+
+	if slot0.frameList[slot1] == nil then
+		slot0.loadAnim(slot0, slot1)
+	end
+
+	slot0.index = 0
+	slot0.loop = slot3
+	slot0.curAnim = slot1
+	slot0.sequence = {}
+
+	return 
+end
+slot9.appendAnimation = function (slot0, slot1, slot2)
+	slot3 = true
+
+	if slot2 and slot2 == 1 then
+		slot3 = false
+	end
+
+	if slot0.frameList[slot1] == nil then
+		slot0.loadAnim(slot0, slot1)
+	end
+
+	table.insert(slot0.sequence, {
+		animName = slot1,
+		isLoop = slot3
+	})
+
+	return 
+end
+
+return slot9

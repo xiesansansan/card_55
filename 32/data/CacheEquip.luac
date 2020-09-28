@@ -1,0 +1,42 @@
+slot0 = class("CacheEquip", require("data.CacheModel"))
+slot0.ctor = function (slot0)
+	slot0.super.ctor(slot0)
+
+	return 
+end
+slot0.getItemList = function (slot0, slot1)
+	if not slot1 then
+		return slot0.mModelList
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mModelList) do
+		if Resource.getSubType(slot7.ModelId) == slot1 then
+			slot2[slot7.ModelId] = slot7
+		end
+	end
+
+	return slot2
+end
+slot0.isHaveModel = function (slot0, slot1)
+	if not slot1 or slot1 == 0 then
+		return false
+	end
+
+	slot2 = table.keys(slot0.mModelList)
+
+	for slot6, slot7 in pairs(SlotEquipObj:getList()) do
+		table.insert(slot2, slot7.EquipModelId)
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if tonumber(slot7) == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+
+return slot0

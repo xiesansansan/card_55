@@ -1,0 +1,506 @@
+Resource = {
+	getMainType = function (slot0)
+		if 10000000 <= tonumber(slot0) then
+			return math.floor(slot1/1000000)
+		else
+			return math.floor(slot1/100)
+		end
+
+		return 
+	end,
+	getSubType = function (slot0)
+		if 10000000 <= tonumber(slot0) then
+			return math.floor(slot1/10000)
+		else
+			return slot1
+		end
+
+		return 
+	end
+}
+Resource.getPlayerHeadImg = function (slot0)
+	slot1 = slot0 or 0
+	slot3 = nil
+
+	if Resource.getMainType(slot0) == ResourceType.eHero then
+		slot3 = HeroModel.items[slot0] and HeroModel.items[slot0].smallPic
+	elseif slot2 == ResourceType.eSkin then
+		return (SkinConfig.items[slot0] and SkinConfig.items[slot0].smallPic and (SkinConfig.items[slot0] and SkinConfig.items[slot0].smallPic) .. ".png") or "xkicon_1.png"
+	end
+end
+Resource.getModelInfo = function (slot0)
+	if math.floor(Resource.getSubType(slot0 or 0)/100) == ResourceType.eHero then
+		return HeroModel.items[slot1]
+	elseif slot3 == ResourceType.eEquipment then
+		return EquipModel.items[slot1]
+	elseif slot3 ~= ResourceType.eArtifact or false then
+		if slot3 == ResourceType.eDebris then
+			return GoodsModel.items[slot1]
+		elseif slot3 == ResourceType.eProps then
+			if slot2 == ResourceTypeSub.eBaseVoucher or slot2 == ResourceTypeSub.eAdvancedVoucher or slot2 == ResourceTypeSub.eEnjoyableVoucher then
+				return GoodsVoucherModel.items[slot1]
+			end
+
+			return GoodsModel.items[slot1]
+		elseif slot3 == ResourceType.eGem then
+			return GemModel.items[slot1]
+		elseif slot3 == ResourceType.eTreasure then
+			return TreasureModel.items[slot1]
+		elseif slot3 == ResourceType.eFashion then
+			return FashionModel.items[slot1]
+		elseif slot3 == ResourceType.eKongFu then
+			return NewKongfuModel.items[slot1]
+		elseif slot3 == ResourceType.eNewZhenfa then
+			return ZhenfaModel.items[slot1]
+		elseif slot3 == ResourceType.eFriend then
+			if slot2 == ResourceTypeSub.eFriendDebris or slot2 == ResourceTypeSub.eFriendGoods then
+				return GoodsModel.items[slot1]
+			else
+				return FriendModel.items[slot1]
+			end
+		elseif slot3 == ResourceType.eWuxue then
+			if slot2 == ResourceTypeSub.eWuxueDebris then
+				return GoodsModel.items[slot1]
+			else
+				return WuxueModel.items[slot1]
+			end
+		elseif slot3 == ResourceType.eHeadPic then
+			return HeadpicConfig.items[slot1]
+		elseif slot3 == ResourceType.eFriendshipPoint then
+			return GemModel.items[slot1]
+		elseif slot2 == ResourceTypeSub.eArms then
+			return ArmsbookModel.items[slot1]
+		end
+	end
+
+	Resource.playerAttrInfo = {
+		[ResourceTypeSub.eExp] = {
+			colorLv = 4,
+			name = TR("经验值"),
+			intro = TR("可用于主角升级.")
+		},
+		[ResourceTypeSub.eDiamond] = {
+			colorLv = 5,
+			name = TR("元宝"),
+			intro = TR("游戏通用货币，可用于侠客培养消耗.")
+		},
+		[ResourceTypeSub.eGold] = {
+			colorLv = 4,
+			name = TR("铜钱"),
+			intro = TR("游戏通用货币，可用于侠客培养消耗.")
+		},
+		[ResourceTypeSub.eRawGold] = {
+			colorLv = 4,
+			name = TR("铜钱"),
+			intro = TR("游戏通用货币，可用于侠客培养消耗.")
+		},
+		[ResourceTypeSub.eVit] = {
+			colorLv = 4,
+			name = TR("干粮"),
+			intro = TR("侠客出战需要的消耗.")
+		},
+		[ResourceTypeSub.eHeroExp] = {
+			colorLv = 4,
+			name = TR("修为"),
+			intro = TR("侠客升级需要的消耗.")
+		},
+		[ResourceTypeSub.eFeats] = {
+			colorLv = 4,
+			name = TR("功勋"),
+			intro = TR("用于帮派商城购买道具，可通过帮战获取.")
+		},
+		[ResourceTypeSub.eExpeditionCoin] = {
+			colorLv = 4,
+			name = TR("日月精华"),
+			intro = TR("用于拜庄论剑商店购买道具，可通过拜庄论剑获取.")
+		},
+		[ResourceTypeSub.ePvpCoin] = {
+			colorLv = 4,
+			name = TR("名望"),
+			intro = TR("用于擂台比武商城购买道具，可通过擂台比武获取.")
+		},
+		[ResourceTypeSub.eEtlyCoin] = {
+			colorLv = 4,
+			name = TR("万剑精华"),
+			intro = TR("用于墓窟商城购买道具，可通过万剑墓窟获取.")
+		},
+		[ResourceTypeSub.eGuildExp] = {
+			colorLv = 4,
+			name = TR("帮派杀敌"),
+			intro = TR("可通过帮战和帮派签到获取.")
+		},
+		[ResourceTypeSub.eSilver] = {
+			colorLv = 4,
+			name = TR("荣誉"),
+			intro = TR("可在武林秘藏中兑换稀有道具.")
+		},
+		[ResourceTypeSub.eVipExp] = {
+			colorLv = 5,
+			name = TR("会员经验"),
+			intro = TR("用于提升会员等级.")
+		},
+		[ResourceTypeSub.eGddhCoin] = {
+			colorLv = 4,
+			name = TR("残刀"),
+			intro = TR("可在试刀大会和擂台比武获取，用于商店兑换奖励.")
+		},
+		[ResourceTypeSub.eHeroSoul] = {
+			colorLv = 4,
+			name = TR("侠魂"),
+			intro = TR("通过酒馆高级招募获取，可在侠魂商店兑换侠客碎片.")
+		},
+		[ResourceTypeSub.eGodDomainGlory] = {
+			colorLv = 5,
+			name = TR("战旗令"),
+			intro = TR("参加战江湖活动获取，可在战江湖商店兑换物品.")
+		},
+		[ResourceTypeSub.eKuangzhanFeats] = {
+			colorLv = 4,
+			name = TR("镖局银票"),
+			intro = TR("用于镖局商店购买道具，可通过跨服镖局押镖获取.")
+		},
+		[ResourceTypeSub.eWuxueCanye] = {
+			colorLv = 4,
+			name = TR("武学残页"),
+			intro = TR("用于武学商店购买道具.")
+		},
+		[ResourceTypeSub.eUndergroundCoin] = {
+			colorLv = 5,
+			name = TR("战利品"),
+			intro = TR("剿灭魔教恶徒获得的战利品，可以在地下集市兑换稀有奖励.")
+		},
+		[ResourceTypeSub.eRealDragonCoin] = {
+			colorLv = 5,
+			name = TR("真龙币"),
+			intro = TR("用于天下第一商店购买道具")
+		},
+		[ResourceTypeSub.eYellowFlag] = {
+			colorLv = 5,
+			name = TR("旗帜"),
+			intro = TR("用于武林宝藏活动购买道具")
+		},
+		[ResourceTypeSub.eYellowScarf] = {
+			colorLv = 5,
+			name = TR("头巾"),
+			intro = TR("用于武林宝藏活动购买道具")
+		},
+		[ResourceTypeSub.eSectCoin] = {
+			colorLv = 5,
+			name = TR("宗门钱币"),
+			intro = TR("可用于宗门商店的购买道具")
+		},
+		[ResourceTypeSub.eSectAExp] = {
+			colorLv = 5,
+			name = TR("东邪声望"),
+			intro = TR("可用于提升东邪势力声望级别")
+		},
+		[ResourceTypeSub.eSectBExp] = {
+			colorLv = 5,
+			name = TR("西毒声望"),
+			intro = TR("可用于提升西毒势力声望级别")
+		},
+		[ResourceTypeSub.eSectCExp] = {
+			colorLv = 5,
+			name = TR("南帝声望"),
+			intro = TR("可用于提升南帝势力声望级别")
+		},
+		[ResourceTypeSub.eSectDExp] = {
+			colorLv = 5,
+			name = TR("北丐声望"),
+			intro = TR("可用于提升北丐势力声望级别")
+		},
+		[ResourceTypeSub.eYtjExp] = {
+			colorLv = 5,
+			name = TR("剑气值"),
+			intro = TR("可用于激活或提升倚天剑")
+		},
+		[ResourceTypeSub.eFriendshipPoint] = {
+			colorLv = 5,
+			name = TR("侠缘值"),
+			intro = TR("好友之间相互赠送获得，可用于侠缘招募")
+		},
+		[ResourceTypeSub.eLotusSeed] = {
+			colorLv = 5,
+			name = TR("九彩莲籽"),
+			intro = TR("用于提升帮派天赋，可在帮派商店内花费功勋购买。")
+		},
+		[ResourceTypeSub.eSmithyCoin] = {
+			colorLv = 5,
+			name = TR("精铁"),
+			intro = TR("用于装备打造和升级装备品质，可在庄园铁匠铺中获得。")
+		},
+		[ResourceTypeSub.eGoldKnife] = {
+			colorLv = 5,
+			name = TR("金刀"),
+			intro = TR("用于比武试刀兑换稀有道具，可在巅峰对决获取，或在比武试刀用残刀兑换。")
+		}
+	}
+
+	return Resource.playerAttrInfo[slot2]
+end
+Resource.getName = function (slot0)
+	slot1 = nil
+
+	if Resource.getModelInfo(slot0) ~= nil then
+		slot1 = slot2.name
+	else
+		dump(slot0, "未处理的物品")
+	end
+
+	return slot1
+end
+Resource.getColorLv = function (slot0, slot1)
+	slot2 = nil
+	slot3 = Resource.getSubType
+	slot4 = slot0 or 0
+
+	if slot3(slot4) == ResourceTypeSub.eHero then
+		slot3 = 0
+
+		if slot1 ~= nil then
+			slot2 = HeroTrainColorlvRelation.items[slot1.TrainLv or 0].colorLv
+		end
+	elseif not (Resource.getModelInfo(slot0) or {}.colorLv or Resource.getModelInfo(slot0) or {}.colorLV or Resource.getModelInfo(slot0) or {}.valueLv or Resource.getModelInfo(slot0) or {}.valueLV) and slot3.quality then
+		slot2 = Resource.getQualityColorLv(slot3.quality)
+	end
+
+	return slot2 or 1
+end
+Resource.getQualityColorLv = function (slot0)
+	if not slot0 then
+		return 1
+	end
+
+	return (((QualityConfig.items[slot0] and slot1.colorLV) or 1) < 1 and 1) or (7 < ((QualityConfig.items[slot0] and slot1.colorLV) or 1) and 7) or (QualityConfig.items[slot0] and slot1.colorLV) or 1
+end
+Resource.getBorderImgByColovLv = function (slot0)
+	return ({
+		"c_18.png",
+		"c_13.png",
+		"c_14.png",
+		"c_15.png",
+		"c_16.png",
+		"c_17.png",
+		"c_90.png"
+	})[slot0]
+end
+Resource.getBorderImg = function (slot0, slot1)
+	return Resource.getBorderImgByColovLv(Resource.getColorLv(slot0, slot1))
+end
+Resource.getStarLvAndImage = function (slot0, slot1, slot2)
+	if slot0 and (slot1 == nil or not next(slot1)) then
+		return Resource.getModelInfo(slot0) or {}.initStar or 0, "c_56.png"
+	end
+
+	slot3 = slot1.Star or 0
+	slot4 = "c_56.png"
+	slot5 = slot2 or false
+
+	if slot1.StepLv then
+		slot6 = slot1.StepLv or 0
+
+		if slot5 and slot6 < #HeroStepRelation.items[slot1.ModelId] then
+			slot6 = slot6 + 1
+		end
+
+		if 10 < slot6 then
+			slot4 = "c_79.png"
+			slot3 = slot6 - 10
+		elseif 5 < slot6 then
+			slot4 = "c_78.png"
+			slot3 = slot6 - 5
+		elseif 0 < slot6 then
+			slot4 = "c_77.png"
+			slot3 = slot6
+		end
+	end
+
+	return slot3, slot4
+end
+Resource.getHeaderImg = function (slot0)
+	if (slot0 or 0) == ResourceTypeSub.eRawGold then
+		slot1 = ResourceTypeSub.eGold
+	end
+
+	if math.floor(Resource.getSubType(slot1)/100) == ResourceType.ePlayerAttr then
+		return string.format("dj_%d.png", slot2)
+	end
+
+	return (Resource.getModelInfo(slot0) or {}.smallPic or Resource.getModelInfo(slot0) or {}.pic or "") .. ".png"
+end
+Resource.getDaibiImg = function (slot0)
+	if (slot0 or 0) == ResourceTypeSub.eRawGold then
+		slot1 = ResourceTypeSub.eGold
+	end
+
+	if math.floor(Resource.getSubType(slot1)/100) == ResourceType.ePlayerAttr then
+		return string.format("db_%d.png", slot2)
+	elseif slot3 == ResourceType.eProps then
+		return string.format("db_%d.png", math.mod(slot1, 16000000))
+	end
+
+	return 
+end
+Resource.getIntro = function (slot0)
+	slot1 = Resource.getModelInfo(slot0) or {}
+
+	if Resource.getSubType(slot0) == ResourceTypeSub.eHeadPic then
+		return slot1.accessWay
+	end
+
+	return slot1.intro or ""
+end
+Resource.getSkillIntroStr = function (slot0, slot1, slot2, slot3, slot4, slot5)
+	slot7 = slot4 or slot3 or "#45220d"
+	slot9 = clone(SkillModel.items[slot0]).skillIntro or ""
+
+	if (slot8.skillIntroParameter or "") == "" then
+		return slot9
+	end
+
+	slot11 = string.splitBySep(slot10, ";")
+	slot13 = {
+		"skillAttackStar",
+		"firstSkillStar",
+		"secondSkillStar",
+		"thirdSkillStar"
+	}
+
+	if SkillModel.items[slot0].skillStarKey == 0 then
+		slot14 = 1
+	else
+		slot14 = HeroSkillStarRelation.items[slot2 or 1][slot13[slot12]]
+	end
+
+	slot15 = {}
+
+	for slot19, slot20 in ipairs(slot11) do
+		slot22 = string.splitBySep(slot20, ",")[1] or 0
+		slot22 = slot22 + ((slot1 or 1) - 1)*(slot21[2] or 0) + ((slot14 or 1) - 1)*(slot21[3] or 0)
+
+		if slot5 and slot5.kongfuRatio then
+			slot22 = slot22*slot5.kongfuRatio
+		end
+
+		table.insert(slot15, slot7 .. slot23 .. slot6)
+	end
+
+	slot16 = 0
+
+	for slot20 in string.gfind(slot9, "%%s") do
+		slot16 = slot16 + 1
+	end
+
+	for slot21 = 1, math.abs(slot17), 1 do
+		if 0 < slot17 then
+			table.insert(slot15, slot7 .. "缺少参数" .. slot6)
+		elseif slot17 < 0 then
+			table.remove(slot15, #slot15)
+		end
+	end
+
+	return string.gsub(string.gsub(slot18, slot19, ""), slot7 .. "0" .. slot6 .. "%%%+", "")
+end
+Resource.getSplitColorValueStr = function (slot0)
+	return string.gsub(slot0, "#%w%w%w%w%w%w", "")
+end
+Resource.getCount = function (slot0)
+	if Resource.getMainType(slot0) == ResourceType.eHero then
+		return HeroObj:getItemCount(slot0)
+	elseif slot1 == ResourceType.eEquipment then
+		return EquipObj:getItemCount(slot0)
+	elseif slot1 == ResourceType.eGem then
+		return GemObj:getItemCount(slot0)
+	elseif slot1 == ResourceType.ePlayerAttr then
+		return PlayerAttrObj:getPlayerAttrByName(PlayerAttrObj:getNameByResType(slot0)) or 0
+	elseif slot1 == ResourceType.eKongFu then
+		return KongfuObj:getCount(slot0)
+	else
+		return GoodsObj:getItemCount(slot0)
+	end
+
+	return 
+end
+Resource.isEnough = function (slot0, slot1, slot2, slot3)
+	slot5 = Resource.getSubType(slot0)
+
+	if slot1 <= Resource.getCount(slot0) then
+		return true
+	else
+		if slot2 ~= false then
+			if slot5 == ResourceTypeSub.eDiamond then
+				ui.showMessageBox({
+					text = TR("%s%s%s不足！是否去充值购买？", "#EA2C00", Resource.getName(slot0), "#46220d"),
+					okCallback = function ()
+						LayerManager.addLayer({
+							name = "recharge.RechargeHomeLayer"
+						})
+
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60
+					}
+				})
+			elseif slot5 == ResourceTypeSub.eFeats then
+				ui.showMessageBox({
+					text = TR("%s%s%s不足！是否去武林进行帮战获取？", "#EA2C00", Resource.getName(slot0), "#46220d"),
+					okCallback = function ()
+						LayerManager.showModuleLayer(ModuleSub.eCityWar)
+
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60
+					}
+				})
+			elseif slot5 == ResourceTypeSub.eHeroSoul then
+				ui.showMessageBox({
+					text = TR("%s%s%s不足！是否去酒馆进行高级招募获取？", "#EA2C00", Resource.getName(slot0), "#46220d"),
+					okCallback = function ()
+						LayerManager.showModuleLayer(ModuleSub.eMarket, {
+							moduleId = ModuleSub.eMarketHeroSoul
+						})
+
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60
+					}
+				})
+			elseif slot5 == ResourceTypeSub.eZhenQi then
+				ui.showMessageBox({
+					text = TR("%s%s%s不足！请通过完成每日杀敌任务获取。", "#EA2C00", Resource.getName(slot0), "#46220d"),
+					okCallback = function ()
+						LayerManager.showModuleLayer(ModuleSub.eDailyTask, {
+							tag = 2
+						})
+
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60
+					}
+				})
+			elseif slot3 ~= false and #Utility.getDropWayList(slot0) ~= 0 then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "commonlayer.GoodsGetWaysLayer",
+					popRestore = true,
+					data = {
+						resourceId = slot0
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			else
+				ui.showFlashView(TR("%s%s%s不足！！！", "#EA2C00", Resource.getName(slot0), "#fff8ea"))
+			end
+		end
+
+		return false
+	end
+
+	return 
+end
+
+return 

@@ -1,0 +1,655 @@
+slot0 = class("CityWarTeamBattleInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.sizeInPixels.width/2, display.sizeInPixels.height/2),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "teamNode",
+		cType = "TemplateNode",
+		children = {
+			{
+				name = "spriteBg",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_32.png",
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					pos = {
+						x = 640,
+						y = 1136
+					}
+				}
+			},
+			{
+				name = "figureHero",
+				cType = "FigureHero",
+				children = {},
+				params = {
+					scale = 0.28,
+					heroModelId = 12011103,
+					flipX = true,
+					pos = {
+						x = 474.93,
+						y = 594.9
+					}
+				}
+			},
+			{
+				name = "infoBg",
+				cType = "Sprite",
+				children = {
+					{
+						name = "untitled6",
+						cType = "Sprite",
+						children = {},
+						params = {
+							image = "czhan_30.png",
+							pos = {
+								x = 37,
+								y = 55
+							}
+						}
+					},
+					{
+						name = "bannerLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 16,
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 37.36,
+								y = 55.27
+							},
+							size = {
+								width = 20,
+								height = 0
+							},
+							text = TR("击杀奖励")
+						}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						children = {},
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 74.61,
+								y = 140.05
+							},
+							text = TR("名字：")
+						}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 22,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 141,
+								y = 140
+							},
+							text = TR("护卫")
+						}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						children = {},
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 270.88,
+								y = 140.47
+							},
+							text = TR("帮派：")
+						}
+					},
+					{
+						name = "guildNameLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 22,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 332.79,
+								y = 140.13
+							}
+						}
+					},
+					{
+						name = "untitled12",
+						cType = "Label",
+						children = {},
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 74.54,
+								y = 109.26
+							},
+							text = TR("等级：")
+						}
+					},
+					{
+						name = "lvLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 22,
+							text = "123",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 140,
+								y = 110
+							}
+						}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						children = {},
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 270.86,
+								y = 110.11
+							},
+							text = TR("战力：")
+						}
+					},
+					{
+						name = "fapLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 22,
+							text = "0",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 335,
+								y = 110
+							}
+						}
+					},
+					{
+						name = "listView",
+						cType = "ListView",
+						children = {
+							{
+								name = "item",
+								cType = "Layout",
+								children = {
+									{
+										name = "card",
+										cType = "CardNode",
+										children = {},
+										params = {
+											scale = 0.8,
+											allowClick = true,
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											initParams = {},
+											pos = {
+												x = 40,
+												y = 5
+											}
+										}
+									},
+									{
+										name = "addSign",
+										cType = "Sprite",
+										children = {
+											{
+												name = "untitled20",
+												cType = "Sprite",
+												children = {},
+												params = {
+													scale = 0.6,
+													image = "c_20.png",
+													pos = {
+														x = 44.69,
+														y = 11.85
+													}
+												}
+											}
+										},
+										params = {
+											image = "czhan_31.png",
+											hide = true,
+											pos = {
+												x = 40,
+												y = 75
+											}
+										}
+									}
+								},
+								custom = {
+									{
+										value = "card-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "addSign-hide",
+										name = "hidePlus",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 80,
+										height = 90
+									}
+								}
+							}
+						},
+						params = {
+							direction = false,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 60,
+								y = 90
+							},
+							size = {
+								width = 400,
+								height = 90
+							}
+						}
+					},
+					{
+						name = "buffLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 22,
+							color = {
+								g = 151,
+								r = 255,
+								b = 74
+							},
+							pos = {
+								x = 215,
+								y = -19.59
+							},
+							text = TR("降低部队攻击60%，防御60%")
+						}
+					}
+				},
+				params = {
+					image = "czhan_29.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = 580
+					}
+				}
+			}
+		},
+		custom = {
+			{
+				value = "figureHero-heroModelId",
+				name = "heroModelId",
+				type = "string"
+			},
+			{
+				value = "figureHero-flipX",
+				name = "flipX",
+				type = "string"
+			},
+			{
+				value = "figureHero-pos",
+				name = "pos",
+				type = "string"
+			}
+		},
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		}
+	},
+	{
+		name = "untitled4",
+		cType = "Button",
+		children = {},
+		params = {
+			image = "czhan_33.png",
+			clickAction = "cbClickScanBattle",
+			zOrder = 1,
+			pos = {
+				x = 289.2,
+				y = 609.61
+			}
+		}
+	},
+	{
+		name = "untitled21",
+		cType = "Button",
+		children = {},
+		params = {
+			image = "c_13.png",
+			clickAction = "onCloseAction",
+			pos = {
+				x = 321.05,
+				y = 99.59
+			},
+			titleText = TR("返 回")
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mTeamsInfo = slot1.teamsInfo
+	slot0.mBattleReport = slot1.battleReport
+	slot0.mAttackTeamInfo = slot0.mTeamsInfo[Enums.CityWarType.eAttack].teamInfo
+	slot0.mAttackTeamUnit = slot0.mTeamsInfo[Enums.CityWarType.eAttack].teamUnit
+	slot0.mDefendTeamInfo = slot0.mTeamsInfo[Enums.CityWarType.eDefend].teamInfo
+	slot0.mDefendTeamUnit = slot0.mTeamsInfo[Enums.CityWarType.eDefend].teamUnit
+	slot0.mChapterId = slot1.chapterId
+	slot0.mCloseCallback = slot1.closeCallback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createSideNode(slot0, Enums.CityWarType.eAttack, slot0.mAttackTeamInfo, slot0.mAttackTeamUnit)
+	slot0.createSideNode(slot0, Enums.CityWarType.eDefend, slot0.mDefendTeamInfo, slot0.mDefendTeamUnit)
+
+	return 
+end
+slot0.createSideNode = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "teamNode", {
+		heroModelId = slot2.HeroModelId,
+		flipX = slot1 == Enums.CityWarType.eDefend,
+		pos = ({
+			[Enums.CityWarType.eAttack] = {
+				bg = "czhan_28.png",
+				bgPos = cc.p(0, 1236),
+				bgAnchor = cc.p(0, 1),
+				figurePos = cc.p(139, 629),
+				infoPos = cc.p(605, 977),
+				infoAnchor = cc.p(1, 0.5)
+			},
+			[Enums.CityWarType.eDefend] = {
+				bg = "czhan_32.png",
+				bgPos = cc.p(640, 816),
+				bgAnchor = cc.p(1, 1),
+				figurePos = cc.p(494, 325),
+				infoPos = cc.p(0, 334),
+				infoAnchor = cc.p(0, 0.5)
+			}
+		})[slot1].figurePos
+	})
+
+	slot0.addChild(slot0, slot5)
+	slot5.spriteBg:setTexture(({
+		[Enums.CityWarType.eAttack] = {
+			bg = "czhan_28.png",
+			bgPos = cc.p(0, 1236),
+			bgAnchor = cc.p(0, 1),
+			figurePos = cc.p(139, 629),
+			infoPos = cc.p(605, 977),
+			infoAnchor = cc.p(1, 0.5)
+		},
+		[Enums.CityWarType.eDefend] = {
+			bg = "czhan_32.png",
+			bgPos = cc.p(640, 816),
+			bgAnchor = cc.p(1, 1),
+			figurePos = cc.p(494, 325),
+			infoPos = cc.p(0, 334),
+			infoAnchor = cc.p(0, 0.5)
+		}
+	})[slot1].bg)
+	slot5.spriteBg:setAnchorPoint(({
+		[Enums.CityWarType.eAttack] = {
+			bg = "czhan_28.png",
+			bgPos = cc.p(0, 1236),
+			bgAnchor = cc.p(0, 1),
+			figurePos = cc.p(139, 629),
+			infoPos = cc.p(605, 977),
+			infoAnchor = cc.p(1, 0.5)
+		},
+		[Enums.CityWarType.eDefend] = {
+			bg = "czhan_32.png",
+			bgPos = cc.p(640, 816),
+			bgAnchor = cc.p(1, 1),
+			figurePos = cc.p(494, 325),
+			infoPos = cc.p(0, 334),
+			infoAnchor = cc.p(0, 0.5)
+		}
+	})[slot1].bgAnchor)
+	slot5.spriteBg:setPosition(({
+		[Enums.CityWarType.eAttack] = {
+			bg = "czhan_28.png",
+			bgPos = cc.p(0, 1236),
+			bgAnchor = cc.p(0, 1),
+			figurePos = cc.p(139, 629),
+			infoPos = cc.p(605, 977),
+			infoAnchor = cc.p(1, 0.5)
+		},
+		[Enums.CityWarType.eDefend] = {
+			bg = "czhan_32.png",
+			bgPos = cc.p(640, 816),
+			bgAnchor = cc.p(1, 1),
+			figurePos = cc.p(494, 325),
+			infoPos = cc.p(0, 334),
+			infoAnchor = cc.p(0, 0.5)
+		}
+	})[slot1].bgPos)
+	slot5.infoBg:setPosition(({
+		[Enums.CityWarType.eAttack] = {
+			bg = "czhan_28.png",
+			bgPos = cc.p(0, 1236),
+			bgAnchor = cc.p(0, 1),
+			figurePos = cc.p(139, 629),
+			infoPos = cc.p(605, 977),
+			infoAnchor = cc.p(1, 0.5)
+		},
+		[Enums.CityWarType.eDefend] = {
+			bg = "czhan_32.png",
+			bgPos = cc.p(640, 816),
+			bgAnchor = cc.p(1, 1),
+			figurePos = cc.p(494, 325),
+			infoPos = cc.p(0, 334),
+			infoAnchor = cc.p(0, 0.5)
+		}
+	})[slot1].infoPos)
+	slot5.infoBg:setAnchorPoint(({
+		[Enums.CityWarType.eAttack] = {
+			bg = "czhan_28.png",
+			bgPos = cc.p(0, 1236),
+			bgAnchor = cc.p(0, 1),
+			figurePos = cc.p(139, 629),
+			infoPos = cc.p(605, 977),
+			infoAnchor = cc.p(1, 0.5)
+		},
+		[Enums.CityWarType.eDefend] = {
+			bg = "czhan_32.png",
+			bgPos = cc.p(640, 816),
+			bgAnchor = cc.p(1, 1),
+			figurePos = cc.p(494, 325),
+			infoPos = cc.p(0, 334),
+			infoAnchor = cc.p(0, 0.5)
+		}
+	})[slot1].infoAnchor)
+	slot5.nameLabel:setString(slot2.PlayerName)
+	slot5.lvLabel:setString(slot2.PlayerLevel)
+	slot5.fapLabel:setString(slot2.Fap)
+	slot5.buffLabel:setString(function (slot0)
+		if slot0 <= 0 then
+			return ""
+		elseif CitywarAttrdecayConfig.items_count < slot0 then
+			return CitywarAttrdecayConfig.items[CitywarAttrdecayConfig.items_count].intro
+		else
+			return CitywarAttrdecayConfig.items[slot0].intro
+		end
+
+		return 
+	end(slot3.mKill))
+
+	if slot3.mIsNPC then
+		slot5.guildNameLabel:setString(TR("%s", PveChapterModel.items[slot0.mChapterId].name))
+		slot5.bannerLabel:setString(TR("击杀奖励"))
+
+		function slot7()
+			slot0 = PlayerAttrObj:getPlayerAttrByName("WorldLv")
+
+			if PlayerAttrObj:getPlayerAttrByName("Lv") < PlayerConfig.items[1].noEnjoyAnyExpAddsLv then
+				return false
+			end
+
+			if slot0 <= slot1 then
+				return false
+			end
+
+			slot2 = slot0 - slot1
+
+			for slot6, slot7 in ipairs(WorldlvExpAddConfig.items) do
+				if slot7.matchWorldLvMin <= slot2 and slot2 <= slot7.matchWorldLvMax then
+					if 0 < slot7.expAddR then
+						return true
+					else
+						return false
+					end
+				end
+			end
+
+			return 
+		end
+
+		for slot13, slot14 in pairs(slot9) do
+			slot5.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot14.resourceId,
+						num = slot14.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				},
+				hidePlus = slot14.resourceId ~= ResourceTypeSub.eExp or not slot7()
+			}))
+		end
+
+		slot10 = CitywarConfig.items[1].baseKillGuildCoin
+
+		slot5.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item", {
+			hidePlus = true,
+			cardInfo = {
+				cardInfo = {
+					modelId = ResourceTypeSub.eGuildExp,
+					num = coinReward
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	else
+		for slot10, slot11 in pairs(slot2.HeroInfo) do
+			slot5.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item", {
+				hidePlus = true,
+				cardInfo = {
+					cardInfo = {
+						modelId = slot11.ModelId
+					}
+				}
+			}))
+		end
+
+		slot5.bannerLabel:setString(TR("队伍阵容"))
+
+		if not slot2.Logo or not slot2.BannerInfo or not slot2.GuildName then
+			slot5.guildNameLabel:setString(TR("无"))
+		else
+			slot5.guildNameLabel:setString(TR("%s", slot2.GuildName))
+		end
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0, slot1)
+	if slot0.mCloseCallback then
+		slot0.mCloseCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbClickScanBattle = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mChapterId,
+			slot0.mBattleReport.BattleReportId
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

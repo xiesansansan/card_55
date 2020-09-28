@@ -1,0 +1,1634 @@
+slot0 = class("SwingMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "homeSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "wxhj_12.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "doorEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					complete = "onDoorEffectFinish",
+					dataFile = "effect_ui_wuxinghuanjing",
+					isPlayAnimation = false,
+					animation = "animation",
+					pos = {
+						x = 693.71,
+						y = 322.47
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "closeDoorSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "wxhj_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "wxhj_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "fireEffect",
+				cType = "Effect",
+				params = {
+					loop = true,
+					dataFile = "effect_ui_wuxinghuanjing",
+					isPlayAnimation = true,
+					animation = "fire",
+					pos = {
+						x = 691.87,
+						y = 325.27
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rotationRoot",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 651.13,
+						y = 269.77
+					}
+				},
+				children = {
+					{
+						name = "circleSprite",
+						cType = "Sprite",
+						params = {
+							image = "wxhj_11.png",
+							pos = {
+								x = 29,
+								y = 18
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "herosEllipse3D",
+				cType = "EllipseLayer3D",
+				params = {
+					delayInit = true,
+					itemContentCallback = "cbItemContentCallback",
+					alignCallback = "cbAlignCallback",
+					offSetY = -0.38,
+					asyncTime = 0.01,
+					totalItemNum = 5,
+					axiasSize = {
+						width = 265,
+						height = 50
+					},
+					pos = {
+						x = 664.25,
+						y = 370.16
+					}
+				},
+				children = {
+					{
+						name = "tempPT",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "typeSp-image",
+								name = "nodeTypePic",
+								type = "string"
+							},
+							{
+								value = "hero-nodeId",
+								name = "nodeId",
+								type = "string"
+							},
+							{
+								value = "untitled38-hide",
+								name = "killed",
+								type = "string"
+							},
+							{
+								value = "untitled34-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "figure-heroModelId",
+								name = "modelId",
+								type = "string"
+							},
+							{
+								value = "figure-index",
+								name = "index",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "figure",
+								cType = "FigureHero",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "integer"
+									}
+								},
+								params = {
+									heroModelId = 12011105,
+									scale = 1.2,
+									pos = {
+										x = 2.5,
+										y = -169.71
+									}
+								},
+								children = {}
+							},
+							{
+								name = "hero",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "nodeId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onClickEllipseCallback",
+									image = "c_pure.png",
+									swallowTouch = false,
+									pos = {
+										x = 8.67,
+										y = -60.26
+									},
+									size = {
+										width = 102.24,
+										height = 252.19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "typeSp",
+								cType = "Sprite",
+								params = {
+									scale = 1.3,
+									image = "xkxx_59.png",
+									pos = {
+										x = -69.13,
+										y = 44.6
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled33",
+								cType = "Sprite",
+								params = {
+									image = "wxhj_7.png",
+									pos = {
+										x = -47.1,
+										y = -51.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									pos = {
+										x = -62.35,
+										y = -43.86
+									},
+									size = {
+										width = 30,
+										height = 100
+									},
+									text = TR("杨过")
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "Sprite",
+								params = {
+									childName = "killedIcon",
+									image = "wxhj_10.png",
+									hide = true,
+									pos = {
+										x = 10.83,
+										y = -44.7
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "tempJY",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled20-heroModelId",
+								name = "modelId",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "maskLayer",
+		cType = "Layer",
+		params = {
+			posApt = 1,
+			sizeApt = 1,
+			color = {
+				g = 0,
+				a = 0,
+				r = 0,
+				b = 0
+			},
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseBtnAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Sprite",
+						params = {
+							image = "wxhj_6.png",
+							pos = {
+								x = 35,
+								y = 6.07
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled30",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleAction",
+					pos = {
+						x = 277.76,
+						y = -25.93
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "endLabel",
+				cType = "Label",
+				params = {
+					fontSize = 31,
+					hide = true,
+					color = {
+						g = 44,
+						r = 244,
+						b = 0
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 13.13,
+						y = 61.55
+					},
+					text = TR("全通关")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled7",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled8",
+				cType = "TopResourceNode",
+				params = {
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled31",
+				cType = "Button",
+				params = {
+					image = "wxhj_9.png",
+					clickAction = "onRankBtnAction",
+					pos = {
+						x = -85.67,
+						y = -107.52
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled32",
+				cType = "Button",
+				params = {
+					image = "wxhj_8.png",
+					clickAction = "onPracticeBtnAction",
+					pos = {
+						x = -192.84,
+						y = -108.17
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled54",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled51",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 0,
+						y = -67.39
+					}
+				},
+				children = {
+					{
+						name = "floor",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 143.6,
+								y = 16.58
+							},
+							text = TR("第一层")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "limit",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					pos = {
+						x = -24.89,
+						y = 18.42
+					},
+					text = TR("条件限制：必须上阵2个刀职业的侠客")
+				},
+				children = {}
+			},
+			{
+				name = "fapNum",
+				cType = "Label",
+				params = {
+					text = "0",
+					charCount = 12,
+					fontName = "c_81.png",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -170.88,
+						y = 52.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fap",
+				cType = "Sprite",
+				params = {
+					scale = 0.72,
+					image = "c_101.png",
+					pos = {
+						x = -220.94,
+						y = 51.21
+					}
+				},
+				children = {}
+			},
+			{
+				name = "resetNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 32,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "resetTimes",
+						cType = "Label",
+						params = {
+							pos = {
+								x = -1062.77,
+								y = 59.19
+							},
+							text = TR("剩余2次")
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Button",
+						params = {
+							image = "wxhj_2.png",
+							clickAction = "onAginBtnAction",
+							childName = "resetBtn",
+							pos = {
+								x = -1056.74,
+								y = 111.39
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "sweepNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Button",
+						params = {
+							image = "wxhj_3.png",
+							clickAction = "onSweepBtnAction",
+							childName = "sweepBtn",
+							pos = {
+								x = -890.11,
+								y = 111.48
+							}
+						},
+						children = {
+							{
+								name = "untitled52",
+								cType = "RedDot",
+								params = {
+									subKey = "ReadNum",
+									hide = true,
+									moduleId = 11001
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "sweepTimes",
+						cType = "Label",
+						params = {
+							text = "0/0",
+							pos = {
+								x = -896.64,
+								y = 56.58
+							}
+						},
+						children = {}
+					},
+					{
+						name = "timeLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							pos = {
+								x = -987.77,
+								y = 23.06
+							},
+							text = TR("恢复：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled29",
+				cType = "Scale9Sprite",
+				params = {
+					image = "wxhj_4.png",
+					pos = {
+						x = -203.63,
+						y = 127
+					},
+					size = {
+						width = 399.17,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled50",
+				cType = "Sprite",
+				params = {
+					image = "xksl_9.png",
+					pos = {
+						x = -366.91,
+						y = 124.09
+					}
+				},
+				children = {
+					{
+						name = "untitled49",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							pos = {
+								x = -1.57,
+								y = 45.29
+							},
+							size = {
+								width = 1,
+								height = 0
+							},
+							text = TR("首通奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "challengeBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onFightBtnAction",
+					pos = {
+						x = -79.82,
+						y = 123.6
+					},
+					titleText = TR("挑战")
+				},
+				children = {}
+			},
+			{
+				name = "bossBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					hide = true,
+					clickAction = "onBossAction",
+					pos = {
+						x = -79.82,
+						y = 123.6
+					},
+					titleText = TR("破阵")
+				},
+				children = {}
+			},
+			{
+				name = "nextBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "nodeId",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_27.png",
+					hide = true,
+					clickAction = "cbClickNextAction",
+					pos = {
+						x = -79.82,
+						y = 123.6
+					},
+					titleText = TR("前往下层")
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -336.39,
+						y = 123.49
+					},
+					size = {
+						width = 180.6,
+						height = 77.71
+					}
+				},
+				children = {
+					{
+						name = "itemReward",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 68.39,
+								height = 64.09
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 34.74,
+										y = 31.57
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					hide = true,
+					pos = {
+						x = -241.95,
+						y = 123.14
+					},
+					text = TR("首通奖励已领取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot2 = {
+	zf_1 = {
+		cc.p(80, 600),
+		cc.p(320, 720),
+		cc.p(550, 600),
+		cc.p(470, 400),
+		cc.p(150, 400)
+	},
+	zf_2 = {
+		cc.p(470, 730),
+		cc.p(290, 730),
+		cc.p(85, 600),
+		cc.p(285, 420),
+		cc.p(525, 420)
+	},
+	zf_3 = {
+		cc.p(175, 735),
+		cc.p(355, 735),
+		cc.p(565, 600),
+		cc.p(355, 420),
+		cc.p(120, 420)
+	},
+	zf_4 = {
+		cc.p(140, 695),
+		cc.p(320, 695),
+		cc.p(510, 600),
+		cc.p(465, 400),
+		cc.p(170, 400)
+	},
+	zf_5 = {
+		cc.p(80, 635),
+		cc.p(310, 750),
+		cc.p(570, 635),
+		cc.p(490, 360),
+		cc.p(140, 360)
+	}
+}
+slot3 = {
+	"xkxx_57.png",
+	"xkxx_59.png",
+	"xkxx_61.png",
+	"xkxx_63.png",
+	"xkxx_65.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.heroNodeList = {}
+	slot0.mCurrIndex = 0
+	slot0.mInit = true
+	slot0.AnimationIndex = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.rotationRoot:setRotation3D(cc.vec3(-71.5, 0, 0))
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.mPTNodeData = {}
+	slot0.mJYNodeData = {}
+
+	for slot4, slot5 in pairs(SwingNodeModel.items[slot0.mSwingInfo.CurrentChapterId]) do
+		if slot5.nodeType ~= 0 then
+			table.insert(slot0.mPTNodeData, slot5)
+		else
+			table.insert(slot0.mJYNodeData, slot5)
+		end
+	end
+
+	table.sort(slot0.mPTNodeData, function (slot0, slot1)
+		return slot0.modelId < slot1.modelId
+	end)
+
+	if not slot0.mSwingInfo.NormalNodePass then
+		slot1 = {}
+		slot2 = {}
+		slot3 = false
+		slot4 = slot0.mSwingInfo.PassNodeIdList[#slot0.mSwingInfo.PassNodeIdList]
+
+		for slot8, slot9 in ipairs(slot0.mPTNodeData) do
+			if slot9.modelId == slot4 and not slot3 then
+				slot3 = true
+				slot2[slot9.modelId] = true
+
+				table.insert(slot1, slot9)
+			elseif slot3 == true then
+				slot2[slot9.modelId] = true
+
+				table.insert(slot1, slot9)
+			end
+		end
+
+		for slot8 = 1, #slot0.mPTNodeData, 1 do
+			if not slot2[slot0.mPTNodeData[slot8].modelId] then
+				table.insert(slot1, slot0.mPTNodeData[slot8])
+			end
+		end
+
+		slot0.mPTNodeData = slot1
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(SwingNodeNpcRelation.items[slot0.mJYNodeData[1].modelId]) do
+		table.insert(slot1, slot6.heroModelId)
+	end
+
+	slot0.mJYNodeData[1].heroList = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshItem = function (slot0, slot1)
+	slot2 = false
+
+	if slot0.mSwingInfo.PassNodeIdList ~= "" then
+		for slot6, slot7 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+			if slot7 == slot1.modelId then
+				slot2 = true
+
+				break
+			end
+		end
+	end
+
+	if slot0.mSwingInfo.NormalNodePass then
+		slot1.modelId = slot0.mJYNodeData[1].modelId
+		slot3 = false
+
+		for slot7, slot8 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+			if slot8 == slot0.mJYNodeData[1].modelId then
+				slot3 = true
+
+				break
+			end
+		end
+
+		if slot3 then
+			slot1.killedIcon:setVisible(true)
+		else
+			slot1.killedIcon:setVisible(false)
+		end
+	end
+
+	slot3 = false
+
+	if slot0.mSwingInfo.DrawNodeIdList ~= "" then
+		for slot7, slot8 in pairs(slot0.mSwingInfo.DrawNodeIdList) do
+			if slot8 == slot1.modelId then
+				slot3 = true
+
+				break
+			end
+		end
+	end
+
+	slot1.received = slot3
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.floor:setString(TR("第%s层", Utility.getChineseNum(slot0.mSwingInfo.CurrentChapterId - 10)))
+
+	slot0.posData = slot0[SwingChapterModel.items[slot0.mSwingInfo.CurrentChapterId].chapterNamePic]
+	slot3 = false
+	slot4 = false
+
+	if slot0.mSwingInfo.NormalNodePass then
+		slot3 = true
+		slot5 = false
+
+		for slot9, slot10 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+			if slot10 == slot0.mJYNodeData[1].modelId then
+				slot5 = true
+
+				break
+			end
+		end
+
+		if slot5 then
+			slot4 = true
+		end
+	end
+
+	slot0.bossBtn:setVisible(false)
+	slot0.nextBtn:setVisible(false)
+	slot0.endLabel:setVisible(false)
+
+	if slot0.mSwingInfo.End then
+		slot0.sweepNode:setVisible(false)
+		slot0.resetNode:setVisible(false)
+		slot0.bossBtn:setVisible(false)
+		slot0.challenge:setVisible(false)
+		slot0.endLabel:setVisible(true)
+	elseif slot3 then
+		if slot4 then
+			slot0.nextBtn:setVisible(true)
+			slot0.challengeBtn:setVisible(false)
+		else
+			slot0.bossBtn:setVisible(true)
+			slot0.challengeBtn:setVisible(false)
+		end
+	else
+		slot0.challengeBtn:setVisible(true)
+	end
+
+	slot0.refreshEllipseUI(slot0)
+	slot0.resetTimes:setString(TR("(%s / %s)", slot0.mSwingInfo.ResetChallengeNum, SwingConfig.items[1].resetChallengeNum))
+	slot0.refreshSweepInfo(slot0)
+
+	return 
+end
+slot0.enterActions = function (slot0, slot1, slot2)
+	slot1.setOpacity(slot1, 0)
+	Utility.performWithDelay(slot0, function ()
+		slot0:runAction(cc.FadeIn:create(0.5))
+
+		return 
+	end, slot2)
+
+	return 
+end
+slot0.JYenterActions = function (slot0, slot1)
+	slot1.setOpacity(slot1, 0)
+	slot1.setPositionY(slot1, 600)
+	slot1.runAction(slot1, cc.Spawn:create(cc.FadeIn:create(0.8), cc.MoveTo:create(0.6, cc.p(0, 0))))
+
+	return 
+end
+slot0.refreshSweepInfo = function (slot0)
+	slot0.sweepTimes:setString(TR("(%s / %s)", slot0.mSwingInfo.ReadNum, SwingConfig.items[1].maxReadNum))
+	slot0.timeLabel:stopAllActions()
+
+	if SwingConfig.items[1].maxReadNum <= slot0.mSwingInfo.ReadNum then
+		slot0.timeLabel:stopAllActions()
+		slot0.timeLabel:setVisible(false)
+	else
+		Utility.schedule(slot0.timeLabel, function ()
+			if 0 < slot0.mSwingInfo.RecoverTime - Player:getCurrentTime() then
+				slot0.timeLabel:setString(TR("恢复: %s%s", "#FFE748", MqTime.formatAsHour(slot0)))
+			else
+				slot0.timeLabel:setString(TR(""))
+				slot0.timeLabel:stopAllActions()
+				slot0:requestGetInfo()
+			end
+
+			return 
+		end, 1)
+	end
+
+	return 
+end
+slot0.refreshInfo = function (slot0, slot1, slot2)
+	slot0.nodeModelInfo = nil
+
+	if slot0.mSwingInfo.NormalNodePass then
+		slot0.nodeModelInfo = slot0.mJYNodeData[1]
+	else
+		for slot6, slot7 in pairs(slot0.heroNodeList) do
+			if slot6 == slot1 then
+				slot0.nodeModelInfo = SwingNodeModel.items[slot0.mSwingInfo.CurrentChapterId][slot7.hero.nodeId]
+
+				break
+			end
+		end
+	end
+
+	if slot0.nodeModelInfo then
+		slot0.listView:removeAllItems()
+
+		if slot2 then
+			slot0.tipLabel:setVisible(true)
+		else
+			slot0.tipLabel:setVisible(false)
+			slot0.listView:setContentSize(cc.size(#Utility.analysisStrResList(slot0.nodeModelInfo.outPutReward)*100, 100))
+
+			for slot7, slot8 in pairs(slot3) do
+				slot0.createLayoutTemplateNode(slot0, "itemReward").card:setCardData({
+					modelId = slot8.resourceId,
+					num = slot8.num
+				}, {
+					Enums.CardShowAttr.eNum
+				})
+				slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "itemReward"))
+			end
+		end
+
+		slot0.fapNum:setString(TR("%s", Utility.numberWithUnit(slot0.nodeModelInfo.fap)))
+
+		slot3 = ""
+		slot4 = {
+			"掌",
+			"剑",
+			"力",
+			"气",
+			"技"
+		}
+
+		if slot0.nodeModelInfo.nodeType ~= 0 then
+			slot3 = TR("条件限制：必须上阵%s%s个%s%s职业的侠客", "#37ff40", slot0.nodeModelInfo.arrangeNum, slot4[slot0.nodeModelInfo.nodeType], "#fff8ea")
+		end
+
+		slot0.limit:setString(TR("%s", slot3))
+
+		slot5 = slot0.mPTNodeData[slot1]
+		slot6 = false
+
+		if slot0.mSwingInfo.PassNodeIdList ~= "" then
+			for slot10, slot11 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+				if slot11 == slot5.modelId then
+					slot0.challengeBtn:setEnabled(false)
+
+					slot6 = true
+
+					break
+				end
+			end
+		end
+
+		if not slot6 then
+			slot0.challengeBtn:setEnabled(true)
+		end
+	end
+
+	return 
+end
+slot0.refreshEllipseUI = function (slot0)
+	slot0.heroNodeList = {}
+	slot1 = #slot0.mPTNodeData
+
+	if slot0.herosEllipse3D and not tolua.isnull(slot0.herosEllipse3D) then
+		slot0.herosEllipse3D:removeFromParent()
+
+		slot0.herosEllipse3D = nil
+	end
+
+	slot0.createUISubTree(slot0, "herosEllipse3D", function (slot0, slot1)
+		if slot0.name == "herosEllipse3D" then
+			slot1.totalItemNum = #slot0.mPTNodeData
+			slot1.fixAngle = slot1 == 2 and 70
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.cbItemContentCallback = function (slot0, slot1, slot2)
+	slot3 = slot0.mPTNodeData[slot2]
+	slot4 = true
+
+	if slot0.mSwingInfo.PassNodeIdList ~= "" then
+		for slot8, slot9 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+			if slot9 == slot3.modelId then
+				slot4 = false
+
+				break
+			end
+		end
+	end
+
+	slot5 = slot0.createLayoutTemplateNode(slot0, "tempPT", {
+		modelId = slot3.npcModelId,
+		nodeId = slot3.modelId,
+		nodeTypePic = slot0[slot3.nodeType],
+		killed = slot4,
+		name = slot3.name,
+		index = slot2
+	})
+	slot5.modelId = slot3.modelId
+
+	slot1.addChild(slot1, slot5)
+	slot0.refreshItem(slot0, slot5)
+
+	slot6 = slot2*0.15 + 0.1
+	slot0.heroNodeList[slot2] = slot5
+	slot1.updateFunc = function (slot0)
+		if slot0 == 1 then
+			slot1.circleSprite:setRotation(-((slot0 - 1)*slot1.herosEllipse3D.config._eachItemAngle - slot1.herosEllipse3D._curRotationAngle + slot1.herosEllipse3D.config._fixAngle) + 20)
+		end
+
+		return 
+	end
+
+	return 
+end
+slot0.cbAlignCallback = function (slot0, slot1)
+	slot0.refreshInfo(slot0, slot1, slot0.heroNodeList[slot1].received)
+
+	slot0.mNodeId = slot0.mPTNodeData[slot1].modelId
+	slot0.mCenterIndex = slot1
+
+	if slot0.mInit then
+		slot0.mCenterIndex = slot0.initCheck(slot0, slot1)
+		slot0.mInit = false
+
+		Utility.performWithDelay(slot0, function ()
+			slot0.herosEllipse3D:moveToIndexItem(slot0.herosEllipse3D)
+
+			return 
+		end, 0.5)
+	end
+
+	for slot6, slot7 in ipairs(slot0.heroNodeList) do
+		slot0.refreshGray(slot0, slot6)
+	end
+
+	return 
+end
+slot0.refreshGray = function (slot0, slot1)
+	if slot1 ~= slot0.mCenterIndex then
+		slot0.heroNodeList[slot1].figure.spriteFrame:setColor(cc.c3b(143, 143, 143))
+	else
+		slot0.heroNodeList[slot1].figure.spriteFrame:setColor(cc.c3b(255, 255, 255))
+	end
+
+	return 
+end
+slot0.initCheck = function (slot0, slot1)
+	slot2 = slot1
+	slot3 = slot0.mPTNodeData[slot1]
+	slot4 = false
+
+	if slot0.mSwingInfo.PassNodeIdList ~= "" then
+		for slot8, slot9 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+			if slot9 == slot3.modelId then
+				slot4 = true
+
+				break
+			end
+		end
+	end
+
+	if slot4 then
+		slot5 = (slot1 < #slot0.mPTNodeData and slot1 + 1) or 1
+
+		while slot5 ~= slot1 do
+			slot6 = slot0.mPTNodeData[slot5]
+			slot7 = false
+
+			if slot0.mSwingInfo.PassNodeIdList ~= "" then
+				for slot11, slot12 in pairs(slot0.mSwingInfo.PassNodeIdList) do
+					if slot12 == slot6.modelId then
+						slot7 = true
+
+						break
+					end
+				end
+			end
+
+			if slot7 then
+				if slot5 < #slot0.mPTNodeData then
+					slot5 = slot5 + 1
+				else
+					slot5 = 1
+				end
+			else
+				slot2 = slot5
+
+				break
+			end
+		end
+	end
+
+	return slot2
+end
+slot0.onClickEllipseCallback = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mPTNodeData) do
+		if slot6.modelId == slot1.nodeId then
+			slot0.herosEllipse3D:moveToIndexItem(slot5)
+		end
+	end
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbClickNextAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshNode",
+		moduleName = "Swing",
+		methodData = {
+			slot0.mJYNodeData[1].modelId
+		},
+		successCallback = function (slot0)
+			slot0.nextBtn:setVisible(false)
+
+			slot0.mSwingInfo = {}
+			slot0.mSwingInfo = slot0.SwingInfo
+			slot0.mSwingRankList = {}
+			slot0.mSwingRankList = slot0.SwingRankList
+
+			Utility.performWithDelay(slot0.closeDoorSprite, function ()
+				slot0.closeDoorSprite:setOpacity(0)
+
+				return 
+			end, 0.5)
+			MqAudio.playEffect("wuxinghuanjing.mp3")
+			slot0.doorEffect:playAnimation("animation", 1)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRankBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "challenge.SwingRankLayer",
+		data = {
+			rankList = slot0.mSwingRankList.RankingList,
+			playerRank = slot0.mSwingRankList.PlayerRanking.RankingId,
+			chapterId = slot0.mSwingInfo.CurrentChapterId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onAginBtnAction = function (slot0, slot1)
+	if slot0.mSwingInfo.ResetChallengeNum <= 0 then
+		ui.showFlashView(TR("今日重置次数已用完"))
+	elseif slot0.mSwingInfo.CurrentChapterId == 11 and slot0.mSwingInfo.PassNodeIdList == "" then
+		ui.showFlashView(TR("当前已经在最初状态，不用重置"))
+	else
+		ui.showMessageBox({
+			text = TR("重置后重新挑战本层，可尝试重新分配出战侠客，通关本关卡。"),
+			titleText = TR("重置"),
+			msgBoxParams = {
+				okText = TR("重置")
+			},
+			okCallback = function ()
+				slot0:socketRequest({
+					methodName = "Reset",
+					moduleName = "Swing",
+					methodData = {},
+					successCallback = function (slot0)
+						slot0.mSwingInfo = {}
+						slot0.mSwingInfo = slot0.SwingInfo
+
+						slot0:dealData()
+
+						return 
+					end
+				})
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onSweepBtnAction = function (slot0, slot1)
+	if slot0.mSwingInfo.ReadNum <= 0 then
+		slot2 = 1
+
+		if Resource.isEnough(Utility.analysisStrResList(SwingBuyNumRelation.items[(SwingBuyNumRelation.items_count > slot0.mSwingInfo.ReadBuyNum or SwingBuyNumRelation.items_count) and slot0.mSwingInfo.ReadBuyNum + 1].needDiamond)[1].resourceId, Utility.analysisStrResList(SwingBuyNumRelation.items[(SwingBuyNumRelation.items_count > slot0.mSwingInfo.ReadBuyNum or SwingBuyNumRelation.items_count) and slot0.mSwingInfo.ReadBuyNum + 1].needDiamond)[1].num) then
+			ui.showMessageBox({
+				text = TR("是否花费{%s}%s购买一组(%s次)快速挑战次数？", Resource.getDaibiImg(slot3.resourceId), slot3.num, SwingConfig.items[1].buyGetReadNum),
+				okCallback = function ()
+					if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].swingBuyReadNum <= slot0.mSwingInfo.ReadBuyNum then
+						ui.showFlashView(TR("已达每日购买上限，提升会员等级可提升每日购买上限。"))
+					else
+						slot0:requestBuyReadNum()
+					end
+
+					return 
+				end
+			})
+		end
+	elseif slot0.mSwingInfo.CurrentChapterId <= 11 then
+		ui.showFlashView(TR("还未通过第一重"))
+	else
+		slot0.requestRead(slot0)
+	end
+
+	return 
+end
+slot0.onBossAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < SwingChapterModel.items[slot0.mSwingInfo.CurrentChapterId].needPlayerLv then
+		ui.showFlashView(TR("等级达到%s开启", slot2.needPlayerLv))
+	else
+		ui.showCampReady({
+			noNeedVit = true,
+			isSwingJYfight = true,
+			isPve = true,
+			callModelSub = ModuleSub.eSwing,
+			minCount = slot0.mJYNodeData[1].arrangeNum,
+			alreadyGotoWork = slot0.mSwingInfo.FightHeroIdList,
+			mercenaryList = MercenaryObj:getMercenaryIdByModuleId(ModuleSub.eSwing),
+			callback = function (slot0)
+				slot0:requestGetNodeFightInfo(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onFightBtnAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < SwingChapterModel.items[slot0.mSwingInfo.CurrentChapterId].needPlayerLv then
+		ui.showFlashView(TR("等级达到%s开启", slot2.needPlayerLv))
+	else
+		table.remove(slot3, slot0.nodeModelInfo.nodeType)
+		ui.showCampReady({
+			isPve = true,
+			noNeedVit = true,
+			callModelSub = ModuleSub.eSwing,
+			limitCount = slot0.nodeModelInfo.arrangeNum,
+			ignoreProfessionList = {
+				1,
+				2,
+				3,
+				4,
+				5
+			},
+			initSelectTag = slot0.nodeModelInfo.nodeType,
+			callback = function (slot0)
+				slot0:requestGetPTNodeFightInfo(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onPracticeBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		name = "player.PlayerMainLayer",
+		data = {
+			defaultModuleId = ModuleSub.ePractice
+		}
+	})
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、五行幻境每一层分为普通破境和精英破境；"),
+			TR("2、普通破境需要成功战胜每层的五个对手；"),
+			TR("3、各个对手都有限制上阵职业、上阵人数的要求；"),
+			TR("4、当五个普通对手都成功挑战后，可以进行精英破境；"),
+			TR("5、已经在普通破境上阵的侠客无法在精英破境再次出战；"),
+			TR("6、精英破境胜利后可以获得层数奖励，同时前往下一层。")
+		}
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Swing",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSwingInfo = {}
+			slot0.mSwingInfo = slot0.SwingInfo
+			slot0.mSwingRankList = {}
+			slot0.mSwingRankList = slot0.SwingRankList
+
+			slot0:dealData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onDoorEffectFinish = function (slot0)
+	slot0.maskLayer:setAnchorPoint(cc.p(0.5, 0.5))
+	slot0.maskLayer:runAction(cc.Sequence:create({
+		cc.DelayTime:create(1.7),
+		cc.FadeIn:create(1),
+		cc.FadeOut:create(1)
+	}))
+	slot0.herosEllipse3D:setVisible(false)
+	Utility.performWithDelay(slot0.closeDoorSprite, function ()
+		slot0.closeDoorSprite:runAction(cc.FadeIn:create(1))
+
+		return 
+	end, 2.7)
+	Utility.performWithDelay(slot0.bgSprite, function ()
+		slot0:dealData()
+
+		return 
+	end, 3.7)
+
+	return 
+end
+slot0.requestGetNodeFightInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetNodeFightInfo",
+		moduleName = "Swing",
+		methodData = {
+			slot0.mSwingInfo.CurrentChapterId,
+			slot0.mJYNodeData[1].modelId,
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				battleMap = "effect_zhandou_wuxinghuanjing",
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					swingId = slot0.mSwingInfo.CurrentChapterId,
+					nodeId = slot0.mJYNodeData[1].modelId
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetPTNodeFightInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetNodeFightInfo",
+		moduleName = "Swing",
+		methodData = {
+			slot0.mSwingInfo.CurrentChapterId,
+			slot0.mNodeId,
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				battleMap = "effect_zhandou_wuxinghuanjing",
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					swingId = slot0.mSwingInfo.CurrentChapterId,
+					nodeId = slot0.mNodeId
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRead = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Read",
+		moduleName = "Swing",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mSwingInfo = {}
+			slot0.mSwingInfo = slot0.SwingInfo
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshSweepInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyReadNum = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyReadNum",
+		moduleName = "Swing",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mSwingInfo = {}
+			slot0.mSwingInfo = slot0.SwingInfo
+
+			ui.showFlashView(TR("购买成功"))
+			slot0:refreshSweepInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

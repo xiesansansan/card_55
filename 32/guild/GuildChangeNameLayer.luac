@@ -1,0 +1,520 @@
+slot0 = class("GuildChangeNameLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮派改名")
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 422.77,
+						y = 251.99
+					},
+					size = {
+						width = 788,
+						height = 440
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 103.24,
+						y = 411.51
+					},
+					text = TR("帮派名称")
+				},
+				children = {}
+			},
+			{
+				name = "nameEditBox",
+				cType = "EditBox",
+				params = {
+					image = "c_41.png",
+					placeHolder = TR("请输入帮派名字"),
+					pos = {
+						x = 299.12,
+						y = 410.43
+					},
+					size = {
+						width = 282,
+						height = 40.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 103.78,
+						y = 335.59
+					},
+					text = TR("旗帜样式")
+				},
+				children = {}
+			},
+			{
+				name = "flagList",
+				cType = "ListView",
+				params = {
+					direction = false,
+					bounce = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 153.7,
+						y = 309.5
+					},
+					size = {
+						width = 646.65,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "flagLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "flagBtn-image",
+								name = "flagImage",
+								type = "string"
+							},
+							{
+								value = "flagBtn-flagTag",
+								name = "flagTag",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "flagBtn",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "flagTag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "bp_12.png",
+									clickAction = "onFlagAction",
+									scale = 0.65,
+									pos = {
+										x = 45.24,
+										y = 46.12
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 103.58,
+						y = 242.09
+					},
+					text = TR("旗帜颜色")
+				},
+				children = {}
+			},
+			{
+				name = "colorList",
+				cType = "ListView",
+				params = {
+					direction = false,
+					bounce = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 155.3,
+						y = 234.9
+					},
+					size = {
+						width = 602.83,
+						height = 80
+					}
+				},
+				children = {
+					{
+						name = "colorLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled12-image",
+								name = "flagColor",
+								type = "string"
+							},
+							{
+								value = "colorBtn-colorTag",
+								name = "colorTag",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 70,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "bp_17.png",
+									pos = {
+										x = 33.29,
+										y = 39.71
+									}
+								},
+								children = {}
+							},
+							{
+								name = "lightSprite2",
+								cType = "Sprite",
+								params = {
+									image = "bp_24.png",
+									hide = true,
+									pos = {
+										x = 33.93,
+										y = 39.6
+									}
+								},
+								children = {}
+							},
+							{
+								name = "colorBtn",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "colorTag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_58.png",
+									clickAction = "onColorAction",
+									pos = {
+										x = 35,
+										y = 40
+									},
+									size = {
+										width = 70,
+										height = 80
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled15",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 102.43,
+						y = 175.32
+					},
+					text = TR("帮派旗号")
+				},
+				children = {}
+			},
+			{
+				name = "titleEditBox",
+				cType = "EditBox",
+				params = {
+					image = "c_41.png",
+					pos = {
+						x = 203.62,
+						y = 170.79
+					},
+					size = {
+						width = 99.11,
+						height = 40.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 339.8,
+						y = 171.49
+					},
+					text = TR("输入一个字旗号")
+				},
+				children = {}
+			},
+			{
+				name = "priceResLabel1",
+				cType = "ResLabel",
+				params = {
+					modelId = 1111,
+					hide = true,
+					num = 1000,
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 380.73,
+						y = 113.15
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onConfirmAction",
+					pos = {
+						x = 412.47,
+						y = 67.79
+					},
+					titleText = TR("确  定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallBack = slot1.callBack
+	slot0.mFlagTag = tonumber(string.splitBySep(PlayerAttrObj:getPlayerAttrByName("GuildInfo").Flag or "", ",")[1]) or 0
+	slot0.mColorTag = tonumber(string.splitBySep(PlayerAttrObj.getPlayerAttrByName("GuildInfo").Flag or "", ",")[2]) or 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in ipairs(Enums.GuildFlagTabel) do
+		slot0.flagList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "flagLayout", {
+			flagImage = slot5.image,
+			flagTag = slot4
+		}))
+
+		if slot4 == slot0.mFlagTag then
+			slot6.flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+		end
+	end
+
+	for slot4, slot5 in ipairs(Enums.GuildFlagColorPic) do
+		slot0.colorList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "colorLayout", {
+			flagColor = slot5.image,
+			colorTag = slot4
+		}))
+
+		if slot4 == slot0.mColorTag then
+			slot6.lightSprite2:setVisible(true)
+		end
+	end
+
+	slot0.titleEditBox.editbox:registerScriptEditBoxHandler(function (slot0)
+		if slot0 == "ended" or slot0 == "return" then
+			slot1 = string.isValided(slot0.titleEditBox:getText()) and slot1
+
+			return 
+		end
+	end)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.priceResLabel1:setVisible(true)
+		slot0.priceResLabel1:setTexture(slot8)
+		slot0.priceResLabel1:setString(slot7.num)
+	end
+
+	return 
+end
+slot0.onFlagAction = function (slot0, slot1)
+	slot0.mFlagTag = slot1.flagTag
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot7.flagBtn:setColor(cc.c3b(255, 255, 255))
+
+		if slot7.flagBtn.flagTag == slot1.flagTag then
+			slot7.flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+		end
+	end
+
+	return 
+end
+slot0.onColorAction = function (slot0, slot1)
+	slot0.mColorTag = slot1.colorTag
+	slot3 = slot0.flagList:getItems()
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot8.lightSprite2:setVisible(false)
+
+		if slot8.colorBtn.colorTag == slot1.colorTag then
+			slot8.lightSprite2:setVisible(true)
+
+			if 0 < slot0.mFlagTag then
+				slot3[slot0.mFlagTag].flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+			end
+		end
+	end
+
+	return 
+end
+slot0.onConfirmAction = function (slot0, slot1)
+	if slot0.nameEditBox:getText() == "" then
+		ui.showFlashView(TR("请输入帮派名字！"))
+
+		return 
+	end
+
+	if not string.isValided(slot2) then
+		ui.showFlashView(TR("帮派名字不符合要求！"))
+
+		return 
+	end
+
+	if 6 < string.utf8len(slot2) then
+		ui.showFlashView(TR("帮派名字不能超过6个字"))
+
+		return 
+	end
+
+	if slot0.mFlagTag <= 0 then
+		ui.showFlashView(TR("请选择旗帜样式！"))
+
+		return 
+	end
+
+	if slot0.mColorTag <= 0 then
+		ui.showFlashView(TR("请选择旗帜颜色！"))
+
+		return 
+	end
+
+	if slot0.titleEditBox:getText() == "" then
+		ui.showFlashView(TR("请选择旗帜文字！"))
+
+		return 
+	end
+
+	if 1 < string.utf8len(slot3) then
+		ui.showFlashView(TR("旗帜文字只能是1个字"))
+
+		return 
+	end
+
+	if not string.isValided(slot3) then
+		ui.showFlashView(TR("旗帜文字不符合要求！"))
+
+		return 
+	end
+
+	slot4 = slot0.mFlagTag .. "," .. slot0.mColorTag
+
+	if PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildName == slot2 and slot0.mFlagTag == tonumber(string.splitBySep(slot5.Flag, ",")[1]) and slot0.mColorTag == tonumber(string.splitBySep(slot5.Flag, ",")[2]) and PlayerAttrObj:getPlayerAttrByName("GuildInfo").Logo == slot3 then
+		ui.showFlashView(TR("修改信息未变化！"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateGuildBasicInfo",
+		moduleName = "Guild",
+		methodData = {
+			slot2,
+			slot4,
+			slot3
+		},
+		successCallback = function (slot0)
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			ui.showFlashView(TR("更改信息成功"))
+			EventAuto:postEvent(EventDefine.eRefreshAllLabel)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

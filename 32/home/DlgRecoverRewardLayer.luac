@@ -1,0 +1,315 @@
+slot0 = class("DlgRecoverRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "fb_29.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "touchAreaNode",
+				cType = "Node",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 319,
+						y = 283.5
+					},
+					size = {
+						width = 450,
+						height = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "chapterNum",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 222.83,
+						y = 370.53
+					}
+				},
+				children = {}
+			},
+			{
+				name = "proBg",
+				cType = "Sprite",
+				params = {
+					image = "jyt_3.png",
+					pos = {
+						x = 295,
+						y = 266.5
+					}
+				},
+				children = {
+					{
+						name = "proBar",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_4.png",
+							pos = {
+								x = 165,
+								y = 10.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "proLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "5/10",
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 165,
+								y = -9.5
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "gotoBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onGoBtnClickAction",
+					pos = {
+						x = 317,
+						y = 100
+					},
+					titleText = TR("前 往")
+				},
+				children = {}
+			},
+			{
+				name = "getBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onGetBtnClickAction",
+					pos = {
+						x = 317,
+						y = 100
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 328,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterId = slot1 or {}.chapterId
+	slot0.mChpterInfo = slot1 or {}.chapterInfo
+	slot0.mCallback = slot1 or {}.callback
+
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		beganEvent = function (slot0, slot1)
+			slot0.mBeginPos = slot0.getLocation(slot0)
+
+			return true
+		end,
+		endedEvent = function (slot0, slot1)
+			if not slot0.bgSprite then
+				return 
+			end
+
+			if not cc.rectContainsPoint(cc.rect(0, 0, slot0.touchAreaNode:getContentSize().width, slot0.touchAreaNode.getContentSize().height), slot0.touchAreaNode:convertToNodeSpace(slot0.getLocation(slot0))) then
+				slot0:onGoBtnClickAction()
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.setChapterNum(slot0, slot0.mChapterId - 10)
+
+	slot2 = {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot9 = UIWrap.newControl("CardNode", {
+			scale = 1.5,
+			initParams = {
+				cardInfo = {
+					modelId = slot8.resourceId,
+					num = slot8.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			},
+			pos = cc.p((slot7 - 1)*100 + 170, 190)
+		})
+
+		slot0.bgSprite:addChild(slot9)
+		slot9.setVisible(slot9, false)
+		table.insert(slot2, slot9)
+	end
+
+	slot0.getBtn:setTouchEnabled(false)
+	slot0.bgSprite:setScale(0)
+	slot0.bgSprite:runAction(cc.Sequence:create(cc.ScaleTo:create(0.1, display.minScale*1.1), cc.ScaleTo:create(0.1, display.minScale*1), cc.DelayTime:create(0.3), cc.CallFunc:create(function ()
+		for slot3, slot4 in ipairs(ipairs) do
+			slot4.runAction(slot4, cc.Sequence:create(cc.DelayTime:create((slot3 - 1)*0.2), cc.Show:create(), cc.ScaleTo:create(0.1, 1), cc.CallFunc:create(function ()
+				if slot0 == #slot1 then
+					slot2.getBtn:setTouchEnabled(true)
+					slot2:executeGuide()
+				end
+
+				return 
+			end)))
+		end
+
+		return 
+	end)))
+
+	return 
+end
+slot0.setChapterNum = function (slot0, slot1)
+	slot0.getBtn:setVisible(slot0.mChpterInfo.FirstPass and not slot0.mChpterInfo.FirstDraw)
+
+	if slot0.mChpterInfo.FirstPass and slot0.mChpterInfo.FirstDraw then
+		slot0.gotoBtn:setVisible(true)
+		slot0.gotoBtn:setTitleText(TR("确 定"))
+	else
+		slot0.gotoBtn:setVisible(not slot0.mChpterInfo.FirstPass)
+	end
+
+	slot0.chapterNum:setString(slot1)
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(PveNodeModel.items[slot0.mChapterId]) do
+		table.insert(slot3, slot8)
+	end
+
+	slot0.proBar:setMaxValue(slot5)
+	slot0.proBar:setCurrValue((slot0.mChpterInfo.FirstPassNodeIdList and #slot0.mChpterInfo.FirstPassNodeIdList) or 0)
+	slot0.proLabel:setString(TR("%s/%s", (slot0.mChpterInfo.FirstPassNodeIdList and #slot0.mChpterInfo.FirstPassNodeIdList) or 0, #slot3))
+	slot0.proBg:setVisible(not slot0.mChpterInfo.FirstPass)
+
+	return 
+end
+slot0.onGetBtnClickAction = function (slot0, slot1)
+	slot0.requestDrawChapterFirstReward(slot0)
+
+	return 
+end
+slot0.onGoBtnClickAction = function (slot0, slot1)
+	if slot0.mChpterInfo.FirstPass and not slot0.mChpterInfo.FirstDraw and slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.checkShowRecoverTargetLayer = function (slot0)
+	return 
+end
+slot0.requestDrawChapterFirstReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChapterFirstReward",
+		moduleName = "PveChapter",
+		methodData = {
+			slot0.mChapterId
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			PveObj:modifyOneChapterInfo(slot0.PveChapterInfo)
+			slot0:setVisible(false)
+
+			slot1, slot2 = Guide.manager:getGuideInfo()
+
+			if slot2 == 11322 then
+				display.getRunningScene():jumpToNavigate(Enums.Navigate.eHero)
+
+				return 
+			end
+
+			ui.showFlashReward({
+				moveTime = 0.5,
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList,
+				callback = function ()
+					if slot0.mCallback then
+						slot0.mCallback()
+					end
+
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[10503] = {
+			clickNode = slot0.getBtn
+		},
+		[20703] = {
+			clickNode = slot0.getBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

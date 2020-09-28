@@ -1,0 +1,400 @@
+slot0 = class("StrongerLvUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled6",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 870,
+				height = 550
+			},
+			titleText = TR("倚天剑")
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "wybq_27.png",
+					pos = {
+						x = 210.28,
+						y = 263.54
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "ClippingNode",
+				params = {
+					alpha = 1,
+					pos = {
+						x = 39.61,
+						y = 43.95
+					},
+					size = {
+						width = 343.16,
+						height = 440.25
+					}
+				},
+				children = {
+					{
+						name = "effect",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_yitianjian",
+							pos = {
+								x = 171.58,
+								y = 220.13
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					pos = {
+						x = 459.83,
+						y = 469.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 180,
+					image = "c_36.png",
+					pos = {
+						x = 770,
+						y = 468.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 616.67,
+						y = 470.51
+					},
+					text = TR("全体侠客加成")
+				},
+				children = {}
+			},
+			{
+				name = "attrListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 392.56,
+						y = 146.54
+					},
+					size = {
+						width = 440,
+						height = 310
+					}
+				},
+				children = {
+					{
+						name = "attrItem",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled16-text",
+								name = "attrStr",
+								type = "string"
+							},
+							{
+								value = "untitled16-color",
+								name = "color",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 440,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "c_5.png",
+									childName = "starSprite",
+									pos = {
+										x = 20,
+										y = 15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "attrLabel",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.76,
+										y = 26
+									},
+									size = {
+										width = 400,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "c_77.png",
+					pos = {
+						x = 612.3,
+						y = 129.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 616.66,
+						y = 122.17
+					}
+				},
+				children = {}
+			},
+			{
+				name = "upLvBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onLvUpBtn",
+					pos = {
+						x = 612.86,
+						y = 58.57
+					},
+					titleText = TR("升 星")
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "RedDot",
+						params = {
+							subKey = "YitianjianLv",
+							moduleId = 22201
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "useResLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 614.49,
+						y = 99.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "starNode",
+				cType = "StarNode",
+				params = {
+					exStarImg = "c_89.png",
+					starLevel = 8,
+					exStarLevel = 9,
+					starImg = "c_5.png",
+					pos = {
+						x = 211.15,
+						y = 408.14
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mStarLv = slot1.starLv
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if slot0.mStarLv == 0 then
+		slot0.effect:playAnimation("tielian")
+	else
+		slot0.effect:playAnimation("xunhuan2")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshStars(slot0)
+
+	return 
+end
+slot0.refreshStars = function (slot0)
+	slot0.attrListView:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "attrItem", {
+			attrStr = Utility.analysisStrAttrToFromat(slot6.attrUp, "%s+%s", "；"),
+			color = (slot6.starLv <= slot0.mStarLv and cc.c3b(139, 168, 87)) or cc.c3b(37, 37, 37)
+		})
+		slot12 = slot8.getContentSize(slot8).width
+
+		slot8.setContentSize(slot8, slot0)
+
+		slot15, slot12 = slot8.attrLabel:getPosition()
+
+		slot8.attrLabel:setPosition(cc.size, cc.size(slot12, ((slot8.attrLabel:getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height) + 20).height - 10)
+
+		slot17, slot14 = slot8.starSprite:getPosition()
+
+		slot8.starSprite:setPosition((slot8.attrLabel.getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height, cc.size(slot12, ((slot8.attrLabel.getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height) + 20).height/2 + 10)
+
+		if slot0.mStarLv < slot6.starLv then
+			slot8.starSprite:setGray(true)
+		end
+
+		if slot7 and slot7 ~= "" then
+			slot0.attrListView:pushBackCustomItem(slot8)
+		end
+	end
+
+	if slot1[slot0.mStarLv + 1] then
+		slot3 = {}
+		slot4 = PlayerAttrObj:getPlayerAttrByName("YtjExp")
+
+		for slot8, slot9 in pairs(slot2) do
+			table.insert(slot3, string.format("%s{%s}%d/%d", (Resource.isEnough(slot9.resourceId, slot9.num, false) and "#258711") or "#ea2c00", Resource.getDaibiImg(slot9.resourceId), slot4, slot9.num))
+		end
+
+		slot0.useResLabel:setString(TR("剑气: %s", table.concat(slot3, "  ")))
+	else
+		slot0.useResLabel:setString("")
+	end
+
+	slot0.upLvBtn:setTitleText(TR("升 星"))
+
+	if slot0.mStarLv == 0 then
+		slot0.upLvBtn:setTitleText(TR("激活"))
+	end
+
+	if not slot1[slot0.mStarLv + 1] then
+		slot0.useResLabel:setString("")
+		slot0.upLvBtn:setEnabled(false)
+		slot0.upLvBtn:setTitleText(TR("已满星"))
+	end
+
+	slot0.starNode:setStarLevel(slot0.mStarLv, 9)
+
+	return 
+end
+slot0.onLvUpBtn = function (slot0)
+	if not StrongYitianjianRelation.items[slot0.mStarLv + 1] then
+		ui.showFlashView(TR("已满星"))
+
+		return 
+	end
+
+	for slot5, slot6 in pairs(slot1) do
+		if not Resource.isEnough(slot6.resourceId, slot6.num) then
+			return 
+		end
+	end
+
+	slot0.requestStarLevelUp(slot0)
+
+	return 
+end
+slot0.requestStarLevelUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "YtjLvUp",
+		moduleName = "StrongInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			if slot0.mStarLv == 0 then
+				slot0.effect:playAnimation("jihuo", 1)
+				slot0.effect:registerLuaHandler("complete", function ()
+					slot0.effect:playAnimation("xunhuan2")
+
+					return 
+				end)
+			else
+				slot0.effect:playAnimation("xunhuan2")
+			end
+
+			slot0.mStarLv = slot0.StrongInfo.YitianjianLv
+
+			slot0:refreshStars()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mStarLv)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

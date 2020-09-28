@@ -1,0 +1,820 @@
+slot0 = class("EquipLvUpViewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 15,
+				y = 0
+			},
+			size = {
+				width = 490,
+				height = 512
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 89,
+						y = 312
+					},
+					text = TR("【强化等级】")
+				},
+				children = {}
+			},
+			{
+				name = "remainLabel1",
+				cType = "Label",
+				custom = {
+					{
+						value = 1,
+						name = "remain1",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 89,
+						y = 277
+					},
+					text = TR("部位防御")
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				params = {
+					image = "c_23.png",
+					pos = {
+						x = 259.56,
+						y = 273.67
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oldLvLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "10/106",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 183,
+						y = 312
+					}
+				},
+				children = {}
+			},
+			{
+				name = "newLvLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "11/106",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 352,
+						y = 312
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oldAttrLabel1",
+				cType = "Label",
+				custom = {
+					{
+						value = 1,
+						name = "attrmain",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					text = "80",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 179,
+						y = 277
+					}
+				},
+				children = {}
+			},
+			{
+				name = "newAttrLabel1",
+				cType = "Label",
+				custom = {
+					{
+						value = 2,
+						name = "attrmain",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					text = "90",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 355,
+						y = 277
+					}
+				},
+				children = {}
+			},
+			{
+				name = "upOneBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_19.png",
+					clickAction = "onRequestLvUp",
+					pos = {
+						x = 229.5,
+						y = 40
+					},
+					titleText = TR("强 化")
+				},
+				children = {}
+			},
+			{
+				name = "remainLabel3",
+				cType = "Label",
+				custom = {
+					{
+						value = 3,
+						name = "remain1",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 89,
+						y = 242
+					},
+					text = TR("部位防御")
+				},
+				children = {}
+			},
+			{
+				name = "oldAttrLabel2",
+				cType = "Label",
+				custom = {
+					{
+						value = 3,
+						name = "attrmain",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					text = "80",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 178,
+						y = 242
+					}
+				},
+				children = {}
+			},
+			{
+				name = "newAttrLabel2",
+				cType = "Label",
+				custom = {
+					{
+						value = 4,
+						name = "attrmain",
+						type = "integer"
+					}
+				},
+				params = {
+					fontSize = 20,
+					text = "80",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 355,
+						y = 242
+					}
+				},
+				children = {}
+			},
+			{
+				name = "equipCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 88.18,
+						y = 425.83
+					}
+				},
+				children = {}
+			},
+			{
+				name = "equipName",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 150.5,
+						y = 454.6
+					},
+					text = TR("青龙炼月刀")
+				},
+				children = {}
+			},
+			{
+				name = "qualityColorLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 154.77,
+						y = 408.7
+					},
+					text = TR("品质：绿品")
+				},
+				children = {}
+			},
+			{
+				name = "untitled32",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_10.png",
+					pos = {
+						x = 221.37,
+						y = 355.87
+					},
+					size = {
+						width = 408,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled33",
+						cType = "Sprite",
+						params = {
+							image = "zj_36.png",
+							pos = {
+								x = 288,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Sprite",
+						params = {
+							image = "zj_36.png",
+							pos = {
+								x = 126,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 204,
+								y = 17
+							},
+							text = TR("部位强化")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled28",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_10.png",
+					pos = {
+						x = 221.37,
+						y = 192.87
+					},
+					size = {
+						width = 408,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled29",
+						cType = "Sprite",
+						params = {
+							image = "zj_36.png",
+							pos = {
+								x = 288,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled30",
+						cType = "Sprite",
+						params = {
+							image = "zj_36.png",
+							pos = {
+								x = 126,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 204,
+								y = 17
+							},
+							text = TR("强化消耗")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "xiaohaoCard2",
+				cType = "CardNode",
+				params = {
+					scale = 0.8,
+					allowClick = true,
+					pos = {
+						x = 306.68,
+						y = 127
+					}
+				},
+				children = {}
+			},
+			{
+				name = "xiaohaoCard1",
+				cType = "CardNode",
+				params = {
+					scale = 0.8,
+					allowClick = true,
+					pos = {
+						x = 79.97,
+						y = 127
+					}
+				},
+				children = {}
+			},
+			{
+				name = "xiaohaoLabel1",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 123.93,
+						y = 124.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "xiaohaoLabel2",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 348.93,
+						y = 124.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "qualityLimitTipLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 222.25,
+						y = 123.33
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	eGem = 0,
+	eLvUp = 1,
+	eRefine = 2,
+	eQuality = 3
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.equipInfo = nil
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealData(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.equipAttrLabelList = {
+		{},
+		{}
+	}
+	slot0.equipRemainList = slot0.getCustomChildren(slot0, slot0.bgNode, "remain1")
+	slot1 = 1
+
+	for slot6, slot7 in ipairs(slot2) do
+		table.insert(slot0.equipAttrLabelList[slot1], slot7)
+
+		if slot6%2 == 0 then
+			slot1 = slot1 + 1
+		end
+	end
+
+	return 
+end
+slot0.refreshInfo = function (slot0, slot1)
+	if not slot1 then
+		return 
+	end
+
+	if slot0.redDot then
+		slot0.redDot:removeFromParent()
+
+		slot0.redDot = nil
+	end
+
+	slot0.redDot = UIWrap.newControl("RedDot", {
+		moduleId = ModuleSub.ePositionPoint,
+		subKey = slot1.PositionId .. "_CanLvUp"
+	})
+
+	slot0.upOneBtn:addChild(slot0.redDot)
+
+	slot0.equipInfo = slot1
+	slot2 = {}
+	slot3 = EquipLvupRelation.items[slot0.equipInfo.PositionId]
+	slot4 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if slot1.EquipModelId ~= 0 then
+		slot5 = Resource.getModelInfo(slot1.EquipModelId).quality
+
+		for slot9, slot10 in ipairs(slot3) do
+			if slot10.needQuality <= slot5 then
+				table.insert(slot2, slot10)
+			end
+		end
+	end
+
+	slot6 = #slot2 <= slot1.LvUp
+	slot7 = nil
+	slot9 = (((#slot2 < slot1.LvUp and #slot2) or slot1.LvUp) ~= 0 and Utility.analysisStrAttrList(slot3[(#slot2 < slot1.LvUp and #slot2) or slot1.LvUp].addAttrStr)) or {}
+	slot10 = (not (#slot3 <= slot1.LvUp) and Utility.analysisStrAttrList(slot3[slot1.LvUp + 1].addAttrStr)) or {}
+
+	for slot14, slot15 in ipairs(slot0.equipRemainList) do
+		slot15.setString(slot15, TR("【部位%s】", (slot9[slot14] and FightAttrTypeName[slot9[slot14].fightattr]) or (slot10[slot14] and FightAttrTypeName[slot10[slot14].fightattr]) or nil or ""))
+		slot15.setVisible(slot15, ((slot9[slot14] and FightAttrTypeName[slot9[slot14].fightattr]) or (slot10[slot14] and FightAttrTypeName[slot10[slot14].fightattr]) or nil) ~= nil)
+	end
+
+	slot0.oldLvLabel:setString(string.format("%s/%s", slot1.LvUp, #slot2))
+	slot0.newLvLabel:setString((not slot5 and string.format("%s/%s", slot1.LvUp + 1, #slot2)) or TR("最高等级"))
+
+	for slot14, slot15 in ipairs(slot0.equipAttrLabelList) do
+		slot15[1]:setString((slot9[slot14] and string.format("%s", slot9[slot14].value)) or 0)
+		slot15[2]:setString((not slot5 and slot10[slot14] and string.format("%s", slot10[slot14].value)) or TR("最高等级"))
+
+		for slot19, slot20 in ipairs(slot15) do
+			slot20.setVisible(slot20, slot9[slot14] ~= nil or slot10[slot14] ~= nil)
+		end
+	end
+
+	if not slot5 then
+		slot0.costAttr = Utility.analysisStrResList(slot3[slot1.LvUp + 1].lvUpNeedStr)
+
+		slot0.xiaohaoCard1:setCardData({
+			modelId = slot0.costAttr[1].resourceId,
+			num = slot0.costAttr[1].num
+		}, {
+			Enums.CardShowAttr.eName,
+			Enums.CardShowAttr.eNum
+		})
+
+		slot11 = "#313131"
+
+		if Resource.getCount(slot0.costAttr[1].resourceId) < slot0.costAttr[1].num then
+			slot11 = "#c04141"
+		end
+
+		slot0.xiaohaoLabel1:setString(TR("%s%s%s/%s", slot11, Utility.numberWithUnit(Resource.getCount(slot0.costAttr[1].resourceId)), "#313131", Utility.numberWithUnit(slot0.costAttr[1].num)))
+
+		slot12 = "#313131"
+
+		if Resource.getCount(slot0.costAttr[2].resourceId) < slot0.costAttr[2].num then
+			slot12 = "#ea2c00"
+		end
+
+		slot0.xiaohaoCard2:setCardData({
+			modelId = slot0.costAttr[2].resourceId,
+			num = slot0.costAttr[2].num
+		}, {
+			Enums.CardShowAttr.eName,
+			Enums.CardShowAttr.eNum
+		})
+		slot0.xiaohaoLabel2:setString(TR("%s%s%s/%s", slot12, Utility.numberWithUnit(Resource.getCount(slot0.costAttr[2].resourceId)), "#313131", Utility.numberWithUnit(slot0.costAttr[2].num)))
+	end
+
+	slot0.xiaohaoLabel1:setVisible(not slot5)
+	slot0.xiaohaoLabel2:setVisible(not slot5)
+	slot0.upOneBtn:setEnabled(slot1.LvUp < #slot2)
+	slot0.xiaohaoCard1:setVisible(true)
+	slot0.xiaohaoCard2:setVisible(true)
+	slot0.qualityLimitTipLabel:setVisible(false)
+
+	if slot6 and not slot5 then
+		slot0.newLvLabel:setString(TR("最高等级"))
+
+		for slot14, slot15 in ipairs(slot0.equipAttrLabelList) do
+			slot15[1]:setString((slot9[slot14] and string.format("%s", slot9[slot14].value)) or 0)
+			slot15[2]:setString(TR("最高等级"))
+
+			for slot19, slot20 in ipairs(slot15) do
+				slot20.setVisible(slot20, slot9[slot14] ~= nil or slot10[slot14] ~= nil)
+			end
+		end
+
+		slot0.xiaohaoLabel1:setVisible(false)
+		slot0.xiaohaoLabel2:setVisible(false)
+		slot0.xiaohaoCard1:setVisible(false)
+		slot0.xiaohaoCard2:setVisible(false)
+
+		if slot1.EquipModelId == 0 then
+			slot0.qualityLimitTipLabel:setString(TR("穿戴装备之后才能强化"))
+		else
+			slot0.qualityLimitTipLabel:setString(TR("装备品质达到%s才能继续强化", Utility.getColorName(Resource.getQualityColorLv(slot3[slot1.LvUp + 1].needQuality))))
+		end
+
+		slot0.qualityLimitTipLabel:setVisible(true)
+	end
+
+	slot11, slot12, slot13 = nil
+	slot14 = slot1.PositionId + 1300
+
+	if slot1.EquipModelId == 0 then
+		slot11 = TR("部位：%s", ResourceTypeSubName[slot14])
+		slot12 = ""
+	else
+		slot11 = TR("%s", EquipModel.items[slot1.EquipModelId].name)
+
+		slot0.equipName:setColor(slot15)
+
+		slot12 = TR("品质：%s", Utility.getColorName(EquipModel.items[slot1.EquipModelId].colorLv))
+	end
+
+	slot0.equipName:setString(slot11)
+	slot0.qualityColorLabel:setString(slot12)
+
+	if slot1.EquipModelId == 0 then
+		slot0.equipCard:setAllowClick(false)
+		slot0.equipCard:setCardData({
+			modelId = 0
+		})
+		slot0.equipCard:setExtraImg(({
+			"zj_28.png",
+			"zj_29.png",
+			"zj_30.png",
+			"zj_31.png",
+			"zj_32.png",
+			"zj_33.png",
+			"zj_34.png",
+			"zj_35.png"
+		})[slot0.equipInfo.PositionId], 1)
+	else
+		slot0.equipCard:setAllowClick(true)
+		slot0.equipCard:setCardData({
+			modelId = slot1.EquipModelId
+		})
+	end
+
+	return 
+end
+slot0.calcLv = function (slot0, slot1)
+	slot2 = 1024
+
+	for slot6, slot7 in ipairs(SlotEquipObj:getList()) do
+		if slot7.LvUp < slot2 then
+			slot2 = slot7.LvUp
+		end
+	end
+
+	if slot2 ~= 0 then
+		for slot6, slot7 in ipairs(slot1) do
+			if slot2 < slot7 then
+				slot2 = (1 < slot6 and slot1[slot6 - 1]) or 0
+
+				break
+			end
+		end
+	end
+
+	print("calced_lv is:", slot2)
+
+	return slot2
+end
+slot0.isUp = function (slot0, slot1)
+	slot3 = table.keys(slot2)
+
+	table.sort(slot3)
+	SlotEquipObj:modifyItem(slot1)
+
+	slot6 = table.indexof(slot3, slot0.calcLv(slot0, slot3))
+
+	if slot0.calcLv(slot0, slot3) < slot0.calcLv(slot0, slot3) and slot6 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.EquipResonanceHintLayer",
+			data = {
+				oldLv = slot4,
+				newLv = slot5,
+				configType = slot0.eLvUp
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onRequestLvUp = function (slot0, slot1)
+	if slot0.equipInfo and slot0.equipInfo.EquipModelId ~= 0 then
+		slot3 = Resource.getModelInfo(slot0.equipInfo.EquipModelId)
+
+		if EquipLvupRelation.items[slot0.equipInfo.PositionId][slot0.equipInfo.LvUp + 1] then
+			if slot3.quality < slot2.needQuality then
+				ui.showFlashView(TR("装备品级不足，无法强化"))
+
+				return 
+			end
+		else
+			ui.showFlashView(TR("已经强化至满级"))
+
+			return 
+		end
+	else
+		ui.showFlashView(TR("上阵装备后才能强化"))
+
+		return 
+	end
+
+	if not Resource.isEnough(slot0.costAttr[1].resourceId, slot0.costAttr[1].num*slot1.tag) then
+		return 
+	end
+
+	if not Resource.isEnough(slot0.costAttr[2].resourceId, slot0.costAttr[2].num*slot1.tag) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "LvUp",
+		moduleName = "EquipPosition",
+		methodData = {
+			slot0.equipInfo.PositionId,
+			slot1.tag
+		},
+		successCallback = function (slot0)
+			slot0:isUp(slot0)
+			slot0.callback(2, true)
+			slot0:refreshInfo(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

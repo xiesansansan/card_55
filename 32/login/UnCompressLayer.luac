@@ -1,0 +1,185 @@
+slot0 = class("UnCompressLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "proLabel1",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					outlineSize = 2,
+					text = "0%",
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = -264.91
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progress1",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "gcjz_3.png",
+					bgImage = "gcjz_2.png",
+					pos = {
+						x = 0,
+						y = -282.67
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "gcjz_1.png",
+					pos = {
+						x = 0,
+						y = -285
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 245,
+						r = 233,
+						b = 246
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = -303.2
+					},
+					text = TR("首次启动游戏需要解压资源。解压过程不会消耗网络流量，请耐心等待~")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.params = slot1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	slot0.unzip(slot0)
+
+	return 
+end
+slot0.unzip = function (slot0, slot1)
+	slot2 = MQUnCompress:getInstance()
+	slot3 = slot1 or "lz4_multi"
+
+	if device.platform == "android" then
+		slot2.start(slot2, cc.FileUtils:getInstance():fullPathForFilename("res/res.lz4"), "Download/", slot3)
+	else
+		slot2.start(slot2, cc.FileUtils:getInstance():fullPathForFilename("res/res.lz4"), "Download/", slot3)
+	end
+
+	slot0.onUpdate(slot0, function (slot0)
+		if not slot0:isProgressing() then
+			if slot0:isFinish() then
+				Utility.performWithDelay(Utility.performWithDelay, function ()
+					if slot0.geterrno then
+						slot0 = slot0:geterrno()
+					end
+
+					slot1 = ""
+
+					ui.showMessageBox({
+						titleText = TR("提示"),
+						text = (slot0 == 28 and "解压失败，存储空间不足！还需空间" .. string.format("%.2f", (slot0:getCurrentFileTotalSize() - slot0:getCurrentFileFinishSize())/1024/1024) .. "G，请清理后重试。") or (slot0 == nil and "解压失败，请重试！" .. slot0:getError()) or "解压失败，请重试！" .. slot0:getError() .. " " .. slot0,
+						okCallback = function ()
+							slot0:release()
+							slot0:unzip()
+
+							return 
+						end,
+						msgBoxParams = {
+							needTouchClose = false,
+							hideCloseButton = true
+						}
+					})
+
+					return 
+				end, 1)
+				Utility.performWithDelay:unscheduleUpdate()
+
+				return 
+			end
+		elseif slot0:isFinish() then
+			Utility.newCpInvoke(105)
+			Utility.newCpInvoke:unscheduleUpdate()
+			Utility.performWithDelay(Utility.performWithDelay, function ()
+				slot0:release()
+
+				if slot1.params.callback then
+					slot1.params.callback()
+				end
+
+				return 
+			end, 1)
+
+			return 
+		else
+			slot1.progress1:setCurrValue(slot0:getFinishFileCount())
+			slot1.progress1.setCurrValue.progress1:setMaxValue(slot0:getTotalFileCount())
+			slot1.progress1.setCurrValue.progress1.setMaxValue.proLabel1:setString("" .. math.floor(slot0:getFinishFileCount()/slot0:getTotalFileCount()*100) .. "%")
+		end
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

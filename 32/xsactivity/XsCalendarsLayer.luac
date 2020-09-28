@@ -1,0 +1,336 @@
+slot0 = class("XsCalendarsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 826,
+				height = 504
+			},
+			titleText = TR("玩法总览")
+		},
+		children = {
+			{
+				name = "untitled190",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 414.12,
+						y = 246.85
+					},
+					size = {
+						width = 776,
+						height = 434
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 115,
+					pos = {
+						x = 413.77,
+						y = 247.24
+					},
+					size = {
+						width = 750,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "gridNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 153.06,
+								y = 284.18
+							}
+						},
+						children = {
+							{
+								name = "untitled191",
+								cType = "Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 36.72,
+										y = 33.05
+									}
+								},
+								children = {}
+							},
+							{
+								name = "image",
+								cType = "Sprite",
+								params = {
+									image = "tb_gn_38.png",
+									pos = {
+										x = -89.9,
+										y = 32.71
+									}
+								},
+								children = {}
+							},
+							{
+								name = "name",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -40.12,
+										y = 61.81
+									},
+									text = TR("活动名称")
+								},
+								children = {}
+							},
+							{
+								name = "lv",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -40.12,
+										y = 24.81
+									},
+									text = TR("开启等级")
+								},
+								children = {}
+							},
+							{
+								name = "time",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -40.12,
+										y = -0.19
+									},
+									text = TR("活动时间")
+								},
+								children = {}
+							},
+							{
+								name = "isKuaFu",
+								cType = "Sprite",
+								params = {
+									image = "xswfrk_19.png",
+									pos = {
+										x = 164.31,
+										y = 56.07
+									}
+								},
+								children = {}
+							},
+							{
+								name = "btn",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									pos = {
+										x = -93.58,
+										y = 30.21
+									},
+									size = {
+										width = 90,
+										height = 90
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	[5200] = {
+		TR("1.每日12点开启魔教入侵，12:05结束后发排行奖励"),
+		TR("2.防守并击杀魔教成员可获得珍惜道具与积分"),
+		TR("3.击杀高品质的魔教成员可获得更好的道具和更多的积分"),
+		TR("4.通过积分进行排名，积分越高排名越前，相同积分则先到的排在前面")
+	},
+	[12000] = {
+		TR("1.挑战四绝开放时间为每天18:00-18:40；"),
+		TR("2.挑战后侠客会阵亡，可以使用回魂丹或元宝复活；"),
+		TR("3.玩家在本轮活动中造成累计伤害达到要求即可领取对应奖励，并在活动结束后根据累计伤害排名发放奖励；"),
+		TR("4.最后一击击杀的玩家可获得最后一击奖励。"),
+		TR("5.伤害排行奖励将在挑战四绝活动当天20:00发放，排行榜将在下轮活动开始前30分钟重置。"),
+		TR("6.挂机可离开此界面")
+	},
+	[23800] = {
+		TR("1、开服七天后的周五将开启决战武林，其后每周5将会开启一次；"),
+		TR("2、活动开启将选取本服前四名的帮派与其他服帮派根据胜率匹配成玩法战场，战场内会有4个帮派参加；"),
+		TR("3、活动将在周5的19:00开启，活动持续1小时，20:00结束；"),
+		TR("4、玩法开始时，四个帮派设定了300名城防守卫，最终的胜利条件会根据城防守卫剩余数量进行判断；"),
+		TR("5、如若活动期间城防守卫为0，则纳入被击败状态，被淘汰出局；"),
+		TR("6、满足参与条件的玩家，可以雇佣死侍帮助战斗；"),
+		TR("7、死侍的使用和派遣侠客队伍相同，与之遭遇的队伍将与之同归于尽；"),
+		TR("8、玩法设置了战意值，战意值会影响对应帮派出战的队伍造成的伤害；"),
+		TR("9、战意值初始设定为50%，提高战意值将提高所在帮派伤害，反之降低；"),
+		TR("10、不满足参与决战武林的帮派玩家无法参与决战武林玩法；"),
+		TR("11、城战战斗将设置3条进攻或者防守路线，玩家需要选择对应的进攻或者防守路线，"),
+		TR("12、线路相同的玩家队伍遭遇才发发生战斗；"),
+		TR("13、队伍战败后需要等待对应时间的复活时间；"),
+		TR("14、玩家也可以消耗九花玉露丸复活战败的侠客队伍；"),
+		TR("15、侠客训练到紫色品质以上才可上阵。")
+	},
+	[16000] = {
+		TR("1.守卫光明顶周2周4周6 10:00-22:00开启，开启时间内可随时进行布阵战斗。"),
+		TR("2.玩家需要在四条防线（开服前7天内为三条）上布置防守阵容，正式开启后将每隔一段时间刷出敌军与之战斗。"),
+		TR("3.布置阵容后可准备开启，有三十秒准备时间进行调整确认，正式开启后将不能再调整阵容。"),
+		TR("4.若布置的防守队伍战斗失败，每个敌军会对主城造成1点伤害，守住10分钟或者主城血量为0时，挑战结束。"),
+		TR("5.击败敌军可获得1点积分，击败随机精英可获得10点积分。"),
+		TR("6.战斗过程中会触发随机事件，不同事件可获得不同的特殊效果。"),
+		TR("7.玩家挑战结束后根据防守成绩记录当日的排行榜，每晚0点根据当日排名结算发放奖励。"),
+		TR("8.大侠可选择好友助战的侠客帮助防守。"),
+		TR("     "),
+		TR("特殊事件"),
+		TR("敌将来袭：随机位置刷出一个强力敌人，每击败一次后可获得10点积分并且我方获得攻防加成，若未守住对城池造成5点伤害。"),
+		TR("豪侠相助-独孤求败：2分钟内击败敌军不衰减属性。"),
+		TR("豪侠相助-达摩：清除所有队伍当前属性衰减。"),
+		TR("豪侠相助-黄裳：2分钟内,击败1个敌人额外获得1元宝。")
+	},
+	[22600] = {
+		TR("1、玩家每日可进行3次福地修炼；"),
+		TR("2、修炼一共有两个场所，镖局内占有前10层的玩家，可参与“少林藏经阁”进行修炼，“少林藏经阁”的奖励高于“终南山古墓”；"),
+		TR("3、每天中午12点-2点，修炼可以获得双倍金币奖励；"),
+		TR("4、每日上阵的队伍只可参与一次修炼和抢夺。"),
+		TR("5、修炼结束后会有1分钟结算时间，需要等待1分钟后才可再次修炼。")
+	},
+	[23500] = {
+		TR("1、战江湖为10v10战场， 玩家最多可以同时5人组队进入战场"),
+		TR("2、战场中心的八卦阵为主战场，旁边有4个神符点"),
+		TR("3、占领八卦阵可以获得积分，每10秒获得一次积分。占领人数越多，获得积分越多"),
+		TR("4、周围有的4个神兽点每一段时间就可以刷新4种不同的神符（血量恢复，攻防属性翻倍，击杀积分翻倍，直接获得积分）"),
+		TR("5、本方的出生点每隔一段时间就会刷新3个五毒散（下场战斗开始时随机消灭敌人一个角色）"),
+		TR("6、首先达到2500分的队伍获得胜利"),
+		TR("7、每场比赛只能设置5支队伍，队伍死亡无法复活"),
+		TR("8、每周结算一次奖励，周一凌晨零点30分发放个人排行奖励"),
+		TR("9、勾选离线挂机将自动进行单人匹配、战斗、结算、再匹配，直至活动结束（挂机开始后，即便退出游戏，挂机也将继续进行）"),
+		TR("10、挂机进入匹配后，角色会自行向八卦阵移动，但不会携带任何道具，也不会主动进攻")
+	},
+	[23400] = {
+		TR("1、战江湖夺旗为6v6战场，玩家好友组队匹配人数必须为偶数"),
+		TR("2、战场上共分布有五个资源点，资源点上没有对方玩家即可占领，占领后必须有一名玩家在点上防守"),
+		TR("3、占领资源点可以获得积分，根据一方占领资源点数量每秒获得的积分不同，占领数量越多，获得积分越多"),
+		TR("4、首先达到2000分的队伍获得胜利"),
+		TR("5、每场比赛只能设置5支队伍，队伍死亡无法复活"),
+		TR("6、每周结算一次奖励，周一凌晨零点30分发放个人排行奖励"),
+		TR("7、勾选离线挂机将自动进行单人匹配、战斗、结算、再匹配，直至活动结束（挂机开始后，即便退出游戏，挂机也将继续进行）"),
+		TR("8、挂机进入匹配后，角色会自行向资源点移动，但不会携带任何道具，也不会主动进攻")
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.showList = slot1.showList
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dataConfig(slot0)
+
+	return 
+end
+slot0.dataConfig = function (slot0)
+	slot0.mWanfaConfigList = clone(TimedPlayConfig.items)
+	slot0.wanfaList = {}
+
+	if type(slot0.showList) == "table" then
+		for slot4, slot5 in pairs(slot0.showList) do
+			if TimedPlayConfig.items[slot4] then
+				table.insert(slot0.wanfaList, TimedPlayConfig.items[slot4])
+			end
+		end
+	else
+		for slot4, slot5 in pairs(slot0.mWanfaConfigList) do
+			table.insert(slot0.wanfaList, slot5)
+		end
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mGridView:setItemNum(#slot0.wanfaList)
+	slot0.mGridView:reloadData()
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if next(slot0.wanfaList) then
+		slot5 = slot0.createLayoutTemplateNode(slot0, "gridNode")
+
+		slot5.name:setString(TR("%s", slot0.wanfaList[slot2].name))
+		slot5.lv:setString(TR("等级: %s", ModuleSubConfig.items[slot0.wanfaList[slot2].Id].openLv))
+		slot5.time:setString(TR("时间: %s", slot0.wanfaList[slot2].opentime))
+		slot5.isKuaFu:setVisible(slot0.wanfaList[slot2].ifCrossService == 1)
+		slot5.image:setTexture(TR("%s.png", slot4.smallPic))
+		slot5.btn:setClickAction(function ()
+			ui.showRuleMsg({
+				textList = slot0[slot1.Id]
+			})
+
+			return 
+		end)
+		slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5 - 37, slot1.getContentSize(slot1).height*0.5 - 40)
+		slot1.addChild(slot1, slot5)
+	end
+
+	return 
+end
+
+return slot0

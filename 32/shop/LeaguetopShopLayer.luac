@@ -1,0 +1,541 @@
+slot0 = class("LeaguetopShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled20",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					isRichText = true,
+					pos = {
+						x = 0,
+						y = -261.89
+					},
+					text = TR("参与决战武林玩法即可获得")
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 115,
+					pos = {
+						x = 70,
+						y = -82
+					},
+					size = {
+						width = 800,
+						height = 230
+					}
+				},
+				children = {
+					{
+						name = "gridNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled5-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled6-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled7-modelId",
+								name = "costResId",
+								type = "string"
+							},
+							{
+								value = "untitled7-num",
+								name = "costNum",
+								type = "string"
+							},
+							{
+								value = "untitled7-color",
+								name = "color",
+								type = "string"
+							}
+						},
+						params = {
+							sizeApt = 3,
+							pos = {
+								x = 18.28,
+								y = 11.25
+							},
+							size = {
+								width = 400,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Sprite",
+								params = {
+									image = "sc_1.png",
+									pos = {
+										x = 200,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 70.5,
+										y = 58.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 127,
+										y = 82
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "ResLabel",
+								params = {
+									fontSize = 20,
+									num = 5555,
+									modelId = 1113,
+									childName = "costLabel",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 124,
+										y = 41
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Button",
+								params = {
+									childName = "btn",
+									image = "c_32.png",
+									clickAction = "onBuyAction",
+									pos = {
+										x = 323,
+										y = 40
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "progressLabel",
+									color = {
+										g = 127,
+										r = 98,
+										b = 34
+									},
+									pos = {
+										x = 322.09,
+										y = 72.81
+									},
+									text = TR("不限购")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "spicalListView",
+				cType = "ListView",
+				params = {
+					margin = 15,
+					direction = false,
+					pos = {
+						x = -331.55,
+						y = 48.21
+					},
+					size = {
+						width = 800,
+						height = 150
+					}
+				},
+				children = {
+					{
+						name = "spGoodLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled24-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled30-text",
+								name = "nameStr",
+								type = "string"
+							},
+							{
+								value = "untitled27-modelId",
+								name = "costResIdF",
+								type = "string"
+							},
+							{
+								value = "untitled27-num",
+								name = "costNumF",
+								type = "string"
+							},
+							{
+								value = "untitled28-modelId",
+								name = "costResIdS",
+								type = "string"
+							},
+							{
+								value = "untitled28-num",
+								name = "costNumS",
+								type = "string"
+							},
+							{
+								value = "untitled27-color",
+								name = "colorF",
+								type = "string"
+							},
+							{
+								value = "untitled28-color",
+								name = "colorS",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 255,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Scale9Sprite",
+								params = {
+									image = "sc_9.png",
+									pos = {
+										x = 127.5,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 63.5,
+										y = 90
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Button",
+								params = {
+									childName = "btn",
+									image = "c_32.png",
+									clickAction = "onBuyAction",
+									pos = {
+										x = 191.7,
+										y = 33.67
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "ResLabel",
+								params = {
+									modelId = 1111,
+									num = 5555,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 146.1,
+										y = 115.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "ResLabel",
+								params = {
+									modelId = 1111,
+									num = 0,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 146.84,
+										y = 77.62
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Sprite",
+								params = {
+									image = "sc_10.png",
+									pos = {
+										x = 64.38,
+										y = 32.42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 63.98,
+										y = 33.45
+									},
+									text = TR("商品名字")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.handleData(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot0.mSpGoodList = {}
+	slot0.mNorGoodList = {}
+
+	for slot4, slot5 in pairs(LeaguetopShopConfig.items) do
+		if slot5.ifSpecial then
+			table.insert(slot0.mSpGoodList, slot5)
+		else
+			table.insert(slot0.mNorGoodList, slot5)
+		end
+	end
+
+	table.sort(slot0.mSpGoodList, function (slot0, slot1)
+		return slot0.sellNum < slot1.sellNum
+	end)
+	table.sort(slot0.mNorGoodList, function (slot0, slot1)
+		return slot0.sellNum < slot1.sellNum
+	end)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.createSpicalList = function (slot0)
+	slot0.spicalListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mSpGoodList) do
+		slot13 = slot0.createLayoutTemplateNode(slot0, "spGoodLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot6.resourceId,
+					num = slot6.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			},
+			nameStr = Resource.getName(slot6.resourceId),
+			costResIdF = slot7[1].resourceId,
+			costNumF = slot7[1].num,
+			costResIdS = slot7[2].resourceId,
+			costNumS = slot7[2].num,
+			colorF = (Utility.analysisStrResList(slot5.buyNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(slot5.buyNeed)[1].resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65),
+			colorS = (slot7[2].num <= Resource.getCount(slot7[2].resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65)
+		})
+
+		slot0.spicalListView:pushBackCustomItem(slot13)
+		ui.createLabelClipRoll({
+			label = slot13.nameLabel,
+			dimensions = cc.size(cc.size(80, 30).width + 10, cc.size(80, 30).height),
+			anchorPoint = cc.p(0.5, 0.5),
+			position = cc.p(64, 35)
+		})
+
+		slot13.btn.goodInfo = slot5
+
+		slot13.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot5.sellStr)[1].resourceId)))
+	end
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mNorGoodList[slot2] then
+		return 
+	end
+
+	slot10 = slot0.createLayoutTemplateNode(slot0, "gridNode", {
+		cardInfo = {
+			cardInfo = {
+				modelId = slot5.resourceId,
+				num = slot5.num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eBorder,
+				Enums.CardShowAttr.eNum
+			}
+		},
+		nameText = Resource.getName(slot5.resourceId),
+		costResId = slot6.resourceId,
+		costNum = slot6.num,
+		color = (Utility.analysisStrResList(slot4.buyNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(slot4.buyNeed)[1].resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65)
+	})
+
+	slot10.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot4.sellStr)[1].resourceId)))
+
+	slot10.btn.goodInfo = slot4
+
+	slot10.setPosition(slot10, 0, 0)
+	slot1.addChild(slot1, slot10)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createSpicalList(slot0)
+	slot0.mGridView:setItemNum(#slot0.mNorGoodList)
+	slot0.tipLabel:setString(TR("参与决战武林玩法即可获得 #DFC72A%s#FFFFFF   当前拥有：#DFC72A{%s}%s", Resource.getName(slot1), Resource.getDaibiImg(slot1), Resource.getCount(16050075)))
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot3 = true
+
+	for slot7, slot8 in ipairs(slot2) do
+		if not Resource.isEnough(slot8.resourceId, slot8.num) then
+			slot3 = false
+
+			break
+		end
+	end
+
+	if slot3 then
+		slot0.requestShopBuy(slot0, slot1.goodInfo.sellNum)
+	end
+
+	return 
+end
+slot0.requestShopBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopBuy",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

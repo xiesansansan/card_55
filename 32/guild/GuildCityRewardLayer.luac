@@ -1,0 +1,496 @@
+slot0 = class("GuildCityRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 423,
+						y = 510
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 144,
+								y = 18
+							},
+							text = TR("领地奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "onKeyBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOneKeyGetCallback",
+					pos = {
+						x = 423,
+						y = 51.53
+					},
+					titleText = TR("一键领取")
+				},
+				children = {}
+			},
+			{
+				name = "rewardGrid",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridCreateColCb",
+					itemNum = 0,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 200,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 423,
+						y = 79.01
+					},
+					size = {
+						width = 780,
+						height = 410
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled11-image",
+						name = "rewardFImg",
+						type = "string"
+					},
+					{
+						value = "untitled14-text",
+						name = "rewardFValue",
+						type = "string"
+					},
+					{
+						value = "untitled12-image",
+						name = "rewardSImg",
+						type = "string"
+					},
+					{
+						value = "untitled15-text",
+						name = "rewardSVal",
+						type = "string"
+					},
+					{
+						value = "untitled16-text",
+						name = "timeValue",
+						type = "string"
+					},
+					{
+						value = "untitled18-text",
+						name = "cityName",
+						type = "string"
+					},
+					{
+						value = "untitled20-orderId",
+						name = "orderId",
+						type = "string"
+					},
+					{
+						value = "untitled20-cityId",
+						name = "cityId",
+						type = "string"
+					},
+					{
+						value = "untitled17-image",
+						name = "cityImage",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 98.1,
+						y = 246.26
+					},
+					size = {
+						width = 180,
+						height = 200
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Scale9Sprite",
+						params = {
+							image = "bp_58.png",
+							pos = {
+								x = 90.39,
+								y = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									scale = 0.85,
+									image = "bp_53.png",
+									pos = {
+										x = 90,
+										y = 69
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 50,
+										y = 168
+									},
+									text = TR("奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									scale = 0.8,
+									image = "db_1111.png",
+									pos = {
+										x = 87,
+										y = 168
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									text = "1000",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 105,
+										y = 168
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 50,
+										y = 146
+									},
+									text = TR("奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									scale = 0.7,
+									image = "db_1111.png",
+									pos = {
+										x = 87,
+										y = 146
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									text = "1000",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 105,
+										y = 146
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 50,
+										y = 125
+									},
+									text = TR("累计")
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									text = "1000",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 105,
+										y = 125
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 90,
+										y = 18
+									},
+									text = TR("帮派名字")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled20",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "orderId",
+								type = "integer"
+							},
+							{
+								value = 1,
+								name = "cityId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "bp_57.png",
+							childName = "button",
+							pos = {
+								x = 90,
+								y = 65
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.allCityInfo = slot1.allCityInfo or {}
+	slot0.ownCityIdInfo = slot1.ownCityIdInfo or {}
+
+	table.sort(slot0.ownCityIdInfo, function (slot0, slot1)
+		return CitywarCityConfig.items[tonumber(slot1)].cityType < CitywarCityConfig.items[tonumber(slot0)].cityType
+	end)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getDetailCityInfo(slot0)
+
+	return 
+end
+slot0.dealDataAndRefreshUI = function (slot0, slot1)
+	slot0.occupyRewardTime = slot1.CitywarInfo.OccupyRewardTime
+	slot0.mSetCityId = slot1.CitywarInfo.CityId
+	slot0.canGetRewardCityIdArr = {}
+
+	for slot5, slot6 in ipairs(slot0.ownCityIdInfo) do
+		if CitywarConfig.items[1].occupyOutPutTime <= Player:getCurrentTime() - math.max(slot0.allCityInfo[tostring(slot6)].OccupyTime, slot0.occupyRewardTime) then
+			table.insert(slot0.canGetRewardCityIdArr, slot6)
+		end
+	end
+
+	slot0.rewardGrid:setItemNum(#slot0.ownCityIdInfo)
+
+	return 
+end
+slot0.onCloseLayerCallback = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGetRewardCallback = function (slot0, slot1)
+	slot0.getOneCityReward(slot0, slot1.cityId)
+
+	return 
+end
+slot0.onOneKeyGetCallback = function (slot0, slot1)
+	if #slot0.canGetRewardCityIdArr == 0 then
+		ui.showFlashView("暂无可领取奖励")
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetOccupyRewardForOneKey",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			slot0:dealDataAndRefreshUI(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGridCreateColCb = function (slot0, slot1, slot2, slot3)
+	slot11, slot12 = MqTime.toHour(slot10, true)
+	slot13 = slot0.createLayoutTemplateNode(slot0, "rewardNode", {
+		rewardFImg = Resource.getDaibiImg(Utility.analysisStrResList(DemesneProfitRelation.items[CitywarCityConfig.items[tonumber(slot0.ownCityIdInfo[slot2])].cityType].memberReward)[1].resourceId),
+		rewardFValue = Utility.analysisStrResList(DemesneProfitRelation.items[CitywarCityConfig.items[tonumber(slot0.ownCityIdInfo[slot2])].cityType].memberReward)[1].num*1,
+		rewardSImg = Resource.getDaibiImg(Utility.analysisStrResList(DemesneProfitRelation.items[CitywarCityConfig.items[tonumber(slot0.ownCityIdInfo[slot2])].cityType].memberReward)[2].resourceId),
+		rewardSVal = Utility.analysisStrResList(DemesneProfitRelation.items[CitywarCityConfig.items[tonumber(slot0.ownCityIdInfo[slot2])].cityType].memberReward)[2].num*1,
+		timeValue = (0 < slot11 and TR("%s小时", slot11)) or TR("%s分钟", slot12),
+		cityName = slot6.name,
+		orderId = slot2,
+		cityId = slot4,
+		cityImage = Enums.CityTypeImage[slot7]
+	})
+
+	slot13.button:setVisible(slot0.isStatus(slot0, slot4))
+	slot13.setPosition(slot13, cc.p(0, 0))
+	slot1.addChild(slot1, slot13)
+
+	return 
+end
+slot0.isStatus = function (slot0, slot1)
+	slot2 = false
+
+	if 0 < #slot0.canGetRewardCityIdArr then
+		for slot6, slot7 in pairs(slot0.canGetRewardCityIdArr) do
+			if tonumber(slot7) == tonumber(slot1) then
+				slot2 = true
+
+				break
+			end
+		end
+	end
+
+	return slot2
+end
+slot0.getDetailCityInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetDetailedCityInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			slot0:dealDataAndRefreshUI(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getOneCityReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetOccupyReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			slot0:dealDataAndRefreshUI(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

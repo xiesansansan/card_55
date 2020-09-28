@@ -1,0 +1,173 @@
+slot0 = class("JzwlSSLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 568,
+				height = 320
+			},
+			titleText = TR("死 侍")
+		},
+		children = {
+			{
+				name = "costLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 284,
+						y = 244
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					align = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 284,
+						y = 173
+					},
+					size = {
+						width = 500,
+						height = 100
+					},
+					text = TR("(死侍介绍：没有感情和痛觉，和敌人交战都是以命搏命，不论面对多强大的敌人都能1换1)")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onCancelBtnClick",
+					pos = {
+						x = 184,
+						y = 80
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "hireBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onHireBtnClick",
+					pos = {
+						x = 384,
+						y = 80
+					},
+					titleText = TR("雇 佣")
+				},
+				children = {}
+			},
+			{
+				name = "lastLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 384,
+						y = 48
+					},
+					text = TR("剩余")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.groupId = slot1.groupId
+	slot0.data = slot1.data or {}
+	slot0.parentLayer = slot1.parentLayer
+	slot0.guildInfo = slot1.guildInfo
+	slot0.lastTimes = LeaguetopfinalConfig.items[1].deadKillerNum - slot0.guildInfo.DeadpoolNum
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.lastLabel:setString(TR("剩余:%s%d/%d#252525(帮派共享)", (1 <= slot0.lastTimes and "#8ba857") or "#c04141", slot0.lastTimes, LeaguetopfinalConfig.items[1].deadKillerNum))
+	slot0.costLabel:setString(TR("是否消耗%s%d%s#252525雇佣死侍？", (Resource.isEnough(Utility.analysisStrResList(LeaguetopfinalConfig.items[1].hireKillerNeed)[1].resourceId, Utility.analysisStrResList(LeaguetopfinalConfig.items[1].hireKillerNeed)[1].num, false) and "#8ba857") or "#c04141", slot3.num, Resource.getName(slot3.resourceId)))
+
+	if slot0.data.Myinfo.IsHireDeadpool then
+		slot0.hireBtn:setEnabled(false)
+		slot0.hireBtn:setTitleText(TR("已雇佣"))
+	end
+
+	return 
+end
+slot0.onHireBtnClick = function (slot0)
+	if not slot0.lastTimes or slot0.lastTimes <= 0 then
+		ui.showFlashView(TR("帮派死侍已尽数派出。"))
+
+		return 
+	end
+
+	slot0.requestHire(slot0)
+
+	return 
+end
+slot0.onCancelBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestHire = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "HireDeadpool",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot0.groupId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("死侍雇佣成功。"))
+			EventAuto:postEvent(EventDefine.eLeaguetopFinalRefreshMain)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

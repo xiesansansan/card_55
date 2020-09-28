@@ -1,0 +1,319 @@
+slot0 = class("CityWarGuildsChooseLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled17",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseLayerCb",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮派列表")
+		},
+		children = {
+			{
+				name = "untitled18",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423.01,
+						y = 471.83
+					},
+					size = {
+						width = 774,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 90,
+								y = 17
+							},
+							text = TR("帮派旗帜")
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 272.7,
+								y = 17
+							},
+							text = TR("帮派名称")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 500.89,
+								y = 17
+							},
+							text = TR("占领门派")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "guildsList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 424.48,
+						y = 72.67
+					},
+					size = {
+						width = 780,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "guildInfoItem",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled12-isSelect",
+								name = "isSelected",
+								type = "string"
+							},
+							{
+								value = "untitled13-flagLogo",
+								name = "logo",
+								type = "string"
+							},
+							{
+								value = "untitled13-flagInfo",
+								name = "flagInfo",
+								type = "string"
+							},
+							{
+								value = "untitled14-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled15-text",
+								name = "num",
+								type = "string"
+							},
+							{
+								value = "untitled12-guildId",
+								name = "guildId",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 387,
+										y = 50
+									},
+									size = {
+										width = 774,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Checkbox",
+								custom = {
+									{
+										value = "",
+										name = "guildId",
+										type = "string"
+									}
+								},
+								params = {
+									isSelect = false,
+									selectImage = "c_44.png",
+									callback = "onSelectCb",
+									normalImage = "c_43.png",
+									pos = {
+										x = 710.74,
+										y = 41.11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "GuildFlag",
+								params = {
+									fontSize = 44,
+									flagInfo = "",
+									scale = 0.5,
+									flagLogo = TR("帅"),
+									pos = {
+										x = 84.1,
+										y = 32.16
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 285.8,
+										y = 41
+									},
+									text = TR("代昕五级成就帅")
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "666",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 496.06,
+										y = 40
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOkCb",
+					pos = {
+						x = 423,
+						y = 50
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.selectedGuilds = slot1.selectedGuilds or {}
+	slot0.allGuildsInfo = slot1.allGuildsInfo or {}
+	slot0.updateParFunc = slot1.updateParFunc
+
+	table.sort(slot0.allGuildsInfo, function (slot0, slot1)
+		return #slot1.CityInfo < #slot0.CityInfo
+	end)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.initGuildsList(slot0)
+
+	return 
+end
+slot0.initGuildsList = function (slot0)
+	for slot4, slot5 in ipairs(slot0.allGuildsInfo) do
+		slot0.guildsList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "guildInfoItem", {
+			isSelected = (table.indexof(slot0.selectedGuilds, slot5.GuildId) and true) or false,
+			logo = slot5.Logo,
+			flagInfo = slot5.Flag,
+			name = slot5.GuildName,
+			guildId = slot5.GuildId,
+			num = #slot5.CityInfo
+		}))
+	end
+
+	return 
+end
+slot0.onCloseLayerCb = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onOkCb = function (slot0, slot1)
+	slot0.updateParFunc(slot0.selectedGuilds)
+	slot0.onCloseLayerCb(slot0)
+
+	return 
+end
+slot0.onSelectCb = function (slot0, slot1)
+	if slot1.isSelected(slot1) then
+		table.insert(slot0.selectedGuilds, slot1.guildId)
+	else
+		table.removebyvalue(slot0.selectedGuilds, slot1.guildId)
+	end
+
+	return 
+end
+
+return slot0

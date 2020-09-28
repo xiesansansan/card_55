@@ -1,0 +1,400 @@
+slot0 = class("FeiJiInviteTeamLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled20",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 560,
+				height = 430
+			},
+			titleText = TR("组队")
+		},
+		children = {
+			{
+				name = "untitled22",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 279.78,
+						y = 214.8
+					},
+					size = {
+						width = 510,
+						height = 360
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 30.51,
+						y = 39.41
+					},
+					size = {
+						width = 500,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "tempLayout",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -114
+							}
+						},
+						children = {
+							{
+								name = "untitled25",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 250,
+										y = 55
+									},
+									size = {
+										width = 500,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Sprite",
+								params = {
+									image = "c_58.png",
+									pos = {
+										x = 56.31,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "playerHead",
+								cType = "CardNode",
+								params = {
+									allowClick = false,
+									pos = {
+										x = 58,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "nameLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 112,
+										y = 79.86
+									},
+									text = TR("六个字的名字")
+								},
+								children = {}
+							},
+							{
+								name = "lvLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 112,
+										y = 51.74
+									},
+									text = TR("等级")
+								},
+								children = {}
+							},
+							{
+								name = "guildLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 112,
+										y = 25.74
+									},
+									text = TR("等级")
+								},
+								children = {}
+							},
+							{
+								name = "fapLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 269.09,
+										y = 25
+									},
+									text = TR("99999万")
+								},
+								children = {}
+							},
+							{
+								name = "inviteBtn",
+								cType = "Button",
+								params = {
+									image = "c_32.png",
+									clickAction = "onClickInviteBtn",
+									pos = {
+										x = 430.12,
+										y = 57
+									},
+									titleText = TR("邀请")
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "Sprite",
+								params = {
+									scale = 0.6,
+									image = "shc_33.png",
+									pos = {
+										x = 270.46,
+										y = 80.54
+									}
+								},
+								children = {}
+							},
+							{
+								name = "vipLabel",
+								cType = "Label",
+								params = {
+									text = "12",
+									isRichText = true,
+									startChar = 48,
+									fontName = "shc_32.png",
+									scale = 0.6,
+									pos = {
+										x = 311.7,
+										y = 80.87
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mTipLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 280,
+						y = 215
+					},
+					text = TR("暂无在线的好友成员")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetFriendsOrGuildMembers(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	if table.nums(slot0.mInfo.FriendPlayer) <= 0 then
+		slot0.mTipLabel:setVisible(true)
+		slot0.mTableView:setVisible(false)
+	else
+		slot0.handleData(slot0)
+		slot0.mTableView:setVisible(true)
+		slot0.mTableView:reloadData()
+	end
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mInfo.FriendPlayer) do
+		slot1[slot6.PlayerId] = slot6
+	end
+
+	slot0.mPersonList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		table.insert(slot0.mPersonList, slot6)
+	end
+
+	table.sort(slot0.mPersonList, function (slot0, slot1)
+		if slot0.Fap ~= slot1.Fap then
+			return slot1.Fap < slot0.Fap
+		else
+			return slot0.State < slot1.State
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 500, 114
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mPersonList
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "tempLayout")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.playerHead:setPlayerHeader(slot0.mPersonList[slot1 + 1].HeadImageId, nil, {
+			headPicId = slot0.mPersonList[slot1 + 1].HeadPicId
+		})
+		slot0.nameLabel:setString(slot0.mPersonList[slot1 + 1].Name)
+
+		if Utility.isEntityId(slot0.mPersonList[slot1 + 1].GuildId) then
+			slot0.guildLabel:setString(TR("帮派：%s", slot2.GuildName))
+		else
+			slot0.guildLabel:setString(TR("暂无帮派"))
+		end
+
+		slot0.fapLabel:setString(Utility.numberWithUnit(slot2.Fap))
+
+		slot0.playerHead.playerInfo = slot2
+
+		slot0.lvLabel:setString(TR("等级：%s级", slot2.Lv))
+		slot0.vipLabel:setString(slot2.Vip)
+
+		slot0.inviteBtn.playerId = slot2.PlayerId
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onClickInviteBtn = function (slot0, slot1)
+	slot0.requestInviteFriends(slot0, slot1.playerId)
+
+	return 
+end
+slot0.requestGetFriendsOrGuildMembers = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFriendsOrGuildMembers",
+		moduleName = "ShengyuanTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "data")
+
+			slot0.FriendPlayer = slot0.FriendPlayer or {}
+			slot0.GuildPlayer = slot0.GuildPlayer or {}
+			slot0.mInfo = slot0
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInviteFriends = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "InviteFriends",
+		moduleName = "ShengyuanTeam",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("发送组队邀请成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

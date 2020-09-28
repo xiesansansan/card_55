@@ -1,0 +1,44 @@
+slot0 = class("CacheSlotEquip", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mSlotEquip = {}
+
+	return 
+end
+slot0.setList = function (slot0, slot1)
+	slot0.mSlotEquip = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mSlotEquip[tonumber(slot5)] = slot6
+	end
+
+	return 
+end
+slot0.getList = function (slot0)
+	return slot0.mSlotEquip
+end
+slot0.getItem = function (slot0, slot1)
+	return slot0.mSlotEquip[slot1] or {}
+end
+slot0.modifyItem = function (slot0, slot1)
+	if not slot1 or not slot1.PositionId then
+		return 
+	end
+
+	slot0.mSlotEquip[slot1.PositionId] = clone(slot1)
+
+	return 
+end
+slot0.modifyItemList = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.modifyItem(slot0, slot6)
+	end
+
+	return 
+end
+
+return slot0

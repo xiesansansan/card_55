@@ -1,0 +1,180 @@
+slot0 = class("HeroArtifactStarUpSuccessLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			needTouchClose = true,
+			image = "xksg_7.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_106.png",
+					pos = {
+						x = 444.49,
+						y = 278.43
+					}
+				},
+				children = {}
+			},
+			{
+				name = "stampSprite",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_107.png",
+					pos = {
+						x = 720,
+						y = 260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "hintSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 457,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "desLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					align = 1,
+					valign = 1,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 455.59,
+						y = 140.31
+					},
+					size = {
+						width = 260,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "starNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 387.42,
+						y = 206.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "effect",
+				cType = "Effect",
+				params = {
+					scale = 0.5,
+					dataFile = "effect_zhuanshushenqi_bolanggu",
+					pos = {
+						x = 219.62,
+						y = 159.81
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroId = slot1.heroId or 12012107
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot2 = HeroModel.items[slot0.mHeroId]
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "effect" then
+			slot1.dataFile = slot0.specialGoodsPic
+		end
+
+		return 
+	end)
+
+	slot4 = ""
+	slot5 = clone
+	slot6 = ArtifactStarRelation.items[slot0.mHeroId]
+	slot7 = (next(HeroObj:getItem(slot0.mHeroId).ArtifactInfo) and clone(slot1.ArtifactInfo)) or {
+		StepLv = 0,
+		SkillInfo = {}
+	}.Stars or 1
+
+	if slot5(slot6[slot7]).skillId ~= 0 then
+		slot4 = TR("%s", Resource.getSkillIntroStr(slot5.skillId, skillLv, slot1.Star, "#ffffff", "#99E53D"))
+	end
+
+	slot0.desLabel:setString(slot4)
+	slot0.starNode:removeAllChildren()
+
+	slot6 = 4
+
+	for slot10 = 1, 5, 1 do
+		slot12 = UIWrap.newControl("Sprite", {
+			image = (slot10 <= slot3.Stars and "c_5.png") or "c_89.png"
+		})
+
+		slot12.setPosition(slot12, cc.p((slot10 - 1)*24 + slot6*(slot10 - 1), 0))
+		slot0.starNode:addChild(slot12)
+	end
+
+	slot0.hintSprite:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.FadeTo:create(2, 0),
+		cc.FadeTo:create(2, 255)
+	})))
+
+	slot9 = {
+		cc.p(slot0.stampSprite:getPosition()),
+		cc.p(-234, 500),
+		cc.p(130, -90)
+	}
+
+	slot0.stampSprite:setPosition(cc.p(720, 260))
+	slot0.stampSprite:setScale(5)
+	slot0.stampSprite:runAction(cc.Sequence:create({
+		cc.EaseIn:create(cc.Spawn:create({
+			cc.FadeIn:create(slot7),
+			cc.ScaleTo:create(0.4, 1)
+		}), 1),
+		cc.CallFunc:create(function ()
+			return 
+		end)
+	}))
+
+	return 
+end
+
+return slot0

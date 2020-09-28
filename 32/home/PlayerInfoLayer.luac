@@ -1,0 +1,1201 @@
+slot0 = class("PlayerInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallBack",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("个人信息")
+		},
+		children = {
+			{
+				name = "untitled88",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					capInsets = {
+						x = 81,
+						height = 10,
+						width = 40,
+						y = 27
+					},
+					pos = {
+						x = 243.04,
+						y = 244.92
+					},
+					size = {
+						width = 422,
+						height = 259
+					}
+				},
+				children = {}
+			},
+			{
+				name = "head",
+				cType = "PlayerHeroNode",
+				params = {
+					modelId = 19010000,
+					clickAction = "onChangedHead",
+					allowClick = true,
+					pos = {
+						x = 76.88,
+						y = 444.61
+					}
+				},
+				children = {}
+			},
+			{
+				name = "privilege",
+				cType = "Sprite",
+				params = {
+					image = "grxx_2.png",
+					pos = {
+						x = 147.42,
+						y = 459.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled174",
+				cType = "Button",
+				params = {
+					image = "c_50.png",
+					clickAction = "onPlayerInfo",
+					scale = 0.8,
+					pos = {
+						x = 146.96,
+						y = 420.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled175",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 636.77,
+						y = 297.64
+					},
+					size = {
+						width = 341,
+						height = 373
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled173",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 168.96,
+						y = 421.1
+					},
+					text = TR("主角详情")
+				},
+				children = {}
+			},
+			{
+				name = "DesignationBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onChangTitle",
+					pos = {
+						x = 748.81,
+						y = 396.92
+					},
+					titleText = TR("更 换")
+				},
+				children = {
+					{
+						name = "untitled130",
+						cType = "RedDot",
+						params = {
+							moduleId = 6500
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "emptySprite",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 659,
+						y = 253.89
+					},
+					text = TR("暂无服务器加成")
+				},
+				children = {}
+			},
+			{
+				name = "buffListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 637.48,
+						y = 112.39
+					},
+					size = {
+						width = 340,
+						height = 220
+					}
+				},
+				children = {
+					{
+						name = "buffLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = -3,
+								y = 10
+							},
+							size = {
+								width = 150,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "untitled99",
+								cType = "Sprite",
+								params = {
+									image = "grxx_6.png",
+									pos = {
+										x = 70.5,
+										y = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled101",
+								cType = "Sprite",
+								params = {
+									image = "grxx_5.png",
+									childName = "typePic",
+									pos = {
+										x = 69.87,
+										y = 101.42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled138",
+								cType = "Label",
+								params = {
+									childName = "",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 40.87,
+										y = 40
+									},
+									text = TR("加成")
+								},
+								children = {}
+							},
+							{
+								name = "untitled103",
+								cType = "Label",
+								params = {
+									text = "10%",
+									childName = "buffLabel",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 99.87,
+										y = 40
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled121",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									childName = "checkBtn",
+									pos = {
+										x = 70.5,
+										y = 100
+									},
+									size = {
+										width = 130,
+										height = 180
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "privilegeCardLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 281.74,
+								y = 16.03
+							},
+							size = {
+								width = 150,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "untitled152",
+								cType = "Sprite",
+								params = {
+									image = "grxx_6.png",
+									pos = {
+										x = 87.5,
+										y = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled158",
+								cType = "Button",
+								params = {
+									childName = "checkBtn",
+									image = "c_pure.png",
+									clickAction = "onPrivilegeCardAction",
+									pos = {
+										x = 87.33,
+										y = 96.58
+									},
+									size = {
+										width = 135,
+										height = 180
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled168",
+								cType = "Sprite",
+								params = {
+									image = "grxx_4.png",
+									pos = {
+										x = 87,
+										y = 101
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "emperorLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 327.88,
+								y = 0.42
+							},
+							size = {
+								width = 150,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "untitled160",
+								cType = "Sprite",
+								params = {
+									image = "grxx_6.png",
+									pos = {
+										x = 76.5,
+										y = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled164",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "10%",
+									childName = "buffLabel",
+									color = {
+										g = 255,
+										r = 55,
+										b = 64
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 76.29,
+										y = 90.12
+									},
+									size = {
+										width = 110,
+										height = 85
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled165",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "shengxiao",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 78.51,
+										y = 36.74
+									},
+									text = TR("决战武林生效")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled133",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 648.63,
+						y = 459.12
+					},
+					text = TR("称号")
+				},
+				children = {
+					{
+						name = "untitled134",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -90,
+								y = 12.05
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled135",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 135,
+								y = 12
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled105",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 652.5,
+						y = 345.6
+					},
+					text = TR("服务器加成")
+				},
+				children = {
+					{
+						name = "untitled177",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -68,
+								y = 7.98
+							},
+							size = {
+								width = 120,
+								height = 7
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled176",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 186,
+								y = 7.98
+							},
+							size = {
+								width = 120,
+								height = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled107",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onLogoutAction",
+					pos = {
+						x = 140,
+						y = 56.78
+					},
+					titleText = TR("重新登录")
+				},
+				children = {}
+			},
+			{
+				name = "untitled136",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCreateSysSetting",
+					pos = {
+						x = 424,
+						y = 56.22
+					},
+					titleText = TR("系统设置")
+				},
+				children = {}
+			},
+			{
+				name = "untitled106",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onShowFashionLayer",
+					pos = {
+						x = 691,
+						y = 56.22
+					},
+					titleText = TR("时 装")
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					pos = {
+						x = 167.1,
+						y = 460.61
+					},
+					text = TR("玩家名字名字")
+				},
+				children = {
+					{
+						name = "vipSrpite",
+						cType = "Sprite",
+						params = {
+							image = "c_pure.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 131.55,
+								y = 12
+							}
+						},
+						children = {
+							{
+								name = "changeNameBtn",
+								cType = "Button",
+								params = {
+									image = "grxx_3.png",
+									clickAction = "onChangName",
+									pos = {
+										x = 56.05,
+										y = 10.25
+									}
+								},
+								children = {}
+							},
+							{
+								name = "vipLabel",
+								cType = "Label",
+								params = {
+									text = "99",
+									charCount = 11,
+									startChar = 47,
+									fontName = "c_102.png",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 1.28,
+										y = 10.22
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "zoneLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 336.33
+					},
+					text = TR("服务器：")
+				},
+				children = {}
+			},
+			{
+				name = "lvLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 299.33
+					},
+					text = TR("等级")
+				},
+				children = {}
+			},
+			{
+				name = "expLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 264.33
+					},
+					text = TR("经验值")
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 226.33
+					},
+					text = TR("最强战力")
+				},
+				children = {}
+			},
+			{
+				name = "goldLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 189.33
+					},
+					text = TR("铜钱")
+				},
+				children = {}
+			},
+			{
+				name = "vitLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43,
+						y = 149.63
+					},
+					text = TR("干粮")
+				},
+				children = {}
+			},
+			{
+				name = "untitled170",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 29.35,
+						y = 397.29
+					},
+					size = {
+						width = 95,
+						height = 95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled171",
+				cType = "RedDot",
+				params = {
+					moduleId = 13500,
+					offset = {
+						x = 0.13,
+						y = 0.92
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled178",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 412.94,
+						y = 100.03
+					},
+					size = {
+						width = 700,
+						height = 2
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "buffDetalNode",
+		cType = "TemplateNode",
+		custom = {
+			{
+				value = "untitled127-text",
+				name = "name",
+				type = "string"
+			},
+			{
+				value = "untitled128-text",
+				name = "intro",
+				type = "string"
+			}
+		},
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled124",
+				cType = "Layer",
+				params = {
+					childName = "enTouchLayer",
+					sizeApt = 1,
+					color = {
+						g = 0,
+						a = 150,
+						r = 0,
+						b = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1136,
+						height = 640
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled123",
+				cType = "MsgBoxBg",
+				params = {
+					childName = "msgNode",
+					posApt = 1,
+					hideCloseButton = true,
+					image = "tc_2.png",
+					pos = {
+						x = 568,
+						y = 320
+					},
+					titleText = TR("世界等级加成")
+				},
+				children = {
+					{
+						name = "untitled125",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							pos = {
+								x = 256.63,
+								y = 183.44
+							},
+							size = {
+								width = 452.21,
+								height = 200
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled126",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							childName = "sureBtn",
+							pos = {
+								x = 256.32,
+								y = 54.01
+							},
+							titleText = TR("确 定")
+						},
+						children = {}
+					},
+					{
+						name = "untitled128",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							childName = "infoLabel",
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 35.79,
+								y = 272.52
+							},
+							size = {
+								width = 435.24,
+								height = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled129",
+						cType = "Button",
+						params = {
+							image = "c_28.png",
+							childName = "closePopBtn",
+							pos = {
+								x = 491.75,
+								y = 335.63
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshTopInfo(slot0)
+	slot0.refreshWorldBuff(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshTopInfo = function (slot0)
+	slot5, slot6 = PlayerAttrObj:getCurrentLvExp()
+	slot8 = PlayerAttrObj:getPlayerAttrByName("HeadImageId")
+	slot9 = Utility.changeNumToStrWithSign(PlayerAttrObj:getPlayerAttrByName("Gold"))
+	slot10 = Utility.changeNumToStrWithSign(PlayerAttrObj:getPlayerAttrByName("Vit"))
+	slot11 = PlayerAttrObj:getPlayerAttrByName("TitleId")
+
+	dump(RedDotObj:isValid(13500))
+	slot0.nameLabel:setColor((PlayerAttrObj:getPlayerAttrByName("FashionLevel") == 0 and cc.c3b(37, 37, 37)) or Utility.getPlayerNameColor(slot12))
+	slot0.nameLabel:setString(PlayerAttrObj:getPlayerAttrByName("PlayerName"))
+	slot0.zoneLabel:setString(Player:getSelectServer().ServerName)
+	slot0.fapLabel:setString(TR("最强战力：%s", Utility.changeNumToStrWithSign(PlayerAttrObj:getPlayerAttrByName("Fap"))))
+	slot0.lvLabel:setString(TR("等级：%s", PlayerAttrObj:getPlayerAttrByName("Lv")))
+	slot0.expLabel:setString(TR("经验值：%s/%s", slot5, slot6))
+	slot0.vipLabel:setString("/" .. PlayerAttrObj:getPlayerAttrByName("Vip"))
+
+	slot14 = "#45220d"
+
+	if PlayerAttrObj:getPlayerAttrByName("GoldLimitNum") <= PlayerAttrObj:getPlayerAttrByName("Gold") then
+		slot14 = "#ea2c00"
+	end
+
+	slot0.goldLabel:setString(TR("铜钱：{%s} %s%s", Resource.getDaibiImg(ResourceTypeSub.eGold), slot14, slot9))
+
+	slot16 = "#45220d"
+
+	if PlayerAttrObj:getPlayerAttrByName("VitLimitNum") <= PlayerAttrObj:getPlayerAttrByName("Vit") then
+		slot16 = "#ea2c00"
+	end
+
+	slot0.vitLabel:setString(TR("干粮：{%s} %s%s", Resource.getDaibiImg(ResourceTypeSub.eVit), slot16, slot10))
+
+	slot17 = (TitleConfig.items[slot11] and TitleConfig.items[slot11].pic) or "ch_0"
+
+	slot0.head:setPlayerHeader(slot8)
+	ui.setAutoPlayerAttrNode(slot0.head, "HeadImageId", slot18)
+	ui.setAutoPlayerAttrNode(slot0.head, "HeadPicId", slot18)
+	ui.setAutoPlayerAttrNode(slot0.nameLabel, "PlayerName", slot19)
+	ui.setAutoPlayerAttrNode(slot0, "TitleId", slot20)
+	slot0.privilege:setGray(not PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege"))
+
+	return 
+end
+slot0.onShowFashionLayer = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eSkin, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "player.PlayerMainLayer",
+		data = {
+			defaultModuleId = ModuleSub.eSkin
+		}
+	})
+
+	return 
+end
+slot0.onCreateSysSetting = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.SystemSettingLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refreshWorldBuff = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("WorldLvAddR")
+	slot2 = {}
+	slot3 = {}
+	slot4 = {}
+
+	if PlayerConfig.items[1].noEnjoyAnyExpAddsLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and slot1 and 0 < slot1 then
+		table.insert(slot2, {
+			name = "世界等级",
+			pic = "grxx_5.png",
+			buffR = slot1,
+			intro = TR("由于当前的服务器等级较高，您将享受额外的经验加成：#258711玩家经验加成%s%%", slot1*100)
+		})
+	end
+
+	if Utility.moduleIsOpen(ModuleSub.ePrivilegeCard, false) then
+		table.insert(slot3, {
+			name = "特权卡"
+		})
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("LoserBuff") and 0 < slot5 then
+		table.insert(slot4, {
+			isShengxiao = true,
+			name = "愈挫愈勇",
+			intro = TR("攻击 + %s%%\n护甲 + %s%%", slot5, slot5)
+		})
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("LeaguetopIdentityId") and 0 < slot6 then
+		table.insert(slot4, {
+			isShengxiao = false,
+			name = NewleaguetopIdentityRelation.items[slot6].name,
+			intro = NewleaguetopIdentityRelation.items[slot6].effectIntro
+		})
+	end
+
+	slot7 = #slot2 + #slot3 + #slot4
+
+	for slot11, slot12 in ipairs(slot3) do
+		slot0.buffListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "privilegeCardLayout"))
+	end
+
+	for slot11, slot12 in ipairs(slot4) do
+		slot13 = slot0.createLayoutTemplateNode(slot0, "emperorLayout")
+
+		slot13.buffLabel:setString(slot12.intro)
+		slot13.shengxiao:setVisible(slot12.isShengxiao)
+		slot0.buffListView:pushBackCustomItem(slot13)
+	end
+
+	for slot11, slot12 in ipairs(slot2) do
+		slot13 = slot0.createLayoutTemplateNode(slot0, "buffLayout")
+
+		slot13.typePic:setTexture(slot12.pic)
+		slot13.buffLabel:setString(string.format("%s%%", slot12.buffR*100))
+		slot13.checkBtn:setClickAction(function ()
+			slot0:createBuffDetalPop(slot0)
+
+			return 
+		end)
+		slot0.buffListView:pushBackCustomItem(slot13)
+	end
+
+	slot0.emptySprite:setVisible(slot7 <= 0)
+
+	return 
+end
+slot0.onPrivilegeCardAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "activity.PrivilegeCardLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.createBuffDetalPop = function (slot0, slot1)
+	slot2 = slot0.createLayoutTemplateNode(slot0, "buffDetalNode", {
+		name = TR("%s加成", slot1.name),
+		intro = slot1.intro
+	})
+
+	slot2.msgNode.sureBtn:setClickAction(function ()
+		slot0:removeFromParent()
+
+		slot0 = nil
+
+		return 
+	end)
+	slot2.msgNode.closePopBtn:setClickAction(function ()
+		slot0:removeFromParent()
+
+		slot0 = nil
+
+		return 
+	end)
+	slot0.addChild(slot0, slot2)
+
+	return 
+end
+slot0.onChangedHead = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.SelectHeadPopLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onChangName = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.ChangeNameLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onLogoutAction = function (slot0)
+	ui.showMessageBox({
+		text = TR("是否返回登录界面？"),
+		okCallback = function ()
+			IPlatform:getInstance():logout()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onChangTitle = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eTitle, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerTitleLayer",
+		data = {
+			callback = function ()
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onPlayerInfo = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.ShowTotalAttrLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onActionCallBack = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[90003] = {
+			clickNode = slot0.DesignationBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

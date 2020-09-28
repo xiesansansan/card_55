@@ -1,0 +1,15 @@
+slot0 = require("battle.managers.BattleManager")
+slot2 = class("BuffReborn", require("battle.models.Buff"))
+slot2.initRebornStatus = function (slot0)
+	slot0.rebornStatus = -1
+
+	return 
+end
+slot2.execute = function (slot0, ...)
+	slot0.super.execute(slot0, ...)
+	slot0.super.execute.addRebornUnit(slot0.owner, slot0.damageRatioValue[1], slot0.damageRatioValue[2])
+
+	return 
+end
+
+return slot2

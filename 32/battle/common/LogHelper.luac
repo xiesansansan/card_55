@@ -1,0 +1,71 @@
+function pairsByKeys(slot0)
+	slot1 = {}
+
+	for slot5 in pairs(slot0) do
+		slot1[#slot1 + 1] = slot5
+	end
+
+	table.sort(slot1)
+
+	slot2 = 0
+
+	return function ()
+		slot0 = slot0 + 1
+
+		return slot1[], slot2[slot1[slot1[]]]
+	end
+end
+
+function slot1(slot0, slot1, slot2)
+	if type(slot1) == type(0) then
+		slot0.write(slot0, tostring(slot1))
+	elseif type(slot1) == type("0") then
+		slot0.write(slot0, "\"" .. slot1 .. "\"")
+	elseif type(slot1) == type(false) then
+		slot0.write(slot0, tostring(slot1))
+	elseif type(slot1) == type({
+		0
+	}) then
+		slot0.write(slot0, "{\n")
+
+		slot3 = slot2 or ""
+		slot2 = slot2 .. "\t"
+
+		for slot7, slot8 in pairsByKeys(slot1) do
+			slot0.write(slot0, slot2 .. "[")
+			slot0(slot0, slot7, slot2)
+			slot0.write(slot0, "]" .. " = ")
+			slot0(slot0, slot8, slot2)
+			slot0.write(slot0, ",\n")
+		end
+
+		slot0.write(slot0, slot3 .. "}")
+	end
+
+	return 
+end
+
+return {
+	writeFile = function (slot0)
+		slot1 = os.date("%Y_%m_%d-%H_%M_%S.txt")
+		slot2 = cc.FileUtils:getInstance()
+
+		if not slot2.isDirectoryExist(slot2, slot2.getWritablePath(slot2) .. "battle_debug/") then
+			slot2.createDirectory(slot2, slot3)
+		end
+
+		slot4 = io.open(slot3 .. slot1, "w")
+
+		cjson.encode_sparse_array(true)
+		slot4.write(slot4, cjson.encode(slot0))
+		slot4.close(slot4)
+
+		return 
+	end,
+	writeToFile = function (slot0, slot1)
+		slot0(io.open(slot0, "w"), slot1 or {})
+		slot2.close(slot2)
+
+		return 
+	end
+}

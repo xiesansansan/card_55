@@ -1,0 +1,398 @@
+slot0 = class("CrownsDlgReplayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 620,
+				height = 536
+			},
+			titleText = TR("战报回放")
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 310.93,
+						y = 262.02
+					},
+					size = {
+						width = 560,
+						height = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 311.62,
+						y = 46.13
+					},
+					size = {
+						width = 530,
+						height = 425
+					}
+				},
+				children = {
+					{
+						name = "battleLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled20-image",
+								name = "isWinImage",
+								type = "string"
+							},
+							{
+								value = "untitled19-tag",
+								name = "tag",
+								type = "string"
+							},
+							{
+								value = "untitled12-modelId",
+								name = "playerModelId1",
+								type = "string"
+							},
+							{
+								value = "untitled14-modelId",
+								name = "playerModelId2",
+								type = "string"
+							},
+							{
+								value = "untitled12-fashionLv",
+								name = "playerFashionLv1",
+								type = "string"
+							},
+							{
+								value = "untitled14-fashionLv",
+								name = "playerFashionLv2",
+								type = "string"
+							},
+							{
+								value = "untitled12-headPicId",
+								name = "headPicId1",
+								type = "string"
+							},
+							{
+								value = "untitled14-headPicId",
+								name = "headPicId2",
+								type = "string"
+							},
+							{
+								value = "untitled21-text",
+								name = "playerName1",
+								type = "string"
+							},
+							{
+								value = "untitled22-text",
+								name = "playerName2",
+								type = "string"
+							},
+							{
+								value = "untitled18-text",
+								name = "indexStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 530,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 265.02,
+										y = 70.11
+									},
+									size = {
+										width = 530,
+										height = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									reverse = 0,
+									image = "c_36.png",
+									pos = {
+										x = 115.85,
+										y = 122.19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 255.85,
+										y = 122.19
+									},
+									text = TR("第 1 轮")
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									reverse = 1,
+									image = "c_36.png",
+									pos = {
+										x = 395.85,
+										y = 122.19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									allowClick = false,
+									pos = {
+										x = 77.34,
+										y = 71.15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									allowClick = false,
+									pos = {
+										x = 431.96,
+										y = 71.95
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_27.png",
+									clickAction = "onReportBtnAction",
+									pos = {
+										x = 254.95,
+										y = 31.67
+									},
+									titleText = TR("战斗回放")
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									scale = 0.7,
+									image = "xyyz_15.png",
+									pos = {
+										x = 253.58,
+										y = 81.03
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 77.34,
+										y = 16.15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 431.96,
+										y = 16.95
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mBattleInfo = slot1.battleInfo
+	slot0.mCurrTag = slot1.turnRank
+	slot0.mClickTag = slot1.clickTag
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	Player:saveGameData("CrownPerBattleClickTag", 0)
+	slot0.sortData(slot0)
+
+	return 
+end
+slot0.sortData = function (slot0)
+	slot0.mReportData = {}
+	slot2 = string.splitBySep(slot0.mBattleInfo.IsWinList, ",")
+
+	for slot6, slot7 in ipairs(slot1) do
+		table.insert(slot0.mReportData, {
+			idStr = slot7,
+			isWin = tonumber(slot2[slot6])
+		})
+	end
+
+	slot0.refreshReportListView(slot0)
+
+	return 
+end
+slot0.refreshReportListView = function (slot0)
+	slot0.listView:removeAllItems()
+
+	for slot4, slot5 in ipairs(slot0.mReportData) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "battleLayout", {
+			isWinImage = (slot5.isWin == 0 and "xyyz_16.png") or "xyyz_15.png",
+			tag = slot4,
+			indexStr = TR("第 %s 轮", slot4),
+			playerModelId1 = PlayerAttrObj:getPlayerAttrByName("HeadImageId") or 19010000,
+			playerFashionLv1 = PlayerAttrObj:getPlayerAttrByName("FashionLevel") or 0,
+			headPicId1 = PlayerAttrObj:getPlayerAttrByName("HeadPicId") or 0,
+			playerName1 = "#37FF40" .. (PlayerAttrObj:getPlayerAttrByName("PlayerName") or ""),
+			playerModelId2 = slot0.mBattleInfo.TargetPlayerInfo.HeadImageId or 19010000,
+			playerFashionLv2 = slot0.mBattleInfo.TargetPlayerInfo.FashionLevel or 0,
+			headPicId2 = slot0.getHeadPicIdBySeverData(slot0, slot0.mBattleInfo.TargetPlayerInfo.BaseInfo),
+			playerName2 = slot0.mBattleInfo.TargetPlayerInfo.Name or ""
+		}))
+	end
+
+	return 
+end
+slot0.onReportBtnAction = function (slot0, slot1)
+	if slot0.mReportData[slot1.tag].idStr == "0" then
+		ui.showFlashView(TR("有人未布阵，根据规则直接判出胜负！"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightReport",
+		moduleName = "FightReoprt",
+		methodData = {
+			slot2.idStr
+		},
+		successCallback = function (slot0)
+			LayerManager.setRestoreData("crowns.CrownsHomeLayer", slot1)
+			Player:saveGameData("CrownPerBattleClickTag", slot0.mClickTag)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getHeadPicIdBySeverData = function (slot0, slot1)
+	if not slot1 or slot1 == "" then
+		return 0
+	end
+
+	return cjson.decode(slot1).HeadPicId or 0
+end
+
+return slot0

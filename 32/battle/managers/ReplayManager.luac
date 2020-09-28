@@ -1,0 +1,101 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.managers.BattleManager")
+slot3 = {
+	new = function (slot0)
+		slot0 or {}._replayRecords = clone(slot0 or {})
+		slot0 or {}._replayIdx = 1
+		slot0 or {}._tatalIdx = #slot0 or {}._replayRecords
+
+		table.sort(slot0 or {}._replayRecords, function (slot0, slot1)
+			if slot0.opTime ~= slot1.opTime then
+				return slot0.opTime < slot1.opTime
+			end
+
+			return slot0.processTime < slot1.processTime
+		end)
+
+		return 
+	end,
+	replay = function (slot0)
+		if slot0.opType == slot0.OpType.OpState then
+			slot1.setAutoSkill(slot0.UnitGroup.ATTACKER, slot0.opData)
+		elseif slot0.opType == slot0.OpType.OpSkill and slot1.getUnitByGroupOrder(slot0.UnitGroup.ATTACKER, slot0.opData) then
+			slot1.updatePendingUnits(slot1)
+		end
+
+		return 
+	end,
+	update = function (slot0)
+		if slot0._tatalIdx < slot0._replayIdx then
+			return 
+		end
+
+		while true do
+			if slot1(slot0, slot0._replayRecords[slot0._replayIdx].opTime) then
+				slot0.replay(slot1)
+
+				slot0._replayIdx = slot0._replayIdx + 1
+			else
+				return 
+			end
+
+			if slot0._tatalIdx < slot0._replayIdx then
+				return 
+			end
+		end
+
+		return 
+	end
+}
+
+function slot4(slot0, slot1)
+	return slot1 - 1e-06 < slot0 and slot0 < slot1 + slot2
+end
+
+return {
+	new = function (slot0)
+		slot0 or {}._replayRecords = clone(slot0 or {})
+		slot0 or {}._replayIdx = 1
+		slot0 or {}._tatalIdx = #slot0 or {}._replayRecords
+
+		table.sort(slot0 or {}._replayRecords, function (slot0, slot1)
+			if slot0.opTime ~= slot1.opTime then
+				return slot0.opTime < slot1.opTime
+			end
+
+			return slot0.processTime < slot1.processTime
+		end)
+
+		return 
+	end,
+	replay = function (slot0)
+		if slot0.opType == slot0.OpType.OpState then
+			slot1.setAutoSkill(slot0.UnitGroup.ATTACKER, slot0.opData)
+		elseif slot0.opType == slot0.OpType.OpSkill and slot1.getUnitByGroupOrder(slot0.UnitGroup.ATTACKER, slot0.opData) then
+			slot1.updatePendingUnits(slot1)
+		end
+
+		return 
+	end,
+	update = function (slot0)
+		if slot0._tatalIdx < slot0._replayIdx then
+			return 
+		end
+
+		while true do
+			if slot1(slot0, slot0._replayRecords[slot0._replayIdx].opTime) then
+				slot0.replay(slot1)
+
+				slot0._replayIdx = slot0._replayIdx + 1
+			else
+				return 
+			end
+
+			if slot0._tatalIdx < slot0._replayIdx then
+				return 
+			end
+		end
+
+		return 
+	end
+}

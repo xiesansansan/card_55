@@ -1,0 +1,1203 @@
+slot0 = class("KuangzhanMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mapTableView",
+		cType = "TableView",
+		params = {
+			numOfCellsFunc = "onNumOfCellFunc",
+			isVertical = false,
+			sizeApt = 1,
+			isFullScale = true,
+			cellUpdateFunc = "onCellUpdateFunc",
+			cellFillFunc = "onCellFillFunc",
+			isNeedBounce = false,
+			posApt = 1,
+			cellSizeFunc = "onCellSizeFunc",
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "pageNode",
+				cType = "TemplateNode",
+				params = {
+					isFullScale = true,
+					posApt = 1,
+					scaleApt = 2,
+					pos = {
+						x = 0,
+						y = -640
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							isFullScale = true,
+							image = "yb_2.png",
+							childName = "bgSprite",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 1
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "innerNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled15-text",
+						name = "nodeNameStr",
+						type = "string"
+					},
+					{
+						value = "untitled14-layerId",
+						name = "layerId",
+						type = "string"
+					},
+					{
+						value = "untitled14-image",
+						name = "buildingPic",
+						type = "string"
+					},
+					{
+						value = "untitled1004-image",
+						name = "coverPic",
+						type = "string"
+					},
+					{
+						value = "untitled15-color",
+						name = "nameColor",
+						type = "string"
+					}
+				},
+				params = {
+					posApt = 1,
+					pos = {
+						x = 442.35,
+						y = -340.83
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "layerId",
+								type = "integer"
+							}
+						},
+						params = {
+							childName = "btn",
+							image = "bjjianzhu5.png",
+							swallowTouch = false,
+							pressedAction = false,
+							clickAction = "onClickNodeBtn",
+							pos = {
+								x = 0,
+								y = -3
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled1004",
+						cType = "Sprite",
+						params = {
+							image = "zhedang5.png",
+							pos = {
+								x = -85.83,
+								y = -91.38
+							}
+						},
+						children = {}
+					},
+					{
+						name = "flagBgSprite",
+						cType = "Sprite",
+						params = {
+							image = "yb_17.png",
+							hide = true,
+							pos = {
+								x = -20.8,
+								y = -84.19
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled1003",
+						cType = "Scale9Sprite",
+						params = {
+							image = "yb_16.png",
+							pos = {
+								x = 118.18,
+								y = -87.37
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Label",
+						params = {
+							align = 1,
+							childName = "nameLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 40.82,
+								y = -86.34
+							},
+							text = TR("镖局3")
+						},
+						children = {}
+					},
+					{
+						name = "untitled1000",
+						cType = "GuildFlag",
+						params = {
+							childName = "flag",
+							hide = true,
+							scale = 0.5,
+							pos = {
+								x = -19.77,
+								y = -85.55
+							}
+						},
+						children = {
+							{
+								name = "untitled1005",
+								cType = "Label",
+								params = {
+									fontSize = 35,
+									hide = true,
+									text = "30%",
+									childName = "addLabel",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 61.26,
+										y = 30.74
+									}
+								},
+								children = {
+									{
+										name = "untitled1006",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											pos = {
+												x = 84.93,
+												y = 17.64
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "uiCenterNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled1009",
+				cType = "Scale9Sprite",
+				params = {
+					image = "yb_18.png",
+					pos = {
+						x = -317.76,
+						y = 207.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Button",
+				params = {
+					image = "tb_gn_32.png",
+					clickAction = "onReportBtn",
+					pos = {
+						x = 344.39,
+						y = 225.96
+					}
+				},
+				children = {
+					{
+						name = "untitled1007",
+						cType = "RedDot",
+						params = {
+							subKey = "CanDrawReward",
+							moduleId = 13402
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled25",
+				cType = "Button",
+				params = {
+					image = "tb_gn_35.png",
+					clickAction = "onShopBtn",
+					pos = {
+						x = 439.39,
+						y = 225.96
+					}
+				},
+				children = {
+					{
+						name = "untitled1008",
+						cType = "RedDot",
+						params = {
+							subKey = "ShopRefreshNum",
+							moduleId = 13402
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "lvLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -503.58,
+						y = 227.15
+					}
+				},
+				children = {}
+			},
+			{
+				name = "lvAddDropLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					emptyInit = true,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -503.58,
+						y = 195.15
+					}
+				},
+				children = {}
+			},
+			{
+				name = "myCarNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled29-text",
+						name = "introStr",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -492.17,
+						y = -237.12
+					}
+				},
+				children = {
+					{
+						name = "untitled31",
+						cType = "Button",
+						params = {
+							clickAction = "onGotoBtn",
+							scale = 0.8,
+							image = "c_32.png",
+							childName = "goBtn",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 242,
+								y = 0
+							},
+							titleText = TR("前 往")
+						},
+						children = {}
+					},
+					{
+						name = "untitled29",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							childName = "introLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "fightNumLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 0,
+						y = -277.39
+					},
+					text = TR("押镖次数：0")
+				},
+				children = {
+					{
+						name = "untitled45",
+						cType = "Button",
+						params = {
+							image = "c_20.png",
+							clickAction = "onBuyFightNum",
+							pos = {
+								x = 151.44,
+								y = 11.03
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled1010",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onGetBestBtn",
+					pos = {
+						x = 347.46,
+						y = -265.27
+					},
+					titleText = TR("一键押镖")
+				},
+				children = {}
+			},
+			{
+				name = "untitled36",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onAllNodeBtn",
+					pos = {
+						x = 473.46,
+						y = -265.27
+					},
+					titleText = TR("镖局总览")
+				},
+				children = {}
+			},
+			{
+				name = "lvBarNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jyt_45.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -408.55,
+						y = 226.08
+					}
+				},
+				children = {
+					{
+						name = "untitled999",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_46.png",
+							childName = "lvBar",
+							pos = {
+								x = 63,
+								y = 5.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "Button",
+						params = {
+							image = "c_50.png",
+							clickAction = "onAddDetailBtn",
+							childName = "detialBtn",
+							pos = {
+								x = 161,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "dropAddInfoNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled1002-text",
+						name = "exp",
+						type = "string"
+					},
+					{
+						value = "untitled1001-text",
+						name = "curAdd",
+						type = "string"
+					},
+					{
+						value = "untitled44-text",
+						name = "nextAdd",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -112.61,
+						y = 220.13
+					}
+				},
+				children = {
+					{
+						name = "untitled42",
+						cType = "Scale9Sprite",
+						params = {
+							image = "sy_18.png",
+							capInsets = {
+								x = 97,
+								height = 1,
+								width = 1,
+								y = 188
+							},
+							pos = {
+								x = 134.29,
+								y = -59.48
+							},
+							size = {
+								width = 250,
+								height = 110
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled1002",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 27.94,
+								y = -25.31
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled1001",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 27.94,
+								y = -54.31
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled44",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 27.94,
+								y = -85.31
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled4",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseBtn",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "yb_1.png",
+					pos = {
+						x = 133.6,
+						y = -30
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtn",
+					pos = {
+						x = 206.77,
+						y = -26
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mDefaultId = slot1.defaultId or 1
+	slot0.mMyCarNodeList = {}
+	slot0.mResOutId1 = Utility.analysisStrResList(KuangzhanModel.items[1][1].resource1Out)[1].resourceId
+	slot0.mResOutId2 = Utility.analysisStrResList(KuangzhanModel.items[1][1].resource2Out)[1].resourceId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.mIsOpen = PlayerAttrObj:getPlayerAttrByName("KuangZhanIsOpen")
+
+	if slot0.mIsOpen == false then
+		slot0.closeView(slot0)
+
+		return 
+	end
+
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.handleData(slot0)
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(KuangzhanModel.items) do
+		table.insert(slot1, {
+			layerId = slot6
+		})
+
+		if slot6%5 == 0 then
+			table.insert(slot2, slot1)
+
+			slot1 = {}
+		end
+	end
+
+	slot0.mDataList = slot2
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	if display.safeArea then
+		if display.isIpadClass then
+			return display.ySafeScale*1704, display.ySafeScale*640
+		else
+			return display.minSafeScale*1704, display.minSafeScale*640
+		end
+	else
+		return 1704, 640
+	end
+
+	return 
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mDataList
+end
+slot1 = {
+	cc.p(147, 455),
+	cc.p(417, 287),
+	cc.p(699, 467),
+	cc.p(1165, 500),
+	cc.p(1384, 311)
+}
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "pageNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot2 = slot0.mDataList[slot1 + 1]
+
+		if slot0.InnerList and next(slot0.InnerList) ~= nil then
+			for slot6, slot7 in ipairs(slot0.InnerList) do
+				slot7.removeFromParent(slot7)
+
+				slot7 = nil
+			end
+		end
+
+		slot0.InnerList = {}
+
+		for slot6, slot7 in ipairs(slot2) do
+			slot11 = slot0:createLayoutTemplateNode("innerNode", {
+				nodeNameStr = string.format("%s%s", KuangzhanModel.items[slot7.layerId][1].biaojuName, string.format("(%s/%s)", 0, 5)),
+				layerId = slot7.layerId,
+				buildingPic = KuangzhanModel.items[slot7.layerId][1].biaojuPic .. ".png",
+				coverPic = KuangzhanModel.items[slot7.layerId][1].zhedang .. ".png",
+				nameColor = Utility.getColorValue(KuangzhanModel.items[slot7.layerId][1].layerColorLv, true)
+			})
+
+			slot11.setPosition(slot11, slot1[slot6])
+			slot0.addChild(slot0, slot11)
+
+			if not slot2.guideBtn then
+				slot2.guideBtn = slot11.btn
+			end
+
+			if slot0.mLayerData[slot7.layerId] then
+				slot11.nameLabel:setString(string.format("%s%s", slot8.biaojuName, string.format("(%s/%s)", slot12.TotalNum, 5)))
+
+				if Utility.isEntityId(slot12.GuildId) then
+					slot11.flag:setVisible(true)
+					slot11.flagBgSprite:setVisible(true)
+					slot11.flag:setString(slot12.Logo)
+					slot11.flag:setFlag(slot12.Flag)
+
+					if 1 < slot12.GuildMemberNum then
+						slot11.flag.addLabel:setVisible(true)
+						slot11.flag.addLabel:setString(string.format("%s%%", KuangzhanResourceUpRelation.items[slot12.GuildMemberNum].outUp))
+					end
+				end
+			end
+
+			table.insert(slot0.InnerList, slot11)
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleBtn = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、大侠可派遣队伍进行押镖；"),
+			TR("2、当同帮派的玩家一同在一个镖局进行押镖时，押镖收益将获得提升；"),
+			TR("3、押镖可以获得押镖经验的提升，押镖等级提升后，押镖收益也会获得加成；"),
+			TR("4、押镖可以获得铜钱和银票；"),
+			TR("5、使用银票可在镖局商店内购买奇珍异宝；"),
+			TR("6、镖车分为多个级别，越高级别的镖车，产出的铜钱和银票越多。"),
+			TR("7、每次押镖后，需要等待1分钟结算时间才可再次押镖")
+		}
+	})
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.lvLabel:setString(TR("押镖等级：%s", slot0.mMyInfo.CarLv))
+	slot0.lvBarNode:setPosition(slot0.lvLabel:getContentSize().width - 504 + 30, 226)
+
+	slot3 = KuangzhanLvConfig.items[slot0.mMyInfo.CarLv]
+
+	if KuangzhanLvConfig.items[slot0.mMyInfo.CarLv + 1] then
+		slot0.lvBarNode.lvBar:setMaxValue(slot2.expTotal)
+		slot0.lvBarNode.lvBar:setCurrValue(slot0.mMyInfo.CarExp)
+	else
+		slot0.lvBarNode.lvBar:setMaxValue(1)
+		slot0.lvBarNode.lvBar:setCurrValue(1)
+	end
+
+	slot0.lvAddDropLabel:setString(TR("等级加成：{%s}%s%%{%s}%s%%", Resource.getDaibiImg(slot0.mResOutId1), slot3.resource1Out*100, Resource.getDaibiImg(slot0.mResOutId2), slot3.resource2Out*100))
+	slot0.refreshFightNum(slot0)
+
+	for slot7, slot8 in ipairs(slot0.mMyCarNodeList) do
+		slot8.removeFromParent(slot8)
+
+		slot8 = nil
+	end
+
+	slot0.mMyCarNodeList = {}
+
+	for slot7 = 1, 2, 1 do
+		if slot0.mMyOccInfo.QueueInfoList[slot7] then
+			slot10, slot19 = Utility.getColorValue(KuangzhanModel.items[slot8.LayerId][slot8.PositionId].positionColorLv, false)
+			slot12 = slot0.createLayoutTemplateNode(slot0, "myCarNode", {
+				introStr = TR("我的镖车%s：%s%s %s", slot7, slot11, KuangzhanModel.items[slot8.LayerId][slot8.PositionId].name, "00:00:00")
+			})
+
+			slot12.setPosition(slot12, -492, slot7*40 - -207)
+			slot12.goBtn:setPositionX(slot12.introLabel:getContentSize().width + 10)
+
+			slot12.goBtn.targetId = slot8.LayerId
+
+			slot0.uiCenterNode:addChild(slot12)
+			table.insert(slot0.mMyCarNodeList, slot12)
+			Utility.schedule(slot12, function ()
+				if 0 < slot0.EndTime - Player:getCurrentTime() then
+					slot1.introLabel:setString(TR("我的镖车%s：%s%s%s", slot1.introLabel, TR, , MqTime.formatAsDay(slot0)))
+				else
+					slot1:stopAllActions()
+				end
+
+				return 
+			end, 1)
+		else
+			slot9 = TR("")
+			slot10 = slot0.createLayoutTemplateNode(slot0, "myCarNode", {
+				introStr = (slot7 ~= 2 or slot0.mMyInfo.CarLv >= KuangzhanConfig.items[1].car2NeedKuangzhanLv or TR("我的镖车%s：押镖等级%s级解锁", slot7, KuangzhanConfig.items[1].car2NeedKuangzhanLv)) and TR("我的镖车%s：当前没有进行押镖", slot7)
+			})
+
+			slot10.setPosition(slot10, -492, slot7*40 - -207)
+			slot10.goBtn:setVisible(false)
+			slot0.uiCenterNode:addChild(slot10)
+			table.insert(slot0.mMyCarNodeList, slot10)
+		end
+	end
+
+	return 
+end
+slot0.refreshFightNum = function (slot0)
+	slot0.fightNumLabel:setString(TR("押镖次数：%s", slot0.getFightNum(slot0)))
+
+	return 
+end
+slot0.getFightNum = function (slot0)
+	return KuangzhanConfig.items[1].dailyChallengeNums - slot0.mMyInfo.Num + slot0.mMyInfo.BuyNum
+end
+slot0.onBuyFightNum = function (slot0)
+	ui.showMessageBox({
+		text = TR("是否花费%s%s购买1次押镖次数", Utility.analysisStrResList(KuangzhanConfig.items[1].buyChallengeTimesUse)[1].num, Resource.getName(Utility.analysisStrResList(KuangzhanConfig.items[1].buyChallengeTimesUse)[1].resourceId)),
+		titleText = TR("提示"),
+		okCallback = function ()
+			if not Resource.isEnough(slot0[1].resourceId, slot0[1].num) then
+				return 
+			end
+
+			slot1:requestBuyCarNum()
+
+			return 
+		end,
+		cancelCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClickNodeBtn = function (slot0, slot1)
+	slot0.mDefaultId = slot1.layerId
+
+	LayerManager.addLayer({
+		name = "kuangzhan.KuangzhanNodeLayer",
+		data = {
+			layerId = slot1.layerId
+		}
+	})
+
+	return 
+end
+slot0.handleSeverData = function (slot0, slot1)
+	slot0.mLayerData = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.mLayerData[slot6.LayerId] = slot6
+	end
+
+	slot0.mapTableView:reloadData()
+	Utility.performWithDelay(slot0, function ()
+		slot0:executeGuide()
+
+		return 
+	end, 0.01)
+
+	return 
+end
+slot0.getPageId = function (slot0, slot1)
+	return math.floor((slot1 - 1)/5) + 1
+end
+slot0.onGotoBtn = function (slot0, slot1)
+	LayerManager.addLayer({
+		name = "kuangzhan.KuangzhanNodeLayer",
+		data = {
+			layerId = slot1.targetId
+		}
+	})
+
+	return 
+end
+slot0.onAddDetailBtn = function (slot0)
+	if slot0.dropAddInfoNode then
+		slot0.dropAddInfoNode:removeFromParent()
+
+		slot0.dropAddInfoNode = nil
+	end
+
+	if slot0.touchListener then
+		slot0.getEventDispatcher(slot0):removeEventListener(slot0.touchListener)
+
+		slot0.touchListener = nil
+	end
+
+	slot3 = ""
+	slot4 = TR("当前加成：{%s}%s%%{%s}%s%%", Resource.getDaibiImg(slot0.mResOutId1), KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource1Out*100, Resource.getDaibiImg(slot0.mResOutId2), KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource2Out*100)
+	slot5 = ""
+
+	if KuangzhanLvConfig.items[slot0.mMyInfo.CarLv + 1] then
+		slot3 = TR("经验值：%s/%s", slot0.mMyInfo.CarExp, slot2.expTotal)
+		slot5 = TR("下级加成：{%s}%s%%{%s}%s%%", Resource.getDaibiImg(slot0.mResOutId1), slot2.resource1Out*100, Resource.getDaibiImg(slot0.mResOutId2), slot2.resource2Out*100)
+	else
+		slot3 = TR("经验值：已满级")
+	end
+
+	slot6 = slot0.createLayoutTemplateNode(slot0, "dropAddInfoNode", {
+		exp = slot3,
+		curAdd = slot4,
+		nextAdd = slot5
+	})
+
+	slot6.setPosition(slot6, 0, 0)
+	slot0.lvBarNode.detialBtn:addChild(slot6)
+
+	slot0.dropAddInfoNode = slot6
+	slot0.touchListener = ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0.uiCenterNode,
+		beganEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.dropAddInfoNode) then
+				slot0.dropAddInfoNode:removeFromParent()
+
+				slot0.dropAddInfoNode = nil
+
+				if slot0.touchListener then
+					slot0:getEventDispatcher():removeEventListener(slot0.touchListener)
+
+					slot0.touchListener = nil
+				end
+
+				return false
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetBestBtn = function (slot0)
+	slot0.requestGetBestLayerData(slot0)
+
+	return 
+end
+slot0.onReportBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "kuangzhan.KuangzhanReportLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onShopBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "kuangzhan.KuangzhanShopLayer",
+		data = {
+			myInfo = slot0.mMyInfo,
+			refreshCallFunc = function (slot0)
+				slot0.mMyInfo = slot0
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.closeView = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "kuangzhan.KuangZhanClosedPopLayer",
+		data = {
+			callBack = function ()
+				Utility.performWithDelay(Utility.performWithDelay, function ()
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end, 0.001)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		defaultId = slot0.mDefaultId
+	}
+end
+slot0.onAllNodeBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "kuangzhan.KuangzhanAllNodeLayer",
+		data = {
+			layerData = slot0.mLayerData,
+			callBack = function ()
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetData",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetData")
+			slot0:handleSeverData(slot0.Data)
+			slot0:requestGetPlayerData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetPlayerData = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPlayerData",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mMyInfo = slot0.Myinfo
+			slot0.mMyOccInfo = slot0.Data
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyCarNum = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyCarNum",
+		moduleName = "KuangzhanInfo",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "BuyCarNum")
+
+			slot0.mMyInfo = slot0.Myinfo
+
+			slot0:refreshFightNum()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetBestLayerData = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetBestLayerData",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			LayerManager.addLayer({
+				name = "kuangzhan.KuangzhanNodeLayer",
+				data = {
+					layerId = slot0.LayerId
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		slot0.mapTableView:setTouchEnabled(false)
+	end
+
+	Guide.manager:exeGuideList({
+		[201601] = {
+			clickNode = slot0.mapTableView:cellAtIndex(0).layout.guideBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

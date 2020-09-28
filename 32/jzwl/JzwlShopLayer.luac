@@ -1,0 +1,405 @@
+slot0 = class("JzwlShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "sc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "xgnkq_1.png",
+					pos = {
+						x = 436.17,
+						y = 418.53
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							pos = {
+								x = 150.07,
+								y = 25.8
+							},
+							text = TR("战场商人")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					scale = 1.35,
+					image = "bsx_12205.png",
+					pos = {
+						x = 35.2,
+						y = 259.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 500,
+						y = 205
+					},
+					size = {
+						width = 690,
+						height = 370
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 500,
+						y = 36.23
+					},
+					text = TR("帮派所有成员共享库存")
+				},
+				children = {}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 160.07,
+						y = 53.52
+					},
+					size = {
+						width = 680,
+						height = 330
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -120
+							},
+							size = {
+								width = 680,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 340,
+										y = 60
+									},
+									size = {
+										width = 660,
+										height = 115
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "c_16.png",
+									pos = {
+										x = 71,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									image = "jzwzb_1.png",
+									childName = "goodsImg",
+									pos = {
+										x = 71,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									childName = "name",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 136,
+										y = 92
+									},
+									text = TR("物品名称")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									align = 0,
+									text = "Label",
+									childName = "des",
+									valign = 0,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 136,
+										y = 42.5
+									},
+									size = {
+										width = 350,
+										height = 65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "ID",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_19.png",
+									clickAction = "onRequestBuy",
+									childName = "button",
+									pos = {
+										x = 575,
+										y = 49
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "num",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 575,
+										y = 85.21
+									},
+									text = TR("库存")
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									text = "Label",
+									isRichText = true,
+									childName = "priceLabel",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 575,
+										y = 51
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.initData = slot1.initData
+	slot0.callBack = slot1.callBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mLeaguetopShopList = clone(LeaguetopfinalShopConfig.items)
+
+	slot0.requestSeverInfo(slot0)
+
+	return 
+end
+slot0.refresh = function (slot0)
+	for slot4, slot5 in pairs(slot0.severData) do
+		slot0.mLeaguetopShopList[slot5.GoodsId].GoodsId = slot5.GoodsId
+		slot0.mLeaguetopShopList[slot5.GoodsId].BuyCount = slot5.BuyCount
+		slot0.mLeaguetopShopList[slot5.GoodsId].MaxBuyCount = slot5.MaxBuyCount
+	end
+
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 680, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mLeaguetopShopList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.name:setString(TR("%s", slot0.mLeaguetopShopList[slot1 + 1].name))
+		slot0.des:setString(TR("%s", slot0.mLeaguetopShopList[slot1 + 1].des))
+		slot0.goodsImg:setTexture(TR("%s.png", slot0.mLeaguetopShopList[slot1 + 1].pic))
+		slot0.num:setString(TR("库存:%s", slot0.mLeaguetopShopList[slot1 + 1].MaxBuyCount - slot0.mLeaguetopShopList[slot1 + 1].BuyCount))
+
+		slot0.button.ID = slot0.mLeaguetopShopList[slot1 + 1].GoodsId
+		slot3 = Utility.analysisStrResList(slot0.mLeaguetopShopList[slot1 + 1].buyNeed)
+		slot4 = Resource.getCount(slot3[1].resourceId)
+
+		slot0.priceLabel:setString(string.format("{%s}%s", slot5, slot3[1].num))
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.requestSeverInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetLeaguetopShopInfo",
+		moduleName = "Leaguetopfinal",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.severData = slot0
+
+			slot0:refresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "LeaguetopShopBuy",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot1.ID
+		},
+		successCallback = function (slot0)
+			slot0.severData = slot0
+
+			if slot0.initData.GuestGuild == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId then
+				for slot5, slot6 in pairs(slot0.severData) do
+					if slot1.ID == slot6.GoodsId then
+						slot0.initData.GuestGoodsCanDispatch[slot6.GoodsId].CanDispatchNum = slot0.initData.GuestGoodsCanDispatch[slot6.GoodsId].CanDispatchNum + 1
+					end
+				end
+			elseif slot0.initData.HostGuild == slot1.GuildId then
+				for slot5, slot6 in pairs(slot0.severData) do
+					if slot1.ID == slot6.GoodsId then
+						slot0.initData.HostGoodsCanDispatch[slot6.GoodsId].CanDispatchNum = slot0.initData.HostGoodsCanDispatch[slot6.GoodsId].CanDispatchNum + 1
+					end
+				end
+			end
+
+			ui.showFlashView(TR("物资购买成功"))
+
+			if slot0.callBack then
+				slot0.callBack(slot0.initData)
+			end
+
+			slot0:refresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

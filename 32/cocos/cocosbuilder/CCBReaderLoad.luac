@@ -1,0 +1,98 @@
+if cc.CCBReader == nil then
+	return 
+end
+
+ccb = ccb or {}
+
+function CCBReaderLoad(slot0, slot1, slot2)
+	if slot1 == nil then
+		return nil
+	end
+
+	slot4 = slot1.createCCBReader(slot1).load(slot3, slot0)
+	slot5 = ""
+
+	if slot2 ~= nil then
+		slot7 = slot3.getOwnerCallbackNodes(slot3)
+		slot8 = slot3.getOwnerCallbackControlEvents(slot3)
+		slot9 = 1
+
+		for slot13 = 1, table.getn(slot6), 1 do
+			slot15 = tolua.cast(slot7[slot13], "cc.Node")
+
+			if type(slot2[slot6[slot13]]) == "function" then
+				slot1.setCallback(slot1, slot15, slot2[slot14], slot8[slot13])
+			else
+				print("Warning: Cannot find owner's lua function:" .. ":" .. slot14 .. " for ownerVar selector")
+			end
+		end
+
+		slot11 = slot3.getOwnerOutletNodes(slot3)
+
+		for slot15 = 1, table.getn(slot10), 1 do
+			slot2[slot10[slot15]] = tolua.cast(slot11[slot15], "cc.Node")
+		end
+	end
+
+	slot7 = slot3.getAnimationManagersForNodes(slot3)
+
+	for slot11 = 1, table.getn(slot6), 1 do
+		slot12 = tolua.cast(slot6[slot11], "cc.Node")
+
+		if ccb[slot14] ~= nil then
+			ccb[slot14].mAnimationManager = slot13
+		end
+
+		slot16 = slot13.getDocumentCallbackNodes(slot13)
+		slot17 = slot13.getDocumentCallbackControlEvents(slot13)
+
+		for slot21 = 1, table.getn(slot15), 1 do
+			slot22 = slot15[slot21]
+			slot23 = tolua.cast(slot16[slot21], "cc.Node")
+
+			if slot14 ~= "" and ccb[slot14] ~= nil then
+				if type(ccb[slot14][slot22]) == "function" then
+					slot1.setCallback(slot1, slot23, ccb[slot14][slot22], slot17[slot21])
+				else
+					print("Warning: Cannot found lua function [" .. slot14 .. ":" .. slot22 .. "] for docRoot selector")
+				end
+			end
+		end
+
+		slot19 = slot13.getDocumentOutletNodes(slot13)
+
+		for slot23 = 1, table.getn(slot18), 1 do
+			slot24 = slot18[slot23]
+			slot25 = tolua.cast(slot19[slot23], "cc.Node")
+
+			if ccb[slot14] ~= nil then
+				ccb[slot14][slot24] = tolua.cast(slot25, slot1.getNodeTypeName(slot1, slot25))
+			end
+		end
+
+		for slot24 = 1, table.getn(slot20), 1 do
+			slot26, slot27 = string.find(slot25, ":")
+			slot29 = string.sub(slot20[slot24], slot27 + 1, -1)
+
+			if tonumber(string.sub(slot25, 1, slot26 - 1)) == 1 and ccb[slot14] ~= nil then
+				slot13.setCallFuncForLuaCallbackNamed(slot13, cc.CallFunc:create(ccb[slot14][slot29]), slot25)
+			elseif slot28 == 2 and slot2 ~= nil then
+				slot13.setCallFuncForLuaCallbackNamed(slot13, cc.CallFunc:create(slot2[slot29]), slot25)
+			end
+		end
+
+		if slot13.getAutoPlaySequenceId(slot13) ~= -1 then
+			slot13.runAnimationsForSequenceIdTweenDuration(slot13, slot21, 0)
+		end
+	end
+
+	return slot4
+end
+
+rawset(_G, "CCBuilderReaderLoad", function (slot0, slot1, slot2)
+	print("\n********** \n" .. "CCBuilderReaderLoad(strFilePath,proxy,owner)" .. " was deprecated please use " .. "CCBReaderLoad(strFilePath,proxy,owner)" .. " instead.\n**********")
+
+	return CCBReaderLoad(slot0, slot1, slot2)
+end)
+
+return 

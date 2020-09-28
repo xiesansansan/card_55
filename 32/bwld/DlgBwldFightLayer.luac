@@ -1,0 +1,534 @@
+slot0 = class("DlgBwldFightLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			okText = TR("战报"),
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 844,
+				height = 520
+			},
+			titleText = TR("挑战记录")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 422,
+						y = 260
+					},
+					size = {
+						width = 760,
+						height = 430
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fightListView",
+				cType = "ListView",
+				params = {
+					margin = 8,
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 422,
+						y = 260
+					},
+					size = {
+						width = 735,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "teamLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled8-text",
+								name = "ownPlayerName",
+								type = "string"
+							},
+							{
+								value = "untitled11-text",
+								name = "otherPlayerName",
+								type = "string"
+							},
+							{
+								value = "untitled60-text",
+								name = "numStr",
+								type = "string"
+							},
+							{
+								value = "untitled9-image",
+								name = "leftImage",
+								type = "string"
+							},
+							{
+								value = "untitled12-image",
+								name = "rightImage",
+								type = "string"
+							},
+							{
+								value = "untitled63-tag",
+								name = "tag",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 735,
+								height = 108
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_100.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 735,
+										height = 108
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 89.38,
+										y = 80.26
+									},
+									text = TR("玩家的名字啊")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									scale = 0.6,
+									image = "xyyz_15.png",
+									pos = {
+										x = 270,
+										y = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 647.29,
+										y = 77.49
+									},
+									text = TR("玩家的名字啊")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									scale = 0.6,
+									image = "xyyz_16.png",
+									pos = {
+										x = 470,
+										y = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "myHeroList",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 1,
+										y = 0
+									},
+									pos = {
+										x = 307.5,
+										y = 5
+									},
+									size = {
+										width = 300,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "heroLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled27-initParams",
+												name = "cardData",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 60,
+												height = 60
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "CardNode",
+												params = {
+													scale = 0.6,
+													childName = "headCard",
+													allowClick = false,
+													anchor = {
+														x = 0.5,
+														y = 0.5
+													},
+													initParams = {},
+													pos = {
+														x = 30,
+														y = 30
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "otherHeroList",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 427.5,
+										y = 5
+									},
+									size = {
+										width = 300,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "otherLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled61-initParams",
+												name = "cardData",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 60,
+												height = 60
+											}
+										},
+										children = {
+											{
+												name = "untitled61",
+												cType = "CardNode",
+												params = {
+													scale = 0.6,
+													childName = "headCard",
+													allowClick = false,
+													anchor = {
+														x = 0.5,
+														y = 0.5
+													},
+													initParams = {},
+													pos = {
+														x = 30,
+														y = 30
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled62",
+								cType = "Sprite",
+								params = {
+									image = "bwld_33.png",
+									hide = false,
+									pos = {
+										x = 367.5,
+										y = 82
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "Label",
+								params = {
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 367.5,
+										y = 82
+									},
+									text = TR("第一轮")
+								},
+								children = {}
+							},
+							{
+								name = "untitled63",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "xyyz_39.png",
+									clickAction = "onReportBtnAction",
+									pos = {
+										x = 367.5,
+										y = 32
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "noDataLabel",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 422,
+						y = 260
+					},
+					text = TR("暂无战报信息")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestFightInfo(slot0)
+
+	return 
+end
+slot0.createListView = function (slot0)
+	slot0.fightListView:removeAllChildren()
+
+	if next(slot0.mResultData) == nil then
+		slot0.noDataLabel:setVisible(true)
+
+		return 
+	end
+
+	slot0.noDataLabel:setVisible(false)
+
+	for slot4, slot5 in ipairs(slot0.mResultData) do
+		slot7 = slot0
+		slot8 = "teamLayout"
+		slot9 = {
+			ownPlayerName = slot5.PlayerInfo.Name,
+			otherPlayerName = slot5.TargetInfo.Name,
+			leftImage = (slot5.IsWin and "xyyz_15.png") or "xyyz_16.png",
+			rightImage = (slot5.IsWin and "xyyz_16.png") or "xyyz_15.png",
+			numStr = TR("第%s轮", slot4),
+			tag = slot5.ReportId
+		}
+
+		slot0.fightListView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+
+		slot7 = {}
+
+		for slot12, slot13 in pairs(slot8) do
+			if slot13.ModelId and 0 < slot13.ModelId then
+				table.insert(slot7, slot13.ModelId)
+			end
+		end
+
+		slot9 = {}
+
+		for slot14, slot15 in pairs(slot10) do
+			if slot15.ModelId and 0 < slot15.ModelId then
+				table.insert(slot9, slot15.ModelId)
+			end
+		end
+
+		for slot14, slot15 in ipairs(slot7) do
+			slot0.createLayoutTemplateNode(slot0, "heroLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot15
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}).headCard:setRightTextVisible(false)
+			slot6.myHeroList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "heroLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot15
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		for slot14, slot15 in ipairs(slot9) do
+			slot0.createLayoutTemplateNode(slot0, "otherLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot15
+					}
+				}
+			}).headCard:setRightTextVisible(false)
+			slot6.otherHeroList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "otherLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot15
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onReportBtnAction = function (slot0, slot1)
+	dump(slot1.tag, "aaaaaa")
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightReport",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1.tag
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFightInfo = function (slot0)
+	slot0.mResultData = {}
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightData",
+		moduleName = "BiwuInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot1 = pairs
+			slot2 = slot0 or {}
+
+			for slot4, slot5 in slot1(slot2) do
+				table.insert(slot0.mResultData, slot5)
+			end
+
+			table.sort(slot0.mResultData, function (slot0, slot1)
+				return slot0.Order < slot1.Order
+			end)
+			slot0:createListView()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

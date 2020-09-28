@@ -1,0 +1,438 @@
+slot0 = class("EquipResonanceHintLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 190)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSpr",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			image = "xkxx_67.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "effect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_gongmingchenggong",
+					complete = "cbEndEffect",
+					pos = {
+						x = -250.53,
+						y = -50.16
+					}
+				},
+				children = {}
+			},
+			{
+				name = "arrowNode",
+				cType = "Node",
+				params = {
+					zOrder = 1,
+					pos = {
+						x = -19.1,
+						y = -71.58
+					},
+					size = {
+						width = 0,
+						height = 135
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 1,
+								name = "arrowFlag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_23.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = 125
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 2,
+								name = "arrowFlag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_23.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = 89
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 3,
+								name = "arrowFlag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_23.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = 53
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 4,
+								name = "arrowFlag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_23.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						custom = {
+							{
+								value = 5,
+								name = "arrowFlag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_23.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = -19
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 0,
+						y = -143.58
+					},
+					text = TR("共鸣升级成功，获得属性加成")
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCloseLayerCb",
+					pos = {
+						x = 0,
+						y = -222.58
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "proConNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled12-text",
+						name = "title",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -254.37,
+						y = -110.96
+					},
+					size = {
+						width = 220,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							isRichText = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 91,
+								y = 211
+							},
+							text = TR("所有装备强化不小于 ")
+						},
+						children = {}
+					},
+					{
+						name = "proList",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 95,
+								y = 184
+							},
+							size = {
+								width = 220,
+								height = 180
+							}
+						},
+						children = {
+							{
+								name = "proItem",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled17-text",
+										name = "str",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 220,
+										height = 36
+									}
+								},
+								children = {
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 50,
+												y = 18
+											},
+											text = TR("攻击：10742")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	eGem = 0,
+	eLvUp = 1,
+	eRefine = 2,
+	eQuality = 3
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.oldLv = slot1.oldLv
+	slot0.newLv = slot1.newLv
+	slot0.configType = slot1.configType
+
+	slot0.initUI(slot0)
+	MqAudio.playEffect("tongyong_tanchuan.mp3")
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot5, slot6 = slot0.calcProData(slot0)
+
+	slot0.initLeftRightProConNode(slot0, slot1, slot2)
+
+	return 
+end
+slot0.calcProData = function (slot0)
+	slot1 = {}
+	slot2 = {}
+	slot3, slot4 = nil
+
+	if slot0.configType == slot0.eLvUp then
+		slot4 = Utility.analysisStrAttrList(EquipLvupActConfig.items[10].actAttrStr)
+	elseif slot0.configType == slot0.eRefine then
+		slot4 = Utility.analysisStrAttrList(EquipRefineActConfig.items[5].actAttrStr)
+	elseif slot0.configType == slot0.eQuality then
+		slot4 = Utility.analysisStrAttrList(EquipQualityActConfig.items[3].actAttrStr)
+	elseif slot0.configType == slot0.eGem then
+		slot4 = Utility.analysisStrAttrList(GemActConfig.items[1].actAttrStr)
+	end
+
+	for slot8, slot9 in ipairs(slot4) do
+		slot9.value = 0
+	end
+
+	if slot0.oldLv ~= 0 then
+		table.insert(slot1, Utility.analysisStrAttrList(slot3.items[slot0.oldLv].actAttrStr))
+	else
+		table.insert(slot1, slot4)
+	end
+
+	table.insert(slot1, Utility.analysisStrAttrList(slot3.items[slot0.newLv].actAttrStr))
+
+	slot2[1] = slot0.oldLv
+	slot2[2] = slot0.newLv
+
+	return slot2, slot1
+end
+slot0.initLeftRightProConNode = function (slot0, slot1, slot2)
+	slot3 = {
+		[0] = TR("绿色零星"),
+		TR("绿色一星"),
+		[5] = TR("绿色五星"),
+		[10] = TR("蓝色五星"),
+		[15] = TR("紫色五星"),
+		[20] = TR("橙色五星"),
+		[25] = TR("红色五星"),
+		[30] = TR("金色五星")
+	}
+	slot5 = {
+		"",
+		"#37ff40"
+	}
+	slot7 = clone(slot6)
+
+	for slot11, slot12 in ipairs(slot4) do
+		slot13 = ""
+
+		if slot0.configType == slot0.eRefine then
+			slot21, slot15, slot20 = Utility.getStarImgByRefineLv(slot1[slot11])
+			slot13 = TR("%s%s%s星", slot5[slot11], slot16, slot14)
+		elseif slot0.configType == slot0.eLvUp or slot0.configType == slot0.eGem then
+			slot13 = TR("%s%s级", slot5[slot11], slot1[slot11])
+		elseif slot0.configType == slot0.eQuality then
+			slot13 = TR("%s%s", slot5[slot11], Utility.getColorName(Resource.getQualityColorLv(slot1[slot11])))
+		end
+
+		slot15 = slot0.createLayoutTemplateNode(slot0, "proConNode", {
+			title = TR("%s%s%s", slot5[slot11], (slot1[slot11] ~= 0 and slot6[slot0.configType]) or slot7[slot0.configType], slot13)
+		})
+
+		slot15.setPosition(slot15, cc.p(slot12, -110))
+		slot0.bgNode:addChild(slot15)
+
+		for slot19, slot20 in ipairs(slot2[slot11]) do
+			if next(slot20) then
+				if Utility.isAttrNeedPercent(slot20.fightattr) then
+					slot20.value = slot20.value/100 .. "%"
+				end
+
+				slot15.proList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "proItem", {
+					str = TR("%s：%s+%s", FightAttrTypeName[slot20.fightattr], slot5[slot11], slot20.value)
+				}))
+			end
+		end
+	end
+
+	slot8 = table.maxn(slot2[2])
+
+	for slot12, slot13 in ipairs(slot0.getCustomChildren(slot0, slot0.arrowNode, "arrowFlag")) do
+		if slot12 <= slot8 then
+			slot13.setVisible(slot13, true)
+		else
+			break
+		end
+	end
+
+	return 
+end
+slot0.cbEndEffect = function (slot0)
+	slot0.effect:playAnimation("xunhuan")
+
+	return 
+end
+slot0.onCloseLayerCb = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

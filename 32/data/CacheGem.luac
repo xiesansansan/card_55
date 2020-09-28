@@ -1,0 +1,67 @@
+slot0 = class("CacheGem", require("data.CacheModel"))
+slot0.ctor = function (slot0)
+	slot0.super.ctor(slot0)
+
+	return 
+end
+slot0.getListByPartId = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mModelList) do
+		if GemModel.items[slot6].partId == slot1 then
+			slot2[slot6] = slot7
+		end
+	end
+
+	return slot2
+end
+slot0.calcResonanceLv = function (slot0)
+	slot1 = 1024
+	slot2 = 24
+
+	for slot6, slot7 in ipairs(SlotEquipObj:getList()) do
+		for slot11, slot12 in pairs(slot7.GemList) do
+			if 0 < slot12 then
+				if GemModel.items[slot12].Lv < slot1 then
+					slot1 = GemModel.items[slot12].Lv
+				end
+
+				slot2 = slot2 - 1
+			end
+		end
+	end
+
+	if slot2 ~= 0 then
+		slot1 = 0
+	end
+
+	return slot1
+end
+slot0.checkResonanceUpLv = function (slot0)
+	slot1 = slot0.calcResonanceLv(slot0)
+
+	if slot0.mResonanceLv then
+		table.sort(slot3)
+
+		slot4 = table.indexof(slot3, slot1)
+
+		if slot0.mResonanceLv < slot1 and slot4 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.EquipResonanceHintLayer",
+				data = {
+					configType = 0,
+					oldLv = slot0.mResonanceLv,
+					newLv = slot1
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+	end
+
+	slot0.mResonanceLv = slot1
+
+	return 
+end
+
+return slot0

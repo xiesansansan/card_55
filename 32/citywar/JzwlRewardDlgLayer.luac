@@ -1,0 +1,250 @@
+slot0 = class("JzwlRewardDlgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_3.png",
+			titleText = TR("物资赏赐")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_144.png",
+					pos = {
+						x = 320,
+						y = 437.1
+					},
+					size = {
+						width = 580,
+						height = 820
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCampGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 195,
+					pos = {
+						x = 320,
+						y = 438.26
+					},
+					size = {
+						width = 560,
+						height = 800
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.refreshData(slot0)
+	slot0.requestGetInfo(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshData = function (slot0)
+	slot0.mRewardData = {}
+
+	for slot5 = 1, LeaguetopConfig.items[1].oddrewardNums, 1 do
+		table.insert(slot0.mRewardData, {
+			ID = slot5
+		})
+	end
+
+	return 
+end
+slot0.refreshReward = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mRewardData) do
+		slot5.visitInfo = nil
+
+		for slot9, slot10 in ipairs(slot0.mVisitBoxInfo) do
+			if slot10.BoxId == slot5.ID then
+				slot5.visitInfo = slot10
+
+				break
+			end
+		end
+	end
+
+	slot0.gridView:setItemNum(#slot0.mRewardData)
+
+	return 
+end
+slot0.addCardNode = function (slot0, slot1, slot2, slot3)
+	slot5 = slot2.getContentSize(slot2)
+
+	if slot1.visitInfo and slot4.BoxId then
+		slot8 = UIWrap.newControl("CardNode", {
+			allowClick = true,
+			pos = cc.p((not slot3 or 0) and slot5.width/2, (slot3 and 30) or slot5.height/2 + 30)
+		})
+
+		slot8.setScaleX(slot8, -1)
+		slot8.setCardData(slot8, {
+			modelId = Utility.analysisStrResList(slot6)[1].resourceId,
+			num = Utility.analysisStrResList(slot6)[1].num
+		}, {
+			Enums.CardShowAttr.eName,
+			Enums.CardShowAttr.eNum
+		})
+		slot2.addChild(slot2, slot8)
+
+		slot9 = UIWrap.newControl("Label", {
+			text = slot4.PlayerInfo.Name,
+			pos = cc.p((not slot3 or 0) and slot5.width/2, (slot3 and -60) or slot5.height/2 - 60),
+			outlineColor = cc.c3b(51, 42, 24)
+		})
+
+		slot9.setScaleX(slot9, -1)
+		slot2.addChild(slot2, slot9)
+	end
+
+	return 
+end
+slot0.onCampGridAction = function (slot0, slot1, slot2, slot3)
+	slot4 = slot1.getContentSize(slot1)
+
+	function slot5()
+		slot0 = UIWrap.newControl("Sprite", {
+			image = "mjrq_bx_2.png",
+			pos = cc.p(slot0.width/2, slot0.height/2)
+		})
+
+		slot0.setScaleX(slot0, -1)
+		slot0.setScaleX:addChild(slot0)
+		slot0.setScaleX:addCardNode(slot2.mRewardData[], slot0)
+
+		return 
+	end
+
+	function slot6()
+		slot3:addChild(UIWrap.newControl("Button", {
+			image = "mjrq_bx_1.png",
+			swallowTouch = false,
+			pos = cc.p(slot0.width/2, slot0.height/2),
+			clickAction = function (slot0)
+				slot0:requestDrawGongFengReward(slot0.mRewardData[slot1].ID, slot0.requestDrawGongFengReward, slot0)
+
+				return 
+			end
+		}))
+
+		return 
+	end
+
+	if slot0.mRewardData[slot2] and slot0.mRewardData[slot2].visitInfo then
+		slot5()
+	else
+		slot6()
+	end
+
+	return 
+end
+slot0.getReward = function (slot0, slot1, slot2, slot3, slot4)
+	slot5 = {
+		ID = slot1
+	}
+
+	for slot9, slot10 in ipairs(slot0.mVisitBoxInfo) do
+		if slot10.BoxId == slot1 then
+			slot5.visitInfo = slot10
+		end
+	end
+
+	slot3.runAction(slot3, cc.Sequence:create({
+		cc.OrbitCamera:create(0.4, 1, 30, 0, 90, 0, 0),
+		cc.CallFunc:create(function ()
+			slot0:loadTextures("mjrq_bx_2.png", "mjrq_bx_2.png")
+			slot0:addCardNode("mjrq_bx_2.png", slot0.addCardNode, true)
+
+			return 
+		end),
+		cc.OrbitCamera:create(0.4, 1, 30, 90, 90, 0, 0),
+		cc.CallFunc:create(function ()
+			ui.showFlashReward({
+				BaseGetGameResourceList = ui.showFlashReward
+			})
+			{
+				BaseGetGameResourceList = ui.showFlashReward
+			}:refreshReward()
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GongFengInfo",
+		moduleName = "Leaguetop",
+		methodData = {
+			1,
+			10
+		},
+		successCallback = function (slot0)
+			slot0.mFundNum = slot0.GongFengInfo.FundNum
+			slot0.mEndTime = slot0.GongFengInfo.VisitBoxEndDate
+			slot0.mGongFengRecord = slot0.GongFengRecord
+			slot0.mMyRecord = slot0.GongFengInfo.GongFengRecord
+			slot0.mGongFengRecordCount = slot0.GongFengRecordCount
+			slot0.mVisitBoxInfo = slot0.VisitBoxInfo
+
+			slot0:refreshReward()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawGongFengReward = function (slot0, slot1, slot2, slot3)
+	slot0.safeRequest(slot0, {
+		methodName = "DrawGongFengReward",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mVisitBoxInfo = slot0.VisitBoxInfo
+
+			slot0:getReward(slot0.getReward, slot0, , slot0.BaseGetGameResourceList)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -21040 then
+				slot0:requestGetInfo()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

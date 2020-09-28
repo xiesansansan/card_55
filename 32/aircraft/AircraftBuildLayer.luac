@@ -1,0 +1,867 @@
+slot0 = class("AircraftBuildLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBg",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zq_18.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onBtnMapAction",
+					pos = {
+						x = 0,
+						y = -230
+					},
+					titleText = TR("查看战场")
+				},
+				children = {}
+			},
+			{
+				name = "btnOccupy",
+				cType = "Button",
+				params = {
+					image = "zq_46.png",
+					hide = true,
+					pos = {
+						x = 0,
+						y = -64
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHerosParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "PlayerTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled34-heroModelId",
+								name = "heroModelId",
+								type = "string"
+							}
+						},
+						params = {
+							scale = 0.8,
+							pos = {
+								x = -160,
+								y = -277.45
+							}
+						},
+						children = {
+							{
+								name = "untitled46",
+								cType = "Sprite",
+								params = {
+									image = "zd_black.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "FigureHero",
+								params = {
+									childName = "figure",
+									heroModelId = 12011103,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled37",
+								cType = "Scale9Sprite",
+								params = {
+									image = "zq_20.png",
+									pos = {
+										x = 20,
+										y = 230
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled48",
+								cType = "Scale9Sprite",
+								params = {
+									image = "zq_21.png",
+									childName = "hpBg",
+									pos = {
+										x = 0,
+										y = 208
+									}
+								},
+								children = {
+									{
+										name = "hpBar",
+										cType = "ProgressBar",
+										params = {
+											normalImage = "zq_22.png",
+											pos = {
+												x = 41.5,
+												y = 6
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled38",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "playerName",
+									pos = {
+										x = 4,
+										y = 228
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									childName = "button",
+									pos = {
+										x = 3.59,
+										y = 116.7
+									},
+									size = {
+										width = 115.61,
+										height = 239.16
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Node",
+								params = {
+									childName = "ctrlNode",
+									scale = 0,
+									zOrder = 1,
+									pos = {
+										x = 1.41,
+										y = 236.91
+									}
+								},
+								children = {
+									{
+										name = "untitled41",
+										cType = "Scale9Sprite",
+										params = {
+											image = "jh_45.png",
+											pos = {
+												x = 0,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "Button",
+										params = {
+											image = "zq_36.png",
+											childName = "btnFight",
+											pos = {
+												x = -57.05,
+												y = 76.64
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled43",
+										cType = "Button",
+										params = {
+											image = "zq_37.png",
+											childName = "btnLook",
+											pos = {
+												x = 62.95,
+												y = 76.64
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "templateProgressNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled44-normalImage",
+						name = "proBarImg",
+						type = "string"
+					},
+					{
+						value = "untitled44-maxValue",
+						name = "proMaxValue",
+						type = "string"
+					},
+					{
+						value = "untitled44-currValue",
+						name = "proCurValue",
+						type = "string"
+					},
+					{
+						value = "untitled44-rotationAngle",
+						name = "proRorate",
+						type = "string"
+					},
+					{
+						value = "untitled16-text",
+						name = "proText",
+						type = "string"
+					}
+				},
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = 46
+					},
+					size = {
+						width = 674,
+						height = 20
+					}
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							childName = "label",
+							outlineColor = {
+								g = 0,
+								r = 0,
+								b = 0
+							},
+							pos = {
+								x = 337,
+								y = -14
+							},
+							text = TR("红方占领中: 22s")
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						params = {
+							hide = true,
+							image = "zq_47.png",
+							childName = "flagA",
+							anchor = {
+								x = 1,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 19
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							hide = true,
+							image = "zq_48.png",
+							childName = "flagB",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 674,
+								y = 14
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled44",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_59.png",
+							bgImage = "jyt_58.png",
+							rotationAngle = 1,
+							currValue = 1,
+							maxValue = 1,
+							childName = "progressBar",
+							pos = {
+								x = 337,
+								y = 10
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "topChatLayer",
+		cType = "FileLayer",
+		params = {
+			file = "aircraft/AircraftCommTopChatLayer.lua"
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+
+	slot0.myPlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+	slot0.occupyNeedTime = AircraftConfig.items[1].occupyNeedSeconds
+
+	slot0.initUI(slot0)
+
+	if AircraftHelper.myTeamName == nil then
+		Utility.performWithDelay(slot0.bgNode, function ()
+			AircraftHelper:goHomeLayer()
+
+			return 
+		end, 0.01)
+
+		return 
+	end
+
+	if AircraftHelper.battleResultData ~= nil then
+		Utility.performWithDelay(slot0.bgNode, function ()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end, 0.01)
+
+		return 
+	end
+
+	if AircraftHelper:convertServerPos(AircraftHelper:getSelfData().CurPos).x == AircraftPointConfig.items[AircraftHelper.getSelfData().BornPoint].X or slot3.y == slot4.Y then
+		Utility.performWithDelay(slot0.bgNode, function ()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end, 0.01)
+
+		if slot2.Status == 1 then
+			slot2.Status = 2
+		end
+
+		return 
+	end
+
+	if next(AircraftHelper.enterResInfo) then
+		Utility.performWithDelay(slot0.bgNode, function ()
+			slot0:refreshLayer()
+			slot0.refreshLayer:refreshPlane()
+
+			return 
+		end, 0.01)
+	end
+
+	slot0.registerMsgCallback(slot0)
+
+	if AircraftHelper.isHangUping then
+		Utility.performWithDelay(slot0, function ()
+			LayerManager.showModuleLayer(ModuleSub.eShengyuanOfflineMatch)
+
+			return 
+		end, 0)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "topChatLayer" then
+			slot1.initParams = {
+				closeAction = handler(slot0, slot0.onBtnCloseAction)
+			}
+		end
+
+		return 
+	end)
+	slot0.topChatLayer:initPlaneList()
+
+	return 
+end
+slot0.registerMsgCallback = function (slot0)
+	slot1({
+		AircraftHelper.Events.eGodDomainResInfo
+	}, function (slot0, slot1)
+		slot0:refreshLayer()
+		slot0:refreshPlane()
+
+		return 
+	end)
+	slot1({
+		AircraftHelper.Events.eGodDomainEnterOrQuiteRes
+	}, function (slot0, slot1)
+		if slot1.PlayerId == slot0.myPlayerId and slot1.IsEnter == false then
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+
+		slot0:refreshLayer()
+		slot0:refreshPlane()
+
+		return 
+	end)
+	slot1({
+		AircraftHelper.Events.eGodDomainFightOver
+	}, function (slot0, slot1)
+		if not next(AircraftHelper.enterResInfo) then
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+
+		slot0:refreshLayer()
+		slot0:refreshPlane()
+		slot0:resetPlayerHp(slot1.targetPlayerId)
+		slot0:resetPlayerHp(slot1.attackPlayerId)
+
+		if slot0.topChatLayer:findOnePlane((slot1.isWin and slot1.attackPlayerId) or slot1.targetPlayerId) ~= nil then
+			slot0.topChatLayer:showKillFlash(slot3)
+		end
+
+		return 
+	end)
+	function (slot0, slot1)
+		slot0:addChild(slot2)
+		EventAuto:registerAutoEvent(UIWrap.newControl("Node", {}), slot0, slot1)
+
+		return 
+	end({
+		AircraftHelper.Events.eGodDomainFightResult
+	}, function (slot0, slot1)
+		slot0.topChatLayer:onGameEndAction()
+
+		slot2 = {}
+
+		if AircraftHelper.myTeamName == AircraftHelper.teamA then
+			list = slot1.A
+		else
+			list = slot1.B
+		end
+
+		for slot6, slot7 in pairs(list) do
+			if slot7.PlayerId == slot0.myPlayerId then
+				slot2 = string.splitBySep(slot7.GroupMember or "", ",")
+
+				break
+			end
+		end
+
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "aircraft.AircraftDlgGameEndLayer",
+			data = {
+				pageInfo = slot1
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0, slot1)
+	if slot0.isSelfDead then
+		LayerManager.removeLayer(slot0)
+
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提 示"),
+		text = TR("若据点无人驻守，将不能继续获得资源分，是否退出？"),
+		okCallback = function ()
+			AircraftHelper:quitPoint(AircraftHelper.enterResInfo.ResPointId, function ()
+				return 
+			end)
+
+			return 
+		end,
+		cancelCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onBtnMapAction = function (slot0, slot1)
+	LayerManager.getRestoreData("aircraft.AircraftMapLayer").islookWork = true
+
+	LayerManager.setRestoreData("aircraft.AircraftMapLayer", LayerManager.getRestoreData("aircraft.AircraftMapLayer"))
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.btnOccupy:setVisible(slot0.checkGetBtnVisible(slot0))
+
+	slot2 = "zq_18.jpg"
+
+	if AircraftHelper.enterResInfo.ResPointId == 4 then
+		slot2 = "zq_18.jpg"
+	end
+
+	slot0.mBg:setTexture(slot2)
+	slot0.setGetBtnAction(slot0)
+	slot0.refreshOccupyTimer(slot0)
+
+	return 
+end
+slot0.refreshPlane = function (slot0)
+	slot0.topChatLayer:cleanPlaneNoInList(clone(AircraftHelper.enterResInfo))
+
+	function slot2(slot0, slot1)
+		for slot5, slot6 in ipairs(slot0) do
+			if slot0.topChatLayer:findOnePlane(slot6) == nil then
+				slot8 = slot0:createLayoutTemplateNode("PlayerTempNode", {
+					heroModelId = AircraftHelper:getPlayerData(slot6).FashionModelId
+				})
+				slot8.playerId = slot6
+
+				slot0:refreshPlayerNode(slot8, AircraftHelper.getPlayerData(slot6))
+				slot8.figure:setRotationSkewY((slot1 and 180) or 0)
+				slot8.button:setClickAction(function ()
+					slot0:showCtrlBtn()
+					slot0:closeShowCtrl(slot2.PlayerId)
+
+					return 
+				end)
+
+				slot9 = slot0.topChatLayer:addOnePlane(slot8, slot1)
+
+				slot0.mHerosParent:addChild(slot8)
+			end
+		end
+
+		return 
+	end
+
+	if AircraftHelper.myTeamName ~= nil and AircraftHelper.myTeamName == AircraftHelper.teamB then
+		slot2(slot1.B, false)
+		slot2(slot1.A, true)
+	else
+		slot2(slot1.A, false)
+		slot2(slot1.B, true)
+	end
+
+	return 
+end
+slot0.closeShowCtrl = function (slot0, slot1)
+	slot0.topChatLayer:operAllPlane(function (slot0)
+		if slot0.playerId ~= slot0 and slot0.node and slot0.node.isShowCtrlBtn then
+			slot0.node:showCtrlBtn()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshPlayerNode = function (slot0, slot1, slot2)
+	if not slot2 then
+		return 
+	end
+
+	slot1.playerName:setString(slot2.PlayerName or slot2.Name)
+
+	slot3 = cc.c3b(255, 255, 255)
+
+	if AircraftHelper.myTeamName ~= slot2.TeamName then
+		slot3 = cc.c3b(192, 65, 65)
+	elseif PlayerAttrObj:getPlayerAttrByName("PlayerId") == slot2.PlayerId then
+		slot3 = cc.c3b(139, 168, 87)
+	end
+
+	if slot1.curTitleSprite then
+		slot1.curTitleSprite:removeFromParent()
+
+		slot1.curTitleSprite = nil
+	end
+
+	if TitleConfig.items[tonumber(slot2.TitleInfo)] then
+		if cc.FileUtils:getInstance():isFileExist(slot4.pic .. ".skel") then
+			slot1.addChild(slot1, UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				dataFile = slot4.pic,
+				pos = cc.p(0, 255)
+			}))
+
+			slot1.curTitleSprite = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				dataFile = slot4.pic,
+				pos = cc.p(0, 255)
+			})
+		else
+			slot1.addChild(slot1, slot5)
+
+			slot1.curTitleSprite = cc.Sprite:create(slot4.pic .. ".png")
+
+			slot1.curTitleSprite:setPosition(0, 300)
+		end
+	end
+
+	if slot2.TotalHp then
+		slot1.refreshHpBar = function (slot0, slot1, slot2)
+			slot0.hpBar:setMaxValue(slot1)
+			slot0.hpBar:setCurrValue(slot2)
+
+			return 
+		end
+
+		slot1.refreshHpBar(slot1, slot2.TotalHp, slot2.Hp)
+		slot1.hpBg:setVisible(true)
+	else
+		slot1.hpBg:setVisible(false)
+	end
+
+	if not (AircraftHelper.myTeamName ~= slot2.TeamName) then
+		slot1.ctrlNode.btnFight:setVisible(false)
+		slot1.ctrlNode.btnLook:setPosition(0, 76)
+	end
+
+	slot1.ctrlNode.btnLook:setClickAction(function ()
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "aircraft.AircraftPlayerDetailLayer",
+			data = {
+				playerId = slot0.playerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end)
+	slot1.ctrlNode.btnFight:setClickAction(function ()
+		AircraftHelper:playerFight(slot0.playerId, AircraftHelper.enterResInfo.ResPointId, function (slot0)
+			return 
+		end)
+
+		return 
+	end)
+
+	slot1.showCtrlBtn = function (slot0)
+		slot0.isShowCtrlBtn = not slot0.isShowCtrlBtn
+
+		slot0.ctrlNode:runAction(cc.ScaleTo:create(0.2, (slot0.isShowCtrlBtn and 1) or 0))
+
+		return 
+	end
+
+	return 
+end
+slot0.checkGetBtnVisible = function (slot0)
+	slot1 = false
+
+	return ((not AircraftHelper.enterResInfo.ResPointStatus or AircraftHelper.enterResInfo.ResPointStatus == 0) and true) or AircraftHelper.enterResInfo.TeamName ~= AircraftHelper.myTeamName
+end
+slot0.setGetBtnAction = function (slot0)
+	if not slot0.btnOccupy:isVisible() then
+		return 
+	end
+
+	if AircraftHelper.enterResInfo.TeamName == AircraftHelper.myTeamName then
+		slot0.btnOccupy:setClickAction(function ()
+			return 
+		end)
+
+		return 
+	end
+
+	if AircraftHelper.myTeamName == "A" then
+		if AircraftHelper.enterResInfo.B and next(AircraftHelper.enterResInfo.B) then
+			slot0.btnOccupy:setClickAction(function ()
+				ui.showFlashView(TR("请先打败对方的所有侠客"))
+
+				return 
+			end)
+		else
+			slot0.btnOccupy:setClickAction(function ()
+				AircraftHelper:occupyPoint(AircraftHelper.enterResInfo.ResPointId, function ()
+					return 
+				end)
+
+				return 
+			end)
+		end
+	elseif AircraftHelper.enterResInfo.A and next(AircraftHelper.enterResInfo.A) then
+		slot0.btnOccupy:setClickAction(function ()
+			ui.showFlashView(TR("请先打败对方的所有侠客"))
+
+			return 
+		end)
+	else
+		slot0.btnOccupy:setClickAction(function ()
+			AircraftHelper:occupyPoint(AircraftHelper.enterResInfo.ResPointId, function ()
+				return 
+			end)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.refreshOccupyTimer = function (slot0)
+	if not tolua.isnull(slot0.mProgressNode) then
+		slot0.mProgressNode:removeFromParent()
+
+		slot0.mProgressNode = nil
+	end
+
+	slot1, slot2, slot3 = nil
+
+	if AircraftHelper.enterResInfo.TeamName ~= AircraftHelper.myTeamName then
+		slot1 = "jyt_59.png"
+		slot2 = 0
+		slot3 = TR("#EA2C00敌方")
+	else
+		slot1 = "jyt_60.png"
+		slot2 = 180
+		slot3 = TR("#60D8FF我方")
+	end
+
+	if AircraftHelper.enterResInfo.ResPointStatus == 1 then
+		if AircraftHelper.enterResInfo.Time == nil or AircraftHelper.enterResInfo.Time <= 0 then
+			return 
+		end
+
+		slot4 = AircraftHelper.enterResInfo.Time
+		slot0.mProgressNode = slot0.createLayoutTemplateNode(slot0, "templateProgressNode", {
+			proText = "",
+			proBarImg = slot1,
+			proMaxValue = slot0.occupyNeedTime,
+			proCurValue = slot0.occupyNeedTime - AircraftHelper.enterResInfo.Time,
+			proRorate = slot2
+		})
+
+		slot0.bgNode:addChild(slot0.mProgressNode)
+
+		slot6 = slot0.mProgressNode:getContentSize()
+		slot7 = (slot0.occupyNeedTime - AircraftHelper.enterResInfo.Time)/slot0.occupyNeedTime
+
+		if AircraftHelper.enterResInfo.TeamName ~= AircraftHelper.myTeamName then
+			slot0.mProgressNode.flagA:setPositionX(slot6.width*slot7)
+			slot0.mProgressNode.flagA:setVisible(true)
+			slot0.mProgressNode.flagA:runAction(cc.MoveTo:create(slot4, cc.p(slot6.width, 17)))
+		else
+			slot0.mProgressNode.flagB:setPositionX(slot6.width*(slot7 - 1))
+			slot0.mProgressNode.flagB:setVisible(true)
+			slot0.mProgressNode.flagB:runAction(cc.MoveTo:create(slot4, cc.p(0, 17)))
+		end
+
+		slot0.mProgressNode.progressBar:doProgress(slot0.occupyNeedTime, slot4, function ()
+			return 
+		end)
+		Utility.schedule(slot0.mProgressNode.label, function ()
+			slot0.mProgressNode.label:setString(slot1 .. TR("正在占领: %ss", AircraftHelper.enterResInfo.Time))
+
+			return 
+		end, 0.5)
+	elseif AircraftHelper.enterResInfo.ResPointStatus == 2 then
+		slot0.mProgressNode = slot0.createLayoutTemplateNode(slot0, "templateProgressNode", {
+			proBarImg = slot1,
+			proMaxValue = slot0.occupyNeedTime,
+			proCurValue = slot0.occupyNeedTime,
+			proRorate = slot2,
+			proText = slot3 .. TR("已经占领")
+		})
+
+		slot0.bgNode:addChild(slot0.mProgressNode)
+
+		slot4 = slot0.mProgressNode:getContentSize()
+
+		if AircraftHelper.enterResInfo.TeamName ~= AircraftHelper.myTeamName then
+			slot0.mProgressNode.flagA:setPositionX(slot4.width)
+			slot0.mProgressNode.flagA:setVisible(true)
+		else
+			slot0.mProgressNode.flagB:setPositionX(0)
+			slot0.mProgressNode.flagB:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.resetPlayerHp = function (slot0, slot1)
+	if slot0.topChatLayer:findOnePlane(slot1) == nil then
+		return 
+	end
+
+	slot2.refreshHpBar(slot2, AircraftHelper:getPlayerData(slot1).TotalHp, AircraftHelper.getPlayerData(slot1).Hp)
+
+	return 
+end
+
+return slot0

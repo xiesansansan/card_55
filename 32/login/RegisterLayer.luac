@@ -1,0 +1,297 @@
+slot0 = class("RegisterLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled6",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer",
+			pos = {
+				z = 0,
+				x = 320,
+				y = 568.35
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "dl_1.png",
+					pos = {
+						x = 52,
+						y = 363.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "dl_1.png",
+					pos = {
+						x = 52,
+						y = 292.41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Sprite",
+				params = {
+					image = "dl_1.png",
+					pos = {
+						x = 52,
+						y = 221.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onCancelAction",
+					pos = {
+						x = -120,
+						y = 115
+					},
+					titleText = TR("取  消")
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onRegisterAction",
+					pos = {
+						x = 120,
+						y = 115
+					},
+					titleText = TR("注  册")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -99,
+						y = 351.35
+					},
+					text = TR("账  号")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -102,
+						y = 281
+					},
+					text = TR("密  码")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -82,
+						y = 209.35
+					},
+					text = TR("确认密码")
+				},
+				children = {}
+			},
+			{
+				name = "mAccountEdit",
+				cType = "EditBox",
+				params = {
+					fontSize = 24,
+					image = "c_pure.png",
+					fontColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 28,
+						y = 352
+					},
+					size = {
+						width = 200,
+						height = 30
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPasswordEdit",
+				cType = "EditBox",
+				params = {
+					fontSize = 24,
+					image = "c_pure.png",
+					isPassword = true,
+					fontColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 28.08,
+						y = 281.66
+					},
+					size = {
+						width = 200,
+						height = 30
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mScendPasswordEdit",
+				cType = "EditBox",
+				params = {
+					fontSize = 24,
+					image = "c_pure.png",
+					isPassword = true,
+					fontColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 28.63,
+						y = 208.76
+					},
+					size = {
+						width = 200,
+						height = 30
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onCancelAction = function (slot0, ...)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRegisterAction = function (slot0, ...)
+	if not string.isEmail(slot0.mAccountEdit:getText()) then
+		ui.showFlashView(TR("邮箱格式不正确"))
+
+		return 
+	end
+
+	if not string.isValided(slot0.mPasswordEdit:getText()) then
+		ui.showFlashView(TR("密码格式不正确"))
+
+		return 
+	end
+
+	if slot2 ~= slot0.mScendPasswordEdit:getText() then
+		ui.showFlashView(TR("两次密码不一致"))
+
+		return 
+	end
+
+	slot0.loginInfo = {
+		account = slot1,
+		password = string.md5Content(slot2)
+	}
+
+	slot0.safeRequest(slot0, {
+		moduleName = "Register",
+		svrType = Enums.HttpSvrType.eAccount,
+		methodData = {
+			email = slot1,
+			pwd = slot0.loginInfo.password,
+			udid = IPlatform:getInstance():getDeviceUUID()
+		},
+		successCallback = handler(slot0, slot0.requestRegisterAccount)
+	})
+
+	return 
+end
+slot0.requestRegisterAccount = function (slot0, slot1)
+	if slot1.UserID and 0 < string.len(slot2) then
+		LocalData:setMQLoginInfo(slot0.loginInfo)
+		MQHandlerHelper:getInstance():sendEvent("LOGIN", cjson.encode({
+			sessionId = slot2
+		}))
+	end
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,137 @@
+MqAudio = {
+	musicId = -1,
+	musicFile = nil,
+	effectIds = {},
+	musicVolume = 1,
+	effectVolume = 1
+}
+MqAudio.isMusicPlaying = function ()
+	return -1 < MqAudio.musicId
+end
+MqAudio.getPlayingMusic = function ()
+	return MqAudio.musicFile
+end
+MqAudio.playMusic = function (slot0, slot1)
+	if MqAudio.isFileValid(slot0) and LocalData:getMusicEnabled() then
+		MqAudio.curMusicFile_ = slot0
+
+		if not MqAudio.playMusicAction_ then
+			MqAudio.playMusicAction_ = true
+
+			display.getRunningScene():runAction(cc.Sequence:create(cc.DelayTime:create(0.001), cc.CallFunc:create(function ()
+				MqAudio.playMusicAction_ = false
+
+				if MqAudio.musicFile ~= MqAudio.curMusicFile_ then
+					if MqAudio.isMusicPlaying() then
+						MqAudio.stopMusic(MqAudio.musicId)
+					end
+
+					slot0.musicId = ccexp.AudioEngine:play2d(MqAudio.curMusicFile_, MqAudio ~= false, MqAudio.musicVolume)
+					MqAudio.musicFile = MqAudio.curMusicFile_
+
+					ccexp.AudioEngine:setFinishCallback(MqAudio.musicId, function (slot0, slot1)
+						MqAudio.musicId = -1
+						MqAudio.musicFile = nil
+
+						return 
+					end)
+				end
+
+				return 
+			end)))
+		end
+	end
+
+	return 
+end
+MqAudio.stopMusic = function ()
+	if -1 < MqAudio.musicId then
+		ccexp.AudioEngine:stop(MqAudio.musicId)
+
+		MqAudio.musicId = -1
+	end
+
+	return 
+end
+MqAudio.stopAllEffect = function ()
+	for slot3, slot4 in pairs(MqAudio.effectIds) do
+		MqAudio.stopEffect(slot3)
+	end
+
+	MqAudio.effectIds = {}
+
+	return 
+end
+MqAudio.stopMusicEffects = function ()
+	ccexp.AudioEngine:stopAll()
+
+	MqAudio.effectIds = {}
+
+	return 
+end
+MqAudio.pauseMusic = function ()
+	if -1 < MqAudio.musicId then
+		ccexp.AudioEngine:pause(MqAudio.musicId)
+	end
+
+	return 
+end
+MqAudio.resumeMusic = function ()
+	if -1 < MqAudio.musicId then
+		ccexp.AudioEngine:resume(MqAudio.musicId)
+	end
+
+	return 
+end
+MqAudio.setMusicVolume = function (slot0)
+	MqAudio.musicVolume = slot0
+
+	if -1 < MqAudio.musicId then
+		ccexp.AudioEngine:setVolume(MqAudio.musicId, slot0)
+	end
+
+	return 
+end
+MqAudio.getMusicVolume = function ()
+	return MqAudio.musicVolume
+end
+MqAudio.setEffectVolume = function (slot0)
+	MqAudio.effectVolume = slot0
+
+	return 
+end
+MqAudio.getEffectVolume = function ()
+	return MqAudio.effectVolume
+end
+MqAudio.playEffect = function (slot0, slot1)
+	if MqAudio.isFileValid(slot0) and LocalData:getEffectEnabled() then
+		slot2 = ccexp.AudioEngine:play2d(slot0, slot1 or false, MqAudio.effectVolume)
+		MqAudio.effectIds[slot2] = true
+
+		ccexp.AudioEngine:setFinishCallback(slot2, function (slot0, slot1)
+			if slot0 == slot0 then
+				MqAudio.effectIds[slot0] = nil
+			end
+
+			return 
+		end)
+
+		return slot2
+	end
+
+	return 
+end
+MqAudio.stopEffect = function (slot0)
+	if slot0 and -1 < slot0 then
+		ccexp.AudioEngine:stop(slot0)
+
+		MqAudio.effectIds[slot0] = nil
+	end
+
+	return 
+end
+MqAudio.isFileValid = function (slot0)
+	return cc.FileUtils:getInstance():isFileExist(slot0) and slot0.match(slot0, "[%w+.-]%.[%w+]")
+end
+
+return 

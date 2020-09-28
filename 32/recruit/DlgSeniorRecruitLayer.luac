@@ -1,0 +1,716 @@
+slot0 = class("DlgSeniorRecruitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionEnd",
+			closeAction = "onCloseLayer",
+			posApt = 1,
+			image = "c_pure.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 822.11,
+				height = 443.91
+			}
+		},
+		children = {
+			{
+				name = "mCenterNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 410,
+						y = 250
+					}
+				},
+				children = {
+					{
+						name = "RecruitTypeNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -336.42,
+								y = -171.96
+							}
+						},
+						children = {
+							{
+								name = "untitled3",
+								cType = "Sprite",
+								params = {
+									image = "jg_21.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = -60,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled4",
+								cType = "Sprite",
+								params = {
+									image = "jg_20.png",
+									rotationAngle = -15,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = -32,
+										y = -5
+									}
+								},
+								children = {
+									{
+										name = "untitled5",
+										cType = "Sprite",
+										params = {
+											image = "jg_23.png",
+											pos = {
+												x = 60.31,
+												y = 227.18
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "jg_34.png",
+									pos = {
+										x = 75,
+										y = 167
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									childName = "getLabel",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 47,
+										y = 162
+									},
+									size = {
+										width = 30,
+										height = 0
+									},
+									text = TR("侠客")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									text = "0",
+									childName = "needNumLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 90,
+										y = 189.96
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									childName = "singleUseLabel",
+									text = "Label",
+									pos = {
+										x = -90,
+										y = -105
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "freeLabel",
+									hide = true,
+									pos = {
+										x = -90,
+										y = -35
+									},
+									text = TR("本次免费")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Button",
+								params = {
+									childName = "singleRecruitBtn",
+									image = "c_32.png",
+									clickAction = "onRecruit",
+									pos = {
+										x = -90,
+										y = -70
+									},
+									size = {
+										width = 110,
+										height = 38
+									},
+									titleText = TR("单 抽")
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "RedDot",
+										params = {
+											subKey = "Recruit_2_3",
+											moduleId = 3601
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled21",
+								cType = "Button",
+								params = {
+									childName = "tenRecruitBtn",
+									image = "c_27.png",
+									clickAction = "onRecruit",
+									pos = {
+										x = 90,
+										y = -70
+									},
+									size = {
+										width = 110,
+										height = 38
+									},
+									titleText = TR("十连抽")
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "RedDot",
+										params = {
+											subKey = "Recruit_2_4",
+											moduleId = 3601
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled23",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									childName = "tenUseLabel",
+									text = "Label",
+									pos = {
+										x = 90,
+										y = -105
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "wishHeroNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 410,
+						y = 50
+					}
+				},
+				children = {
+					{
+						name = "mNeedNumLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							isRichText = true,
+							pos = {
+								x = 255.28,
+								y = -48.08
+							},
+							text = TR("高级招募6次开启")
+						},
+						children = {}
+					},
+					{
+						name = "selectCardNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 169.62,
+								y = 24.31
+							}
+						},
+						children = {
+							{
+								name = "untitled36",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 71.25,
+										y = -32.31
+									},
+									text = TR("心愿侠客")
+								},
+								children = {}
+							},
+							{
+								name = "untitled33",
+								cType = "Button",
+								custom = {
+									{
+										value = 15,
+										name = "heroType",
+										type = "integer"
+									},
+									{
+										value = 1,
+										name = "num",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "xkxx_45.png",
+									scale = 0.8,
+									rotationAngle = 30,
+									clickAction = "onWishHeadClick",
+									pos = {
+										x = 202.16,
+										y = 116.2
+									}
+								},
+								children = {
+									{
+										name = "untitled34",
+										cType = "Sprite",
+										params = {
+											image = "c_136.png",
+											childName = "heroSprite",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Sprite",
+										params = {
+											image = "xkxx_98.png",
+											childName = "tagSprite",
+											pos = {
+												x = -58.76,
+												y = 80.99
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled30",
+								cType = "Button",
+								custom = {
+									{
+										value = 16,
+										name = "heroType",
+										type = "integer"
+									},
+									{
+										value = 2,
+										name = "num",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "xkxx_45.png",
+									scale = 0.8,
+									rotationAngle = 15,
+									clickAction = "onWishHeadClick",
+									pos = {
+										x = 100.5,
+										y = 158.49
+									}
+								},
+								children = {
+									{
+										name = "untitled31",
+										cType = "Sprite",
+										params = {
+											image = "c_136.png",
+											childName = "heroSprite",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled32",
+										cType = "Sprite",
+										params = {
+											image = "xkxx_102.png",
+											childName = "tagSprite",
+											pos = {
+												x = -58.76,
+												y = 80.99
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled28",
+								cType = "Button",
+								custom = {
+									{
+										value = 16,
+										name = "heroType",
+										type = "integer"
+									},
+									{
+										value = 1,
+										name = "num",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "xkxx_45.png",
+									clickAction = "onWishHeadClick",
+									scale = 0.8,
+									pos = {
+										x = -11.3,
+										y = 172.25
+									}
+								},
+								children = {
+									{
+										name = "untitled25",
+										cType = "Sprite",
+										params = {
+											image = "c_136.png",
+											childName = "heroSprite",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled26",
+										cType = "Sprite",
+										params = {
+											image = "xkxx_102.png",
+											childName = "tagSprite",
+											pos = {
+												x = -58.76,
+												y = 80.99
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	eFriendOnceRecruit = 5,
+	eFriendTeneRecruit = 6,
+	eTimedTenRecruit = 8,
+	eLowTenRecruit = 2,
+	eSeniorOnceRecruit = 3,
+	eLowOnceRecruit = 1,
+	eSeniorTenRecruit = 4,
+	eTimedOnceRecruit = 7
+}
+slot3 = {
+	[({
+		eMyth = 16,
+		eLegend = 15
+	})["eLegend"]] = 1,
+	[({
+		eMyth = 16,
+		eLegend = 15
+	})["eMyth"]] = 2
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = slot1.activityId
+	slot0.mRecruitInfo = slot1.recruitInfo
+	slot0.mWishInfo = slot0.mRecruitInfo.RecruitWantInfo or {}
+	slot0.mTimedRecruitInfo = slot1.timedInfo
+	slot0.mCallback = slot1.callback
+	slot0.mCloseCb = slot1.closeCb
+	slot0.mWishChangedCb = slot1.wishChangedCb
+	slot0.mGuideCallBack = slot1.guideCallBack
+	slot0.mGuideBtn = nil
+	slot0.isTimedRecruit = false
+	slot2, slot3 = Guide.manager:getGuideInfo()
+
+	if not slot3 and slot0.mActivityId and Player:getCurrentTime() < slot0.mTimedRecruitInfo.EndDate and slot0.mTimedRecruitInfo then
+		slot0.isTimedRecruit = true
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createRecruitNode(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.initData = function (slot0)
+	slot0.mRecruitModel = {}
+
+	for slot4, slot5 in pairs(clone(RecruitModel.items)) do
+		slot0.mRecruitModel[slot5.Id] = slot5
+	end
+
+	slot0.mRecruitModel[slot0.eTimedOnceRecruit] = clone(slot0.mRecruitModel[slot0.eSeniorOnceRecruit])
+	slot0.mRecruitModel[slot0.eTimedTenRecruit] = clone(slot0.mRecruitModel[slot0.eSeniorTenRecruit])
+
+	return 
+end
+slot0.createRecruitNode = function (slot0)
+	slot0.mCenterNode:removeAllChildren()
+
+	slot0.mRecruitNode = slot0.createLayoutTemplateNode(slot0, "RecruitTypeNode")
+
+	slot0.mRecruitNode:setPosition(-200, -160)
+	slot0.mCenterNode:addChild(slot0.mRecruitNode)
+
+	slot0.mGuideBtn = slot0.mRecruitNode.singleRecruitBtn
+
+	if slot0.isTimedRecruit then
+		slot0.mRecruitNode.singleRecruitBtn.recruitType = slot0.eTimedOnceRecruit
+		slot0.mRecruitNode.tenRecruitBtn.recruitType = slot0.eTimedTenRecruit
+	else
+		slot0.mRecruitNode.singleRecruitBtn.recruitType = slot0.eSeniorOnceRecruit
+		slot0.mRecruitNode.tenRecruitBtn.recruitType = slot0.eSeniorTenRecruit
+	end
+
+	return 
+end
+slot0.refreshRecruit = function (slot0)
+	slot0.mRecruitNode.singleUseLabel:setString(string.format("{%s}%s%s/#ffffff%s", Resource.getDaibiImg(slot2.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eSeniorOnceRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eSeniorOnceRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot3, slot2.num))
+	slot0.mRecruitNode.tenUseLabel:setString(string.format("{%s}%s%s/#ffffff%s", Resource.getDaibiImg(slot5.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eSeniorTenRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eSeniorTenRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot6, slot5.num))
+	slot0.mRecruitNode.getLabel:setString(TR("神话侠客"))
+	slot0.mRecruitNode.getLabel:setColor(cc.c3b(203, 125, 69))
+	slot0.mRecruitNode.needNumLabel:setString(slot0.analysisOutNumStr(slot0, slot0.mWishInfo.NextOutCountInfo)[slot0.mRecruitNode.eMyth] or 0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshRecruit(slot0)
+	slot0.refreshWishHero(slot0)
+
+	return 
+end
+slot0.refreshWishHero = function (slot0)
+	if slot0.mWishInfo.Count <= 0 then
+		slot0.mNeedNumLabel:setString("")
+	else
+		slot0.mNeedNumLabel:setString(TR("高级招募#c04141%s#ffffff次开启", slot0.mWishInfo.Count))
+	end
+
+	slot0.refreshWishShow(slot0)
+
+	return 
+end
+slot0.analysisWishStr = function (slot0, slot1)
+	slot2 = {}
+
+	if not slot1 or slot1 == "" then
+		return slot2
+	end
+
+	for slot7, slot8 in pairs(slot3) do
+		slot10 = tonumber(string.split(slot8, "|")[1])
+
+		for slot15, slot16 in ipairs(slot11) do
+			slot2[slot10] = slot2[slot10] or {}
+
+			table.insert(slot2[slot10], tonumber(slot16))
+		end
+	end
+
+	return slot2
+end
+slot0.analysisOutNumStr = function (slot0, slot1)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		slot3[slot8.fightattr] = slot8.value
+	end
+
+	return slot3
+end
+slot0.refreshWishShow = function (slot0)
+	slot1 = slot0.analysisWishStr(slot0, slot0.mWishInfo.SelectHeroModelIdStr)
+	slot2 = slot0.analysisWishStr(slot0, slot0.mWishInfo.TriggerInfo)
+
+	for slot7, slot8 in pairs(slot3) do
+		if 0 < (slot1[slot8.heroType] or {}[slot8.num] or 0) then
+			slot8.heroSprite:stopAllActions()
+			slot8.heroSprite:setOpacity(255)
+			slot8.heroSprite:setScale(1)
+			slot8.heroSprite:setTexture(HeroModel.items[slot11].halfBodyPic .. ".png")
+		else
+			slot8.heroSprite:setTexture("c_136.png")
+			slot8.heroSprite:setOpacity(100)
+			slot8.heroSprite:runAction(cc.RepeatForever:create(cc.Sequence:create({
+				cc.Spawn:create({
+					cc.ScaleTo:create(1, 1.2),
+					cc.FadeTo:create(1, 255)
+				}),
+				cc.Spawn:create({
+					cc.ScaleTo:create(1, 1),
+					cc.FadeTo:create(1, 100)
+				})
+			})))
+		end
+
+		slot12 = require("common.ShaderManager")
+		slot13 = slot12.loadShader(slot12.Gray)
+		slot14 = slot12.loadShader(slot12.Normal)
+		slot15 = slot2[slot9] or {}
+
+		if slot15[slot8.num] and slot15[slot8.num] == 1 then
+			slot8.heroSprite:setGLProgram(slot13)
+			slot8.tagSprite:setGLProgram(slot13)
+		else
+			slot8.heroSprite:setGLProgram(slot14)
+			slot8.tagSprite:setGLProgram(slot14)
+		end
+	end
+
+	return 
+end
+slot0.onWishHeadClick = function (slot0, slot1)
+	if slot0.analysisWishStr(slot0, slot0.mWishInfo.TriggerInfo)[slot1.heroType] or {}[slot1.num] and slot0.analysisWishStr(slot0, slot0.mWishInfo.TriggerInfo)[slot1.heroType] or {}[slot1.num] == 1 then
+		ui.showFlashView(TR("该类型心愿侠客今日已获得"))
+
+		return 
+	end
+
+	if 0 < slot0.mWishInfo.Count then
+		ui.showFlashView(TR("招募次数未达到"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "recruit.DlgWishRecruitSelectLayer",
+		data = {
+			heroType = slot1.heroType,
+			wishInfo = slot0.mWishInfo,
+			extraHeros = slot0.mRecruitInfo.TimedRecruitHero,
+			callback = function (slot0)
+				slot0.mWishInfo = slot0
+
+				slot0:refreshUI()
+
+				if slot0.mWishChangedCb then
+					slot0.mWishChangedCb(slot0)
+				end
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onActionEnd = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.onRecruit = function (slot0, slot1)
+	if slot0.mCallback then
+		slot0.mCallback(slot1.recruitType)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCloseLayer = function (slot0, slot1)
+	if slot0.mCloseCb then
+		slot0.mCloseCb()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[20305] = {
+			clickNode = slot0.mGuideBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

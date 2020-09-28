@@ -1,0 +1,209 @@
+slot0 = class("CacheEveningBoss", {})
+slot0.ctor = function (slot0)
+	slot0.mSchedule = nil
+	slot0.mEveningBossData = {}
+	slot0.mEveningBossLayer = nil
+	slot0.mAutoFight = false
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.closeSchedule(slot0)
+
+	slot0.mEveningBossData = {}
+	slot0.mEveningBossLayer = nil
+	slot0.mAutoFight = false
+
+	return 
+end
+slot0.setEveningData = function (slot0, slot1, slot2)
+	slot0.mEveningBossData = slot1
+	slot0.mEveningBossLayer = slot2
+
+	return 
+end
+slot0.closeSchedule = function (slot0)
+	if slot0.mSchedule and tolua.isnull(slot0.mSchedule) then
+		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(slot0.mSchedule)
+	end
+
+	slot0.mSchedule = nil
+
+	return 
+end
+slot0.createSchedule = function (slot0, slot1, slot2)
+	slot0.closeSchedule(slot0)
+
+	return cc.Director:getInstance():getScheduler():scheduleScriptFunc(slot2, slot1, false)
+end
+slot0.readyFight = function (slot0)
+	slot0.mAutoFight = true
+	slot0.mSchedule = slot0.createSchedule(slot0, 1, function ()
+		if slot0.mEveningBossData.BossInfo.FightTime < Player:getCurrentTime() then
+			slot0:closeSchedule()
+			slot0.closeSchedule:requestGetInfo(function ()
+				slot0:startAutoFight()
+
+				return 
+			end)
+		end
+
+		return 
+	end)
+
+	if slot0.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+		slot0.mEveningBossLayer:refreshBtn()
+	end
+
+	return 
+end
+slot0.startAutoFight = function (slot0)
+	slot0.mAutoFight = true
+
+	slot0.autoFight(slot0, 5)
+
+	if slot0.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+		slot0.mEveningBossLayer:refreshBtn()
+	end
+
+	return 
+end
+slot0.stopAutoFight = function (slot0)
+	slot0.mAutoFight = false
+
+	slot0.closeSchedule(slot0)
+
+	if slot0.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+		slot0.mEveningBossLayer:refreshBtn()
+	end
+
+	return 
+end
+slot0.autoFight = function (slot0, slot1)
+	slot0.closeSchedule(slot0)
+
+	slot0.isSuccess = true
+
+	if slot0.mEveningBossData.BossInfo.Status == 2 and slot0.mAutoFight and Player:getCurrentTime() < slot0.mEveningBossData.BossInfo.EndTime then
+		slot0.mSchedule = slot0.createSchedule(slot0, slot1, function ()
+			if slot0.mEveningBossData.BossInfo.EndTime < Player:getCurrentTime() or slot0.mEveningBossData.BossInfo.IsDead then
+				slot0:closeSchedule()
+
+				slot0.closeSchedule.mAutoFight = false
+
+				if slot0.closeSchedule.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+					slot0.mEveningBossLayer:refreshBtn()
+				end
+
+				return 
+			end
+
+			if 5 <= #slot0:getHeroList() then
+				slot1 = table.concat(slot0, ",")
+
+				if slot0.isSuccess then
+					slot0.isSuccess = false
+
+					slot0:requestFightMaster(slot1)
+				end
+			end
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.getHeroList = function (slot0)
+	table.sort(slot1, function (slot0, slot1)
+		return slot1.Fap < slot0.Fap
+	end)
+
+	slot2 = {}
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot1) do
+		slot10 = slot0.getRevivalTime(slot0, slot8.ModelId) and Player:getCurrentTime() <= slot9.RevivalTime + 1
+		slot11 = EveningbossConfig.items[1].fightTrainLvMin <= slot8.TrainLv
+
+		if not slot10 and slot11 then
+			table.insert(slot2, slot8.ModelId)
+
+			slot3 = slot3 + 1
+		end
+
+		if slot3 == 5 then
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.getRevivalTime = function (slot0, slot1)
+	slot2 = (slot0.mEveningBossData.Myinfo and slot0.mEveningBossData.Myinfo.RebornInfo) or {}
+
+	for slot6, slot7 in ipairs(slot2) do
+		if slot1 == slot7.HeroModelId then
+			return slot7
+		end
+	end
+
+	return 
+end
+slot0.requestFightMaster = function (slot0, slot1)
+	require("network.GameSocket"):socketRequest({
+		methodName = "FightBoss",
+		moduleName = "EveningbossInfo",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "挑战boss")
+
+			slot0.mEveningBossData.Myinfo = slot0.Myinfo
+			slot0.mEveningBossData.BossInfo = slot0.BossInfo
+			slot0.mEveningBossData.RankInfo = slot0.RankInfo
+			slot0.mEveningBossData.RankInfo = slot0.RankInfo
+			slot0.mEveningBossData.Dam = slot0.Dam
+			slot0.isSuccess = true
+
+			if slot0.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+				slot0.mEveningBossLayer.mEveningBossData = slot0.mEveningBossData
+
+				slot0.mEveningBossLayer:playFightAction()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0, slot1)
+	require("network.GameSocket"):socketRequest({
+		methodName = "GetInfo",
+		moduleName = "EveningbossInfo",
+		ignoreNode = true,
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mEveningBossData = slot0
+
+			if slot0.mEveningBossLayer and not tolua.isnull(slot0.mEveningBossLayer) then
+				slot0.mEveningBossLayer.mEveningBossData = slot0.mEveningBossData
+
+				slot0.mEveningBossLayer:refreshUI()
+			end
+
+			if slot1 then
+				slot1(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

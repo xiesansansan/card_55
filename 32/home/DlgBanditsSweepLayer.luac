@@ -1,0 +1,511 @@
+slot0 = class("DlgBanditsSweepLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 575
+			},
+			titleText = TR("除 魔")
+		},
+		children = {
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 290,
+						y = 482.1
+					},
+					text = TR("扫荡奖励")
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -120,
+								y = 10
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 210,
+								y = 10
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled20",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 290,
+						y = 293
+					},
+					text = TR("扫荡次数")
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -120,
+								y = 10
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 210,
+								y = 10
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rewardListiView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 44,
+						y = 320
+					},
+					size = {
+						width = 500,
+						height = 140
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled27-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 110,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "CardNode",
+								params = {
+									childName = "cardNode",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 55,
+										y = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "badgeText",
+								cType = "BadgeText",
+								params = {
+									fontSize = 22,
+									fontRotation = -45,
+									hide = true,
+									image = "c_88.png",
+									fontPos = {
+										x = 20,
+										y = 38
+									},
+									pos = {
+										x = 68.56,
+										y = 118.82
+									},
+									text = TR("双倍")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 94,
+						y = 240
+					},
+					text = TR("扫荡次数:")
+				},
+				children = {}
+			},
+			{
+				name = "scView",
+				cType = "SelectCountView",
+				params = {
+					delayInit = true,
+					maxCount = 100,
+					changeCallback = "cbSelectNumChanged",
+					currSelCount = 1,
+					btnSize = {
+						width = 65,
+						height = 38
+					},
+					pos = {
+						x = 350,
+						y = 240
+					},
+					size = {
+						width = 400,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 94,
+						y = 163
+					},
+					text = TR("消耗干粮:")
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 200,
+					image = "c_41.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 165,
+						y = 163
+					},
+					size = {
+						width = 200,
+						height = 35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "costLabel",
+				cType = "Label",
+				params = {
+					text = "",
+					num = 0,
+					modelId = 1111,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 40,
+						r = 51,
+						b = 25
+					},
+					pos = {
+						x = 170,
+						y = 165
+					}
+				},
+				children = {}
+			},
+			{
+				name = "cancelBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onCancelBtnClickAction",
+					image = "c_39.png",
+					pos = {
+						x = 189.08,
+						y = 80
+					},
+					size = {
+						width = 105,
+						height = 46
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "okBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onOkBtnClickAction",
+					pos = {
+						x = 396.12,
+						y = 80
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterId = slot1 or {}.chapterId
+	slot0.mDiffId = slot1 or {}.difId
+	slot0.mNeedNum = slot1 or {}.needNum
+	slot0.mModelID = slot1 or {}.modelID
+	slot0.mCallback = slot1 or {}.callback
+
+	if slot1 or {}.difId == Enums.PveSweepType.eNormal then
+		slot0.mCostItem = Utility.analysisStrResList(PveChapterModel.items[slot1.chapterId].baseBanditsNeed)[1]
+		slot0.mRewardStr = PveChapterModel.items[slot1.chapterId].baseBanditsOutPut
+	elseif slot1.difId == Enums.PveSweepType.eElite then
+		slot0.mCostItem = Utility.analysisStrResList(PveChapterModel.items[slot1.chapterId].elitesBanditsNeed)[1]
+		slot0.mRewardStr = PveChapterModel.items[slot1.chapterId].elitesBanditsOutPut
+	end
+
+	slot0.mOutPutItem = {}
+
+	if slot0.mModelID then
+		for slot5, slot6 in pairs(Utility.analysisStrResList(slot0.mRewardStr)) do
+			if slot6.resourceId == slot0.mModelID then
+				slot0.mOutPutItem = slot6
+			end
+		end
+	end
+
+	slot0.mShowDouble = PlayerAttrObj:isModuleDoubleIncome(ModuleSub.ePveMoppingUp)
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = 1
+
+	if not slot0.mModelID or not slot0.mNeedNum or slot0.mNeedNum <= Resource.getCount(slot0.mModelID) then
+		slot1 = 1
+	elseif math.ceil((slot0.mNeedNum - Resource.getCount(slot0.mModelID))/((slot0.mShowDouble and slot0.mOutPutItem.num*2) or slot0.mOutPutItem.num))*slot0.mCostItem.num <= Resource.getCount(slot0.mCostItem.resourceId) then
+		slot1 = slot3
+	elseif math.floor(Resource.getCount(slot0.mCostItem.resourceId)/slot0.mCostItem.num) == 0 then
+		slot1 = 1
+	end
+
+	if 50 < slot1 then
+		slot1 = 50
+	end
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "bgSprite" then
+			slot1.titleText = TR("扫荡·%s", PveChapterModel.items[slot0.mChapterId].name)
+		end
+
+		return 
+	end)
+
+	slot0.mSelNum = slot1
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.rewardListiView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardData = {
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				},
+				cardInfo = {
+					modelId = slot7.resourceId,
+					num = slot7.num
+				}
+			}
+		}))
+
+		if slot0.mShowDouble and slot7.resourceId ~= ResourceTypeSub.eExp then
+			slot8.badgeText:setVisible(true)
+			slot8.badgeText:setScale(0.7)
+		end
+
+		if slot7.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot9 then
+			slot8.cardNode:addChild(UIWrap.newControl("Label", {
+				fontSize = 15,
+				text = TR("经验+%s%%", slot9*100),
+				color = cc.c3b(55, 255, 64),
+				anchor = cc.p(1, 1),
+				outlineColor = cc.c3b(51, 42, 24),
+				pos = cc.p(85, 88)
+			}))
+		end
+	end
+
+	slot0.createUISubTree(slot0, "scView", function (slot0, slot1)
+		if slot0.name == "scView" then
+			slot1.currSelCount = slot0
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.cbSelectNumChanged = function (slot0, slot1)
+	slot0.costLabel:setString(string.format("{%s}%s/%s", Resource.getDaibiImg(slot0.mCostItem.resourceId), Utility.numberWithUnit(slot0.mCostItem.num*slot1), Utility.numberWithUnit(Resource.getCount(slot0.mCostItem.resourceId))))
+
+	slot0.mSelNum = slot1
+
+	return 
+end
+slot0.onOkBtnClickAction = function (slot0, slot1)
+	if Resource.isEnough(slot0.mCostItem.resourceId, slot0.mCostItem.num*slot0.mSelNum, true) then
+		slot0.requestMoppingUp(slot0)
+	end
+
+	return 
+end
+slot0.onCancelBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestMoppingUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "MoppingUp",
+		moduleName = "PveChapter",
+		methodData = {
+			slot0.mChapterId,
+			slot0.mSelNum,
+			slot0.mDiffId
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			dump(slot0, "扫荡结果")
+
+			slot1 = slot0.ResourcesList
+			slot2 = slot0.RewardList
+			slot3 = {}
+
+			for slot7 = 1, slot0.mSelNum, 1 do
+				table.insert(slot3, slot1)
+			end
+
+			if slot0.DropResource ~= "" then
+				table.insert(slot3, slot0.DropResource)
+			end
+
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "home.DlgSweepBanditsResultLayer",
+				data = {
+					showList = slot3,
+					otherShowList = slot2
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			if slot0.IsTriggerShop then
+				ui.showMessageBox({
+					text = "偶遇宝阁商人，是否立即前往？",
+					titleText = TR("限时商店"),
+					msgBoxParams = {
+						needTouchClose = false,
+						btnPosY = 60
+					},
+					okCallback = function ()
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "pve.PveTimeLimitStoreLayer",
+							zOrder = Enums.ZOrderType.ePopLayer
+						})
+
+						return 
+					end,
+					cancelCallback = function ()
+						return 
+					end
+				})
+			end
+
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

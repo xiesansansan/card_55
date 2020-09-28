@@ -1,0 +1,286 @@
+slot0 = class("GuildTalentAttrLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 340
+			},
+			titleText = TR("属性总览")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 260,
+						y = 130
+					},
+					size = {
+						width = 465,
+						height = 190
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTabNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 260,
+						y = 264
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Button",
+						custom = {
+							{
+								value = 3,
+								name = "campId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tj_01.png",
+							clickAction = "onCampCallback",
+							pos = {
+								x = -120,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "campId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tj_02.png",
+							clickAction = "onCampCallback",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "campId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tj_03.png",
+							clickAction = "onCampCallback",
+							pos = {
+								x = 120,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mLabelNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 260,
+						y = 130
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -190,
+								y = 50
+							},
+							text = TR("攻击：200")
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 70,
+								y = 50
+							},
+							text = TR("攻击：200")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260,
+						y = 136
+					},
+					text = TR("暂无属性加成")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGuildTalentAttrs = slot1.guildTalentAttrs
+	slot0.mCurCamp = CampType.eYiTian
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshCampBtns(slot0)
+	slot0.refreshAttr(slot0)
+
+	return 
+end
+slot0.refreshAttr = function (slot0)
+	slot0.mEmptyHint:setVisible(false)
+	slot0.mLabelNode:removeAllChildren()
+
+	if next(slot0.getAttrList(slot0)) then
+		slot2 = {
+			-220,
+			-60,
+			100
+		}
+		slot3 = 40
+		slot4 = 3
+		slot5 = 60
+
+		for slot9, slot10 in ipairs(slot1) do
+			slot13 = nil
+
+			slot0.mLabelNode:addChild(UIWrap.newControl("Label", {
+				text = string.format("%s: %s", FightAttrTypeName[slot10[1]], (not Utility.isAttrNeedPercent(slot10[1]) or TR("%s%s", tonumber(slot10[2])/100, "%")) and slot10[2]),
+				color = cc.c3b(37, 37, 37),
+				pos = cc.p(slot2[(slot9 - 1)%slot4 + 1], -math.floor((slot9 - 1)/slot4)*slot3 + slot5),
+				anchor = cc.p(0, 0)
+			}))
+		end
+	else
+		slot0.mEmptyHint:setVisible(true)
+	end
+
+	return 
+end
+slot0.getAttrList = function (slot0)
+	slot1 = {}
+	slot2 = slot0.mGuildTalentAttrs[tostring(slot0.mCurCamp)] or {}
+
+	table.sort(slot3, function (slot0, slot1)
+		return tonumber(slot0) < tonumber(slot1)
+	end)
+
+	for slot7, slot8 in ipairs(slot3) do
+		table.insert(slot1, {
+			tonumber(slot8),
+			slot2[slot8]
+		})
+	end
+
+	return slot1
+end
+slot0.refreshCampBtns = function (slot0)
+	slot1 = {
+		[CampType.eSheDiao] = {
+			"tj_03.png",
+			"tj_04.png"
+		},
+		[CampType.eShenDiao] = {
+			"tj_02.png",
+			"tj_05.png"
+		},
+		[CampType.eYiTian] = {
+			"tj_01.png",
+			"tj_06.png"
+		}
+	}
+
+	for slot6, slot7 in pairs(slot2) do
+		slot7.loadTextures(slot7, (slot7.campId == slot0.mCurCamp and slot1[slot7.campId][1]) or slot1[slot7.campId][2])
+	end
+
+	return 
+end
+slot0.onCampCallback = function (slot0, slot1)
+	slot0.mCurCamp = slot1.campId
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+
+return slot0

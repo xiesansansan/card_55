@@ -1,0 +1,71 @@
+return {
+	{
+		model = {
+			file = "sc_2.png",
+			scale = 2,
+			tag = "bg",
+			order = -50,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5),
+			color = cc.c3b(0, 0, 0)
+		}
+	},
+	{
+		color = {
+			tag = "bg",
+			color = cc.c3b(0, 0, 0)
+		}
+	},
+	{
+		load = {
+			tmpl = "shipin",
+			params = {
+				"cg2.mp4"
+			}
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			time = 0,
+			text = "321",
+			maxWidth = 600,
+			tag = "1231",
+			size = 28,
+			scale = 1,
+			order = 106,
+			type = TalkView.DEF.LABEL,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, 80),
+			color = cc.c3b(25, 18, 24)
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "1231",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.01,
+							by = cc.p(0, -201)
+						}
+					}
+				}
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

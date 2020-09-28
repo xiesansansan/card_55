@@ -1,0 +1,93 @@
+slot0 = class("JzwlGuildFaildLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled15",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "jzwl_65.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "des",
+				cType = "Label",
+				params = {
+					fontSize = 25,
+					verticalSpace = 5,
+					emptyInit = true,
+					align = 1,
+					imageScale = 0.6,
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 514.2,
+						y = 268.5
+					},
+					size = {
+						width = 400,
+						height = 100
+					},
+					text = TR("帮派【xxx】防守失淘汰出局")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Button",
+				params = {
+					clickAction = "onExitClick",
+					posApt = 1,
+					image = "c_27.png",
+					pos = {
+						x = 456.45,
+						y = 90.44
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.loseName = slot1.loseName or ""
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {
+		"zm_18.png",
+		"zm_19.png",
+		"zm_20.png",
+		"zm_21.png"
+	}
+
+	slot0.des:setString(TR("帮派【#5CA7BB%s#ffffff】防守失败淘汰出局!", slot0.loseName))
+
+	return 
+end
+slot0.onExitClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,1214 @@
+slot0 = class("LundaoGuessLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyyz_12.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled176",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0.5,
+				y = 0.5
+			},
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 1386,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "myNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 125,
+						y = 0
+					},
+					size = {
+						width = 568,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "untitled171",
+						cType = "Sprite",
+						params = {
+							childName = "numSprite",
+							image = "bwld_42.png",
+							hide = true,
+							pos = {
+								x = 400,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled95",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							emptyInit = true,
+							childName = "numLabel",
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 400,
+								y = 80
+							},
+							text = TR("9999#FFF8EA玩家已选择")
+						},
+						children = {}
+					},
+					{
+						name = "untitled100",
+						cType = "Sprite",
+						params = {
+							childName = "winSprite",
+							scale = 0.8,
+							hide = true,
+							image = "xyyz_15.png",
+							pos = {
+								x = 300,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled105",
+						cType = "Sprite",
+						params = {
+							childName = "guessSprite",
+							image = "bwld_43.png",
+							hide = true,
+							pos = {
+								x = 400,
+								y = 130
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "pkNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 688,
+						y = 0
+					},
+					size = {
+						width = 568,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "untitled173",
+						cType = "Sprite",
+						params = {
+							childName = "numSprite",
+							image = "bwld_42.png",
+							hide = true,
+							pos = {
+								x = 168,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled172",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							emptyInit = true,
+							childName = "numLabel",
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 168,
+								y = 80
+							},
+							text = TR("9999#FFF8EA玩家已选择")
+						},
+						children = {}
+					},
+					{
+						name = "untitled98",
+						cType = "Sprite",
+						params = {
+							childName = "winSprite",
+							scale = 0.8,
+							hide = true,
+							image = "xyyz_16.png",
+							pos = {
+								x = 268,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled104",
+						cType = "Sprite",
+						params = {
+							childName = "guessSprite",
+							image = "bwld_43.png",
+							hide = true,
+							pos = {
+								x = 168,
+								y = 130
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "stateNode",
+				cType = "Node",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 693,
+						y = 320
+					},
+					size = {
+						width = 640,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							childName = "vsSprite",
+							image = "bwld_10.png",
+							hide = true,
+							pos = {
+								x = 320,
+								y = 320
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled118",
+						cType = "Sprite",
+						params = {
+							childName = "resultSprite",
+							image = "bwld_38.png",
+							hide = true,
+							pos = {
+								x = 320,
+								y = 320
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled92",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "teamId",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onBtnGuessSelectAction",
+							hide = true,
+							image = "bwld_41.png",
+							childName = "btnGuess",
+							pos = {
+								x = 320,
+								y = 150
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled65",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							charCount = 9,
+							text = "0",
+							childName = "turnLabel",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 320,
+								y = 570
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled170",
+						cType = "Sprite",
+						params = {
+							image = "bwld_20.png",
+							childName = "timeSprite",
+							pos = {
+								x = 320,
+								y = 540
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							emptyInit = true,
+							childName = "timeLabel",
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 320,
+								y = 540
+							},
+							text = TR("00:00:00#FFF8EA后公布结果")
+						},
+						children = {}
+					},
+					{
+						name = "untitled124",
+						cType = "Button",
+						params = {
+							clickAction = "onBtnGuessRewardAction",
+							hide = true,
+							image = "bwld_40.png",
+							childName = "rewardBox",
+							pos = {
+								x = 320,
+								y = 230
+							}
+						},
+						children = {
+							{
+								name = "untitled125",
+								cType = "RedDot",
+								params = {
+									subKey = "GuessReward",
+									childName = "reddot",
+									moduleId = 14101
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled102",
+						cType = "Button",
+						params = {
+							clickAction = "onBtnNextTurnAction",
+							hide = true,
+							image = "c_19.png",
+							childName = "btnNextturn",
+							pos = {
+								x = 320,
+								y = 80
+							},
+							titleText = TR("下一轮")
+						},
+						children = {}
+					},
+					{
+						name = "untitled127",
+						cType = "Button",
+						params = {
+							image = "tb_gn_30.png",
+							clickAction = "onBtnPlayBackAction",
+							childName = "recordBtn",
+							pos = {
+								x = 320,
+								y = 475
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled122",
+						cType = "Sprite",
+						params = {
+							scale = 1.5,
+							image = "gcz_3.png",
+							pos = {
+								x = 198.5,
+								y = 490.95
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled123",
+						cType = "Sprite",
+						params = {
+							scale = 1.5,
+							image = "gcz_4.png",
+							pos = {
+								x = 452.68,
+								y = 485.84
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled174",
+		cType = "Button",
+		params = {
+			clickAction = "onBtnCloseAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled7",
+		cType = "Button",
+		params = {
+			clickAction = "onBtnGuessLogAction",
+			scaleApt = 2,
+			posApt = 1,
+			image = "tb_gn_200.png",
+			pos = {
+				x = 196.44,
+				y = 595.87
+			}
+		},
+		children = {
+			{
+				name = "untitled103",
+				cType = "RedDot",
+				params = {
+					subKey = "CanRead",
+					moduleId = 14100
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "nameTemplate",
+		cType = "TemplateNode",
+		custom = {
+			{
+				value = "untitled102-text",
+				name = "nameLabel",
+				type = "string"
+			}
+		},
+		params = {
+			pos = {
+				x = 88.88,
+				y = 536.83
+			}
+		},
+		children = {
+			{
+				name = "untitled153",
+				cType = "Sprite",
+				params = {
+					image = "xyyz_9.png",
+					pos = {
+						x = 0,
+						y = -114
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled154",
+				cType = "Sprite",
+				params = {
+					image = "xyyz_7.png",
+					pos = {
+						x = 0,
+						y = -45
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled155",
+				cType = "Sprite",
+				params = {
+					image = "c_5.png",
+					hide = true,
+					pos = {
+						x = 0,
+						y = -80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled156",
+				cType = "Sprite",
+				params = {
+					image = "c_5.png",
+					hide = true,
+					pos = {
+						x = -20,
+						y = -80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled157",
+				cType = "Sprite",
+				params = {
+					image = "c_5.png",
+					hide = true,
+					pos = {
+						x = 20,
+						y = -80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled158",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					align = 1,
+					childName = "nameLabel",
+					valign = 0,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = -87
+					},
+					size = {
+						width = 14,
+						height = 135
+					},
+					text = TR("名字名字名字")
+				},
+				children = {}
+			},
+			{
+				name = "untitled163",
+				cType = "Sprite",
+				params = {
+					image = "bwld_14.png",
+					childName = "stepSprite",
+					pos = {
+						x = 0,
+						y = 11
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled159",
+				cType = "Label",
+				params = {
+					text = "",
+					charCount = 12,
+					isRichText = true,
+					emptyInit = true,
+					fontName = "bwld_15.png",
+					childName = "stepLabel",
+					pos = {
+						x = 0,
+						y = 11
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "cardTemplate",
+		cType = "TemplateNode",
+		custom = {
+			{
+				value = 1,
+				name = "standPosTag",
+				type = "integer"
+			}
+		},
+		params = {
+			pos = {
+				x = 240.31,
+				y = 249.34
+			},
+			size = {
+				width = 160,
+				height = 160
+			}
+		},
+		children = {
+			{
+				name = "untitled74",
+				cType = "CardNode",
+				params = {
+					childName = "header",
+					allowClick = true,
+					pos = {
+						x = 80,
+						y = 80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled75",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					emptyInit = true,
+					align = 1,
+					childName = "speedLabel",
+					valign = 1,
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 29,
+						y = 78
+					},
+					size = {
+						width = 20,
+						height = 100
+					},
+					text = TR("速度+0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled161",
+				cType = "Sprite",
+				params = {
+					image = "bwld_18.png",
+					pos = {
+						x = 80,
+						y = 12
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled162",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					childName = "label",
+					color = {
+						g = 253,
+						r = 255,
+						b = 253
+					},
+					pos = {
+						x = 80,
+						y = 24
+					},
+					text = TR("前下")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "zhenfaTemplate",
+		cType = "TemplateNode",
+		params = {
+			pos = {
+				x = 77.16,
+				y = 178.97
+			}
+		},
+		children = {
+			{
+				name = "untitled165",
+				cType = "Sprite",
+				params = {
+					image = "bwld_33.png",
+					pos = {
+						x = 0,
+						y = -55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled166",
+				cType = "Sprite",
+				params = {
+					image = "zhenfaui_1801.png",
+					childName = "zhenfaUiSprite",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled167",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					childName = "zhenfaName",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 0,
+						y = -55
+					},
+					text = TR("上阵阵法")
+				},
+				children = {}
+			},
+			{
+				name = "untitled168",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					childName = "btn",
+					pos = {
+						x = 0,
+						y = -10
+					},
+					size = {
+						width = 100,
+						height = 120
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled169",
+				cType = "Sprite",
+				params = {
+					image = "c_20.png",
+					childName = "addSprite",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = 50
+slot2 = {
+	{
+		standPosTag = 1,
+		text = TR("前下"),
+		pos = cc.p(300, 170),
+		pkPos = cc.p(112, 170)
+	},
+	{
+		standPosTag = 2,
+		text = TR("前上"),
+		pos = cc.p(300, 330),
+		pkPos = cc.p(112, 330)
+	},
+	{
+		standPosTag = 3,
+		text = TR("后下"),
+		pos = cc.p(150, 80),
+		pkPos = cc.p(248, 80)
+	},
+	{
+		standPosTag = 4,
+		text = TR("后中"),
+		pos = cc.p(150, 240),
+		pkPos = cc.p(248, 240)
+	},
+	{
+		standPosTag = 5,
+		text = TR("后上"),
+		pos = cc.p(150, 400),
+		pkPos = cc.p(248, 400)
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetGuessInfo(slot0)
+
+	slot0.needRequestNew = false
+	slot0.useFlag = false
+
+	if slot1.flag then
+		slot0.useFlag = slot1.flag
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.stateNode.rewardBox.reddot:setScale(1)
+	ui.setWaveAnimation(slot0.stateNode.rewardBox)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		flag = slot0.useFlag
+	}
+end
+slot0.refreshUI = function (slot0)
+	if slot0.mBiwuGuessInfo == nil or slot0.mMySelectInfo == nil then
+		return 
+	end
+
+	slot0.stateNode.vsSprite:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.stateNode.timeSprite:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.stateNode.timeLabel:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.stateNode.btnGuess:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.myNode.numLabel:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.myNode.numSprite:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.pkNode.numLabel:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.pkNode.numSprite:setVisible(not (slot0.mBiwuGuessInfo.Status == 0))
+	slot0.stateNode.resultSprite:setVisible(slot0.mBiwuGuessInfo.Status == 0)
+	slot0.stateNode.recordBtn:setVisible(slot0.mBiwuGuessInfo.Status == 0)
+
+	if slot0.mBiwuGuessInfo.Status == 0 and slot0.mBiwuGuessInfo.IsLast then
+		slot0.stateNode.btnNextturn:setVisible(false)
+	elseif slot0.mData.PrevGlobalBiwuGuessInfo == nil then
+		slot0.stateNode.btnNextturn:setVisible(false)
+	else
+		slot0.stateNode.btnNextturn:setVisible(true)
+
+		if slot0.mState then
+			slot0.stateNode.btnNextturn:setTitleText(TR("前往下一轮"))
+		else
+			slot0.stateNode.btnNextturn:setTitleText(TR("回看上一轮"))
+		end
+	end
+
+	slot0.myNode.winSprite:setVisible(slot1)
+	slot0.pkNode.winSprite:setVisible(slot1)
+	slot0.myNode.guessSprite:setVisible(slot0.mMySelectInfo.GuessFormationId == 1)
+	slot0.pkNode.guessSprite:setVisible(slot0.mMySelectInfo.GuessFormationId == 2)
+	slot0.stateNode.turnLabel:setString(TR("第%d轮", slot0.mBiwuGuessInfo.SceneId))
+	slot0.stateNode.timeLabel:stopAllActions()
+
+	if slot1 == false then
+		slot0.stateNode.btnGuess:setVisible(slot0.mMySelectInfo.GuessFormationId == 0)
+		slot0.myNode.numLabel:setString(TR("%s#FFF8EA玩家已选择", slot0.mBiwuGuessInfo.TeamASupportNum))
+		slot0.pkNode.numLabel:setString(TR("%s#FFF8EA玩家已选择", slot0.mBiwuGuessInfo.TeamBSupportNum))
+
+		if slot0.mBiwuGuessInfo.Status ~= 0 then
+			Utility.schedule(slot0.stateNode.timeLabel, function ()
+				if 0 < slot0.mBiwuGuessInfo.EndTime - Player:getCurrentTime() then
+					slot0.stateNode.timeLabel:setString(TR("%s#FFF8EA后公布结果", MqTime.formatAsHour(slot0)))
+				else
+					slot0.stateNode.timeLabel:stopAllActions()
+					slot0.stateNode.timeLabel:setString(TR("本轮竞猜已经结束"))
+					slot0:requestGetGuessInfo()
+				end
+
+				return 
+			end, 0.5)
+		end
+	else
+		slot3 = "bwld_39.png"
+
+		if (slot0.mBiwuGuessInfo.IsWin == true and slot0.mMySelectInfo.GuessFormationId == 1) or (slot0.mBiwuGuessInfo.IsWin == false and slot0.mMySelectInfo.GuessFormationId == 2) then
+			slot3 = "bwld_38.png"
+		end
+
+		slot0.stateNode.resultSprite:setTexture(slot3)
+		slot0.myNode.winSprite:setTexture((slot0.mBiwuGuessInfo.IsWin and "xyyz_15.png") or "xyyz_16.png")
+		slot0.pkNode.winSprite:setTexture((slot0.mBiwuGuessInfo.IsWin and "xyyz_16.png") or "xyyz_15.png")
+	end
+
+	return 
+end
+slot0.showFormation = function (slot0, slot1, slot2, slot3)
+	slot4 = slot1 == slot0.myNode
+
+	if not slot1.zhenfaNode then
+		slot0.createLayoutTemplateNode(slot0, "zhenfaTemplate"):setPosition((slot4 and cc.p(80, 230)) or cc.p(488, 230))
+		slot1.addChild(slot1, slot5)
+
+		slot1.zhenfaNode = slot5
+	end
+
+	if ZhenfaModel.items[slot2 or 0] ~= nil then
+		slot7, slot8 = Utility.getColorValue(slot6.colorLv)
+
+		slot5.zhenfaUiSprite:setTexture(slot9)
+		slot5.zhenfaName:setString(slot6.name)
+		slot5.addSprite:setVisible(false)
+	end
+
+	slot5.btn:setEnabled(false)
+
+	if not slot1.nameNode then
+		slot0.createLayoutTemplateNode(slot0, "nameTemplate"):setPosition((slot4 and cc.p(80, 530)) or cc.p(488, 530))
+		slot1.addChild(slot1, slot7)
+
+		slot1.nameNode = slot7
+	end
+
+	slot7.nameLabel:setString((slot4 and TR("论道者一")) or TR("论道者二"))
+
+	function slot8(slot0)
+		if slot0 == 0 then
+			return "0;"
+		end
+
+		slot1 = ""
+		slot3 = math.floor(slot0%10)
+
+		if 1 <= math.floor(slot0/10) then
+			slot1 = (slot2 == 1 and slot1 .. ":") or slot1 .. slot2 .. ":"
+		end
+
+		if slot3 ~= 0 then
+			slot1 = slot1 .. slot3
+		end
+
+		return slot1 .. ";"
+	end
+
+	slot7.stepLabel:setVisible(false)
+	slot7.stepSprite:setVisible(false)
+
+	slot9 = string.split(slot3, ",")
+
+	for slot13 = 1, 5, 1 do
+		slot0.createLayoutTemplateNode(slot0, "cardTemplate"):setPosition((slot4 and slot0[slot13].pos) or slot0[slot13].pkPos)
+
+		if slot1["cardTemplate" .. slot13] then
+			slot1["cardTemplate" .. slot13]:removeFromParent()
+		end
+
+		slot1.addChild(slot1, slot15)
+
+		slot1["cardTemplate" .. slot13] = slot15
+
+		slot15.speedLabel:setPosition((slot4 and cc.p(29, 78)) or cc.p(133, 78))
+		slot15.speedLabel:setVisible(false)
+		slot15.label:setString(slot14.text)
+
+		slot15.standPosTag = slot14.standPosTag
+
+		if tonumber(slot9[slot13]) ~= nil and 0 < slot16 then
+			slot18 = HeroModel.items[BiwuLundaoNpcRelation.items[slot16].heroId]
+			slot19 = clone(slot17)
+			slot19.ModelId = BiwuLundaoNpcRelation.items[slot16].heroId
+			slot19.WuxueSuitId = BiwuLundaoNpcRelation.items[slot16].wuxueSuitId
+			slot19.RoadId = tonumber(string.split(BiwuLundaoNpcRelation.items[slot16].roadLv, "|")[1])
+			slot19.Star = slot19.star
+			slot19.TrainLv = slot19.trainLv
+
+			slot15.header:setCardData(nil, {
+				Enums.CardShowAttr.eLevel,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv
+			}, {
+				ModelId = BiwuLundaoNpcRelation.items[slot16].heroId,
+				Lv = BiwuLundaoNpcRelation.items[slot16].Lv,
+				Star = BiwuLundaoNpcRelation.items[slot16].star,
+				TrainLv = BiwuLundaoNpcRelation.items[slot16].trainLv,
+				HeroRoadInfo = {
+					RoadID = slot19.RoadId,
+					NodeID = slot1
+				}
+			})
+			slot15.header:setClickAction(function ()
+				dump(dump)
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "hero.HeroDetialViewLayer",
+					data = {
+						viewMax = true,
+						isSelf = false,
+						heroModelId = slot0.heroId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end)
+
+			for slot23, slot24 in pairs(slot15.header:getAttrCtrl(Enums.CardShowAttr.eRightText)) do
+				slot24.setVisible(slot24, false)
+			end
+
+			if WuxueSuitIntroRelation.items[slot19.WuxueSuitId or 0] ~= nil then
+				slot21 = UIWrap.newControl("Button", {
+					image = "bwld_21.png",
+					pos = cc.p(80, 140),
+					clickAction = function ()
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "bwld.BiwuDlgWuxueDetailLayer",
+							data = {
+								suitId = slot0.WuxueSuitId
+							},
+							zOrder = Enums.ZOrderType.ePopLayer
+						})
+
+						return 
+					end
+				})
+
+				slot21.setScale(slot21, 0.5)
+				slot21.addChild(slot21, slot22)
+				slot15.addChild(slot15, slot21)
+			end
+
+			if slot6 ~= nil then
+				slot15.speedLabel:setString(TR("速度+%s", slot6[string.format("position%sSp", slot13)]))
+			end
+
+			slot15.speedLabel:setVisible(false)
+		else
+			slot15.speedLabel:setString("")
+			slot15.speedLabel:setVisible(false)
+		end
+	end
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBtnRuleAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.星期一至星期五每天可参与一场论道竞猜并在每晚18点结束。"),
+			TR("2.星期天的14:00至24:00可参与论道竞猜，每隔两小时开启一轮。"),
+			TR("3.每轮比赛，系统随机提供2组队伍，玩家使用元宝押注竞猜，一旦押注将不能进行更改，奖励可在押注界面手动领取，未领取将不会通过邮件补发，请各位大侠注意领取。"),
+			TR("4.每场对局的倒计时结束后，将直接公布结果；公布结果的时候玩家如果未在竞猜界面，则下次进入后可以通过竞猜记录查看。"),
+			TR("5.若某场战斗超过15回合仍未分出胜负，将判定蓝队（进攻方）失败."),
+			TR("6.论道竞猜成功或失败都不返还押注元宝。")
+		}
+	})
+
+	return 
+end
+slot0.onBtnGuessSelectAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bwld.DlgBwldGuessLayer",
+		popRestore = true,
+		data = {
+			guessInfo = slot0.mBiwuGuessInfo,
+			guessCallBack = function ()
+				slot0.useFlag = true
+
+				slot0:requestGetGuessInfo()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBtnGuessLogAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bwld.DlgBwldAllGuessLayer",
+		popRestore = true,
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBtnGuessRewardAction = function (slot0, slot1)
+	slot0.requestGetGuessReward(slot0)
+
+	return 
+end
+slot0.onBtnPlayBackAction = function (slot0)
+	slot0.requestGetFightReport(slot0, slot0.mBiwuGuessInfo.ReportId)
+
+	return 
+end
+slot0.onBtnNextTurnAction = function (slot0)
+	slot0.mState = not slot0.mState
+
+	print(slot0.mState)
+
+	if slot0.mState then
+		slot0.mBiwuGuessInfo = slot0.mData.PrevGlobalBiwuGuessInfo
+		slot0.mMySelectInfo = slot0.mData.PrevGlobalBiwuGuessInfo.BiwuGuessInfo
+	else
+		slot0.mBiwuGuessInfo = slot0.mData.GlobalBiwuGuessInfo
+		slot0.mMySelectInfo = slot0.mData.BiwuGuessInfo
+	end
+
+	slot0.showFormation(slot0, slot0.myNode, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamAStrategyId, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamANpcStr)
+	slot0.showFormation(slot0, slot0.pkNode, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamBStrategyId, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamBNpcStr)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onReddotGetRewardAction = function (slot0)
+	return 
+end
+slot0.requestGetGuessInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuessInfo",
+		moduleName = "BiwuInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mState = false
+			slot0.mData = slot0
+			slot0.mBiwuGuessInfo = slot0.GlobalBiwuGuessInfo
+			slot0.mMySelectInfo = slot0.BiwuGuessInfo
+
+			if slot0.PrevGlobalBiwuGuessInfo ~= nil and not slot0.useFlag then
+				slot0.mState = true
+				slot0.mBiwuGuessInfo = slot0.PrevGlobalBiwuGuessInfo
+				slot0.mMySelectInfo = slot0.PrevGlobalBiwuGuessInfo.BiwuGuessInfo
+			end
+
+			slot0.stateNode.rewardBox:setVisible(slot0.mData.CanGuessReward)
+			slot0:showFormation(slot0.myNode, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamAStrategyId, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamANpcStr)
+			slot0:showFormation(slot0.pkNode, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamBStrategyId, BiwuLundaoFightConfig.items[slot0.mBiwuGuessInfo.FightNum].teamBNpcStr)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetFightReport = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightReport",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {}
+			})
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -24016 then
+				ui.showFlashView(TR("本轮活动已经结束！"))
+				LayerManager.removeLayer(slot0)
+			else
+				ui.showFlashView(ErrorcodeRelation.items[slot0].description)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetGuessReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuessReward",
+		moduleName = "BiwuInfo",
+		methodData = {
+			reportId
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			slot0.stateNode.rewardBox:setVisible(slot0.CanGuessReward)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

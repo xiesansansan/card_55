@@ -1,0 +1,622 @@
+slot0 = class("CityWarWorldBossRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 860,
+				height = 560
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "untitled26",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onTableViewClick",
+					fontSize = 20,
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("帮派排名")
+						},
+						{
+							title = TR("杀敌排名")
+						}
+					},
+					pos = {
+						x = 43.61,
+						y = 460
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 220,
+						height = 50
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 431.11,
+						y = 245
+					},
+					size = {
+						width = 800,
+						height = 360
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 84.77,
+						y = 450
+					},
+					text = TR("排名")
+				},
+				children = {}
+			},
+			{
+				name = "secondName",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260.67,
+						y = 450
+					},
+					text = TR("帮派名字")
+				},
+				children = {}
+			},
+			{
+				name = "thirdName",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 494.36,
+						y = 450
+					},
+					text = TR("积分")
+				},
+				children = {}
+			},
+			{
+				name = "fourthName",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 701.17,
+						y = 450
+					},
+					text = TR("奖励加成")
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 430,
+						y = 245
+					},
+					size = {
+						width = 800,
+						height = 360
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "name-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "score-text",
+								name = "secondText",
+								type = "string"
+							},
+							{
+								value = "rewardText-text",
+								name = "endText",
+								type = "string"
+							},
+							{
+								value = "untitled12-image",
+								name = "rankPic",
+								type = "string"
+							},
+							{
+								value = "rankNum-text",
+								name = "rankNum",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 786,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "cellSprite",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 393,
+										y = 50
+									},
+									size = {
+										width = 786,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											pos = {
+												x = 59.92,
+												y = 45
+											}
+										},
+										children = {}
+									},
+									{
+										name = "rankNum",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											isRichText = true,
+											text = "101",
+											fontName = "c_54.png",
+											pos = {
+												x = 55,
+												y = 48.51
+											}
+										},
+										children = {}
+									},
+									{
+										name = "name",
+										cType = "Label",
+										params = {
+											fontSize = 21,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 230,
+												y = 45
+											},
+											text = TR("帮派名字名字")
+										},
+										children = {}
+									},
+									{
+										name = "score",
+										cType = "Label",
+										params = {
+											fontSize = 21,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 465,
+												y = 45
+											},
+											text = TR("123456万")
+										},
+										children = {}
+									},
+									{
+										name = "rewardText",
+										cType = "Label",
+										params = {
+											fontSize = 21,
+											text = "100%",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 675,
+												y = 47
+											}
+										},
+										children = {}
+									},
+									{
+										name = "rewardListView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											bounce = true,
+											anchor = {
+												x = 1,
+												y = 0.5
+											},
+											pos = {
+												x = 776,
+												y = 47
+											},
+											size = {
+												width = 220,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "rewardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled23-initParams",
+														name = "cardInfo",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 70,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "untitled23",
+														cType = "CardNode",
+														params = {
+															scale = 0.7,
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 35,
+																y = 45
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "remainLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 51,
+						y = 45
+					},
+					text = TR("我的排名：#ff974a1234")
+				},
+				children = {}
+			},
+			{
+				name = "bottomLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 822,
+						y = 45
+					},
+					text = TR("未进入前五的帮派,只能获得参与奖100元宝")
+				},
+				children = {}
+			},
+			{
+				name = "noSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					hide = true,
+					pos = {
+						x = 430,
+						y = 280
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Label",
+						params = {
+							fontSize = 27,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 10,
+								y = 10
+							},
+							text = TR("暂无入侵信息")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.requestInfo(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = {
+			TR("1.根据玩家等级、最强战力、通关普通副本数量分别进行排名。"),
+			TR("2.排名越靠前，奖励越丰厚。"),
+			TR("3.活动结束后通过邮件发奖。")
+		}
+	})
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if not slot0.response then
+		return 
+	end
+
+	slot0.listView:removeAllItems()
+	slot0.bottomLabel:setVisible(slot0.mSelectTag == 1)
+	slot0.fourthName:setString((slot0.mSelectTag == 1 and TR("奖励加成")) or TR("奖励"))
+	slot0.secondName:setString((slot0.mSelectTag == 1 and TR("帮派")) or TR("名字"))
+	slot0.noSprite:setVisible(#((slot0.mSelectTag == 1 and slot0.tempList.guildRankList) or slot0.tempList.playerRankList) == 0)
+
+	slot2 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			rankPic = slot2[slot6] or "c_pure.png",
+			rankNum = (slot2[slot6] and "") or slot6,
+			name = slot7.Name,
+			secondText = slot7.Credit,
+			endText = slot7.endText
+		}))
+
+		if slot0.mSelectTag == 2 then
+			for slot15, slot16 in ipairs(slot11) do
+				slot10.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = slot16.resourceId,
+							num = slot16.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+		end
+	end
+
+	slot4 = slot0.remainLabel
+	slot3 = slot0.remainLabel.setString
+
+	if slot0.mSelectTag ~= 1 or not TR("我的帮派排名：#ff974a%s", (slot0.tempList.GuildRank ~= 0 and slot0.tempList.GuildRank) or "未上榜") then
+		slot5 = TR("我的排名：#ff974a%s", (slot0.tempList.PlayerRank ~= 0 and slot0.tempList.PlayerRank) or "未上榜")
+	end
+
+	slot3(slot4, slot5)
+
+	return 
+end
+slot0.onTableViewClick = function (slot0, slot1)
+	slot0.mSelectTag = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.tempList = {
+		guildRankList = {},
+		playerRankList = {},
+		GuildRank = slot0.response.GuildRank or 0,
+		PlayerRank = slot0.response.PlayerRank or 0
+	}
+	slot1 = {}
+
+	for slot5, slot6 in pairs(CitymonsterRankRelation.items) do
+		for slot10, slot11 in pairs(slot6) do
+			table.insert(slot1, slot11)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.rankMax < slot1.rankMax
+	end)
+
+	for slot5, slot6 in ipairs(slot0.response.GuildRankList) do
+		table.insert(slot0.tempList.guildRankList, {
+			Id = slot6.GuideId,
+			Name = slot6.Name,
+			Credit = slot6.Credit,
+			endText = string.format("%s%%", (CitymonsterGuildrankRelation.items[slot5] and CitymonsterGuildrankRelation.items[slot5].rewardR/100) or 0)
+		})
+	end
+
+	for slot5, slot6 in ipairs(slot0.response.PlayerRankList) do
+		slot7 = ""
+
+		for slot11, slot12 in ipairs(slot1) do
+			if slot5 <= slot12.rankMin and slot12.rankMax <= slot5 then
+				slot7 = slot12.baseRewardStr
+
+				break
+			end
+		end
+
+		table.insert(slot0.tempList.playerRankList, {
+			endText = "",
+			Id = slot6.PlayerId,
+			Name = slot6.Name,
+			Credit = slot6.Credit,
+			reward = slot7
+		})
+	end
+
+	dump(slot0.tempList)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetArmyRankInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.response = slot0
+
+			slot0:dealData()
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

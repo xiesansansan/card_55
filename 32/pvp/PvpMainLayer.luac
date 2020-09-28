@@ -1,0 +1,1582 @@
+slot0 = class("PvpMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "ltbw_10.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled32",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled33",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_1.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 123.97,
+						y = 610.52
+					}
+				},
+				children = {
+					{
+						name = "untitled2",
+						cType = "Sprite",
+						params = {
+							image = "ltbw_1.png",
+							pos = {
+								x = 46,
+								y = 1
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "ruleBtn",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtn",
+					pos = {
+						x = 290.05,
+						y = 614.77
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Scale9Sprite",
+				params = {
+					image = "ltbw_2.png",
+					pos = {
+						x = -385.04,
+						y = 240.81
+					}
+				},
+				children = {
+					{
+						name = "myFapLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 110.24,
+								y = 76.39
+							}
+						},
+						children = {}
+					},
+					{
+						name = "myRankLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 106.44,
+								y = 56.68
+							},
+							text = TR("我的排名")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rankRewardLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -438.2,
+						y = 188.14
+					},
+					text = TR("排名奖励")
+				},
+				children = {}
+			},
+			{
+				name = "playerHead",
+				cType = "CardNode",
+				params = {
+					allowClick = false,
+					pos = {
+						x = -484.41,
+						y = 217.75
+					}
+				},
+				children = {}
+			},
+			{
+				name = "targetListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = -527.19,
+						y = -236.83
+					},
+					size = {
+						width = 1058.46,
+						height = 410
+					}
+				},
+				children = {
+					{
+						name = "targetLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled19-text",
+								name = "nameStr",
+								type = "string"
+							},
+							{
+								value = "untitled21-text",
+								name = "fapStr",
+								type = "string"
+							},
+							{
+								value = "untitled22-text",
+								name = "rankStr",
+								type = "string"
+							},
+							{
+								value = "untitled18-image",
+								name = "headPic",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -21.09,
+								y = 4.8
+							},
+							size = {
+								width = 200,
+								height = 410
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_45.png",
+									pos = {
+										x = 99,
+										y = 209
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Sprite",
+								params = {
+									image = "bsx_11103.png",
+									pos = {
+										x = 98.91,
+										y = 210.84
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "Scale9Sprite",
+								params = {
+									image = "ltbw_5.png",
+									pos = {
+										x = 98.29,
+										y = 86.93
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled37",
+								cType = "Sprite",
+								params = {
+									image = "xklz_15.png",
+									pos = {
+										x = 177.86,
+										y = 313.07
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 21.36,
+										y = 123.99
+									},
+									text = TR("排名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled56",
+								cType = "Sprite",
+								params = {
+									childName = "rankSprite",
+									image = "ltbw_19.png",
+									hide = true,
+									pos = {
+										x = 96.76,
+										y = 52.74
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 21.36,
+										y = 97.99
+									},
+									text = TR("战力")
+								},
+								children = {}
+							},
+							{
+								name = "fightSprite",
+								cType = "Sprite",
+								params = {
+									image = "ltbw_3.png",
+									pos = {
+										x = 101,
+										y = 48.89
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									color = {
+										g = 167,
+										r = 92,
+										b = 187
+									},
+									pos = {
+										x = 176.66,
+										y = 392.53
+									},
+									size = {
+										width = 20,
+										height = 0
+									},
+									text = TR("名字没怎么怎")
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Button",
+								params = {
+									childName = "touchBtn",
+									image = "c_58.png",
+									clickAction = "onFigthBtn",
+									pos = {
+										x = 102.33,
+										y = 87.93
+									},
+									size = {
+										width = 130,
+										height = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled35",
+								cType = "Button",
+								params = {
+									childName = "headBtn",
+									image = "c_58.png",
+									clickAction = "onClickHead",
+									pos = {
+										x = 100.96,
+										y = 297.81
+									},
+									size = {
+										width = 139.07,
+										height = 151
+									}
+								},
+								children = {}
+							},
+							{
+								name = "resLabel",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1111,
+									pos = {
+										x = 117.2,
+										y = 126.07
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled38",
+				cType = "Button",
+				params = {
+					image = "tb_gn_32.png",
+					clickAction = "onReportBtn",
+					pos = {
+						x = 110.19,
+						y = 212.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled29",
+				cType = "Button",
+				params = {
+					image = "tb_gn_12.png",
+					clickAction = "onRankBtn",
+					pos = {
+						x = 206.19,
+						y = 212.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled28",
+				cType = "Button",
+				params = {
+					image = "tb_gn_232.png",
+					clickAction = "onRewardBtn",
+					pos = {
+						x = 306,
+						y = 212.44
+					}
+				},
+				children = {
+					{
+						name = "untitled36",
+						cType = "RedDot",
+						params = {
+							moduleId = 4401
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled27",
+				cType = "Button",
+				params = {
+					image = "tb_gn_14.png",
+					clickAction = "onCampBtn",
+					pos = {
+						x = 406,
+						y = 212.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Button",
+				params = {
+					image = "tb_gn_15.png",
+					clickAction = "onShopBtn",
+					pos = {
+						x = 506,
+						y = 212.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fightNumLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -509.56,
+						y = -260.35
+					},
+					text = TR("今日剩余挑战次数")
+				},
+				children = {}
+			},
+			{
+				name = "buyNumBtn",
+				cType = "Button",
+				params = {
+					image = "c_20.png",
+					clickAction = "onBuyNumBtn",
+					hide = true,
+					pos = {
+						x = -261.11,
+						y = -260.97
+					}
+				},
+				children = {}
+			},
+			{
+				name = "refreshBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onRefreshBtn",
+					pos = {
+						x = 420.36,
+						y = -284.15
+					},
+					titleText = TR("刷新")
+				},
+				children = {}
+			},
+			{
+				name = "firstRewardLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 540.46,
+						y = -240.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tempStepBtn",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled44-image",
+						name = "btnImg",
+						type = "string"
+					},
+					{
+						value = "untitled55-text",
+						name = "lvStr",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -444.48,
+						y = -270.34
+					}
+				},
+				children = {
+					{
+						name = "untitled44",
+						cType = "Button",
+						params = {
+							image = "ltbw_11.png",
+							clickAction = "onTabChanged",
+							childName = "selectBtn",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled45",
+						cType = "Sprite",
+						params = {
+							image = "ltbw_15.png",
+							childName = "selectSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Sprite",
+						params = {
+							image = "c_21.png",
+							childName = "lockSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled54",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_118.png",
+							childName = "lvTipSprite",
+							capInsets = {
+								x = 98,
+								height = 1,
+								width = 1,
+								y = 10
+							},
+							pos = {
+								x = 0,
+								y = -32
+							},
+							size = {
+								width = 70,
+								height = 25
+							}
+						},
+						children = {
+							{
+								name = "untitled55",
+								cType = "Label",
+								params = {
+									text = "Label",
+									pos = {
+										x = 35,
+										y = 12.5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "touchLayer",
+		cType = "Layer",
+		params = {
+			sizeApt = 1,
+			delayInit = true,
+			posApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled61",
+				cType = "Node",
+				params = {
+					posApt = 1,
+					scaleApt = 2,
+					pos = {
+						x = 568,
+						y = 320
+					}
+				},
+				children = {
+					{
+						name = "fingerNode",
+						cType = "Node",
+						params = {
+							posApt = 1,
+							scaleApt = 2,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "targetBtn",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									clickAction = "onStepUp",
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_yingdaodianji",
+									animation = "xunhuan",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRankUpRewardList = slot1.rankUpRewardList
+	slot0.mOldRank = slot1.oldRank
+	slot0.mSelectStep = 1
+	slot0.mTargetList = {}
+	slot0.mTabBtnList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	if RedDotObj:isValid(ModuleSub.ePvp) then
+		RedDotObj:seeRedDot("Pvp")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRefreshBtn = function (slot0)
+	slot0.requestRefresh(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		rankUpRewardList = slot0.mRankUpRewardList,
+		oldRank = slot0.mOldRank
+	}
+end
+slot0.onShopBtn = function (slot0)
+	LayerManager.addLayer({
+		name = "shop.ShopLayer",
+		data = {
+			moduleId = ModuleSub.ePvpShop
+		}
+	})
+
+	return 
+end
+slot0.onCampBtn = function (slot0)
+	ui.showCampReady({
+		noNeedVit = true,
+		callModelSub = ModuleSub.ePvp,
+		currSlotString = slot0.mPvpInfo.DefenseSlotFormationInfo,
+		callback = function (slot0)
+			slot0:requestSaveDefense(table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRankBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "pvp.PvpRankLayer",
+		data = {
+			myRank = slot0.mPvpInfo.Rank,
+			myStep = slot0.mPvpInfo.Step
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRewardBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "pvp.PvpRankRewardLayer",
+		data = {
+			HistoryMaxStep = slot0.mPvpInfo.HistoryMaxStep,
+			HistoryMaxRank = slot0.mPvpInfo.HistoryMaxRank
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBuyNumBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "pvp.PvpBuyNumLayer",
+		data = {
+			boughtNum = slot0.mPvpInfo.DailyBuyNum,
+			callback = function (slot0, slot1)
+				slot0.mPvpInfo.ChallengeNum = slot0
+				slot0.mPvpInfo.DailyBuyNum = slot1
+
+				slot0:refreshBuyTimesView()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleBtn = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、首次挑战获得最高名次可以获得一次性元宝奖励。"),
+			TR("2、根据排名，每日23:30分会进行结算，按照排行榜发放对应奖励。"),
+			TR("3、获取的残刀可在擂台比武商店内购买对应道具。"),
+			TR("4、排行榜可以展示前50名的玩家信息。"),
+			TR("5、擂台比武分为初级、中级、高级、宗师四个段位，达到相应等级且排名提升至本段位前十名则可以晋级到下一段位。")
+		}
+	})
+
+	return 
+end
+slot1 = {
+	"ltbw_17.png",
+	"ltbw_18.png",
+	"ltbw_19.png"
+}
+slot0.refreshTarget = function (slot0)
+	slot0.targetListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mHeroList) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "targetLayout", {
+			nameStr = slot5.Name,
+			fapStr = TR("战力：%s", Utility.numberWithUnit(slot5.Fap)),
+			rankStr = TR("排名：%s", slot5.Rank),
+			headPic = slot6 .. ".png"
+		})
+		slot7.touchBtn.info = slot5
+		slot7.headBtn.info = slot5
+
+		slot7.setVisible(slot7, false)
+		slot7.runAction(slot7, slot0.getActions(slot0, (slot4 - 1)*0.03, slot4 == #slot0.mHeroList))
+
+		if not slot0.targetBtn and slot4 == 4 then
+			slot0.targetBtn = slot7.touchBtn
+		end
+
+		slot10 = 0
+		slot11 = 0
+		slot13 = PvpRankFirstRewardRelation.items[math.min(slot0.mPvpInfo.Step, PvpRankFirstRewardRelation.items_count)]
+
+		if math.min(slot0.mPvpInfo.Step, PvpRankFirstRewardRelation.items_count) < slot0.mPvpInfo.HistoryMaxStep then
+			slot7.resLabel:setVisible(false)
+		elseif slot5.Rank < slot0.mPvpInfo.HistoryMaxRank then
+			if #slot13 < slot5.Rank then
+				slot7.resLabel:setVisible(false)
+			else
+				if #slot13 < slot0.mPvpInfo.HistoryMaxRank then
+					slot10 = (1 < slot12 and Utility.analysisStrResList(PvpRankFirstRewardRelation.items[slot12 - 1][1].firstReward)[1].num) or 0
+				else
+					slot10 = Utility.analysisStrResList(slot13[slot0.mPvpInfo.HistoryMaxRank].firstReward)[1].num
+				end
+
+				slot7.resLabel:setString(((#slot13 >= slot5.Rank or 0) and Utility.analysisStrResList(slot13[slot5.Rank].firstReward)[1].num) - slot10)
+			end
+		elseif slot0.mPvpInfo.HistoryMaxRank <= slot5.Rank then
+			slot7.resLabel:setVisible(false)
+		end
+
+		if slot5.Rank <= 3 then
+			slot7.rankSprite:setTexture(slot0[slot5.Rank])
+			slot7.rankSprite:setVisible(true)
+		end
+
+		if not slot5.IfAllowRank then
+			slot7.touchBtn:setVisible(false)
+			slot7.fightSprite:setVisible(false)
+		end
+
+		if slot5.isSelf then
+			slot7.touchBtn:setVisible(false)
+			slot7.headBtn:setVisible(false)
+			slot7.fightSprite:setVisible(false)
+			slot7.resLabel:setVisible(false)
+		end
+
+		if slot0.mSelectStep ~= slot0.mPvpInfo.Step then
+			slot7.touchBtn:setVisible(false)
+			slot7.headBtn:setVisible(false)
+			slot7.fightSprite:setVisible(false)
+			slot7.resLabel:setVisible(false)
+		end
+
+		slot0.targetListView:pushBackCustomItem(slot7)
+		table.insert(slot0.mTargetList, slot7)
+	end
+
+	if slot0.mSelectStep == slot0.mPvpInfo.Step then
+		ui.setListviewItemShow(slot0.targetListView, 4)
+	else
+		ui.setListviewItemShow(slot0.targetListView, 1)
+	end
+
+	return 
+end
+slot0.refreshBuyTimesView = function (slot0)
+	slot0.buyNumBtn:setVisible(slot0.mPvpInfo.ChallengeNum <= 0)
+	slot0.fightNumLabel:setString(TR("今日剩余挑战次数：%s/%s", slot0.mPvpInfo.ChallengeNum, PvpConfig.items[1].dailyFreeNum))
+
+	return 
+end
+slot0.getActions = function (slot0, slot1, slot2)
+	slot8 = nil
+
+	return (not slot2 or cc.Sequence:create(cc.MoveBy:create(0.001, cc.p(0, -570)), cc.DelayTime:create(slot1), cc.CallFunc:create(function (slot0)
+		slot0.setVisible(slot0, true)
+
+		return 
+	end), cc.EaseExponentialOut:create(slot5), cc.DelayTime:create(1), cc.CallFunc:create(function ()
+		slot0.refreshBtn:setEnabled(true)
+		slot0.refreshBtn.setEnabled:executeGuide()
+
+		return 
+	end))) and cc.Sequence:create(cc.MoveBy.create(0.001, cc.p(0, -570)), cc.DelayTime.create(slot1), cc.CallFunc.create(function (slot0)
+		slot0.setVisible(slot0, true)
+
+		return 
+	end), cc.EaseExponentialOut.create(slot5))
+end
+slot2 = {
+	"ltbw_11.png",
+	"ltbw_12.png",
+	"ltbw_13.png",
+	"ltbw_14.png"
+}
+slot0.showBaseView = function (slot0)
+	slot3 = PlayerAttrObj:getPlayerAttrByName("HeadPicId")
+
+	slot0.playerHead:setPlayerHeader(slot1, nil, {
+		headPicId = headPicInfo
+	})
+	slot0.myFapLabel:setString(TR("战力：%s", Utility.numberWithUnit(slot2)))
+	slot0.myRankLabel:setString(TR("我的排名：%s", slot0.mPvpInfo.Rank))
+	slot0.fightNumLabel:setString(TR("今日剩余挑战次数：%s/%s", slot0.mPvpInfo.ChallengeNum, PvpConfig.items[1].dailyFreeNum))
+	slot0.buyNumBtn:setVisible(slot0.mPvpInfo.ChallengeNum <= 0)
+
+	slot5 = nil
+
+	slot0.firstRewardLabel:setString(TR("排名达到第一名可获得{%s}%s", Resource.getDaibiImg(ResourceTypeSub.eDiamond), Utility.analysisStrResList(PvpRankFirstRewardRelation.items[slot0.mPvpInfo.Step][1].firstReward)[1].num - (not PvpRankFirstRewardRelation.items[slot0.mPvpInfo.Step][slot0.mPvpInfo.HistoryMaxRank] or Utility.analysisStrResList(PvpRankFirstRewardRelation.items[slot0.mPvpInfo.Step][slot0.mPvpInfo.HistoryMaxRank].firstReward)[1]) and Utility.analysisStrResList(PvpRankFirstRewardRelation.items[slot0.mPvpInfo.Step][#PvpRankFirstRewardRelation.items[slot0.mPvpInfo.Step]].firstReward)[1].num))
+
+	slot7 = ""
+
+	slot0.rankRewardLabel:setString(TR("每日排行奖励：{%s}%s（每日23:30邮件发放）", Resource.getDaibiImg(Utility.analysisStrResList((not PvpRankRewardRelation.items[slot0.mPvpInfo.Step][slot0.mPvpInfo.Rank] or slot0.mPvpInfo.ChallengeNum <= 0.rewardStr) and PvpRankRewardRelation.items[slot0.mPvpInfo.Step][#PvpRankRewardRelation.items[slot0.mPvpInfo.Step]].rewardStr)[1].resourceId), Utility.analysisStrResList((not PvpRankRewardRelation.items[slot0.mPvpInfo.Step][slot0.mPvpInfo.Rank] or slot0.mPvpInfo.ChallengeNum <= 0.rewardStr) and PvpRankRewardRelation.items[slot0.mPvpInfo.Step][#PvpRankRewardRelation.items[slot0.mPvpInfo.Step]].rewardStr)[1].num))
+
+	slot9 = PvpStepRelation.items
+
+	for slot13, slot14 in ipairs(PvpStepRelation.items) do
+		slot15 = slot0.createLayoutTemplateNode(slot0, "tempStepBtn", {
+			btnImg = slot0[slot14.step],
+			lvStr = TR("%s级", slot14.needLv)
+		})
+
+		slot15.setPosition(slot15, (slot13 - 1)*120 + -445, -270)
+		slot0.centerNode:addChild(slot15)
+
+		if slot0.mPvpInfo.Step < slot14.step then
+			slot15.selectBtn:setEnabled(false)
+			slot15.lvTipSprite:setVisible(true)
+			slot15.lockSprite:setVisible(true)
+		else
+			slot15.selectBtn:setEnabled(true)
+			slot15.lvTipSprite:setVisible(false)
+			slot15.lockSprite:setVisible(false)
+		end
+
+		slot15.selectBtn.tag = slot14.step
+
+		slot15.selectSprite:setVisible(slot14.step == slot0.mSelectStep)
+		table.insert(slot0.mTabBtnList, slot15)
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	if slot1.tag == slot0.mSelectStep then
+		return 
+	end
+
+	slot0.mSelectStep = slot1.tag
+
+	for slot5, slot6 in ipairs(slot0.mTabBtnList) do
+		slot6.selectSprite:setVisible(slot6.selectBtn.tag == slot0.mSelectStep)
+	end
+
+	if slot0.mSelectStep == slot0.mPvpInfo.Step then
+		slot0.requestRefresh(slot0)
+		slot0.refreshBtn:setVisible(true)
+		slot0.firstRewardLabel:setVisible(true)
+	else
+		slot0.requestGetPvpStepInfo(slot0, slot0.mSelectStep)
+		slot0.refreshBtn:setVisible(false)
+		slot0.firstRewardLabel:setVisible(false)
+	end
+
+	return 
+end
+slot0.onFigthBtn = function (slot0, slot1)
+	ui.showCampReady({
+		noNeedVit = true,
+		isPvp = true,
+		callModelSub = ModuleSub.ePvp,
+		currSlotString = (slot0.mPvpInfo.AttackSlotFormationInfo == "0,0,0,0,0,0" and slot0.mPvpInfo.DefenseSlotFormationInfo) or slot0.mPvpInfo.AttackSlotFormationInfo,
+		callback = function (slot0)
+			slot1 = table.concat(slot0, ",")
+
+			if slot0.mPvpInfo.DefenseSlotFormationInfo == "0,0,0,0,0,0" then
+				dump(slot1, "tempStr")
+				require("network.GameSocket"):socketRequest({
+					methodName = "SaveDefense",
+					moduleName = "Pvp",
+					ignoreNode = true,
+					methodData = {
+						slot1
+					},
+					successCallback = function (slot0)
+						return 
+					end
+				})
+			end
+
+			slot0:requestPvpFight(slot1.info.PlayerId, slot1.info.Rank, slot1)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getShowRewardList = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		for slot11, slot12 in ipairs(slot7) do
+			table.insert(slot2, string.format("%s,0,%s", slot12.ResourceId, slot12.Num))
+		end
+	end
+
+	return slot2
+end
+slot0.checkPopupRewardLayer = function (slot0)
+	if slot0.mRankUpRewardList then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "pvp.DlgRankUpRewardLayer",
+			data = {
+				oldRank = slot0.mOldRank,
+				currRank = slot0.mPvpInfo.Rank,
+				showList = slot0.mRankUpRewardList,
+				callback = function ()
+					slot0.mRankUpRewardList = nil
+					slot0.mOldRank = nil
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onClickHead = function (slot0, slot1)
+	if not slot1.info.IsRobot or false then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.OtherPlayerInfoLayer",
+			data = {
+				playerId = slot1.info.PlayerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onReportBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "pvp.PvpReportLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.instertMyInfo = function (slot0)
+	slot1 = {
+		Rank = slot0.mPvpInfo.Rank,
+		HeadImageId = PlayerAttrObj:getPlayerAttrByName("HeadImageId"),
+		Fap = PlayerAttrObj:getPlayerAttrByName("Fap"),
+		Name = PlayerAttrObj:getPlayerAttrByName("PlayerName"),
+		isSelf = true
+	}
+
+	if PlayerAttrObj:getPlayerAttrByName("FashionModelId") ~= 0 then
+		slot1.HeadImageId = slot2
+	end
+
+	slot1.rewardInfo = rewardInfo
+
+	table.insert(slot0.mHeroList, slot1)
+
+	return 
+end
+slot0.checkIfStepUp = function (slot0)
+	slot1 = slot0.mPvpInfo.Step
+	slot3 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if PvpStepRelation.items[slot0.mPvpInfo.Step + 1] and slot0.mPvpInfo.Rank <= slot2.needRank and slot2.needLv <= slot3 then
+		slot0.createStepUpGuide(slot0)
+	end
+
+	return 
+end
+slot0.createStepUpGuide = function (slot0)
+	slot1 = cc.p(0, 0)
+
+	for slot5, slot6 in ipairs(slot0.mTabBtnList) do
+		if slot0.mPvpInfo.Step + 1 == slot6.selectBtn.tag then
+			ui.setWaveAnimation(slot6.lockSprite)
+
+			slot1 = cc.p(slot6.getPosition(slot6))
+		end
+	end
+
+	slot0.createUISubTree(slot0, "touchLayer")
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0.touchLayer,
+		endedEvent = function (slot0)
+			return 
+		end
+	})
+	slot0.fingerNode:setPosition(slot1)
+
+	return 
+end
+slot0.onStepUp = function (slot0)
+	if slot0.touchLayer then
+		slot0.touchLayer:removeFromParent()
+
+		slot0.touchLayer = nil
+	end
+
+	slot0.requestStepUp(slot0)
+
+	return 
+end
+slot0.stepUpPop = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "pvp.DlgStepUpLayer",
+		data = {
+			curStep = slot0.mPvpInfo.Step,
+			callback = function ()
+				slot0:refreshTabBtns()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refreshTabBtns = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mTabBtnList) do
+		if slot5.selectBtn.tag <= slot0.mPvpInfo.Step then
+			slot5.lockSprite:setVisible(false)
+			slot5.selectBtn:setEnabled(true)
+			slot5.lvTipSprite:setVisible(false)
+		end
+
+		slot5.selectSprite:setVisible(slot0.mPvpInfo.Step == slot5.selectBtn.tag)
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPvpInfo",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "华山论剑详细信息")
+
+			slot0.mPvpInfo = slot0.PvpInfo
+			slot0.mSelectStep = slot0.mPvpInfo.Step
+			slot0.mHeroList = {}
+			slot1 = {}
+
+			for slot5, slot6 in ipairs(slot0.RankList) do
+				if not PlayerAttrObj:isPlayerSelf(slot6.PlayerId) then
+					table.insert(slot1, slot6)
+				end
+			end
+
+			for slot5, slot6 in ipairs(slot1) do
+				table.insert(slot0.mHeroList, slot6)
+			end
+
+			for slot5, slot6 in ipairs(slot0.TopRankThreeList) do
+				slot7 = false
+
+				for slot11, slot12 in ipairs(slot1) do
+					if slot6.Rank == slot12.Rank then
+						slot7 = true
+
+						break
+					end
+				end
+
+				if not slot7 then
+					table.insert(slot0.mHeroList, slot6)
+				end
+			end
+
+			dump(slot0.mHeroList)
+			table.sort(slot0.mHeroList, function (slot0, slot1)
+				return slot0.Rank < slot1.Rank
+			end)
+			slot0:refreshTarget()
+			slot0:showBaseView()
+			slot0:checkPopupRewardLayer()
+			slot0:checkIfStepUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefresh = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Refresh",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.refreshBtn:setEnabled(false)
+
+			slot0.mHeroList = {}
+			slot1 = {}
+
+			for slot5, slot6 in ipairs(slot0.RankList) do
+				if not PlayerAttrObj:isPlayerSelf(slot6.PlayerId) then
+					table.insert(slot1, slot6)
+				end
+			end
+
+			for slot5, slot6 in ipairs(slot1) do
+				table.insert(slot0.mHeroList, slot6)
+			end
+
+			for slot5, slot6 in ipairs(slot0.TopRankThreeList) do
+				slot7 = false
+
+				for slot11, slot12 in ipairs(slot1) do
+					if slot6.Rank == slot12.Rank then
+						slot7 = true
+
+						break
+					end
+				end
+
+				if not slot7 then
+					table.insert(slot0.mHeroList, slot6)
+				end
+			end
+
+			table.sort(slot0.mHeroList, function (slot0, slot1)
+				return slot0.Rank < slot1.Rank
+			end)
+			slot0:refreshTarget()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPvpFight = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "PvpFight",
+		moduleName = "Pvp",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			if slot0.ExtraGetGameResource and type(slot0.ExtraGetGameResource) == "table" and next(slot0.ExtraGetGameResource) then
+				slot0.mRankUpRewardList = slot0:getShowRewardList(slot0.ExtraGetGameResource)
+				slot0.mOldRank = slot0.mPvpInfo.Rank
+			end
+
+			slot0.mPvpInfo = slot0.PvpInfo
+
+			if slot0.IsBreak then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "settle.BattleSuccessLayer",
+					data = {
+						hideDetialBtn = true,
+						battleType = FightType.ePvp,
+						battleData = {},
+						deadHeroCount = deadHeroCount,
+						showRemainHeroCount = showRemainHeroCount,
+						rewardList = slot0
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end
+
+			if slot0.FightInfo then
+				require("common.BattleEntry"):StartBattle({
+					battleMap = "effect_zhandou_biwuleitai",
+					fightInfo = slot0.FightInfo,
+					extraData = {
+						BaseGetGameResourceList = slot0.BaseGetGameResourceList
+					}
+				})
+			else
+				ui.showFlashView(TR("挑战列表已改变"))
+
+				slot0.mHeroList = {}
+				slot1 = {}
+
+				for slot5, slot6 in ipairs(slot0.RankList) do
+					if not PlayerAttrObj:isPlayerSelf(slot6.PlayerId) then
+						table.insert(slot1, slot6)
+					end
+				end
+
+				for slot5, slot6 in ipairs(slot1) do
+					table.insert(slot0.mHeroList, slot6)
+				end
+
+				for slot5, slot6 in ipairs(slot0.TopRankThreeList) do
+					slot7 = false
+
+					for slot11, slot12 in ipairs(slot1) do
+						if slot6.Rank == slot12.Rank then
+							slot7 = true
+
+							break
+						end
+					end
+
+					if not slot7 then
+						table.insert(slot0.mHeroList, slot6)
+					end
+				end
+
+				table.sort(slot0.mHeroList, function (slot0, slot1)
+					return slot0.Rank < slot1.Rank
+				end)
+				slot0:refreshTarget()
+			end
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -2811 then
+				ui.showFlashView(TR("提示:华山论剑休战发奖中"))
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSaveDefense = function (slot0, slot1)
+	dump(slot1, "formationStr")
+	slot0.socketRequest(slot0, {
+		methodName = "SaveDefense",
+		moduleName = "Pvp",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "保存阵容")
+
+			slot0.mPvpInfo.DefenseSlotFormationInfo = slot0.SlotFormationInfo.FormationInfo
+
+			ui.showFlashView(TR("保存成功!!!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestStepUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "UpStep",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "华山论剑UpStep")
+
+			slot0.mPvpInfo = slot0.GetPvpInfo.PvpInfo
+			slot0.mSelectStep = slot0.mPvpInfo.Step
+			slot0.mHeroList = {}
+			slot1 = {}
+
+			for slot5, slot6 in ipairs(slot0.GetPvpInfo.RankList) do
+				if not PlayerAttrObj:isPlayerSelf(slot6.PlayerId) then
+					table.insert(slot1, slot6)
+				end
+			end
+
+			for slot5, slot6 in ipairs(slot1) do
+				table.insert(slot0.mHeroList, slot6)
+			end
+
+			for slot5, slot6 in ipairs(slot0.GetPvpInfo.TopRankThreeList) do
+				slot7 = false
+
+				for slot11, slot12 in ipairs(slot1) do
+					if slot6.Rank == slot12.Rank then
+						slot7 = true
+
+						break
+					end
+				end
+
+				if not slot7 then
+					table.insert(slot0.mHeroList, slot6)
+				end
+			end
+
+			table.sort(slot0.mHeroList, function (slot0, slot1)
+				return slot0.Rank < slot1.Rank
+			end)
+			slot0:refreshTarget()
+			slot0:stepUpPop()
+			slot0.myRankLabel:setString(TR("我的排名：%s", slot0.mPvpInfo.Rank))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetPvpStepInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPvpStepInfo",
+		moduleName = "Pvp",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mHeroList = {}
+
+			for slot4, slot5 in ipairs(slot0) do
+				table.insert(slot0.mHeroList, slot5)
+			end
+
+			table.sort(slot0.mHeroList, function (slot0, slot1)
+				return slot0.Rank < slot1.Rank
+			end)
+			slot0:refreshTarget()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		slot0.targetListView:setTouchEnabled(false)
+	else
+		slot0.targetListView:setTouchEnabled(true)
+	end
+
+	Guide.manager:exeGuideList({
+		[200302] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.targetBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

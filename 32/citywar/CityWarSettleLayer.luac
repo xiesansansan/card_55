@@ -1,0 +1,643 @@
+slot0 = class("CityWarSettleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled24",
+		cType = "Layer",
+		params = {
+			sizeApt = 1,
+			color = {
+				g = 0,
+				a = 128,
+				r = 0,
+				b = 0
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled27",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled23",
+				cType = "Scale9Sprite",
+				params = {
+					image = "gcz_35.png",
+					capInsets = {
+						x = 179,
+						height = 360,
+						width = 2,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1120,
+						height = 383
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mResultSprite",
+				cType = "Sprite",
+				params = {
+					image = "gcz_32.png",
+					pos = {
+						x = 37.09,
+						y = 185.66
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mAttackNameLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					emptyInit = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					pos = {
+						x = -40.41,
+						y = 111.35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "gcz_3.png",
+					pos = {
+						x = -4.44,
+						y = 111.25
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCityNameLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 60.58,
+						y = 110.27
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mDefendLeftLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					text = "Label",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 44.08,
+						y = 34.41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -48.37,
+						y = 34.46
+					},
+					text = TR("剩余部队")
+				},
+				children = {}
+			},
+			{
+				name = "closeSprite",
+				cType = "Sprite",
+				params = {
+					posApt = 1,
+					image = "c_60.png",
+					scaleApt = 4,
+					pos = {
+						x = 0,
+						y = -276.14
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCityOwnerLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					emptyInit = true,
+					isRichText = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = -7.15,
+						y = 71.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRewardNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -552.26,
+						y = -326.14
+					}
+				},
+				children = {
+					{
+						name = "mRewardDesLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							emptyInit = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 543.36,
+								y = 307.15
+							},
+							text = TR("击杀17人获得如下奖励：")
+						},
+						children = {
+							{
+								name = "untitled26",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = -92.55,
+										y = 7.58
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Sprite",
+								params = {
+									reverse = 1,
+									image = "c_36.png",
+									pos = {
+										x = 341.19,
+										y = 8.53
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mRewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 550.88,
+								y = 224.91
+							},
+							size = {
+								width = 639.17,
+								height = 106.27
+							}
+						},
+						children = {
+							{
+								name = "Layout",
+								cType = "Layout",
+								params = {
+									pos = {
+										z = 0,
+										x = 47.44,
+										y = 6.02
+									},
+									size = {
+										width = 94.88,
+										height = 97.07
+									}
+								},
+								children = {
+									{
+										name = "RewardItem",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled21-initParams",
+												name = "itemInfo",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = -3.81,
+												y = -2.4
+											},
+											size = {
+												width = 102.03,
+												height = 102
+											}
+										},
+										children = {
+											{
+												name = "untitled21",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 49.82,
+														y = 51.4
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "closeBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onClose",
+					pos = {
+						x = -1.49,
+						y = -275.48
+					},
+					size = {
+						width = 200,
+						height = 50
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallback = slot1.callback
+	slot0.mSideTag = slot1.sideTag
+	slot0.mChapterId = slot1.chapterId
+	slot0.mDefenceArmyNum = slot1.defenceArmyNum
+	slot0.mIsAttackWin = slot1.isAttackWin
+	slot0.mOldOnwerGuildId = slot1.oldCityInfo.GuildId
+
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			LayerManager.removeLayer(slot0)
+
+			if slot0.mCallback then
+				slot2()
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.setSettleInfo(slot0)
+
+	return 
+end
+slot0.getResult = function (slot0)
+	slot1 = {
+		{
+			pic = "gcz_36.png",
+			text = TR("防守成功")
+		},
+		{
+			pic = "gcz_32.png",
+			text = TR("进攻成功")
+		},
+		{
+			pic = "gcz_34.png",
+			text = TR("进攻失败")
+		},
+		{
+			pic = "gcz_37.png",
+			text = TR("防守失败")
+		}
+	}
+
+	slot0.mDefendLeftLabel:setString((not slot0.mIsAttackWin or 0) and slot0.mDefenceArmyNum)
+
+	if slot0.mSideTag == Enums.CityWarType.eDefend then
+		if slot0.mIsAttackWin then
+			return slot1[4].pic, slot1[4].text, true
+		else
+			return slot1[1].pic, slot1[1].text, false
+		end
+	elseif slot0.mSideTag == Enums.CityWarType.eAttack or slot0.mSideTag == Enums.CityWarType.eStandBy then
+		if slot0.mIsAttackWin then
+			return slot1[2].pic, slot1[2].text, true
+		else
+			return slot1[3].pic, slot1[3].text, false
+		end
+	end
+
+	return 
+end
+slot0.setSettleInfo = function (slot0)
+	slot6, slot2, slot3 = slot0.getResult(slot0)
+
+	slot0.mResultSprite:setTexture(slot1)
+
+	slot4 = "#FFF8EA"
+	slot5 = ""
+
+	if 10 < slot0.mChapterId then
+		slot5, slot4 = Utility.getCityNameColor(slot0.mChapterId)
+	end
+
+	slot6 = (slot0.mChapterId < 10 and TR("魔教")) or CitywarCityConfig.items[slot0.mChapterId].name
+
+	if slot0.mChapterId == 3 then
+		slot0.mCityNameLabel:setString(string.format("%s %s", TR("我方防守部队"), slot2))
+	else
+		slot0.mCityNameLabel:setString(string.format("%s %s", slot6, slot2))
+	end
+
+	if slot3 and 10 < slot0.mChapterId then
+		slot0.requestGetCityInfo(slot0)
+	end
+
+	if false then
+		slot0.mAttackNameLabel:setString(TR("XXX公会"))
+	elseif slot0.mChapterId == 3 then
+		slot0.mAttackNameLabel:setString(slot6)
+	else
+		slot0.mAttackNameLabel:setString(TR("进攻部队"))
+	end
+
+	slot0.requestGetCitywarChapterReward(slot0)
+
+	return 
+end
+slot0.createRewardList = function (slot0, slot1)
+	slot4 = ((#Utility.analysisStrResList(slot1) - 1)*90 - 640)/2
+
+	if #Utility.analysisStrResList(slot1) < 7 then
+		slot0.mRewardListView:setContentSize(cc.size(#slot2*97, 106))
+	end
+
+	for slot8, slot9 in ipairs(slot2) do
+		slot10 = slot0.createLayoutTemplateNode(slot0, "Layout", {})
+		slot11 = slot0.createLayoutTemplateNode(slot0, "RewardItem", {
+			itemInfo = {
+				cardInfo = {
+					modelId = slot9.resourceId,
+					num = slot9.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		})
+
+		slot11.setIgnoreAnchorPointForPosition(slot11, false)
+		slot11.setAnchorPoint(slot11, 0.5, 0.5)
+		slot11.setPosition(slot11, cc.p(slot10.getContentSize(slot10).width/2, slot10.getContentSize(slot10).height/2 + 5))
+		slot10.addChild(slot10, slot11)
+		slot0.mRewardListView:pushBackCustomItem(slot10)
+	end
+
+	return 
+end
+slot0.requestGetCityInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mChapterId
+		},
+		successCallback = function (slot0)
+			require("network.GameSocket"):socketRequest({
+				methodName = "GoBack",
+				moduleName = "Citywar",
+				ignoreNode = true,
+				methodData = {
+					0,
+					1
+				},
+				successCallback = function ()
+					return 
+				end
+			})
+
+			slot1, slot2 = Utility.getCityNameColor(slot0.mChapterId)
+
+			if slot0.mOldOnwerGuildId ~= slot0.CityInfo[tostring(slot0.mChapterId)].GuildId then
+				slot4 = CitywarCityConfig.items[slot0.mChapterId].name
+
+				if not Utility.isEntityId(slot3) then
+					slot0.mCityOwnerLabel:setString(TR("%s%s变为无人占领", slot2, slot4))
+				else
+					slot0.mCityOwnerLabel:setString(TR("帮派：#37FF40%s #FFF8EA成功占领%s%s", slot0.CityInfo[tostring(slot0.mChapterId)].GuildName, slot2, slot4))
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.overTask = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "OverTask",
+		moduleName = "GuildNewplayertask",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "taskInfo")
+			slot0:receiveReward()
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			dump(response, "taskInfo")
+
+			if slot0 == -3124 then
+				slot0:receiveReward()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.receiveReward = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "ReceiveReward",
+		moduleName = "GuildNewplayertask",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "taskInfo")
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			LayerManager.removeLayer(slot0)
+
+			if slot0.mCallback then
+				slot1()
+			end
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			dump(response, "taskInfo")
+
+			if slot0 == -3124 then
+				LayerManager.removeLayer(slot0)
+
+				if slot0.mCallback then
+					slot1()
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetCitywarChapterReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCitywarChapterReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mChapterId
+		},
+		successCallback = function (slot0)
+			if 0 < string.len(slot0.Reward) and slot0.Reward ~= "" then
+				slot0.mRewardDesLabel:setString(string.format("击杀%d人获得如下奖励：", slot0.KillNum))
+				slot0:createRewardList(slot0.Reward)
+			else
+				slot0.mRewardNode:setVisible(false)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClose = function (slot0)
+	slot1 = slot0.mCallback
+
+	if slot0.mChapterId == 1 then
+		LayerManager.removeTopCleanUpLayer(true)
+	elseif slot0.mChapterId == 3 then
+		LayerManager.removeTopCleanUpLayer(true)
+	else
+		LayerManager.removeLayer(slot0)
+
+		if slot1 then
+			slot1()
+		end
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[800706] = {
+			clickNode = slot0.closeBtn
+		},
+		[800710] = {
+			clickNode = slot0.closeBtn
+		},
+		[800806] = {
+			clickNode = slot0.closeBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

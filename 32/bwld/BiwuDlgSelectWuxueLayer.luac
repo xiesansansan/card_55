@@ -1,0 +1,391 @@
+slot0 = class("BiwuDlgSelectWuxueLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 454
+			},
+			titleText = TR("选择武学")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 102,
+					image = "c_24.png",
+					pos = {
+						x = 257.5,
+						y = 257
+					},
+					size = {
+						width = 446,
+						height = 304
+					}
+				},
+				children = {
+					{
+						name = "mSuitListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 223,
+								y = 224
+							},
+							size = {
+								width = 400,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "layoutSuitCell",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled8-text",
+										name = "suitName",
+										type = "string"
+									},
+									{
+										value = "untitled7-image",
+										name = "suitPic",
+										type = "string"
+									},
+									{
+										value = "untitled8-color",
+										name = "textColor",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 110,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "untitled5",
+										cType = "Button",
+										params = {
+											image = "c_25.png",
+											childName = "border",
+											pos = {
+												x = 55,
+												y = 90
+											}
+										},
+										children = {
+											{
+												name = "untitled7",
+												cType = "Sprite",
+												params = {
+													image = "c_pure.png",
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "name",
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 55,
+												y = 18
+											},
+											text = TR("套装名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Sprite",
+										params = {
+											childName = "selected",
+											image = "c_26.png",
+											hide = true,
+											pos = {
+												x = 55,
+												y = 90
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mAttrListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 223,
+								y = 8
+							},
+							size = {
+								width = 420,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "layoutAttrCell",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 420,
+										height = 30
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled11",
+						cType = "Sprite",
+						params = {
+							scaleX = -0.5,
+							rotationAngle = 180,
+							image = "c_4.png",
+							scale = 0.5,
+							pos = {
+								x = 10,
+								y = 224
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							scale = 0.5,
+							image = "c_4.png",
+							scaleX = -0.5,
+							pos = {
+								x = 430,
+								y = 224
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Sprite",
+						params = {
+							image = "c_11.png",
+							pos = {
+								x = 223,
+								y = 152
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled15",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onBtnSelectAction",
+					pos = {
+						x = 257.5,
+						y = 63
+					},
+					titleText = TR("选 择")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.wuxueSuitId = slot1.wuxueSuitId or 0
+	slot0.callback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealWithData(slot0)
+	slot0.createSuitList(slot0)
+	slot0.selectOneSuit(slot0, 1)
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.suitList = {}
+
+	for slot4, slot5 in pairs(WuxueSuitConfig.items) do
+		for slot9, slot10 in pairs(slot5) do
+			for slot14, slot15 in pairs(WuxueModel.items) do
+				if slot15.suitId == slot4 and slot15.ifOpen then
+					table.insert(slot0.suitList, {
+						suitId = slot4,
+						quality = slot9,
+						suitconfig = slot10,
+						colorLv = slot15.colorLv
+					})
+
+					break
+				end
+			end
+		end
+	end
+
+	table.sort(slot0.suitList, function (slot0, slot1)
+		return slot1.suitId < slot0.suitId
+	end)
+
+	return 
+end
+slot0.createSuitList = function (slot0)
+	for slot4, slot5 in ipairs(slot0.suitList) do
+		slot0.createLayoutTemplateNode(slot0, "layoutSuitCell", {
+			suitName = WuxueSuitIntroRelation.items[slot5.suitId].suitName,
+			suitPic = WuxueSuitIntroRelation.items[slot5.suitId].suitPic .. ".png",
+			textColor = Utility.getColorValue(slot5.colorLv)
+		}).border:setClickAction(function ()
+			slot0:selectOneSuit(slot0)
+
+			return 
+		end)
+		slot0.createLayoutTemplateNode(slot0, "layoutSuitCell", {
+			suitName = WuxueSuitIntroRelation.items[slot5.suitId].suitName,
+			suitPic = WuxueSuitIntroRelation.items[slot5.suitId].suitPic .. ".png",
+			textColor = Utility.getColorValue(slot5.colorLv)
+		}).selected:setVisible(slot0.wuxueSuitId == slot5.suitId)
+		ui.createLabelClipRoll({
+			label = slot7.name,
+			dimensions = cc.size(88, 30),
+			anchorPoint = cc.p(0.5, 0),
+			position = cc.p(55, 18)
+		})
+		slot0.mSuitListView:pushBackCustomItem(slot7)
+	end
+
+	return 
+end
+slot0.selectOneSuit = function (slot0, slot1)
+	if slot0.selectIndex ~= nil and slot0.selectIndex == slot1 then
+		return 
+	end
+
+	for slot5, slot6 in ipairs(slot0.mSuitListView:getItems()) do
+		slot6.selected:setVisible(slot5 == slot1)
+	end
+
+	slot0.selectIndex = slot1
+
+	slot0.refreshSuitAttr(slot0, slot1)
+
+	return 
+end
+slot0.refreshSuitAttr = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.suitList[slot1].suitconfig) do
+		table.insert(slot2, slot7)
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0.needPartNum < slot1.needPartNum
+	end)
+	slot0.mAttrListView:removeAllItems()
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = TR("%s 套属性: ", slot7.needPartNum)
+
+		if slot7.actAttrStr ~= "" then
+			for slot12, slot13 in ipairs(Utility.analysisStrAttrList(slot7.actAttrStr)) do
+				slot14 = ""
+
+				if 1 < slot12 then
+					slot14 = " "
+				end
+
+				slot8 = slot8 .. ((Utility.isAttrNeedPercent(slot13.fightattr) and slot14 .. string.format("%s+%s%%", FightAttrTypeName[slot13.fightattr], slot13.value/100)) or slot14 .. string.format("%s+%s", FightAttrTypeName[slot13.fightattr], slot13.value))
+			end
+		end
+
+		if UIWrap.newControl("Label", {
+			fontSize = 18,
+			isRichText = true,
+			text = (slot7.actSkillId ~= "" and slot8 .. Resource.getSkillIntroStr(tonumber(slot7.actSkillId), 1, 1, "#252525", "#252525")) or slot8 .. TR("无"),
+			anchor = cc.p(0, 0.5),
+			color = cc.c3b(37, 37, 37),
+			size = cc.size(420, 0)
+		}).getContentSize(slot9).height + 10 < 36 then
+			slot10 = 36
+		end
+
+		slot9.setPosition(slot9, 5, slot10/2)
+
+		slot11 = slot0.createLayoutTemplateNode(slot0, "layoutAttrCell")
+
+		slot11.setContentSize(slot11, cc.size(510, slot10))
+		slot11.addChild(slot11, slot9)
+		slot0.mAttrListView:pushBackCustomItem(slot11)
+	end
+
+	return 
+end
+slot0.onBtnSelectAction = function (slot0)
+	if slot0.callback ~= nil then
+		slot0.callback(slot0.suitList[slot0.selectIndex].suitId)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

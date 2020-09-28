@@ -1,0 +1,460 @@
+slot0 = class("GuildShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "sc_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "sc_21.png",
+					pos = {
+						x = 0,
+						y = -23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 406.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 12.95,
+						y = 17.48
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {}
+			},
+			{
+				name = "GridCell",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled23-text",
+						name = "nameText",
+						type = "string"
+					},
+					{
+						value = "untitled24-initParams",
+						name = "cardParams",
+						type = "string"
+					},
+					{
+						value = "untitled25-goodId",
+						name = "goodId",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -267.56,
+						y = 91.28
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "sc_26.png",
+							pos = {
+								x = 0.31,
+								y = 106.43
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							image = "sc_27.png",
+							pos = {
+								x = 0,
+								y = -6.91
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled23",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "nameLabel",
+							text = "Label",
+							isRichText = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 1.44,
+								y = 93.99
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled24",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							initParams = {},
+							pos = {
+								x = 1,
+								y = 26.48
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "goodId",
+								type = "integer"
+							}
+						},
+						params = {
+							childName = "button",
+							image = "c_32.png",
+							scale = 0.8,
+							clickAction = "onBuyAction",
+							pos = {
+								x = 2,
+								y = -87.05
+							},
+							titleText = TR("购 买")
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "ResLabel",
+						params = {
+							fontSize = 20,
+							modelId = 1111,
+							num = 0,
+							childName = "priceLabel",
+							pos = {
+								x = -33.88,
+								y = -54.18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "limitLabel",
+							text = "Label",
+							isRichText = true,
+							color = {
+								g = 135,
+								r = 37,
+								b = 17
+							},
+							pos = {
+								x = 0.09,
+								y = -28.43
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled28",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 1.52,
+						y = -255.59
+					},
+					text = TR("帮派等级越高售卖商品越多")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled4",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1115
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled5",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "bp_111.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 82.4,
+						y = -0.84
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGuildShopInfo = {}
+	slot0.mData = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eMarketGuild) then
+		RedDotObj:seeRedDot("MarketGuild", "1104")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetGuildShopInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	slot0.mGridView:setItemNum(#slot0.mData)
+
+	if slot1 then
+		slot0.mGridView:jumpToTop()
+	end
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.mData = {}
+
+	for slot4, slot5 in ipairs(slot0.mGuildShopInfo) do
+		slot0.mData[slot4] = slot5
+		slot0.mData[slot4].goodStr = GuildShopRelation.items[slot5.Id].goodStr
+		slot0.mData[slot4].buyNeedStr = GuildShopRelation.items[slot5.Id].buyNeedStr
+		slot0.mData[slot4].needGuildLv = GuildShopRelation.items[slot5.Id].needGuildLv
+		slot0.mData[slot4].maxNum = slot5.maxNum
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mData[slot2] then
+		return 
+	end
+
+	slot7, slot13 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].resourceId))
+
+	slot0.createLayoutTemplateNode(slot0, "GridCell", {
+		goodId = slot0.mData[slot2].Id,
+		cardParams = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = slot8 .. Resource.getName(Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].resourceId)
+	}).priceLabel:setType(Utility.analysisStrResList(slot0.mData[slot2].buyNeedStr)[1].resourceId)
+	slot0.createLayoutTemplateNode(slot0, "GridCell", {
+		goodId = slot0.mData[slot2].Id,
+		cardParams = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = slot8 .. Resource.getName(Utility.analysisStrResList(slot0.mData[slot2].goodStr)[1].resourceId)
+	}).priceLabel:setString(Utility.analysisStrResList(slot0.mData[slot2].buyNeedStr)[1].num, (Utility.analysisStrResList(slot0.mData[slot2].buyNeedStr)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mData[slot2].buyNeedStr)[1].resourceId) and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+
+	slot11 = ""
+
+	if slot4.needGuildLv == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildLevel then
+		slot11 = TR("#EA2C00帮派%s级购买", slot4.needGuildLv + 1)
+	end
+
+	slot9.limitLabel:setString((slot4.MaxNum == 0 and slot11) or TR("今日次数：%s", math.max(slot4.MaxNum - slot4.BuyNum, 0)))
+
+	if 0 < slot4.MaxNum and slot4.MaxNum <= slot4.BuyNum then
+		slot9.button:setEnabled(false)
+	end
+
+	if slot4.MaxNum == 0 then
+		slot9.button:setEnabled(false)
+	end
+
+	slot9.setPosition(slot9, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot9)
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot0.requestGuildShopBuy(slot0, slot1.goodId)
+
+	return 
+end
+slot0.requestGetGuildShopInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildShopList",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mGuildShopInfo = slot0.ShopInfo
+
+			slot0:dealData()
+			slot0:refreshUI(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGuildShopBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GuildShopBuy",
+		moduleName = "Guild",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mGuildShopInfo = slot0.ShopInfo
+
+			slot0:dealData()
+			slot0:refreshUI(false)
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashView(TR("购买成功"))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

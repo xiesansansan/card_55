@@ -1,0 +1,2480 @@
+function slot0(slot0, slot1)
+	print("\n********** \n" .. slot0 .. " was deprecated please use " .. slot1 .. " instead.\n**********")
+
+	return 
+end
+
+CCDirector.sharedDirector = ({
+	sharedDirector = function ()
+		slot0("CCDirector:sharedDirector", "cc.Director:getInstance")
+
+		return cc.Director:getInstance()
+	end
+})["sharedDirector"]
+cc.TextureCache.getInstance = ({
+	getInstance = function (slot0)
+		slot0("cc.TextureCache:getInstance", "cc.Director:getInstance():getTextureCache")
+
+		return cc.Director:getInstance():getTextureCache()
+	end,
+	destroyInstance = function (slot0)
+		slot0("cc.TextureCache:destroyInstance", "cc.Director:getInstance():destroyTextureCache")
+
+		return cc.Director:getInstance():destroyTextureCache()
+	end,
+	dumpCachedTextureInfo = function (slot0)
+		slot0("self:dumpCachedTextureInfo", "self:getCachedTextureInfo")
+
+		return print(slot0.getCachedTextureInfo(slot0))
+	end
+})["getInstance"]
+cc.TextureCache.destroyInstance = ({
+	getInstance = function (slot0)
+		slot0("cc.TextureCache:getInstance", "cc.Director:getInstance():getTextureCache")
+
+		return cc.Director.getInstance().getTextureCache()
+	end,
+	destroyInstance = function (slot0)
+		slot0("cc.TextureCache:destroyInstance", "cc.Director:getInstance():destroyTextureCache")
+
+		return cc.Director.getInstance().destroyTextureCache()
+	end,
+	dumpCachedTextureInfo = function (slot0)
+		slot0("self:dumpCachedTextureInfo", "self:getCachedTextureInfo")
+
+		return print(slot0.getCachedTextureInfo(slot0))
+	end
+})["destroyInstance"]
+cc.TextureCache.dumpCachedTextureInfo = ({
+	getInstance = function (slot0)
+		slot0("cc.TextureCache:getInstance", "cc.Director:getInstance():getTextureCache")
+
+		return cc.Director.getInstance().getTextureCache()
+	end,
+	destroyInstance = function (slot0)
+		slot0("cc.TextureCache:destroyInstance", "cc.Director:getInstance():destroyTextureCache")
+
+		return cc.Director.getInstance().destroyTextureCache()
+	end,
+	dumpCachedTextureInfo = function (slot0)
+		slot0("self:dumpCachedTextureInfo", "self:getCachedTextureInfo")
+
+		return print(slot0.getCachedTextureInfo(slot0))
+	end
+})["dumpCachedTextureInfo"]
+
+rawset(CCTextureCache, "sharedTextureCache", ({
+	sharedTextureCache = function ()
+		slot0("CCTextureCache:sharedTextureCache", "CCTextureCache:getInstance")
+
+		return cc.TextureCache:getInstance()
+	end,
+	purgeSharedTextureCache = function ()
+		slot0("CCTextureCache:purgeSharedTextureCache", "CCTextureCache:destroyInstance")
+
+		return cc.TextureCache:destroyInstance()
+	end,
+	addUIImage = function (slot0, slot1, slot2)
+		slot0("CCTextureCache:addUIImage", "CCTextureCache:addImage")
+
+		return slot0.addImage(slot0, slot1, slot2)
+	end
+})["sharedTextureCache"])
+rawset(CCTextureCache, "purgeSharedTextureCache", ({
+	sharedTextureCache = function ()
+		slot0("CCTextureCache:sharedTextureCache", "CCTextureCache:getInstance")
+
+		return cc.TextureCache.getInstance()
+	end,
+	purgeSharedTextureCache = function ()
+		slot0("CCTextureCache:purgeSharedTextureCache", "CCTextureCache:destroyInstance")
+
+		return cc.TextureCache.destroyInstance()
+	end,
+	addUIImage = function (slot0, slot1, slot2)
+		slot0("CCTextureCache:addUIImage", "CCTextureCache:addImage")
+
+		return slot0.addImage(slot0, slot1, slot2)
+	end
+})["purgeSharedTextureCache"])
+
+CCTextureCache.addUIImage = ({
+	sharedTextureCache = function ()
+		slot0("CCTextureCache:sharedTextureCache", "CCTextureCache:getInstance")
+
+		return cc.TextureCache.getInstance()
+	end,
+	purgeSharedTextureCache = function ()
+		slot0("CCTextureCache:purgeSharedTextureCache", "CCTextureCache:destroyInstance")
+
+		return cc.TextureCache.destroyInstance()
+	end,
+	addUIImage = function (slot0, slot1, slot2)
+		slot0("CCTextureCache:addUIImage", "CCTextureCache:addImage")
+
+		return slot0.addImage(slot0, slot1, slot2)
+	end
+})["addUIImage"]
+CCAnimation.addSpriteFrameWithFileName = ({
+	addSpriteFrameWithFileName = function (slot0, ...)
+		slot0("CCAnimationDeprecated:addSpriteFrameWithFileName", "cc.Animation:addSpriteFrameWithFile")
+
+		return slot0.addSpriteFrameWithFile(slot0, ...)
+	end
+})["addSpriteFrameWithFileName"]
+CCAnimationCache.sharedAnimationCache = ({
+	sharedAnimationCache = function ()
+		slot0("CCAnimationCache:sharedAnimationCache", "CCAnimationCache:getInstance")
+
+		return CCAnimationCache:getInstance()
+	end,
+	purgeSharedAnimationCache = function ()
+		slot0("CCAnimationCache:purgeSharedAnimationCache", "CCAnimationCache:destroyInstance")
+
+		return CCAnimationCache:destroyInstance()
+	end,
+	addAnimationsWithFile = function (slot0, ...)
+		slot0("CCAnimationCache:addAnimationsWithFile", "cc.AnimationCache:addAnimations")
+
+		return slot0.addAnimations(slot0, ...)
+	end,
+	animationByName = function (slot0, ...)
+		slot0("CCAnimationCache:animationByName", "cc.AnimationCache:getAnimation")
+
+		return slot0.getAnimation(slot0, ...)
+	end,
+	removeAnimationByName = function (slot0)
+		slot0("CCAnimationCache:removeAnimationByName", "cc.AnimationCache:removeAnimation")
+
+		return slot0.removeAnimation(slot0)
+	end
+})["sharedAnimationCache"]
+CCAnimationCache.purgeSharedAnimationCache = ({
+	sharedAnimationCache = function ()
+		slot0("CCAnimationCache:sharedAnimationCache", "CCAnimationCache:getInstance")
+
+		return CCAnimationCache.getInstance()
+	end,
+	purgeSharedAnimationCache = function ()
+		slot0("CCAnimationCache:purgeSharedAnimationCache", "CCAnimationCache:destroyInstance")
+
+		return CCAnimationCache.destroyInstance()
+	end,
+	addAnimationsWithFile = function (slot0, ...)
+		slot0("CCAnimationCache:addAnimationsWithFile", "cc.AnimationCache:addAnimations")
+
+		return slot0.addAnimations(slot0, ...)
+	end,
+	animationByName = function (slot0, ...)
+		slot0("CCAnimationCache:animationByName", "cc.AnimationCache:getAnimation")
+
+		return slot0.getAnimation(slot0, ...)
+	end,
+	removeAnimationByName = function (slot0)
+		slot0("CCAnimationCache:removeAnimationByName", "cc.AnimationCache:removeAnimation")
+
+		return slot0.removeAnimation(slot0)
+	end
+})["purgeSharedAnimationCache"]
+CCAnimationCache.addAnimationsWithFile = ({
+	sharedAnimationCache = function ()
+		slot0("CCAnimationCache:sharedAnimationCache", "CCAnimationCache:getInstance")
+
+		return CCAnimationCache.getInstance()
+	end,
+	purgeSharedAnimationCache = function ()
+		slot0("CCAnimationCache:purgeSharedAnimationCache", "CCAnimationCache:destroyInstance")
+
+		return CCAnimationCache.destroyInstance()
+	end,
+	addAnimationsWithFile = function (slot0, ...)
+		slot0("CCAnimationCache:addAnimationsWithFile", "cc.AnimationCache:addAnimations")
+
+		return slot0.addAnimations(slot0, ...)
+	end,
+	animationByName = function (slot0, ...)
+		slot0("CCAnimationCache:animationByName", "cc.AnimationCache:getAnimation")
+
+		return slot0.getAnimation(slot0, ...)
+	end,
+	removeAnimationByName = function (slot0)
+		slot0("CCAnimationCache:removeAnimationByName", "cc.AnimationCache:removeAnimation")
+
+		return slot0.removeAnimation(slot0)
+	end
+})["addAnimationsWithFile"]
+CCAnimationCache.animationByName = ({
+	sharedAnimationCache = function ()
+		slot0("CCAnimationCache:sharedAnimationCache", "CCAnimationCache:getInstance")
+
+		return CCAnimationCache.getInstance()
+	end,
+	purgeSharedAnimationCache = function ()
+		slot0("CCAnimationCache:purgeSharedAnimationCache", "CCAnimationCache:destroyInstance")
+
+		return CCAnimationCache.destroyInstance()
+	end,
+	addAnimationsWithFile = function (slot0, ...)
+		slot0("CCAnimationCache:addAnimationsWithFile", "cc.AnimationCache:addAnimations")
+
+		return slot0.addAnimations(slot0, ...)
+	end,
+	animationByName = function (slot0, ...)
+		slot0("CCAnimationCache:animationByName", "cc.AnimationCache:getAnimation")
+
+		return slot0.getAnimation(slot0, ...)
+	end,
+	removeAnimationByName = function (slot0)
+		slot0("CCAnimationCache:removeAnimationByName", "cc.AnimationCache:removeAnimation")
+
+		return slot0.removeAnimation(slot0)
+	end
+})["animationByName"]
+CCAnimationCache.removeAnimationByName = ({
+	sharedAnimationCache = function ()
+		slot0("CCAnimationCache:sharedAnimationCache", "CCAnimationCache:getInstance")
+
+		return CCAnimationCache.getInstance()
+	end,
+	purgeSharedAnimationCache = function ()
+		slot0("CCAnimationCache:purgeSharedAnimationCache", "CCAnimationCache:destroyInstance")
+
+		return CCAnimationCache.destroyInstance()
+	end,
+	addAnimationsWithFile = function (slot0, ...)
+		slot0("CCAnimationCache:addAnimationsWithFile", "cc.AnimationCache:addAnimations")
+
+		return slot0.addAnimations(slot0, ...)
+	end,
+	animationByName = function (slot0, ...)
+		slot0("CCAnimationCache:animationByName", "cc.AnimationCache:getAnimation")
+
+		return slot0.getAnimation(slot0, ...)
+	end,
+	removeAnimationByName = function (slot0)
+		slot0("CCAnimationCache:removeAnimationByName", "cc.AnimationCache:removeAnimation")
+
+		return slot0.removeAnimation(slot0)
+	end
+})["removeAnimationByName"]
+CCFileUtils.sharedFileUtils = ({
+	sharedFileUtils = function ()
+		slot0("CCFileUtils:sharedFileUtils", "CCFileUtils:getInstance")
+
+		return cc.FileUtils:getInstance()
+	end,
+	purgeFileUtils = function ()
+		slot0("CCFileUtils:purgeFileUtils", "CCFileUtils:destroyInstance")
+
+		return cc.FileUtils:destroyInstance()
+	end
+})["sharedFileUtils"]
+CCFileUtils.purgeFileUtils = ({
+	sharedFileUtils = function ()
+		slot0("CCFileUtils:sharedFileUtils", "CCFileUtils:getInstance")
+
+		return cc.FileUtils.getInstance()
+	end,
+	purgeFileUtils = function ()
+		slot0("CCFileUtils:purgeFileUtils", "CCFileUtils:destroyInstance")
+
+		return cc.FileUtils.destroyInstance()
+	end
+})["purgeFileUtils"]
+CCMenu.createWithItem = ({
+	createWithItem = function (slot0, ...)
+		slot0("CCMenuDeprecated:createWithItem", "cc.Menu:createWithItem")
+
+		return slot0.create(slot0, ...)
+	end,
+	setHandlerPriority = function (slot0)
+		print("\n********** \n" .. "setHandlerPriority was deprecated in 3.0. \n**********")
+
+		return 
+	end
+})["createWithItem"]
+CCMenu.setHandlerPriority = ({
+	createWithItem = function (slot0, ...)
+		slot0("CCMenuDeprecated:createWithItem", "cc.Menu:createWithItem")
+
+		return slot0.create(slot0, ...)
+	end,
+	setHandlerPriority = function (slot0)
+		print("\n********** \n" .. "setHandlerPriority was deprecated in 3.0. \n**********")
+
+		return 
+	end
+})["setHandlerPriority"]
+CCNode.boundingBox = ({
+	boundingBox = function (slot0)
+		slot0("CCNode:boundingBox", "cc.Node:getBoundingBox")
+
+		return slot0.getBoundingBox(slot0)
+	end,
+	numberOfRunningActions = function (slot0)
+		slot0("CCNode:numberOfRunningActions", "cc.Node:getNumberOfRunningActions")
+
+		return slot0.getNumberOfRunningActions(slot0)
+	end,
+	removeFromParentAndCleanup = function (slot0, ...)
+		slot0("CCNode:removeFromParentAndCleanup", "cc.Node:removeFromParent")
+
+		return slot0.removeFromParent(slot0, ...)
+	end
+})["boundingBox"]
+CCNode.numberOfRunningActions = ({
+	boundingBox = function (slot0)
+		slot0("CCNode:boundingBox", "cc.Node:getBoundingBox")
+
+		return slot0.getBoundingBox(slot0)
+	end,
+	numberOfRunningActions = function (slot0)
+		slot0("CCNode:numberOfRunningActions", "cc.Node:getNumberOfRunningActions")
+
+		return slot0.getNumberOfRunningActions(slot0)
+	end,
+	removeFromParentAndCleanup = function (slot0, ...)
+		slot0("CCNode:removeFromParentAndCleanup", "cc.Node:removeFromParent")
+
+		return slot0.removeFromParent(slot0, ...)
+	end
+})["numberOfRunningActions"]
+CCNode.removeFromParentAndCleanup = ({
+	boundingBox = function (slot0)
+		slot0("CCNode:boundingBox", "cc.Node:getBoundingBox")
+
+		return slot0.getBoundingBox(slot0)
+	end,
+	numberOfRunningActions = function (slot0)
+		slot0("CCNode:numberOfRunningActions", "cc.Node:getNumberOfRunningActions")
+
+		return slot0.getNumberOfRunningActions(slot0)
+	end,
+	removeFromParentAndCleanup = function (slot0, ...)
+		slot0("CCNode:removeFromParentAndCleanup", "cc.Node:removeFromParent")
+
+		return slot0.removeFromParent(slot0, ...)
+	end
+})["removeFromParentAndCleanup"]
+_G.CCDrawPrimitives = slot9()
+_G.ccDrawPoint = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawPoint"]
+_G.ccDrawLine = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawLine"]
+_G.ccDrawRect = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawRect"]
+_G.ccDrawSolidRect = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawSolidRect"]
+_G.ccDrawCircle = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawCircle"]
+_G.ccDrawSolidCircle = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawSolidCircle"]
+_G.ccDrawQuadBezier = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawQuadBezier"]
+_G.ccDrawCubicBezier = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawCubicBezier"]
+_G.ccDrawCatmullRom = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawCatmullRom"]
+_G.ccDrawCardinalSpline = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawCardinalSpline"]
+_G.ccDrawColor4B = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawColor4B"]
+_G.ccDrawColor4F = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccDrawColor4F"]
+_G.ccPointSize = ({
+	ccDrawPoint = function (slot0)
+		slot0("ccDrawPoint", "cc.DrawPrimitives.drawPoint")
+
+		return cc.DrawPrimitives.drawPoint(slot0)
+	end,
+	ccDrawLine = function (slot0, slot1)
+		slot0("ccDrawLine", "cc.DrawPrimitives.drawLine")
+
+		return cc.DrawPrimitives.drawLine(slot0, slot1)
+	end,
+	ccDrawRect = function (slot0, slot1)
+		slot0("ccDrawRect", "cc.DrawPrimitives.drawRect")
+
+		return cc.DrawPrimitives.drawRect(slot0, slot1)
+	end,
+	ccDrawSolidRect = function (slot0, slot1, slot2)
+		slot0("ccDrawSolidRect", "cc.DrawPrimitives.drawSolidRect")
+
+		return cc.DrawPrimitives.drawSolidRect(slot0, slot1, slot2)
+	end,
+	ccDrawCircle = function (slot0, slot1, slot2, slot3, slot4, ...)
+		slot0("ccDrawCircle", "cc.DrawPrimitives.drawCircle")
+
+		return cc.DrawPrimitives.drawCircle(slot0, slot1, slot2, slot3, slot4, ...)
+	end,
+	ccDrawSolidCircle = function (slot0, slot1, slot2, slot3, ...)
+		slot0("ccDrawSolidCircle", "cc.DrawPrimitives.drawSolidCircle")
+
+		return cc.DrawPrimitives.drawSolidCircle(slot0, slot1, slot2, slot3, ...)
+	end,
+	ccDrawQuadBezier = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawQuadBezier", "cc.DrawPrimitives.drawQuadBezier")
+
+		return cc.DrawPrimitives.drawQuadBezier(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawCubicBezier = function (slot0, slot1, slot2, slot3, slot4)
+		slot0("ccDrawCubicBezier", "cc.DrawPrimitives.drawCubicBezier")
+
+		return cc.DrawPrimitives.drawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	end,
+	ccDrawCatmullRom = function (slot0, slot1)
+		slot0("ccDrawCatmullRom", "cc.DrawPrimitives.drawCatmullRom")
+
+		return cc.DrawPrimitives.drawCatmullRom(slot0, slot1)
+	end,
+	ccDrawCardinalSpline = function (slot0, slot1, slot2)
+		slot0("ccDrawCardinalSpline", "cc.DrawPrimitives.drawCardinalSpline")
+
+		return cc.DrawPrimitives.drawCardinalSpline(slot0, slot1, slot2)
+	end,
+	ccDrawColor4B = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4B", "cc.DrawPrimitives.drawColor4B")
+
+		return cc.DrawPrimitives.drawColor4B(slot0, slot1, slot2, slot3)
+	end,
+	ccDrawColor4F = function (slot0, slot1, slot2, slot3)
+		slot0("ccDrawColor4F", "cc.DrawPrimitives.drawColor4F")
+
+		return cc.DrawPrimitives.drawColor4F(slot0, slot1, slot2, slot3)
+	end,
+	ccPointSize = function (slot0)
+		slot0("ccPointSize", "cc.DrawPrimitives.setPointSize")
+
+		return cc.DrawPrimitives.setPointSize(slot0)
+	end
+})["ccPointSize"]
+CCProgressTimer.setReverseProgress = ({
+	setReverseProgress = function (slot0, ...)
+		slot0("CCProgressTimer", "CCProgressTimer:setReverseDirection")
+
+		return slot0.setReverseDirection(slot0, ...)
+	end
+})["setReverseProgress"]
+CCSpriteFrameCache.spriteFrameByName = ({
+	spriteFrameByName = function (slot0, slot1)
+		slot0("CCSpriteFrameCache:spriteFrameByName", "CCSpriteFrameCache:getSpriteFrameByName")
+
+		return slot0.getSpriteFrameByName(slot0, slot1)
+	end,
+	sharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:sharedSpriteFrameCache", "CCSpriteFrameCache:getInstance")
+
+		return CCSpriteFrameCache:getInstance()
+	end,
+	purgeSharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:purgeSharedSpriteFrameCache", "CCSpriteFrameCache:destroyInstance")
+
+		return CCSpriteFrameCache:destroyInstance()
+	end,
+	addSpriteFramesWithFile = function (slot0, ...)
+		slot0("CCSpriteFrameCache:addSpriteFramesWithFile", "CCSpriteFrameCache:addSpriteFrames")
+
+		return slot0.addSpriteFrames(slot0, ...)
+	end,
+	getSpriteFrameByName = function (slot0, ...)
+		slot0("CCSpriteFrameCache:getSpriteFrameByName", "CCSpriteFrameCache:getSpriteFrame")
+
+		return slot0.getSpriteFrame(slot0, ...)
+	end
+})["spriteFrameByName"]
+CCSpriteFrameCache.sharedSpriteFrameCache = ({
+	spriteFrameByName = function (slot0, slot1)
+		slot0("CCSpriteFrameCache:spriteFrameByName", "CCSpriteFrameCache:getSpriteFrameByName")
+
+		return slot0.getSpriteFrameByName(slot0, slot1)
+	end,
+	sharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:sharedSpriteFrameCache", "CCSpriteFrameCache:getInstance")
+
+		return CCSpriteFrameCache.getInstance()
+	end,
+	purgeSharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:purgeSharedSpriteFrameCache", "CCSpriteFrameCache:destroyInstance")
+
+		return CCSpriteFrameCache.destroyInstance()
+	end,
+	addSpriteFramesWithFile = function (slot0, ...)
+		slot0("CCSpriteFrameCache:addSpriteFramesWithFile", "CCSpriteFrameCache:addSpriteFrames")
+
+		return slot0.addSpriteFrames(slot0, ...)
+	end,
+	getSpriteFrameByName = function (slot0, ...)
+		slot0("CCSpriteFrameCache:getSpriteFrameByName", "CCSpriteFrameCache:getSpriteFrame")
+
+		return slot0.getSpriteFrame(slot0, ...)
+	end
+})["sharedSpriteFrameCache"]
+CCSpriteFrameCache.purgeSharedSpriteFrameCache = ({
+	spriteFrameByName = function (slot0, slot1)
+		slot0("CCSpriteFrameCache:spriteFrameByName", "CCSpriteFrameCache:getSpriteFrameByName")
+
+		return slot0.getSpriteFrameByName(slot0, slot1)
+	end,
+	sharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:sharedSpriteFrameCache", "CCSpriteFrameCache:getInstance")
+
+		return CCSpriteFrameCache.getInstance()
+	end,
+	purgeSharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:purgeSharedSpriteFrameCache", "CCSpriteFrameCache:destroyInstance")
+
+		return CCSpriteFrameCache.destroyInstance()
+	end,
+	addSpriteFramesWithFile = function (slot0, ...)
+		slot0("CCSpriteFrameCache:addSpriteFramesWithFile", "CCSpriteFrameCache:addSpriteFrames")
+
+		return slot0.addSpriteFrames(slot0, ...)
+	end,
+	getSpriteFrameByName = function (slot0, ...)
+		slot0("CCSpriteFrameCache:getSpriteFrameByName", "CCSpriteFrameCache:getSpriteFrame")
+
+		return slot0.getSpriteFrame(slot0, ...)
+	end
+})["purgeSharedSpriteFrameCache"]
+
+rawset(CCSpriteFrameCache, "addSpriteFramesWithFile", ({
+	spriteFrameByName = function (slot0, slot1)
+		slot0("CCSpriteFrameCache:spriteFrameByName", "CCSpriteFrameCache:getSpriteFrameByName")
+
+		return slot0.getSpriteFrameByName(slot0, slot1)
+	end,
+	sharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:sharedSpriteFrameCache", "CCSpriteFrameCache:getInstance")
+
+		return CCSpriteFrameCache.getInstance()
+	end,
+	purgeSharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:purgeSharedSpriteFrameCache", "CCSpriteFrameCache:destroyInstance")
+
+		return CCSpriteFrameCache.destroyInstance()
+	end,
+	addSpriteFramesWithFile = function (slot0, ...)
+		slot0("CCSpriteFrameCache:addSpriteFramesWithFile", "CCSpriteFrameCache:addSpriteFrames")
+
+		return slot0.addSpriteFrames(slot0, ...)
+	end,
+	getSpriteFrameByName = function (slot0, ...)
+		slot0("CCSpriteFrameCache:getSpriteFrameByName", "CCSpriteFrameCache:getSpriteFrame")
+
+		return slot0.getSpriteFrame(slot0, ...)
+	end
+})["addSpriteFramesWithFile"])
+
+CCSpriteFrameCache.getSpriteFrameByName = ({
+	spriteFrameByName = function (slot0, slot1)
+		slot0("CCSpriteFrameCache:spriteFrameByName", "CCSpriteFrameCache:getSpriteFrameByName")
+
+		return slot0.getSpriteFrameByName(slot0, slot1)
+	end,
+	sharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:sharedSpriteFrameCache", "CCSpriteFrameCache:getInstance")
+
+		return CCSpriteFrameCache.getInstance()
+	end,
+	purgeSharedSpriteFrameCache = function ()
+		slot0("CCSpriteFrameCache:purgeSharedSpriteFrameCache", "CCSpriteFrameCache:destroyInstance")
+
+		return CCSpriteFrameCache.destroyInstance()
+	end,
+	addSpriteFramesWithFile = function (slot0, ...)
+		slot0("CCSpriteFrameCache:addSpriteFramesWithFile", "CCSpriteFrameCache:addSpriteFrames")
+
+		return slot0.addSpriteFrames(slot0, ...)
+	end,
+	getSpriteFrameByName = function (slot0, ...)
+		slot0("CCSpriteFrameCache:getSpriteFrameByName", "CCSpriteFrameCache:getSpriteFrame")
+
+		return slot0.getSpriteFrame(slot0, ...)
+	end
+})["getSpriteFrameByName"]
+CCLabelAtlas.create = ({
+	create = function (slot0, ...)
+		slot0("CCLabelAtlas:create", "CCLabelAtlas:_create")
+
+		return slot0._create(slot0, ...)
+	end
+})["create"]
+_G.CCRectMake = function (slot0, slot1, slot2, slot3)
+	slot0("CCRectMake(x,y,width,height)", "cc.rect(x,y,width,height) in lua")
+
+	return cc.rect(slot0, slot1, slot2, slot3)
+end
+_G.ccc3 = function (slot0, slot1, slot2)
+	slot0("ccc3(r,g,b)", "cc.c3b(r,g,b)")
+
+	return cc.c3b(slot0, slot1, slot2)
+end
+_G.ccp = function (slot0, slot1)
+	slot0("ccp(x,y)", "cc.p(x,y)")
+
+	return cc.p(slot0, slot1)
+end
+_G.CCSizeMake = function (slot0, slot1)
+	slot0("CCSizeMake(width,height)", "cc.size(width,height)")
+
+	return cc.size(slot0, slot1)
+end
+_G.ccc4 = function (slot0, slot1, slot2, slot3)
+	slot0("ccc4(r,g,b,a)", "cc.c4b(r,g,b,a)")
+
+	return cc.c4b(slot0, slot1, slot2, slot3)
+end
+_G.ccc4FFromccc3B = function (slot0)
+	slot0("ccc4FFromccc3B(color3B)", "cc.c4f(color3B.r / 255.0,color3B.g / 255.0,color3B.b / 255.0,1.0)")
+
+	return cc.c4f(slot0.r/255, slot0.g/255, slot0.b/255, 1)
+end
+_G.ccc4f = function (slot0, slot1, slot2, slot3)
+	slot0("ccc4f(r,g,b,a)", "cc.c4f(r,g,b,a)")
+
+	return cc.c4f(slot0, slot1, slot2, slot3)
+end
+_G.ccc4FFromccc4B = function (slot0)
+	slot0("ccc4FFromccc4B(color4B)", "cc.c4f(color4B.r/255.0, color4B.g/255.0, color4B.b/255.0, color4B.a/255.0)")
+
+	return cc.c4f(slot0.r/255, slot0.g/255, slot0.b/255, slot0.a/255)
+end
+_G.ccc4FEqual = function (slot0, slot1)
+	slot0("ccc4FEqual(a,b)", "a:equals(b)")
+
+	return slot0.equals(slot0, slot1)
+end
+_G.ccpLineIntersect = function (slot0, slot1, slot2, slot3, slot4, slot5)
+	slot0("ccpLineIntersect", "cc.pIsLineIntersect")
+
+	return cc.pIsLineIntersect(slot0, slot1, slot2, slot3, slot4, slot5)
+end
+_G.CCPointMake = function (slot0, slot1)
+	slot0("CCPointMake(x,y)", "cc.p(x,y)")
+
+	return cc.p(slot0, slot1)
+end
+_G.ccpNeg = function (slot0)
+	slot0("ccpNeg", "cc.pSub")
+
+	return cc.pSub({
+		x = 0,
+		y = 0
+	}, slot0)
+end
+_G.ccpAdd = function (slot0, slot1)
+	slot0("ccpAdd", "cc.pAdd")
+
+	return cc.pAdd(slot0, slot1)
+end
+_G.ccpSub = function (slot0, slot1)
+	slot0("ccpSub", "cc.pSub")
+
+	return cc.pSub(slot0, slot1)
+end
+_G.ccpMult = function (slot0, slot1)
+	slot0("ccpMult", "cc.pMul")
+
+	return cc.pMul(slot0, slot1)
+end
+_G.ccpMidpoint = function (slot0, slot1)
+	slot0("ccpMidpoint", "cc.pMidpoint")
+
+	return cc.pMidpoint(slot0, slot1)
+end
+_G.ccpDot = function (slot0, slot1)
+	slot0("ccpDot", "cc.pDot")
+
+	return cc.pDot(slot0, slot1)
+end
+_G.ccpCross = function (slot0, slot1)
+	slot0("ccpCross", "cc.pCross")
+
+	return cc.pCross(slot0, slot1)
+end
+_G.ccpPerp = function (slot0)
+	slot0("ccpPerp", "cc.pPerp")
+
+	return cc.pPerp(slot0)
+end
+_G.ccpRPerp = function (slot0)
+	slot0("ccpRPerp", "cc.RPerp")
+
+	return cc.RPerp(slot0)
+end
+_G.ccpProject = function (slot0, slot1)
+	slot0("ccpProject", "cc.pProject")
+
+	return cc.pProject(slot0, slot1)
+end
+_G.ccpRotate = function (slot0, slot1)
+	slot0("ccpRotate", "cc.pRotate")
+
+	return cc.pRotate(slot0, slot1)
+end
+_G.ccpUnrotate = function (slot0, slot1)
+	slot0("ccpUnrotate", "cc.pUnrotate")
+
+	return cc.pUnrotate(slot0, slot1)
+end
+_G.ccpLengthSQ = function (slot0)
+	slot0("ccpLengthSQ", "cc.pLengthSQ")
+
+	return cc.pLengthSQ(slot0)
+end
+_G.ccpDistanceSQ = function (slot0, slot1)
+	slot0("ccpDistanceSQ", "cc.pDistanceSQ")
+
+	return cc.pDistanceSQ(slot0, slot1)
+end
+_G.ccpLength = function (slot0)
+	slot0("ccpLength", "cc.pGetLength")
+
+	return cc.pGetLength(slot0)
+end
+_G.ccpDistance = function (slot0, slot1)
+	slot0("ccpDistance", "cc.pGetDistance")
+
+	return cc.pGetDistance(slot0, slot1)
+end
+_G.ccpNormalize = function (slot0)
+	slot0("ccpNormalize", "cc.pNormalize")
+
+	return cc.pNormalize(slot0)
+end
+_G.ccpForAngle = function (slot0)
+	slot0("ccpForAngle", "cc.pForAngle")
+
+	return cc.pForAngle(slot0)
+end
+_G.ccpToAngle = function (slot0)
+	slot0("ccpToAngle", "cc.pToAngleSelf")
+
+	return cc.pToAngleSelf(slot0)
+end
+_G.ccpClamp = function (slot0, slot1, slot2)
+	slot0("ccpClamp", "cc.pGetClampPoint")
+
+	return cc.pGetClampPoint(slot0, slot1, slot2)
+end
+_G.ccpFromSize = function (slot0)
+	slot0("ccpFromSize(sz)", "cc.pFromSize")
+
+	return cc.pFromSize(slot0)
+end
+_G.ccpLerp = function (slot0, slot1, slot2)
+	slot0("ccpLerp", "cc.pLerp")
+
+	return cc.pLerp(slot0, slot1, slot2)
+end
+_G.ccpFuzzyEqual = function (slot0, slot1, slot2)
+	slot0("ccpFuzzyEqual", "cc.pFuzzyEqual")
+
+	return cc.pFuzzyEqual(slot0, slot1, slot2)
+end
+_G.ccpCompMult = function (slot0, slot1)
+	slot0("ccpCompMult", "cc.p")
+
+	return cc.p(slot0.x*slot1.x, slot0.y*slot1.y)
+end
+_G.ccpAngleSigned = function (slot0, slot1)
+	slot0("ccpAngleSigned", "cc.pGetAngle")
+
+	return cc.pGetAngle(slot0, slot1)
+end
+_G.ccpAngle = function (slot0, slot1)
+	slot0("ccpAngle", "cc.pGetAngle")
+
+	return cc.pGetAngle(slot0, ptw)
+end
+_G.ccpRotateByAngle = function (slot0, slot1, slot2)
+	slot0("ccpRotateByAngle", "cc.pRotateByAngle")
+
+	return cc.pRotateByAngle(slot0, slot1, slot2)
+end
+_G.ccpSegmentIntersect = function (slot0, slot1, slot2, slot3)
+	slot0("ccpSegmentIntersect", "cc.pIsSegmentIntersect")
+
+	return cc.pIsSegmentIntersect(slot0, slot1, slot2, slot3)
+end
+_G.ccpIntersectPoint = function (slot0, slot1, slot2, slot3)
+	slot0("ccpIntersectPoint", "cc.pGetIntersectPoint")
+
+	return cc.pGetIntersectPoint(slot0, slot1, slot2, slot3)
+end
+_G.vertex2 = function (slot0, slot1)
+	slot0("vertex2(x,y)", "cc.vertex2F(x,y)")
+
+	return cc.vertex2F(slot0, slot1)
+end
+_G.vertex3 = function (slot0, slot1, slot2)
+	slot0("vertex3(x,y,z)", "cc.Vertex3F(x,y,z)")
+
+	return cc.Vertex3F(slot0, slot1, slot2)
+end
+_G.tex2 = function (slot0, slot1)
+	slot0("tex2(u,v)", "cc.tex2f(u,v)")
+
+	return cc.tex2f(slot0, slot1)
+end
+_G.ccc4BFromccc4F = function (slot0)
+	slot0("ccc4BFromccc4F(color4F)", "Color4B(color4F.r * 255.0, color4F.g * 255.0, color4F.b * 255.0, color4B.a * 255.0)")
+
+	return Color4B(slot0.r*255, slot0.g*255, slot0.b*255, color4B.a*255)
+end
+_G.ccColor3B = function ()
+	slot0("ccColor3B", "cc.c3b(0,0,0)")
+
+	return cc.c3b(0, 0, 0)
+end
+_G.ccColor4B = function ()
+	slot0("ccColor4B", "cc.c4b(0,0,0,0)")
+
+	return cc.c4b(0, 0, 0, 0)
+end
+_G.ccColor4F = function ()
+	slot0("ccColor4F", "cc.c4f(0.0,0.0,0.0,0.0)")
+
+	return cc.c4f(0, 0, 0, 0)
+end
+_G.ccVertex2F = function ()
+	slot0("ccVertex2F", "cc.vertex2F(0.0,0.0)")
+
+	return cc.vertex2F(0, 0)
+end
+_G.ccVertex3F = function ()
+	slot0("ccVertex3F", "cc.Vertex3F(0.0, 0.0, 0.0)")
+
+	return cc.Vertex3F(0, 0, 0)
+end
+_G.ccTex2F = function ()
+	slot0("ccTex2F", "cc.tex2F(0.0, 0.0)")
+
+	return cc.tex2F(0, 0)
+end
+_G.ccPointSprite = function ()
+	slot0("ccPointSprite", "cc.PointSprite(cc.vertex2F(0.0, 0.0),cc.c4b(0.0, 0.0, 0.0),0)")
+
+	return cc.PointSprite(cc.vertex2F(0, 0), cc.c4b(0, 0, 0), 0)
+end
+_G.ccQuad2 = function ()
+	slot0("ccQuad2", "cc.Quad2(cc.vertex2F(0.0, 0.0), cc.vertex2F(0.0, 0.0), cc.vertex2F(0.0, 0.0), cc.vertex2F(0.0, 0.0))")
+
+	return cc.Quad2(cc.vertex2F(0, 0), cc.vertex2F(0, 0), cc.vertex2F(0, 0), cc.vertex2F(0, 0))
+end
+_G.ccQuad3 = function ()
+	slot0("ccQuad3", "cc.Quad3(cc.Vertex3F(0.0, 0.0 ,0.0), cc.Vertex3F(0.0, 0.0 ,0.0), cc.Vertex3F(0.0, 0.0 ,0.0), cc.Vertex3F(0.0, 0.0 ,0.0))")
+
+	return cc.Quad3(cc.Vertex3F(0, 0, 0), cc.Vertex3F(0, 0, 0), cc.Vertex3F(0, 0, 0), cc.Vertex3F(0, 0, 0))
+end
+_G.ccV2F_C4B_T2F = function ()
+	slot0("ccV2F_C4B_T2F", "cc.V2F_C4B_T2F(cc.vertex2F(0.0, 0.0), cc.c4b(0 , 0, 0, 0 ), cc.tex2F(0.0, 0.0))")
+
+	return cc.V2F_C4B_T2F(cc.vertex2F(0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0))
+end
+_G.ccV2F_C4F_T2F = function ()
+	slot0("ccV2F_C4F_T2F", "cc.V2F_C4F_T2F(cc.vertex2F(0.0, 0.0), cc.c4f(0.0 , 0.0 , 0.0 , 0.0 ), cc.tex2F(0.0, 0.0))")
+
+	return cc.V2F_C4F_T2F(cc.vertex2F(0, 0), cc.c4f(0, 0, 0, 0), cc.tex2F(0, 0))
+end
+_G.ccV3F_C4B_T2F = function ()
+	slot0("ccV3F_C4B_T2F", "cc.V3F_C4B_T2F(cc.vertex3F(0.0, 0.0, 0.0), cc.c4b(0 , 0 , 0, 0 ), cc.tex2F(0.0, 0.0))")
+
+	return cc.V3F_C4B_T2F(cc.vertex3F(0, 0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0))
+end
+_G.ccV2F_C4B_T2F_Quad = function ()
+	slot0("ccV2F_C4B_T2F_Quad", "cc.V2F_C4B_T2F_Quad(cc.V2F_C4B_T2F(cc.vertex2F(0.0, 0.0), cc.c4b(0 , 0, 0, 0 ), cc.tex2F(0.0, 0.0)), cc.V2F_C4B_T2F(cc.vertex2F(0.0, 0.0), cc.c4b(0 , 0, 0, 0 ), cc.tex2F(0.0, 0.0)), cc.V2F_C4B_T2F(cc.vertex2F(0.0, 0.0), cc.c4b(0 , 0, 0, 0 ), cc.tex2F(0.0, 0.0)), cc.V2F_C4B_T2F(cc.vertex2F(0.0, 0.0), cc.c4b(0 , 0, 0, 0 ), cc.tex2F(0.0, 0.0)))")
+
+	return cc.V2F_C4B_T2F_Quad(cc.V2F_C4B_T2F(cc.vertex2F(0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V2F_C4B_T2F(cc.vertex2F(0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V2F_C4B_T2F(cc.vertex2F(0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V2F_C4B_T2F(cc.vertex2F(0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)))
+end
+_G.ccV3F_C4B_T2F_Quad = function ()
+	slot0("ccV3F_C4B_T2F_Quad", "cc.V3F_C4B_T2F_Quad(_tl, _bl, _tr, _br)")
+
+	return cc.V3F_C4B_T2F_Quad(cc.V3F_C4B_T2F(cc.vertex3F(0, 0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V3F_C4B_T2F(cc.vertex3F(0, 0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V3F_C4B_T2F(cc.vertex3F(0, 0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V3F_C4B_T2F(cc.vertex3F(0, 0, 0), cc.c4b(0, 0, 0, 0), cc.tex2F(0, 0)))
+end
+_G.ccV2F_C4F_T2F_Quad = function ()
+	slot0("ccV2F_C4F_T2F_Quad", "cc.V2F_C4F_T2F_Quad(_bl, _br, _tl, _tr)")
+
+	return cc.V2F_C4F_T2F_Quad(cc.V2F_C4F_T2F(cc.vertex2F(0, 0), cc.c4f(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V2F_C4F_T2F(cc.vertex2F(0, 0), cc.c4f(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V3F_C4B_T2F(cc.vertex2F(0, 0), cc.c4f(0, 0, 0, 0), cc.tex2F(0, 0)), cc.V2F_C4F_T2F(cc.vertex2F(0, 0), cc.c4f(0, 0, 0, 0), cc.tex2F(0, 0)))
+end
+_G.ccT2F_Quad = function ()
+	slot0("ccT2F_Quad", "cc.T2F_Quad(_bl, _br, _tl, _tr)")
+
+	return cc.T2F_Quad(cc.tex2F(0, 0), cc.tex2F(0, 0), cc.tex2F(0, 0), cc.tex2F(0, 0))
+end
+_G.ccAnimationFrameData = function ()
+	slot0("ccAnimationFrameData", "cc.AnimationFrameData( _texCoords, _delay, _size)")
+
+	return cc.AnimationFrameData(cc.T2F_Quad(cc.tex2F(0, 0), cc.tex2F(0, 0), cc.tex2F(0, 0), cc.tex2F(0, 0)), 0, cc.size(0, 0))
+end
+_G.tex2 = function (slot0, slot1)
+	slot0("tex2(u,v)", "cc.tex2f(u,v)")
+
+	return cc.tex2f(slot0, slot1)
+end
+CCApplication.sharedApplication = ({
+	sharedApplication = function ()
+		slot0("CCApplication:sharedApplication", "CCApplication:getInstance")
+
+		return CCApplication:getInstance()
+	end
+})["sharedApplication"]
+CCDirector.sharedDirector = ({
+	sharedDirector = function ()
+		slot0("CCDirector:sharedDirector", "CCDirector:getInstance")
+
+		return CCDirector:getInstance()
+	end
+})["sharedDirector"]
+CCUserDefault.sharedUserDefault = ({
+	sharedUserDefault = function ()
+		slot0("CCUserDefault:sharedUserDefault", "CCUserDefault:getInstance")
+
+		return CCUserDefault:getInstance()
+	end,
+	purgeSharedUserDefault = function ()
+		slot0("CCUserDefault:purgeSharedUserDefault", "CCUserDefault:destroyInstance")
+
+		return CCUserDefault:destroyInstance()
+	end
+})["sharedUserDefault"]
+CCUserDefault.purgeSharedUserDefault = ({
+	sharedUserDefault = function ()
+		slot0("CCUserDefault:sharedUserDefault", "CCUserDefault:getInstance")
+
+		return CCUserDefault.getInstance()
+	end,
+	purgeSharedUserDefault = function ()
+		slot0("CCUserDefault:purgeSharedUserDefault", "CCUserDefault:destroyInstance")
+
+		return CCUserDefault.destroyInstance()
+	end
+})["purgeSharedUserDefault"]
+CCGrid3DAction.vertex = ({
+	vertex = function (slot0, slot1)
+		slot0("vertex", "CCGrid3DAction:getVertex")
+
+		return slot0.getVertex(slot0, slot1)
+	end,
+	originalVertex = function (slot0, slot1)
+		slot0("originalVertex", "CCGrid3DAction:getOriginalVertex")
+
+		return slot0.getOriginalVertex(slot0, slot1)
+	end
+})["vertex"]
+CCGrid3DAction.originalVertex = ({
+	vertex = function (slot0, slot1)
+		slot0("vertex", "CCGrid3DAction:getVertex")
+
+		return slot0.getVertex(slot0, slot1)
+	end,
+	originalVertex = function (slot0, slot1)
+		slot0("originalVertex", "CCGrid3DAction:getOriginalVertex")
+
+		return slot0.getOriginalVertex(slot0, slot1)
+	end
+})["originalVertex"]
+CCTiledGrid3DAction.tile = ({
+	tile = function (slot0, slot1)
+		slot0("tile", "CCTiledGrid3DAction:getTile")
+
+		return slot0.getTile(slot0, slot1)
+	end,
+	originalTile = function (slot0, slot1)
+		slot0("originalTile", "CCTiledGrid3DAction:getOriginalTile")
+
+		return slot0.getOriginalTile(slot0, slot1)
+	end
+})["tile"]
+CCTiledGrid3DAction.originalTile = ({
+	tile = function (slot0, slot1)
+		slot0("tile", "CCTiledGrid3DAction:getTile")
+
+		return slot0.getTile(slot0, slot1)
+	end,
+	originalTile = function (slot0, slot1)
+		slot0("originalTile", "CCTiledGrid3DAction:getOriginalTile")
+
+		return slot0.getOriginalTile(slot0, slot1)
+	end
+})["originalTile"]
+CCTexture2D.stringForFormat = ({
+	stringForFormat = function (slot0)
+		slot0("Texture2D:stringForFormat", "Texture2D:getStringForFormat")
+
+		return slot0.getStringForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0, slot1)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0, slot1)
+	end,
+	defaultAlphaPixelFormat = function (slot0)
+		slot0("Texture2D:defaultAlphaPixelFormat", "Texture2D:getDefaultAlphaPixelFormat")
+
+		return slot0.getDefaultAlphaPixelFormat(slot0)
+	end
+})["stringForFormat"]
+CCTexture2D.bitsPerPixelForFormat = ({
+	stringForFormat = function (slot0)
+		slot0("Texture2D:stringForFormat", "Texture2D:getStringForFormat")
+
+		return slot0.getStringForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0, slot1)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0, slot1)
+	end,
+	defaultAlphaPixelFormat = function (slot0)
+		slot0("Texture2D:defaultAlphaPixelFormat", "Texture2D:getDefaultAlphaPixelFormat")
+
+		return slot0.getDefaultAlphaPixelFormat(slot0)
+	end
+})["bitsPerPixelForFormat"]
+CCTexture2D.bitsPerPixelForFormat = ({
+	stringForFormat = function (slot0)
+		slot0("Texture2D:stringForFormat", "Texture2D:getStringForFormat")
+
+		return slot0.getStringForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0, slot1)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0, slot1)
+	end,
+	defaultAlphaPixelFormat = function (slot0)
+		slot0("Texture2D:defaultAlphaPixelFormat", "Texture2D:getDefaultAlphaPixelFormat")
+
+		return slot0.getDefaultAlphaPixelFormat(slot0)
+	end
+})["bitsPerPixelForFormat"]
+CCTexture2D.defaultAlphaPixelFormat = ({
+	stringForFormat = function (slot0)
+		slot0("Texture2D:stringForFormat", "Texture2D:getStringForFormat")
+
+		return slot0.getStringForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0)
+	end,
+	bitsPerPixelForFormat = function (slot0, slot1)
+		slot0("Texture2D:bitsPerPixelForFormat", "Texture2D:getBitsPerPixelForFormat")
+
+		return slot0.getBitsPerPixelForFormat(slot0, slot1)
+	end,
+	defaultAlphaPixelFormat = function (slot0)
+		slot0("Texture2D:defaultAlphaPixelFormat", "Texture2D:getDefaultAlphaPixelFormat")
+
+		return slot0.getDefaultAlphaPixelFormat(slot0)
+	end
+})["defaultAlphaPixelFormat"]
+CCTimer.timerWithScriptHandler = ({
+	timerWithScriptHandler = function (slot0, slot1)
+		slot0("CCTimer:timerWithScriptHandler", "CCTimer:createWithScriptHandler")
+
+		return CCTimer:createWithScriptHandler(slot0, slot1)
+	end,
+	numberOfRunningActionsInTarget = function (slot0, slot1)
+		slot0("CCActionManager:numberOfRunningActionsInTarget", "CCActionManager:getNumberOfRunningActionsInTarget")
+
+		return slot0.getNumberOfRunningActionsInTarget(slot0, slot1)
+	end
+})["timerWithScriptHandler"]
+CCTimer.numberOfRunningActionsInTarget = ({
+	timerWithScriptHandler = function (slot0, slot1)
+		slot0("CCTimer:timerWithScriptHandler", "CCTimer:createWithScriptHandler")
+
+		return CCTimer.createWithScriptHandler(slot0, slot1)
+	end,
+	numberOfRunningActionsInTarget = function (slot0, slot1)
+		slot0("CCActionManager:numberOfRunningActionsInTarget", "CCActionManager:getNumberOfRunningActionsInTarget")
+
+		return slot0.getNumberOfRunningActionsInTarget(slot0, slot1)
+	end
+})["numberOfRunningActionsInTarget"]
+CCMenuItemFont.fontSize = ({
+	fontSize = function ()
+		slot0("CCMenuItemFont:fontSize", "CCMenuItemFont:getFontSize")
+
+		return CCMenuItemFont:getFontSize()
+	end,
+	fontName = function ()
+		slot0("CCMenuItemFont:fontName", "CCMenuItemFont:getFontName")
+
+		return CCMenuItemFont:getFontName()
+	end,
+	fontSizeObj = function (slot0)
+		slot0("CCMenuItemFont:fontSizeObj", "CCMenuItemFont:getFontSizeObj")
+
+		return slot0.getFontSizeObj(slot0)
+	end,
+	fontNameObj = function (slot0)
+		slot0("CCMenuItemFont:fontNameObj", "CCMenuItemFont:getFontNameObj")
+
+		return slot0.getFontNameObj(slot0)
+	end
+})["fontSize"]
+CCMenuItemFont.fontName = ({
+	fontSize = function ()
+		slot0("CCMenuItemFont:fontSize", "CCMenuItemFont:getFontSize")
+
+		return CCMenuItemFont.getFontSize()
+	end,
+	fontName = function ()
+		slot0("CCMenuItemFont:fontName", "CCMenuItemFont:getFontName")
+
+		return CCMenuItemFont.getFontName()
+	end,
+	fontSizeObj = function (slot0)
+		slot0("CCMenuItemFont:fontSizeObj", "CCMenuItemFont:getFontSizeObj")
+
+		return slot0.getFontSizeObj(slot0)
+	end,
+	fontNameObj = function (slot0)
+		slot0("CCMenuItemFont:fontNameObj", "CCMenuItemFont:getFontNameObj")
+
+		return slot0.getFontNameObj(slot0)
+	end
+})["fontName"]
+CCMenuItemFont.fontSizeObj = ({
+	fontSize = function ()
+		slot0("CCMenuItemFont:fontSize", "CCMenuItemFont:getFontSize")
+
+		return CCMenuItemFont.getFontSize()
+	end,
+	fontName = function ()
+		slot0("CCMenuItemFont:fontName", "CCMenuItemFont:getFontName")
+
+		return CCMenuItemFont.getFontName()
+	end,
+	fontSizeObj = function (slot0)
+		slot0("CCMenuItemFont:fontSizeObj", "CCMenuItemFont:getFontSizeObj")
+
+		return slot0.getFontSizeObj(slot0)
+	end,
+	fontNameObj = function (slot0)
+		slot0("CCMenuItemFont:fontNameObj", "CCMenuItemFont:getFontNameObj")
+
+		return slot0.getFontNameObj(slot0)
+	end
+})["fontSizeObj"]
+CCMenuItemFont.fontNameObj = ({
+	fontSize = function ()
+		slot0("CCMenuItemFont:fontSize", "CCMenuItemFont:getFontSize")
+
+		return CCMenuItemFont.getFontSize()
+	end,
+	fontName = function ()
+		slot0("CCMenuItemFont:fontName", "CCMenuItemFont:getFontName")
+
+		return CCMenuItemFont.getFontName()
+	end,
+	fontSizeObj = function (slot0)
+		slot0("CCMenuItemFont:fontSizeObj", "CCMenuItemFont:getFontSizeObj")
+
+		return slot0.getFontSizeObj(slot0)
+	end,
+	fontNameObj = function (slot0)
+		slot0("CCMenuItemFont:fontNameObj", "CCMenuItemFont:getFontNameObj")
+
+		return slot0.getFontNameObj(slot0)
+	end
+})["fontNameObj"]
+CCMenuItemToggle.selectedItem = ({
+	selectedItem = function (slot0)
+		slot0("CCMenuItemToggle:selectedItem", "CCMenuItemToggle:getSelectedItem")
+
+		return slot0.getSelectedItem(slot0)
+	end
+})["selectedItem"]
+CCTileMapAtlas.tileAt = ({
+	tileAt = function (slot0, slot1)
+		slot0("CCTileMapAtlas:tileAt", "CCTileMapAtlas:getTileAt")
+
+		return slot0.getTileAt(slot0, slot1)
+	end
+})["tileAt"]
+CCTMXLayer.tileAt = ({
+	tileAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileAt", "CCTMXLayer:getTileAt")
+
+		return slot0.getTileAt(slot0, slot1)
+	end,
+	tileGIDAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileGIDAt", "CCTMXLayer:getTileGIDAt")
+
+		return slot0.getTileGIDAt(slot0, slot1)
+	end,
+	positionAt = function (slot0, slot1)
+		slot0("CCTMXLayer:positionAt", "CCTMXLayer:getPositionAt")
+
+		return slot0.getPositionAt(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXLayer:propertyNamed", "CCTMXLayer:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end
+})["tileAt"]
+CCTMXLayer.tileGIDAt = ({
+	tileAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileAt", "CCTMXLayer:getTileAt")
+
+		return slot0.getTileAt(slot0, slot1)
+	end,
+	tileGIDAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileGIDAt", "CCTMXLayer:getTileGIDAt")
+
+		return slot0.getTileGIDAt(slot0, slot1)
+	end,
+	positionAt = function (slot0, slot1)
+		slot0("CCTMXLayer:positionAt", "CCTMXLayer:getPositionAt")
+
+		return slot0.getPositionAt(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXLayer:propertyNamed", "CCTMXLayer:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end
+})["tileGIDAt"]
+CCTMXLayer.positionAt = ({
+	tileAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileAt", "CCTMXLayer:getTileAt")
+
+		return slot0.getTileAt(slot0, slot1)
+	end,
+	tileGIDAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileGIDAt", "CCTMXLayer:getTileGIDAt")
+
+		return slot0.getTileGIDAt(slot0, slot1)
+	end,
+	positionAt = function (slot0, slot1)
+		slot0("CCTMXLayer:positionAt", "CCTMXLayer:getPositionAt")
+
+		return slot0.getPositionAt(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXLayer:propertyNamed", "CCTMXLayer:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end
+})["positionAt"]
+CCTMXLayer.propertyNamed = ({
+	tileAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileAt", "CCTMXLayer:getTileAt")
+
+		return slot0.getTileAt(slot0, slot1)
+	end,
+	tileGIDAt = function (slot0, slot1)
+		slot0("CCTMXLayer:tileGIDAt", "CCTMXLayer:getTileGIDAt")
+
+		return slot0.getTileGIDAt(slot0, slot1)
+	end,
+	positionAt = function (slot0, slot1)
+		slot0("CCTMXLayer:positionAt", "CCTMXLayer:getPositionAt")
+
+		return slot0.getPositionAt(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXLayer:propertyNamed", "CCTMXLayer:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end
+})["propertyNamed"]
+CCTMXTiledMap.layerNamed = ({
+	layerNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:layerNamed", "CCTMXTiledMap:getLayer")
+
+		return slot0.getLayer(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertyNamed", "CCTMXTiledMap:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	propertiesForGID = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertiesForGID", "CCTMXTiledMap:getPropertiesForGID")
+
+		return slot0.getPropertiesForGID(slot0, slot1)
+	end,
+	objectGroupNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:objectGroupNamed", "CCTMXTiledMap:getObjectGroup")
+
+		return slot0.getObjectGroup(slot0, slot1)
+	end
+})["layerNamed"]
+CCTMXTiledMap.propertyNamed = ({
+	layerNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:layerNamed", "CCTMXTiledMap:getLayer")
+
+		return slot0.getLayer(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertyNamed", "CCTMXTiledMap:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	propertiesForGID = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertiesForGID", "CCTMXTiledMap:getPropertiesForGID")
+
+		return slot0.getPropertiesForGID(slot0, slot1)
+	end,
+	objectGroupNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:objectGroupNamed", "CCTMXTiledMap:getObjectGroup")
+
+		return slot0.getObjectGroup(slot0, slot1)
+	end
+})["propertyNamed"]
+CCTMXTiledMap.propertiesForGID = ({
+	layerNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:layerNamed", "CCTMXTiledMap:getLayer")
+
+		return slot0.getLayer(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertyNamed", "CCTMXTiledMap:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	propertiesForGID = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertiesForGID", "CCTMXTiledMap:getPropertiesForGID")
+
+		return slot0.getPropertiesForGID(slot0, slot1)
+	end,
+	objectGroupNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:objectGroupNamed", "CCTMXTiledMap:getObjectGroup")
+
+		return slot0.getObjectGroup(slot0, slot1)
+	end
+})["propertiesForGID"]
+CCTMXTiledMap.objectGroupNamed = ({
+	layerNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:layerNamed", "CCTMXTiledMap:getLayer")
+
+		return slot0.getLayer(slot0, slot1)
+	end,
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertyNamed", "CCTMXTiledMap:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	propertiesForGID = function (slot0, slot1)
+		slot0("CCTMXTiledMap:propertiesForGID", "CCTMXTiledMap:getPropertiesForGID")
+
+		return slot0.getPropertiesForGID(slot0, slot1)
+	end,
+	objectGroupNamed = function (slot0, slot1)
+		slot0("CCTMXTiledMap:objectGroupNamed", "CCTMXTiledMap:getObjectGroup")
+
+		return slot0.getObjectGroup(slot0, slot1)
+	end
+})["objectGroupNamed"]
+CCTMXMapInfo.getStoringCharacters = ({
+	getStoringCharacters = function (slot0)
+		slot0("CCTMXMapInfo:getStoringCharacters", "CCTMXMapInfo:isStoringCharacters")
+
+		return slot0.isStoringCharacters(slot0)
+	end,
+	formatWithTMXFile = function (slot0, slot1)
+		slot0("CCTMXMapInfo:formatWithTMXFile", "CCTMXMapInfo:create")
+
+		return CCTMXMapInfo:create(slot1)
+	end,
+	formatWithXML = function (slot0, slot1, slot2)
+		slot0("CCTMXMapInfo:formatWithXML", "TMXMapInfo:createWithXML")
+
+		return CCTMXMapInfo:createWithXML(slot1, slot2)
+	end
+})["getStoringCharacters"]
+CCTMXMapInfo.formatWithTMXFile = ({
+	getStoringCharacters = function (slot0)
+		slot0("CCTMXMapInfo:getStoringCharacters", "CCTMXMapInfo:isStoringCharacters")
+
+		return slot0.isStoringCharacters(slot0)
+	end,
+	formatWithTMXFile = function (slot0, slot1)
+		slot0("CCTMXMapInfo:formatWithTMXFile", "CCTMXMapInfo:create")
+
+		return CCTMXMapInfo.create(slot1)
+	end,
+	formatWithXML = function (slot0, slot1, slot2)
+		slot0("CCTMXMapInfo:formatWithXML", "TMXMapInfo:createWithXML")
+
+		return CCTMXMapInfo.createWithXML(slot1, slot2)
+	end
+})["formatWithTMXFile"]
+CCTMXMapInfo.formatWithXML = ({
+	getStoringCharacters = function (slot0)
+		slot0("CCTMXMapInfo:getStoringCharacters", "CCTMXMapInfo:isStoringCharacters")
+
+		return slot0.isStoringCharacters(slot0)
+	end,
+	formatWithTMXFile = function (slot0, slot1)
+		slot0("CCTMXMapInfo:formatWithTMXFile", "CCTMXMapInfo:create")
+
+		return CCTMXMapInfo.create(slot1)
+	end,
+	formatWithXML = function (slot0, slot1, slot2)
+		slot0("CCTMXMapInfo:formatWithXML", "TMXMapInfo:createWithXML")
+
+		return CCTMXMapInfo.createWithXML(slot1, slot2)
+	end
+})["formatWithXML"]
+CCTMXObjectGroup.propertyNamed = ({
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXObjectGroup:propertyNamed", "CCTMXObjectGroup:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	objectNamed = function (slot0, slot1)
+		slot0("CCTMXObjectGroup:objectNamed", "CCTMXObjectGroup:getObject")
+
+		return slot0.getObject(slot0, slot1)
+	end
+})["propertyNamed"]
+CCTMXObjectGroup.objectNamed = ({
+	propertyNamed = function (slot0, slot1)
+		slot0("CCTMXObjectGroup:propertyNamed", "CCTMXObjectGroup:getProperty")
+
+		return slot0.getProperty(slot0, slot1)
+	end,
+	objectNamed = function (slot0, slot1)
+		slot0("CCTMXObjectGroup:objectNamed", "CCTMXObjectGroup:getObject")
+
+		return slot0.getObject(slot0, slot1)
+	end
+})["objectNamed"]
+CCRenderTexture.newCCImage = ({
+	newCCImage = function (slot0)
+		slot0("CCRenderTexture:newCCImage", "CCRenderTexture:newImage")
+
+		return slot0.newImage(slot0)
+	end
+})["newCCImage"]
+cc.Sprite.setFlipX = ({
+	setFlipX = function (slot0, slot1)
+		slot0("CCSpriteDeprecated:setFlipX", "CCSpriteDeprecated:setFlippedX")
+
+		return slot0.setFlippedX(slot0, slot1)
+	end,
+	setFlipY = function (slot0, slot1)
+		slot0("CCSpriteDeprecated:setFlipY", "CCSpriteDeprecated:setFlippedY")
+
+		return slot0.setFlippedY(slot0, slot1)
+	end
+})["setFlipX"]
+cc.Sprite.setFlipY = ({
+	setFlipX = function (slot0, slot1)
+		slot0("CCSpriteDeprecated:setFlipX", "CCSpriteDeprecated:setFlippedX")
+
+		return slot0.setFlippedX(slot0, slot1)
+	end,
+	setFlipY = function (slot0, slot1)
+		slot0("CCSpriteDeprecated:setFlipY", "CCSpriteDeprecated:setFlippedY")
+
+		return slot0.setFlippedY(slot0, slot1)
+	end
+})["setFlipY"]
+cc.Layer.setKeypadEnabled = ({
+	setKeypadEnabled = function (slot0, slot1)
+		return slot0.setKeyboardEnabled(slot0, slot1)
+	end,
+	isKeypadEnabled = function (slot0)
+		return slot0.isKeyboardEnabled(slot0)
+	end
+})["setKeypadEnabled"]
+cc.Layer.isKeypadEnabled = ({
+	setKeypadEnabled = function (slot0, slot1)
+		return slot0.setKeyboardEnabled(slot0, slot1)
+	end,
+	isKeypadEnabled = function (slot0)
+		return slot0.isKeyboardEnabled(slot0)
+	end
+})["isKeypadEnabled"]
+cc.Node.setZOrder = ({
+	setZOrder = function (slot0, slot1)
+		slot0("cc.Node:setZOrder", "cc.Node:setLocalZOrder")
+
+		return slot0.setLocalZOrder(slot0, slot1)
+	end,
+	getZOrder = function (slot0)
+		slot0("cc.Node:getZOrder", "cc.Node:getLocalZOrder")
+
+		return slot0.getLocalZOrder(slot0)
+	end,
+	setVertexZ = function (slot0, slot1)
+		slot0("cc.Node:setVertexZ", "cc.Node:setPositionZ")
+
+		return slot0.setPositionZ(slot0, slot1)
+	end,
+	getVertexZ = function (slot0)
+		slot0("cc.Node:getVertexZ", "cc.Node:getPositionZ")
+
+		return slot0.getPositionZ(slot0)
+	end,
+	ignoreAnchorPointForPosition = function (slot0, slot1)
+		slot0("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+
+		return slot0.setIgnoreAnchorPointForPosition(slot0, slot1)
+	end
+})["setZOrder"]
+cc.Node.getZOrder = ({
+	setZOrder = function (slot0, slot1)
+		slot0("cc.Node:setZOrder", "cc.Node:setLocalZOrder")
+
+		return slot0.setLocalZOrder(slot0, slot1)
+	end,
+	getZOrder = function (slot0)
+		slot0("cc.Node:getZOrder", "cc.Node:getLocalZOrder")
+
+		return slot0.getLocalZOrder(slot0)
+	end,
+	setVertexZ = function (slot0, slot1)
+		slot0("cc.Node:setVertexZ", "cc.Node:setPositionZ")
+
+		return slot0.setPositionZ(slot0, slot1)
+	end,
+	getVertexZ = function (slot0)
+		slot0("cc.Node:getVertexZ", "cc.Node:getPositionZ")
+
+		return slot0.getPositionZ(slot0)
+	end,
+	ignoreAnchorPointForPosition = function (slot0, slot1)
+		slot0("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+
+		return slot0.setIgnoreAnchorPointForPosition(slot0, slot1)
+	end
+})["getZOrder"]
+cc.Node.setVertexZ = ({
+	setZOrder = function (slot0, slot1)
+		slot0("cc.Node:setZOrder", "cc.Node:setLocalZOrder")
+
+		return slot0.setLocalZOrder(slot0, slot1)
+	end,
+	getZOrder = function (slot0)
+		slot0("cc.Node:getZOrder", "cc.Node:getLocalZOrder")
+
+		return slot0.getLocalZOrder(slot0)
+	end,
+	setVertexZ = function (slot0, slot1)
+		slot0("cc.Node:setVertexZ", "cc.Node:setPositionZ")
+
+		return slot0.setPositionZ(slot0, slot1)
+	end,
+	getVertexZ = function (slot0)
+		slot0("cc.Node:getVertexZ", "cc.Node:getPositionZ")
+
+		return slot0.getPositionZ(slot0)
+	end,
+	ignoreAnchorPointForPosition = function (slot0, slot1)
+		slot0("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+
+		return slot0.setIgnoreAnchorPointForPosition(slot0, slot1)
+	end
+})["setVertexZ"]
+cc.Node.getVertexZ = ({
+	setZOrder = function (slot0, slot1)
+		slot0("cc.Node:setZOrder", "cc.Node:setLocalZOrder")
+
+		return slot0.setLocalZOrder(slot0, slot1)
+	end,
+	getZOrder = function (slot0)
+		slot0("cc.Node:getZOrder", "cc.Node:getLocalZOrder")
+
+		return slot0.getLocalZOrder(slot0)
+	end,
+	setVertexZ = function (slot0, slot1)
+		slot0("cc.Node:setVertexZ", "cc.Node:setPositionZ")
+
+		return slot0.setPositionZ(slot0, slot1)
+	end,
+	getVertexZ = function (slot0)
+		slot0("cc.Node:getVertexZ", "cc.Node:getPositionZ")
+
+		return slot0.getPositionZ(slot0)
+	end,
+	ignoreAnchorPointForPosition = function (slot0, slot1)
+		slot0("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+
+		return slot0.setIgnoreAnchorPointForPosition(slot0, slot1)
+	end
+})["getVertexZ"]
+cc.Node.ignoreAnchorPointForPosition = ({
+	setZOrder = function (slot0, slot1)
+		slot0("cc.Node:setZOrder", "cc.Node:setLocalZOrder")
+
+		return slot0.setLocalZOrder(slot0, slot1)
+	end,
+	getZOrder = function (slot0)
+		slot0("cc.Node:getZOrder", "cc.Node:getLocalZOrder")
+
+		return slot0.getLocalZOrder(slot0)
+	end,
+	setVertexZ = function (slot0, slot1)
+		slot0("cc.Node:setVertexZ", "cc.Node:setPositionZ")
+
+		return slot0.setPositionZ(slot0, slot1)
+	end,
+	getVertexZ = function (slot0)
+		slot0("cc.Node:getVertexZ", "cc.Node:getPositionZ")
+
+		return slot0.getPositionZ(slot0)
+	end,
+	ignoreAnchorPointForPosition = function (slot0, slot1)
+		slot0("cc.Node:ignoreAnchorPointForPosition", "cc.Node:setIgnoreAnchorPointForPosition")
+
+		return slot0.setIgnoreAnchorPointForPosition(slot0, slot1)
+	end
+})["ignoreAnchorPointForPosition"]
+cc.GLProgram.initWithVertexShaderByteArray = ({
+	initWithVertexShaderByteArray = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderByteArray", "cc.GLProgram:initWithByteArrays")
+
+		return slot0.initWithByteArrays(slot0, slot1, slot2)
+	end,
+	initWithVertexShaderFilename = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderFilename", "cc.GLProgram:initWithFilenames")
+
+		return slot0.initWithFilenames(slot0, slot1, slot2)
+	end,
+	addAttribute = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:addAttribute", "cc.GLProgram:bindAttribLocation")
+
+		return slot0.bindAttribLocation(slot0, slot1, slot2)
+	end
+})["initWithVertexShaderByteArray"]
+cc.GLProgram.initWithVertexShaderFilename = ({
+	initWithVertexShaderByteArray = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderByteArray", "cc.GLProgram:initWithByteArrays")
+
+		return slot0.initWithByteArrays(slot0, slot1, slot2)
+	end,
+	initWithVertexShaderFilename = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderFilename", "cc.GLProgram:initWithFilenames")
+
+		return slot0.initWithFilenames(slot0, slot1, slot2)
+	end,
+	addAttribute = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:addAttribute", "cc.GLProgram:bindAttribLocation")
+
+		return slot0.bindAttribLocation(slot0, slot1, slot2)
+	end
+})["initWithVertexShaderFilename"]
+cc.GLProgram.addAttribute = ({
+	initWithVertexShaderByteArray = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderByteArray", "cc.GLProgram:initWithByteArrays")
+
+		return slot0.initWithByteArrays(slot0, slot1, slot2)
+	end,
+	initWithVertexShaderFilename = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:initWithVertexShaderFilename", "cc.GLProgram:initWithFilenames")
+
+		return slot0.initWithFilenames(slot0, slot1, slot2)
+	end,
+	addAttribute = function (slot0, slot1, slot2)
+		slot0("cc.GLProgram:addAttribute", "cc.GLProgram:bindAttribLocation")
+
+		return slot0.bindAttribLocation(slot0, slot1, slot2)
+	end
+})["addAttribute"]
+
+return 

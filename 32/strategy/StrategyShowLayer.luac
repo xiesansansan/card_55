@@ -1,0 +1,414 @@
+slot0 = class("StrategyShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("属性总览")
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.76,
+						y = 173.09
+					},
+					size = {
+						width = 465.88,
+						height = 285.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "desStr",
+				cType = "Label",
+				params = {
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 244,
+						y = 159
+					},
+					text = TR("暂无激活阵法属性加成")
+				},
+				children = {}
+			},
+			{
+				name = "attrListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 25.94,
+						y = 37.45
+					},
+					size = {
+						width = 465,
+						height = 275.66
+					}
+				},
+				children = {
+					{
+						name = "tempLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "posLabel-text",
+								name = "posStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.63,
+								y = 238.45
+							},
+							size = {
+								width = 465,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "posLabel",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 8,
+										y = 20
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "skillNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled4-text",
+						name = "skillName",
+						type = "string"
+					},
+					{
+						value = "untitled6-skillId",
+						name = "skillId",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 42.14,
+						y = 228.41
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 125,
+								r = 203,
+								b = 69
+							},
+							pos = {
+								x = 14.11,
+								y = 0.39
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							scale = 0.8,
+							image = "c_3.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "skillId",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onSkillPop",
+							image = "c_pure.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = -6,
+								y = 0
+							},
+							size = {
+								width = 70,
+								height = 30
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "attrNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "attrLabel-text",
+						name = "attrText",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 87.31,
+						y = 278.11
+					}
+				},
+				children = {
+					{
+						name = "attrLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 400,
+								height = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.strategyInfo = slot1.strategyInfo or {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot1 = {
+	TR("前下"),
+	TR("前上"),
+	TR("后下"),
+	TR("后中"),
+	TR("后上")
+}
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.desStr:setVisible(false)
+
+	if #slot0.strategyInfo <= 0 then
+		slot0.desStr:setVisible(true)
+	else
+		slot1 = {}
+
+		for slot5, slot6 in ipairs(slot0.strategyInfo) do
+			if ZhenfaStepConfig.items[slot6.ZhenfaId][slot6.Step].positionAttr ~= "" then
+				slot8 = ""
+				slot9 = ""
+
+				for slot14, slot15 in ipairs(slot10) do
+					for slot20, slot21 in ipairs(slot16) do
+						if string.find(slot21, "|") then
+							slot9 = slot21
+						else
+							slot8 = tonumber(slot21)
+						end
+					end
+				end
+
+				if slot1[slot8] then
+					table.insert(slot1[slot8], slot9)
+				else
+					slot1[slot8] = {}
+
+					table.insert(slot1[slot8], slot9)
+				end
+			end
+
+			if ZhenfaStepConfig.items[slot6.ZhenfaId][slot6.Step].positionSkill ~= "" then
+				for slot13, slot14 in ipairs(slot9) do
+					slot17 = string.splitBySep(slot14, ":")[2]
+
+					if slot1[tonumber(string.splitBySep(slot14, ":")[1])] then
+						table.insert(slot1[slot16], slot17)
+					else
+						slot1[slot16] = {}
+
+						table.insert(slot1[slot16], slot17)
+					end
+				end
+			end
+		end
+
+		for slot5 = 1, 5, 1 do
+			if slot1[slot5] then
+				slot7 = slot0.createLayoutTemplateNode(slot0, "tempLayout", {
+					posStr = string.format("%s:", slot0[slot5])
+				})
+				slot8 = 10
+				slot9, slot13 = slot0.getAttrInOrder(slot0, slot6)
+				slot11 = ""
+
+				for slot15, slot16 in pairs(slot10) do
+					slot17 = nil
+					slot11 = slot11 .. ((not Utility.isAttrNeedPercent(slot15) or string.format("%s#8bA857+%0.1f%%#252525", FightAttrTypeName[slot15], slot16/100)) and string.format("%s#8bA857+%s#252525", FightAttrTypeName[slot15], slot16)) .. "  "
+				end
+
+				slot12 = slot0.createLayoutTemplateNode(slot0, "attrNode", {
+					attrText = slot11
+				})
+
+				slot12.setPosition(slot12, 0, 0)
+				slot7.addChild(slot7, slot12)
+
+				if 20 < slot12.attrLabel:getContentSize().height then
+					slot8 = slot13.height
+				end
+
+				slot14 = {}
+
+				for slot18, slot19 in ipairs(slot9) do
+					slot21 = slot0.createLayoutTemplateNode(slot0, "skillNode", {
+						skillName = SkillModel.items[slot19].skillName,
+						skillId = slot19
+					})
+
+					slot21.setPosition(slot21, 0, 0)
+					slot7.addChild(slot7, slot21)
+					table.insert(slot14, slot21)
+				end
+
+				if 0 < #slot14 then
+					slot8 = slot8 + 30
+				end
+
+				slot7.setContentSize(slot7, cc.size(465, slot8 + 10))
+				slot12.setPosition(slot12, 55, slot8)
+				slot7.posLabel:setPosition(0, slot8 + 10)
+
+				if next(slot14) ~= nil then
+					for slot18, slot19 in ipairs(slot14) do
+						slot19.setPosition(slot19, (slot18 - 1)*80 + 80, slot8 - slot13.height - 15)
+					end
+				end
+
+				slot0.attrListView:pushBackCustomItem(slot7)
+			end
+		end
+	end
+
+	return 
+end
+slot0.getAttrInOrder = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot1) do
+		if string.find(slot8, "|") then
+			for slot13, slot14 in ipairs(slot9) do
+				table.insert(slot3, slot14)
+			end
+		else
+			table.insert(slot2, tonumber(slot8))
+		end
+	end
+
+	slot4 = {}
+
+	for slot8, slot9 in ipairs(slot3) do
+		if slot4[slot9.fightattr] then
+			slot4[slot9.fightattr] = slot4[slot9.fightattr] + slot9.value
+		else
+			slot4[slot9.fightattr] = slot9.value
+		end
+	end
+
+	return slot2, slot4
+end
+slot0.onSkillPop = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.skillDetialLayer",
+		data = {
+			lv = 1,
+			skillId = slot1.skillId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+
+return slot0

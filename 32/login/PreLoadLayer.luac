@@ -1,0 +1,249 @@
+slot0 = class("PreLoadLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled9",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer"
+		},
+		children = {}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "label1",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = -127.2,
+						y = -140.03
+					},
+					text = TR("抵制不良游戏 拒绝盗版游戏")
+				},
+				children = {}
+			},
+			{
+				name = "label2",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 152.8,
+						y = -140.03
+					},
+					text = TR("注意自我保护 谨防受骗上当")
+				},
+				children = {}
+			},
+			{
+				name = "label3",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = -127.2,
+						y = -172.03
+					},
+					text = TR("适度游戏益脑 沉迷游戏伤身")
+				},
+				children = {}
+			},
+			{
+				name = "label4",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 152.8,
+						y = -172.03
+					},
+					text = TR("合理安排时间 享受健康生活")
+				},
+				children = {}
+			},
+			{
+				name = "mProgressBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "gcjz_3.png",
+					bgImage = "gcjz_2.png",
+					hide = false,
+					pos = {
+						x = 12.8,
+						y = -254.03
+					}
+				},
+				children = {}
+			},
+			{
+				name = "loadLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = false,
+					color = {
+						g = 255,
+						r = 55,
+						b = 64
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 12.8,
+						y = -219.03
+					},
+					text = TR("正在加载资源，这个过程不产生任何流量哦！")
+				},
+				children = {}
+			},
+			{
+				name = "copyrightSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 12.8,
+						y = -312.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "noticeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					emptyInit = true,
+					color = {
+						g = 248,
+						r = 246,
+						b = 245
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 13.46,
+						y = -277.46
+					},
+					text = TR("历练塔出产大量进阶石，别忘了每日前往逛逛~")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.endCallback = slot1.endCallback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	require("guide.GuideInit")
+
+	slot0.mPreLoadConfig = require("config.RequireAllConfig")
+
+	slot0.startPreLoad(slot0)
+	Utility.newCpInvoke(115)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if IPlatform:getInstance():getConfigItem("ChannelCopyright") and 0 < string.len(slot1) then
+		slot0.copyrightSprite:setTexture(slot1)
+	end
+
+	slot0.noticeLabel:setString(({
+		"通过副本可以获得大量主角经验，快速提高主角等级~",
+		"酒馆可以招募结识很多大侠，不如碰碰运气吧~",
+		"加入一个强力的帮派可以帮助大家获得更多资源~",
+		"侠客结识收集的越多，您的战力将会成长的越快~",
+		"获得侠客后不要忘记对他进行升级养成~",
+		"完成每日任务，主角经验很多，等级不会落下了~",
+		"如果一个人太孤单，不妨加入一个帮派一起聊天~"
+	})[MqMath.random(#{
+		"通过副本可以获得大量主角经验，快速提高主角等级~",
+		"酒馆可以招募结识很多大侠，不如碰碰运气吧~",
+		"加入一个强力的帮派可以帮助大家获得更多资源~",
+		"侠客结识收集的越多，您的战力将会成长的越快~",
+		"获得侠客后不要忘记对他进行升级养成~",
+		"完成每日任务，主角经验很多，等级不会落下了~",
+		"如果一个人太孤单，不妨加入一个帮派一起聊天~"
+	})])
+
+	return 
+end
+slot0.startPreLoad = function (slot0)
+	slot0.loadingEnd = false
+	slot1 = 1
+	slot2 = #slot0.mPreLoadConfig
+
+	Utility.schedule(slot0.mProgressBar, function ()
+		slot2.mProgressBar.mProgressTimer:setPercentage((slot0 - 1)/slot1*100)
+
+		if not slot2.loadingEnd then
+			if slot0 <  then
+				if slot2.endCallback then
+					slot2.endCallback()
+				end
+
+				slot2.loadingEnd = true
+			else
+				require(slot2.mPreLoadConfig[slot0])
+
+				slot0 = slot0 + 1
+			end
+		end
+
+		return 
+	end, 0.01)
+
+	return 
+end
+
+return slot0

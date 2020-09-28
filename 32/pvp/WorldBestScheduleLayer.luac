@@ -1,0 +1,300 @@
+slot0 = class("WorldBestScheduleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled12",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 940,
+				height = 500
+			},
+			titleText = TR("赛程安排")
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 469.47,
+						y = 232.56
+					},
+					size = {
+						width = 860,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "templateGridNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled9-text",
+								name = "strTitle",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 8.13,
+								y = 212.06
+							},
+							size = {
+								width = 200,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_59.png",
+									childName = "bgSprite",
+									capInsets = {
+										x = 90,
+										height = 1,
+										width = 1,
+										y = 80
+									},
+									pos = {
+										x = 100,
+										y = 75
+									},
+									size = {
+										width = 200,
+										height = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									childName = "titleLabel",
+									color = {
+										g = 231,
+										r = 255,
+										b = 72
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 100,
+										y = 127
+									},
+									text = TR("星期一")
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									childName = "endSprite",
+									hide = true,
+									isRichText = false,
+									pos = {
+										x = 100,
+										y = 100
+									},
+									text = TR("已结束（txdy_29.png）")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 468.86,
+						y = 450.01
+					},
+					text = TR("本届比赛将在xxxx后开始")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	{
+		tag = 1,
+		pos = cc.p(115, 200),
+		textList = {
+			"#FFE47823:30",
+			TR("巅峰对决16强入围")
+		}
+	},
+	{
+		tag = 2,
+		pos = cc.p(325, 200),
+		textList = {
+			"#FFE47819:00-21:00",
+			TR("八强赛"),
+			TR("四强赛")
+		}
+	},
+	{
+		tag = 3,
+		pos = cc.p(535, 200),
+		textList = {
+			"#FFE47819:00-21:00",
+			TR("半决赛"),
+			TR("决赛")
+		}
+	},
+	{
+		tag = 4,
+		pos = cc.p(745, 200),
+		textList = {
+			TR("#FFE478全天"),
+			TR("膜拜冠军")
+		}
+	},
+	{
+		tag = 5,
+		pos = cc.p(115, 20),
+		textList = {
+			TR("#FFE478全天"),
+			TR("膜拜冠军")
+		}
+	},
+	{
+		tag = 6,
+		pos = cc.p(325, 20),
+		textList = {
+			TR("#FFE478全天"),
+			TR("膜拜冠军")
+		}
+	},
+	{
+		tag = 7,
+		pos = cc.p(535, 20),
+		textList = {
+			TR("#FFE478全天"),
+			TR("膜拜冠军")
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mData = slot1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = Player:getCurrentTime()
+	slot2 = {
+		[2] = {
+			75,
+			35
+		},
+		[3] = {
+			85,
+			55,
+			25
+		}
+	}
+
+	for slot6, slot7 in ipairs(slot0) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "templateGridNode", {
+			strTitle = (slot7.tag == 7 and TR("星期日")) or TR("星期%s", Utility.getChineseNum(slot7.tag))
+		})
+
+		slot8.setAnchorPoint(slot8, cc.p(0.5, 0))
+		slot8.setPosition(slot8, slot7.pos)
+		slot0.bgSprite:addChild(slot8)
+
+		slot9 = slot2[#slot7.textList]
+
+		for slot13, slot14 in ipairs(slot7.textList) do
+			slot8.addChild(slot8, UIWrap.newControl("Label", {
+				fontSize = 20,
+				text = slot14,
+				outlineColor = cc.c3b(51, 42, 24),
+				pos = cc.p(100, slot9[slot13])
+			}))
+		end
+
+		slot10 = false
+
+		if slot0.mData ~= nil and slot0.mData.Season ~= nil then
+			if slot7.tag == 1 then
+				slot10 = (slot0.mData.Season.ChooseEightInfo or {}.StartTime or 0) <= slot1
+			elseif slot7.tag == 2 then
+				slot10 = (slot0.mData.Season.ChooseFourInfo or {}.EndTime or 0) <= slot1
+			elseif slot7.tag == 3 then
+				slot10 = (slot0.mData.Season.ChooseOneInfo or {}.EndTime or 0) <= slot1
+			else
+				slot8.endSprite:setVisible((slot0.mData.Season.ChampionPlayerInfo or {}.EndTime or 0) <= slot1)
+				slot8.bgSprite:setGray((slot0.mData.Season.ChampionPlayerInfo or {}.EndTime or 0) <= slot1)
+			end
+		end
+	end
+
+	slot4 = Player:getCurrentTime()
+
+	if PlayerAttrObj:getPlayerAttrByName("WorldnumoneOpenTime") == nil or slot3 <= slot4 or RedDotObj:isValid(ModuleSub.eWorldNumOne, "IsOpen") then
+		slot0.mTimeLabel:setString("")
+	else
+		Utility.schedule(slot0.mTimeLabel, function ()
+			if 0 < slot0 - Player:getCurrentTime() then
+				slot1.mTimeLabel:setString(TR("本届比赛将在%s%s%s后开始", "#37FF40", MqTime.formatAsDay(slot0), "#FFF8EA"))
+			else
+				slot1.mTimeLabel:stopAllActions()
+				slot1.mTimeLabel.stopAllActions.mTimeLabel:setString("")
+			end
+
+			return 
+		end, 0.5)
+	end
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBtnRuleClickAction = function (slot0, slot1)
+	require("pvp.WorldBestHomeLayer"):onBtnRuleClickAction()
+
+	return 
+end
+
+return slot0

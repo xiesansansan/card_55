@@ -1,0 +1,317 @@
+require("common.Ui")
+
+slot0 = class("HomeRole", function ()
+	return display.newNode()
+end)
+slot1 = {
+	{
+		animation = "animation",
+		npcName = "yuweng",
+		dataFile = "effect_zhujiemian_yuweng",
+		pos = cc.p(1098, 320)
+	},
+	{
+		animation = "daiji,zhanshi",
+		npcName = "fushang",
+		scale = 1,
+		dataFile = "effect_xingren_fushang",
+		delayTime = math.random(4, 6),
+		pos = cc.p(1350, 110)
+	},
+	{
+		animation = "daiji",
+		npcName = "dianxiaoer",
+		scale = 0.9,
+		dataFile = "effect_xingren_dianxiaoer",
+		pos = cc.p(1050, 120)
+	},
+	{
+		animation = "daiji,zhanshi",
+		npcName = "wuseng",
+		isSkewY = true,
+		scale = 0.9,
+		dataFile = "effect_xingren_wuseng",
+		pos = cc.p(620, 120)
+	},
+	{
+		animation = "daiji,zhanshi",
+		npcName = "wushi",
+		scale = 0.85,
+		dataFile = "effect_xingren_wushi",
+		pos = cc.p(1620, 130)
+	},
+	{
+		animation = "daiji",
+		npcName = "nv7",
+		isNight = true,
+		scale = 0.6,
+		dataFile = "effect_xingren_nv7",
+		pos = cc.p(865, 185)
+	},
+	{
+		effectName = "effect_xingren_nan4",
+		endScale = 0.75,
+		oneTime = 32,
+		npcName = "nan4",
+		beginScale = 0.4,
+		isMove = true,
+		beginPos = cc.p(700, 180),
+		endPos = cc.p(1050, 100)
+	},
+	{
+		animation = "daiji",
+		npcName = "nan12",
+		scale = 0.9,
+		dataFile = "effect_xingren_nan12",
+		pos = cc.p(430, 130)
+	},
+	{
+		animation = "daiji",
+		npcName = "nan5",
+		isNight = false,
+		scale = 0.6,
+		dataFile = "effect_xingren_nan5",
+		pos = cc.p(800, 120)
+	},
+	{
+		npcName = "nan6",
+		endScale = 0.6,
+		oneTime = 18,
+		isMove = true,
+		effectName = "effect_xingren_nan6",
+		beginScale = 0.6,
+		isNight = false,
+		beginPos = cc.p(200, 100),
+		endPos = cc.p(750, 125)
+	},
+	{
+		npcName = "nan3",
+		endScale = 0.75,
+		oneTime = 60,
+		isMove = true,
+		effectName = "effect_xingren_nv3",
+		beginScale = 0.75,
+		isNight = true,
+		beginPos = cc.p(250, 80),
+		endPos = cc.p(1500, 80)
+	},
+	{
+		npcName = "nv1",
+		endScale = 0.55,
+		oneTime = 30,
+		isMove = true,
+		effectName = "effect_xingren_nv1",
+		beginScale = 0.4,
+		isNight = false,
+		beginPos = cc.p(1900, 130),
+		endPos = cc.p(1650, 90)
+	},
+	{
+		npcName = "nan9",
+		endScale = 0.5,
+		oneTime = 10,
+		effectName = "effect_xingren_nan9",
+		daijiTime = 1,
+		isMove = true,
+		randomTime = 2,
+		beginScale = 0.5,
+		isNight = false,
+		beginPos = cc.p(880, 80),
+		endPos = cc.p(1800, 99)
+	},
+	{
+		beginScale = 0.5,
+		endScale = 0.5,
+		oneTime = 10,
+		effectName = "effect_xingren_nv10",
+		daijiTime = 1,
+		isMove = true,
+		randomTime = 2,
+		npcName = "nan10",
+		isNight = false,
+		daijiExTime = 1.5,
+		beginPos = cc.p(820, 80),
+		endPos = cc.p(1750, 90)
+	},
+	{
+		animation = "daiji",
+		npcName = "nan8",
+		scale = 0.95,
+		dataFile = "effect_xingren_nan8",
+		pos = cc.p(900, 45)
+	},
+	{
+		beginScale = 0.85,
+		endScale = 0.85,
+		oneTime = 30,
+		isMove = true,
+		beginAni = "f_zou",
+		endAni = "z_zou",
+		effectName = "effect_xingren_nan2",
+		npcName = "nan2",
+		isNight = true,
+		beginPos = cc.p(1000, 30),
+		endPos = cc.p(100, 30)
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRoleNodes = {}
+	slot0.mClickBtns = {}
+
+	slot0.createRole(slot0)
+	slot0.refreshClickEvent(slot0)
+	slot0.registerEvent(slot0)
+
+	return 
+end
+slot0.createRole = function (slot0)
+	slot1 = MqTime.isNight()
+	slot2 = math.random(5, 15)
+
+	for slot6, slot7 in pairs(slot0) do
+		if slot7.isNight == nil or slot7.isNight == slot1 then
+			slot8 = nil
+			slot9 = slot7.animation and string.split(slot7.animation, ",")
+
+			if slot7.isMove then
+				if slot7.npcName == "nan9" or slot7.npcName == "nan10" then
+					slot7.daijiTime = slot2
+				end
+
+				slot8 = slot0.createMovePeople(slot0, slot7)
+			elseif slot9 and 1 < #slot9 then
+				slot8 = slot0.createRepeatPeople(slot0, slot7)
+			else
+				slot0.addChild(slot0, UIWrap.newControl("Effect", slot7))
+			end
+
+			slot0.mRoleNodes[slot7.npcName] = slot8
+		end
+	end
+
+	return 
+end
+slot0.refreshClickEvent = function (slot0)
+	for slot4, slot5 in pairs(slot0.mClickBtns) do
+		slot5.removeFromParent(slot5)
+	end
+
+	slot0.mClickBtns = {}
+	slot2, slot3 = Guide.manager:getGuideInfo()
+
+	if MeetObj:getMeetNpc() and slot0.mRoleNodes[slot1] and not slot3 then
+		slot4 = MeetObj:getMeetNpcClickParams(slot1)
+		slot4.clickAction = function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "meet.MeetTalkLayer",
+				popRestore = true,
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+		slot5 = UIWrap.newControl("Button", slot4)
+
+		slot0.mRoleNodes[slot1]:addChild(slot5, 1)
+		table.insert(slot0.mClickBtns, slot5)
+
+		slot7 = UIWrap.newControl("Sprite", {
+			image = "jhqy_8.png",
+			pos = cc.p(0, slot4.size.height*0.5)
+		})
+
+		slot5.addChild(slot5, slot7)
+		slot7.runAction(slot7, cc.RepeatForever:create(cc.Sequence:create({
+			cc.ScaleTo:create(0.5, 1.2),
+			cc.ScaleTo:create(0.5, 0.9)
+		})))
+	end
+
+	if slot1 ~= "nan8" then
+		slot0.mRoleNodes[slot4]:addChild(slot5, 1)
+		table.insert(slot0.mClickBtns, UIWrap.newControl("Button", {
+			image = "c_pure.png",
+			size = cc.size(80, 150),
+			pos = cc.p(0, 70),
+			clickAction = function ()
+				if Utility.moduleIsOpen(ModuleSub.eBaixiaosheng, true) then
+					LayerManager.showModuleLayer(ModuleSub.eBaixiaosheng)
+				end
+
+				return 
+			end
+		}))
+	end
+
+	return 
+end
+slot0.registerEvent = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRefreshMeet, function ()
+		slot0:refreshClickEvent()
+
+		return 
+	end)
+
+	return 
+end
+slot0.createMovePeople = function (slot0, slot1)
+	slot9 = slot1.endAni or "f_zou"
+	slot14 = UIWrap.newControl("Effect", {
+		dataFile = slot1.effectName,
+		animation = slot1.beginAni or "z_zou",
+		pos = slot1.beginPos,
+		scale = slot1.beginScale or 0.6
+	})
+
+	slot14.setOpacity(slot14, 0)
+	slot0.addChild(slot0, slot14)
+	slot14.runAction(slot14, cc.RepeatForever:create(cc.Sequence:create({
+		cc.DelayTime:create(slot1.randomTime or math.random(1, 3)),
+		cc.Spawn:create(cc.MoveTo:create(slot1.oneTime or 40, slot1.endPos), cc.ScaleTo:create(slot1.oneTime or 40, slot1.endScale or 0.8), cc.FadeIn:create(slot13)),
+		cc.CallFunc:create(function ()
+			slot0:playAnimation("daiji")
+
+			return 
+		end),
+		cc.DelayTime:create((slot1.daijiTime or math.random(5, 15)) + (slot1.daijiExTime or 0)),
+		cc.CallFunc:create(function ()
+			slot0:playAnimation(slot0)
+
+			return 
+		end),
+		cc.Spawn:create(cc.MoveTo:create((slot1.oneTime or 40) - slot13, cc.p(((slot1.beginPos.x - slot1.endPos.x)*((slot1.oneTime or 40) - 2))/(slot1.oneTime or 40) + slot1.endPos.x, ((slot1.beginPos.y - slot1.endPos.y)*((slot1.oneTime or 40) - 2))/(slot1.oneTime or 40) + slot1.endPos.y)), cc.ScaleTo:create((slot1.oneTime or 40) - slot13, (slot1.endScale or 0.8) - (((slot1.endScale or 0.8) - (slot1.beginScale or 0.6))*((slot1.oneTime or 40) - slot13))/(slot1.oneTime or 40))),
+		cc.Spawn:create(cc.MoveTo:create(slot13, slot1.beginPos), cc.ScaleTo:create(slot13, slot1.beginScale or 0.6), cc.FadeOut:create(2)),
+		cc.DelayTime:create((slot1.daijiTime or math.random(5, 15)) - (slot1.daijiExTime or 0)),
+		cc.CallFunc:create(function ()
+			slot0:playAnimation(slot0)
+
+			return 
+		end)
+	})))
+
+	return slot14
+end
+slot0.createRepeatPeople = function (slot0, slot1)
+	slot0.addChild(slot0, UIWrap.newControl("Effect", {
+		dataFile = slot1.dataFile,
+		animation = string.split(slot1.animation, ",")[1],
+		scale = slot1.scale or 1,
+		isSkewY = slot1.isSkewY,
+		pos = slot1.pos or cc.p(1100, 30)
+	}))
+	UIWrap.newControl:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.DelayTime:create(slot1.delayTime or math.random(8, 12)),
+		cc.CallFunc:create(function ()
+			slot0 = slot0%#slot1 + 1
+
+			slot2:appendAnimation(#slot1[])
+
+			return 
+		end)
+	})))
+
+	return UIWrap.newControl
+end
+
+return slot0

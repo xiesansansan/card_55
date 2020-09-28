@@ -1,0 +1,204 @@
+slot0 = class("XunXiaBuyCountLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 272.63,
+						y = 335.54
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							pos = {
+								x = 130,
+								y = 17
+							},
+							text = TR("提 示")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 257.62,
+						y = 210.94
+					},
+					size = {
+						width = 448,
+						height = 184
+					}
+				},
+				children = {}
+			},
+			{
+				name = "selectView",
+				cType = "SelectCountView",
+				params = {
+					currSelCount = 1,
+					pos = {
+						x = 258.22,
+						y = 184.52
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.37,
+						y = 257.87
+					},
+					text = TR("是否花费20元宝购买1次")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSellBtn",
+					pos = {
+						x = 370,
+						y = 65
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 150,
+						y = 65
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mFightBuyNum = slot1.fightBuyNum
+
+	slot0.initUI(slot0)
+	slot0.refreshInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshInfo = function (slot0)
+	slot2 = Resource.getDaibiImg(slot1)
+	slot0.selectNum = 1
+
+	slot0.selectView:setMaxCount(9999)
+	slot0.selectView:setChangeCallback(function (slot0)
+		slot1 = 0
+
+		for slot5 = 1, slot0, 1 do
+			slot6 = 0
+			slot1 = slot1 + ((slot0.mFightBuyNum + slot5 > QunxiaFightheroBuytimesRelation.items_count or Utility.analysisStrResList(QunxiaFightheroBuytimesRelation.items[slot0.mFightBuyNum + slot5].buyPrice)[1].num) and Utility.analysisStrResList(QunxiaFightheroBuytimesRelation.items[QunxiaFightheroBuytimesRelation.items_count].buyPrice)[1].num)
+		end
+
+		slot0.priceLabel:setString(TR("是否花费%s{%s}购买%s次", slot1, slot1, slot0))
+
+		slot0.selectNum = slot0
+
+		return 
+	end)
+
+	slot3 = 0
+
+	for slot7 = 1, slot0.selectNum, 1 do
+		slot8 = 0
+		slot3 = slot3 + ((slot0.mFightBuyNum + slot7 > QunxiaFightheroBuytimesRelation.items_count or Utility.analysisStrResList(QunxiaFightheroBuytimesRelation.items[slot0.mFightBuyNum + slot7].buyPrice)[1].num) and Utility.analysisStrResList(QunxiaFightheroBuytimesRelation.items[QunxiaFightheroBuytimesRelation.items_count].buyPrice)[1].num)
+	end
+
+	slot0.priceLabel:setString(TR("是否花费%s{%s}购买%s次", slot3, slot2, slot0.selectNum))
+
+	return 
+end
+slot0.onSellBtn = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "CompareBuy",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot0.selectNum
+		},
+		successCallback = function (slot0)
+			dump(slot0, "responseresponse")
+
+			if slot0 and next(slot0) then
+				EventAuto:postEvent("eXUNXIACOUNTEVENT", {
+					mFightNum = slot0.QunxiaInfo.FightNum,
+					mFightBuyNum = slot0.QunxiaInfo.FightBuyNum
+				})
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

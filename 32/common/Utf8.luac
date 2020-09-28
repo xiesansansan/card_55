@@ -1,0 +1,212 @@
+slot0 = nil
+
+function slot1(slot0, slot1)
+	slot1 = slot1 or 1
+
+	if type(slot0) ~= "string" then
+		error("bad argument #1 to 'utf8charbytes' (string expected, got " .. type(slot0) .. ")")
+	end
+
+	if type(slot1) ~= "number" then
+		error("bad argument #2 to 'utf8charbytes' (number expected, got " .. type(slot1) .. ")")
+	end
+
+	if 0 < slot0.byte(slot0, slot1) and slot2 <= 127 then
+		return 1
+	elseif 194 <= slot2 and slot2 <= 223 then
+		if not slot0.byte(slot0, slot1 + 1) then
+			error("UTF-8 string terminated early")
+		end
+
+		if slot3 < 128 or 191 < slot3 then
+			error("Invalid UTF-8 character")
+		end
+
+		return 2
+	elseif 224 <= slot2 and slot2 <= 239 then
+		slot4 = slot0.byte(slot0, slot1 + 2)
+
+		if not slot0.byte(slot0, slot1 + 1) or not slot4 then
+			error("UTF-8 string terminated early")
+		end
+
+		if slot2 == 224 and (slot3 < 160 or 191 < slot3) then
+			error("Invalid UTF-8 character")
+		elseif slot2 == 237 and (slot3 < 128 or 159 < slot3) then
+			error("Invalid UTF-8 character")
+		elseif slot3 < 128 or 191 < slot3 then
+			error("Invalid UTF-8 character")
+		end
+
+		if slot4 < 128 or 191 < slot4 then
+			error("Invalid UTF-8 character")
+		end
+
+		return 3
+	elseif 240 <= slot2 and slot2 <= 244 then
+		slot4 = slot0.byte(slot0, slot1 + 2)
+		slot5 = slot0.byte(slot0, slot1 + 3)
+
+		if not slot0.byte(slot0, slot1 + 1) or not slot4 or not slot5 then
+			error("UTF-8 string terminated early")
+		end
+
+		if slot2 == 240 and (slot3 < 144 or 191 < slot3) then
+			error("Invalid UTF-8 character")
+		elseif slot2 == 244 and (slot3 < 128 or 143 < slot3) then
+			error("Invalid UTF-8 character")
+		elseif slot3 < 128 or 191 < slot3 then
+			error("Invalid UTF-8 character")
+		end
+
+		if slot4 < 128 or 191 < slot4 then
+			error("Invalid UTF-8 character")
+		end
+
+		if slot5 < 128 or 191 < slot5 then
+			error("Invalid UTF-8 character")
+		end
+
+		return 4
+	else
+		error("Invalid UTF-8 character")
+	end
+
+	return 
+end
+
+function slot2(slot0)
+	if type(slot0) ~= "string" then
+		error("bad argument #1 to 'utf8len' (string expected, got " .. type(slot0) .. ")")
+	end
+
+	slot1 = 1
+	slot2 = slot0.len(slot0)
+	slot3 = 0
+
+	while slot1 <= slot2 do
+		slot3 = slot3 + 1
+		slot1 = slot1 + slot0(slot0, slot1)
+	end
+
+	return slot3
+end
+
+if not string.utf8len then
+	string.utf8len = slot2
+end
+
+function slot3(slot0, slot1, slot2)
+	slot2 = slot2 or -1
+
+	if type(slot0) ~= "string" then
+		error("bad argument #1 to 'utf8sub' (string expected, got " .. type(slot0) .. ")")
+	end
+
+	if type(slot1) ~= "number" then
+		error("bad argument #2 to 'utf8sub' (number expected, got " .. type(slot1) .. ")")
+	end
+
+	if type(slot2) ~= "number" then
+		error("bad argument #3 to 'utf8sub' (number expected, got " .. type(slot2) .. ")")
+	end
+
+	slot3 = 1
+	slot4 = slot0.len(slot0)
+	slot5 = 0
+	slot6 = (0 <= slot1 and 0 <= slot2) or slot0.utf8len(slot0)
+
+	if ((0 <= slot2 and slot2) or slot6 + slot2 + 1) < ((0 <= slot1 and slot1) or slot6 + slot1 + 1) then
+		return ""
+	end
+
+	slot9 = 1
+	slot10 = slot4
+
+	while slot3 <= slot4 do
+		if slot5 + 1 == slot7 then
+			slot9 = slot3
+		end
+
+		slot3 = slot3 + slot0(slot0, slot3)
+
+		if slot5 == slot8 then
+			slot10 = slot3 - 1
+
+			break
+		end
+	end
+
+	return slot0.sub(slot0, slot9, slot10)
+end
+
+if not string.utf8sub then
+	string.utf8sub = slot3
+end
+
+function slot4(slot0, slot1)
+	if type(slot0) ~= "string" then
+		error("bad argument #1 to 'utf8replace' (string expected, got " .. type(slot0) .. ")")
+	end
+
+	if type(slot1) ~= "table" then
+		error("bad argument #2 to 'utf8replace' (table expected, got " .. type(slot1) .. ")")
+	end
+
+	slot2 = 1
+	slot3 = slot0.len(slot0)
+	slot4 = nil
+	slot5 = ""
+
+	while slot2 <= slot3 do
+		slot5 = slot5 .. (slot1[slot0.sub(slot0, slot2, (slot2 + slot0(slot0, slot2)) - 1)] or slot6)
+		slot2 = slot2 + slot4
+	end
+
+	return slot5
+end
+
+function slot5(slot0)
+	return slot0(slot0, utf8_lc_uc)
+end
+
+if not string.utf8upper and utf8_lc_uc then
+	string.utf8upper = slot5
+end
+
+function slot6(slot0)
+	return slot0(slot0, utf8_uc_lc)
+end
+
+if not string.utf8lower and utf8_uc_lc then
+	string.utf8lower = slot6
+end
+
+function slot7(slot0)
+	if type(slot0) ~= "string" then
+		error("bad argument #1 to 'utf8reverse' (string expected, got " .. type(slot0) .. ")")
+	end
+
+	slot2 = slot0.len(slot0)
+	slot3 = nil
+	slot4 = ""
+
+	while 0 < slot2 do
+		c = slot0.byte(slot0, slot2)
+
+		while 128 <= c and c <= 191 do
+			c = slot0.byte(slot0, slot2 - 1)
+		end
+
+		slot4 = slot4 .. slot0.sub(slot0, slot2, (slot2 + slot0(slot0, slot2)) - 1)
+		slot2 = slot2 - 1
+	end
+
+	return slot4
+end
+
+if not string.utf8reverse then
+	string.utf8reverse = slot7
+end
+
+return 

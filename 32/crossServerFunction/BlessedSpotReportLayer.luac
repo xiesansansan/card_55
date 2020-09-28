@@ -1,0 +1,177 @@
+slot0 = class("BlessedSpotReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 555,
+				height = 473
+			},
+			titleText = TR("挑战记录")
+		},
+		children = {
+			{
+				name = "mListview",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 22.97,
+						y = 27.65
+					},
+					size = {
+						width = 510,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled4-text",
+								name = "text",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 510,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = 40
+									},
+									size = {
+										width = 510,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 284,
+						y = 258.93
+					},
+					text = TR("暂无战报信息！")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mReportData = {}
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, slot0.refreshUI), 2)
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetReportRecord(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mListview:removeAllChildren()
+
+	if slot0.mReportData and #slot0.mReportData == 0 then
+		return slot0.mEmptyHint:setVisible(true)
+	end
+
+	for slot4 = 1, #slot0.mReportData, 1 do
+		slot6 = TR("战况不明")
+
+		if slot0.mReportData[slot4].RecordType == 1 then
+			slot6 = TR("我对[%s]发起了进攻, %s", slot5.TargetName, (slot5.IsWin and TR("对战成功,获利颇丰！")) or TR("很可惜，铩羽而归~"))
+		elseif slot5.RecordType == 2 then
+			slot6 = TR("[%s]对我发起了进攻, %s", slot5.TargetName, (slot5.IsWin == false and TR("我竟然被打败了...")) or TR("被我打的落花流水！"))
+		end
+
+		slot0.mListview:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			text = slot6
+		}))
+	end
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetReportRecord = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReportRecord",
+		moduleName = "DartInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			for slot4, slot5 in pairs(slot0.Data) do
+				if slot5.RecordType == 1 or slot5.RecordType == 2 then
+					slot0.mReportData[#slot0.mReportData + 1] = slot5
+				end
+			end
+
+			table.sort(slot0.mReportData, function (slot0, slot1)
+				return slot1.Crdate < slot0.Crdate
+			end)
+			dump(slot0.mReportData)
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

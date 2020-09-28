@@ -1,0 +1,146 @@
+slot0 = class("ActivityDiceChooseLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 700,
+				height = 450
+			},
+			titleText = TR("愿望骰子")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 350,
+						y = 380
+					},
+					text = TR("请选择想要的点数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 348.49,
+						y = 224.63
+					},
+					size = {
+						width = 634.51,
+						height = 265.17
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNumLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 350,
+						y = 60
+					},
+					text = TR("当前拥有的数量：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "jhxb_6.png",
+					delayInit = true,
+					pos = {
+						x = 120,
+						y = 300
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	cc.p(120, 300),
+	cc.p(340, 300),
+	cc.p(560, 300),
+	cc.p(120, 160),
+	cc.p(340, 160),
+	cc.p(560, 160)
+}
+slot2 = {
+	"jhxb_6.png",
+	"jhxb_7.png",
+	"jhxb_8.png",
+	"jhxb_9.png",
+	"jhxb_10.png",
+	"jhxb_11.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGoodsId = slot1.goodsId
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mNumLabel:setString(TR("当前拥有的数量：%s", Resource.getCount(slot0.mGoodsId)))
+
+	for slot4 = 1, 6, 1 do
+		slot0.mBgSprite:addChild(UIWrap.newControl("Button", {
+			image = slot0[slot4],
+			pos = slot1[slot4],
+			clickAction = function ()
+				if Resource.getCount(slot0.mGoodsId) <= 0 then
+					ui.showFlashView(TR("%s不足!", Resource.getName(slot0.mGoodsId)))
+
+					return 
+				end
+
+				if slot0.mCallback then
+					slot0.mCallback(slot1)
+				end
+
+				LayerManager.removeLayer(LayerManager.removeLayer)
+
+				return 
+			end
+		}))
+	end
+
+	return 
+end
+
+return slot0

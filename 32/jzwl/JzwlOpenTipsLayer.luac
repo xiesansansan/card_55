@@ -1,0 +1,174 @@
+slot0 = class("JzwlOpenTipsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseLayer",
+			hideCloseButton = true,
+			image = "jzwl_70.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 643.03,
+						y = 351.83
+					},
+					text = TR("开启时间: 19:00-20:00")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 892.63,
+						y = 430.86
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 565.96,
+						y = 139.84
+					},
+					size = {
+						width = 300,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "RewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "tzsj_18.png",
+					clickAction = "onGotoCallBack",
+					pos = {
+						x = 916.04,
+						y = 139.06
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eLeaguetopFinal, "LeaguetopNoticeReddot") then
+		RedDotObj:seeRedDot("LeaguetopNoticeReddot")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "RewardLayout", {
+			cardData = {
+				cardInfo = slot6
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	if LayerManager.getTopCleanUpLayerName() == "jzwl.JzwlMainLayer" then
+		LayerManager.removeTopCleanUpLayer()
+	end
+
+	return 
+end
+slot0.onGotoCallBack = function (slot0)
+	LayerManager.removeLayer(slot0)
+	LayerManager.showModuleLayer(ModuleSub.eLeaguetopFinal)
+
+	return 
+end
+slot0.onRuleClickAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、开服七天后的周五将开启决战武林，其后每周5将会开启一次；"),
+			TR("2、活动开启将选取本服前四名的帮派与其他服帮派根据胜率匹配成玩法战场，战场内会有4个帮派参加；"),
+			TR("3、活动将在周5的19:00开启，活动持续1小时，20:00结束；"),
+			TR("4、玩法开始时，四个帮派设定了300名城防守卫，最终的胜利条件会根据城防守卫剩余数量进行判断；"),
+			TR("5、如若活动期间城防守卫为0，则纳入被击败状态，被淘汰出局；"),
+			TR("6、满足参与条件的玩家，可以雇佣死侍帮助战斗；"),
+			TR("7、死侍的使用和派遣侠客队伍相同，与之遭遇的队伍将与之同归于尽；"),
+			TR("8、玩法设置了战意值，战意值会影响对应帮派出战的队伍造成的伤害；"),
+			TR("9、战意值初始设定为50%，提高战意值将提高所在帮派伤害，反之降低；"),
+			TR("10、不满足参与决战武林的帮派玩家无法参与决战武林玩法；"),
+			TR("11、城战战斗将设置3条进攻或者防守路线，玩家需要选择对应的进攻或者防守路线，"),
+			TR("12、线路相同的玩家队伍遭遇才发发生战斗；"),
+			TR("13、队伍战败后需要等待对应时间的复活时间；"),
+			TR("14、玩家也可以消耗九花玉露丸复活战败的侠客队伍；"),
+			TR("15、侠客训练到绿色品质以上才可上阵。")
+		}
+	})
+
+	return 
+end
+
+return slot0

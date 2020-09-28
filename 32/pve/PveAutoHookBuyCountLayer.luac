@@ -1,0 +1,152 @@
+slot0 = class("PveAutoHookBuyCountLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("购买次数")
+		},
+		children = {
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 257.5,
+						y = 120
+					},
+					text = TR("价格")
+				},
+				children = {}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onSelectChanged",
+					currSelCount = 1,
+					btnSize = {
+						width = 65,
+						height = 32.4
+					},
+					pos = {
+						x = 257.5,
+						y = 174
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onBuyBtn",
+					pos = {
+						x = 257.5,
+						y = 80
+					},
+					titleText = TR("购 买")
+				},
+				children = {}
+			},
+			{
+				name = "timesLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.5,
+						y = 237
+					},
+					text = TR("（购买1次可进行3次快速战斗操作）")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.MaxNum = VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].pvePriceBuyMaxNum
+	slot0.mSelectNum = 1
+	slot0.mHadBought = slot1.hadBought
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	dump(slot0.MaxNum, "DDDD")
+	slot0.selectCountView:setMaxCount(slot0.MaxNum - slot0.mHadBought)
+	slot0.timesLabel:setString(TR("（购买1次可进行%d次快速战斗操作）", PveConfig.items[1].everyBuyPriceNum))
+
+	return 
+end
+slot0.onSelectChanged = function (slot0, slot1)
+	slot0.mSelectNum = slot1
+	slot3 = Utility.analysisStrResList(slot2)
+
+	slot0.priceLabel:setString(TR("价格{%s}%s", Resource.getDaibiImg(slot3[1].resourceId), slot3[1].num*slot1))
+
+	slot0.mTotalPrice = slot3[1].num*slot1
+	slot0.mCostType = slot3[1].resourceId
+
+	return 
+end
+slot0.onBuyBtn = function (slot0)
+	if not Resource.isEnough(slot0.mCostType, slot0.mTotalPrice) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "BuyPriceCount",
+		moduleName = "PveAutoEarnIncomeInfo",
+		methodData = {
+			slot0.mSelectNum
+		},
+		successCallback = function (slot0)
+			dump(slot0, "BuyRankCount")
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

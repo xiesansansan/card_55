@@ -1,0 +1,319 @@
+slot0 = class("SectTokenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bg",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "zm_83.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 286,
+				height = 360
+			}
+		},
+		children = {
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 199,
+						r = 223,
+						b = 42
+					},
+					pos = {
+						x = 20,
+						y = 324
+					},
+					text = TR("碧玉打狗棒")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 294
+					},
+					text = TR("获取条件：")
+				},
+				children = {}
+			},
+			{
+				name = "conditionLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 274
+					},
+					text = TR("丐帮声望达到万人敬仰")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 125,
+						r = 203,
+						b = 69
+					},
+					pos = {
+						x = 20,
+						y = 249
+					},
+					text = TR("【基础属性】")
+				},
+				children = {}
+			},
+			{
+				name = "attr1",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 229
+					},
+					text = TR("属性1")
+				},
+				children = {}
+			},
+			{
+				name = "attr2",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 209
+					},
+					text = TR("属性2")
+				},
+				children = {}
+			},
+			{
+				name = "attr3",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 189
+					},
+					text = TR("属性3")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 125,
+						r = 203,
+						b = 69
+					},
+					pos = {
+						x = 20,
+						y = 163
+					},
+					text = TR("【主角技能】")
+				},
+				children = {}
+			},
+			{
+				name = "skillLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 20,
+						y = 154
+					},
+					size = {
+						width = 250,
+						height = 72
+					},
+					text = TR("技能介绍技能介绍技能介绍技能介绍")
+				},
+				children = {}
+			},
+			{
+				name = "desLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 99,
+						r = 99,
+						b = 99
+					},
+					pos = {
+						x = 20,
+						y = 80
+					},
+					size = {
+						width = 250,
+						height = 60
+					},
+					text = TR("简介：技能介绍技能介绍技能介绍技能介绍")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "c_130.png",
+					clickAction = "onCloseBtnClick",
+					pos = {
+						x = 258.67,
+						y = 332.49
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.mTokenIdx = slot1.tokenIdx or 1
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+	slot0.mSectTokenCfg = SectTokenModel.items[slot0.mSectID][slot0.mTokenIdx]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.nameLabel:setString(slot0.mSectTokenCfg.tokenName)
+	slot0.conditionLabel:setString(slot0.mSectTokenCfg.claimConditionsDes)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = (Utility.isAttrNeedPercent(slot6.fightattr) and "" .. string.format("%s+%s%%", FightAttrTypeName[slot6.fightattr], slot6.value/100)) or "" .. string.format("%s+%s", FightAttrTypeName[slot6.fightattr], slot6.value)
+
+		if slot0["attr" .. slot5] then
+			slot0["attr" .. slot5]:setString(slot7)
+		end
+	end
+
+	slot0.skillLabel:setString(SkillModel.items[tonumber(slot0.mSectTokenCfg.actSkillId)].skillIntro)
+	slot0.desLabel:setString(TR("简介：%s", slot0.mSectTokenCfg.des))
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,111 @@
+slot0 = class("DlgChatFaceLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 100
+			}
+		},
+		children = {
+			{
+				name = "mBgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_99.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = -267.65,
+						y = -65.59
+					},
+					size = {
+						width = 500,
+						height = 600
+					}
+				},
+				children = {
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateGridAction",
+							itemNum = 40,
+							colCount = 6,
+							selectIndex = 1,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 240.62,
+								y = -3.46
+							},
+							size = {
+								width = 470,
+								height = 600
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.callback = slot1.callback
+
+	slot0.initUI(slot0)
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0,
+		endedEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.mBgSprite) then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mGridView:setItemNum(40)
+
+	return 
+end
+slot0.onCreateGridAction = function (slot0, slot1, slot2, slot3)
+	slot1.addChild(slot1, UIWrap.newControl("Button", {
+		scale = 0.6,
+		image = string.format("bq_%d.png", slot2),
+		pos = cc.p(slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2),
+		clickAction = function ()
+			if slot0.callback ~= nil then
+				slot0.callback(slot1)
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end
+	}))
+
+	return 
+end
+
+return slot0

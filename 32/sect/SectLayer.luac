@@ -1,0 +1,360 @@
+slot0 = class("SectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_pure.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "effectNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mTableView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTurnPageCallBack",
+					fontSize = 24,
+					selectFontSize = 28,
+					selectTag = 1,
+					lightedImage = "zm_2.png",
+					direction = true,
+					normalImage = "zm_3.png",
+					allowChangeCallback = "onAllowClickCallback",
+					btnInfos = {
+						{
+							title = TR("宗门信息")
+						},
+						{
+							title = TR("掌教信息")
+						},
+						{
+							title = TR("宗门奇遇")
+						},
+						{
+							title = TR("宗门商店")
+						},
+						{
+							title = TR("宗门禁地")
+						}
+					},
+					pos = {
+						x = 0,
+						y = -200
+					},
+					size = {
+						width = 151,
+						height = 430
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleOffset = {
+						x = 0.4,
+						y = 0.5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled21",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseCallBack",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Sprite",
+						params = {
+							image = "zm_16.png",
+							pos = {
+								x = 12,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleCallBack",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 192.62,
+						y = -8.98
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled20",
+		cType = "TopResourceNode",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 603.75,
+				y = 586.31
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = PlayerAttrObj:getPlayerAttrByName("SectId")
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+	slot0.mSelectTag = slot1.selectTag or 1
+	slot0.btnInfos = {
+		{
+			layer = "sect.SectInfoLayer",
+			title = TR("宗门信息")
+		},
+		{
+			layer = "sect.SectRankLayer",
+			title = TR("声望排名"),
+			redDot = ModuleSub.eSectExpLvRank
+		},
+		{
+			layer = "sect.SectTaskLayer",
+			title = TR("宗门任务"),
+			redDot = ModuleSub.eSectTask
+		},
+		{
+			layer = "sect.SectShopLayer",
+			title = TR("宗门绝学"),
+			redDot = ModuleSub.eSectMove
+		},
+		{
+			layer = "",
+			title = TR("宗门秘境"),
+			redDot = ModuleSub.eSectSecret
+		}
+	}
+
+	for slot5, slot6 in ipairs(slot0.btnInfos) do
+		slot6.tag = slot5
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		sectID = slot0.mSectID,
+		selectTag = slot0.mSelectTag
+	}
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTableView" then
+			slot1.btnInfos = slot0.btnInfos
+			slot1.selectTag = slot0.mSelectTag
+		end
+
+		return 
+	end)
+
+	for slot4, slot5 in pairs(slot0.mTableView:getTabBtns()) do
+		if slot0.btnInfos[slot4].redDot then
+			slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eSectPoint,
+				subKey = tostring(slot6)
+			}))
+		end
+	end
+
+	EventAuto:registerAutoEvent(slot0, EventDefine.ePlayerAttrPrefix .. "SectPrestigeLv", function (slot0, slot1)
+		if slot1.oldAttr ~= slot1.newAttr and slot2 < slot3 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "sect.SectPrestigeLvUpLayer",
+				data = {},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot1 = {
+	"effect_ui_taohuadao",
+	"effect_ui_baituoshanzhuang",
+	"effect_ui_dalihuanggong",
+	"effect_ui_beigaipomiao"
+}
+slot0.refreshLayer = function (slot0)
+	slot1 = slot0.mSectCfg.bgPic .. ".png"
+
+	slot0.bgSprite:setTexture(slot0.mSectCfg.bgPic .. ".png")
+	slot0.effectNode:removeAllChildren()
+
+	if slot0[slot0.mSectCfg.Id] and cc.FileUtils:getInstance():isFileExist(slot2 .. ".skel") then
+		slot3 = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = slot2,
+			pos = cc.p(0, 0)
+		})
+
+		if display.isIpadClass then
+			slot3.setScale(slot3, display.maxSafeScale)
+		else
+			slot3.setScale(slot3, display.minScale)
+		end
+
+		slot0.effectNode:addChild(slot3)
+	end
+
+	slot0.onTurnPageCallBack(slot0, slot0.mSelectTag)
+
+	return 
+end
+slot0.onAllowClickCallback = function (slot0, slot1)
+	if slot1 == 5 then
+		ui.showFlashView(TR("秘境玩法暂未开放"))
+
+		return false
+	end
+
+	if slot0.btnInfos[slot1].redDot then
+		return Utility.moduleIsOpen(slot2.redDot, true)
+	end
+
+	return true
+end
+slot0.onTurnPageCallBack = function (slot0, slot1)
+	slot2 = slot0.btnInfos[slot1]
+	slot0.mSelectTag = slot1
+
+	if slot0.mCurrFileLayer ~= nil then
+		slot0.mCurrFileLayer:removeFromParent()
+
+		slot0.mCurrFileLayer = nil
+	end
+
+	slot0.mCurrFileLayer = UIWrap.newControl("FileLayer", {
+		file = slot2.layer,
+		initParams = {
+			sectID = slot0.mSectID,
+			onCLoseCallBack = function ()
+				LayerManager.removeLayer(LayerManager.removeLayer)
+
+				return 
+			end
+		}
+	})
+
+	slot0.addChild(slot0, slot0.mCurrFileLayer)
+
+	return 
+end
+slot0.onWorshipCallBack = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eSectMasterWorship, true) then
+		return 
+	end
+
+	slot0.requestDrawMasterWorship(slot0)
+
+	return 
+end
+slot0.onRuleCallBack = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、通过宗门奇遇以及决战武林玩法可以获得大量宗门声望；"),
+			TR("2、宗门声望一共分为：默默无闻、小有名气、声名鹤起、威震江湖、万人敬仰，5个级别；"),
+			TR("3、声望达到对应级别时，可以开启更多宗门功能；"),
+			TR("4、每日根据声望级别可以领取1次声望俸禄；"),
+			TR("5、当声望级别达到威震江湖并且宗门声望前三的大侠，将享有每周进入宗门禁地获取宗门神功的机会；"),
+			TR("6、宗门可以对大宗师进行挑战，挑战胜利后，晋升为宗门大宗师，并且解锁唯一称号。")
+		}
+	})
+
+	return 
+end
+slot0.onCloseCallBack = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

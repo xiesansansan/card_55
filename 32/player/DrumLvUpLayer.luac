@@ -1,0 +1,547 @@
+slot0 = class("DrumLvUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 870,
+				height = 550
+			},
+			titleText = TR("屠龙宝刀")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "zj_22.png",
+					pos = {
+						x = 210.28,
+						y = 263.54
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "ClippingNode",
+				params = {
+					alpha = 1,
+					pos = {
+						x = 39.61,
+						y = 43.95
+					},
+					size = {
+						width = 343.16,
+						height = 440.25
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_tulongdao",
+							scale = 0.5,
+							animation = "xunhuan2",
+							pos = {
+								x = 188.14,
+								y = 197.29
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					pos = {
+						x = 459.83,
+						y = 469.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 180,
+					image = "c_36.png",
+					pos = {
+						x = 770,
+						y = 468.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 616.67,
+						y = 470.51
+					},
+					text = TR("全体侠客加成")
+				},
+				children = {}
+			},
+			{
+				name = "attrListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 392.56,
+						y = 146.54
+					},
+					size = {
+						width = 440,
+						height = 310
+					}
+				},
+				children = {
+					{
+						name = "attrItem",
+						cType = "Layout",
+						custom = {
+							{
+								value = "attrLabel-text",
+								name = "attrStr",
+								type = "string"
+							},
+							{
+								value = "attrLabel-color",
+								name = "color",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 440,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "starSprite",
+								cType = "Sprite",
+								params = {
+									image = "c_5.png",
+									pos = {
+										x = 20,
+										y = 15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "attrLabel",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 41.76,
+										y = 26
+									},
+									size = {
+										width = 400,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "c_77.png",
+					pos = {
+						x = 612.3,
+						y = 129.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 616.66,
+						y = 122.17
+					}
+				},
+				children = {}
+			},
+			{
+				name = "upLvBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onLvUpBtn",
+					pos = {
+						x = 688.86,
+						y = 75
+					},
+					titleText = TR("升星")
+				},
+				children = {}
+			},
+			{
+				name = "lvLimitLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 690.49,
+						y = 99.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "starNode",
+				cType = "StarNode",
+				params = {
+					exStarImg = "c_89.png",
+					starLevel = 8,
+					exStarLevel = 9,
+					starImg = "c_5.png",
+					pos = {
+						x = 211.15,
+						y = 408.14
+					}
+				},
+				children = {}
+			},
+			{
+				name = "costListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = 578.8,
+						y = 25.22
+					},
+					size = {
+						width = 180,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "costLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "cardNode-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "cardNode",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getBaseInfo(slot0)
+
+	return 
+end
+slot0.onPopAction = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.getBaseInfo = function (slot0)
+	slot0.mDrumModelId = PlayerDrumModel.items[1].modelId
+
+	dump(slot2, "Io")
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.ModelId == slot1 then
+			slot0.mStarLv = slot7.StarLv
+		end
+	end
+
+	slot0.refreshStars(slot0)
+
+	return 
+end
+slot0.refreshStars = function (slot0)
+	slot0.attrListView:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "attrItem", {
+			attrStr = Utility.analysisStrAttrToFromat(slot6.attrUp, "%s+%s", "；"),
+			color = (slot6.starLv <= slot0.mStarLv and cc.c3b(139, 168, 87)) or cc.c3b(37, 37, 37)
+		})
+		slot12 = slot8.getContentSize(slot8).width
+
+		slot8.setContentSize(slot8, slot0)
+
+		slot15, slot12 = slot8.attrLabel:getPosition()
+
+		slot8.attrLabel:setPosition(cc.size, cc.size(slot12, ((slot8.attrLabel:getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height) + 20).height - 10)
+
+		slot17, slot14 = slot8.starSprite:getPosition()
+
+		slot8.starSprite:setPosition((slot8.attrLabel.getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height, cc.size(slot12, ((slot8.attrLabel.getContentSize().height < slot8.getContentSize(slot8).height and slot0.height) or "attrItem".height) + 20).height/2 + 10)
+
+		if slot0.mStarLv < slot6.starLv then
+			slot8.starSprite:setGray(true)
+		end
+
+		if slot7 and slot7 ~= "" then
+			slot0.attrListView:pushBackCustomItem(slot8)
+		end
+	end
+
+	slot0.costListView:removeAllChildren()
+
+	slot3 = #Utility.analysisStrResList(slot1[slot0.mStarLv].starLvUpUse)*100
+
+	if 1 < #Utility.analysisStrResList(slot1[slot0.mStarLv].starLvUpUse) then
+		slot3 = 180
+	end
+
+	slot0.costListView:setContentSize(cc.size(slot3, 90))
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.costListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "costLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot8.resourceId,
+					num = slot8.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+		slot9.cardNode:getAttrCtrl(Enums.CardShowAttr.eNum).label.setString(slot12, string.format("%s/%s", Utility.numberWithUnit(slot10), Utility.numberWithUnit(slot8.num)))
+		slot9.cardNode.getAttrCtrl(Enums.CardShowAttr.eNum).label:setColor((slot8.num <= Resource.getCount(slot8.resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65))
+	end
+
+	slot0.upLvBtn:setTitleText(TR("升星"))
+
+	if not slot1[slot0.mStarLv + 1] then
+		slot0.upLvBtn:setEnabled(false)
+		slot0.upLvBtn:setTitleText(TR("已满星"))
+		slot0.lvLimitLabel:setString("")
+		slot0.upLvBtn:setPosition(620, 70)
+	elseif PlayerAttrObj:getPlayerAttrByName("Lv") < slot1[slot0.mStarLv + 1].playerLv then
+		slot0.upLvBtn:setPosition(690, 59)
+		slot0.upLvBtn:setEnabled(false)
+		slot0.lvLimitLabel:setString(TR("达到%s级才能升星", slot1[slot0.mStarLv + 1].playerLv))
+	else
+		slot0.upLvBtn:setPosition(690, 70)
+		slot0.lvLimitLabel:setString("")
+		slot0.upLvBtn:setEnabled(true)
+	end
+
+	slot0.starNode:setStarLevel(slot0.mStarLv, 12)
+
+	return 
+end
+slot0.onLvUpBtn = function (slot0)
+	if not slot0.mStarLv then
+		ui.showFlashView(TR("请先激活%s", PlayerDrumModel.items[1].name))
+
+		return 
+	end
+
+	for slot5, slot6 in pairs(slot1) do
+		if not Resource.isEnough(slot6.resourceId, slot6.num) then
+			return 
+		end
+	end
+
+	if not PlayerDrumStarRelation.items[1][slot0.mStarLv + 1] then
+		ui.showFlashView(TR("已满星"))
+
+		return 
+	end
+
+	slot0.requestStarLevelUp(slot0)
+
+	return 
+end
+slot0.requestStarLevelUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "StarLevelUp",
+		moduleName = "Drum",
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			dump(slot1, "drumpData")
+
+			for slot5, slot6 in pairs(slot1) do
+				if slot6.ModelId == slot0.mDrumModelId then
+					slot6.StarLv = slot0.StarLv
+				end
+			end
+
+			PlayerAttrObj:changeAttr({
+				DrumInfo = slot1
+			})
+
+			slot0.mStarLv = slot0.StarLv
+
+			slot0:refreshStars()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mStarLv)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestActive = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetProductInfo",
+		moduleName = "Drum",
+		methodData = {},
+		successCallback = function (slot0)
+			slot1 = PlayerDrumModel.items[1].modelId
+			slot2 = nil
+
+			for slot6, slot7 in pairs(slot0) do
+				if slot7.ModelId == slot1 then
+					slot2 = slot7.ProductId
+
+					break
+				end
+			end
+
+			Utility.recharge({
+				chargeType = 3,
+				price = PlayerDrumModel.items[1].openBuyPrice,
+				productId = slot2
+			}, function ()
+				ui.showFlashView(TR("购买成功"))
+
+				ui.showFlashView.mDrumStepList[TR] = 0
+
+				for slot4, slot5 in pairs(slot0.mDrumStepList) do
+					table.insert(slot0, {
+						ModelId = slot4,
+						StarLv = slot5
+					})
+				end
+
+				dump(slot0, "TESTINFO")
+				PlayerAttrObj:changeAttr({
+					DrumInfo = slot0
+				})
+				slot0:refreshStars()
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[202004] = {
+			clickNode = slot0.upLvBtn
+		},
+		[202005] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.upLvBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

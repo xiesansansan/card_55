@@ -1,0 +1,112 @@
+slot0 = class("JzwlEmperorBornedLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled15",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_5.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "playerImage",
+						cType = "Sprite",
+						params = {
+							scale = 0.8,
+							image = "lh_12301.png",
+							pos = {
+								x = 160.28,
+								y = 224.88
+							}
+						},
+						children = {}
+					},
+					{
+						name = "des",
+						cType = "Label",
+						params = {
+							fontSize = 25,
+							imageScale = 0.6,
+							align = 1,
+							isRichText = true,
+							verticalSpace = 5,
+							pos = {
+								x = 461.96,
+								y = 180.99
+							},
+							size = {
+								width = 400,
+								height = 100
+							},
+							text = TR("恭喜玩家xxx成功占领皇城洛阳晋升皇帝！")
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onExitClick",
+							pos = {
+								x = 456.45,
+								y = 90.44
+							},
+							titleText = TR("确定")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.powerData = slot1.emperorData
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {
+		"zm_18.png",
+		"zm_19.png",
+		"zm_20.png",
+		"zm_21.png"
+	}
+
+	slot0.des:setString(TR("恭喜{%s}成功占领华山之巅\n玩家%s[%s]%s晋升盟主！", slot0.powerData.GuildName or "", "#aa33dd", slot0.powerData.Name, "#ffffff"))
+
+	return 
+end
+slot0.onExitClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

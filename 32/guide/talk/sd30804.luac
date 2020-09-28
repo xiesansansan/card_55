@@ -1,0 +1,489 @@
+return {
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jq_xiakeshilian.mp3"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqbg_sx01.jpg",
+			tag = "mhbg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.25,
+			file = "jqbg_sx01.jpg",
+			tag = "mhbg02",
+			order = 9,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.36, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_sx01.jpg",
+				"1.1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line11",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line11bg",
+				"line11zm",
+				TR("这日天近傍晚")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line12",
+				"950",
+				"600",
+				"jqdh_12.png",
+				"1.22",
+				"line12bg",
+				"line12zm",
+				TR("郭靖在习练掌法")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line13",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"1.4",
+				"line13bg",
+				"line13zm",
+				TR("黄蓉一旁捡拾松仁")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line14",
+				"850",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line14bg",
+				"line14zm",
+				TR("草丛簌簌响动")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line15",
+				"800",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line15bg",
+				"line15zm",
+				TR("窜出数条蛇来")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line11zm",
+				"line11bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line12zm",
+				"line12bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line13zm",
+				"line13bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line14zm",
+				"line14bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line15zm",
+				"line15bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg01",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"hr",
+				"hrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hr",
+				"hrname",
+				"sd3jq080401.mp3",
+				TR("啊！郭靖哥哥，有蛇！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_m",
+			params = {
+				"gj",
+				"gjname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"gj",
+				"gjname",
+				"sd3jq080402.mp3",
+				TR("蓉儿，你没事吧！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq080403.mp3",
+				TR("靖哥哥，快走，这些蛇有人养。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"btsn",
+				"btsnname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"btsn",
+				"btsnname",
+				"sd3jq080404.mp3",
+				TR("杀了我们的蛇，你们走得了？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq080405.mp3",
+				TR("你们是什么人？怎么赶了这许多毒蛇出来害人？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"btsn",
+				"btsnname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"oyk",
+				"oykname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"oyk",
+				"oykname",
+				"sd3jq080406.mp3",
+				TR("原来姑娘在这里，我可找得你好苦，下人无知，冒犯了姑娘，在下这里赔个不是。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq080407.mp3",
+				TR("是你！你是白驼山庄的人。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"oyk",
+				"oykname",
+				"sd3jq080408.mp3",
+				TR("区区在下正是白驼山少主。姑娘！自王府一别，在下对姑娘可是日思夜想。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq080409.mp3",
+				TR("我不用你讨好，更加不用你思念。")
+			}
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			speed = 1,
+			endRlease = false,
+			animation = "animation",
+			loop = true,
+			file = "effect_lihui_luwushuang",
+			tag = "btsn_lh",
+			scale = 0.84,
+			order = 40,
+			type = TalkView.DEF.FIGURE,
+			pos = cc.p(TalkView.DEF.WIDTH*1.25, -TalkView.DEF.HEIGHT*0.4),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "btsn_lh",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.4,
+							by = cc.p(-TalkView.DEF.WIDTH*0.28, 0)
+						}
+					},
+					{
+						fadein = {
+							time = 0.4
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq080410.mp3",
+				TR("【—白驼侍女—】:"),
+				TR("少主若是喜欢，不妨把她掳了过来，让姐妹们好生调教。")
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "btsn_lh",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.4,
+							by = cc.p(TalkView.DEF.WIDTH*0.28, 0)
+						}
+					},
+					{
+						fadeout = {
+							time = 0.4
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namem",
+				"gj",
+				"gjname",
+				"sd3jq080411.mp3",
+				TR("你们想做什么？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namer",
+				"oyk",
+				"oykname",
+				"sd3jq080412.mp3",
+				TR("悠悠我心，唯君之故，沉吟至今！姑娘如此佳人，在下实在喜欢……")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"oyk",
+				"oykname",
+				"sd3jq080413.mp3",
+				TR("不忍再与姑娘分离，说不得只能做些下作之事了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namem",
+				"gj",
+				"gjname",
+				"sd3jq080414.mp3",
+				TR("蓉儿不会跟你们走的，你们也别想带走蓉儿。")
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

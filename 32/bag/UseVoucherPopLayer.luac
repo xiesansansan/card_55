@@ -1,0 +1,295 @@
+slot0 = class("UseVoucherPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled5",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onUseBtn",
+					pos = {
+						x = 257.66,
+						y = 71.63
+					},
+					titleText = TR("使 用")
+				},
+				children = {}
+			},
+			{
+				name = "leftTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					pos = {
+						x = 128.83,
+						y = 234.44
+					},
+					text = TR("剩余时间：")
+				},
+				children = {}
+			},
+			{
+				name = "introLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					pos = {
+						x = 48.56,
+						y = 165.69
+					},
+					size = {
+						width = 450,
+						height = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					pos = {
+						x = 129.53,
+						y = 262.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "goodCard",
+				cType = "CardNode",
+				params = {
+					scale = 0.9,
+					allowClick = true,
+					pos = {
+						x = 75.98,
+						y = 231.98
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mInfo = slot1.info
+	slot0.mCallBack = slot1.callBack
+
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createDetailInfo = function (slot0)
+	slot1 = slot0.formatTimestamp(slot0, slot0.mConfig.UseStartTime)
+	slot2 = slot0.formatTimestamp(slot0, slot0.mConfig.UseEndTime)
+
+	slot0.introLabel:setString(GoodsVoucherModel.items[slot0.mInfo.ModelId].intro)
+
+	slot4, slot10 = Utility.getColorValue(Resource.getColorLv(slot0.mInfo.ModelId))
+
+	slot0.nameLabel:setString(string.format("%s%s", slot5, GoodsVoucherModel.items[slot0.mInfo.ModelId].name))
+	slot0.goodCard:setCardData({
+		resourceId = slot0.mInfo.ModelId
+	})
+
+	return 
+end
+slot0.formatTimestamp = function (slot0, slot1)
+	slot3 = os.date("*t", slot1)
+	slot4 = ""
+	slot5 = {}
+
+	if ({
+		hour = true,
+		month = true,
+		year = true,
+		min = true,
+		sec = true,
+		day = true
+	})["year"] == true then
+		table.insert(slot5, tostring(slot3.year))
+	end
+
+	if slot2.month == true then
+		table.insert(slot5, tostring(slot3.month))
+	end
+
+	if slot2.day == true then
+		table.insert(slot5, tostring(slot3.day))
+	end
+
+	for slot9, slot10 in ipairs(slot5) do
+		if 1 < slot9 then
+			slot4 = slot4 .. "/"
+		end
+
+		slot4 = slot4 .. slot10
+	end
+
+	if 0 < #slot5 then
+		slot4 = slot4 .. " "
+	end
+
+	slot6 = {}
+
+	if slot2.hour == true then
+		table.insert(slot6, tostring(slot3.hour))
+	end
+
+	if slot2.min == true then
+		table.insert(slot6, tostring(slot3.min))
+	end
+
+	if slot2.sec == true then
+		table.insert(slot6, tostring(slot3.sec))
+	end
+
+	for slot10, slot11 in ipairs(slot6) do
+		if 1 < slot10 then
+			slot4 = slot4 .. ":"
+		end
+
+		slot4 = slot4 .. slot11
+	end
+
+	return slot4
+end
+slot0.upDateTime = function (slot0)
+	if 0 < slot0.mEndTime - Player:getCurrentTime() then
+		slot0.leftTimeLabel:setString(TR("剩余时间：#258711%s", MqTime.completeFormat(slot1)))
+	else
+		slot0.leftTimeLabel:setString(TR("剩余时间：#ea2c000分0秒(过期)"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GoodsVoucherConfigItem",
+		moduleName = "Goods",
+		methodData = {
+			slot0.mInfo.EntityId,
+			slot0.mInfo.ModelId
+		},
+		successCallback = function (slot0)
+			slot0.mGetTime = slot0.GetTime
+			slot0.mChargeMoney = slot0.ChargeMoney
+			slot0.mConfig = slot0.GoodsVoucherConfig
+			slot0.mEndTime = slot0.mGetTime + slot0.mConfig.ValidTime*3600
+
+			slot0:createDetailInfo()
+
+			if slot0.mSchelTime then
+				slot0:stopAction(slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+
+			slot0:upDateTime()
+
+			slot0.mSchelTime = Utility.schedule(slot0, slot0.upDateTime, 1)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onUseBtn = function (slot0)
+	if slot0.mEndTime < Player:getCurrentTime() then
+		ui.showFlashView(TR("代金券已经过期"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GoodsUse",
+		moduleName = "Goods",
+		methodData = {
+			slot0.mInfo.EntityId,
+			slot0.mInfo.ModelId,
+			1
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			LayerManager.removeLayer(slot0)
+			PlayerAttrObj:checkVipLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,161 @@
+slot0 = class("FlashRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_112.png",
+			pos = {
+				x = 568,
+				y = 372.22
+			},
+			size = {
+				width = 608,
+				height = 148
+			}
+		},
+		children = {
+			{
+				name = "gridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridCellAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 130,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 2,
+						y = 8
+					},
+					size = {
+						width = 600,
+						height = 130
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mMoveTime = slot1 or {}.moveTime
+	slot0.mCallback = slot1 or {}.callback
+	slot0.mRewardList = {}
+
+	if slot1 or {}.rewardStr ~= nil then
+		slot0.mRewardList = Utility.analysisStrResList(slot1.rewardStr) or {}
+	elseif slot1.rewardList ~= nil then
+		slot0.mRewardList = slot1.rewardList
+	elseif slot1.BaseGetGameResourceList ~= nil then
+		for slot5, slot6 in pairs(slot1.BaseGetGameResourceList) do
+			for slot10, slot11 in pairs(slot6) do
+				for slot15, slot16 in pairs(slot11) do
+					table.insert(slot0.mRewardList, slot16)
+				end
+			end
+		end
+	end
+
+	if PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") then
+		slot2 = PlayerAttrObj:getPlayerAttrByName("WorldLvAddR")
+		slot3 = {}
+
+		for slot7, slot8 in ipairs(slot0.mRewardList) do
+			if slot8.ResourceId == ResourceTypeSub.eExp and slot2 and 0 < slot2 then
+				slot3.Num = math.floor(slot8.Num*slot2)
+				slot3.ResourceId = ResourceTypeSub.eExp
+
+				break
+			end
+		end
+
+		if next(slot3) then
+			table.insert(slot0.mRewardList, slot3)
+		end
+	end
+
+	slot0.rewardCount = #slot0.mRewardList
+	slot2 = 600
+
+	if slot0.rewardCount < 5 then
+		slot2 = slot0.rewardCount*120
+	end
+
+	slot0.gridSize = cc.size(slot2, math.ceil(slot0.rewardCount/5)*130)
+	slot0.backSize = cc.size(640, slot0.gridSize.height + 20)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mBgSprite" then
+			slot1.size = slot0.backSize
+		end
+
+		if slot0.cType == "GridView" then
+			slot1.itemNum = slot0.rewardCount
+			slot1.colCount = (slot0.rewardCount < 5 and slot0.rewardCount) or 5
+			slot1.size = slot0.gridSize
+			slot1.pos = cc.p((slot0.backSize.width - slot0.gridSize.width)/2, 10)
+		end
+
+		return 
+	end)
+	slot0.gridView:setItemNum(slot0.rewardCount)
+	slot0.mBgSprite:runAction(cc.Sequence:create({
+		cc.ScaleTo:create(0.1, display.minScale*1.5),
+		cc.ScaleTo:create(0.1, display.minScale*1),
+		cc.MoveBy:create(slot0.mMoveTime or 1.3, cc.p(0, 50)),
+		cc.CallFunc:create(function ()
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			if not tolua.isnull(tolua.isnull) then
+				slot0:removeFromParent()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.onGridCellAction = function (slot0, slot1, slot2, slot3)
+	slot4 = slot1.getContentSize(slot1)
+
+	if slot0.mRewardList[slot2] == nil then
+		return 
+	end
+
+	UIWrap.newControl("CardNode", {
+		allowClick = false,
+		pos = cc.p(slot4.width/2, slot4.height/2 + 12)
+	}):setCardData({
+		modelId = slot5.resourceId or slot5.ResourceId,
+		num = slot5.num or slot5.Num
+	}, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eNum
+	})
+	slot1.addChild(slot1, slot6)
+	slot6.getAttrCtrl(slot6, Enums.CardShowAttr.eName).label:setColor(Utility.getColorValue(Resource.getColorLv(slot5.resourceId or slot5.ResourceId), true))
+
+	return 
+end
+
+return slot0

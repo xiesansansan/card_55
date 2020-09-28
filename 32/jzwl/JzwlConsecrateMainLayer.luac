@@ -1,0 +1,1077 @@
+slot0 = class("JzwlConsecrateMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBg",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkzw_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mLeftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled63",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tzsj_4.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					capInsets = {
+						x = 20,
+						height = 1,
+						width = 1,
+						y = 40
+					},
+					pos = {
+						x = 0,
+						y = -280
+					},
+					size = {
+						width = 300,
+						height = 538
+					}
+				},
+				children = {
+					{
+						name = "curResLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							pos = {
+								x = 112.24,
+								y = 441.91
+							},
+							text = TR("当前饷银：500")
+						},
+						children = {}
+					},
+					{
+						name = "consecrateList",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 4.04,
+								y = 32.09
+							},
+							size = {
+								width = 240,
+								height = 340
+							}
+						},
+						children = {
+							{
+								name = "consecrateLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled30-text",
+										name = "introStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = -4.88,
+										y = 204.65
+									},
+									size = {
+										width = 220,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "untitled30",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											childName = "introStr",
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 5,
+												y = 20
+											},
+											size = {
+												width = 210,
+												height = 0
+											},
+											text = TR("息供奉信")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled64",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_118.png",
+							pos = {
+								x = 93,
+								y = 396.15
+							},
+							size = {
+								width = 300,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled65",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									color = {
+										g = 222,
+										r = 245,
+										b = 179
+									},
+									pos = {
+										x = 170.96,
+										y = 25
+									},
+									text = TR("供奉记录")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled66",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							pos = {
+								x = 117.95,
+								y = 509.91
+							},
+							text = TR("供奉结束倒计时")
+						},
+						children = {}
+					},
+					{
+						name = "mNextTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "00:00:00",
+							pos = {
+								x = 117.95,
+								y = 475.22
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mMidNode1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled74",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -320
+					}
+				},
+				children = {
+					{
+						name = "notig",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_8.png",
+							hide = true,
+							pos = {
+								x = 22.97,
+								y = 263.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							zOrder = 9,
+							image = "jzwl_6.png",
+							pos = {
+								x = 0,
+								y = 555.55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onConsecrateBtnAction",
+							pos = {
+								x = 164.83,
+								y = 58.96
+							},
+							titleText = TR("供奉盟主")
+						},
+						children = {
+							{
+								name = "untitled61",
+								cType = "RedDot",
+								params = {
+									subKey = "CanFreeGongFeng",
+									moduleId = 11906
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled26",
+						cType = "Button",
+						params = {
+							clickAction = "onRewardBtnAction",
+							image = "c_39.png",
+							pos = {
+								x = -123.18,
+								y = 58.96
+							},
+							size = {
+								width = 105,
+								height = 46
+							},
+							titleText = TR("赏 赐")
+						},
+						children = {
+							{
+								name = "mTimeLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Label",
+									hide = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0.93,
+										y = -38.44
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled59",
+								cType = "RedDot",
+								params = {
+									subKey = "CanDrawBoxReward",
+									moduleId = 11906
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "RedDot",
+								params = {
+									subKey = "CanOpenGongFengReward",
+									moduleId = 11906
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "winerNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "heroNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "playerName-text",
+										name = "playerName",
+										type = "string"
+									},
+									{
+										value = "headImg-image",
+										name = "heroImage",
+										type = "string"
+									},
+									{
+										value = "untitled70-text",
+										name = "guildName",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "headImg",
+										cType = "Sprite",
+										params = {
+											scale = 0.68,
+											image = "lh_12104.png",
+											pos = {
+												x = 0,
+												y = 296.13
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled69",
+										cType = "Sprite",
+										params = {
+											image = "jzwl_18.png",
+											pos = {
+												x = 191.4,
+												y = 338.14
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerName",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 198.18,
+												y = 237.4
+											},
+											size = {
+												width = 22,
+												height = 0
+											},
+											text = TR("玩家名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled70",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 166.87,
+												y = 362.74
+											},
+											size = {
+												width = 24,
+												height = 0
+											},
+											text = TR("帮派名字长升帮")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 27.17
+							},
+							text = TR("积累足够饷银后，盟主将向各位纳贡的大侠发放物资赏赐")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled71",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled31",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseBtnAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled72",
+		cType = "Button",
+		params = {
+			clickAction = "onClickRankBtn",
+			scaleApt = 2,
+			posApt = 1,
+			image = "tb_sy_gn_9.png",
+			pos = {
+				x = 1052.06,
+				y = 531.94
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled62",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "jzwl_0.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 120,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled57",
+		cType = "Button",
+		params = {
+			clickAction = "onRuleBtnClickAction",
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_3.png",
+			pos = {
+				x = 319.92,
+				y = 615
+			}
+		},
+		children = {}
+	},
+	{
+		name = "titleBtn",
+		cType = "Button",
+		params = {
+			image = "tb_gn_261.png",
+			scaleApt = 2,
+			hide = true,
+			posApt = 1,
+			clickAction = "onTitle",
+			pos = {
+				x = 939.72,
+				y = 531.92
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled73",
+		cType = "Button",
+		params = {
+			clickAction = "onSetOfficialPosition",
+			scaleApt = 2,
+			posApt = 1,
+			image = "tb_gn_266.png",
+			pos = {
+				x = 1052.06,
+				y = 431.21
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mRightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPageCount = 1
+	slot0.mRequesting = false
+	slot0.mIsMaxMsg = false
+	slot0.dayShowNum = Player:getCurrentTime()
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGongFengInfo(slot0)
+
+	return 
+end
+slot0.createSpareData_1 = function (slot0)
+	return {
+		winnerInfo = {
+			FashionLevel = 0,
+			HeadImageId = 12011101,
+			Name = TR("赵日天大魔王"),
+			GuildName = TR("双流长生帮")
+		},
+		isWinner = true
+	}
+end
+slot0.createSpareData_2 = function (slot0)
+	slot0.mFundNum = 1200
+	slot0.mEndTime = Player:getCurrentTime() + 3000
+	slot0.mNextTime = Player:getCurrentTime() + 13000
+	slot0.mCanOpenGongFengReward = "1111,0,200"
+	slot0.mGongFengRecord = {
+		{
+			VisitId = 2,
+			CrDate = Player:getCurrentTime() - 1000,
+			PlayerInfo = {
+				FashionLevel = 0,
+				Name = TR("供奉者1")
+			}
+		},
+		{
+			VisitId = 1,
+			CrDate = Player:getCurrentTime() - 1000,
+			PlayerInfo = {
+				FashionLevel = 3,
+				Name = TR("供奉者2")
+			}
+		}
+	}
+	slot0.mMyRecord = {}
+	slot0.mGongFengRecordCount = 10
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if not Utility.moduleIsOpen(ModuleSub.eTitle, false) then
+		slot0.titleBtn:setClickAction(function ()
+			slot0 = Utility.moduleIsOpen(ModuleSub.eTitle, true) or slot0
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.notig:setVisible(false)
+
+	if not slot0.mWinnerInfo.HeadImageId or slot0.mWinnerInfo.HeadImageId == 0 then
+		slot0.notig:setVisible(true)
+	end
+
+	slot0.winerNode:removeAllChildren()
+
+	if slot0.mWinnerInfo.HeadImageId and slot0.mWinnerInfo.HeadImageId ~= 0 then
+		slot3 = slot0.createLayoutTemplateNode(slot0, "heroNode", {
+			heroImage = (FashionModel.items[(slot0.mWinnerInfo.FashionId and 0 < slot1 and slot1) or 19010000] and FashionModel.items[(slot0.mWinnerInfo.FashionId and 0 < slot1 and slot1) or 19010000].pic .. ".png") or "zjlh_01.png",
+			playerName = TR("%s", slot0.mWinnerInfo.Name),
+			guildName = TR("%s", slot0.mWinnerInfo.GuildName)
+		})
+
+		if slot0.mWinnerInfo.FashionLevel then
+			slot3.playerName:setColor(Utility.getPlayerNameColor(slot0.mWinnerInfo.FashionLevel, nil, true))
+		end
+
+		ui.createLabelClipRoll({
+			vertical = true,
+			label = slot3.playerName,
+			dimensions = cc.size(22, 110),
+			anchorPoint = cc.p(0, 0)
+		})
+		slot0.winerNode:addChild(slot3)
+	end
+
+	slot0.consecrateList:addScrollViewEventListener(function (slot0, slot1)
+		if slot1 == ccui.ScrollviewEventType.scrollToBottom then
+			if slot0.mIsMaxMsg then
+				return 
+			end
+
+			if 0 < slot0.mPageCount and not slot0.mRequesting then
+				slot0:requestPageInfo()
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onClickRankBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.DlgJzwlRankLayer"
+	})
+
+	return 
+end
+slot0.onSetOfficialPosition = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlOfficialPositionLayer",
+		data = {
+			isWinner = slot0.mIsWinner,
+			winnerInfo = slot0.mWinnerInfo
+		}
+	})
+
+	return 
+end
+slot0.onConsecrateBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlConsecrateDlgLayer",
+		data = {
+			isWinner = slot0.mIsWinner,
+			myRecord = slot0.mMyRecord,
+			callBack = function (slot0)
+				slot0.mCanOpenGongFengReward = slot0.CanOpenGongFengReward
+				slot0.mFundNum = slot0.VisitBoxInfo.VisitInfo.VisitNum
+				slot0.mEndTime = slot0.VisitBoxInfo.VisitInfo.VisitBoxEndDate
+				slot0.mGongFengRecord = slot0.VisitBoxInfo.GongFengRecord
+				slot0.mMyRecord = slot0.GongFengRecord
+				slot0.mNextTime = slot0.NextOpenTime
+				slot0.mPageCount = 1
+
+				slot0:refreshDataView()
+
+				if slot0.mMaxPageNum <= slot0.mPageCount then
+					slot0.mIsMaxMsg = true
+				end
+
+				slot0.mPageCount = slot0.mPageCount + 1
+
+				slot0:handleData(slot0.mGongFengRecord, true)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRewardBtnAction = function (slot0, slot1)
+	if slot0.mIsWinner then
+		if not slot0.mCanOpenGongFengReward then
+			ui.showFlashView(TR("赏赐还在进行中"))
+
+			return 
+		end
+
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "jzwl.JzwlBossRewardDlgLayer",
+			data = {
+				fundNum = slot0.mFundNum,
+				callBack = function (slot0)
+					slot0.mCanOpenGongFengReward = slot0.CanOpenGongFengReward
+					slot0.mFundNum = slot0.VisitBoxInfo.VisitInfo.VisitNum
+					slot0.mEndTime = slot0.VisitBoxInfo.VisitInfo.VisitBoxEndDate
+					slot0.mGongFengRecord = slot0.VisitBoxInfo.GongFengRecord
+					slot0.mMyRecord = slot0.GongFengRecord
+					slot0.mNextTime = slot0.NextOpenTime
+					slot0.mWinnerInfo = {}
+
+					if 0 < #slot0.WinnerHistoryInfo then
+						slot0.mWinnerInfo = slot0.WinnerHistoryInfo[#slot0.WinnerHistoryInfo].PlayerInfo
+					end
+
+					slot0.mIsWinner = slot0.IsLeaguetopLeader
+
+					slot0:refreshDataView()
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	elseif slot0.mTimeLabel:isVisible() == true then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "jzwl.JzwlRewardDlgLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		ui.showFlashView(TR("武林盟主开启赏赐后可领取"))
+	end
+
+	return 
+end
+slot1 = {
+	[1.0] = "#FFFFFF",
+	[2.0] = "#F5DEB3"
+}
+slot0.handleData = function (slot0, slot1, slot2)
+	slot3 = os.date("*t", Player:getCurrentTime() or 0)
+	slot4 = {}
+
+	for slot8, slot9 in ipairs(slot1) do
+		if not MqTime.isSameDay(slot0.dayShowNum, slot9.CrDate) then
+			table.insert(slot4, TR("-----%s月%s日-----", os.date("*t", slot9.CrDate or 0).month, os.date("*t", slot9.CrDate or 0).day))
+		end
+
+		slot11 = Utility.getPlayerNameColor(slot9.PlayerInfo.FashionLevel, true)
+		slot13 = Utility.getPlayerNameColor(slot0.mWinnerInfo.FashionLevel, true)
+
+		table.insert(slot4, TR("%s%s#FFFFFF向盟主%s%s#FFFFFF献上%s%s#FFFFFF!", "#CB7D45", slot10, "#CB7D45", slot0.mWinnerInfo.Name, slot0[slot9.VisitId], LeaguetopfinalVisitRewardRelation.items[slot9.VisitId].name))
+
+		slot0.dayShowNum = slot9.CrDate
+	end
+
+	slot0.refreshShowList(slot0, slot4, slot2)
+
+	return 
+end
+slot0.refreshShowList = function (slot0, slot1, slot2)
+	if slot2 then
+		slot0.consecrateList:removeAllChildren()
+	end
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "consecrateLayout", {
+			introStr = slot7
+		})
+
+		slot8.setContentSize(slot8, cc.size(210, slot8.introStr:getContentSize().height + 20))
+		slot8.introStr:setPositionY(slot8.introStr.getContentSize().height + 10)
+
+		if slot6%2 == 1 then
+			slot10 = UIWrap.newControl("Scale9Sprite", {
+				image = "tzsj_6.png",
+				size = cc.size(240, slot9.height + 20)
+			})
+
+			slot10.setAnchorPoint(slot10, cc.p(0.5, 1))
+			slot10.setPosition(slot10, 110, slot9.height + 20)
+			slot8.addChild(slot8, slot10, -1)
+		end
+
+		slot0.consecrateList:pushBackCustomItem(slot8)
+	end
+
+	ui.setListviewItemShow(slot0.consecrateList, #slot0.consecrateList:getItems() - #slot1)
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onTitle = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.TitleInfoLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleBtnClickAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、开服七天后的周五将开启决战武林，其后每周5将会开启一次；"),
+			TR("2、活动开启将选取本服前四名的帮派与其他服帮派根据胜率匹配成玩法战场，战场内会有4个帮派参加；"),
+			TR("3、活动将在周5的19:00开启，活动持续1小时，20:00结束；"),
+			TR("4、玩法开始时，四个帮派设定了300名城防守卫，最终的胜利条件会根据城防守卫剩余数量进行判断；"),
+			TR("5、如若活动期间城防守卫为0，则纳入被击败状态，被淘汰出局；"),
+			TR("6、满足参与条件的玩家，可以雇佣死侍帮助战斗；"),
+			TR("7、死侍的使用和派遣侠客队伍相同，与之遭遇的队伍将与之同归于尽；"),
+			TR("8、玩法设置了战意值，战意值会影响对应帮派出战的队伍造成的伤害；"),
+			TR("9、战意值初始设定为50%，提高战意值将提高所在帮派伤害，反之降低；"),
+			TR("10、不满足参与决战武林的帮派玩家无法参与决战武林玩法；"),
+			TR("11、城战战斗将设置3条进攻或者防守路线，玩家需要选择对应的进攻或者防守路线，"),
+			TR("12、线路相同的玩家队伍遭遇才发发生战斗；"),
+			TR("13、队伍战败后需要等待对应时间的复活时间；"),
+			TR("14、玩家也可以消耗九花玉露丸复活战败的侠客队伍；"),
+			TR("15、侠客训练到绿色品质以上才可上阵。")
+		}
+	})
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	slot0.mTimeLabel:setVisible(true)
+
+	if 0 < slot0.mEndTime - Player:getCurrentTime() then
+		slot0.mTimeLabel:setString(TR("赏赐结算倒计时:") .. MqTime.completeFormat(slot1))
+	else
+		slot0.mTimeLabel:setVisible(false)
+		slot0.mTimeLabel:setString(TR("赏赐结算倒计时:00时00分00秒"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+	end
+
+	return 
+end
+slot0.upDateTime_Next = function (slot0)
+	slot0.mNextTimeLabel:setVisible(true)
+
+	if 0 < slot0.mNextTime - Player:getCurrentTime() then
+		slot0.mNextTimeLabel:setString(MqTime.completeFormat(slot1))
+	else
+		slot0.mNextTimeLabel:setVisible(false)
+		slot0.mNextTimeLabel:setString(TR("00时00分00秒"))
+
+		if slot0.mSchelTime_Next then
+			slot0.stopAction(slot0, slot0.mSchelTime_Next)
+
+			slot0.mSchelTime_Next = nil
+		end
+	end
+
+	return 
+end
+slot0.refreshDataView = function (slot0)
+	slot0.curResLabel:setString(TR("当前饷银：{jzwl_33.png}%s/%s", slot0.mFundNum, LeaguetopfinalConfig.items[1].oddrewardNeedVisitCoin))
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, slot0.upDateTime, 1)
+
+	if slot0.mSchelTime_Next then
+		slot0.stopAction(slot0, slot0.mSchelTime_Next)
+
+		slot0.mSchelTime_Next = nil
+	end
+
+	slot0.upDateTime_Next(slot0)
+
+	slot0.mSchelTime_Next = Utility.schedule(slot0, slot0.upDateTime_Next, 1)
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.requestGongFengInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GongFengInfo",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			1,
+			20
+		},
+		successCallback = function (slot0)
+			dump(slot0, "MMMMM1")
+
+			slot0.mFundNum = slot0.VisitBoxInfo.VisitInfo.VisitNum
+			slot0.mEndTime = slot0.VisitBoxInfo.VisitInfo.VisitBoxEndDate
+			slot0.mCanOpenGongFengReward = slot0.CanOpenGongFengReward
+			slot0.mGongFengRecord = slot0.VisitBoxInfo.GongFengRecord
+			slot0.mMyRecord = slot0.GongFengRecord
+			slot0.mGongFengRecordCount = slot0.VisitBoxInfo.GongFengRecordCount
+			slot0.mNextTime = slot0.NextOpenTime
+			slot0.mWinnerInfo = {}
+
+			if 0 < #slot0.WinnerHistoryInfo then
+				slot0.mWinnerInfo = slot0.WinnerHistoryInfo[#slot0.WinnerHistoryInfo].PlayerInfo
+			end
+
+			dump(slot0.mWinnerInfo)
+
+			slot0.mIsWinner = slot0.IsLeaguetopLeader
+			slot0.mMaxPageNum = math.ceil(slot0.mGongFengRecordCount/20)
+
+			if slot0.mMaxPageNum <= slot0.mPageCount then
+				slot0.mIsMaxMsg = true
+			end
+
+			slot0.mPageCount = slot0.mPageCount + 1
+
+			slot0:handleData(slot0.mGongFengRecord)
+			slot0:refreshDataView()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPageInfo = function (slot0)
+	slot0.mRequesting = true
+
+	slot0.socketRequest(slot0, {
+		methodName = "GongFengInfo",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot0.mPageCount,
+			20
+		},
+		successCallback = function (slot0)
+			dump(slot0, "MMMMM2")
+
+			slot0.mFundNum = slot0.VisitBoxInfo.VisitInfo.VisitNum
+			slot0.mEndTime = slot0.VisitBoxInfo.VisitInfo.VisitBoxEndDate
+			slot0.mCanOpenGongFengReward = slot0.CanOpenGongFengReward
+			slot0.mGongFengRecord = slot0.VisitBoxInfo.GongFengRecord
+			slot0.mMyRecord = slot0.GongFengRecord
+			slot0.mGongFengRecordCount = slot0.VisitBoxInfo.GongFengRecordCount
+			slot0.mNextTime = slot0.NextOpenTime
+			slot0.mWinnerInfo = {}
+
+			if 0 < #slot0.WinnerHistoryInfo then
+				slot0.mWinnerInfo = slot0.WinnerHistoryInfo[#slot0.WinnerHistoryInfo].PlayerInfo
+			end
+
+			slot0.mIsWinner = slot0.IsLeaguetopLeader
+
+			if slot0.mMaxPageNum <= slot0.mPageCount then
+				slot0.mIsMaxMsg = true
+			end
+
+			slot0.mPageCount = slot0.mPageCount + 1
+
+			slot0:handleData(slot0.mGongFengRecord)
+
+			slot0.mRequesting = false
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

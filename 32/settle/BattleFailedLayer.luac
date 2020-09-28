@@ -1,0 +1,890 @@
+slot0 = class("BattleFailedLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled16",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_67.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled25",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "loseEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_zhandoushibai",
+					complete = "onLoseEffectComplete",
+					pos = {
+						x = -40,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_50.png",
+					clickAction = "cbClickBattleDataBtn",
+					pos = {
+						x = 383.47,
+						y = 160.96
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -270,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "mHeroSprite",
+						cType = "Sprite",
+						params = {
+							image = "lh_11401.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mContinueSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 0,
+						y = -270
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTips",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 195,
+						y = 65
+					},
+					text = TR("可通过以下方式提升战力")
+				},
+				children = {}
+			},
+			{
+				name = "mIncreaseWayBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 195,
+						y = -47.48
+					},
+					size = {
+						width = 420,
+						height = 140
+					}
+				},
+				children = {
+					{
+						name = "mIncreaseWayListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 10,
+								y = 10
+							},
+							size = {
+								width = 400,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "mIncreaseWayLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled29-image",
+										name = "iconImg",
+										type = "string"
+									},
+									{
+										value = "untitled29-tag",
+										name = "tag",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 100,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled29",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "tb_gn_236.png",
+											clickAction = "cbClickGoToBtn",
+											pos = {
+												x = 50,
+												y = 69
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mHegemonyNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 196.84,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled50",
+						cType = "Sprite",
+						params = {
+							image = "wsjj_32.png",
+							childName = "duanSprite",
+							pos = {
+								x = 0,
+								y = 50
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled51",
+						cType = "Label",
+						params = {
+							childName = "scoreLabel",
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 20,
+								y = -70
+							},
+							text = TR("当前积分：1000")
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Label",
+						params = {
+							childName = "offsetLabel",
+							emptyInit = true,
+							anchor = {
+								x = 1,
+								y = 0
+							},
+							pos = {
+								x = -20,
+								y = -70
+							},
+							text = TR("胜利积分+100")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mHeroHpNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 195,
+						y = -50
+					}
+				},
+				children = {
+					{
+						name = "HeroHpTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled43",
+								cType = "Scale9Sprite",
+								params = {
+									image = "xkxx_96.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled44",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									childName = "cardNode",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "Sprite",
+								params = {
+									childName = "deadSprite",
+									image = "fb_23.png",
+									hide = true,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Scale9Sprite",
+								params = {
+									image = "gcz_26.png",
+									pos = {
+										x = 10,
+										y = -50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled47",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									childName = "nameLabel",
+									text = "Name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -24,
+										y = -50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled48",
+								cType = "Sprite",
+								params = {
+									childName = "professionSprite",
+									scale = 0.75,
+									image = "zj_72.png",
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									pos = {
+										x = -26.41,
+										y = -50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mOtherNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 195,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+IncreaseWayCfg = {
+	{
+		iconImg = "tb_gn_236.png",
+		tag = 1,
+		nameStr = TR("升级")
+	},
+	{
+		iconImg = "tb_gn_237.png",
+		tag = 2,
+		nameStr = TR("进阶")
+	},
+	{
+		iconImg = "tb_gn_238.png",
+		tag = 3,
+		nameStr = TR("升星")
+	},
+	{
+		iconImg = "tb_gn_239.png",
+		tag = 4,
+		nameStr = TR("技能")
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mBattleType = slot1.battleType
+	slot0.mCallback = slot1.callback
+	slot0.mBattleData = slot1.battleData or {}
+	slot0.mStatData = slot1.battleData.statData or {}
+	slot0.mResponse = slot1.rewardList
+	slot2 = true
+
+	if slot0.mBattleType == FightType.eExpedition then
+		slot2 = false
+	end
+
+	slot3 = false
+
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			if slot0 then
+				LayerManager.removeLayer(slot1)
+
+				if slot1.mCallback and slot2 == false then
+					slot2()
+
+					slot2 = true
+				end
+			end
+
+			return 
+		end
+	})
+
+	slot0.mFormation = {}
+	slot0.mInfo = {}
+	slot0.mHeroInfos = {
+		[12011101.0] = 1
+	}
+
+	slot0.initUI(slot0)
+
+	if LocalData:getGameDataValue("ShowMissionCompleteLayer") and slot4.isShow then
+		Utility.performWithDelay(slot0, function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.MissionCompleteLayer",
+				data = {
+					missionInfo = slot0.info
+				},
+				zOrder = Enums.ZOrderType.eAnnounce
+			})
+
+			return 
+		end, 0.05)
+	end
+
+	slot0.setHero(slot0)
+	slot0.setAutoFightRestoreData(slot0)
+
+	if LocalData:getMusicEnabled() then
+		MqAudio.pauseMusic()
+	end
+
+	slot0.soundID = MqAudio.playEffect("zhandoushibai.mp3")
+
+	if slot0.mBattleType == FightType.eTeamCopy and TeamCopyHelper.IsAutoReady and not TeamCopyHelper:selfIsLeader() then
+		Utility.performWithDelay(slot0.mContinueSprite, function ()
+			LayerManager.removeLayer(slot0.mCallback)
+
+			if slot0.mCallback then
+				slot0()
+			end
+
+			return 
+		end, 3)
+	end
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if LocalData:getMusicEnabled() then
+		if slot0.soundID then
+			MqAudio.stopEffect(slot0.soundID)
+
+			slot0.soundID = nil
+		end
+
+		MqAudio.resumeMusic()
+	end
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mStatData.team) do
+		if slot6.isHero then
+			slot1[slot6.ModelId] = true
+		end
+	end
+
+	for slot5, slot6 in pairs(slot1) do
+		table.insert(slot0.mFormation, slot5)
+	end
+
+	slot2 = {}
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot0.mFormation) do
+		if next(HeroObj:getItem(slot8)) then
+			slot2[slot8] = slot9
+			slot3 = slot3 + 1
+		end
+	end
+
+	slot0.mHeroInfos = slot2
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.initIncreaseWayList(slot0)
+	slot0.setStage(slot0)
+
+	if slot0.mBattleType == FightType.eExpedition then
+		slot0.refreshExpedition(slot0)
+	end
+
+	return 
+end
+slot0.onEnter = function (slot0)
+	slot0.mHeroNode:setPosition(slot2)
+	slot0.mHeroNode:runAction(cc.Sequence:create(slot3))
+
+	for slot8, slot9 in ipairs(slot4) do
+		if not slot9.startPos then
+			slot9.startPos = cc.p(2000, slot9.targetPos.y)
+		end
+
+		slot9.node:setPosition(slot9.startPos)
+	end
+
+	slot5 = 1
+	slot6 = nil
+	slot6 = Utility.schedule(slot0, function ()
+		if not slot0[slot1] then
+			slot2:stopAction(slot3)
+
+			return 
+		end
+
+		slot0.node:runAction(cc.Sequence:create({
+			cc.Place:create(slot0.startPos),
+			cc.MoveTo:create(0.3, slot0.targetPos),
+			cc.CallFunc:create(function ()
+				return 
+			end)
+		}))
+
+		slot1 = slot1 + 1
+
+		return 
+	end, 0.1)
+
+	ui.fadeInAndOut(slot0.mContinueSprite)
+
+	return 
+end
+slot0.initIncreaseWayList = function (slot0)
+	slot0.mIncreaseWayListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(IncreaseWayCfg) do
+		slot0.mIncreaseWayListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mIncreaseWayLayout", slot5))
+	end
+
+	return 
+end
+slot0.setStage = function (slot0)
+	if slot0.mResponse and slot0.mResponse.newHegemony and slot0.mResponse.oldHegemony then
+		slot0.mTips:setVisible(false)
+		slot0.mTips:setVisible(false)
+		slot0.mIncreaseWayBg:setVisible(false)
+		slot0.mHegemonyNode:setVisible(true)
+		slot0.mHegemonyNode.duanSprite:setTexture(HegemonyRankDuanConfig.items[slot0.mResponse.oldHegemony.Step].duanBigPic .. ".png")
+		slot0.mHegemonyNode.scoreLabel:setString(string.format((HegemonyRankDuanConfig.items[slot0.mResponse.newHegemony.Step + 1] and TR("当前积分：") .. "%s/" .. slot1.needRating) or TR("当前积分：") .. "%s", slot0.mResponse.newHegemony.Score))
+		slot0.mHegemonyNode.offsetLabel:setString(TR("失败积分%s", (slot0.mResponse.newHegemony.Score - slot0.mResponse.oldHegemony.Score <= 0 and "-" .. math.abs(slot3)) or "+" .. math.abs(slot3)))
+
+		slot4 = 1
+
+		if 0 < math.abs(slot3) then
+			slot7 = slot0.mResponse.oldHegemony.Score
+			slot8 = 0
+
+			slot0.mHegemonyNode.scoreLabel:setString(string.format(slot2, slot0.mResponse.oldHegemony.Score))
+			Utility.performWithDelay(slot0.mHegemonyNode.scoreLabel, function ()
+				slot0.mHegemonyNode.scoreLabel:onUpdate(function (slot0)
+					if slot0 + slot0 <=  or slot2 <= slot3.mResponse.newHegemony.Score then
+						slot3.mHegemonyNode.scoreLabel:onUpdate(function (slot0)
+							return 
+						end)
+						slot3.mHegemonyNode.scoreLabel:setString(string.format(slot4, slot3.mResponse.newHegemony.Score))
+					else
+						slot2 = slot2 - 1
+
+						slot3.mHegemonyNode.scoreLabel:setString(string.format(slot4, slot3.mHegemonyNode.scoreLabel))
+					end
+
+					return 
+				end)
+
+				return 
+			end, slot4)
+
+			slot9 = math.min(math.abs(slot0.mResponse.newHegemony.Score - slot0.mResponse.oldHegemony.Score)*0.016666666666666666, 0.5)
+			slot4 = slot4 + 0.5
+		end
+
+		if slot0.mResponse.oldHegemony.Step ~= slot0.mResponse.newHegemony.Step then
+			slot0.mHegemonyNode.duanSprite:setTexture(HegemonyRankDuanConfig.items[slot0.mResponse.oldHegemony.Step].duanBigPic .. ".png")
+			Utility.performWithDelay(slot0.mHegemonyNode.duanSprite, function ()
+				slot0.mHegemonyNode.duanSprite:runAction(cc.Sequence:create({
+					cc.FadeOut:create(0.5),
+					cc.CallFunc:create(function (slot0)
+						slot0.setTexture(slot0, HegemonyRankDuanConfig.items[slot0.mResponse.newHegemony.Step].duanBigPic .. ".png")
+
+						return 
+					end),
+					cc.FadeIn:create(0.1),
+					cc.ScaleTo:create(0.5, 1.5),
+					cc.ScaleTo:create(0.1, 1)
+				}))
+
+				return 
+			end, 1)
+		end
+	end
+
+	return 
+end
+slot0.getMVP = function (slot0)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, {
+			num = slot7.damage,
+			ModelId = slot7.ModelId,
+			Star = slot7.Star,
+			StepLv = slot7.StepLv,
+			isHero = slot7.isHero,
+			Lv = slot7.Lv,
+			TrainLv = slot7.TrainLv
+		})
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot1.num < slot0.num
+	end)
+
+	return slot2[1].ModelId
+end
+slot0.setHero = function (slot0)
+	if not slot0.mStatData or not slot0.mStatData.team then
+		return 
+	end
+
+	slot5 = nil
+
+	if ((not (math.floor(Resource.getSubType(slot1)/100) == ResourceType.eHero) or ((HeroModel.items[slot1].drawingPicB == "" or slot6.drawingPicB) and slot6.drawingPicA)) and (FashionModel.items[slot1].skillEffect == "" or slot6.skillEffect) and slot6.pic) ~= "" and cc.FileUtils:getInstance():isFileExist(slot5 .. ".skel") then
+		if slot0.mHeroEffect then
+			slot0.mHeroEffect:removeFromParent()
+		end
+
+		slot0.mHeroSprite:setVisible(false)
+
+		slot0.mHeroEffect = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scaleX = 0.62,
+			scale = 0.62,
+			dataFile = slot5
+		})
+
+		slot0.mHeroEffect:setPosition(cc.p(-10, -320))
+		slot0.mHeroNode:addChild(slot0.mHeroEffect)
+	else
+		slot0.mHeroSprite:setVisible(true)
+
+		if model then
+			slot0.mHeroSprite:setTexture(slot5 .. ".png")
+		end
+	end
+
+	return 
+end
+slot0.setHeroListHp = function (slot0)
+	slot0.mHeroHpNode:removeAllChildren()
+
+	if not slot0.mStatData or not slot0.mStatData.team then
+		return 
+	end
+
+	slot1 = {
+		Enums.CardShowAttr.eLevel,
+		Enums.CardShowAttr.eTrainLv,
+		Enums.CardShowAttr.eStar
+	}
+
+	if slot0.mBattleType == FightType.eExpedition then
+		table.insert(slot1, Enums.CardShowAttr.eProgress)
+	end
+
+	for slot6 = #clone(slot0.mStatData.team), 1, -1 do
+		if not HeroModel.items[slot2[slot6].ModelId] then
+			table.remove(slot2, slot6)
+		end
+	end
+
+	slot3 = Utility.getExtendPos({
+		offset = 100,
+		num = #slot2
+	})
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "HeroHpTempNode")
+
+		slot0.mHeroHpNode:addChild(slot9)
+		slot9.setPosition(slot9, slot3[slot7])
+
+		slot10, slot11, slot12 = slot0.getHeroRemainHp(slot0, slot8.ModelId)
+
+		if table.indexof(slot1, Enums.CardShowAttr.eProgress) then
+			slot8.Hp = slot10
+		end
+
+		slot8.Quality = HeroObj:getItem(slot8.ModelId).Quality
+
+		slot9.cardNode:setCardData(nil, slot1, slot8)
+		slot9.deadSprite:setVisible(slot10 <= 0)
+		slot9.nameLabel:setString(Resource.getName(slot8.ModelId))
+
+		slot13, slot17 = Utility.getHeroCampProfessionImg(slot8.ModelId, false)
+
+		slot9.professionSprite:setTexture(slot9.deadSprite)
+
+		if table.indexof(slot1, Enums.CardShowAttr.eProgress) then
+			slot9.cardNode:setHpProgressValue(slot10, slot11)
+			slot9.cardNode:setRpProgressValue(slot12)
+		end
+	end
+
+	return 
+end
+slot0.getHeroRemainHp = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+	slot4 = 0
+
+	if slot0.mBattleType == FightType.eExpedition then
+		for slot9, slot10 in pairs(slot5) do
+			if slot10.ModelId == slot1 then
+				slot4 = slot10.Ang
+				slot3 = slot10.TotalHP
+				slot2 = slot10.Hp
+			end
+		end
+	end
+
+	return slot2, slot3, slot4
+end
+slot0.refreshExpedition = function (slot0)
+	slot0.setHeroListHp(slot0)
+	slot0.mContinueSprite:setVisible(false)
+	slot0.mIncreaseWayBg:setVisible(false)
+	slot0.mTips:setVisible(false)
+	slot0.mOtherNode:removeAllChildren()
+
+	slot1 = UIWrap.newControl("Button", {
+		image = "c_27.png",
+		titleText = TR("重新挑战"),
+		clickAction = function ()
+			LayerManager.removeLayer(slot0.mCallback)
+
+			if slot0.mCallback then
+				slot0()
+			end
+
+			return 
+		end
+	})
+
+	slot1.setPosition(slot1, -100, -200)
+	slot0.mOtherNode:addChild(slot1)
+
+	slot2 = UIWrap.newControl("Button", {
+		image = "c_32.png",
+		titleText = TR("继续挑战"),
+		clickAction = function ()
+			slot0:requestExpedContineFight()
+
+			return 
+		end
+	})
+
+	slot2.setPosition(slot2, 100, -200)
+	slot0.mOtherNode:addChild(slot2)
+
+	return 
+end
+slot0.cbClickBattleDataBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "settle.BattleDataLayer",
+		data = {
+			battleData = slot0.mStatData,
+			isOthersBattle = slot0.mBattleData.extraData and slot0.mBattleData.extraData.isOthersBattle
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.cbClickGoToBtn = function (slot0, slot1)
+	print("点击 " .. slot1.tag)
+
+	if next(slot0.mHeroInfos) then
+		slot2 = 0
+
+		for slot6, slot7 in pairs(slot0.mHeroInfos) do
+			slot2 = slot6
+
+			break
+		end
+
+		LayerManager.removeTopCleanUpLayer(false)
+		LayerManager.addLayer({
+			name = "hero.HeroMainLayer",
+			data = {
+				defModelId = slot2
+			}
+		})
+	end
+
+	return 
+end
+slot0.setAutoFightRestoreData = function (slot0)
+	LayerManager.setRestoreData("pve.PveChapterInfoLayer", {
+		chapterId = PveObj:getCurrFightChapterId()
+	})
+
+	return 
+end
+slot0.onLoseEffectComplete = function (slot0)
+	slot0.loseEffect:playAnimation("xunhuan")
+
+	return 
+end
+slot0.cbAnimationComplete = function (slot0)
+	slot0.mEffectStart:removeFromParent()
+	slot0.createUISubTree(slot0, "mEffectLoop")
+
+	return 
+end
+slot0.requestExpedContineFight = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "FightConfirm",
+		moduleName = "Expedition",
+		methodData = {
+			slot0.mBattleData.extraData.starNum,
+			false
+		},
+		successCallback = function (slot0)
+			LayerManager.removeLayer(slot0)
+
+			if slot0.mCallback then
+				slot1()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

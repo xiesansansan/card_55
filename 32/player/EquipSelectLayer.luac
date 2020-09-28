@@ -1,0 +1,600 @@
+slot0 = class("EquipSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("装备选择")
+		},
+		children = {
+			{
+				name = "untitled17",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423.58,
+						y = 261.07
+					},
+					size = {
+						width = 788,
+						height = 444
+					}
+				},
+				children = {}
+			},
+			{
+				name = "equipTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 34.16,
+						y = 46.96
+					},
+					size = {
+						width = 778,
+						height = 430
+					}
+				},
+				children = {
+					{
+						name = "hasEquipLayout",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "selectBtn-titleText",
+								name = "btnStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 2.4,
+								y = -131.97
+							},
+							size = {
+								width = 384,
+								height = 128
+							}
+						},
+						children = {
+							{
+								name = "untitled3",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 192,
+										y = 64
+									},
+									size = {
+										width = 384,
+										height = 128
+									}
+								},
+								children = {}
+							},
+							{
+								name = "equipHead",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 50.49,
+										y = 49.65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "name",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 13,
+										y = 110.92
+									},
+									text = TR("兽皮盔")
+								},
+								children = {}
+							},
+							{
+								name = "lv",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "456",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 151.98,
+										y = 80.6
+									}
+								},
+								children = {}
+							},
+							{
+								name = "color",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 281,
+										y = 82
+									},
+									text = TR("绿色")
+								},
+								children = {}
+							},
+							{
+								name = "attr1",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 25,
+										r = 25,
+										b = 25
+									},
+									pos = {
+										x = 100,
+										y = 51
+									},
+									text = TR("攻击：+123456")
+								},
+								children = {}
+							},
+							{
+								name = "attr2",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 25,
+										r = 25,
+										b = 25
+									},
+									pos = {
+										x = 100.21,
+										y = 17.03
+									},
+									text = TR("防御：+123456")
+								},
+								children = {}
+							},
+							{
+								name = "selectBtn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									pos = {
+										x = 318.8,
+										y = 46.78
+									},
+									titleText = TR("已穿戴")
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 130.53,
+										y = 80.77
+									},
+									text = TR("品阶：")
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 253.53,
+										y = 80.77
+									},
+									text = TR("品质：")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "nonSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 488.18,
+						y = 230.18
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 100,
+								y = 100
+							},
+							text = TR("暂无装备")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	eGem = 0,
+	eLvUp = 1,
+	eRefine = 2,
+	eQuality = 3
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.equipInfo = slot1.equipInfo
+	slot0.refresh = slot1.refresh
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "equipTableView" then
+			if slot0.equipInfo and slot0.equipInfo.EquipModelId ~= 0 then
+				slot1.size = cc.size(778, 300)
+			else
+				slot1.size = cc.size(778, 430)
+			end
+		end
+
+		return 
+	end)
+
+	slot0.mEquipList = slot0.sortList(slot0)
+	slot1 = EquipModel.items
+
+	if slot0.equipInfo and slot0.equipInfo.EquipModelId ~= 0 then
+		slot0.nonSprite:setVisible(false)
+
+		slot3 = slot0.createLayoutTemplateNode(slot0, "hasEquipLayout", {
+			btnStr = TR("已穿戴")
+		})
+		slot4 = Utility.getColorValue(slot1[slot0.equipInfo.EquipModelId].colorLv)
+		slot5 = Utility.analysisStrAttrList(slot1[slot0.equipInfo.EquipModelId].attrStr)
+
+		slot3.name:setString(slot1[slot0.equipInfo.EquipModelId].name)
+		slot3.name:setColor(slot4)
+		slot3.color:setString(TR("%s", Utility.getColorName(slot1[slot0.equipInfo.EquipModelId].colorLv)))
+		slot3.lv:setString(TR("%s", slot1[slot0.equipInfo.EquipModelId].quality))
+		slot3.color:setColor(slot4)
+		slot3.lv:setColor(slot4)
+		slot3.attr1:setString(TR("%s：+%s", FightAttrTypeName[slot5[1].fightattr], slot5[1].value))
+		slot3.attr2:setString((slot5[2] and TR("%s：+%s", FightAttrTypeName[slot5[2].fightattr], slot5[2].value)) or "")
+		slot3.equipHead:setCardData({
+			modelId = slot2.modelId
+		}, {
+			Enums.CardShowAttr.eBorder
+		})
+		slot3.selectBtn:setEnabled(false)
+		slot3.setPosition(slot3, cc.p(35, 350))
+		slot0.msgBox:addChild(slot3)
+	end
+
+	slot0.equipTableView:reloadData()
+
+	if slot0.mEquipList and next(slot0.mEquipList) then
+		slot0.nonSprite:setVisible(false)
+	end
+
+	return 
+end
+slot0.sortList = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(EquipObj:getItemList(slot0.equipInfo.PositionId + 1300)) do
+		if slot6.ModelId ~= slot0.equipInfo.EquipModelId then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return EquipModel.items[slot1.ModelId].quality < EquipModel.items[slot0.ModelId].quality
+	end)
+
+	return slot1
+end
+slot0.calcLv = function (slot0)
+	slot1 = 1024
+
+	for slot5, slot6 in ipairs(SlotEquipObj:getList()) do
+		if ((slot6.EquipModelId ~= 0 and EquipModel.items[slot6.EquipModelId].quality) or 0) < slot1 then
+			slot1 = slot7
+		end
+	end
+
+	print("calced_lv is:", slot1)
+
+	return slot1
+end
+slot0.isUp = function (slot0, slot1)
+	slot2 = slot0.calcLv(slot0)
+
+	SlotEquipObj:modifyItem(slot1)
+	table.sort(slot5)
+
+	slot6 = table.indexof(slot5, slot0.calcLv(slot0))
+
+	if slot0.refresh then
+		MqAudio.playEffect("ui_chuangdai.mp3", false)
+		slot0.refresh(slot1)
+	end
+
+	if slot2 < slot3 and slot6 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.EquipResonanceHintLayer",
+			data = {
+				oldLv = slot2,
+				newLv = slot3,
+				configType = slot0.eQuality
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 850, 140
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return math.ceil(#slot0.mEquipList/2)
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = EquipModel.items
+	slot4 = slot0.createLayoutTemplateNode(slot0, "hasEquipLayout", {
+		btnStr = TR("穿戴")
+	})
+	slot5 = nil
+
+	slot4.setPosition(slot4, cc.p(0, 0))
+	slot1.addChild(slot1, slot4)
+
+	if slot0.mEquipList[slot2*2 + 2] then
+		slot0.createLayoutTemplateNode(slot0, "hasEquipLayout", {
+			btnStr = TR("穿戴")
+		}).setPosition(slot5, cc.p(390, 0))
+		slot1.addChild(slot1, slot0.createLayoutTemplateNode(slot0, "hasEquipLayout", {
+			btnStr = TR("穿戴")
+		}))
+	end
+
+	slot1.refreshCell = function (slot0)
+		slot2 = slot0.mEquipList[slot0*2 + 2]
+
+		if slot0.mEquipList[slot0*2 + 1] then
+			slot3 = Utility.getColorValue(slot1[slot1.ModelId].colorLv)
+			slot4 = Utility.analysisStrAttrList(slot1[slot1.ModelId].attrStr)
+
+			slot2.name:setString(TR("%s", slot1[slot1.ModelId].name))
+			slot2.color:setString(TR("%s", Utility.getColorName(slot1[slot1.ModelId].colorLv)))
+			slot2.lv:setString(TR("%s", slot1[slot1.ModelId].quality))
+			slot2.name:setColor(slot3)
+			slot2.color:setColor(slot3)
+			slot2.lv:setColor(slot3)
+			slot2.attr1:setString(TR("%s：+%s", FightAttrTypeName[slot4[1].fightattr], slot4[1].value))
+			slot2.attr2:setString((slot4[2] and TR("%s：+%s", FightAttrTypeName[slot4[2].fightattr], slot4[2].value)) or "")
+			slot2.equipHead:setCardData({
+				modelId = slot1.ModelId
+			}, {
+				Enums.CardShowAttr.eBorder
+			})
+			slot2.selectBtn:setClickAction(function ()
+				slot0:selectRequest(slot0.equipInfo.PositionId, slot1.ModelId)
+
+				return 
+			end)
+		end
+
+		if slot2 then
+			slot3 = Utility.getColorValue(slot1[slot2.ModelId].colorLv)
+			slot4 = Utility.analysisStrAttrList(slot1[slot2.ModelId].attrStr)
+
+			slot3.name:setString(TR("%s", slot1[slot2.ModelId].name))
+			slot3.color:setString(TR("%s", Utility.getColorName(slot1[slot2.ModelId].colorLv)))
+			slot3.lv:setString(TR("%s", slot1[slot2.ModelId].quality))
+			slot3.name:setColor(slot3)
+			slot3.color:setColor(slot3)
+			slot3.lv:setColor(slot3)
+			slot3.attr1:setString(TR("%s：+%s", FightAttrTypeName[slot4[1].fightattr], slot4[1].value))
+			slot3.attr2:setString((slot4[2] and TR("%s：+%s", FightAttrTypeName[slot4[2].fightattr], slot4[2].value)) or "")
+			slot3.equipHead:setCardData({
+				modelId = slot2.ModelId
+			}, {
+				Enums.CardShowAttr.eBorder
+			})
+			slot3.selectBtn:setClickAction(function ()
+				slot0:selectRequest(slot0.equipInfo.PositionId, slot1.ModelId)
+
+				return 
+			end)
+		end
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.isQualityUp = function (slot0, slot1)
+	if slot0.equipInfo and slot0.equipInfo.EquipModelId ~= 0 then
+		if Resource.getModelInfo(slot1).quality <= Resource.getModelInfo(slot0.equipInfo.EquipModelId).quality then
+			return false
+		else
+			return true
+		end
+	else
+		return true
+	end
+
+	return 
+end
+slot0.createDecomposePop = function (slot0, slot1)
+	if not Resource.getModelInfo(slot0.equipInfo.EquipModelId).canDecompose then
+		slot0.isUp(slot0, slot1)
+
+		return 
+	end
+
+	slot4 = TR("已经穿戴更高品质的装备，是否将多余装备分解为")
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot4 = slot4 .. TR("{%s}*%s", Resource.getDaibiImg(slot9.resourceId), slot9.num)
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = slot4,
+		okCallback = function ()
+			slot0:requestEquipDeCompose(slot0.equipInfo.EquipModelId, slot0)
+
+			return 
+		end,
+		cancelCallback = function ()
+			slot0:isUp(slot0)
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end,
+		msgBoxParams = {
+			closeAction = function (slot0)
+				slot0:isUp(slot0.isUp)
+				LayerManager.removeLayer(slot0)
+				LayerManager.removeLayer(slot0)
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.selectRequest = function (slot0, slot1, slot2)
+	if not slot0.isQualityUp(slot0, slot2) then
+		ui.showFlashView(TR("不可换装比当前穿戴品质低的装备"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Equipped",
+		moduleName = "EquipPosition",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if slot0.equipInfo and slot0.equipInfo.EquipModelId ~= 0 then
+				slot0:createDecomposePop(slot0)
+			else
+				slot0:isUp(slot0)
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestEquipDeCompose = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "EquipDeCompose",
+		moduleName = "Equip",
+		methodData = {
+			{
+				slot1
+			}
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			EquipObj:setList(slot0.EquipInfo)
+			slot0:isUp(slot0.isUp)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

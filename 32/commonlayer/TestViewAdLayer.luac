@@ -1,0 +1,42 @@
+slot0 = class("TestViewAdLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(255, 255, 255, 255)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Label",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			color = {
+				g = 64,
+				r = 66,
+				b = 84
+			},
+			pos = {
+				x = 320,
+				y = 568
+			},
+			text = TR("广告中..5秒后关闭")
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+
+return slot0

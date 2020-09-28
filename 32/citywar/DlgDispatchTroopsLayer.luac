@@ -1,0 +1,664 @@
+slot0 = class("DlgDispatchTroopsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled56",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 577,
+				height = 541
+			},
+			titleText = TR("派遣部队")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 77,
+						y = 488
+					},
+					text = TR("目标门派:")
+				},
+				children = {}
+			},
+			{
+				name = "targetLabel",
+				cType = "Label",
+				params = {
+					outlineSize = 2,
+					emptyInit = true,
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 182,
+						y = 488
+					},
+					text = TR("潼关")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 347,
+						y = 488
+					},
+					text = TR("出征目的:")
+				},
+				children = {}
+			},
+			{
+				name = "objectiveLabel",
+				cType = "Label",
+				params = {
+					outlineSize = 2,
+					emptyInit = true,
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 452,
+						y = 488
+					},
+					text = TR("进攻")
+				},
+				children = {}
+			},
+			{
+				name = "rectBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 288.5,
+						y = 286
+					},
+					size = {
+						width = 519,
+						height = 360
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 519,
+								height = 360
+							}
+						},
+						children = {
+							{
+								name = "layout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 519,
+										height = 89
+									}
+								},
+								children = {
+									{
+										name = "templateNode",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled49-text",
+												name = "nameStr",
+												type = "string"
+											},
+											{
+												value = "untitled51-text",
+												name = "lvStr",
+												type = "string"
+											},
+											{
+												value = "untitled53-text",
+												name = "fapStr",
+												type = "string"
+											},
+											{
+												value = "untitled49-color",
+												name = "nameColor",
+												type = "string"
+											},
+											{
+												value = "untitled57-modelId",
+												name = "playerModelId",
+												type = "string"
+											},
+											{
+												value = "untitled57-fashionLv",
+												name = "playerFashionLv",
+												type = "string"
+											},
+											{
+												value = "untitled57-headPicId",
+												name = "headPicId",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 519,
+												height = 89
+											}
+										},
+										children = {
+											{
+												name = "untitled47",
+												cType = "Button",
+												params = {
+													childName = "armyBtn",
+													image = "zj_37.png",
+													swallowTouch = false,
+													pressedAction = false,
+													clickAction = "onArmyBtnClickAction",
+													pos = {
+														x = 123.5,
+														y = 44.5
+													},
+													size = {
+														width = 247,
+														height = 89
+													}
+												},
+												children = {
+													{
+														name = "untitled57",
+														cType = "PlayerHeroNode",
+														params = {
+															headPicId = 1,
+															fashionLv = 1,
+															scale = 0.85,
+															modelId = 19010000,
+															childName = "header",
+															allowClick = false,
+															pos = {
+																x = -74,
+																y = 0
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled49",
+														cType = "Label",
+														params = {
+															fontSize = 22,
+															align = 0,
+															childName = "nameLabel",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 65,
+																r = 192,
+																b = 65
+															},
+															pos = {
+																x = -20,
+																y = 27
+															},
+															text = TR("玩家名字名字")
+														},
+														children = {}
+													},
+													{
+														name = "untitled50",
+														cType = "Label",
+														params = {
+															align = 0,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = -20,
+																y = 2
+															},
+															text = TR("等级:")
+														},
+														children = {}
+													},
+													{
+														name = "untitled51",
+														cType = "Label",
+														params = {
+															text = "666",
+															align = 0,
+															childName = "lvLabel",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 40,
+																y = 2
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled52",
+														cType = "Label",
+														params = {
+															align = 0,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = -20,
+																y = -25
+															},
+															text = TR("战力:")
+														},
+														children = {}
+													},
+													{
+														name = "untitled53",
+														cType = "Label",
+														params = {
+															text = "8888",
+															align = 0,
+															childName = "fapLabel",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 40,
+																y = -25
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled54",
+														cType = "Scale9Sprite",
+														params = {
+															opacity = 80,
+															hide = true,
+															image = "c_86.png",
+															childName = "selSprite",
+															pos = {
+																x = 0,
+																y = 0
+															},
+															size = {
+																width = 247,
+																height = 89
+															}
+														},
+														children = {
+															{
+																name = "untitled55",
+																cType = "Sprite",
+																params = {
+																	image = "c_44.png",
+																	anchor = {
+																		x = 1,
+																		y = 0
+																	},
+																	pos = {
+																		x = 247,
+																		y = 0
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "tipLabel",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 259.5,
+								y = 180
+							},
+							text = TR("当前门派有己方帮派驻守，无法调兵进攻")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "allBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onAllBtnClickAction",
+					pos = {
+						x = 188.5,
+						y = 65
+					},
+					titleText = TR("全部选择")
+				},
+				children = {}
+			},
+			{
+				name = "goBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onGoBtnClickAction",
+					pos = {
+						x = 388.5,
+						y = 65
+					},
+					titleText = TR("大军出征")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCityId = slot1 or {}.cityId
+	slot0.mCityWarInfo = slot1 or {}.cityWarInfo
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	slot0.requestGetGuildCampInfo(slot0)
+	slot0.requestGetCityInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot2 = nil
+
+	if CitywarCityConfig.items[slot0.mCityId].cityType == Enums.CityType.ePass then
+		slot2 = cc.c3b(255, 248, 234)
+	elseif slot1.cityType == Enums.CityType.eCounty then
+		slot2 = cc.c3b(99, 213, 255)
+	elseif slot1.cityType == Enums.CityType.eMain then
+		slot2 = cc.c3b(255, 110, 249)
+	elseif slot1.cityType == Enums.CityType.eZongMen then
+		slot2 = cc.c3b(254, 153, 83)
+	elseif slot1.cityType == Enums.CityType.eEmperor then
+		slot2 = cc.c3b(192, 65, 65)
+	end
+
+	slot0.targetLabel:setTextColor(slot2)
+	slot0.targetLabel:setString(TR(slot1.name))
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {
+		cc.p(0, 0),
+		cc.p(265, 0)
+	}
+
+	slot0.listView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot0.mGroupInfo) do
+		slot0.listView:pushBackCustomItem(slot7)
+
+		for slot11, slot12 in ipairs(slot6) do
+			slot13 = slot0.createLayoutTemplateNode(slot0, "templateNode", {
+				playerModelId = slot12.HeadImageId,
+				playerFashionLv = slot12.FashionLevel,
+				headPicId = slot12.HeadPicId,
+				nameStr = slot12.Name,
+				lvStr = slot12.Lv,
+				fapStr = Utility.numberWithUnit(slot12.Fap),
+				nameColor = (slot12.FashionLevel == 0 and cc.c3b(37, 37, 37)) or Utility.getPlayerNameColor(slot12.FashionLevel)
+			})
+
+			slot13.setPosition(slot13, slot1[slot11])
+			slot7.addChild(slot7, slot13)
+
+			slot13.armyBtn.armyId = slot12.ArmyId
+		end
+	end
+
+	return 
+end
+slot0.onArmyBtnClickAction = function (slot0, slot1)
+	slot1.isSelected = not slot1.isSelected
+
+	slot1.selSprite:setVisible(slot1.isSelected)
+
+	return 
+end
+slot0.onAllBtnClickAction = function (slot0, slot1)
+	if #slot0.mGroupInfo <= 0 then
+		ui.showFlashView(TR("没有可以派遣的队伍!!!"))
+
+		return 
+	end
+
+	for slot5, slot6 in ipairs(slot0.listView:getItems()) do
+		for slot10, slot11 in ipairs(slot6.getChildren(slot6)) do
+			slot11.armyBtn.isSelected = true
+
+			slot11.armyBtn.selSprite:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.onGoBtnClickAction = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot0.listView:getItems()) do
+		for slot11, slot12 in ipairs(slot7.getChildren(slot7)) do
+			if slot12.armyBtn.isSelected then
+				table.insert(slot2, slot12.armyBtn.armyId)
+			end
+		end
+	end
+
+	if 0 < #slot2 then
+		slot0.requestGuildSendTeam(slot0, table.concat(slot2, ","))
+	else
+		ui.showFlashView(TR("请选择要派遣的队伍!!!"))
+	end
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0, slot1)
+	table.sort(slot1, function (slot0, slot1)
+		return slot1.Fap < slot0.Fap
+	end)
+
+	slot0.mGroupInfo = {}
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot1) do
+		table.insert(slot2, slot7)
+
+		if slot6%2 == 0 then
+			table.insert(slot0.mGroupInfo, slot2)
+
+			slot2 = {}
+		end
+	end
+
+	if #slot2 ~= 0 then
+		table.insert(slot0.mGroupInfo, slot2)
+	end
+
+	return 
+end
+slot0.requestGetGuildCampInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildCampInfo",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:dealData(slot0.GuildCampInfo)
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetCityInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			slot0.mCityInfo = slot0.CityInfo[tostring(slot0.mCityId)]
+
+			if slot0.mCityWarInfo.ArmystrikesInfo.Status == Enums.ArmystrikesType.eInWar then
+				slot0.objectiveLabel:setTextColor(cc.c3b(55, 255, 64))
+				slot0.objectiveLabel:setString(TR("防守"))
+			elseif slot0.mCityInfo.GuildId == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId then
+				slot0.objectiveLabel:setTextColor(cc.c3b(55, 255, 64))
+				slot0.objectiveLabel:setString(TR("防守"))
+			else
+				slot0.objectiveLabel:setTextColor(cc.c3b(233, 44, 0))
+				slot0.objectiveLabel:setString(TR("进攻"))
+
+				if slot0.mCityInfo.PlayerTeamType == Enums.CityWarType.eDefend then
+					slot0.listView:setVisible(false)
+					slot0.tipLabel:setVisible(true)
+					slot0.goBtn:setEnabled(false)
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGuildSendTeam = function (slot0, slot1)
+	slot2 = true
+
+	slot0.socketRequest(slot0, {
+		methodName = "GuildSendTeam",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mCityId,
+			(slot0.mCityWarInfo.ArmystrikesInfo.Status ~= Enums.ArmystrikesType.eInWar or false) and slot0.mCityInfo.GuildId ~= PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("派遣成功!!!"))
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

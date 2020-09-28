@@ -1,0 +1,435 @@
+slot0 = class("DlgEtlyBattleTeamLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBg",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			needTouchClose = true,
+			image = "dugujz_25.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423.19,
+						y = 257.81
+					},
+					size = {
+						width = 791.86,
+						height = 454.95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 897.73,
+						y = 486.7
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "dugujz_26.png",
+					pos = {
+						x = 531.59,
+						y = 514.41
+					}
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							pos = {
+								x = 91.33,
+								y = 35.21
+							},
+							text = TR("对 决")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "dugujz_27.png",
+					clickAction = "onExchange",
+					pos = {
+						x = 498.82,
+						y = 428.83
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "bwld_10.png",
+					clickAction = "onFight",
+					scale = 0.7,
+					pos = {
+						x = 499.47,
+						y = 292.19
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "zq_44.png",
+					clickAction = "onCampReady",
+					pos = {
+						x = 499.24,
+						y = 131.45
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroTemplateNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled15-hide",
+						name = "hideFapBg",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 129.21,
+						y = 255.62
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "xkxx_45.png",
+							pos = {
+								x = 0.13,
+								y = -12.66
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "ClippingNode",
+						params = {
+							alpha = 1,
+							pos = {
+								x = -80.15,
+								y = -194.71
+							},
+							size = {
+								width = 159.33,
+								height = 361.11
+							}
+						},
+						children = {
+							{
+								name = "heroPic",
+								cType = "Sprite",
+								params = {
+									image = "bsx_10007.png",
+									pos = {
+										x = 80.87,
+										y = 175.71
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							image = "dugujz_28.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = -0.16,
+								y = -196.33
+							}
+						},
+						children = {
+							{
+								name = "first",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									pos = {
+										x = 80.56,
+										y = 15.38
+									},
+									text = TR("首战")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							image = "c_82.png",
+							hide = false,
+							scale = 0.7,
+							pos = {
+								x = 5.29,
+								y = 181.98
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									image = "c_80.png",
+									pos = {
+										x = 63.13,
+										y = 38.78
+									}
+								},
+								children = {}
+							},
+							{
+								name = "fap",
+								cType = "Label",
+								params = {
+									text = "0",
+									charCount = 12,
+									fontName = "c_81.png",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 103.06,
+										y = 35.92
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mFormationData = slot1.formationList or {}
+	slot0.mFightCallback = slot1.fightCallback
+	slot0.mExchangeCallback = slot1.exchangeCallback
+	slot0.mTeamInfo = {}
+	slot0.mTeamNode = {}
+	slot0.mHeroPos = {
+		cc.p(334.8, 251.7),
+		cc.p(179.21, 251.62),
+		cc.p(668, 251.59),
+		cc.p(823.08, 251.16)
+	}
+	slot0.mNpcData = slot1.npcData
+	slot0.mNpcHeroData = slot1.npcHeroData
+	slot0.mCampCallback = slot1.campCallback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealData(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.mTeamInfo = {}
+
+	for slot4, slot5 in pairs(slot0.mFormationData) do
+		slot6 = {}
+
+		if not Utility.isCompleteFormation(slot5.FormationInfo) then
+			table.insert(slot0.mTeamInfo, {})
+		else
+			slot7 = 0
+			slot8 = {}
+
+			for slot12, slot13 in ipairs(string.splitBySep(slot5.FormationInfo, ",")) do
+				if slot12 == 6 then
+					break
+				end
+
+				if Utility.isEntityId(slot13) then
+					table.insert(slot8, slot13)
+				else
+					table.insert(slot8, tonumber(slot13))
+				end
+
+				slot7 = slot7 + Utility.getHeroFap(slot13)
+			end
+
+			if Utility.isEntityId(slot8[1]) then
+				slot9 = Utility.getHeroInfo(slot9).ModelId
+			end
+
+			if 0 < slot7 then
+				slot7 = slot7 + Player:getGameData("Push_SkillTotalFap")
+			end
+
+			table.insert(slot0.mTeamInfo, {
+				fap = slot7,
+				formation = slot8,
+				heroModelId = slot9
+			})
+		end
+	end
+
+	slot1 = string.splitBySep(slot0.mNpcData.npcModel, ",")
+
+	for slot5, slot6 in pairs(slot0.mNpcHeroData) do
+		slot7 = 0
+		slot8 = {}
+
+		for slot12, slot13 in pairs(slot6) do
+			table.insert(slot8, slot13.HeroModelId)
+
+			slot7 = slot7 + slot13.Fap
+		end
+
+		table.insert(slot0.mTeamInfo, {
+			fap = slot7,
+			formation = slot8,
+			heroModelId = tonumber(slot1[tonumber(slot5)])
+		})
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mTeamInfo) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "heroTemplateNode", {
+			hideFapBg = not next(slot5)
+		})
+		slot6.refresh = function (slot0)
+			slot1.heroPic:setTexture((HeroModel.items[slot0.mTeamInfo[slot0].heroModelId] and slot1.halfBodyPic .. ".png") or "c_pure.png")
+			slot1.first:setString((slot0%2 == 1 and TR("首战")) or TR("末战"))
+			slot1.fap:setString(Utility.numberWithUnit((slot0.mTeamInfo[slot0].fap and slot0.mTeamInfo[slot0].fap) or 0))
+
+			return 
+		end
+
+		slot6.refresh(slot4)
+		slot6.setPosition(slot6, slot0.mHeroPos[slot4])
+		slot6.setScale(slot6, (slot4%2 == 0 and 0.9) or 1)
+		slot0.mMsgBg:addChild(slot6, slot4%2)
+		table.insert(slot0.mTeamNode, slot6)
+	end
+
+	return 
+end
+slot0.onFight = function (slot0)
+	if not next(slot0.mTeamInfo[1]) or not next(slot0.mTeamInfo[2]) then
+		ui.showFlashView(TR("请先布阵"))
+
+		return 
+	end
+
+	if slot0.mFightCallback then
+		slot0.mFightCallback()
+	end
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCampReady = function (slot0)
+	if slot0.mCampCallback then
+		slot0.mCampCallback()
+	end
+
+	return 
+end
+slot0.onExchange = function (slot0)
+	if not next(slot0.mTeamInfo[1]) or not next(slot0.mTeamInfo[2]) then
+		ui.showFlashView(TR("请先布阵"))
+
+		return 
+	end
+
+	if slot0.moving1 or slot0.moving2 then
+		return 
+	end
+
+	slot0.moving1 = true
+	slot0.moving2 = true
+	slot0.mTeamNode[2] = slot0.mTeamNode[1]
+	slot0.mTeamNode[1] = slot2
+	slot0.mTeamInfo[2] = slot0.mTeamInfo[1]
+	slot0.mTeamInfo[1] = slot4
+
+	slot0.mTeamNode[2]:setLocalZOrder(0)
+	slot0.mTeamNode[1]:setLocalZOrder(1)
+	slot0.mTeamNode[2].refresh(2)
+	slot0.mTeamNode[1].refresh(1)
+
+	if slot0.mExchangeCallback then
+		slot0.mExchangeCallback()
+	end
+
+	slot0.mTeamNode[2]:runAction(cc.EaseSineOut:create(cc.Sequence:create(cc.Spawn:create(cc.MoveTo:create(0.5, cc.p(slot0.mTeamNode[1]:getPosition())), cc.ScaleTo:create(0.5, slot0.mTeamNode[1]:getScale())), cc.CallFunc:create(function ()
+		slot0.moving1 = false
+
+		return 
+	end))))
+	slot0.mTeamNode[1]:runAction(cc.EaseSineOut:create(cc.Sequence:create(cc.Spawn:create(cc.MoveTo:create(0.5, cc.p(slot0.mTeamNode[2]:getPosition())), cc.ScaleTo:create(0.5, slot0.mTeamNode[2]:getScale())), cc.CallFunc:create(function ()
+		slot0.moving2 = false
+
+		return 
+	end))))
+
+	return 
+end
+
+return slot0

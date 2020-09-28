@@ -1,0 +1,217 @@
+slot0 = class("MessageBoxLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 0)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgMsgBox",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCb",
+			needAction = true,
+			posApt = 1,
+			cancelCallback = "onCancelAction",
+			image = "tc_2.png",
+			btnPosY = 85,
+			hideCloseButton = false,
+			okCallback = "onOkAction",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "bgShowSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 244,
+						y = 159
+					},
+					size = {
+						width = 488,
+						height = 318
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.diyUICallback = slot1.diyUICallback
+	slot0.okCallback = slot1.okCallback
+	slot0.cancelCallback = slot1.cancelCallback
+	slot0.ruleTag = slot1.ruleTag or {}
+	slot0.text = slot1.text or ""
+	slot0.labelImageScale = slot1.labelImageScale
+	slot0.msgBoxParams = slot1.msgBoxParams or {}
+	slot0.msgBoxParams.titleText = slot1.titleText or ""
+	slot0.mSize = slot1.size
+	slot0.isNotNeedRemove = slot1.isNotNeedRemove
+	slot0.msgBoxImg = slot0.msgBoxParams.image or "tc_2.png"
+
+	slot0.setOpacity(slot0, slot1.opacity or 150)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "bgMsgBox" then
+			for slot5, slot6 in pairs(slot0.msgBoxParams) do
+				if slot5 ~= "okCallback" and slot5 ~= "cancelCallback" then
+					slot1[slot5] = slot6
+				end
+			end
+
+			if slot0.okCallback == nil then
+				slot1.okCallback = nil
+			end
+
+			if slot0.cancelCallback == nil then
+				slot1.cancelCallback = nil
+			end
+
+			if slot0.mSize then
+				slot1.size = slot0.mSize
+			end
+		end
+
+		return 
+	end)
+
+	slot1 = slot0.bgMsgBox:getContentSize()
+	slot4 = 95
+
+	slot0.bgShowSprite:setContentSize(slot5)
+	slot0.bgShowSprite:setPosition(slot1.width*0.5, slot1.height*0.5)
+
+	if slot0.diyUICallback ~= nil then
+		slot0.diyUICallback(slot0.bgShowSprite, slot5)
+
+		return 
+	end
+
+	if type(slot0.text) == "table" then
+		slot0.bgShowSprite:addChild(slot6)
+
+		for slot10, slot11 in ipairs(slot0.text) do
+			slot12 = slot11
+
+			if string.sub(slot11, 1, 4) == "#tag" then
+				slot13 = UIWrap.newControl("Sprite", {
+					image = "jjc_62.png",
+					anchor = cc.p(0, 0),
+					pos = cc.p(0, 0)
+				})
+
+				UIWrap.newControl("Label", {
+					isRichText = true,
+					text = string.gsub(slot11, "#tag", " "),
+					anchor = cc.p(0, 0),
+					pos = cc.p(20, 0),
+					color = cc.c3b(55, 55, 55)
+				}):addTo(slot13)
+
+				slot14 = UIWrap.newControl("Layout", {
+					size = slot13.getContentSize(slot13)
+				})
+
+				slot14.addChild(slot14, slot13)
+				slot6.pushBackCustomItem(slot6, slot14)
+			else
+				slot13 = UIWrap.newControl("Label", {
+					isRichText = true,
+					text = slot12,
+					size = cc.size(slot5.width - 40, 0),
+					color = cc.c3b(55, 55, 55),
+					anchor = cc.p(0, 0),
+					pos = cc.p(0, 0),
+					align = cc.TEXT_ALIGNMENT_LEFT,
+					valign = cc.VERTICAL_TEXT_ALIGNMENT_TOP
+				})
+
+				if slot0.labelImageScale then
+					slot13.setImageElementScale(slot13, slot0.labelImageScale)
+				end
+
+				slot14 = UIWrap.newControl("Layout", {
+					size = slot13.getContentSize(slot13)
+				})
+
+				slot14.addChild(slot14, slot13)
+				slot6.pushBackCustomItem(slot6, slot14)
+			end
+		end
+	else
+		slot6 = UIWrap.newControl("Label", {
+			isRichText = true,
+			text = slot0.text,
+			size = cc.size(slot5.width - 60, slot5.height - 20),
+			color = cc.c3b(55, 55, 55),
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(slot5.width/2, slot5.height/2 + 30),
+			align = cc.TEXT_ALIGNMENT_CENTER,
+			valign = cc.VERTICAL_TEXT_ALIGNMENT_CENTER
+		})
+
+		if slot0.labelImageScale then
+			slot6.setImageElementScale(slot6, slot0.labelImageScale)
+		end
+
+		slot0.bgShowSprite:addChild(slot6)
+
+		slot0.textLabel = slot6
+	end
+
+	return 
+end
+slot0.onOkAction = function (slot0)
+	slot0.okCallback()
+
+	if not slot0.isNotNeedRemove then
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.onCancelAction = function (slot0)
+	slot0.cancelCallback()
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getMsgLabel = function (slot0)
+	return slot0.textLabel
+end
+slot0.getBottomBtns = function (slot0)
+	return {
+		slot0.bgMsgBox.btnOk,
+		slot0.bgMsgBox.btnCancel
+	}
+end
+slot0.onActionCb = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	if Guide then
+		Guide.manager:exeGuideList({
+			[800202] = {
+				clickNode = slot0.bgMsgBox.btnOk
+			}
+		})
+	end
+
+	return 
+end
+
+return slot0

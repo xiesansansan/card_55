@@ -1,0 +1,231 @@
+slot0 = class("OtherPlayerSubFationLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "unFasiond1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "player/OtherPlayerInfoLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "unFasiond2",
+				cType = "Node",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 57,
+						y = 0
+					},
+					size = {
+						width = 820,
+						height = 460
+					}
+				},
+				children = {
+					{
+						name = "mFasionTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 110,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled1",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = false,
+									pos = {
+										x = 55,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mFasionTableView",
+						cType = "TableView",
+						params = {
+							fillDownTop = false,
+							isVertical = true,
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 13.61,
+								y = 9.73
+							},
+							size = {
+								width = 800,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "mRowTemplate",
+								cType = "TemplateNode",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = -110
+									},
+									size = {
+										width = 800,
+										height = 100
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.data = slot1.data or {}
+	slot0.fasionNodeList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(FashionModel.items) do
+		if slot6.ifOpen then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	slot2 = string.splitBySep(slot0.data.Fashion.ActModelIds, ",")
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot7.isActived = false
+
+		for slot11, slot12 in ipairs(slot2) do
+			if slot7.modelId == tonumber(slot12) then
+				slot7.isActived = true
+			end
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.isActived ~= slot1.isActived then
+			return slot0.isActived
+		end
+
+		if slot0.colorLv ~= slot1.colorLv then
+			return slot1.colorLv < slot0.colorLv
+		end
+
+		return 
+	end)
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot1) do
+		if slot8.isActived then
+			table.insert(slot3, slot8)
+		end
+	end
+
+	slot0.mFasionList = slot3
+
+	slot0.mFasionTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 800, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return math.ceil(#slot0.mFasionList/7)
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mRowTemplate")
+	slot3.refresh = function (slot0, slot1)
+		slot0:removeAllChildren()
+
+		for slot5 = 1, 7, 1 do
+			if not slot1.mFasionList[slot1*7 + slot5] then
+				break
+			end
+
+			slot8 = slot1:createLayoutTemplateNode("mFasionTemplate")
+
+			slot8.setPosition(slot8, cc.p((slot5 - 1)*114.28571428571429, 120))
+			slot0:addChild(slot8)
+			slot8.card:setCardData({
+				resourceId = slot7.modelId
+			}, {
+				Enums.CardShowAttr.eName
+			})
+
+			if not slot7.isActived then
+				slot8.card:setGray(false)
+				slot8.card.mShowAttrControl[Enums.CardShowAttr.eName].label:setColor(cc.c3b(95, 95, 95))
+			end
+		end
+
+		return 
+	end
+
+	slot1.addChild(slot1, slot3)
+	slot3.refresh(slot3, slot2)
+
+	slot1.rowNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.rowNode:refresh(slot2)
+
+	return 
+end
+
+return slot0

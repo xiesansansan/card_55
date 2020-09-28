@@ -1,0 +1,37 @@
+cc.Sprite.playAnimationOnce = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	if slot2.showDelay then
+		slot0.setVisible(slot0, false)
+
+		slot3[#slot3 + 1] = cc.DelayTime:create(slot4)
+		slot3[#slot3 + 1] = cc.Show:create()
+	end
+
+	if 0 < (slot2.delay or 0) then
+		slot3[#slot3 + 1] = cc.DelayTime:create(slot5)
+	end
+
+	slot3[#slot3 + 1] = cc.Animate:create(slot1)
+
+	if slot2.removeSelf then
+		slot3[#slot3 + 1] = cc.RemoveSelf:create()
+	end
+
+	if slot2.onComplete then
+		slot3[#slot3 + 1] = cc.CallFunc:create(slot2.onComplete)
+	end
+
+	slot6 = nil
+
+	slot0.runAction(slot0, (1 >= #slot3 or cc.Sequence:create(slot3)) and slot3[1])
+
+	return (1 >= #slot3 or cc.Sequence.create(slot3)) and slot3[1]
+end
+cc.Sprite.playAnimationForever = function (slot0, slot1)
+	slot0.runAction(slot0, cc.RepeatForever:create(slot2))
+
+	return cc.RepeatForever.create(slot2)
+end
+
+return 

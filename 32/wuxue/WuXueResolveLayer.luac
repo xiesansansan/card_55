@@ -1,0 +1,714 @@
+slot0 = class("WuXueResolveLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled26",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 870,
+				height = 528
+			},
+			titleText = TR("武学融汇")
+		},
+		children = {
+			{
+				name = "untitled36",
+				cType = "Sprite",
+				params = {
+					image = "xkwx_8.png",
+					pos = {
+						x = 213.76,
+						y = 309.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled37",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					pos = {
+						x = 626.34,
+						y = 276.09
+					},
+					size = {
+						width = 422,
+						height = 419
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSelectCountLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 210.39,
+						y = 138.34
+					},
+					text = TR("添加武学：#8BA8570")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					clickAction = "onOnekeyBox",
+					image = "c_39.png",
+					pos = {
+						x = 125,
+						y = 92.5
+					},
+					size = {
+						width = 120,
+						height = 48
+					},
+					titleText = TR("一键选择")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					clickAction = "onRefine",
+					image = "c_27.png",
+					pos = {
+						x = 305,
+						y = 92.5
+					},
+					size = {
+						width = 120,
+						height = 48
+					},
+					titleText = TR("融  汇")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 220.86,
+						y = 50.18
+					},
+					text = TR("武学融汇后永久消失")
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 122,
+					pos = {
+						x = 625.67,
+						y = 274.65
+					},
+					size = {
+						width = 422,
+						height = 419
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 620.61,
+						y = 47.75
+					},
+					text = TR("融汇已经培养武学会返还所有强化和觉醒材料")
+				},
+				children = {}
+			},
+			{
+				name = "emptyHint",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 624.89,
+						y = 279.2
+					},
+					text = TR("没有武学")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mMidNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mSelectBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1136,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "selectBoxTemplate",
+						cType = "TemplateNode",
+						params = {
+							zOrder = 1,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 1136,
+								height = 640
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "selectBox",
+									image = "c_94.png",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 124.04,
+										y = 295.95
+									},
+									size = {
+										width = 210,
+										height = 270
+									}
+								},
+								children = {
+									{
+										name = "untitled18",
+										cType = "Button",
+										params = {
+											image = "c_28.png",
+											childName = "closeBtn",
+											pos = {
+												x = 190,
+												y = 250
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Button",
+										params = {
+											childName = "confirmBtn",
+											image = "c_27.png",
+											scale = 0.8,
+											clickAction = "onRefine",
+											pos = {
+												x = 105,
+												y = 30
+											},
+											titleText = TR("确 定")
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											outlineSize = 1,
+											childName = "countLabel",
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 105,
+												y = 65
+											},
+											text = TR("当前选择融汇数量：123")
+										},
+										children = {}
+									},
+									{
+										name = "selectItem",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled23-text",
+												name = "colorName",
+												type = "string"
+											},
+											{
+												value = "untitled23-color",
+												name = "colorValue",
+												type = "string"
+											},
+											{
+												value = "untitled24-isSelect",
+												name = "isSelect",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 105,
+												y = 110
+											}
+										},
+										children = {
+											{
+												name = "untitled22",
+												cType = "Scale9Sprite",
+												params = {
+													image = "c_94.png",
+													capInsets = {
+														x = 100,
+														height = 1,
+														width = 1,
+														y = 29
+													},
+													pos = {
+														x = 0,
+														y = 0
+													},
+													size = {
+														width = 150,
+														height = 40
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled23",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 102,
+														r = 255,
+														b = 243
+													},
+													outlineColor = {
+														g = 42,
+														r = 51,
+														b = 24
+													},
+													pos = {
+														x = -55,
+														y = 0
+													},
+													text = TR("紫色装备")
+												},
+												children = {}
+											},
+											{
+												name = "untitled24",
+												cType = "Checkbox",
+												params = {
+													isSelect = false,
+													childName = "colorCheckBox",
+													selectImage = "c_44.png",
+													normalImage = "c_43.png",
+													pos = {
+														x = 50,
+														y = 0
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled25",
+												cType = "Button",
+												params = {
+													image = "c_pure.png",
+													childName = "itemBtn",
+													pos = {
+														x = 0,
+														y = 0
+													},
+													size = {
+														width = 150,
+														height = 40
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSelectWuXueList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshRefineData(slot0)
+	slot0.mGridView:setItemNum(#slot0.mRefineList)
+	slot0.emptyHint:setVisible(#slot0.mRefineList <= 0)
+
+	return 
+end
+slot0.refreshRefineData = function (slot0)
+	slot0.mRefineList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		table.insert(slot0.mRefineList, slot6)
+	end
+
+	table.sort(slot0.mRefineList, function (slot0, slot1)
+		if WuxueModel.items[slot0.ModelId].colorLv ~= WuxueModel.items[slot1.ModelId].colorLv then
+			return slot2.colorLv < slot3.colorLv
+		end
+
+		if slot0.Lv ~= slot1.Lv then
+			return slot0.Lv < slot1.Lv
+		end
+
+		return slot0.ModelId < slot1.ModelId
+	end)
+
+	return 
+end
+slot0.onCreateItem = function (slot0, slot1, slot2, slot3)
+	if UIWrap.newControl("CardNode", {
+		allowClick = true,
+		pos = cc.p(slot1.getContentSize(slot1).width/2, 70),
+		clickAction = function ()
+			slot0.changedStatus()
+
+			return 
+		end,
+		initParams = {
+			cardInfo = {
+				modelId = slot0.mRefineList[slot2].ModelId
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eName
+			}
+		}
+	}).mHeaderSprite then
+		slot6.mHeaderSprite:setScale(0.9)
+	end
+
+	slot1.addChild(slot1, slot6)
+
+	if 0 < slot4.Lv then
+		slot1.addChild(slot1, UIWrap.newControl("Label", {
+			fontSize = 20,
+			text = string.format("+%s", slot4.Lv),
+			color = cc.c3b(55, 255, 64),
+			outlineColor = cc.c3b(51, 42, 24),
+			pos = cc.p(slot5.width/2, 100)
+		}))
+	end
+
+	slot9 = UIWrap.newControl("StarNode", {
+		scale = 0.5,
+		pos = cc.p(slot5.width/2, 37)
+	})
+
+	slot1.addChild(slot1, slot9)
+	slot9.setStarLevel(slot9, slot7)
+	slot9.setStarImg(slot8)
+
+	slot10 = UIWrap.newControl("Checkbox", {
+		selectImage = "c_44.png",
+		normalImage = "c_pure.png",
+		pos = cc.p(slot5.width/2, 70),
+		isSelect = slot0.mSelectWuXueList[slot4.EntityId],
+		callback = function ()
+			slot0.changedStatus()
+
+			return 
+		end
+	})
+
+	slot10.setScale(slot10, 1.3)
+	slot1.addChild(slot1, slot10)
+
+	slot1.checkbox = slot10
+	slot11 = slot0.mSelectWuXueList[slot4.EntityId]
+	slot1.changedStatus = function ()
+		slot0 = not slot0
+
+		slot1.checkbox:setSelected(slot1.checkbox.setSelected)
+
+		if slot1.checkbox.setSelected then
+			slot2.mSelectWuXueList[slot3.EntityId] = true
+		else
+			slot2.mSelectWuXueList[slot3.EntityId] = nil
+		end
+
+		slot2.mSelectCountLabel:setString(string.format("添加武学：%s%s", "#8BA857", #table.keys(slot2.mSelectWuXueList)))
+
+		return 
+	end
+
+	return 
+end
+slot0.onOnekeyBox = function (slot0)
+	slot1 = {
+		2,
+		3,
+		4,
+		5
+	}
+	slot2 = {}
+
+	if not slot0.selectBox then
+		slot3 = slot0.createLayoutTemplateNode(slot0, "selectBoxTemplate")
+
+		slot3.setPosition(slot3, cc.p(125, 190))
+		slot0.mSelectBg:addChild(slot3)
+
+		slot0.selectBox = slot3.selectBox
+
+		function slot4()
+			slot1.selectBox:runAction(cc.Sequence:create(cc.ScaleTo:create(0.3, 0.1), cc.CallFunc:create(function ()
+				slot0:removeFromParent()
+
+				slot0.selectBox = nil
+
+				return 
+			end)))
+
+			return 
+		end
+
+		ui.addTouchEvent({
+			swallowTouch = true,
+			node = slot3,
+			endedEvent = function (slot0, slot1)
+				if not ui.touchInNode(slot0, slot0.selectBox) then
+					slot1()
+				end
+
+				return 
+			end
+		})
+		slot0.selectBox.closeBtn:setClickAction(function ()
+			slot0()
+
+			return 
+		end)
+		slot0.selectBox.confirmBtn:setClickAction(function ()
+			slot0:requestRefine()
+			slot0()
+
+			return 
+		end)
+		slot0.selectBox.countLabel:setString(TR("当前选择融汇数量：%d", #table.keys(slot0.mSelectWuXueList)))
+	end
+
+	slot3 = cc.size(210, #slot1*50 + 120)
+
+	slot0.selectBox:setContentSize(slot3)
+	slot0.selectBox:setScale(0.1)
+	slot0.selectBox:runAction(slot4)
+	slot0.selectBox.closeBtn:setPosition(slot3.width - 20, slot3.height - 20)
+	slot0.selectBox.confirmBtn:setPosition(slot3.width*0.5, 30)
+	slot0.selectBox.countLabel:setPosition(slot3.width*0.5, 65)
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot2[slot9] = false
+		slot10 = slot0.createLayoutTemplateNode(slot0, "selectItem", {
+			colorName = TR("%s品质", Utility.getColorName(slot9)),
+			colorValue = Utility.getColorValue(slot9),
+			isSelect = slot2[slot9]
+		})
+
+		slot10.setPosition(slot10, slot3.width*0.5, slot8*50 + 60)
+		slot0.selectBox:addChild(slot10)
+		slot10.itemBtn:setClickAction(function ()
+			slot0[slot1] = not slot0[slot1]
+
+			slot2.colorCheckBox:setSelected(slot0[slot2.colorCheckBox])
+
+			if slot2.colorCheckBox.setSelected[slot2.colorCheckBox] then
+				for slot3, slot4 in ipairs(slot3.mRefineList) do
+					if slot1 == WuxueModel.items[slot4.ModelId].colorLv then
+						slot3.mSelectWuXueList[slot4.EntityId] = true
+					end
+				end
+			else
+				for slot3, slot4 in pairs(slot3.mSelectWuXueList) do
+					for slot8, slot9 in pairs(slot3.mRefineList) do
+						if slot3 == slot9.EntityId and WuxueModel.items[slot9.ModelId].colorLv == slot1 then
+							slot3.mSelectWuXueList[slot9.EntityId] = nil
+						end
+					end
+				end
+			end
+
+			slot3.mGridView:setItemNum(#slot3.mRefineList)
+			slot3.selectBox.countLabel:setString(TR("当前选择融汇数量：%d", #table.keys(slot3.mSelectWuXueList)))
+			slot3.mSelectCountLabel:setString(string.format("添加武学：%s%s", "#8BA857", #table.keys(slot3.mSelectWuXueList)))
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.onRefine = function (slot0)
+	if #table.keys(slot0.mSelectWuXueList) <= 0 then
+		ui.showFlashView(TR("请选择要融汇的武学"))
+
+		return 
+	end
+
+	slot2 = false
+
+	for slot6, slot7 in pairs(slot0.mSelectWuXueList) do
+		if 3 < WuxueModel.items[WuxueObj:getWuxueInfoByEntityId(slot6).ModelId].colorLv or 0 < slot8.Lv then
+			slot2 = true
+
+			break
+		end
+	end
+
+	if slot2 then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("您已选择高价值武学，是否确认进行融汇操作？（融汇后所选武学永久消失）"),
+			cancelCallback = function ()
+				return 
+			end,
+			okCallback = function (slot0)
+				slot0:requestRefine()
+
+				return 
+			end
+		})
+	else
+		slot0.requestRefine(slot0)
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestRefine = function (slot0)
+	if #table.keys(slot0.mSelectWuXueList) <= 0 then
+		ui.showFlashView(TR("请选择要融汇的武学"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Decompose",
+		moduleName = "Wuxue",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+
+			for slot4, slot5 in pairs(slot0) do
+				WuxueObj:deleteItemById(slot5)
+			end
+
+			slot1:refreshRefineData()
+
+			slot1.refreshRefineData.mSelectWuXueList = {}
+
+			slot1.refreshRefineData.mGridView:setItemNum(#slot1.mRefineList)
+			slot1(slot1.refreshRefineData.mGridView.setItemNum.emptyHint, #slot1.mRefineList <= 0)
+			slot1.mSelectCountLabel:setString(string.format("添加武学：%s%s", "#8BA857", #table.keys(slot1.mSelectWuXueList)))
+			EventAuto:postEvent(EventDefine.eWuxueResolve)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

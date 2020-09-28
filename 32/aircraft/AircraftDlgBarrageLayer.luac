@@ -1,0 +1,248 @@
+slot0 = class("AircraftDlgBarrageLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 600,
+				height = 500
+			},
+			titleText = TR("发送弹幕")
+		},
+		children = {
+			{
+				name = "mEditBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 22,
+					maxLength = 70,
+					image = "c_41.png",
+					placeColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeHolder = TR("点击输入文字"),
+					pos = {
+						x = 230,
+						y = 55
+					},
+					size = {
+						width = 390,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBtnSendAction",
+					pos = {
+						x = 495,
+						y = 55
+					},
+					titleText = TR("发 送")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 295,
+						y = 90
+					},
+					size = {
+						width = 530,
+						height = 360
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 5,
+								y = -1
+							},
+							size = {
+								width = 520,
+								height = 360
+							}
+						},
+						children = {
+							{
+								name = "templateTextCell",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled7-text",
+										name = "strText",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 520,
+										height = 50
+									}
+								},
+								children = {
+									{
+										name = "untitled7",
+										cType = "Label",
+										params = {
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 260,
+												y = 25
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Sprite",
+										params = {
+											image = "c_11.png",
+											pos = {
+												x = 260,
+												y = 2
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "Button",
+										params = {
+											image = "c_pure.png",
+											childName = "button",
+											pos = {
+												x = 260,
+												y = 27
+											},
+											size = {
+												width = 500,
+												height = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in ipairs(AircraftTeamchatRelation.items) do
+		slot0.createLayoutTemplateNode(slot0, "templateTextCell", {
+			strText = slot5.chatText
+		}).button:setClickAction(function ()
+			slot0:sendOneText(slot1.chatText)
+
+			return 
+		end)
+		slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "templateTextCell", {
+			strText = slot5.chatText
+		}))
+	end
+
+	return 
+end
+slot0.onBtnSendAction = function (slot0)
+	slot1 = 70
+	slot3 = slot0
+	slot2 = slot0.cleanStr
+	slot4 = slot0.mEditBox:getText() or ""
+
+	if slot2(slot3, slot4):utf8len() == 0 then
+		ui.showFlashView(TR("输入内容不能为空"))
+
+		return 
+	end
+
+	if slot1 < slot3 then
+		ui.showFlashView(TR("不能超过%d个字符", slot1))
+
+		return 
+	end
+
+	if slot2.find(slot2, "%d%d%d%d%d%d") then
+		ui.showFlashView(TR("请勿发送6位以上连续数字"))
+
+		return 
+	end
+
+	slot0.sendOneText(slot0, slot2)
+
+	return 
+end
+slot0.sendOneText = function (slot0, slot1)
+	if slot1 == nil then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Chat",
+		moduleName = "AircraftTeam",
+		methodData = {
+			slot1,
+			""
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.cleanStr = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		slot1 = slot1.gsub(slot1, slot7[1], slot7[2])
+	end
+
+	return slot1
+end
+
+return slot0

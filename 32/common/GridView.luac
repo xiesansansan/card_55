@@ -1,0 +1,170 @@
+slot0 = class("GridView", function (slot0)
+	return display.newNode()
+end)
+slot0.ctor = function (slot0, slot1)
+	slot0.mViewSize = slot1 or {}.size or cc.size(640, 500)
+	slot0.mColCount = slot1 or {}.colCount or 5
+	slot0.itemNum = slot1 or {}.itemNum
+	slot0.createColCb = slot1 or {}.createColCb
+	slot0.mSelectIndex = slot1 or {}.selectIndex
+	slot0.mDirection = slot1 or {}.direction or 1
+
+	if slot0.mDirection == 1 then
+		slot0.mCelHeight = slot1.celHeight or 100
+		slot0.mCellWidth = slot0.mViewSize.width/slot0.mColCount
+	else
+		slot0.mCelHeight = slot0.mViewSize.height/slot0.mColCount
+		slot0.mCellWidth = slot1.celHeight or 100
+	end
+
+	slot0.mScrollView = UIWrap.newControl("ScrollView", {
+		size = slot0.mViewSize,
+		pos = cc.p(0, 0),
+		direction = slot0.mDirection,
+		conSize = slot0.mViewSize
+	})
+
+	slot0.addChild(slot0, slot0.mScrollView)
+
+	slot0.mTableView = UIWrap.newControl("TableView", {
+		size = slot0.mViewSize,
+		pos = cc.p(0, 0),
+		cellSizeFunc = handler(slot0, slot0._cellSizeFunc),
+		numOfCellsFunc = handler(slot0, slot0._numOfCellsFunc),
+		cellFillFunc = handler(slot0, slot0._cellFillFunc),
+		cellUpdateFunc = handler(slot0, slot0._cellUpdateFunc),
+		isVertical = slot0.mDirection == 1
+	})
+
+	slot0.mScrollView:addChild(slot0.mTableView)
+
+	slot0.mSelectIndex = slot1.selectIndex
+
+	slot0.setContentSize(slot0, slot0.mViewSize)
+	slot0.setAnchorPoint(slot0, cc.p(0.5, 0.5))
+	slot0.setIgnoreAnchorPointForPosition(slot0, false)
+
+	return 
+end
+slot0._cellSizeFunc = function (slot0)
+	if slot0.mDirection == 1 then
+		return slot0.mViewSize.width, slot0.mCelHeight
+	else
+		return slot0.mCellWidth, slot0.mViewSize.height
+	end
+
+	return 
+end
+slot0._numOfCellsFunc = function (slot0)
+	return math.ceil(slot0.itemNum/slot0.mColCount)
+end
+slot0._cellFillFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell = function (slot0)
+		slot0:removeAllChildren()
+
+		for slot5 = 1, slot1.mColCount, 1 do
+			if slot0*slot1.mColCount + slot5 <= slot1.itemNum then
+				slot6 = cc.Node:create()
+
+				slot6.setContentSize(slot6, cc.size(slot1.mCellWidth, slot1.mCelHeight))
+				slot6.setAnchorPoint(slot6, cc.p(0.5, 0.5))
+
+				if slot1.mDirection == 1 then
+					slot6.setPosition(slot6, cc.p(slot1.mCellWidth*0.5 + (slot5 - 1)*slot1.mCellWidth, slot1.mCelHeight*0.5))
+				else
+					slot6.setPosition(slot6, cc.p(slot1.mCellWidth*0.5, slot1.mCelHeight*(slot1.mColCount - 0.5) - (slot5 - 1)*slot1.mCelHeight))
+				end
+
+				slot0:addChild(slot6)
+				table.insert(slot1, slot6)
+
+				slot0.NodeList = slot1
+
+				if slot1.createColCb then
+					slot1.createColCb(slot6, slot0*slot1.mColCount + slot5, slot1.mSelectIndex == slot0*slot1.mColCount + slot5)
+				end
+			end
+		end
+
+		return 
+	end
+
+	slot1.setPosition(slot1, cc.p(0, 0))
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0._cellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.setSelect = function (slot0, slot1)
+	slot0.mSelectIndex = slot1
+
+	if slot0.mSelectIndex ~= slot0.mSelectIndex then
+		if slot2 then
+			slot0.refreshCell(slot0, slot2)
+		end
+
+		if slot0.mSelectIndex then
+			slot0.refreshCell(slot0, slot0.mSelectIndex)
+		end
+	end
+
+	return 
+end
+slot0.refreshCell = function (slot0, slot1)
+	if not slot0.getItem(slot0, slot1) then
+		return 
+	end
+
+	slot2.removeAllChildren(slot2)
+
+	if slot0.createColCb then
+		slot0.createColCb(slot2, slot1, slot0.mSelectIndex == slot1)
+	end
+
+	return 
+end
+slot0.getSelectIndex = function (slot0)
+	return slot0.mSelectIndex
+end
+slot0.setItemHeight = function (slot0, slot1)
+	slot0.mCelHeight = slot1
+
+	return 
+end
+slot0.setItemNum = function (slot0, slot1)
+	slot0.itemNum = slot1
+
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.reloadData = function (slot0)
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.getItem = function (slot0, slot1)
+	slot2 = slot1 - (math.ceil(slot1/slot0.mColCount) - 1)*slot0.mColCount
+
+	if slot0.mTableView:cellAtIndex(math.ceil(slot1/slot0.mColCount) - 1) then
+		return slot3.NodeList[slot2]
+	end
+
+	return 
+end
+slot0.jumpToBottom = function (slot0)
+	slot0.mTableView:jumpToBottom()
+
+	return 
+end
+slot0.jumpToTop = function (slot0)
+	slot0.mTableView:jumpToTop()
+
+	return 
+end
+
+return slot0

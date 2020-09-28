@@ -1,0 +1,134 @@
+slot0 = class("AutoFightNoticeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			okCallback = "onOkBtn",
+			okText = TR("发起"),
+			pos = {
+				x = 574.6,
+				y = 306.79
+			},
+			size = {
+				width = 760,
+				height = 480
+			},
+			titleText = TR("挂机")
+		},
+		children = {
+			{
+				name = "noticeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 380,
+						y = 324.2
+					},
+					text = TR("是否对全员发起集火攻打本门派的命令？")
+				},
+				children = {}
+			},
+			{
+				name = "mCheckBox",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "onNoTipToday",
+					pos = {
+						x = 604.98,
+						y = 47.06
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 34.79,
+								y = 12.06
+							},
+							text = TR("不再显示")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 380,
+						y = 163.42
+					},
+					text = TR("是否开始挂机？")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+	slot0.curTeamNum = slot1.curTeamNum
+	slot0.maxTeamNum = slot1.maxTeamNum
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mCheckBox:setSelected(MqTime.isSameDay(LocalData:getGameDataValue("AutoFightNotice") or 0, Player:getCurrentTime()))
+	slot0.noticeLabel:setString(TR("同时进行%s支队伍挂机，获得功勋加成%s%%\n当前只选择了%d支队伍(%s%%)，无法获得%s", slot0.maxTeamNum, CitywarQueueConfig.items[slot0.maxTeamNum].outPutR*100, slot0.curTeamNum, CitywarQueueConfig.items[slot0.curTeamNum].outPutR*100, (slot0.curTeamNum == 1 and TR("功勋加成")) or TR("最大功勋加成")))
+
+	return 
+end
+slot0.onOkBtn = function (slot0)
+	if slot0.callback then
+		slot0.callback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onNoTipToday = function (slot0, slot1)
+	LocalData:saveGameDataValue("AutoFightNotice", (slot1.isSelected(slot1) and Player:getCurrentTime()) or 0)
+
+	return 
+end
+
+return slot0

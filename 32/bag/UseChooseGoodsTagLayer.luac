@@ -1,0 +1,457 @@
+slot0 = class("UseChooseGoodsTagLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("选择物品")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 422.63,
+						y = 263.62
+					},
+					size = {
+						width = 764,
+						height = 364
+					}
+				},
+				children = {}
+			},
+			{
+				name = "selectView",
+				cType = "SelectCountView",
+				params = {
+					currSelCount = 1,
+					pos = {
+						x = 422.54,
+						y = 116.21
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "sureBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					isNeedOutline = false,
+					clickAction = "onUseBtn",
+					titleisRichText = "false",
+					pos = {
+						x = 423,
+						y = 52
+					},
+					titleText = TR("使 用")
+				},
+				children = {}
+			},
+			{
+				name = "useAllBtn",
+				cType = "Button",
+				params = {
+					hide = true,
+					image = "c_27.png",
+					isNeedOutline = false,
+					clickAction = "onUseAll",
+					titleisRichText = "false",
+					pos = {
+						x = 546,
+						y = 52
+					},
+					titleText = TR("使用全部")
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 130,
+					pos = {
+						x = 422.33,
+						y = 293.38
+					},
+					size = {
+						width = 750,
+						height = 296
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 50.8,
+						y = 449.86
+					},
+					size = {
+						width = 407.08,
+						height = 48.74
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 240.22,
+						y = 371.34
+					}
+				},
+				children = {
+					{
+						name = "untitled8",
+						cType = "Scale9Sprite",
+						params = {
+							image = "bb_15.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "cardNode",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							pos = {
+								x = -120.51,
+								y = 7
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = "false",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -60.82,
+								y = 35.88
+							}
+						},
+						children = {}
+					},
+					{
+						name = "checkBox",
+						cType = "Checkbox",
+						params = {
+							normalImage = "c_43.png",
+							isSelect = false,
+							selectImage = "c_44.png",
+							pos = {
+								x = -48.3,
+								y = -23.99
+							}
+						},
+						children = {}
+					},
+					{
+						name = "progressLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -61.47,
+								y = 7.96
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mInfo = slot1.info
+	slot0.mCallBack = slot1.callBack
+	slot0.chooseCardId = nil
+	slot0.selectNum = 1
+	slot0.mSelectCamp = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {
+		{
+			tag = 1,
+			title = TR("射雕")
+		},
+		{
+			tag = 2,
+			title = TR("神雕")
+		},
+		{
+			tag = 3,
+			title = TR("倚天")
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0
+		end
+
+		return 
+	end)
+	slot0.getGoods(slot0)
+	slot0.selectView:setMaxCount(slot0.mInfo.Num)
+	slot0.selectView:setChangeCallback(function (slot0)
+		slot0.selectNum = slot0
+
+		return 
+	end)
+
+	if 1 < slot0.mInfo.Num then
+		slot0.useAllBtn:setVisible(true)
+		slot0.sureBtn:setPositionX(300)
+	end
+
+	return 
+end
+slot0.getGoods = function (slot0)
+	slot1 = {
+		{},
+		{},
+		{}
+	}
+
+	for slot5, slot6 in pairs(GoodsOutputRelation.items[slot0.mInfo.ModelId]) do
+		slot7 = 0
+
+		if slot6.outputTypeID == ResourceTypeSub.eHero then
+			slot7 = Resource.getModelInfo(slot6.outputModelID).camp
+		elseif slot6.outputTypeID == ResourceTypeSub.eHeroDebris then
+			slot7 = Resource.getModelInfo(GoodsModel.items[slot6.outputModelID].outputModelID).camp
+		end
+
+		if slot7 == 1 then
+			table.insert(slot1[1], slot6)
+		elseif slot7 == 2 then
+			table.insert(slot1[2], slot6)
+		elseif slot7 == 3 then
+			table.insert(slot1[3], slot6)
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		table.sort(slot6, function (slot0, slot1)
+			if slot0.outputTypeID == ResourceTypeSub.eHero or slot0.outputTypeID == ResourceTypeSub.eHeroDebris then
+				if slot0.outputTypeID == ResourceTypeSub.eHero then
+					if HeroObj:getPrStateOfHero(slot0.outputModelID) ~= HeroObj:getPrStateOfHero(slot1.outputModelID) then
+						return slot3 < slot2
+					end
+				elseif slot0.outputTypeID == ResourceTypeSub.eHeroDebris and HeroObj:getPrStateOfHero(slot2) ~= HeroObj:getPrStateOfHero(GoodsModel.items[slot1.outputModelID].outputModelID) then
+					return slot5 < slot4
+				end
+			else
+				return slot0.ID < slot1.ID
+			end
+
+			return 
+		end)
+	end
+
+	slot0.mGoodsList = slot1
+
+	slot0.tabView:activeTabBtnByTag2(1)
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.mSelectCamp = slot1
+
+	slot0.mGridView:setItemNum(#slot0.mGoodsList[slot1])
+	slot0.mGridView:jumpToTop()
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "gridNode")
+
+	if not slot0.mGoodsList[slot0.mSelectCamp][slot2] then
+		return 
+	end
+
+	slot5.nameLabel:setString(Resource.getModelInfo(slot4.outputModelID).name)
+	slot5.nameLabel:setColor(slot7)
+
+	slot8 = ""
+	slot9 = ""
+	slot10 = nil
+	slot11 = Resource.getModelInfo(slot4.outputModelID)
+
+	if slot4.outputTypeID == ResourceTypeSub.eHero then
+		slot10 = Resource.getCount(slot6.debrisId)
+		slot11 = Resource.getModelInfo(slot6.debrisId)
+	elseif slot4.outputTypeID == ResourceTypeSub.eHeroDebris then
+		slot10 = Resource.getCount(slot4.outputModelID)
+		slot11 = slot6
+	end
+
+	if 0 < (slot11.outputModelID or 0) then
+		if HeroObj:getItem(slot12) and next(slot13) then
+			if HeroStarRelation.items[slot12][slot13.Star + 1] == nil then
+				slot8 = TR("星级已满")
+				slot9 = slot10
+			else
+				slot8 = TR("升星")
+				slot9 = string.format("%s/%s", slot10, slot14.needDebrisNum)
+			end
+
+			slot5.progressLabel:setString(string.format("%s: %s", slot8, slot9))
+		else
+			slot5.progressLabel:setString(string.format("%s: %s", TR("合成"), string.format("%s/%s", slot10, slot11.outputNeedNum)))
+		end
+	else
+		slot5.progressLabel:setString(TR("已拥有: %s", Utility.numberWithUnit(slot10)))
+	end
+
+	slot5.checkBox.mClickAction = function ()
+		if slot0 then
+			ui.showFlashView(TR("必须要选择一个道具"))
+			slot1.checkBox:setSelected(true)
+
+			return 
+		end
+
+		slot2.mGridView:setSelect(slot3)
+
+		return 
+	end
+
+	if slot3 then
+		slot0.chooseCardId = slot4.outputModelID
+	end
+
+	slot5.checkBox:setSelected(slot3)
+	slot5.cardNode:setCardData({
+		modelId = slot4.outputModelID,
+		num = slot4.outputNum
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+
+	if slot4.outputTypeID == ResourceTypeSub.eHero then
+		slot14 = slot0.createQualityPic(slot0, slot13)
+
+		slot14.setPosition(slot14, 0, 40)
+		slot5.cardNode:addChild(slot14)
+	elseif slot4.outputTypeID == ResourceTypeSub.eHeroDebris then
+		slot15 = slot0.createQualityPic(slot0, slot14)
+
+		slot15.setPosition(slot15, 75, 40)
+		slot5.cardNode:addChild(slot15)
+	end
+
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.createQualityPic = function (slot0, slot1)
+	return UIWrap.newControl("Sprite", {
+		scale = 0.6,
+		image = Utility.getQualityImage(slot1.quality),
+		pos = cc.p(0, 0)
+	})
+end
+slot0.onUseBtn = function (slot0)
+	if slot0.mCallBack then
+		slot0.mCallBack(slot0.selectNum, slot0.chooseCardId)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onUseAll = function (slot0)
+	ui.showMessageBox({
+		text = TR("是否将该道具剩余数量全部使用？(一次最高使用9999个)"),
+		okCallback = function ()
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mInfo.Num, slot0.chooseCardId)
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end,
+		cancelCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

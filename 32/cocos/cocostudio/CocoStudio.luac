@@ -1,0 +1,377 @@
+if ccs == nil then
+	return 
+end
+
+if not json then
+	require("cocos.cocos2d.json")
+end
+
+require("cocos.cocostudio.StudioConstants")
+
+ccs.sendTriggerEvent = function (slot0)
+	if ccs.TriggerMng.getInstance():get(slot0) == nil then
+		return 
+	end
+
+	for slot5 = 1, table.getn(slot1), 1 do
+		if slot1[slot5] ~= nil and slot6.detect(slot6) then
+			slot6.done(slot6)
+		end
+	end
+
+	return 
+end
+ccs.registerTriggerClass = function (slot0, slot1)
+	ccs.TInfo.new(slot0, slot1)
+
+	return 
+end
+ccs.TInfo = class("TInfo")
+ccs.TInfo._className = ""
+ccs.TInfo._fun = nil
+ccs.TInfo.ctor = function (slot0, slot1, slot2)
+	if slot2 ~= nil then
+		slot0._className = slot1
+		slot0._fun = slot2
+	else
+		slot0._className = slot1._className
+		slot0._fun = slot1._fun
+	end
+
+	ccs.ObjectFactory.getInstance():registerType(slot0)
+
+	return 
+end
+ccs.ObjectFactory = class("ObjectFactory")
+ccs.ObjectFactory._typeMap = nil
+ccs.ObjectFactory._instance = nil
+ccs.ObjectFactory.ctor = function (slot0)
+	slot0._typeMap = {}
+
+	return 
+end
+ccs.ObjectFactory.getInstance = function ()
+	if ccs.ObjectFactory._instance == nil then
+		ccs.ObjectFactory._instance = ccs.ObjectFactory.new()
+	end
+
+	return ccs.ObjectFactory._instance
+end
+ccs.ObjectFactory.destroyInstance = function ()
+	ccs.ObjectFactory._instance = nil
+
+	return 
+end
+ccs.ObjectFactory.createObject = function (slot0, slot1)
+	slot2 = nil
+
+	if slot0._typeMap[slot1] ~= nil then
+		slot2 = slot3._fun()
+	end
+
+	return slot2
+end
+ccs.ObjectFactory.registerType = function (slot0, slot1)
+	slot0._typeMap[slot1._className] = slot1
+
+	return 
+end
+ccs.TriggerObj = class("TriggerObj")
+ccs.TriggerObj._cons = {}
+ccs.TriggerObj._acts = {}
+ccs.TriggerObj._enable = false
+ccs.TriggerObj._id = 0
+ccs.TriggerObj._vInt = {}
+ccs.TriggerObj.extend = function (slot0)
+	if not tolua.getpeer(slot0) then
+		tolua.setpeer(slot0, {})
+	end
+
+	setmetatable(slot1, TriggerObj)
+
+	return slot0
+end
+ccs.TriggerObj.ctor = function (slot0)
+	slot0.init(slot0)
+
+	return 
+end
+ccs.TriggerObj.init = function (slot0)
+	slot0._id = 0
+	slot0._enable = true
+	slot0._cons = {}
+	slot0._acts = {}
+	slot0._vInt = {}
+
+	return 
+end
+ccs.TriggerObj.detect = function (slot0)
+	if not slot0._enable or table.getn(slot0._cons) == 0 then
+		return true
+	end
+
+	slot1 = true
+	slot2 = nil
+
+	for slot6 = 1, table.getn(slot0._cons), 1 do
+		if slot0._cons[slot6] ~= nil and slot2.detect ~= nil then
+			slot1 = slot1 and slot2.detect(slot2)
+		end
+	end
+
+	return slot1
+end
+ccs.TriggerObj.done = function (slot0)
+	if not slot0._enable or table.getn(slot0._acts) == 0 then
+		return 
+	end
+
+	slot1 = nil
+
+	for slot5 = 1, table.getn(slot0._acts), 1 do
+		if slot0._acts[slot5] ~= nil and slot1.done then
+			slot1.done(slot1)
+		end
+	end
+
+	return 
+end
+ccs.TriggerObj.removeAll = function (slot0)
+	slot1 = nil
+
+	for slot5 = 1, table.getn(slot0._cons), 1 do
+		if slot0._cons[slot5] ~= nil then
+			slot1.removeAll(slot1)
+		end
+	end
+
+	slot0._cons = {}
+
+	for slot5 = 1, table.getn(slot0._acts), 1 do
+		if slot0._acts[slot5] ~= nil then
+			slot1.removeAll(slot1)
+		end
+	end
+
+	slot0._acts = {}
+
+	return 
+end
+ccs.TriggerObj.serialize = function (slot0, slot1)
+	slot0._id = slot1.id
+	slot2 = 0
+
+	if slot1.conditions ~= nil then
+		for slot7 = 1, table.getn(slot3), 1 do
+			if slot3[slot7].classname ~= nil then
+				assert(ccs.ObjectFactory.getInstance():createObject(slot9) ~= nil, string.format("class named %s can not implement!", slot9))
+				slot10.serialize(slot10, slot8)
+				slot10.init(slot10)
+				table.insert(slot0._cons, slot10)
+			end
+		end
+	end
+
+	if slot1.actions ~= nil then
+		for slot8 = 1, table.getn(slot4), 1 do
+			if slot4[slot8].classname ~= nil then
+				assert(ccs.ObjectFactory.getInstance():createObject(slot10) ~= nil, string.format("class named %s can not implement!", slot10))
+				slot11.serialize(slot11, slot9)
+				slot11.init(slot11)
+				table.insert(slot0._acts, slot11)
+			end
+		end
+	end
+
+	if slot1.events ~= nil then
+		for slot9 = 1, table.getn(slot5), 1 do
+			if 0 <= slot5[slot9].id then
+				table.insert(slot0._vInt, slot11)
+			end
+		end
+	end
+
+	return 
+end
+ccs.TriggerObj.getId = function (slot0)
+	return slot0._id
+end
+ccs.TriggerObj.setEnable = function (slot0, slot1)
+	slot0._enable = slot1
+
+	return 
+end
+ccs.TriggerObj.getEvents = function (slot0)
+	return slot0._vInt
+end
+ccs.TriggerMng = class("TriggerMng")
+ccs.TriggerMng._eventTriggers = nil
+ccs.TriggerMng._triggerObjs = nil
+ccs.TriggerMng._movementDispatches = nil
+ccs.TriggerMng._instance = nil
+ccs.TriggerMng.ctor = function (slot0)
+	slot0._triggerObjs = {}
+	slot0._movementDispatches = {}
+	slot0._eventTriggers = {}
+
+	return 
+end
+ccs.TriggerMng.getInstance = function ()
+	if ccs.TriggerMng._instance == nil then
+		ccs.TriggerMng._instance = ccs.TriggerMng.new()
+	end
+
+	return ccs.TriggerMng._instance
+end
+ccs.TriggerMng.destroyInstance = function ()
+	if ccs.TriggerMng._instance ~= nil then
+		ccs.TriggerMng._instance:removeAll()
+
+		ccs.TriggerMng._instance = nil
+	end
+
+	return 
+end
+ccs.TriggerMng.triggerMngVersion = function (slot0)
+	return "1.0.0.0"
+end
+ccs.TriggerMng.parse = function (slot0, slot1)
+	if json.decode(slot1, 1) == nil then
+		return 
+	end
+
+	for slot7 = 1, table.getn(slot2), 1 do
+		slot9 = ccs.TriggerObj.new()
+
+		slot9.serialize(slot9, slot8)
+
+		for slot14 = 1, table.getn(slot10), 1 do
+			slot0.add(slot0, slot10[slot14], slot9)
+		end
+
+		slot0._triggerObjs[slot9.getId(slot9)] = slot9
+	end
+
+	return 
+end
+ccs.TriggerMng.get = function (slot0, slot1)
+	return slot0._eventTriggers[slot1]
+end
+ccs.TriggerMng.getTriggerObj = function (slot0, slot1)
+	return slot0._triggerObjs[slot1]
+end
+ccs.TriggerMng.add = function (slot0, slot1, slot2)
+	if slot0._eventTriggers[slot1] == nil then
+		slot3 = {}
+	end
+
+	slot4 = false
+
+	for slot8 = 1, table.getn(slot3), 1 do
+		if slot3[slot8] == triggers then
+			slot4 = true
+
+			break
+		end
+	end
+
+	if not slot4 then
+		table.insert(slot3, slot2)
+
+		slot0._eventTriggers[slot1] = slot3
+	end
+
+	return 
+end
+ccs.TriggerMng.removeAll = function (slot0)
+	for slot4 in pairs(slot0._eventTriggers) do
+		for slot9 = 1, table.getn(slot5), 1 do
+			slot5[slot9]:removeAll()
+		end
+	end
+
+	slot0._eventTriggers = {}
+
+	return 
+end
+ccs.TriggerMng.remove = function (slot0, slot1, slot2)
+	if slot2 ~= nil then
+		return slot0.removeObjByEvent(slot0, slot1, slot2)
+	end
+
+	assert(0 <= slot1, "event must be larger than 0")
+
+	if slot0._eventTriggers == nil then
+		return false
+	end
+
+	if slot0._eventTriggers[slot1] == nil then
+		return false
+	end
+
+	for slot7 = 1, table.getn(slot3), 1 do
+		if triggers[slot7] ~= nil then
+			slot8.remvoeAll(slot8)
+		end
+	end
+
+	slot0._eventTriggers[slot1] = nil
+
+	return true
+end
+ccs.TriggerMng.removeObjByEvent = function (slot0, slot1, slot2)
+	assert(0 <= slot1, "event must be larger than 0")
+
+	if slot0._eventTriggers == nil then
+		return false
+	end
+
+	if slot0._eventTriggers[slot1] == nil then
+		return false
+	end
+
+	for slot7 = 1, table.getn(slot3), 1 do
+		if slot3[slot7] ~= nil and slot8 == slot2 then
+			slot8.remvoeAll(slot8)
+			table.remove(slot3, slot7)
+
+			return true
+		end
+	end
+
+	return 
+end
+ccs.TriggerMng.removeTriggerObj = function (slot0, slot1)
+	if slot0.getTriggerObj(slot1) == nil then
+		return false
+	end
+
+	for slot7 = 1, table.getn(slot3), 1 do
+		slot0.remove(slot0, slot3[slot7], slot2)
+	end
+
+	return true
+end
+ccs.TriggerMng.isEmpty = function (slot0)
+	return slot0._eventTriggers ~= nil or table.getn(slot0._eventTriggers) <= 0
+end
+
+function __onParseConfig(slot0, slot1)
+	if slot0 == cc.ConfigType.COCOSTUDIO then
+		ccs.TriggerMng.getInstance():parse(slot1)
+	end
+
+	return 
+end
+
+ccs.AnimationInfo = function (slot0, slot1, slot2)
+	assert(slot0 ~= nil and type(slot0) == "string" and slot1 ~= nil and type(slot1) == "number" and slot2 ~= nil and type(slot2) == "number", "ccs.AnimationInfo() - invalid input parameters")
+
+	return {
+		name = slot0,
+		startIndex = slot1,
+		endIndex = slot2
+	}
+end
+
+return 

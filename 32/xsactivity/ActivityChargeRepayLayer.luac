@@ -1,0 +1,600 @@
+slot0 = class("ActivityChargeRepayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "xshd_32.png",
+					pos = {
+						x = -218.38,
+						y = -54.86
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -241.56,
+						y = 203.34
+					},
+					size = {
+						width = 385,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 30,
+								y = 76
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 30,
+								y = 46
+							},
+							text = TR("今日已充值：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 30,
+								y = 16
+							},
+							text = TR("今日可领取次数：")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "22:33:22",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 153.26,
+								y = 76
+							}
+						},
+						children = {}
+					},
+					{
+						name = "chargeNum",
+						cType = "Label",
+						params = {
+							text = "500",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							pos = {
+								x = 153.26,
+								y = 46
+							}
+						},
+						children = {}
+					},
+					{
+						name = "getRewardNum",
+						cType = "Label",
+						params = {
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 198.26,
+								y = 16
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 264.99,
+						y = -22.01
+					}
+				},
+				children = {
+					{
+						name = "taskTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 19.31,
+								y = 112.89
+							},
+							size = {
+								width = 540,
+								height = 405
+							}
+						},
+						children = {
+							{
+								name = "taskTempNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -120
+									},
+									size = {
+										width = 540,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled16",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											pos = {
+												x = 270,
+												y = 60
+											},
+											size = {
+												width = 530,
+												height = 115
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											childName = "name",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 18,
+												y = 100
+											},
+											text = TR("礼包名")
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "Checkbox",
+										params = {
+											normalImage = "c_43.png",
+											childName = "selectBtn",
+											selectImage = "c_44.png",
+											pos = {
+												x = 470,
+												y = 45
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled22",
+										cType = "ListView",
+										params = {
+											childName = "cardNodeList",
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 15.75,
+												y = 6.7
+											},
+											size = {
+												width = 400,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "cardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled24-initParams",
+														name = "cardParams",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 80,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "untitled24",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															childName = "cardNode",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 40,
+																y = 40
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 288.46,
+								y = 99.7
+							},
+							text = TR("每累计充值100元，即可选择一份奖励")
+						},
+						children = {}
+					},
+					{
+						name = "getBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onGetRewardClick",
+							pos = {
+								x = 289.25,
+								y = 59.05
+							},
+							titleText = TR("领取")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "tb_gn_75.png",
+					clickAction = "onChargeClick",
+					pos = {
+						x = -50.26,
+						y = 199.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 467.15,
+						y = -288.82
+					},
+					text = TR("每日零点重置")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedUseTotal
+	slot0.mActivityType = slot1.activityType or 1
+	slot0.mSelectedIdList = {}
+	slot0.mSelectedIdStr = ""
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.refreeUi = function (slot0)
+	if slot0.isCanGetNum <= 0 then
+		slot0.getBtn:setEnabled(false)
+	else
+		slot0.getBtn:setEnabled(true)
+	end
+
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.refTimeUpate = function (slot0)
+	if slot0.mTimeUpdate then
+		slot0.stopAction(slot0, slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot0.mTimeUpdate = Utility.schedule(slot0, function ()
+		if 0 < slot0.mServerData.EndDate - Player.mTimeTick then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		elseif slot0.mTimeUpdate then
+			slot0:stopAction(slot0.mTimeUpdate)
+
+			slot0.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 540, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mConfigDescList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot1.selectBtn.mClickAction = function (slot0)
+			slot0:refreshSelectList(slot0, slot1.OrderId)
+
+			return 
+		end
+
+		slot1.name:setString(TR("礼包%s", slot0.mConfigDescList[slot1 + 1].OrderId))
+		slot1.cardNodeList:removeAllChildren()
+
+		for slot6, slot7 in ipairs(Utility.analysisStrResList(slot0.mConfigDescList[slot1 + 1].Resource)) do
+			slot1.cardNodeList:pushBackCustomItem(slot0:createLayoutTemplateNode("cardLayout", {
+				cardParams = {
+					cardInfo = {
+						modelId = slot7.resourceId,
+						num = slot7.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot1.selectBtn:setSelected(false)
+		slot1.selectBtn:setSelected(slot0.mSelectedIdStr == slot2.OrderId)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.refreshSelectList = function (slot0, slot1, slot2)
+	if slot1.isSelected(slot1) then
+		slot0.mSelectedIdStr = slot2
+	else
+		slot0.mSelectedIdStr = ""
+	end
+
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.onGetRewardClick = function (slot0)
+	if slot0.mSelectedIdStr == "" then
+		ui.showFlashView(TR("选择可领取礼包!"))
+
+		return 
+	end
+
+	if slot0.canGetCount < 1 then
+		ui.showFlashView(TR("可领取礼包数量不足!"))
+
+		return 
+	end
+
+	slot0.requestReward(slot0)
+
+	return 
+end
+slot0.onChargeClick = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.RechargeHomeLayer"
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChargeTotalUseInfo",
+		moduleName = "TimedInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mServerData = slot0
+			slot0.mConfigDescList = slot0.mServerData.ConfigDesc
+
+			slot0.chargeNum:setString(slot0.mServerData.Total)
+
+			slot0.isCanGetNum = math.floor(slot0.mServerData.Total/slot0.mServerData.ChargeNum)
+			slot0.isCanGetNum = (slot0.isCanGetNum <= slot0.mServerData.CanDrawTotal and slot0.isCanGetNum) or slot0.mServerData.CanDrawTotal
+			slot0.drawNums = slot0.mServerData.DrawNums
+			slot0.canGetCount = slot0.isCanGetNum - slot0.drawNums
+
+			slot0.getRewardNum:setString(TR("%s/%s", slot0.canGetCount, slot0.mServerData.CanDrawTotal - slot0.mServerData.DrawNums))
+			slot0:refreeUi()
+			slot0:refTimeUpate()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChargeTotalUseReward",
+		moduleName = "TimedInfo",
+		methodData = {
+			slot0.mSelectedIdStr
+		},
+		successCallback = function (slot0)
+			slot0.mServerData = slot0.ChargeUseInfo
+
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.isCanGetNum = math.floor(slot0.mServerData.Total/slot0.mServerData.ChargeNum)
+			slot0.isCanGetNum = (slot0.isCanGetNum <= slot0.mServerData.CanDrawTotal and slot0.isCanGetNum) or slot0.mServerData.CanDrawTotal
+			slot0.drawNums = slot0.mServerData.DrawNums
+			slot0.canGetCount = slot0.isCanGetNum - slot0.drawNums
+			slot0.mConfigDescList = slot0.mServerData.ConfigDesc
+
+			slot0.getRewardNum:setString(TR("%s/%s", slot0.canGetCount, slot0.mServerData.CanDrawTotal - slot0.mServerData.DrawNums))
+			slot0:refreeUi()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

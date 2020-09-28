@@ -1,0 +1,204 @@
+slot0 = class("CacheActivity", {})
+
+require("xsactivity.XSActivityConfig")
+
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mActivityList = {}
+	slot0.mNewActivityList = {}
+	slot0.mModuleSubList = {}
+	slot0.mSpecialActivityList = {
+		[tostring(ModuleSub.eExtraActivityDoubleIncome)] = true,
+		[tostring(ModuleSub.eExtraActivitCompetition)] = true
+	}
+
+	return 
+end
+slot0.updateActivityList = function (slot0, slot1)
+	table.merge(slot0.mActivityList, slot1)
+	slot0.refreshAssistCache(slot0)
+	slot0.refreshNewActivity(slot0)
+
+	for slot5, slot6 in pairs(slot0.mActivityList) do
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(slot5))
+		EventAuto:postEvent(EventDefine.eNewPrefix .. tostring(slot5))
+	end
+
+	for slot5, slot6 in pairs(slot0.mSpecialActivityList) do
+		EventAuto:postEvent(EventDefine.eNewPrefix .. slot5)
+	end
+
+	EventAuto:postEvent(EventDefine.eXSActivityChanged)
+
+	return 
+end
+slot0.refreshAssistCache = function (slot0)
+	slot0.mModuleSubList = {}
+
+	for slot4, slot5 in pairs(slot0.mActivityList) do
+		slot0.mModuleSubList[tostring(slot4)] = slot5
+	end
+
+	return 
+end
+slot0.isActivityConfined = function (slot0, slot1, slot2)
+	if slot0.mActivityList[tostring(slot1)] then
+		if slot2 then
+			for slot7, slot8 in pairs(slot3) do
+				if slot8.ActivityType == slot2 then
+					return 0 <= slot8.EndDate - Player:getCurrentTime()
+				end
+			end
+		else
+			return 0 <= slot3[1].EndDate - Player:getCurrentTime()
+		end
+	end
+
+	return false
+end
+slot0.getEntityId = function (slot0, slot1, slot2)
+	if slot0.mActivityList[tostring(slot1)] then
+		if slot2 then
+			for slot7, slot8 in pairs(slot3) do
+				if slot8.ActivityType == slot2 then
+					return slot8.ActivityId
+				end
+			end
+		else
+			return slot3[1].ActivityId
+		end
+	end
+
+	return 
+end
+slot0.getActivityInfo = function (slot0, slot1)
+	return slot0.mActivityList[tostring(slot1)]
+end
+slot0.getActivityList = function (slot0, slot1)
+	slot2 = clone(slot0.mActivityList)
+
+	if slot1 then
+		slot3 = {}
+
+		for slot7, slot8 in pairs(slot2) do
+			for slot12, slot13 in pairs(slot8) do
+				if slot13.ActivityType == slot1 then
+					slot3[slot7] = slot3[slot7] or {}
+
+					table.insert(slot3[slot7], slot13)
+				end
+			end
+		end
+
+		return slot3
+	else
+		return slot2
+	end
+
+	return 
+end
+slot0.activityIsNew = function (slot0, slot1)
+	return slot0.mNewActivityList[tostring(slot1)]
+end
+slot0.refreshNewActivity = function (slot0)
+	slot1 = Player:getCurrentTime()
+	slot2 = {}
+	slot3 = LocalData:getGameDataValue("newTimeActivityData") or {}
+
+	if MqTime.isSameDay(slot1, slot3.timeTick) then
+		slot3.timedActivity = slot3.timedActivity or {}
+		slot3.newTimedActivity = slot3.newTimedActivity or {}
+
+		for slot7, slot8 in pairs(slot3.timedActivity) do
+			if not slot0.mModuleSubList[slot7] or (slot2[slot7] and not slot0.mSpecialActivityList[slot7]) then
+				slot3.timedActivity[slot7] = nil
+				slot3.newTimedActivity[slot7] = nil
+			end
+		end
+
+		slot4 = pairs
+		slot5 = slot0.mModuleSubList or {}
+
+		for slot7, slot8 in slot4(slot5) do
+			if not slot3.timedActivity[slot7] and not slot2[slot7] then
+				slot3.timedActivity[slot7] = true
+				slot3.newTimedActivity[slot7] = true
+			end
+		end
+	else
+		slot3.timedActivity = {}
+		slot3.newTimedActivity = {}
+		slot4 = pairs
+		slot5 = slot0.mModuleSubList or {}
+
+		for slot7, slot8 in slot4(slot5) do
+			if not slot2[slot7] then
+				slot3.timedActivity[slot7] = true
+				slot3.newTimedActivity[slot7] = true
+			end
+		end
+
+		for slot7, slot8 in pairs(slot0.mSpecialActivityList) do
+			if Utility.moduleIsOpen(tonumber(slot7), false) then
+				slot3.timedActivity[slot7] = true
+				slot3.newTimedActivity[slot7] = true
+			else
+				slot3.timedActivity[slot7] = nil
+				slot3.newTimedActivity[slot7] = nil
+			end
+		end
+	end
+
+	slot3.timeTick = slot1
+	slot0.mNewActivityList = slot3.newTimedActivity
+
+	LocalData:saveGameDataValue("newTimeActivityData", slot3)
+
+	return 
+end
+slot0.deleteNewActivity = function (slot0, slot1)
+	if slot0.activityIsNew(slot0, slot1) then
+		slot0.mNewActivityList[tostring(slot1)] = nil
+		LocalData:getGameDataValue("newTimeActivityData").newTimedActivity = slot0.mNewActivityList
+
+		LocalData:saveGameDataValue("newTimeActivityData", slot2)
+		EventAuto:postEvent(EventDefine.eNewPrefix .. tostring(slot1))
+	end
+
+	return 
+end
+slot0.isHaveXsActivity = function (slot0, slot1)
+	slot3 = slot0
+	slot2 = slot0.getActivityList
+	slot4 = slot1 or 1
+
+	for slot6, slot7 in pairs(slot2) do
+		if XSActivityConfig[tonumber(slot6)] then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.setXSPlayerInfo = function (slot0, slot1)
+	slot0.mXSPlayerInfo = slot1
+
+	return 
+end
+slot0.getXSPlayerInfo = function (slot0)
+	return slot0.mXSPlayerInfo or {}
+end
+slot0.setXSQiPaoPlayerInfo = function (slot0, slot1)
+	slot0.mXSQiPaoPlayerInfo = slot1
+
+	return 
+end
+slot0.getXSQiPaoPlayerInfo = function (slot0)
+	return slot0.mXSQiPaoPlayerInfo
+end
+
+return slot0

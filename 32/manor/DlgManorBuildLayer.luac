@@ -1,0 +1,310 @@
+slot0 = class("DlgManorBuildLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("建筑一览")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "fdxl_7.png",
+					pos = {
+						x = 139.05,
+						y = 446.72
+					}
+				},
+				children = {
+					{
+						name = "mLv",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 75.67,
+								y = 17.02
+							},
+							text = TR("等级：0")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "zy_1101.png",
+					pos = {
+						x = 139.25,
+						y = 324.02
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 67.09,
+						y = 217.47
+					},
+					text = TR("说明：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 33.89,
+						y = 171.59
+					},
+					size = {
+						width = 224.67,
+						height = 0
+					},
+					text = TR("1.提升庄园等级可建造更多不同类型的建筑")
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Label",
+				params = {
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 33.89,
+						y = 123
+					},
+					size = {
+						width = 224.67,
+						height = 0
+					},
+					text = TR("2.提升庄园等级可增加同类型建筑的数量")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 543.06,
+						y = 256.26
+					},
+					size = {
+						width = 558.79,
+						height = 464.64
+					}
+				},
+				children = {
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onGridCreateColCallback",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 3,
+							celHeight = 210,
+							pos = {
+								x = 279.32,
+								y = 233.12
+							},
+							size = {
+								width = 555.21,
+								height = 436.23
+							}
+						},
+						children = {
+							{
+								name = "GridCell",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled13-image",
+										name = "image",
+										type = "string"
+									},
+									{
+										value = "untitled12-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "untitled14-text",
+										name = "count",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 100,
+										y = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled11",
+										cType = "Sprite",
+										params = {
+											image = "zy_21.png",
+											pos = {
+												x = 4.7,
+												y = 14.36
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Label",
+										params = {
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 4.64,
+												y = 83.66
+											},
+											text = TR("商铺")
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Sprite",
+										params = {
+											scale = 0.65,
+											image = "zy_1806.png",
+											pos = {
+												x = 4.92,
+												y = 12.85
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "Label",
+										params = {
+											isRichText = true,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 5.43,
+												y = -56.8
+											},
+											text = TR("数量:1/2")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.dealWithData(slot0)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mLv:setString(TR("等级：%s", ManorHelper.lv))
+	slot0.mSprite:setTexture(TerritoryBuildModel.items[1].smallPic .. ".png")
+	slot0.mGridView:setItemNum(#slot0.mBuildList)
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.mBuildList = {}
+
+	for slot4, slot5 in pairs(TerritoryBuildModel.items) do
+		if slot5.modelId ~= 1 then
+			table.insert(slot0.mBuildList, slot5)
+		end
+	end
+
+	return 
+end
+slot0.onGridCreateColCallback = function (slot0, slot1, slot2, slot3)
+	slot6 = slot0.createLayoutTemplateNode(slot0, "GridCell", {
+		image = slot0.mBuildList[slot2].smallPic .. ".png",
+		name = slot0.mBuildList[slot2].name,
+		count = TR("数量:#8BA857%s/%s", ManorHelper:getBuildNumByType(slot0.mBuildList[slot2].modelId), TerritoryMainbuildConfig.items[ManorHelper.lv][({
+			"",
+			"playgroundNum",
+			"artisanNum",
+			"granaryNum",
+			"bankNum",
+			"farmlandNum",
+			"houseNum",
+			"pastureNum",
+			"shopNum",
+			"smithyNum"
+		})[slot0.mBuildList[slot2].modelId]])
+	})
+
+	slot6.setPosition(slot6, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot6)
+
+	return 
+end
+
+return slot0

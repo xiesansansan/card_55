@@ -1,0 +1,378 @@
+slot0 = class("AircraftDlgFriendIntimacyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			closeAction = "onCloseButtonAction",
+			titleText = TR("亲密度")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_72.png",
+					pos = {
+						x = 295,
+						y = 267
+					},
+					size = {
+						width = 530,
+						height = 480
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 295,
+						y = 267
+					},
+					size = {
+						width = 520,
+						height = 470
+					}
+				},
+				children = {
+					{
+						name = "listLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "nameStr",
+								type = "string"
+							},
+							{
+								value = "untitled7-color",
+								name = "nameColor",
+								type = "string"
+							},
+							{
+								value = "untitled10-text",
+								name = "lvStr",
+								type = "string"
+							},
+							{
+								value = "untitled11-flagInfo",
+								name = "flagInfo",
+								type = "string"
+							},
+							{
+								value = "untitled11-flagLogo",
+								name = "flagLogo",
+								type = "string"
+							},
+							{
+								value = "untitled13-text",
+								name = "intimacyNum",
+								type = "string"
+							},
+							{
+								value = "untitled6-modelId",
+								name = "friendModelId",
+								type = "string"
+							},
+							{
+								value = "untitled6-fashionLv",
+								name = "fashionLv",
+								type = "string"
+							},
+							{
+								value = "untitled6-headPicId",
+								name = "headPicId",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 520,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									image = "xkxx_3.png",
+									pos = {
+										x = 260,
+										y = 65
+									},
+									size = {
+										width = 510,
+										height = 130
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									allowClick = false,
+									pos = {
+										x = 73,
+										y = 65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 139,
+										y = 102
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 139,
+										y = 70
+									},
+									text = TR("等级：")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "100",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 195,
+										y = 70
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "GuildFlag",
+								params = {
+									fontSize = 56,
+									flagInfo = "",
+									scale = 0.3,
+									flagLogo = TR("帮"),
+									pos = {
+										x = 155,
+										y = 28
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "jzthd_105.png",
+									pos = {
+										x = 360,
+										y = 85
+									}
+								},
+								children = {
+									{
+										name = "untitled13",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "22",
+											outlineColor = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 32,
+												y = 30
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled14",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jzthd_107.png",
+									bgImage = "jzthd_106.png",
+									childName = "progressBar",
+									pos = {
+										x = 360,
+										y = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "proLabel",
+											text = "10/100",
+											outlineColor = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 135,
+												y = 18
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mCallback = slot1.callback
+	slot0.mPageInfo = slot1.pageInfo or {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	FriendObj:getFriendList(function (slot0)
+		slot0:sortLayerData(slot0)
+
+		return 
+	end, true)
+
+	return 
+end
+slot0.sortLayerData = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+	slot0.mShowFriendsList = {}
+	slot2 = (FeiJiHelper.myTeamName ~= FeiJiHelper.teamA or slot0.mPageInfo.A) and slot0.mPageInfo.B
+
+	for slot7, slot8 in pairs(slot2) do
+		if slot8.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			slot3 = string.splitBySep(slot8.GroupMember or "", ",")
+
+			break
+		end
+	end
+
+	for slot7, slot8 in ipairs(slot3) do
+		for slot12, slot13 in ipairs(slot1) do
+			if slot8 == slot13.PlayerId then
+				table.insert(slot0.mShowFriendsList, clone(slot13))
+
+				break
+			end
+		end
+	end
+
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mShowFriendsList) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "listLayout", {
+			friendModelId = slot5.HeadImageId,
+			fashionLv = slot5.FashionLevel,
+			headPicId = slot5.HeadPicId,
+			nameStr = slot5.Name,
+			nameColor = Utility.getPlayerNameColor(slot5.FashionLevel),
+			lvStr = slot5.Lv,
+			flagLogo = slot5.Logo,
+			flagInfo = slot5.BannerInfo,
+			intimacyNum = slot5.IntimacyLv
+		})
+		slot7 = 0
+
+		slot6.progressBar:setMaxValue((not ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv + 1] or ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv + 1].needFriendPoint) and ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv].needFriendPoint)
+		slot6.progressBar:setCurrValue(slot5.Intimacy)
+		slot6.progressBar.proLabel:setString(string.format("%s / %s", slot5.Intimacy, (not ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv + 1] or ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv + 1].needFriendPoint) and ShengyuanwarsFriendpointLv.items[slot5.IntimacyLv].needFriendPoint))
+		slot0.listView:pushBackCustomItem(slot6)
+	end
+
+	return 
+end
+slot0.onCloseButtonAction = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	return 
+end
+
+return slot0

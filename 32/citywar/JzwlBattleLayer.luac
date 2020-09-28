@@ -1,0 +1,1779 @@
+slot0 = class("JzwlBattleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "cameraNode",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mSkySprite",
+				cType = "Sprite",
+				params = {
+					scaleX = 1.5,
+					image = "czhan_53.png",
+					pos = {
+						x = 580,
+						y = 1188.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mBackViewSprite",
+				cType = "Sprite",
+				params = {
+					scaleX = 1.2,
+					image = "czhan_52.png",
+					pos = {
+						x = 420,
+						y = 1017.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mFrontViewSprite",
+				cType = "Sprite",
+				params = {
+					scaleX = 1.1,
+					image = "czhan_51.png",
+					pos = {
+						x = 480,
+						y = 923.9
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mMapSprite",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_86.jpg",
+					pos = {
+						x = 393.6,
+						y = 527
+					}
+				},
+				children = {
+					{
+						name = "mTeamParentNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "TeamTemplateNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "figure-flipX",
+										name = "flipX",
+										type = "string"
+									},
+									{
+										value = "nameLabel-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "figure-heroModelId",
+										name = "heroModelId",
+										type = "string"
+									},
+									{
+										value = "hpProgress-normalImage",
+										name = "hpBarImg",
+										type = "string"
+									},
+									{
+										value = "nameLabel-color",
+										name = "nameColor",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 322.26,
+										y = 311.8
+									}
+								},
+								children = {
+									{
+										name = "shadow",
+										cType = "Sprite",
+										params = {
+											image = "ef_c_67.png",
+											pos = {
+												x = -4.39,
+												y = -5.22
+											}
+										},
+										children = {}
+									},
+									{
+										name = "figure",
+										cType = "FigureHero",
+										params = {
+											scale = 0.14,
+											clickAction = "cbClickFigure",
+											heroModelId = 12011103,
+											flipX = false,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "aboveNode",
+										cType = "Sprite",
+										params = {
+											image = "c_pure.png",
+											pos = {
+												x = 9.4,
+												y = 250.1
+											}
+										},
+										children = {
+											{
+												name = "topNode",
+												cType = "Node",
+												params = {
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {
+													{
+														name = "nameLabel",
+														cType = "Label",
+														params = {
+															fontSize = 20,
+															outlineColor = {
+																g = 42,
+																r = 51,
+																b = 24
+															},
+															pos = {
+																x = 0.62,
+																y = 12
+															},
+															text = TR("队伍名")
+														},
+														children = {}
+													},
+													{
+														name = "flag",
+														cType = "GuildFlag",
+														params = {
+															fontSize = 60,
+															scale = 0.25,
+															pos = {
+																x = -74.9,
+																y = 10.09
+															}
+														},
+														children = {}
+													},
+													{
+														name = "titleNode",
+														cType = "Sprite",
+														params = {
+															image = "ch_5.png",
+															scale = 0.5,
+															anchor = {
+																x = 0.5,
+																y = 0
+															},
+															pos = {
+																x = -0.26,
+																y = 25
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "hpProgress",
+												cType = "ProgressBar",
+												params = {
+													normalImage = "czhan_13.png",
+													bgImage = "czhan_12.png",
+													pos = {
+														x = 0,
+														y = -8.49
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled108",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "ctrlBtn",
+								type = "integer"
+							},
+							{
+								value = 0,
+								name = "isAttack",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jzwl_77.png",
+							clickAction = "cbClickAddTeam",
+							scale = 0.8,
+							pos = {
+								x = 843.65,
+								y = 730.07
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled107",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "ctrlBtn",
+								type = "integer"
+							},
+							{
+								value = 0,
+								name = "isAttack",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jzwl_77.png",
+							clickAction = "cbClickAddTeam",
+							scale = 0.8,
+							pos = {
+								x = 842.49,
+								y = 487.52
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled106",
+						cType = "Button",
+						custom = {
+							{
+								value = 3,
+								name = "ctrlBtn",
+								type = "integer"
+							},
+							{
+								value = 0,
+								name = "isAttack",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jzwl_77.png",
+							clickAction = "cbClickAddTeam",
+							scale = 0.8,
+							pos = {
+								x = 844.81,
+								y = 218
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled61",
+						cType = "Sprite",
+						params = {
+							image = "czhan_54.png",
+							zOrder = 1000,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = -0.85
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled109",
+				cType = "Button",
+				params = {
+					image = "tb_639.png",
+					clickAction = "onPopMsgBtn",
+					pos = {
+						x = 320,
+						y = 1014.27
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled14",
+		cType = "Sprite",
+		params = {
+			image = "czhan_5.png",
+			pos = {
+				x = 319.93,
+				y = 1096.97
+			}
+		},
+		children = {
+			{
+				name = "mCityNameLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 326.5,
+						y = 53.8
+					},
+					text = TR("决战擂台")
+				},
+				children = {}
+			},
+			{
+				name = "mAttackNameLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 128.8,
+						y = 57.67
+					},
+					text = TR("攻击方")
+				},
+				children = {}
+			},
+			{
+				name = "mAttackFlag",
+				cType = "GuildFlag",
+				params = {
+					fontSize = 60,
+					hide = true,
+					scale = 0.35,
+					pos = {
+						x = 38.95,
+						y = 49.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mDefenceNameLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 514.51,
+						y = 56.93
+					},
+					text = TR("X帮派")
+				},
+				children = {}
+			},
+			{
+				name = "mDefenceFlag",
+				cType = "GuildFlag",
+				params = {
+					fontSize = 60,
+					hide = true,
+					scale = 0.35,
+					pos = {
+						x = 602.56,
+						y = 50.58
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					image = "czhan_17.png",
+					pos = {
+						x = 422.54,
+						y = 25.93
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNPCCountProgress",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "czhan_16.png",
+					bgImage = "czhan_15.png",
+					pos = {
+						x = 530.18,
+						y = 25.19
+					}
+				},
+				children = {
+					{
+						name = "mNPCCountLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							emptyInit = true,
+							text = "0/100",
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 89.83,
+								y = 10.28
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mCountDownLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 319.4,
+						y = -159.2
+					},
+					text = TR("剩余%ds攻击方攻击失败")
+				},
+				children = {}
+			},
+			{
+				name = "mLeftBg",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_79.png",
+					pos = {
+						x = 98.33,
+						y = -70.47
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "sideTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_pure.png",
+							clickAction = "cbClickScanTeam",
+							pos = {
+								x = 65.09,
+								y = 76.25
+							},
+							size = {
+								width = 117.1,
+								height = 142.69
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled89",
+						cType = "Sprite",
+						params = {
+							image = "czhan_4.png",
+							pos = {
+								x = 8.75,
+								y = 112.54
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled95",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 231,
+								r = 255,
+								b = 72
+							},
+							pos = {
+								x = 65.25,
+								y = 27.76
+							},
+							text = TR("查看")
+						},
+						children = {}
+					},
+					{
+						name = "untitled97",
+						cType = "Label",
+						custom = {
+							{
+								value = 1,
+								name = "teamLeft",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 40.25,
+								y = 127.76
+							},
+							text = TR("上 0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled98",
+						cType = "Label",
+						custom = {
+							{
+								value = 2,
+								name = "teamLeft",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 40,
+								y = 97.76
+							},
+							text = TR("中 0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled96",
+						cType = "Label",
+						custom = {
+							{
+								value = 3,
+								name = "teamLeft",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 40,
+								y = 67.76
+							},
+							text = TR("下 0")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRightBg",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_78.png",
+					pos = {
+						x = 546.85,
+						y = -71.33
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "sideTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_pure.png",
+							clickAction = "cbClickScanTeam",
+							pos = {
+								x = 65.49,
+								y = 76.05
+							},
+							size = {
+								width = 115.14,
+								height = 142.77
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled91",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 231,
+								r = 255,
+								b = 72
+							},
+							pos = {
+								x = 65.25,
+								y = 27.76
+							},
+							text = TR("查看")
+						},
+						children = {}
+					},
+					{
+						name = "mDefendNumLabel",
+						cType = "Label",
+						custom = {
+							{
+								value = 1,
+								name = "teamRight",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 29.25,
+								y = 117.76
+							},
+							text = TR("上 0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled92",
+						cType = "Label",
+						custom = {
+							{
+								value = 2,
+								name = "teamRight",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 29,
+								y = 90.76
+							},
+							text = TR("中 0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled93",
+						cType = "Label",
+						custom = {
+							{
+								value = 3,
+								name = "teamRight",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 29,
+								y = 62.76
+							},
+							text = TR("下 0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled90",
+						cType = "Sprite",
+						params = {
+							image = "czhan_3.png",
+							pos = {
+								x = 123.39,
+								y = 113.26
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mBarrageLayer",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/BarrageTextLayer.lua",
+			initParams = {
+				speed = 4,
+				yPosBegin = 180,
+				yPosEnd = 900
+			},
+			pos = {
+				z = 0,
+				x = 321,
+				y = 568
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled57",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/ChatBottomLayer.lua",
+			pos = {
+				z = 0,
+				x = 453.81,
+				y = 602.59
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled5",
+		cType = "Sprite",
+		params = {
+			image = "czhan_48.png",
+			pos = {
+				x = 320.31,
+				y = 38.12
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "czhan_6.png",
+					clickAction = "cbClickCloseBtn",
+					pos = {
+						x = 583.16,
+						y = 34.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 322.63,
+						y = 22.75
+					},
+					text = TR("注意：#fff8ea队伍派出后不管是否开战，均无法撤回")
+				},
+				children = {}
+			},
+			{
+				name = "mStatusLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					hide = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 321.79,
+						y = 50.81
+					},
+					text = TR("可占领")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "touchNode",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 0,
+				y = 145
+			},
+			size = {
+				width = 640,
+				height = 918
+			}
+		},
+		children = {}
+	},
+	{
+		name = "subView",
+		cType = "FileLayer",
+		params = {
+			file = "citywar.JzwlWatchBattleSubLayer",
+			delayInit = true,
+			initParams = {}
+		},
+		children = {}
+	}
+}
+slot1 = 5
+slot2 = cc.CameraFlag.USER1
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+
+	slot0.mCityId = slot1.guildId
+	slot0.mTeamInfo = {}
+	slot0.mUnitList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	HttpClient:request({
+		methodName = "GoBack",
+		moduleName = "Leaguetop",
+		needWait = false,
+		methodData = {
+			slot0.mCityId,
+			2
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+	Player:saveGameData("jzwlBarrageTextList", slot0.mBarrageLayer:saveTextList())
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.robotModelIds = {}
+	slot0.robotNames = {}
+
+	for slot4, slot5 in pairs(RobotConfig.items) do
+		if slot5.matchModuleId == ModuleSub.eCityWar then
+			table.insert(slot0.robotModelIds, slot5.heroModelId)
+			table.insert(slot0.robotNames, slot5.name)
+		end
+	end
+
+	slot0.addBgTouchEvent(slot0)
+
+	slot0.mTopKillRankList = {
+		slot0.mNumberOneKill,
+		slot0.mNumberTwoKill,
+		slot0.mNumberThreeKill
+	}
+
+	slot0.requestTeamInfo(slot0)
+
+	if MainCityWarObj:getIsOnLookStatus() then
+		slot0.createUISubTree(slot0, "subView", function (slot0, slot1)
+			if slot0.name == "subView" then
+				slot1.initParams = {
+					inBattleLayer = true,
+					scaleValue = 0.85,
+					pos = cc.p(0, -10)
+				}
+			end
+
+			return 
+		end)
+	else
+		slot0.mTipLabel:setVisible(true)
+		slot0.mStatusLabel:setVisible(true)
+	end
+
+	return 
+end
+slot0.addBgTouchEvent = function (slot0)
+	slot1 = {
+		slot0.mSkySprite,
+		slot0.mBackViewSprite,
+		slot0.mFrontViewSprite
+	}
+	slot2 = {
+		0.5,
+		0.7,
+		0.9
+	}
+
+	function slot3(slot0)
+		slot1, slot2 = slot0.mMapSprite:getPosition()
+
+		if 0 < slot1 + slot0 and slot1 < 640 then
+			slot0.mMapSprite:setPosition(slot1, slot2)
+
+			for slot6, slot7 in ipairs(slot1) do
+				slot8, slot14 = slot7.getPosition(slot7)
+
+				slot7.setPosition(slot7, cc.p(slot8 + slot0*slot2[slot6], slot9))
+			end
+		end
+
+		return 
+	end
+
+	slot0.touchBeginPos = cc.p(0, 0)
+
+	ui.addTouchEvent({
+		swallowTouch = false,
+		node = slot0.touchNode,
+		beganEvent = function (slot0, slot1)
+			slot0.touchBeginPos = slot0.getLocation(slot0)
+
+			return true
+		end,
+		movedEvent = function (slot0, slot1)
+			if 0 < slot0.touchBeginPos.x or 0 < slot0.touchBeginPos.y then
+				slot1(slot0.getLocation(slot0).x - slot0.touchBeginPos.x)
+
+				slot0.touchBeginPos = slot0.getLocation(slot0)
+			end
+
+			return 
+		end,
+		endedEvent = function (slot0, slot1)
+			slot0.touchBeginPos = cc.p(0, 0)
+
+			return 
+		end,
+		cancelledEvent = function (slot0, slot1)
+			slot0.touchBeginPos = cc.p(0, 0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.registerEvents = function (slot0)
+	EventAuto:registerAutoEvent(slot0.mCityNameLabel, EventDefine.eLeaguetopBuildTeam, function (slot0, slot1)
+		for slot5, slot6 in ipairs(slot1) do
+			slot7 = false
+			slot8 = false
+
+			if slot6.AttGuildId then
+				slot7 = true
+
+				if #slot0.mReadyAttackTeams[slot6.Path].TeamInfo < slot1 then
+					slot6.posIndex = math.mod(#slot0.mReadyAttackTeams[slot6.Path].TeamInfo, 5)
+
+					table.insert(slot0.mReadyAttackTeams[slot6.Path].TeamInfo, slot6)
+				end
+
+				slot0.mReadyAttackTeams[slot6.Path].AttackArmyNum = slot0.mReadyAttackTeams[slot6.Path].AttackArmyNum + 1
+			else
+				slot8 = true
+
+				if #slot0.mReadyDefendTeams[slot6.Path].TeamInfo < slot1 then
+					slot6.posIndex = math.mod(#slot0.mReadyDefendTeams[slot6.Path].TeamInfo, 5)
+
+					table.insert(slot0.mReadyDefendTeams[slot6.Path].TeamInfo, slot6)
+				end
+
+				slot0.mReadyDefendTeams[slot6.Path].DefenseArmyNum = slot0.mReadyDefendTeams[slot6.Path].DefenseArmyNum + 1
+			end
+
+			if slot7 then
+				slot0:refreshReadyTeams(true, slot6.Path)
+			end
+
+			if slot8 then
+				slot0:refreshReadyTeams(false, slot6.Path)
+			end
+
+			slot0:refreshTopUI()
+		end
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mCityNameLabel, EventDefine.eLeaguetopFightNew, function (slot0, slot1)
+		if slot1.Guild ~= slot0.mCityId then
+			return 
+		end
+
+		function slot2(slot0)
+			slot0:checkFightErrorTeams(slot0)
+			slot0:playBattleReport(slot0)
+
+			return 
+		end
+
+		if slot1.IfClose then
+			slot0:popWarEnd(false)
+		else
+			slot2(slot1.FightInfo)
+
+			function slot3(slot0, slot1, slot2)
+				if slot0 then
+					for slot6, slot7 in ipairs(slot0.mReadyAttackTeams[slot2].TeamInfo) do
+						if slot7.TeamId == slot1.TeamId then
+							return false
+						end
+					end
+
+					table.insert(slot0.mReadyAttackTeams[slot2].TeamInfo, slot1)
+				else
+					for slot6, slot7 in ipairs(slot0.mReadyDefendTeams[slot2].TeamInfo) do
+						if slot7.TeamId == slot1.TeamId then
+							return false
+						end
+					end
+
+					table.insert(slot0.mReadyDefendTeams[slot2].TeamInfo, slot1)
+				end
+
+				return true
+			end
+
+			for slot7, slot8 in ipairs(slot1.FightInfo) do
+				if slot8.NextTeamInfo and next(slot8.NextTeamInfo) ~= nil then
+					if slot8.NextTeamInfo.IsAttacker then
+						slot3(true, slot8.NextTeamInfo, slot7)
+					else
+						slot3(false, slot8.NextTeamInfo, slot7)
+					end
+				end
+			end
+		end
+
+		slot0:refreshTopUI()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mCityNameLabel, EventDefine.eLeaguetopGameOver, function (slot0, slot1)
+		if slot1.Name and slot1.GuildName then
+			if slot0.mGameOverLayer then
+				return 
+			end
+
+			slot0.mGameOverLayer = LayerManager.addLayer({
+				cleanUp = false,
+				name = "citywar.JzwlEndLayer",
+				data = {
+					endData = slot1,
+					callback = function ()
+						LayerManager.removeLayer(LayerManager.removeLayer)
+						LayerManager.removeTopCleanUpLayer(false)
+						LayerManager.addLayer({
+							name = "citywar.JzwlResultLayer"
+						})
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mBarrageLayer, EventDefine.eChatNewPrefix .. Enums.ChatChanne.eGuild, function (slot0, slot1)
+		slot0:handlePopMsgData(slot1)
+
+		return 
+	end)
+
+	return 
+end
+slot0.initTopUI = function (slot0)
+	slot0.mDefenceFlag:setFlag(slot0.mCityWarInfo.BannerInfo)
+	slot0.mDefenceFlag:setString(slot0.mCityWarInfo.Logo)
+	slot0.mDefenceFlag:setVisible(true)
+	slot0.mDefenceNameLabel:setString(slot0.mCityWarInfo.GuildName)
+	slot0.refreshTopUI(slot0)
+
+	return 
+end
+slot0.updateBannerSprite = function (slot0)
+	slot2 = tonumber(string.splitBySep(slot0.mCityWarInfo.BannerInfo, ",")[2])
+	slot4 = {
+		"hong",
+		"lv",
+		"lan",
+		"zi",
+		"qing",
+		"hei",
+		"huang"
+	}
+
+	for slot8, slot9 in pairs(slot3) do
+		if cc.FileUtils:getInstance():isFileExist("ui_chengzhanqizhi.skel") then
+			slot10 = UIWrap.newControl("Effect", {
+				loop = true,
+				scale = 0.525,
+				animation = "animation",
+				dataFile = "ui_chengzhanqizhi",
+				skin = slot4[slot2] or "hui",
+				pos = slot9.pos
+			})
+
+			slot10.setLocalZOrder(slot10, math.floor(slot9.pos.y) - 1000)
+			slot0.mTeamParentNode:addChild(slot10)
+		end
+	end
+
+	return 
+end
+slot3 = {
+	TR("上"),
+	TR("中"),
+	TR("下")
+}
+slot0.refreshTopUI = function (slot0)
+	slot2 = slot0.getCustomChildren(slot0, slot0.mRightBg, "teamRight")
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot7.setString(slot7, string.format("%s %s", slot0[slot6], (slot0.mReadyAttackTeams[slot6] and slot0.mReadyAttackTeams[slot6].AttackArmyNum) or 0))
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot7.setString(slot7, string.format("%s %s", slot0[slot6], (slot0.mReadyDefendTeams[slot6] and slot0.mReadyDefendTeams[slot6].DefenseArmyNum) or 0))
+	end
+
+	slot0.mNPCCountLabel:setString(string.format("%d/%d", slot0.mTeamInfo.GuildLeaguetopInfo.GuardNum, slot0.mTeamInfo.GuildLeaguetopInfo.GuardTotalNum))
+	slot0.mNPCCountProgress:setMaxValue(slot0.mTeamInfo.GuildLeaguetopInfo.GuardTotalNum)
+	slot0.mNPCCountProgress:setCurrValue(slot0.mTeamInfo.GuildLeaguetopInfo.GuardNum)
+
+	return 
+end
+slot0.initBottomUI = function (slot0)
+	slot1 = {
+		cc.p(340, 730),
+		cc.p(340, 487),
+		cc.p(340, 218)
+	}
+	slot2 = {
+		cc.p(800, 790),
+		cc.p(844, 530),
+		cc.p(820, 240)
+	}
+
+	if slot0.mCityWarInfo.GuildId == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId then
+		slot0.mStatusLabel:setString(TR("己方擂台 #37ff40可防守"))
+
+		for slot7, slot8 in ipairs(slot3) do
+			slot8.loadTextures(slot8, "jzwl_77.png", "jzwl_77.png")
+
+			slot8.isAttack = 0
+
+			slot8.setPosition(slot8, slot2[slot7])
+		end
+	else
+		slot0.mStatusLabel:setString(TR("敌方擂台 #37ff40可进攻"))
+
+		for slot7, slot8 in ipairs(slot3) do
+			slot8.loadTextures(slot8, "jzwl_76.png", "jzwl_76.png")
+
+			slot8.isAttack = 1
+
+			slot8.setPosition(slot8, slot1[slot7])
+		end
+	end
+
+	return 
+end
+slot0.createUnitNode = function (slot0, slot1, slot2, slot3, slot4)
+	if slot0.mUnitList[slot3.TeamId] then
+		slot0.mUnitList[slot3.TeamId].figure.reportId = slot4
+		slot0.mUnitList[slot3.TeamId].figure.isAttack = slot1
+		slot0.mUnitList[slot3.TeamId].teamInfo.posIndex = slot3.posIndex
+
+		slot0.mUnitList[slot3.TeamId]:setNewPos()
+
+		return slot0.mUnitList[slot3.TeamId]
+	else
+		slot5 = require("citywar.JzwlUnit").new({
+			isInReady = true,
+			layer = slot0,
+			teamInfo = slot3,
+			isAttack = slot1,
+			pathIndex = slot2,
+			guildId = slot0.mCityWarInfo.GuildId,
+			guildName = slot0.mCityWarInfo.GuildName
+		})
+		slot5.figure.reportId = slot4
+		slot5.figure.isAttack = slot1
+
+		slot0.mTeamParentNode:addChild(slot5)
+
+		slot0.mUnitList[slot3.TeamId] = slot5
+
+		return slot5
+	end
+
+	return 
+end
+slot0.removeUnitNode = function (slot0, slot1, slot2)
+	if slot0.mUnitList[slot2] then
+		slot0.mUnitList[slot2]:removeUnit()
+
+		slot0.mUnitList[slot2] = nil
+	end
+
+	slot3 = (slot1 and slot0.mReadyAttackTeams) or slot0.mReadyDefendTeams
+
+	for slot7 = 1, 3, 1 do
+		for slot11, slot12 in ipairs(slot3[slot7].TeamInfo) do
+			if slot12.TeamId == slot2 then
+				table.remove(slot3[slot7].TeamInfo, slot11)
+
+				break
+			end
+		end
+	end
+
+	return 
+end
+slot0.refreshReadyTeams = function (slot0, slot1, slot2)
+	slot3 = (slot1 and slot0.mReadyAttackTeams) or slot0.mReadyDefendTeams
+
+	function slot4(slot0)
+		slot1 = 1
+
+		if slot0[slot0] and slot0[slot0].TeamInfo then
+			for slot5, slot6 in ipairs(slot0[slot0].TeamInfo) do
+				slot6.posIndex = slot5
+
+				slot1:createUnitNode(slot2, slot0, slot6)
+
+				if slot3 < slot1 + 1 then
+					break
+				end
+			end
+		end
+
+		return 
+	end
+
+	if slot2 then
+		slot4(slot2)
+	else
+		for slot8 = 1, 3, 1 do
+			slot4(slot8)
+		end
+	end
+
+	return 
+end
+slot0.checkFightErrorTeams = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot1) do
+		if next(slot8) then
+			slot2[slot8.AttackTeamInfo.TeamId] = slot7
+			slot2[slot8.DefendTeamInfo.TeamId] = slot7
+			slot3[slot7] = true
+		end
+	end
+
+	for slot7, slot8 in pairs(slot0.mUnitList) do
+		slot10 = slot2[slot7]
+
+		if slot3[slot8.getPathIndex(slot8)] and not slot10 and not slot8.mIsInReady then
+			slot0.removeUnitNode(slot0, slot8.isTeamAttack(slot8), slot7)
+		end
+	end
+
+	return 
+end
+slot0.cbClickAddTeam = function (slot0, slot1)
+	slot2 = slot1.isAttack
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarFightListLayer",
+		data = {
+			isJzwl = true,
+			callback = function (slot0)
+				slot0:requestPersonalSendTeam(table.concat(slot0, ","), slot0.requestPersonalSendTeam, slot2.ctrlBtn)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.cbClickCloseBtn = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbClickScanTeam = function (slot0, slot1)
+	if not next(slot0.mTeamInfo) then
+		return 
+	end
+
+	if slot1.sideTag == Enums.CityWarType.eAttack then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "citywar.JzwlFightStatusLayer",
+			data = {
+				isAttack = 1,
+				guildId = slot0.mCityId,
+				teamInfo = slot0.mReadyAttackTeams
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	elseif slot1.sideTag == Enums.CityWarType.eDefend then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "citywar.JzwlFightStatusLayer",
+			data = {
+				isAttack = 0,
+				guildId = slot0.mCityId,
+				teamInfo = slot0.mReadyDefendTeams
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.cbClickFigure = function (slot0, slot1)
+	slot1.getParent(slot1):clickUnit(slot0.mCityId)
+
+	return 
+end
+slot0.popWarEnd = function (slot0, slot1)
+	if slot0.mGameOverLayer then
+		return 
+	end
+
+	if not slot0.endLayer then
+		LayerManager.removeAllPopLayers()
+
+		slot0.endLayer = LayerManager.addLayer({
+			cleanUp = false,
+			name = "citywar.JzwlBattleEndLayer",
+			data = {
+				callBack = function ()
+					slot0:cbClickCloseBtn()
+
+					return 
+				end,
+				guildName = slot0.mCityWarInfo.GuildName
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.playBattleReport = function (slot0, slot1)
+	if not slot1 or next(slot1) == nil then
+		return 
+	end
+
+	function slot2(slot0, slot1, slot2)
+		slot3 = 5
+
+		if slot0.mUnitList[slot1.TeamId] then
+			if slot0 then
+				for slot7, slot8 in ipairs(slot0.mReadyAttackTeams[slot2].TeamInfo) do
+					if slot1.TeamId == slot8.TeamId then
+						slot3 = slot8.posIndex
+
+						break
+					end
+				end
+			else
+				for slot7, slot8 in ipairs(slot0.mReadyDefendTeams[slot2].TeamInfo) do
+					if slot1.TeamId == slot8.TeamId then
+						slot3 = slot8.posIndex
+
+						break
+					end
+				end
+			end
+		end
+
+		return slot3
+	end
+
+	for slot6, slot7 in ipairs(slot1) do
+		if slot7.DefendTeamInfo then
+			slot7.AttackTeamInfo.posIndex = slot2(true, slot7.AttackTeamInfo, slot7.Path)
+			slot7.DefendTeamInfo.posIndex = slot2(false, slot7.DefendTeamInfo, slot7.Path)
+			slot8 = slot0.createUnitNode(slot0, true, slot7.Path, slot7.AttackTeamInfo, slot7.BattleReportId)
+			slot9 = slot0.createUnitNode(slot0, false, slot7.Path, slot7.DefendTeamInfo, slot7.BattleReportId)
+
+			for slot13 = 1, 3, 1 do
+				for slot18, slot19 in ipairs(slot14) do
+					if slot19.TeamId == slot7.AttackTeamInfo.TeamId then
+						slot19.pathIndex = slot6
+
+						break
+					end
+				end
+
+				for slot19, slot20 in ipairs(slot15) do
+					if slot20.TeamId == slot7.DefendTeamInfo.TeamId then
+						slot20.pathIndex = slot6
+
+						break
+					end
+				end
+			end
+
+			slot8.startFight(slot8, slot9, slot6, slot7, function (slot0)
+				slot0:removeUnitNode(not slot0.IsWin, (slot0.IsWin and slot0.DefendTeamInfo.TeamId) or slot0.AttackTeamInfo.TeamId)
+
+				slot0.mTeamInfo.GuildLeaguetopInfo.GuardNum = slot0.GuardNum
+				slot4 = Utility.isEntityId(slot0.DefendTeamInfo.PlayerId)
+
+				if not slot0.IsWin then
+					slot0.mReadyAttackTeams[slot0.Path].AttackArmyNum = (0 < slot0.mReadyAttackTeams[slot0.Path].AttackArmyNum and slot0.mReadyAttackTeams[slot0.Path].AttackArmyNum - 1) or 0
+				elseif slot4 then
+					slot0.mReadyDefendTeams[slot0.Path].DefenseArmyNum = (0 < slot0.mReadyDefendTeams[slot0.Path].DefenseArmyNum and slot0.mReadyDefendTeams[slot0.Path].DefenseArmyNum - 1) or 0
+				end
+
+				slot0:refreshTopUI()
+
+				if not slot0.IsWin then
+					slot5 = false
+
+					for slot9, slot10 in ipairs(slot0.mReadyAttackTeams[slot0.Path]) do
+						if not slot0.mUnitList[slot10.TeamId] then
+							slot5 = true
+
+							break
+						end
+					end
+
+					if not slot5 then
+						slot0:removeUnitNode(false, slot2)
+					end
+
+					slot0:refreshReadyTeams(true, slot0.Path)
+				end
+
+				if slot0.mTeamInfo.GuildLeaguetopInfo.GuardNum <= 0 then
+					slot0:popWarEnd(true)
+				end
+
+				slot0:refreshReadyTeams(false, slot0.Path)
+
+				return 
+			end)
+		end
+	end
+
+	return 
+end
+slot0.resetTeamInfo = function (slot0, slot1, slot2)
+	for slot6, slot7 in pairs(slot0.mUnitList) do
+		slot7.removeUnit(slot7)
+	end
+
+	slot0.mUnitList = {}
+	slot0.mTeamInfo = slot1
+	slot0.mCityWarInfo = slot1.GuildLeaguetopInfo.GuildInfo
+	slot3 = clone(slot1.DefendTeamInfo)
+	slot0.mReadyAttackTeams = slot1.AttackTeamInfo
+	slot0.mReadyDefendTeams = slot1.DefendTeamInfo
+
+	for slot7 = 1, 3, 1 do
+		slot8 = slot0.mReadyDefendTeams[slot7]
+
+		for slot12 = 1, 2, 1 do
+			table.insert(slot8.TeamInfo, 1, {
+				TotalHp = 100,
+				Hp = 100,
+				PlayerName = slot0.robotNames[slot12],
+				PlayerId = Utility.EMPTY_ENTITY_ID,
+				HeroModelId = slot0.robotModelIds[slot12],
+				TeamId = Utility.EMPTY_ENTITY_ID .. slot7 .. slot12
+			})
+		end
+	end
+
+	if slot2 then
+		slot0.initTopUI(slot0)
+		slot0.initBottomUI(slot0)
+	else
+		slot0.refreshTopUI(slot0)
+	end
+
+	slot0.playBattleReport(slot0, slot1.FightInfo)
+	slot0.updateBannerSprite(slot0)
+	slot0.refreshReadyTeams(slot0, true)
+	slot0.refreshReadyTeams(slot0, false)
+
+	return 
+end
+slot0.handlePopMsgData = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.mBarrageLayer:showOneText(string.format("%s:%s", slot7, slot8))
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	if Player:getGameData("jzwlBarrageTextList") ~= nil and 0 < #slot1 then
+		slot0.mBarrageLayer:initTextList(slot1)
+	end
+
+	Player:saveGameData("jzwlBarrageTextList", nil)
+
+	return 
+end
+slot0.onPopMsgBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.JzwlDlgBarrageLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestTeamInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetGuildInfo",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			slot0:resetTeamInfo(slot0, true)
+
+			slot0.mEndTime = slot0.FightTimes
+
+			if slot0.mSchelTime then
+				slot0:stopAction(slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+
+			slot0.mSchelTime = Utility.schedule(slot0, function ()
+				if 0 < slot0.mEndTime - Player:getCurrentTime() then
+					slot0.mCountDownLabel:setString(TR("将在#ffe748%s#fff8ea后开始战斗", MqTime.completeFormat(slot0)))
+				else
+					slot0.mCountDownLabel:setVisible(false)
+
+					if slot0.mSchelTime then
+						slot0:stopAction(slot0.mSchelTime)
+
+						slot0.mSchelTime = nil
+					end
+				end
+
+				return 
+			end, 1)
+
+			slot0:registerEvents()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPersonalSendTeam = function (slot0, slot1, slot2, slot3)
+	slot0.safeRequest(slot0, {
+		methodName = "BuildTeam",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot0.mCityId,
+			slot2,
+			slot3,
+			slot1
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.dealWithCampReadyData = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot1.DefendTeamInfo) do
+		for slot12, slot13 in ipairs(slot8.HeroInfo) do
+			if slot0.mCityId == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId then
+				table.insert(slot2, slot13)
+			else
+				table.insert(slot3, slot13)
+			end
+		end
+	end
+
+	for slot7, slot8 in ipairs(slot1.AttackTeamInfo) do
+		for slot12, slot13 in ipairs(slot8.HeroInfo) do
+			if slot0.mCityId == slot8.AttGuildId then
+				table.insert(slot2, slot13)
+			else
+				table.insert(slot3, slot13)
+			end
+		end
+	end
+
+	return slot2, slot3
+end
+slot0.clickScanBattle = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Player",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			if not slot0.FightInfo then
+				ui.showFlashView(TR("战报已删除，请对战时点击查看战报"))
+
+				return 
+			end
+
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

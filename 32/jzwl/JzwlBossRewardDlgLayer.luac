@@ -1,0 +1,213 @@
+slot0 = class("JzwlBossRewardDlgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBtnCloseAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 400
+			},
+			titleText = TR("物资赏赐")
+		},
+		children = {
+			{
+				name = "resLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 295,
+						y = 61.56
+					},
+					text = TR("饷银：10000")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 295.85,
+						y = 225.42
+					},
+					size = {
+						width = 514,
+						height = 270
+					}
+				},
+				children = {
+					{
+						name = "rewardList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 258,
+								y = 13
+							},
+							size = {
+								width = 480,
+								height = 180
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 120,
+										height = 180
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											pos = {
+												x = 60,
+												y = 100
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "starBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onStarBtnAction",
+					pos = {
+						x = 295,
+						y = 101.32
+					},
+					titleText = TR("开启赏赐")
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					align = 1,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 296.71,
+						y = 310.15
+					},
+					size = {
+						width = 470,
+						height = 0
+					},
+					text = TR("开启赏赐后，服务器其它大侠可以获得赏赐奖励，盟主可以获得以下奖励")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mFundNum = slot1.fundNum
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.resLabel:setString(TR("当前饷银：{%s} %s/%s", "jzwl_33.png", slot0.mFundNum, LeaguetopfinalConfig.items[1].oddrewardNeedVisitCoin))
+
+	if slot0.mFundNum < LeaguetopfinalConfig.items[1].oddrewardNeedVisitCoin then
+		slot0.starBtn:setEnabled(false)
+	end
+
+	slot0.rewardList:setContentSize((4 < #Utility.analysisStrResList(LeaguetopfinalConfig.items[1].oddrewardForChairman) and 480) or #slot2*120, 180)
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.createLayoutTemplateNode(slot0, "rewardLayout").cardNode:setCardData({
+			resourceId = slot8.resourceId,
+			num = slot8.num
+		}, {
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eName
+		})
+		slot0.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+	end
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onStarBtnAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "OpenGongFengReward",
+		moduleName = "Leaguetopfinal",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "SDASDAS")
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

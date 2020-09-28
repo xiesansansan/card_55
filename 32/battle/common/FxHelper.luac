@@ -1,0 +1,549 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.SkillConf")
+slot2 = require("battle.common.AttrHelper")
+slot3 = require("battle.common.SpineConf")
+
+if SystemVersionNumber == nil then
+	require("config.SystemVersionNumber")
+end
+
+return {
+	getSkillAction = function (slot0, slot1)
+		slot2 = slot1
+
+		if slot0 == SkillTrigger.eNormalAttack or slot0 == SkillTrigger.eChangeNormalAttack then
+			slot2 = slot0.ActionName.ATTACK1
+		elseif slot0 == SkillTrigger.eSkillAttack then
+			slot2 = slot0.ActionName.ATTACK2
+		elseif slot0 == SkillTrigger.ePlayerSkill then
+			slot2 = slot0.ActionName.ATTACK2
+		end
+
+		if slot1.isShenheFu() and slot2 == slot0.ActionName.ATTACK2 then
+			slot2 = slot0.ActionName.ATTACK1
+		end
+
+		return slot2
+	end,
+	parseDamageRatio = function (slot0, slot1, slot2)
+		return slot0.parseDmageRatioValue(slot0.initialNum)[1] + slot0.parseDmageRatioValue(slot0.lvGrowNum)[1]*(slot1 - 1) + slot0.parseDmageRatioValue(slot0.starGrowNum)[1]*(slot2 - 1), slot0.parseDmageRatioValue(slot0.initialNum)[2] + slot0.parseDmageRatioValue(slot0.lvGrowNum)[2]*(slot1 - 1) + slot0.parseDmageRatioValue(slot0.starGrowNum)[2]*(slot2 - 1)
+	end,
+	getDefaultSkillConf = function ()
+		return {
+			moveType = 2,
+			offset = {
+				0,
+				0
+			},
+			chargeEffect = {
+				"",
+				"",
+				1,
+				false
+			},
+			releaseEffect = {
+				"",
+				"",
+				1,
+				false,
+				0,
+				0,
+				""
+			},
+			diEffect = {
+				"",
+				"",
+				1,
+				false
+			},
+			bulletEffect = {
+				"",
+				"",
+				1,
+				false
+			},
+			hitEffect = {
+				"",
+				"",
+				1,
+				false
+			},
+			groundEffect = {
+				"",
+				"",
+				1,
+				false
+			},
+			skyEffect = {
+				"",
+				"",
+				1,
+				false
+			}
+		}
+	end,
+	getSkillConf = function (slot0, slot1)
+		if slot1 == slot0.SkillType.PLAYER then
+			slot1 = slot0.SkillType.SKILL
+		end
+
+		if slot1[slot0 .. "_" .. slot1] == nil then
+			slot3 = slot2.getDefaultSkillConf()
+		end
+
+		if slot2.isShenheFu() then
+			slot3 = slot2.getDefaultSkillConf()
+		end
+
+		return slot3
+	end,
+	parseSkillIds = function (slot0)
+		slot1 = {}
+
+		if slot0 == nil or slot0 == "" then
+			return slot1
+		end
+
+		for slot6, slot7 in ipairs(slot2) do
+			table.insert(slot1, tonumber(slot7))
+		end
+
+		return slot1
+	end,
+	parseBuffIds = function (slot0)
+		slot1 = {}
+
+		if slot0 == nil or slot0 == "" then
+			return nil
+		end
+
+		for slot6, slot7 in ipairs(slot2) do
+			table.insert(slot1, tonumber(slot7))
+		end
+
+		return slot1
+	end,
+	parseHeroIds = function (slot0)
+		slot1 = {}
+
+		if slot0 == nil or slot0 == "" then
+			return nil
+		end
+
+		for slot6, slot7 in ipairs(slot2) do
+			table.insert(slot1, tonumber(slot7))
+		end
+
+		return slot1
+	end,
+	fixSkillStar = function (slot0, slot1)
+		slot3 = 1
+
+		if HeroSkillStarRelation.items[slot0] then
+			if slot1 == 0 then
+				slot3 = slot2.heroStar
+			elseif slot1 == 1 then
+				slot3 = slot2.skillAttackStar
+			elseif slot1 == 2 then
+				slot3 = slot2.firstSkillStar
+			elseif slot1 == 3 then
+				slot3 = slot2.secondSkillStar
+			elseif slot1 == 4 then
+				slot3 = slot2.thirdSkillStar
+			end
+		else
+			error("wrong heroStar config.")
+		end
+
+		return slot3
+	end,
+	fixSkillConf = function (slot0, slot1, slot2, slot3)
+		slot0.skillType = slot0.TriggerToSkillType[slot0.triggerId]
+		slot0.buffIds = slot1.parseBuffIds(slot0.effect)
+		slot0.damageRatio, slot0.damageValue = slot1.parseDamageRatio(slot0, slot1, slot2)
+		slot0.nextSkill = slot1.parseSkillIds(slot0.nextSkill)
+		slot0.beforeSkill = slot1.parseSkillIds(slot0.beforeSkill)
+		slot0.targetSpecialHero = slot1.parseHeroIds(slot0.targetSpecialHero)
+
+		if slot1.isShenheFu() then
+			slot4 = "normal"
+		end
+
+		slot7 = slot1.getSkillConf(slot3, slot4)
+
+		if slot0.skillShow and slot0.skillShow ~= "" then
+			slot7 = slot1.getSkillConf(slot0.skillShow, "passive")
+		end
+
+		if slot7 ~= nil then
+			for slot11, slot12 in pairs(slot7) do
+				slot0[slot11] = slot12
+			end
+
+			if slot7.releaseEffect[1] == "" then
+				slot0.skillAudioType = "hero"
+			else
+				slot0.skillAudioType = "bullet"
+			end
+
+			if slot4 == "normal" then
+				slot0.skillAudioName = slot3 .. "_pugong" .. ".mp3"
+			elseif slot4 == "skill" then
+				slot0.skillAudioName = slot3 .. "_nuji" .. ".mp3"
+			elseif slot4 == "player" then
+				slot0.skillAudioName = slot3 .. "_nuji.mp3"
+			end
+		end
+
+		return slot0
+	end,
+	isSkillNeedChufaAction = function (slot0)
+		slot2 = false
+
+		if SkillModel.items[slot0].skillFirst then
+			return false
+		end
+
+		for slot7, slot8 in ipairs(slot3) do
+			assert(BuffModel.items[slot8] ~= nil, "invalid buffId: " .. slot8)
+
+			if slot9.buffType ~= "" then
+				if BuffTypeConfig.items[slot9.buffType].enumType ~= 1 and slot10.enumType ~= 5 and slot10.enumType ~= 6 then
+					slot2 = true
+
+					break
+				end
+			elseif slot9.buffName ~= "" then
+				slot2 = true
+
+				break
+			end
+		end
+
+		return slot2
+	end,
+	defaultSpineInfo = function ()
+		return {
+			isDefault = true,
+			chufa = {
+				totalTime = 1,
+				triggerCnt = 0
+			},
+			passive = {
+				totalTime = 0.1,
+				triggerCnt = 1,
+				events = {
+					{
+						int = 0,
+						name = "daji",
+						time = 0.01,
+						string = "",
+						float = 0
+					}
+				}
+			},
+			pugong = {
+				totalTime = 2.663297,
+				triggerCnt = 1,
+				events = {
+					{
+						int = 0,
+						name = "daji",
+						time = 1.3468,
+						string = "",
+						float = 0
+					}
+				}
+			},
+			nuji = {
+				totalTime = 3.179348,
+				triggerCnt = 1,
+				events = {
+					{
+						int = 0,
+						name = "daji",
+						time = 1.5068,
+						string = "",
+						float = 0
+					}
+				}
+			}
+		}
+	end,
+	getSpineInfo = function (slot0, slot1)
+		if slot0[slot0] == nil then
+			slot2 = slot1.defaultSpineInfo()
+		end
+
+		return slot2[slot1]
+	end,
+	getMapConfig = function (slot0)
+		if slot0.MapConfig[slot0] == nil then
+			slot1 = slot0.MapConfig[table.keys(slot0.MapConfig)[math.random(1, #table.keys(slot0.MapConfig))]]
+		end
+
+		return slot1
+	end,
+	getChecker = function (slot0, slot1)
+		slot2 = 0
+
+		return function ()
+			if slot0 + 1 == slot1 then
+				return slot2()
+			end
+
+			return 
+		end
+	end,
+	fixGatherOffsets = function (slot0, slot1)
+		slot2 = {}
+
+		for slot6, slot7 in pairs(slot0) do
+			slot2[slot7] = true
+		end
+
+		slot3 = false
+		slot4 = false
+
+		if slot2[1] == nil and slot2[2] == nil then
+			slot3 = true
+		end
+
+		if slot2[3] == nil and slot2[4] == nil and slot2[5] == nil then
+			slot4 = true
+		end
+
+		if slot3 == true then
+			for slot8, slot9 in pairs({
+				3,
+				4,
+				5
+			}) do
+				slot1[slot9].x = slot1[slot9].x + 0.45
+			end
+		elseif slot2[1] == nil or slot2[2] == nil then
+			slot1[1].y = 0
+			slot1[2].y = 0
+		end
+
+		if slot4 == true then
+			for slot8, slot9 in ipairs({
+				1,
+				2
+			}) do
+				slot1[slot9].x = slot1[slot9].x - 0.45
+			end
+		else
+			slot5 = {}
+
+			for slot9, slot10 in ipairs({
+				3,
+				4,
+				5
+			}) do
+				if slot2[slot10] then
+					table.insert(slot5, slot10)
+				end
+			end
+
+			if #slot5 == 1 then
+				for slot9, slot10 in ipairs(slot5) do
+					slot1[slot10].y = 0
+				end
+			elseif #slot5 == 2 then
+				for slot9, slot10 in ipairs(slot5) do
+					if slot9 == 1 then
+						slot1[slot10].y = -0.5
+					else
+						slot1[slot10].y = 0.5
+					end
+				end
+			end
+		end
+
+		return 
+	end,
+	getHeroNujiAnims = function (slot0)
+		slot2 = {}
+
+		if require("battle.common.SpineConf")[slot0].nuji then
+			table.insert(slot2, slot4)
+
+			for slot9, slot10 in ipairs(slot5.events) do
+				slot11, slot12 = string.find(slot10.name, "nuji_cont")
+
+				if slot11 and 0 < slot11 then
+					table.insert(slot2, slot10.name)
+				end
+			end
+		end
+
+		return slot2
+	end,
+	getBulletConfig = function (slot0)
+		if ({
+			effect_zd_lianjintonggui = {
+				offsetY = 65,
+				flyTime = 1,
+				audioEffect = "effect_zd_lianjintonggui.mp3",
+				groundAnimation = "dixia",
+				route = "none"
+			}
+		})[slot0] then
+			return slot1[slot0]
+		end
+
+		return {
+			route = "parabola",
+			flyTime = 1
+		}
+	end,
+	getSortedRangeConf = function (slot0)
+		return ({
+			{
+				sort = {
+					1,
+					2,
+					3,
+					4,
+					5
+				},
+				along = {
+					0,
+					0,
+					0,
+					1,
+					2
+				}
+			},
+			{
+				sort = {
+					2,
+					1,
+					5,
+					4,
+					3
+				},
+				along = {
+					0,
+					0,
+					0,
+					2,
+					1
+				}
+			},
+			{
+				sort = {
+					1,
+					2,
+					3,
+					4,
+					5
+				},
+				along = {
+					0,
+					0,
+					0,
+					1,
+					2
+				}
+			},
+			{
+				sort = {
+					2,
+					1,
+					5,
+					3,
+					4
+				},
+				along = {
+					0,
+					0,
+					2,
+					1,
+					0
+				}
+			},
+			{
+				sort = {
+					2,
+					1,
+					5,
+					4,
+					3
+				},
+				along = {
+					0,
+					0,
+					0,
+					2,
+					1
+				}
+			}
+		})[slot0]
+	end,
+	getHeroScaleByPosY = function (slot0)
+		return (slot0.BattleMaxY - slot0)/slot0.BattleYLen*0.27 + 0.73
+	end,
+	getVersionFlag = function ()
+		return (SystemVersionNumber.items[1].flag == nil and "normal") or "2x"
+	end,
+	getZhenfaSpeedInfo = function (slot0)
+		slot1, slot2 = nil
+
+		assert(ZhenfaModel.items[slot0.modelId] ~= nil, "FxHelper.getZhenfaSpeedInfo invalid zhenfaId:" .. slot0.modelId)
+		assert(ZhenfaStepConfig.items[slot0.modelId] ~= nil, "FxHelper.getZhenfaSpeedInfo invalid zhenfaModelInfo:" .. slot0.modelId)
+
+		slot2 = {
+			0,
+			0,
+			0,
+			0,
+			0
+		}
+
+		if slot3[slot0.step] then
+			for slot9, slot10 in pairs(slot5) do
+				slot12 = tonumber(string.split(slot10, ":")[1])
+
+				if slot0.parseBaseAttr(string.split(slot10, ":")[2])[FightAttrType.eSpd] and 0 < slot13[FightAttrType.eSpd] then
+					slot2[slot12] = slot13[FightAttrType.eSpd]
+				end
+			end
+		end
+
+		if ZhenfaStarConfig.items[slot0.star] then
+			for slot10, slot11 in pairs(slot6) do
+				slot13 = tonumber(string.split(slot11, ":")[1])
+
+				if slot0.parseBaseAttr(string.split(slot11, ":")[2])[FightAttrType.eSpd] and 0 < slot14[FightAttrType.eSpd] then
+					slot2[slot13] = slot14[FightAttrType.eSpd]
+				end
+			end
+		end
+
+		return slot1, slot2
+	end,
+	getFashionLvUpConfig = function (slot0)
+		slot1 = nil
+
+		if slot0.getVersionFlag() == "2x" then
+			require("config.PlayerStepConfig")
+
+			slot1 = PlayerStepConfig
+		else
+			require("config.FashionLvupConfig")
+
+			slot1 = FashionLvupConfig
+		end
+
+		return slot1.items[slot0]
+	end,
+	isShenheFu = function ()
+		if SystemVersionNumber.items[1].ifBureau == 1 then
+			return true
+		end
+
+		return false
+	end
+}

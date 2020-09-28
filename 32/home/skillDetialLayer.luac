@@ -1,0 +1,164 @@
+slot0 = class("skillDetialLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("技能详情")
+		},
+		children = {
+			{
+				name = "skillImage",
+				cType = "Sprite",
+				params = {
+					image = "sk_100001.png",
+					pos = {
+						x = 256.34,
+						y = 273.74
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillBg",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_80.png",
+					pos = {
+						x = 256,
+						y = 269.15
+					}
+				},
+				children = {}
+			},
+			{
+				name = "name",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.39,
+						y = 213.68
+					},
+					text = TR("技能名字")
+				},
+				children = {}
+			},
+			{
+				name = "des",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					align = 0,
+					valign = 0,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.79,
+						y = 105.88
+					},
+					size = {
+						width = 450,
+						height = 140
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fitSprite",
+				cType = "Sprite",
+				params = {
+					image = "xksg_15.png",
+					hide = true,
+					pos = {
+						x = 222.8,
+						y = 289.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "shengongEffect",
+				cType = "Effect",
+				params = {
+					scale = 1.1,
+					hide = true,
+					dataFile = "effect_ui_shengongkuang",
+					pos = {
+						x = 255.39,
+						y = 274.43
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.skillId = slot1 and slot1.skillId
+	slot0.lv = (slot1 and slot1.lv) or 1
+	slot0.star = (slot1 and slot1.star) or 1
+	slot0.kongfuRatio = (slot1 and slot1.kongfuRatio) or 0
+	slot0.heroId = (slot1 and slot1.heroId) or 0
+	slot0.posId = (slot1 and slot1.posId) or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.skillImage:setTexture(SkillModel.items[slot0.skillId].skillPic .. ".png")
+	slot0.name:setString(SkillModel.items[slot0.skillId].skillName)
+
+	slot2 = Resource.getSkillIntroStr(slot0.skillId, slot0.lv, slot0.star, "#252525", "#258711")
+	slot3 = "c_80.png"
+
+	if 0 < slot0.kongfuRatio and slot0.posId == 1 then
+		slot2 = Resource.getSkillIntroStr(slot0.skillId, slot0.lv, slot0.star, "#252525", "#258711", {
+			kongfuRatio = slot0.kongfuRatio
+		})
+
+		slot0.fitSprite:setVisible(true)
+		slot0.shengongEffect:setVisible(true)
+
+		slot3 = "xkxx_81.png"
+	elseif 0 < slot0.heroId then
+		slot5 = table.maxn(HeroStarRelation.items[HeroObj:getItem(slot0.heroId).ModelId])
+
+		if 0 < HeroObj.getItem(slot0.heroId).Star and slot4.Star < slot5 and slot0.posId <= slot4.Star then
+			slot3 = "xkxx_79.png"
+		end
+
+		if slot4.Star == slot5 then
+			slot3 = "xkxx_80.png"
+		end
+	end
+
+	slot0.skillBg:setTexture(slot3)
+	slot0.des:setString(slot2)
+
+	return 
+end
+
+return slot0

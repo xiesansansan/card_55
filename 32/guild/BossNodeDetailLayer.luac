@@ -1,0 +1,697 @@
+slot0 = class("BossNodeDetailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "boxBg",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("节点名字")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423,
+						y = 258.5
+					},
+					size = {
+						width = 788,
+						height = 452
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "bb_12.png",
+					pos = {
+						x = 371.37,
+						y = 256.86
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "xyyz_40.png",
+					pos = {
+						x = 205.77,
+						y = 449.91
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 180.5,
+								y = 32.5
+							},
+							text = TR("敌方阵容")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "tb_gn_66.png",
+					clickAction = "onOldDataBtn",
+					pos = {
+						x = 75.83,
+						y = 438.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "c_78.png",
+					pos = {
+						x = 392.03,
+						y = 458.86
+					}
+				},
+				children = {
+					{
+						name = "introLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 24,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					image = "c_78.png",
+					pos = {
+						x = 392.03,
+						y = 419.86
+					}
+				},
+				children = {
+					{
+						name = "addAttrLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 24,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "c_78.png",
+					pos = {
+						x = 392.03,
+						y = 374.86
+					}
+				},
+				children = {
+					{
+						name = "banLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 24,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 599.46,
+						y = 326.64
+					},
+					text = TR("挑战奖励")
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -83,
+								y = 11
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 170,
+								y = 11
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 600.55,
+						y = 257.6
+					},
+					size = {
+						width = 350,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "goodCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "fightNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 590,
+						y = 70
+					}
+				},
+				children = {
+					{
+						name = "challengeNumLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 60
+							},
+							text = TR("挑战次数")
+						},
+						children = {}
+					},
+					{
+						name = "untitled24",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onFightBtn",
+							pos = {
+								x = 0,
+								y = 16
+							},
+							titleText = TR("挑 战")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "finishNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 590,
+						y = 70
+					}
+				},
+				children = {
+					{
+						name = "killNameLabel",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -80,
+								y = 50
+							},
+							text = TR("击杀者：")
+						},
+						children = {}
+					},
+					{
+						name = "killRewardLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							emptyInit = true,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -80,
+								y = 0
+							},
+							text = TR("击杀奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "campNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 185.81,
+						y = 224.13
+					}
+				},
+				children = {
+					{
+						name = "heroNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled50-currValue",
+								name = "curHp",
+								type = "string"
+							},
+							{
+								value = "untitled50-maxValue",
+								name = "maxHp",
+								type = "string"
+							},
+							{
+								value = "untitled33-heroModelId",
+								name = "heroModelId",
+								type = "string"
+							},
+							{
+								value = "untitled51-hide",
+								name = "isDead",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 89.43,
+								y = -30
+							}
+						},
+						children = {
+							{
+								name = "untitled33",
+								cType = "FigureHero",
+								params = {
+									heroModelId = 12011103,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "Sprite",
+								params = {
+									image = "bp_77.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "hpSprite",
+								cType = "Scale9Sprite",
+								params = {
+									scale = 0.6,
+									image = "bp_73.png",
+									pos = {
+										x = 2.95,
+										y = 197.99
+									}
+								},
+								children = {
+									{
+										name = "untitled50",
+										cType = "ProgressBar",
+										params = {
+											maxValue = 1,
+											normalImage = "bp_74.png",
+											currValue = 1,
+											pos = {
+												x = 67.5,
+												y = 5.5
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled51",
+								cType = "Sprite",
+								params = {
+									image = "bp_75.png",
+									hide = false,
+									pos = {
+										x = 5.66,
+										y = 110.45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mInfo = slot1.info
+	slot0.mChallengeNum = slot1.challengeNum
+	slot0.mChallengBuyNum = slot1.challengeBuyNum
+	slot0.mIsFinished = slot0.mInfo.RemainHP <= 0
+	slot0.mCallBack = slot1.callBack
+	slot0.mNodeConfig = GuildbossNodeModel.items[slot0.mInfo.NodeId]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot1 = {
+	{
+		scaleNum = 0.8,
+		zOrder = 1,
+		pos = cc.p(89, -30)
+	},
+	{
+		scaleNum = 0.9,
+		zOrder = 2,
+		pos = cc.p(42, -132)
+	},
+	{
+		scaleNum = 1,
+		zOrder = 3,
+		pos = cc.p(-86, -169)
+	},
+	{
+		scaleNum = 0.9,
+		zOrder = 2,
+		pos = cc.p(-43, -60)
+	},
+	{
+		scaleNum = 0.8,
+		zOrder = 1,
+		pos = cc.p(-6, 9)
+	}
+}
+slot0.refreshUI = function (slot0)
+	slot0.boxBg.titleLabel:setString(slot0.mNodeConfig.name)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "heroNode", {
+			heroModelId = slot6.heroModelId,
+			curHp = slot0.mInfo.RemainHeroModelDict[tostring(slot5)] or 0,
+			maxHp = slot6.Hp,
+			isDead = 0 < slot7
+		})
+
+		slot8.setPosition(slot8, slot0[slot5].pos)
+		slot8.setScale(slot8, slot0[slot5].scaleNum)
+		slot0.campNode:addChild(slot8, slot0[slot5].zOrder)
+	end
+
+	slot4 = #Utility.analysisStrResList(slot2)*100
+
+	if 3 < #Utility.analysisStrResList(slot2) then
+		slot4 = 300
+	end
+
+	slot0.rewardListView:setContentSize(cc.size(slot4, 90))
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot0.createLayoutTemplateNode(slot0, "rewardLayout").goodCard:setCardData(nil, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		}, slot9)
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+	end
+
+	slot0.introLabel:setString(slot0.mNodeConfig.fightDes1)
+	slot0.addAttrLabel:setString(slot0.mNodeConfig.fightDes2)
+	slot0.banLabel:setString(slot0.mNodeConfig.fightDes3)
+
+	slot5 = Utility.analysisStrResList(slot0.mNodeConfig.lastFightReward)
+
+	slot0.killNameLabel:setString(TR("击杀者：%s", slot0.mInfo.KillByName))
+	slot0.challengeNumLabel:setString(TR("今日剩余挑战次数：%s", slot0.getFightNum(slot0)))
+	slot0.finishNode:setVisible(slot0.mIsFinished)
+	slot0.fightNode:setVisible(not slot0.mIsFinished)
+
+	return 
+end
+slot0.getFightNum = function (slot0)
+	return (GuildbossConfig.items[1].fightNumDaily + slot0.mChallengBuyNum) - slot0.mChallengeNum
+end
+slot0.onFightBtn = function (slot0)
+	if slot0.getFightNum(slot0) <= 0 then
+		slot0.onBuyNum(slot0)
+
+		return 
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(string.splitBySep(slot0.mNodeConfig.campLimit, ",")) do
+		table.insert(slot2, tonumber(slot7))
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(string.splitBySep(slot0.mNodeConfig.jobLimit, ",")) do
+		table.insert(slot3, tonumber(slot8))
+	end
+
+	ui.showCampReady({
+		noNeedVit = true,
+		isPvp = false,
+		currSlotString = "",
+		callModelSub = ModuleSub.eGuildBoss,
+		ignoreCampList = slot2,
+		ignoreProfessionList = slot3,
+		callback = function (slot0)
+			slot0:requestFight(table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOldDataBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.BossNodeRankLayer",
+		data = {
+			nodeId = slot0.mInfo.NodeId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBuyNum = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.GuildBossBuyNumLayer",
+		data = {
+			callBack = function (slot0)
+				slot0.mChallengBuyNum = slot0
+
+				slot0.challengeNumLabel:setString(TR("今日剩余挑战次数：%s", slot0:getFightNum()))
+
+				if slot0.mCallBack then
+					slot0.mCallBack(slot0.mChallengBuyNum)
+				end
+
+				return 
+			end,
+			boughtNum = slot0.mChallengBuyNum
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestFight = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Guildboss",
+		methodData = {
+			slot0.mNodeConfig.matchChapterModelId,
+			slot0.mInfo.NodeId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot1 = {
+				chapterModelId = slot0.mNodeConfig.matchChapterModelId,
+				nodeId = slot0.mInfo.NodeId
+			}
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mChallengeNum + 1)
+			end
+
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = slot1
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

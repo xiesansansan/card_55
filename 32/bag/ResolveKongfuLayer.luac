@@ -1,0 +1,167 @@
+slot0 = class("ResolveKongfuLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("招式分解")
+		},
+		children = {
+			{
+				name = "resolveCostLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.5,
+						y = 289
+					},
+					text = TR("是否花费XX")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.5,
+						y = 187
+					},
+					size = {
+						width = 460,
+						height = 156.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "resolveListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 261.52,
+						y = 186.09
+					},
+					size = {
+						width = 440,
+						height = 150
+					}
+				},
+				children = {
+					{
+						name = "resolveLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 110,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "CardNode",
+								params = {
+									childName = "tempCard",
+									allowClick = true,
+									pos = {
+										x = 55,
+										y = 95
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "sureBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onSureBtn",
+					pos = {
+						x = 257.5,
+						y = 65
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mKongfuInfo = slot1.kongfuInfo
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.resolveCostLabel:setString(TR("是否花费{%s}%s返还以下道具?", Resource.getDaibiImg(Utility.analysisStrResList(NewKongfuStepRelation.items[Resource.getModelInfo(slot0.mKongfuInfo.ModelId).stepClassID][slot0.mKongfuInfo.Step].rebornUse)[1].resourceId), Utility.analysisStrResList(NewKongfuStepRelation.items[Resource.getModelInfo(slot0.mKongfuInfo.ModelId).stepClassID][slot0.mKongfuInfo.Step].rebornUse)[1].num))
+	slot0.resolveListView:setContentSize(#slot4()*120, 150)
+
+	for slot9, slot10 in ipairs(slot5) do
+		slot0.createLayoutTemplateNode(slot0, "resolveLayout").tempCard:setCardData({
+			resourceId = slot10.resourceId,
+			num = slot10.num
+		}, {
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eName
+		})
+		slot0.resolveListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "resolveLayout"))
+	end
+
+	slot0.costResId = slot3[1].resourceId
+	slot0.costNum = slot3[1].num
+
+	return 
+end
+slot0.onSureBtn = function (slot0)
+	if not Resource.isEnough(slot0.costResId, slot0.costNum) then
+		return 
+	end
+
+	if slot0.mCallBack then
+		slot0.mCallBack()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

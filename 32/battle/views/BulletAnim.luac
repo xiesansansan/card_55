@@ -1,0 +1,50 @@
+slot0 = require("common.SpineManager")
+slot1 = class("BulletAnim", function (slot0, slot1, slot2)
+	slot3 = slot0.createAnimation(slot0, 1, true)
+
+	slot3.setScale(slot3, slot2)
+
+	return slot3
+end)
+slot1.ctor = function (slot0, slot1, slot2)
+	slot0.enableNodeEvents(slot0)
+
+	slot0.actions = {}
+
+	slot0.playAnimation(slot0, slot2, 1)
+
+	return 
+end
+slot1.updateAnim = function (slot0, slot1)
+	slot0.update(slot0, slot1)
+
+	for slot5 = #slot0.actions, 1, -1 do
+		slot0.actions[slot5].step(slot6, slot1)
+
+		if slot0.actions[slot5]:isDone() then
+			slot6.release(slot6)
+			table.remove(slot0.actions, slot5)
+		end
+	end
+
+	return 
+end
+slot1.addAction = function (slot0, slot1)
+	slot1.retain(slot1)
+	slot1.startWithTarget(slot1, slot0)
+
+	slot0.actions[#slot0.actions + 1] = slot1
+
+	return 
+end
+slot1.onCleanup = function (slot0)
+	for slot4, slot5 in pairs(slot0.actions) do
+		slot5.release(slot5)
+	end
+
+	slot0.actions = {}
+
+	return 
+end
+
+return slot1

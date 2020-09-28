@@ -1,0 +1,1101 @@
+slot0 = class("ActivityTurntableNewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyzp_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = 343.24,
+						y = 254.47
+					}
+				},
+				children = {
+					{
+						name = "timeNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 276.65,
+								y = 25.14
+							}
+						},
+						children = {
+							{
+								name = "timeBg",
+								cType = "Sprite",
+								params = {
+									image = "xshd_6.png",
+									pos = {
+										x = -50.12,
+										y = 10
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = -127.84,
+										y = 9.31
+									},
+									text = TR("活动倒计时：")
+								},
+								children = {}
+							},
+							{
+								name = "hour",
+								cType = "Label",
+								params = {
+									text = "0",
+									fontName = "xshd_7.png",
+									isRichText = true,
+									pos = {
+										x = -113.2,
+										y = 10.07
+									}
+								},
+								children = {}
+							},
+							{
+								name = "minute",
+								cType = "Label",
+								params = {
+									text = "0",
+									fontName = "xshd_7.png",
+									isRichText = true,
+									pos = {
+										x = -72.21,
+										y = 9.74
+									}
+								},
+								children = {}
+							},
+							{
+								name = "second",
+								cType = "Label",
+								params = {
+									text = "0",
+									fontName = "xshd_7.png",
+									isRichText = true,
+									pos = {
+										x = -29.88,
+										y = 9.26
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "challengeBtn",
+				cType = "Button",
+				params = {
+					image = "xyzp_2.png",
+					clickAction = "onChallengeBtnClick",
+					pos = {
+						x = 236.32,
+						y = -227.2
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "luckyFreeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -116,
+						y = 263
+					},
+					text = TR("剩余幸运点：0")
+				},
+				children = {}
+			},
+			{
+				name = "goodsFreeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -116,
+						y = 233
+					},
+					text = TR("剩余转盘卷：0")
+				},
+				children = {}
+			},
+			{
+				name = "exchangeBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_282.png",
+					clickAction = "onExchangeBtnClick",
+					pos = {
+						x = -569.1,
+						y = 263.61
+					}
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Sprite",
+						params = {
+							image = "c_118.png",
+							pos = {
+								x = -1.7,
+								y = -52.34
+							}
+						},
+						children = {}
+					},
+					{
+						name = "scoreLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							pos = {
+								x = 0.85,
+								y = -52.03
+							},
+							text = TR("我的积分：0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "RedDot",
+						params = {
+							subKey = "ScoreRedDot",
+							moduleId = 23600
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "oneBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_27.png",
+					clickAction = "onOneBtnClick",
+					pos = {
+						x = -464.25,
+						y = -235.58
+					},
+					titleText = TR("转一次")
+				},
+				children = {
+					{
+						name = "oneCostLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = -1.98,
+								y = -30
+							},
+							text = TR("幸运点: 1")
+						},
+						children = {}
+					},
+					{
+						name = "oneBtnEffect",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_anniu",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tenBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onTenBtnClick",
+					pos = {
+						x = -178.01,
+						y = -236.67
+					},
+					titleText = TR("转十次")
+				},
+				children = {
+					{
+						name = "tenCostLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = -1.98,
+								y = -30
+							},
+							text = TR("幸运点: 1")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled23",
+				cType = "Sprite",
+				params = {
+					image = "xyzp_7.png",
+					pos = {
+						x = -322.57,
+						y = 25.45
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "xyzp_5.png",
+							pos = {
+								x = 244,
+								y = 223.5
+							}
+						},
+						children = {
+							{
+								name = "outTurnNode",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_pure.png",
+									pos = {
+										x = 146,
+										y = 146.5
+									}
+								},
+								children = {
+									{
+										name = "untitled28",
+										cType = "Sprite",
+										params = {
+											image = "xyzp_6.png",
+											pos = {
+												x = 13.75,
+												y = 185.82
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "innerTurnNode",
+								cType = "Scale9Sprite",
+								params = {
+									rotationAngle = 360,
+									image = "c_pure.png",
+									zOrder = 99,
+									pos = {
+										x = 146,
+										y = 146.5
+									}
+								},
+								children = {
+									{
+										name = "untitled30",
+										cType = "Sprite",
+										params = {
+											image = "xyzp_4.png",
+											pos = {
+												x = 10,
+												y = 79.79
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "rewardNode",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_pure.png",
+									pos = {
+										x = 146,
+										y = 146.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "outerGoodsNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled40-animation",
+										name = "aniName",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 55.49,
+										y = 289.68
+									}
+								},
+								children = {
+									{
+										name = "untitled35",
+										cType = "CardNode",
+										params = {
+											scale = 0.6,
+											childName = "cardGood",
+											allowClick = true,
+											pos = {
+												x = 9,
+												y = 12
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_touxiangkuang",
+											hide = true,
+											scale = 0.6,
+											childName = "eff",
+											animation = "cheng",
+											pos = {
+												x = 9,
+												y = 12
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "innerGoodsNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled41-animation",
+										name = "aniName",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 98.63,
+										y = 234.98
+									}
+								},
+								children = {
+									{
+										name = "untitled37",
+										cType = "CardNode",
+										params = {
+											scale = 0.65,
+											childName = "goodCard",
+											allowClick = true,
+											pos = {
+												x = 10.48,
+												y = 7.41
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											rotationAngle = 45,
+											childName = "getLabel",
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 10.94,
+												y = 7.32
+											},
+											text = TR("已抽取")
+										},
+										children = {}
+									},
+									{
+										name = "untitled41",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_touxiangkuang",
+											hide = true,
+											scale = 0.65,
+											childName = "eff",
+											animation = "cheng",
+											pos = {
+												x = 10,
+												y = 7
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "refreshRewardBtn",
+						cType = "Button",
+						params = {
+							image = "xyzp_3.png",
+							clickAction = "onRefreshRewardBtnClick",
+							zOrder = 100,
+							pos = {
+								x = 244,
+								y = 223.5
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "checkbox",
+				cType = "Checkbox",
+				params = {
+					isSelect = true,
+					selectImage = "c_44.png",
+					callback = "onCheckBoxStatusChanged",
+					normalImage = "c_43.png",
+					pos = {
+						x = -397.51,
+						y = -293.85
+					}
+				},
+				children = {
+					{
+						name = "tipsLabel",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 30,
+								y = 14.76
+							},
+							text = TR("消耗转盘券抽取")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "touchLayer",
+		cType = "Layer",
+		params = {
+			posApt = 1,
+			zOrder = 1000,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = ActivityObj:getEntityId(ModuleSub.eTimedLuckyTurntableNew)
+	slot0.luckyTurntableInfo = {}
+	slot0.endTime = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mTouchNode = ui.addTouchEvent({
+		swallowTouch = false,
+		node = slot0.touchLayer
+	})
+
+	slot0.refreshTime(slot0)
+
+	return 
+end
+slot0.refreshTime = function (slot0)
+	if slot0.sch then
+		slot0.timeNode:stopAllActions()
+
+		slot0.sch = nil
+	end
+
+	if slot0.endTime then
+		slot0.sch = Utility.schedule(slot0.timeNode, function ()
+			if 0 < slot0.endTime - Player:getCurrentTime() then
+				slot1, slot2, slot3 = MqTime.toHour(slot0, true)
+
+				if 86400 <= slot0 then
+					slot0.timeBg:setTexture("xshd_43.png")
+					slot0.hour:setString(math.floor(slot1/24))
+					slot0.minute:setString(slot1 - math.floor(slot1/24)*24)
+					slot0.second:setString(slot2)
+				else
+					slot0.timeBg:setTexture("xshd_6.png")
+					slot0.hour:setString(slot1)
+					slot0.minute:setString(slot2)
+					slot0.second:setString(slot3)
+				end
+			end
+
+			return 
+		end, 1)
+	end
+
+	return 
+end
+slot0.refreshView = function (slot0, slot1)
+	slot0.scoreLabel:setString(TR("我的积分:#37ff40%s", slot0.luckyTurntableInfo.Score or 0))
+	slot0.luckyFreeLabel:setString(TR("剩余幸运点:%s", slot0.luckyTurntableInfo.Num or 0))
+	slot0.goodsFreeLabel:setString(TR("剩余%s：%s", Resource.getName((Utility.analysisStrResList(slot0.luckyTurntableInfo.OneResource or "")[1] and Utility.analysisStrResList[1].resourceId) or 16050123), Resource.getCount((Utility.analysisStrResList(slot0.luckyTurntableInfo.OneResource or "")[1] and Utility.analysisStrResList[1].resourceId) or 16050123)))
+	slot0.oneBtnEffect:setVisible(slot0.luckyTurntableInfo.TurnStatus)
+
+	if slot1 then
+		slot0.innerTurnNode:setRotation(0)
+		slot0.outTurnNode:setRotation(0)
+	end
+
+	slot0.onCheckBoxStatusChanged(slot0)
+	slot0.refreshRewardNode(slot0)
+
+	return 
+end
+slot1 = {
+	"cheng",
+	"hong",
+	"jinse",
+	"zuanshi"
+}
+slot0.refreshRewardNode = function (slot0)
+	slot0.rewardNode:removeAllChildren()
+
+	slot1 = slot0.luckyTurntableInfo.ExternalRewardList or {}
+	slot2 = 90
+	slot3 = 175
+
+	for slot7 = 1, 12, 1 do
+		slot10 = slot0.createLayoutTemplateNode(slot0, "outerGoodsNode", {
+			aniName = slot0[slot1[slot7] and slot1[slot7].RewardFrameInfo] or "cheng"
+		})
+
+		slot10.setPosition(slot10, cc.p(slot3*math.cos(((slot7*-30 + slot2)*math.pi)/180), slot3*math.sin(((slot7*-30 + slot2)*math.pi)/180)))
+		slot0.rewardNode:addChild(slot10)
+
+		if slot1[slot7] then
+			slot10.cardGood:setCardData(Utility.analysisStrResList(slot1[slot7].Reward)[1], {
+				Enums.CardShowAttr.eNum
+			})
+
+			if slot1[slot7].RewardFrameInfo and slot0[slot1[slot7].RewardFrameInfo] then
+				slot10.eff:setVisible(true)
+			else
+				slot10.eff:setVisible(false)
+			end
+		else
+			slot10.cardGood:setExtraImg("xyzp_13.png")
+			slot10.cardGood:setBorder("c_16.png")
+			slot10.cardGood:setAllowClick(false)
+		end
+	end
+
+	slot4 = slot0.luckyTurntableInfo.InnerRewardList or {}
+	slot5 = 67.5
+	slot6 = 100
+
+	for slot10 = 1, 8, 1 do
+		slot11 = slot6*math.cos((((slot10 - 1)*-45 + slot5)*math.pi)/180)
+		slot12 = slot6*math.sin((((slot10 - 1)*-45 + slot5)*math.pi)/180)
+
+		if slot4[slot10] then
+			slot14 = Utility.analysisStrResList(slot13.Reward)
+			slot15 = slot0.createLayoutTemplateNode(slot0, "innerGoodsNode", {
+				aniName = slot0[slot4[slot10].RewardFrameInfo] or "cheng"
+			})
+
+			if slot4[slot10].RewardFrameInfo and slot0[slot4[slot10].RewardFrameInfo] then
+				slot15.eff:setVisible(true)
+			else
+				slot15.eff:setVisible(false)
+			end
+
+			slot15.goodCard:setCardData(slot14[1], {
+				Enums.CardShowAttr.eNum
+			})
+			slot15.getLabel:setVisible(slot13.IsReceivedReward ~= 0)
+			slot15.setPosition(slot15, cc.p(slot11, slot12))
+			slot0.rewardNode:addChild(slot15)
+		end
+	end
+
+	return 
+end
+slot0.intoInnerHint = function (slot0)
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("恭喜您进入内圈，请点击转一次抽取内圈大奖")
+	})
+
+	return 
+end
+slot0.turntableAction = function (slot0, slot1, slot2)
+	if not slot1 or #slot1 == 0 then
+		slot2()
+
+		return 
+	end
+
+	function slot4(slot0)
+		if slot0.LastTurnStatus and not slot0.TurnStatus then
+			return #slot0 + 1
+		end
+
+		slot1 = ipairs
+		slot2 = slot0 or {}
+
+		for slot4, slot5 in slot1(slot2) do
+			if slot5.OrderId == slot0.OrderId then
+				return slot4
+			end
+		end
+
+		return 
+	end
+
+	slot5 = nil
+	slot6 = 0
+
+	if slot1[#slot1].TurnStatus then
+		slot5 = slot0.innerTurnNode
+		slot6 = (slot4(slot0.luckyTurntableInfo.InnerRewardList) - 1)*45 + 22.5
+	else
+		slot5 = slot0.outTurnNode
+		slot6 = slot4(slot0.luckyTurntableInfo.ExternalRewardList)*30
+	end
+
+	slot7 = cc.Sequence:create(createTouchLayer, buffer, callFun)
+
+	slot0.mTouchNode:setSwallowTouches(true)
+	slot5.runAction(slot5, cc.Sequence:create({
+		cc.EaseExponentialInOut:create(cc.RotateTo:create(6, slot6 + 3600)),
+		cc.CallFunc:create(function (...)
+			slot0:setRotation(slot0)
+			slot2.mTouchNode:setSwallowTouches(false)
+			slot3()
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.showMoreReward = function (slot0, slot1)
+	slot2 = {}
+	slot3 = ipairs
+	slot4 = slot1 or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		table.insert(slot2, {
+			IsTriple = false,
+			RewardStr = (slot7.LastTurnStatus and "LastTurnStatus") or slot7.Reward
+		})
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.TurnTableRewardLayer",
+		data = {
+			rewardList = slot2,
+			closeCallback = function (...)
+				if slot0[#slot0].LastTurnStatus then
+					slot1:intoInnerHint()
+				end
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.drawUseGoods = function (slot0)
+	return slot0.checkbox:isSelected()
+end
+slot0.testTurntableAction = function (slot0)
+	slot0.turntableAction(slot0, {
+		{
+			OrderId = 12,
+			TurnStatus = false,
+			LastTurnStatus = false
+		}
+	}, function ()
+		ui.showFlashView("旋转完成")
+
+		return 
+	end)
+
+	return 
+end
+slot0.onCheckBoxStatusChanged = function (slot0)
+	if slot0.checkbox:isSelected() then
+		slot0.tipsLabel:setString(TR("消耗转盘券抽取"))
+
+		if #Utility.analysisStrResList(slot0.luckyTurntableInfo.OneResource or "") ~= 0 then
+			slot0.oneCostLabel:setString(TR("转盘券:%s", slot2[1].num))
+			slot0.tenCostLabel:setString(TR("转盘券:%s", slot2[1].num*10))
+		end
+	else
+		slot0.tipsLabel:setString(TR("消耗幸运点抽取"))
+		slot0.oneCostLabel:setString(TR("幸运点:%s", (slot0.luckyTurntableInfo.OneLuckySpot or 1)*1))
+		slot0.tenCostLabel:setString(TR("幸运点:%s", (slot0.luckyTurntableInfo.OneLuckySpot or 1)*10))
+	end
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleBtnClick = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.参与活跃挑战可获得转盘券。"),
+			TR("2.每充值6元即可获得1点幸运点。"),
+			TR("3.每次抽取转盘都能获得1点积分."),
+			TR("4.抽取转盘有概率进入内圈，内圈抽取1次后离开内圈。"),
+			TR("5.内圈每种奖励都只能获取1次，全部抽完后重置。"),
+			TR("6.点击刷新奖品后，刷新内外圈所有转盘奖励。")
+		}
+	})
+
+	return 
+end
+slot0.onExchangeBtnClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.ActivityTurntableNewExchangeLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			callback = function ()
+				slot0:requestGetInfo()
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onRefreshRewardBtnClick = function (slot0)
+	if #Utility.analysisStrResList(slot0.luckyTurntableInfo.RefreshResource or "") == 0 then
+		slot0.requestRefresh(slot0)
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("是否消耗#258711%s{%s}#373737刷新转盘内奖品 \n (所有格子的奖励均会刷新)", slot1[1].num, Resource.getDaibiImg(slot1[1].resourceId)),
+		okCallback = function ()
+			slot0:requestRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOneBtnClick = function (slot0)
+	if slot0.drawUseGoods(slot0) then
+		if Resource.getCount((Utility.analysisStrResList(slot0.luckyTurntableInfo.OneResource or "")[1] and Utility.analysisStrResList[1].resourceId) or 16050123) < ((Utility.analysisStrResList[1] and Utility.analysisStrResList[1].num) or 1) then
+			ui.showFlashView(TR("%s不足", Resource.getName(slot2)))
+
+			return 
+		end
+
+		slot0.requestLuckyTurntable(slot0, true, 1)
+	else
+		if slot0.luckyTurntableInfo.Num < slot0.luckyTurntableInfo.OneLuckySpot then
+			ui.showMessageBox({
+				titleText = TR("提示"),
+				text = TR("幸运点数不足,充值可获得幸运点，是否前往?"),
+				okCallback = function (slot0)
+					LayerManager.showModuleLayer(ModuleSub.eCharge)
+
+					return 
+				end
+			})
+
+			return 
+		end
+
+		slot0.requestLuckyTurntable(slot0, false, 1)
+	end
+
+	return 
+end
+slot0.onTenBtnClick = function (slot0)
+	if slot0.drawUseGoods(slot0) then
+		if Resource.getCount((Utility.analysisStrResList(slot0.luckyTurntableInfo.OneResource or "")[1] and Utility.analysisStrResList[1].resourceId) or 16050123) < ((Utility.analysisStrResList[1] and Utility.analysisStrResList[1].num) or 1)*10 then
+			ui.showFlashView(TR("%s不足", Resource.getName(slot2)))
+
+			return 
+		end
+
+		if slot0.luckyTurntableInfo.TurnStatus then
+			ui.showFlashView(TR("请选择“转一次”抽取内圈奖励"))
+
+			return 
+		end
+
+		slot0.requestLuckyTurntable(slot0, true, 10)
+	else
+		if slot0.luckyTurntableInfo.Num < slot0.luckyTurntableInfo.OneLuckySpot*10 then
+			ui.showMessageBox({
+				titleText = TR("提示"),
+				text = TR("幸运点数不足,充值可获得幸运点，是否前往?"),
+				okCallback = function (slot0)
+					LayerManager.showModuleLayer(ModuleSub.eCharge)
+
+					return 
+				end
+			})
+
+			return 
+		end
+
+		if slot0.luckyTurntableInfo.TurnStatus then
+			ui.showFlashView(TR("请选择“转一次”抽取内圈奖励"))
+
+			return 
+		end
+
+		slot0.requestLuckyTurntable(slot0, false, 10)
+	end
+
+	return 
+end
+slot0.onChallengeBtnClick = function (slot0)
+	if not ActivityObj:isActivityConfined(ModuleSub.eTimedActiveChallenge) then
+		ui.showFlashView(TR("活跃挑战活动未开启"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "xsactivity.XSActivityMainLayer",
+		data = {
+			moduleId = ModuleSub.eTimedActiveChallenge,
+			activityType = ActivityObj:getActivityInfo(ModuleSub.eTimedActiveChallenge)[1].ActivityType
+		}
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedLuckyTurntableNew",
+		methodData = {
+			slot0.activityId
+		},
+		successCallback = function (slot0)
+			slot0.luckyTurntableInfo = slot0 or {}
+			slot0.endTime = slot0.EndTime or 0
+
+			slot0:refreshView(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefresh = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Refresh",
+		moduleName = "TimedLuckyTurntableNew",
+		methodData = {
+			slot0.activityId
+		},
+		successCallback = function (slot0)
+			slot0.luckyTurntableInfo = slot0 or {}
+
+			slot0:refreshView(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLuckyTurntable = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "LuckyTurntable",
+		moduleName = "TimedLuckyTurntableNew",
+		methodData = {
+			slot0.activityId,
+			not slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if 1 < function ()
+				slot0.luckyTurntableInfo = slot1.LuckyTurntableInfo or {}
+
+				PlayerAttrObj:checkLvUp()
+				PlayerAttrObj.checkLvUp:refreshView(false)
+
+				if 1 < #slot1.ShowInfo then
+					slot0:showMoreReward(slot1.ShowInfo)
+				elseif slot1.ShowInfo[1].LastTurnStatus then
+					slot0:intoInnerHint()
+				else
+					ui.showFlashReward({
+						BaseGetGameResourceList = slot1.BaseGetGameResourceList
+					})
+				end
+
+				return 
+			end then
+				slot1()
+			else
+				slot0:turntableAction(slot0.ShowInfo, slot1)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

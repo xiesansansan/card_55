@@ -1,0 +1,196 @@
+slot0 = class("QinxiuBuyLevelLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			image = "qxzl_22.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 755,
+				height = 528
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onBtnCloseAction",
+					pos = {
+						x = 615,
+						y = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					emptyInit = true,
+					pos = {
+						x = 440.25,
+						y = 214.99
+					},
+					text = TR("可购买次数: 10/10")
+				},
+				children = {}
+			},
+			{
+				name = "mBtnBuy",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBuyLevelAction",
+					pos = {
+						x = 440.25,
+						y = 169.57
+					},
+					titleText = TR("资助1级")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_91.png",
+					pos = {
+						x = 442.68,
+						y = 450.39
+					},
+					size = {
+						width = 300,
+						height = 45
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						params = {
+							image = "qxzl_21.png",
+							pos = {
+								x = 149.34,
+								y = 25.49
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 21,
+					outlineSize = 1,
+					scale = 1.1,
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 612,
+						y = 75
+					},
+					size = {
+						width = 240,
+						height = 0
+					},
+					text = TR("  该笔消费附赠会员经验但不参加其他运营活动")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					image = "qxzl_23.png",
+					pos = {
+						x = 443.2,
+						y = 355.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "qxzl_25.png",
+					pos = {
+						x = 443.91,
+						y = 264.61
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.callback = slot1.callback
+	slot0.productId = slot1.productId
+	slot0.currBuyNum = slot1.currBuyNum
+	slot0.maxBuyNum = 10
+
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. tostring(16), function (slot0)
+		slot0.currBuyNum = slot0.currBuyNum + 1
+
+		slot0:refreshUI()
+		slot0.callback()
+		ui.showFlashView(TR("资助成功"))
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mNumLabel:setString(TR("可购买次数: #37FF40%s#FFF8EA/%s", slot0.maxBuyNum - slot0.currBuyNum, slot0.maxBuyNum))
+	slot0.mBtnBuy:setEnabled(slot0.currBuyNum < slot0.maxBuyNum)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBuyLevelAction = function (slot0)
+	Utility.recharge({
+		chargeType = 16,
+		price = 30,
+		productId = slot0.productId,
+		index = ActivityObj:getEntityId(ModuleSub.eQinXiu)
+	})
+
+	return 
+end
+
+return slot0

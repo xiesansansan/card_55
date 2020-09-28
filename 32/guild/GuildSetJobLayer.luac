@@ -1,0 +1,419 @@
+slot0 = class("GuildSetJobLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("任命官职")
+		},
+		children = {
+			{
+				name = "memberTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onMemberNodeNum",
+					isVertical = true,
+					cellUpdateFunc = "onMemberNodeUpdate",
+					cellSizeFunc = "onMemberNodeSize",
+					cellFillFunc = "onMemberNodeFill",
+					pos = {
+						x = 34,
+						y = 39
+					},
+					size = {
+						width = 780,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "memberTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -100
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 780,
+										height = 92
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "CardNode",
+								params = {
+									childName = "headCard",
+									allowClick = false,
+									pos = {
+										x = 55.95,
+										y = 46
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 100,
+										y = 74
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "lvLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 100,
+										y = 49
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "posLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 100,
+										y = 22
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "contributeLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 299,
+										y = 22
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "fapLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 299,
+										y = 50
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Button",
+								params = {
+									childName = "setJobBtn",
+									image = "c_27.png",
+									clickAction = "onSetJobBtn",
+									pos = {
+										x = 657.71,
+										y = 35.1
+									},
+									titleText = TR("封 官")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									childName = "stateLabel",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 657,
+										y = 72.47
+									},
+									text = TR("在线")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									text = "/1",
+									charCount = 11,
+									childName = "vipLabel",
+									startChar = 47,
+									fontName = "c_102.png",
+									isRichText = true,
+									pos = {
+										x = 331.97,
+										y = 74.34
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGuildInfo = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+	slot0.mCallBack = slot1.callBack
+	slot0.mTargetPosId = slot1.targetPosId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetMemberList(slot0)
+
+	return 
+end
+slot0.onMemberNodeSize = function (slot0, slot1, slot2)
+	return 780, 100
+end
+slot0.onMemberNodeNum = function (slot0, slot1)
+	return #slot0.mMemberList
+end
+slot0.onMemberNodeFill = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "memberTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.nameLabel:setString(slot0.mMemberList[slot1 + 1].Name)
+		slot0.headCard:setPlayerHeader(slot0.mMemberList[slot1 + 1].HeadImageId, {}, {
+			fashionLv = slot0.mMemberList[slot1 + 1].FashionLevel,
+			headPicId = HeadPicId
+		})
+		slot0.lvLabel:setString(TR("等级：%s", slot0.mMemberList[slot1 + 1].Lv))
+		slot0.posLabel:setString(TR("职位：%s", (GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mMemberList[slot1 + 1].PositionId] and slot3.positionName) or "帮众"))
+		slot0.fapLabel:setString(TR("战力：%s", Utility.numberWithUnit(slot2.Fap)))
+		slot0.contributeLabel:setString(TR("贡献：%s", slot2.FeatsTotal))
+		slot0.vipLabel:setString(string.format("/%s", slot2.Vip))
+
+		slot4 = nil
+		slot5, slot6, slot7, slot8 = MqTime.toHour(slot2.OutTime)
+		slot9 = cc.c3b(139, 168, 87)
+
+		if slot2.IsActive then
+			slot4 = TR("在线")
+		else
+			slot9 = cc.c3b(192, 65, 65)
+
+			if slot2.OutTime <= 3600 then
+				slot4 = TR("[离线%s分钟]", slot7)
+			elseif slot2.OutTime <= 86400 then
+				slot4 = TR("[离线%s小时]", slot6)
+			else
+				slot4 = TR("[离线%s天]", (7 <= slot5 and 7) or slot5)
+			end
+		end
+
+		slot0.stateLabel:setColor(slot9)
+		slot0.stateLabel:setString(slot4)
+
+		slot0.setJobBtn.info = slot2
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onMemberNodeUpdate = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onSetJobBtn = function (slot0, slot1)
+	if slot1.info.PositionId == 0 then
+		slot0.requestChange(slot0, slot1.info)
+
+		return 
+	end
+
+	if slot1.info.PositionId == 1 then
+		ui.showFlashView(TR("帮主无法任命"))
+
+		return 
+	end
+
+	if GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot1.info.PositionId].positionLv <= GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mGuildInfo.PositionId].positionLv then
+		ui.showFlashView("您的帮派职位权限不足，无法进行该操作")
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("玩家 %s 当前官职为 %s\n确认变更为 %s?", slot1.info.Name, GuildPositionRelation.items[1][slot1.info.PositionId].positionName, GuildPositionRelation.items[1][slot0.mTargetPosId].positionName),
+		okCallback = function ()
+			slot0:requestChange(slot1.info)
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetMemberList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildMemberInfo",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mMemberList = {}
+			slot0.mMemberList = slot0.MemberInfo
+
+			table.sort(slot0.mMemberList, function (slot0, slot1)
+				if ((slot0.IsActive and 1) or 0) ~= ((slot1.IsActive and 1) or 0) then
+					return slot3 < slot2
+				else
+					return slot1.Fap < slot0.Fap
+				end
+
+				return 
+			end)
+			slot0.memberTableView:reloadData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestChange = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "PostChange",
+		moduleName = "Guild",
+		methodData = {
+			slot1.PlayerId,
+			slot0.mTargetPosId
+		},
+		successCallback = function (slot0)
+			if slot0.mTargetPosId == 2 or slot0.mTargetPosId == 3 then
+				ChatMng:sendMessage({
+					channel = Enums.ChatChanne.eGuild,
+					text = TR("恭喜%s荣升为本帮副帮主，快请他发红包吧~~", slot1.Name)
+				})
+			end
+
+			ui.showFlashView("任命成功！")
+
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,465 @@
+slot0 = class("NewDlgRecruitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseLayer",
+			posApt = 1,
+			image = "c_pure.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 820,
+				height = 400
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 120,
+						y = 44
+					}
+				},
+				children = {
+					{
+						name = "mSingleInSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_19.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleOutSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_18.png",
+							rotationAngle = -15,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 10,
+								y = -5
+							}
+						},
+						children = {
+							{
+								name = "mSingleNameSprite",
+								cType = "Sprite",
+								params = {
+									image = "jg_22.png",
+									pos = {
+										x = 60.31,
+										y = 227.18
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mSingleSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_8.png",
+							pos = {
+								x = 130,
+								y = 167
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleFreeLabel_1",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							pos = {
+								x = -10,
+								y = -25
+							},
+							text = TR("本次免费")
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Sprite",
+						params = {
+							scaleX = 1.2,
+							image = "c_118.png",
+							pos = {
+								x = 60,
+								y = -115
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleUseLabel_1",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							text = "Label",
+							pos = {
+								x = 60,
+								y = -115
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleBtn_1",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "recruitType",
+								type = "number"
+							}
+						},
+						params = {
+							clickAction = "onRecruit",
+							image = "c_32.png",
+							pos = {
+								x = -10,
+								y = -62
+							},
+							size = {
+								width = 110,
+								height = 38
+							},
+							titleText = TR("单 抽")
+						},
+						children = {
+							{
+								name = "SingleRedDot",
+								cType = "RedDot",
+								params = {
+									subKey = "Recruit_1_1",
+									moduleId = 3601
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mTenBtn_1",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "recruitType",
+								type = "number"
+							}
+						},
+						params = {
+							clickAction = "onRecruit",
+							image = "c_27.png",
+							pos = {
+								x = 140,
+								y = -62
+							},
+							size = {
+								width = 110,
+								height = 38
+							},
+							titleText = TR("十连抽")
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "RedDot",
+								params = {
+									subKey = "Recruit_1_2",
+									moduleId = 3601
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 615,
+						y = 44
+					}
+				},
+				children = {
+					{
+						name = "mTenInSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_21.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mTenOutSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_20.png",
+							rotationAngle = -15,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 10,
+								y = -5
+							}
+						},
+						children = {
+							{
+								name = "mTenNameSprite",
+								cType = "Sprite",
+								params = {
+									image = "jg_31.png",
+									pos = {
+										x = 60.31,
+										y = 227.18
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mTenSprite",
+						cType = "Sprite",
+						params = {
+							image = "jg_30.png",
+							pos = {
+								x = 130,
+								y = 167
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Sprite",
+						params = {
+							scaleX = 1.2,
+							image = "c_118.png",
+							pos = {
+								x = 60,
+								y = -115
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleUseLabel_2",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							text = "Label",
+							pos = {
+								x = 60,
+								y = -115
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSingleBtn_2",
+						cType = "Button",
+						custom = {
+							{
+								value = 5,
+								name = "recruitType",
+								type = "number"
+							}
+						},
+						params = {
+							clickAction = "onRecruit",
+							image = "c_32.png",
+							pos = {
+								x = -10,
+								y = -62
+							},
+							size = {
+								width = 110,
+								height = 38
+							},
+							titleText = TR("单 抽")
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "RedDot",
+								params = {
+									subKey = "Recruit_1_5",
+									moduleId = 3601
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mTenBtn_2",
+						cType = "Button",
+						custom = {
+							{
+								value = 6,
+								name = "recruitType",
+								type = "number"
+							}
+						},
+						params = {
+							clickAction = "onRecruit",
+							image = "c_27.png",
+							pos = {
+								x = 140,
+								y = -62
+							},
+							size = {
+								width = 110,
+								height = 38
+							},
+							titleText = TR("五连抽")
+						},
+						children = {
+							{
+								name = "TenRedDot",
+								cType = "RedDot",
+								params = {
+									subKey = "Recruit_1_6",
+									moduleId = 3601
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	eFriendOnceRecruit = 5,
+	eFriendTeneRecruit = 6,
+	eLowTenRecruit = 2,
+	eSeniorOnceRecruit = 3,
+	eLowOnceRecruit = 1,
+	eSeniorTenRecruit = 4
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mRecruitInfo = slot1.recruitInfo
+
+	dump(slot1)
+
+	slot0.mCallback = slot1.callback
+	slot0.mCloseCb = slot1.closeCb
+
+	slot0.initData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initData = function (slot0)
+	slot0.mRecruitModel = {}
+
+	for slot4, slot5 in pairs(clone(RecruitModel.items)) do
+		slot0.mRecruitModel[slot5.Id] = slot5
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = 1
+
+	slot0.createTimeUpdate(slot0, slot0.mSingleFreeLabel_1, slot0.mRecruitInfo.CooledInfo[1].CooledTime)
+	slot0.mSingleUseLabel_1:setString(string.format("{%s}%s%s/#ffffff%s", Resource.getDaibiImg(slot2.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eLowOnceRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eLowOnceRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot3, slot2.num))
+	slot0.mSingleUseLabel_1:setString(string.format("%s        {%s}%s%s/#ffffff%s", slot0.mSingleUseLabel_1:getString(), Resource.getDaibiImg(slot5.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eLowTenRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eLowTenRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot6, slot5.num))
+	slot0.mSingleUseLabel_2:setString(string.format("{%s}%s%s/#ffffff%s", Resource.getDaibiImg(slot2.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eFriendOnceRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eFriendOnceRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot6, slot2.num))
+	slot0.mSingleUseLabel_2:setString(string.format("%s        {%s}%s%s/#ffffff%s", slot0.mSingleUseLabel_2:getString(), Resource.getDaibiImg(slot8.resourceId), (Utility.analysisStrResList(slot0.mRecruitModel[slot0.eFriendTeneRecruit].recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mRecruitModel[slot0.eFriendTeneRecruit].recruitUse)[1].resourceId) and "#56c121") or "#e8402e", slot9, slot8.num))
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0, slot1, slot2)
+	if slot1.timeUpdate then
+		slot1.stopAction(slot1, slot1.timeUpdate)
+
+		slot1.timeUpdate = nil
+	end
+
+	slot1.timeUpdate = Utility.schedule(slot1, function ()
+		if 0 < slot0 - Player:getCurrentTime() then
+			slot1:setString(TR("%s后免费", MqTime.completeFormat(slot0)))
+		else
+			slot1:setString(TR("本次免费"))
+			slot1.setString:stopAction(slot1.timeUpdate)
+
+			slot1.setString.stopAction.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onRecruit = function (slot0, slot1)
+	if slot0.mCallback then
+		slot0.mCallback(slot1.recruitType)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCloseLayer = function (slot0, slot1)
+	if slot0.mCloseCb then
+		slot0.mCloseCb()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

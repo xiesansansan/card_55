@@ -1,0 +1,549 @@
+slot0 = class("PvpReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 516,
+				height = 514
+			},
+			titleText = TR("战报")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 257.55,
+						y = 292.87
+					},
+					size = {
+						width = 456,
+						height = 364
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onExitAction",
+					pos = {
+						x = 257.45,
+						y = 62.79
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "reportListView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 257.73,
+						y = 291.95
+					},
+					size = {
+						width = 448,
+						height = 352.58
+					}
+				},
+				children = {
+					{
+						name = "reportLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "attackName",
+								type = "string"
+							},
+							{
+								value = "untitled11-text",
+								name = "attackGuild",
+								type = "string"
+							},
+							{
+								value = "untitled13-text",
+								name = "defenceName",
+								type = "string"
+							},
+							{
+								value = "untitled18-text",
+								name = "defenceGuild",
+								type = "string"
+							},
+							{
+								value = "untitled9-image",
+								name = "attackImage",
+								type = "string"
+							},
+							{
+								value = "untitled15-image",
+								name = "defenceImage",
+								type = "string"
+							},
+							{
+								value = "untitled8-modelId",
+								name = "attackHeadImgId",
+								type = "string"
+							},
+							{
+								value = "untitled14-modelId",
+								name = "defenceHeadImgId",
+								type = "string"
+							},
+							{
+								value = "untitled21-text",
+								name = "rankChangeStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0.39,
+								y = 204.19
+							},
+							size = {
+								width = 448,
+								height = 148
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_99.png",
+									pos = {
+										x = 222.84,
+										y = 75.26
+									},
+									size = {
+										width = 448,
+										height = 148
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "attackName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 85,
+										y = 128
+									},
+									text = TR("姓名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "headCard1",
+									allowClick = false,
+									pos = {
+										x = 85,
+										y = 75
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_15.png",
+											pos = {
+												x = 71.98,
+												y = 70.91
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "sddh_14.png",
+									pos = {
+										x = 28.87,
+										y = 75.19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "attackGuildName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 85,
+										y = 20
+									},
+									text = TR("帮派:")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "reportBtn",
+									image = "xyyz_39.png",
+									scale = 0.9,
+									clickAction = "onFightBackBtnAction",
+									pos = {
+										x = 388.71,
+										y = 98.28
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "defenceName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 289,
+										y = 128
+									},
+									text = TR("姓名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "headCard2",
+									allowClick = false,
+									pos = {
+										x = 288.55,
+										y = 75.45
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_16.png",
+											pos = {
+												x = 66.8,
+												y = 71.08
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									image = "zd_46.png",
+									pos = {
+										x = 182.25,
+										y = 74.56
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "sddh_15.png",
+									pos = {
+										x = 232.16,
+										y = 75.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "defenceGuildName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 289,
+										y = 20
+									},
+									text = TR("帮派:")
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "sddh_16.png",
+									pos = {
+										x = 346.63,
+										y = 75.2
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 391.37,
+										y = 44.51
+									},
+									size = {
+										width = 90,
+										height = 0
+									},
+									text = TR("当前排名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 391.37,
+										y = 65.51
+									},
+									size = {
+										width = 90,
+										height = 0
+									},
+									text = TR("当前排名")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 38,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.51,
+						y = 277.01
+					},
+					text = TR("暂无战报信息")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallBack = slot1.callback
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:createList()
+
+		return 
+	end, 2)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetWrestleRaceReviveList(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onFightBackBtnAction = function (slot0, slot1)
+	slot0.requestGetFight(slot0, slot1.id)
+
+	return 
+end
+slot0.createList = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mRaceReviveList) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "reportLayout", {
+			attackName = cjson.decode(slot5.AtkPlayerSingleInfo).Name,
+			defenceName = cjson.decode(slot5.DefPlayerSingleInfo).Name,
+			attackGuild = (cjson.decode(slot5.AtkPlayerSingleInfo).GuildName ~= "" and slot6.GuildName) or TR("暂无"),
+			defenceGuild = (slot7.GuildName ~= "" and slot7.GuildName) or TR("暂无"),
+			attackImage = (slot5.IsWin and "xyyz_15.png") or "xyyz_16.png",
+			defenceImage = (slot5.IsWin and "xyyz_16.png") or "xyyz_15.png",
+			attackHeadImgId = slot6.HeadImageId,
+			defenceHeadImgId = slot7.HeadImageId,
+			rankChangeStr = TR("%s名", slot5.NewRank)
+		})
+
+		slot8.headCard1:setRightTextVisible(false)
+		slot8.headCard2:setRightTextVisible(false)
+
+		slot8.reportBtn.id = slot5.Id
+
+		slot0.reportListView:pushBackCustomItem(slot8)
+	end
+
+	slot0.tipLabel:setVisible(next(slot0.mRaceReviveList) == nil)
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetWrestleRaceReviveList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReport",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetReport")
+
+			slot0.mRaceReviveList = slot0
+
+			table.sort(slot0.mRaceReviveList, function (slot0, slot1)
+				if slot0.CrDateTime ~= slot1.CrDateTime then
+					return slot1.CrDateTime < slot0.CrDateTime
+				end
+
+				return 
+			end)
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetFight = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ViewReport",
+		moduleName = "Pvp",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = cjson.decode(slot0),
+				extraData = {}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

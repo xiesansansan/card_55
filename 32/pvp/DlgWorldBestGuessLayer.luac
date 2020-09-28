@@ -1,0 +1,689 @@
+slot0 = class("DlgWorldBestGuessLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 556
+			},
+			titleText = TR("下 注")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 295,
+						y = 339.01
+					},
+					size = {
+						width = 525,
+						height = 290
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Sprite",
+				params = {
+					image = "txdy_4.png",
+					pos = {
+						x = 295.67,
+						y = 364.01
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCBg",
+				cType = "Scale9Sprite",
+				params = {
+					hide = true,
+					image = "c_pure.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 590,
+						height = 556
+					}
+				},
+				children = {
+					{
+						name = "oddsLabel1",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 125,
+								y = 459.01
+							},
+							text = TR("赔率")
+						},
+						children = {}
+					},
+					{
+						name = "oddsLabel2",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 463,
+								y = 459.01
+							},
+							text = TR("赔率")
+						},
+						children = {}
+					},
+					{
+						name = "playerNameLabel1",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 125,
+								y = 424.01
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "playerNameLabel2",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 463,
+								y = 424.01
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 295,
+								y = 501.62
+							},
+							text = TR("竞猜时间")
+						},
+						children = {}
+					},
+					{
+						name = "palyerNode1",
+						cType = "PlayerHeroNode",
+						params = {
+							modelId = 19010000,
+							allowClick = false,
+							pos = {
+								x = 125,
+								y = 359.01
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Sprite",
+								params = {
+									hide = true,
+									image = "c_17.png",
+									childName = "emptyNode",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled33",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 40.21,
+												y = 42.48
+											},
+											text = TR("轮空")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "palyerNode2",
+						cType = "PlayerHeroNode",
+						params = {
+							modelId = 19010000,
+							allowClick = false,
+							pos = {
+								x = 463,
+								y = 359.01
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Sprite",
+								params = {
+									hide = true,
+									image = "c_17.png",
+									childName = "emptyNode",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled34",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 40.21,
+												y = 42.48
+											},
+											text = TR("轮空")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled11",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							image = "c_82.png",
+							pos = {
+								x = 133,
+								y = 279.01
+							}
+						},
+						children = {
+							{
+								name = "fapLabel1",
+								cType = "Label",
+								params = {
+									charCount = 12,
+									fontName = "c_81.png",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 105,
+										y = 40
+									},
+									text = TR("200万")
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Sprite",
+								params = {
+									image = "c_80.png",
+									pos = {
+										x = 62.27,
+										y = 40
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							image = "c_82.png",
+							pos = {
+								x = 471,
+								y = 279.01
+							}
+						},
+						children = {
+							{
+								name = "fapLabel2",
+								cType = "Label",
+								params = {
+									charCount = 12,
+									fontName = "c_81.png",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 105,
+										y = 40
+									},
+									text = TR("200万")
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Sprite",
+								params = {
+									image = "c_80.png",
+									pos = {
+										x = 62.27,
+										y = 40
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "checkBox1",
+						cType = "Checkbox",
+						custom = {
+							{
+								value = 1,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							normalImage = "c_43.png",
+							selectImage = "c_44.png",
+							callback = "onCheckCallBack",
+							pos = {
+								x = 125,
+								y = 224.01
+							}
+						},
+						children = {}
+					},
+					{
+						name = "checkBox2",
+						cType = "Checkbox",
+						custom = {
+							{
+								value = 2,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							normalImage = "c_43.png",
+							selectImage = "c_44.png",
+							callback = "onCheckCallBack",
+							pos = {
+								x = 463,
+								y = 224.01
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "resLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 280,
+						y = 169.01
+					},
+					text = TR("元宝")
+				},
+				children = {}
+			},
+			{
+				name = "btnGuess",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onGuessBtnAction",
+					pos = {
+						x = 295,
+						y = 124.01
+					},
+					titleText = TR("支 持")
+				},
+				children = {}
+			},
+			{
+				name = "mGetResLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					emptyInit = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 294.6,
+						y = 66.87
+					},
+					text = TR("支持失败也会反还全部支持资金，赔率随支持人数变化而变化")
+				},
+				children = {}
+			},
+			{
+				name = "mFailResLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 295,
+						y = 66.23
+					},
+					text = TR("支持失败也会返还全部支持资金，赔率随支持人数变动而变化")
+				},
+				children = {}
+			},
+			{
+				name = "getListView",
+				cType = "ListView",
+				params = {
+					hide = true,
+					direction = false,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					pos = {
+						x = 347.29,
+						y = 139.32
+					},
+					size = {
+						width = 220,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "templateRewardCell",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled27-initParams",
+								name = "cardParams",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "getButton",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					hide = true,
+					clickAction = "onGetRwardBtnAction",
+					pos = {
+						x = 424.06,
+						y = 125
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	{
+		title = TR("八强赛")
+	},
+	{
+		title = TR("四强赛")
+	},
+	{
+		title = TR("半决赛")
+	},
+	{
+		title = TR("决赛")
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mPlayerLeft = slot1.playerLeft or {}
+	slot0.mPlayerRight = slot1.playerRight or {}
+	slot0.alreadyPlayerId = slot1.alreadyPlayerId
+	slot0.mTipStr = slot1.tipStr
+	slot0.mCurrTurn = slot1.currTurn
+	slot0.mCallBack = slot1.callback
+
+	slot0.parseGuessTime(slot0)
+	slot0.initUI(slot0)
+	slot0.getBetInfo(slot0)
+
+	return 
+end
+slot0.parseGuessTime = function (slot0)
+	slot2 = ""
+	slot0.mGuessTimeStr = (WorldnumoneTimeRelation.items[slot0.mCurrTurn + 1].stakeBeginDay == WorldnumoneTimeRelation.items[slot0.mCurrTurn + 1].stakeEndDay and TR("周%s", Utility.getWeekNum(slot1.stakeBeginDay)) .. TR("%s-%s", slot1.stakeBeginTime, slot1.stakeEndTime)) or TR("周%s%s至周%s%s", Utility.getWeekNum(slot1.stakeBeginDay), slot1.stakeBeginTime, Utility.getWeekNum(slot1.stakeEndDay), slot1.stakeEndTime)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.btnGuess:setEnabled(slot0.mTipStr == nil)
+	slot0.btnGuess:setTitleText((slot0.mTipStr ~= nil and slot0.mTipStr) or TR("下 注"))
+	slot0.mTimeLabel:setString(TR("%s下注时间: %s%s", slot0[slot0.mCurrTurn].title, "#258711", slot0.mGuessTimeStr))
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1(slot0.mPlayerLeft, slot0.palyerNode1, slot0.oddsLabel1, slot0.playerNameLabel1, slot0.fapLabel1, slot0.checkBox1)
+	slot1(slot0.mPlayerRight, slot0.palyerNode2, slot0.oddsLabel2, slot0.playerNameLabel2, slot0.fapLabel2, slot0.checkBox2)
+	slot0.resLabel:setString(string.format("{%s}%s", Resource.getDaibiImg(Utility.analysisStrResList(WorldnumoneConfig.items[1].supportNeed)[1].resourceId), Utility.analysisStrResList(WorldnumoneConfig.items[1].supportNeed)[1].num))
+
+	if slot0.mTipStr ~= nil then
+		slot0.checkBox1:setEnabled(false)
+		slot0.checkBox2:setEnabled(false)
+	end
+
+	slot0.mCBg:setVisible(true)
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCheckCallBack = function (slot0, slot1)
+	if slot1.tag == 1 and slot0.checkBox1:isSelected() then
+		slot0.checkBox2:setSelected(false)
+	end
+
+	if slot1.tag == 2 and slot0.checkBox2:isSelected() then
+		slot0.checkBox1:setSelected(false)
+	end
+
+	return 
+end
+slot0.onGuessBtnAction = function (slot0, slot1)
+	slot2 = nil
+
+	if slot0.checkBox1:isSelected() then
+		slot2 = slot0.mPlayerLeft.PlayerId
+	end
+
+	if slot0.checkBox2:isSelected() then
+		slot2 = slot0.mPlayerRight.PlayerId
+	end
+
+	if not Utility.isEntityId(slot2) then
+		ui.showFlashView(TR("请选择需要支持的玩家"))
+
+		return 
+	end
+
+	if not Resource.isEnough(Utility.analysisStrResList(WorldnumoneConfig.items[1].supportNeed)[1].resourceId, Utility.analysisStrResList(WorldnumoneConfig.items[1].supportNeed)[1].num) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Bet",
+		moduleName = "Worldnumone",
+		methodData = {
+			slot2
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("支持成功！"))
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mCallBack)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetRwardBtnAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetBetReward",
+		moduleName = "Worldnumone",
+		methodData = {
+			slot0.mCurrTurn
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			slot0.getButton:setEnabled(false)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getBetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetBetInfo",
+		moduleName = "Worldnumone",
+		methodData = {
+			slot0.mPlayerLeft.PlayerId or Utility.EMPTY_ENTITY_ID,
+			slot0.mPlayerRight.PlayerId or Utility.EMPTY_ENTITY_ID,
+			slot0.mCurrTurn
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			slot0.mOddsInfo = slot0 or {}
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

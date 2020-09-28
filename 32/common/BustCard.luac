@@ -1,0 +1,408 @@
+BustCardAttr = {
+	eDesBg = 8,
+	eStarIcon = 6,
+	eQualityIcon = 4,
+	eProfessionIcon = 3,
+	eName = 7,
+	eBackGround = 1,
+	eLevel = 5,
+	eHero = 9,
+	eGatherProg = 10
+}
+BustCardPreSet = {
+	[BustCardAttr.eBackGround] = {
+		lZorder = 1,
+		normalizedPos = cc.p(0.5, 0.5)
+	},
+	[BustCardAttr.eHero] = {
+		lZorder = 2,
+		enableGtay = true,
+		normalizedPos = cc.p(0.5, 0.5)
+	},
+	[BustCardAttr.eQualityIcon] = {
+		lZorder = 3,
+		normalizedPos = cc.p(-0.05, 0.45)
+	},
+	[BustCardAttr.eProfessionIcon] = {
+		lZorder = 4,
+		normalizedPos = cc.p(-0.1, 0.88)
+	},
+	[BustCardAttr.eDesBg] = {
+		lZorder = 5,
+		normalizedPos = cc.p(0, 0)
+	},
+	[BustCardAttr.eLevel] = {
+		lZorder = 6,
+		normalizedPos = cc.p(0.03, 0.16)
+	},
+	[BustCardAttr.eStarIcon] = {
+		lZorder = 7,
+		normalizedPos = cc.p(0.5, 0.085)
+	},
+	[BustCardAttr.eGatherProg] = {
+		lZorder = 8,
+		normalizedPos = cc.p(0.55, 0.1)
+	},
+	[BustCardAttr.eName] = {
+		lZorder = 9,
+		normalizedPos = cc.p(0.5, 0.045)
+	}
+}
+BustCard = class("BustCard", function ()
+	return ccui.Widget:create()
+end)
+BustCard.ctor = function (slot0, slot1)
+	slot0.mCardSize = cc.size(177, 375)
+	slot0.mCoverSize = cc.size(177, 375)
+	slot0.attrObj = {}
+
+	slot0.setContentSize(slot0, slot0.mCardSize)
+	slot0.setClickAction(slot0, slot1 or {}.ClickAction or nil)
+	slot0.setAnchorPoint(slot0, cc.p(0.5, 0.5))
+	slot0.setCardData(slot0, slot1 or {})
+
+	return 
+end
+BustCard.setCardData = function (slot0, slot1)
+	slot0.mInstanceData = slot1.InstanceData
+	slot0.mModelId = (slot0.mInstanceData and slot0.mInstanceData.ModelId) or slot1.ModelId
+	slot0.mHeroModel = HeroModel.items[slot0.mModelId]
+	slot0.isActived = (slot0.mInstanceData and true) or false
+
+	if slot1.ClickAction then
+		slot0.setClickAction(slot0, slot1.ClickAction)
+	end
+
+	slot0.setBgPic(slot0)
+	slot0.setHeroPic(slot0)
+	slot0.setDesPic(slot0)
+	slot0.setProfessionIcon(slot0)
+	slot0.setQualityIcon(slot0)
+	slot0.setStarIcon(slot0)
+	slot0.setName(slot0)
+	slot0.setLv(slot0)
+	slot0.setProgress(slot0)
+	slot0.setGray(slot0, not slot0.mInstanceData)
+
+	return 
+end
+BustCard.getObjByAttr = function (slot0, slot1)
+	return slot0.attrObj[slot1]
+end
+BustCard.setClickAction = function (slot0, slot1)
+	slot0.mClickAction = slot1
+
+	return 
+end
+BustCard.setGray = function (slot0, slot1)
+	slot1 = (slot1 and true) or false
+
+	for slot5, slot6 in pairs(BustCardPreSet) do
+		if slot6.enableGtay then
+			if slot0._getObjByAttrID(slot0, slot5)._setGray then
+				slot7._setGray(slot7, slot1)
+			else
+				slot7.setGray(slot7, slot1)
+			end
+		end
+	end
+
+	return 
+end
+BustCard.setBgPic = function (slot0)
+	slot2 = "xkxx_45.png"
+
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eBackGround)) then
+		return 
+	end
+
+	slot0.addChild(slot0, slot1, BustCardPreSet[BustCardAttr.eBackGround].lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eBackGround, UIWrap.newControl("Button", {
+		swallowTouch = false,
+		pressedAction = false,
+		image = slot2,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, BustCardPreSet[BustCardAttr.eBackGround].normalizedPos)),
+		clickAction = function (slot0)
+			if slot0.mClickAction then
+				slot0.mClickAction(slot0)
+			end
+
+			return 
+		end
+	}))
+
+	return 
+end
+BustCard.setHeroPic = function (slot0)
+	slot2 = slot0.mHeroModel.halfBodyPic .. ".png"
+
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eHero)) then
+		slot1.setTexture(slot1, slot2)
+
+		return 
+	end
+
+	slot4 = UIWrap.newControl("ClippingNode", {
+		alpha = 1,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, BustCardPreSet[BustCardAttr.eHero].normalizedPos)),
+		anchor = cc.p(0.5, 0.5),
+		size = slot0.mCoverSize
+	})
+
+	slot4.addChild(slot4, slot1)
+	slot0.addChild(slot0, slot4, BustCardPreSet[BustCardAttr.eHero].lZorder)
+
+	UIWrap.newControl("Sprite", {
+		image = slot2,
+		pos = cc.p(slot0.mCoverSize.width/2, slot0.mCoverSize.height/2)
+	}).clip = slot4
+	UIWrap.newControl("Sprite", {
+		image = slot2,
+		pos = cc.p(slot0.mCoverSize.width/2, slot0.mCoverSize.height/2)
+	})._setGray = function (slot0, slot1)
+		slot0:setNormalGray(slot1)
+
+		return 
+	end
+
+	slot0._setObjByAttrID(slot0, BustCardAttr.eHero, UIWrap.newControl("Sprite", {
+		image = slot2,
+		pos = cc.p(slot0.mCoverSize.width/2, slot0.mCoverSize.height/2)
+	}))
+
+	return 
+end
+BustCard.setProfessionIcon = function (slot0)
+	slot1 = slot0._getObjByAttrID(slot0, BustCardAttr.eProfessionIcon)
+	slot3, slot4 = Utility.getCampProfessionRoadImage(slot0.mHeroModel, slot0.mInstanceData and slot0.mInstanceData.HeroRoadInfo)
+
+	if not tolua.isnull(slot1) then
+		slot1.setTexture(slot1, slot4)
+
+		return 
+	end
+
+	slot0.addChild(slot0, slot1, BustCardPreSet[BustCardAttr.eProfessionIcon].lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eProfessionIcon, UIWrap.newControl("Sprite", {
+		scale = 0.75,
+		image = slot4,
+		anchor = cc.p(0, 0),
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, BustCardPreSet[BustCardAttr.eProfessionIcon].normalizedPos))
+	}))
+
+	return 
+end
+BustCard.setQualityIcon = function (slot0)
+	slot2 = Utility.getHeroQualityImage(slot0.mModelId)
+
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eQualityIcon)) then
+		Utility.addEffectToHeroQualityImage(slot1, slot0.mModelId)
+		slot1.setTexture(slot1, slot2)
+
+		return 
+	end
+
+	Utility.addEffectToHeroQualityImage(slot1, slot0.mModelId)
+	slot0.addChild(slot0, slot1, BustCardPreSet[BustCardAttr.eQualityIcon].lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eQualityIcon, UIWrap.newControl("Sprite", {
+		image = slot2,
+		anchor = cc.p(0, 0),
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, BustCardPreSet[BustCardAttr.eQualityIcon].normalizedPos))
+	}))
+
+	return 
+end
+BustCard.setDesPic = function (slot0)
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eDesBg)) then
+		return 
+	end
+
+	slot4, slot11 = slot0._getUnnormalizedPos(slot0, BustCardPreSet[BustCardAttr.eDesBg].normalizedPos)
+
+	slot0.addChild(slot0, slot1, BustCardPreSet[BustCardAttr.eDesBg].lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eDesBg, UIWrap.newControl("Scale9Sprite", {
+		image = "xkxx_46.png",
+		size = cc.size(164, 87),
+		anchor = cc.p(0, 0),
+		pos = cc.p(slot4 + 6, slot5)
+	}))
+
+	return 
+end
+BustCard.setStarIcon = function (slot0)
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eStarIcon)) then
+		slot1.removeFromParent(slot1)
+	end
+
+	slot2 = BustCardPreSet[BustCardAttr.eStarIcon]
+
+	if slot0._isHeroActived(slot0) then
+		if slot0.mInstanceData.Quality ~= 18 then
+			slot0.addChild(slot0, slot1, slot2.lZorder)
+			slot0._setObjByAttrID(slot0, BustCardAttr.eStarIcon, ui.showHeroStarShow(slot4, slot5, cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos)), false, slot0.mInstanceData.Star))
+		elseif slot0.mInstanceData and slot0.mInstanceData.RedStar and 0 < slot0.mInstanceData.RedStar then
+			slot0.addChild(slot0, slot1, slot2.lZorder)
+			slot0._setObjByAttrID(slot0, BustCardAttr.eStarIcon, ui.showHeroRedStarShow({
+				star = slot0.mInstanceData.RedStar,
+				pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos)),
+				maxStarNum = slot0.mInstanceData.RedStar
+			}))
+		end
+	else
+		slot0.addChild(slot0, slot1, slot2.lZorder)
+		slot0._setObjByAttrID(slot0, BustCardAttr.eStarIcon, ui.showHeroStarShow(slot5, slot6, slot4, false, slot0.mHeroModel.initStar))
+	end
+
+	return 
+end
+BustCard.setName = function (slot0)
+	slot2 = BustCardPreSet[BustCardAttr.eName]
+	slot3 = slot0._isHeroActived(slot0)
+	slot4 = Resource.getName(slot0.mModelId)
+
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eName)) then
+		slot1.removeFromParent(slot1)
+	end
+
+	slot5, slot6 = nil
+
+	if slot3 then
+		slot8 = ""
+
+		if 0 < HeroTrainColorlvRelation.items[slot0.mInstanceData.TrainLv].intro then
+			slot8 = "+" .. HeroTrainColorlvRelation.items[slot7].intro
+		end
+
+		slot5 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot7].colorLv, true)
+		slot6 = string.format("%s%s", slot0.mHeroModel.name, slot8)
+	else
+		slot5 = Utility.getColorValue(Resource.getColorLv(slot0.mModelId), true)
+		slot6 = slot0.mHeroModel.name
+	end
+
+	slot0.addChild(slot0, slot1, slot2.lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eName, UIWrap.newControl("Label", {
+		fontSize = 20,
+		text = slot6,
+		color = slot5,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}))
+
+	return 
+end
+BustCard.setLv = function (slot0)
+	slot1 = slot0._getObjByAttrID(slot0, BustCardAttr.eLevel)
+	slot2 = BustCardPreSet[BustCardAttr.eLevel]
+	slot3 = (slot0.mInstanceData and slot0.mInstanceData.Lv) or ""
+
+	if not tolua.isnull(slot1) then
+		slot1.setVisible(slot1, slot3 ~= "")
+		slot1.lvLabel:setString(slot3)
+
+		return 
+	end
+
+	UIWrap.newControl("Sprite", {
+		image = "xkxx_47.png",
+		anchor = cc.p(0, 0),
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}):setVisible(slot3 ~= "")
+	slot4.addChild(slot4, UIWrap.newControl("Sprite", {
+		image = "xkxx_47.png",
+		anchor = cc.p(0, 0),
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}).setVisible)
+
+	slot4.lvLabel = UIWrap.newControl("Label", {
+		fontName = "xkxx_48.png",
+		text = tostring(slot3),
+		anchor = cc.p(0, 0),
+		pos = cc.p(25, -2)
+	})
+
+	slot0.addChild(slot0, slot4, slot2.lZorder)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eLevel, slot4)
+
+	return 
+end
+BustCard.setProgress = function (slot0)
+	slot2 = BustCardPreSet[BustCardAttr.eGatherProg]
+	slot3 = GoodsModel.items[slot0.mHeroModel.debrisId]
+	slot4 = slot0._isHeroActived(slot0)
+
+	if not tolua.isnull(slot0._getObjByAttrID(slot0, BustCardAttr.eGatherProg)) then
+		slot1.setCurrValue(slot1, GoodsObj:getItemCount(slot0.mHeroModel.debrisId), 0.5)
+		slot1.setMaxValue(slot1, slot3.outputNeedNum)
+		slot1.percentLabel:setString(GoodsObj:getItemCount(slot0.mHeroModel.debrisId) .. "/" .. slot3.outputNeedNum)
+		slot1.setVisible(slot1, not slot4)
+
+		return 
+	end
+
+	UIWrap.newControl("ProgressBar", {
+		normalImage = "jyt_14.png",
+		bgImage = "jyt_13.png",
+		needLabel = false,
+		currValue = GoodsObj:getItemCount(slot0.mHeroModel.debrisId),
+		maxValue = slot3.outputNeedNum,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}).percentLabel = UIWrap.newControl("Label", {
+		fontSize = 16,
+		text = GoodsObj:getItemCount(slot0.mHeroModel.debrisId) .. "/" .. slot3.outputNeedNum,
+		anchor = cc.p(0.5, 0.5),
+		outlineColor = cc.c3b(0, 0, 0),
+		pos = cc.p(60, 8)
+	})
+
+	UIWrap.newControl("ProgressBar", {
+		normalImage = "jyt_14.png",
+		bgImage = "jyt_13.png",
+		needLabel = false,
+		currValue = GoodsObj.getItemCount(slot0.mHeroModel.debrisId),
+		maxValue = slot3.outputNeedNum,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}).addChild(slot1, slot5)
+	UIWrap.newControl("ProgressBar", {
+		normalImage = "jyt_14.png",
+		bgImage = "jyt_13.png",
+		needLabel = false,
+		currValue = GoodsObj.getItemCount(slot0.mHeroModel.debrisId),
+		maxValue = slot3.outputNeedNum,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}).addChild(slot1, slot6)
+	slot0.addChild(slot0, slot1, slot2.lZorder)
+	UIWrap.newControl("ProgressBar", {
+		normalImage = "jyt_14.png",
+		bgImage = "jyt_13.png",
+		needLabel = false,
+		currValue = GoodsObj.getItemCount(slot0.mHeroModel.debrisId),
+		maxValue = slot3.outputNeedNum,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}).setVisible(slot1, not slot4)
+	slot0._setObjByAttrID(slot0, BustCardAttr.eGatherProg, UIWrap.newControl("ProgressBar", {
+		normalImage = "jyt_14.png",
+		bgImage = "jyt_13.png",
+		needLabel = false,
+		currValue = GoodsObj.getItemCount(slot0.mHeroModel.debrisId),
+		maxValue = slot3.outputNeedNum,
+		pos = cc.p(slot0._getUnnormalizedPos(slot0, slot2.normalizedPos))
+	}))
+
+	return 
+end
+BustCard._getObjByAttrID = function (slot0, slot1)
+	return slot0.attrObj[slot1]
+end
+BustCard._setObjByAttrID = function (slot0, slot1, slot2)
+	slot0.attrObj[slot1] = slot2
+
+	return 
+end
+BustCard._getUnnormalizedPos = function (slot0, slot1)
+	return slot0.mCardSize.width*slot1.x, slot0.mCardSize.height*slot1.y
+end
+BustCard._isHeroActived = function (slot0)
+	return slot0.isActived
+end
+
+return BustCard

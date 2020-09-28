@@ -1,0 +1,946 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.FxHelper")
+slot2 = require("battle.common.AttrHelper")
+slot3 = require("battle.common.Random")
+slot4 = require("battle.managers.ViewDelegate")
+slot5 = require("battle.managers.BuffManager")
+slot6 = require("battle.managers.BattleManager")
+slot7 = require("battle.managers.StatisticsManager")
+slot8 = require("battle.managers.TeamManager")
+slot9 = class("Unit")
+slot9.ctor = function (slot0)
+	slot0.part_attr = {}
+	slot0.attr = {}
+	slot0.uid = 0
+	slot0.heroId = 0
+	slot0.job = 0
+	slot0.order = 0
+	slot0.level = 1
+	slot0.star = 1
+	slot0.step = 0
+	slot0.stepLv = 0
+	slot0.bodyScale = 1
+	slot0.uType = slot0.UnitType.NONE
+	slot0.group = slot0.UnitGroup.NONE
+	slot0.state = slot0.UnitState.IDLE
+	slot0.skills = {}
+	slot0.curSkill = nil
+	slot0.passiveSkillList = {}
+	slot0.originData = nil
+	slot0.initHp = 0
+	slot0.isHeti = false
+	slot0.flashEffect = ""
+	slot0.flashEffectTime = 0
+	slot0.chufaAnimTime = 1
+	slot0.fap = 0
+	slot0.atkDecayRatio = 1
+	slot0.armDecayRatio = 1
+	slot0.skillRatio = 1
+	slot0.killInfo = nil
+	slot0.singleDamaged = 0
+	slot0.extraData = {}
+	slot0.skillFuncs = nil
+	slot0.randIdx = 0
+
+	for slot4, slot5 in pairs(slot0.SkillType) do
+		slot0.skills[slot5] = {}
+	end
+
+	return 
+end
+slot9.getBaseAttr = function (slot0, slot1)
+	if type(slot1) == "number" then
+		slot1 = slot0.attrName(slot1)
+	end
+
+	if slot0.part_attr[slot1] then
+		return slot0.part_attr[slot1].a
+	end
+
+	return 0
+end
+slot9.getTeamAttrValue = function (slot0, slot1)
+	return slot0.getTeamAttrValue(slot0.group, slot1)
+end
+slot9.updateBuffAttr = function (slot0, slot1, slot2, slot3, slot4)
+	assert(slot0.part_attr[slot1] ~= nil, "Unit:updateAttr invalid attrName: " .. (slot1 or "nil"))
+
+	slot8 = slot0.part_attr[slot1].a*((slot0.part_attr[slot1].b + slot2)/10000 + 1) + slot0.part_attr[slot1].c + slot3
+
+	if slot1 == "eHp" and 0 < slot0.attr.hp then
+		slot0.attr.hp = slot8*slot0.attr.hp/slot0.attr.eHp
+	end
+
+	if slot0.state == slot1.GameState.RUNNING and slot4 == true and slot2 + slot3 ~= 0 then
+		if slot1 == "eArm" or slot1 == "eArmPer" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdhujia)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tshujia)
+			end
+		elseif slot1 == "eAtk" or slot1 == "eAtkPer" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdgongji)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsgongji)
+			end
+		elseif slot1 == "eAng" or slot1 == "eAngRecover" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdnuqi)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsnuqi)
+			end
+		elseif slot1 == "eKangCrit" or slot1 == "eKangCritTimes" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdkangbao)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tskangbao)
+			end
+		elseif slot1 == "eBog" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdpoji)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tspoji)
+			end
+		elseif slot1 == "eSklAdd" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdjishang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsjishang)
+			end
+		elseif slot1 == "eHolyDmg" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdshenshang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsshenshang)
+			end
+		elseif slot1 == "eDmgAdd" or slot1 == "eSklPerAdd" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdzengshang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tszengshang)
+			end
+		elseif slot1 == "eDmgDec" or slot1 == "eSklPerDec" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdjianshang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsjianshang)
+			end
+		elseif slot1 == "eCritTimes" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdbaoshang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsbaoshang)
+			end
+		elseif slot1 == "eKangCritTimes" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdkangbaoshang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tskangbaoshang)
+			end
+		elseif slot1 == "eCrit" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdbaoji)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsbaoji)
+			end
+		elseif slot1 == "eBlo" then
+			if slot8 < slot0.attr[slot1] then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_jdgedang)
+			elseif slot0.attr[slot1] < slot8 then
+				slot0.buffHintEffect(slot0, slot1.BuffValueType.buff_tsgedang)
+			end
+		end
+	end
+
+	slot0.part_attr[slot1] = {
+		a = slot5,
+		b = slot6,
+		c = slot7
+	}
+	slot0.attr[slot1] = slot8
+
+	return 
+end
+slot9.updateControlBuff = function (slot0)
+	slot0.updateControlBuff(slot0.uid)
+
+	return 
+end
+slot9.hasWarSkill = function (slot0)
+	if 0 < #slot0.skills[slot0.SkillType.WARSKILL] then
+		return true
+	end
+
+	return false
+end
+slot9.getWarSkill = function (slot0)
+	if 0 < #slot0.skills[slot0.SkillType.WARSKILL] then
+		return slot0.skills[slot0.SkillType.WARSKILL][1]
+	end
+
+	return nil
+end
+slot9.healingHp = function (slot0, slot1, slot2)
+	slot0.updateHp(slot0, slot1, slot0.UpdateHpType.HEALING, slot2)
+
+	return 
+end
+slot9.updateDamage = function (slot0, slot1, slot2, slot3, slot4, slot5, slot6)
+	return slot0.updateHp(slot0, slot1*-1, slot1.UpdateHpType.DAMAGE, slot2, slot3, slot4, slot5, nil, slot0.isFreeDeath(slot6, slot0))
+end
+slot9.skillHp = function (slot0, slot1)
+	slot0.updateHp(slot0, slot1, slot0.UpdateHpType.SKILL)
+
+	return 
+end
+slot9.SputteringHp = function (slot0, slot1)
+	slot0.updateHp(slot0, slot1, slot0.UpdateHpType.Sputtering)
+
+	return 
+end
+slot9.DefendHp = function (slot0, slot1)
+	slot0.updateHp(slot0, slot1, slot0.UpdateHpType.SKILL, false, false, true, false, false)
+
+	return 
+end
+slot9.buffHp = function (slot0, slot1, slot2, slot3, slot4)
+	slot6, slot7 = slot0.updateHp(slot0, slot1*-1, slot2, slot3, nil, nil, nil, nil, slot0.isFreeDeath(slot4, slot0))
+
+	if slot1 < 0 then
+		slot1.buffHp(slot0.uid)
+	end
+
+	return slot6, slot7
+end
+slot9.suckMarkerHp = function (slot0, slot1, slot2)
+	if slot2 then
+		if 0 < #slot0.getUnitByGroup(slot0.group) then
+			slot5 = slot1/slot4
+
+			for slot9, slot10 in ipairs(slot3) do
+				slot11, slot15 = slot10.updateHp(slot10, slot5, slot1.UpdateHpType.SUCK_MARKER)
+
+				slot2.SiphonHp(slot10.uid, slot10.group)
+				slot3.healStatistics(slot10, slot12)
+			end
+		end
+	else
+		slot5, slot7 = slot0.updateHp(slot0, slot1, slot1.UpdateHpType.SUCK_MARKER)
+
+		slot2.SiphonHp(slot0.uid, slot0.group)
+		slot3.healStatistics(slot0, slot4)
+	end
+
+	return 
+end
+slot9.updateHp = function (slot0, slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8)
+	if not slot0.isAlive(slot0) then
+		return 2, 0
+	end
+
+	if slot5 == nil and slot1 < 0 then
+		slot5 = true
+	end
+
+	if slot7 == nil then
+		slot7 = true
+	end
+
+	if slot6 == nil then
+		slot6 = false
+	end
+
+	if slot8 == nil then
+		slot8 = false
+	end
+
+	slot9 = 0
+
+	if slot1 < 0 then
+		slot10 = slot1
+
+		if slot7 then
+			slot1 = slot0.SoulLinkBuff(slot0, slot1)
+		end
+
+		if slot7 then
+			slot1 = slot0.DendendBuff(slot0, slot1)
+		end
+
+		if 0 <= slot1.reduceHardSkinHp(slot0.uid, slot1) then
+			slot2.behitStatistics(slot0, -slot10)
+			slot3.hardSkinEffect(slot0.uid, "shouji")
+
+			return 0, -slot10
+		else
+			slot2.behitStatistics(slot0, slot1 - slot10)
+
+			slot9 = slot1 - slot10
+		end
+
+		if 0 <= slot1.reduceShieldHp(slot0.uid, slot1) then
+			slot2.behitStatistics(slot0, -slot10)
+			slot3.shield(slot0.uid)
+
+			return 0, -slot10
+		else
+			slot2.behitStatistics(slot0, slot1 - slot10)
+
+			slot9 = slot1 - slot10
+		end
+	end
+
+	if slot1 < 0 then
+		if 0 < slot1.getDmgMaxLimitValue(slot0) then
+			if slot10 < slot0.singleDamaged then
+				slot1 = -0.1
+			else
+				slot0.singleDamaged = slot0.singleDamaged + math.abs(slot1)
+
+				if slot10 < slot0.singleDamaged then
+					slot1 = slot1 + slot0.singleDamaged - slot10
+				end
+			end
+		end
+
+		if slot8 and slot0.attr.hp <= math.abs(slot1) then
+			slot1 = -slot0.attr.hp + 1
+		end
+	end
+
+	slot10 = 0
+	slot11 = math.abs(slot1)
+	slot0.attr.hp = slot0.attr.hp + slot1
+
+	if slot0.attr.hp < 0 then
+		slot11 = slot11 + slot0.attr.hp
+		slot0.attr.hp = 0
+	elseif slot0.attr.eHp < slot0.attr.hp then
+		slot11 = slot11 - slot0.attr.hp - slot0.attr.eHp
+		slot0.attr.hp = slot0.attr.eHp
+	end
+
+	if slot1 < 0 then
+		slot2.behitStatistics(slot0, slot11)
+	end
+
+	if slot0.attr.hp <= 0 then
+		slot0.DeathDamageSkill(slot0)
+	end
+
+	if slot0.attr.hp <= 0 then
+		slot0.addPendingReviveUnits(slot0)
+		slot0.setState(slot0, slot4.UnitState.DIE)
+
+		slot10 = 1
+	elseif slot5 == true then
+		slot1.rage(slot0)
+		slot1.friendRage(slot0)
+	end
+
+	slot3.updateHpDelta(slot0.uid, slot1, slot3, slot4, slot2, slot6)
+	slot3.updateHp(slot0.uid, slot0.attr.hp, slot0.attr.eHp)
+
+	return slot10, slot11 + slot9
+end
+slot9.updateEnergy = function (slot0, slot1, slot2)
+	if not slot0.isAlive(slot0) then
+		return 
+	end
+
+	if slot0.BranchVersion == 3 then
+		slot2 = true
+	end
+
+	if (slot2 ~= true or false) and 0 < slot1 then
+		slot1 = slot1.getExtraAngValue(slot0, slot1)
+	end
+
+	slot0.attr.mp = slot0.attr.mp + slot1
+
+	if slot0.attr.mp < 0 then
+		slot0.attr.mp = 0
+	elseif slot0.EnergyLimit < slot0.attr.mp then
+		slot0.attr.mp = slot0.EnergyLimit
+	end
+
+	slot2.updateEnergy(slot0.uid, slot0.attr.mp, slot0.attr.eAng)
+
+	return 
+end
+slot9.updateWarEnergy = function (slot0, slot1)
+	slot0.attr.wp = slot0.attr.wp + slot1
+
+	if slot0.attr.wp < 0 then
+		slot0.attr.wp = 0
+	elseif slot0.WarEnergyLimit < slot0.attr.wp then
+		slot0.attr.wp = slot0.WarEnergyLimit
+	end
+
+	slot1.updateWarEnergy(slot0.uid, slot0.attr.wp, slot0.WarEnergyLimit)
+
+	return 
+end
+slot9.SiphonAng = function (slot0)
+	slot0.SiphonAng(slot0.uid, slot0.group)
+
+	return 
+end
+slot9.SiphonAtk = function (slot0)
+	slot0.SiphonAtk(slot0.uid, slot0.group)
+
+	return 
+end
+slot9.SiphonArm = function (slot0)
+	slot0.SiphonArm(slot0.uid, slot0.group)
+
+	return 
+end
+slot9.buffHintEffect = function (slot0, slot1)
+	slot0.showBuffHintEffect(slot0.uid, slot1)
+
+	return 
+end
+slot9.isAlive = function (slot0)
+	return slot0.state ~= slot0.UnitState.REMOVED and slot0.state ~= slot0.UnitState.DIE and slot0.state ~= slot0.UnitState.REBORN and 0 < slot0.attr.hp
+end
+slot9.attack = function (slot0)
+	if slot0.state ~= slot0.UnitState.IDLE then
+		return 
+	end
+
+	slot1, slot2 = slot1.getControlState(slot0.uid)
+
+	if not slot2 and slot2.isAutoSkill(slot0.group) == true then
+		for slot6, slot7 in ipairs(slot0.skills[slot0.SkillType.SKILL]) do
+			if slot0.useSkill(slot0, slot7) then
+				return 
+			end
+		end
+	end
+
+	if not slot1 then
+		if slot1.getChangeCommonAttackBuff(slot0.uid) then
+			slot3.newUnitSkill(slot0, slot4, slot3.level).isExtra = false
+
+			if slot0.useSkill(slot0, slot3.newUnitSkill(slot0, slot4, slot3.level)) then
+				return 
+			end
+		else
+			for slot7, slot8 in ipairs(slot0.skills[slot0.SkillType.NORMAL]) do
+				if slot0.useSkill(slot0, slot8) then
+					return 
+				end
+			end
+		end
+	end
+
+	return 
+end
+slot9.useWarSkill = function (slot0)
+	if slot0.state ~= slot0.UnitState.IDLE then
+		return 
+	end
+
+	if slot0.attr.wp < 100 then
+		return 
+	end
+
+	slot1, slot2 = slot1.getControlState(slot0.uid)
+
+	if not slot1 or not slot2 then
+		slot0.setState(slot0, slot0.UnitState.WARSKILL)
+	end
+
+	return 
+end
+slot9.useWarSkillImpl = function (slot0)
+	if slot0.state ~= slot0.UnitState.WARSKILL then
+		return 
+	end
+
+	if slot0.attr.wp < 100 then
+		return 
+	end
+
+	slot1, slot2 = slot1.getControlState(slot0.uid)
+
+	if not slot1 or not slot2 then
+		for slot6, slot7 in ipairs(slot0.skills[slot0.SkillType.WARSKILL]) do
+			slot7.start(slot7)
+
+			if 0 < slot7.totalTime then
+				table.insert(slot0.passiveSkillList, slot7)
+			end
+
+			slot0.updateWarEnergy(slot0, -slot0.WarEnergyLimit)
+		end
+	end
+
+	return 
+end
+slot9.useSkillBySkillId = function (slot0, slot1, slot2, slot3, slot4)
+	for slot8, slot9 in ipairs(slot0.skills[slot0.SkillType.SKILL]) do
+		if slot9.conf.skillStarKey == slot1 then
+			slot0.useSkill(slot0, slot9, true)
+
+			return 
+		end
+	end
+
+	for slot8, slot9 in ipairs(slot0.skills[slot0.SkillType.PASSIVE]) do
+		if slot9.conf.skillStarKey == slot1 then
+			slot0.useSkill(slot0, slot9, true)
+
+			return 
+		end
+	end
+
+	slot1.triggerSkills(slot0, {
+		slot1
+	}, slot2, slot3, slot4)
+
+	return 
+end
+slot9.useSkill = function (slot0, slot1, slot2)
+	if (slot2 or false) == false and not slot1.valid(slot1) then
+		return false
+	end
+
+	if slot0.setState(slot0, slot0.UnitState.ATTACK) then
+		slot0.curSkill = slot1
+
+		slot1.start(slot1)
+
+		if slot1.conf.skillType == slot0.SkillType.SKILL and slot0.group == slot0.UnitGroup.ATTACKER then
+			slot1.autoUseSkill(slot0)
+		end
+
+		slot1.initTotalHeal(slot0.uid)
+	end
+
+	return true
+end
+slot9.useRoundBeginSkill = function (slot0, slot1)
+	slot1.start(slot1)
+
+	if 0 < slot1.totalTime then
+		table.insert(slot0.passiveSkillList, slot1)
+	end
+
+	return 
+end
+slot9.useDeathSkill = function (slot0, slot1)
+	if slot0.setState(slot0, slot0.UnitState.DEATH_ATTACK) then
+		slot0.curSkill = slot1
+
+		slot0.curSkill:start()
+	else
+		assert(false, "Unit:useDeathSkill invalid transform")
+	end
+
+	return 
+end
+slot9.usePassiveSkill = function (slot0)
+	slot0.usePassiveSkillImpl(slot0, false)
+
+	slot2 = slot0.getUnitRoundBeginSkillCount(slot0)
+
+	if 0 < slot0.getPassiveSkillCount(slot0, true) or 0 < slot2 then
+		slot0.setState(slot0, slot1.UnitState.PASSIVE)
+	end
+
+	return 
+end
+slot9.getPassiveSkillCount = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.skills[slot0.SkillType.PASSIVE]) do
+		if slot1.isSkillNeedChufaAction(slot7.conf.modelId) == slot1 then
+			slot2 = slot2 + 1
+		end
+	end
+
+	return slot2
+end
+slot9.usePassiveSkillImpl = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.skills[slot0.SkillType.PASSIVE]) do
+		if slot1.isSkillNeedChufaAction(slot6.conf.modelId) == slot1 then
+			slot6.start(slot6)
+
+			if 0 < slot6.totalTime then
+				table.insert(slot0.passiveSkillList, slot6)
+			end
+		end
+	end
+
+	return 
+end
+slot9.useEnteringSkill = function (slot0)
+	for slot4, slot5 in ipairs(slot0.skills[slot0.SkillType.ENTERING]) do
+		slot0.useSkill(slot0, slot5)
+	end
+
+	return 
+end
+slot9.useTriggerSkill = function (slot0, slot1, slot2, slot3)
+	slot4, slot5 = nil
+
+	if slot1.conf.targetPhalanx == 0 then
+		slot4 = slot2
+		slot5 = slot3
+
+		if not slot2 or slot2[1] == -1 then
+			return false
+		end
+	elseif slot3 then
+		slot6 = 0
+
+		for slot10, slot11 in pairs(slot3) do
+			slot6 = slot6 + slot11.damage
+		end
+
+		slot5 = {
+			[0] = {
+				invincible = false,
+				crit = false,
+				kezhi = false,
+				block = false,
+				hit = true,
+				damage = slot6
+			}
+		}
+	end
+
+	slot1.start(slot1, slot4, slot5)
+
+	if 0 < slot1.totalTime then
+		table.insert(slot0.passiveSkillList, slot1)
+	end
+
+	return true
+end
+slot9.useExtraSkill = function (slot0, slot1, slot2)
+	if slot0.setState(slot0, slot0.UnitState.EXTRA_ATTACK) then
+		slot0.curSkill = slot1
+		slot3 = nil
+
+		if slot1.conf.targetPhalanx == 0 then
+			slot3 = slot2
+		end
+
+		slot0.curSkill:start(slot3)
+
+		return true
+	end
+
+	return 
+end
+slot9.hasSpeicalSkill = function (slot0, slot1)
+	if slot0.extraData[slot1] == nil then
+		slot2 = false
+
+		for slot6, slot7 in pairs(slot0.skills) do
+			for slot11, slot12 in ipairs(slot7) do
+				if slot12.conf.modelId == slot1 then
+					slot2 = true
+				end
+			end
+		end
+
+		slot0.extraData[slot1] = slot2
+	end
+
+	return slot0.extraData[slot1]
+end
+slot9.updatePetEnergy = function (slot0, slot1)
+	slot0.updatePetEnergy(nil, slot0.group, slot1)
+
+	return 
+end
+slot9.useCounterAttack = function (slot0, slot1, slot2)
+	slot3, slot4 = slot0.getControlState(slot0.uid)
+
+	if slot3 then
+		return 
+	end
+
+	if slot0.setState(slot0, slot1.UnitState.EXTRA_ATTACK) then
+		slot0.curSkill = slot1
+
+		slot0.curSkill:start({
+			slot2
+		})
+
+		return true
+	end
+
+	return 
+end
+slot9.useAssistAttack = function (slot0, slot1, slot2)
+	slot3, slot4 = slot0.getControlState(slot0.uid)
+
+	if slot3 then
+		return 
+	end
+
+	if slot0.setState(slot0, slot1.UnitState.EXTRA_ATTACK) then
+		slot0.curSkill = slot1
+		slot5 = nil
+
+		if slot1.conf.targetPhalanx == 0 then
+			slot5 = slot2
+		end
+
+		slot0.curSkill:start(slot5)
+
+		return true
+	end
+
+	return 
+end
+slot9.Sputtering = function (slot0, slot1)
+	slot0.Sputtering(slot0, slot1)
+
+	return 
+end
+slot9.usePowerSkill = function (slot0)
+	slot1, slot2 = slot0.getControlState(slot0.uid)
+
+	if not slot2 and slot0.skills[slot1.SkillType.SKILL][1] then
+		slot0.useSkill(slot0, slot3)
+	end
+
+	return 
+end
+slot10 = {
+	[slot0.UnitState.IDLE] = {
+		[slot0.UnitState.ATTACK] = true,
+		[slot0.UnitState.DIE] = true,
+		[slot0.UnitState.REMOVED] = true,
+		[slot0.UnitState.REBORN] = true,
+		[slot0.UnitState.EXTRA_ATTACK] = true,
+		[slot0.UnitState.DEATH_ATTACK] = true,
+		[slot0.UnitState.PASSIVE] = true,
+		[slot0.UnitState.ROUNDBEGIN] = true,
+		[slot0.UnitState.WARSKILL] = true
+	},
+	[slot0.UnitState.DEATH_ATTACK] = {
+		[slot0.UnitState.DIE] = true
+	},
+	[slot0.UnitState.EXTRA_ATTACK] = {
+		[slot0.UnitState.IDLE] = true,
+		[slot0.UnitState.DIE] = true,
+		[slot0.UnitState.REMOVED] = true,
+		[slot0.UnitState.REBORN] = true,
+		[slot0.UnitState.ATTACK] = true,
+		[slot0.UnitState.DEATH_ATTACK] = true
+	},
+	[slot0.UnitState.ATTACK] = {
+		[slot0.UnitState.IDLE] = true,
+		[slot0.UnitState.DIE] = true,
+		[slot0.UnitState.REMOVED] = true,
+		[slot0.UnitState.REBORN] = true,
+		[slot0.UnitState.ATTACK] = true,
+		[slot0.UnitState.DEATH_ATTACK] = true
+	},
+	[slot0.UnitState.DIE] = {
+		[slot0.UnitState.REMOVED] = true
+	},
+	[slot0.UnitState.REBORN] = {
+		[slot0.UnitState.REMOVED] = true
+	},
+	[slot0.UnitState.REMOVED] = {
+		[slot0.UnitState.REBORN] = true
+	},
+	[slot0.UnitState.PASSIVE] = {
+		[slot0.UnitState.IDLE] = true,
+		[slot0.UnitState.DIE] = true
+	},
+	[slot0.UnitState.ROUNDBEGIN] = {
+		[slot0.UnitState.IDLE] = true,
+		[slot0.UnitState.DIE] = true
+	},
+	[slot0.UnitState.WARSKILL] = {
+		[slot0.UnitState.IDLE] = true,
+		[slot0.UnitState.DIE] = true
+	}
+}
+slot9.transfrom = function (slot0)
+	slot0.setState(slot0, slot0.UnitState.REMOVED)
+
+	return 
+end
+slot9.setState = function (slot0, slot1)
+	if slot0[slot0.state][slot1] ~= true then
+		return false
+	end
+
+	slot2 = slot0.state
+	slot0.state = slot1
+	slot0.curSkill = nil
+
+	if slot1 == slot1.UnitState.DIE then
+		slot0.dt = 0
+		slot0.stateTime = 0.2
+
+		slot2.unitDieStart(slot0)
+	elseif slot0.state == slot1.UnitState.PASSIVE then
+		slot0.dt = 0
+		slot0.stateTime = slot0.chufaAnimTime
+		slot0.triggerskill = false
+	elseif slot0.state == slot1.UnitState.ROUNDBEGIN then
+		slot0.dt = 0
+		slot0.stateTime = slot0.chufaAnimTime
+		slot0.triggerskill = false
+	elseif slot0.state == slot1.UnitState.WARSKILL then
+		slot0.dt = 0
+		slot0.stateTime = slot0.chufaAnimTime
+		slot0.triggerskill = false
+	elseif slot0.state == slot1.UnitState.REBORN then
+		slot0.dt = 0
+		slot0.stateTime = 0.5
+	elseif slot1 == slot1.UnitState.REMOVED then
+		if slot2 ~= slot1.UnitState.REBORN then
+			slot2.unitRemoved(slot0)
+		else
+			slot2.removeUnitByUid(slot0.uid)
+		end
+	end
+
+	slot3.setUnitState(slot0.uid, slot1)
+
+	return true
+end
+slot9.updatePassiveSkill = function (slot0, slot1)
+	slot2 = true
+
+	for slot7 = #slot0.passiveSkillList, 1, -1 do
+		if slot0.passiveSkillList[slot7]:update(slot1) == false then
+			slot2 = false
+		end
+	end
+
+	if slot2 == true then
+		slot0.passiveSkillList = {}
+	end
+
+	return slot2
+end
+slot9.update = function (slot0, slot1)
+	if slot0.isFreezing() and (slot0.curSkill == nil or slot0.curSkill.isFreezing == false) then
+		return 
+	end
+
+	if slot0.state == slot1.UnitState.IDLE then
+		slot0.updatePassiveSkill(slot0, slot1)
+	elseif slot0.state ~= slot1.UnitState.REMOVED or false then
+		if slot0.state == slot1.UnitState.PASSIVE then
+			slot0.dt = slot0.dt + slot1
+
+			if 0.3 < slot0.dt and slot0.triggerskill == false then
+				slot0.triggerskill = true
+
+				slot0.usePassiveSkillImpl(slot0, true)
+				slot0.unitRoundBeginSkill(slot0)
+			end
+
+			if slot0.stateTime < slot0.dt and slot0.updatePassiveSkill(slot0, slot1) then
+				slot0.setState(slot0, slot1.UnitState.IDLE)
+			end
+		elseif slot0.state == slot1.UnitState.ROUNDBEGIN then
+			slot0.dt = slot0.dt + slot1
+
+			if 0.3 < slot0.dt and slot0.triggerskill == false then
+				slot0.triggerskill = true
+
+				slot0.unitRoundBeginSkill(slot0)
+			end
+
+			if slot0.stateTime < slot0.dt and slot0.updatePassiveSkill(slot0, slot1) then
+				slot0.setState(slot0, slot1.UnitState.IDLE)
+			end
+		elseif slot0.state == slot1.UnitState.WARSKILL then
+			slot0.dt = slot0.dt + slot1
+
+			if 0.3 < slot0.dt and slot0.triggerskill == false then
+				slot0.triggerskill = true
+
+				slot0.useWarSkillImpl(slot0)
+			end
+
+			if slot0.stateTime < slot0.dt and slot0.updatePassiveSkill(slot0, slot1) then
+				slot0.setState(slot0, slot1.UnitState.IDLE)
+			end
+		elseif slot0.state == slot1.UnitState.ATTACK then
+			if slot0.curSkill:update(slot1) == true then
+				slot0.setState(slot0, slot1.UnitState.IDLE)
+				slot2.initTotalHeal(-1)
+			end
+		elseif slot0.state == slot1.UnitState.DIE then
+			slot0.dt = slot0.dt + slot1
+
+			if slot0.stateTime < slot0.dt then
+				slot0.unitDieComplete(slot0)
+				slot0.setState(slot0, slot1.UnitState.REMOVED)
+			end
+		elseif slot0.state == slot1.UnitState.REBORN then
+			slot0.dt = slot0.dt + slot1
+
+			if slot0.stateTime < slot0.dt then
+				if slot0.checkReborn(slot0) then
+					if slot2.eval(slot2) == false then
+						slot3.removeBuff(slot0.uid, slot2.uid)
+					end
+
+					slot2.execute(slot2)
+				elseif slot0.checkReviveFriend(slot0) then
+					if slot3.eval(slot3) == false then
+						slot3.removeBuff(slot3.owner.uid, slot3.uid)
+					end
+
+					slot3.execute(slot3, slot0)
+				end
+
+				slot0.setState(slot0, slot1.UnitState.REMOVED)
+			end
+		elseif slot0.state == slot1.UnitState.EXTRA_ATTACK then
+			if slot0.curSkill:update(slot1) == true then
+				slot0.setState(slot0, slot1.UnitState.IDLE)
+			end
+		elseif slot0.state == slot1.UnitState.DEATH_ATTACK and slot0.curSkill:update(slot1) == true then
+			slot0.setState(slot0, slot1.UnitState.DIE)
+		end
+	end
+
+	slot2.updateAnim(slot0.uid, slot1)
+
+	return 
+end
+slot9.updateRound = function (slot0)
+	if slot0.isAlive(slot0) then
+		if 0 < slot0.getUnitRoundBeginSkillCount(slot0) then
+			slot0.setState(slot0, slot1.UnitState.ROUNDBEGIN)
+		end
+
+		if slot0.hasWarSkill(slot0) then
+			slot0.updateWarEnergy(slot0, slot1.RoundWarEnergy)
+		end
+
+		if slot1.BranchVersion == 3 then
+			if 0 < slot1.EnergyRound + slot0.attr.eAngRecover then
+				slot1 = slot2.getExtraAngValue(slot0, slot1)
+			end
+
+			slot0.updateEnergy(slot0, slot1)
+		end
+	end
+
+	return 
+end
+slot9.updateWave = function (slot0)
+	return 
+end
+
+return slot9

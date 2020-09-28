@@ -1,0 +1,557 @@
+slot0 = class("TestLoginLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer"
+		},
+		children = {}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "EditBox",
+				custom = {
+					{
+						value = 1,
+						name = "editBox",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_41.png",
+					fontSize = 24,
+					fontColor = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					placeHolder = TR("\"渠道Id(如:6006)\""),
+					pos = {
+						x = 33.51,
+						y = 444.8
+					},
+					size = {
+						width = 275,
+						height = 60
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = 30
+							},
+							text = TR("渠道ID：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "EditBox",
+				custom = {
+					{
+						value = 2,
+						name = "editBox",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_41.png",
+					fontSize = 24,
+					fontColor = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					placeHolder = TR("\"UserId(如:5A0580266D)\""),
+					pos = {
+						x = 33.51,
+						y = 361.8
+					},
+					size = {
+						width = 275,
+						height = 60
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = 30
+							},
+							text = TR("UserId：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "EditBox",
+				custom = {
+					{
+						value = 3,
+						name = "editBox",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_41.png",
+					fontSize = 24,
+					fontColor = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					placeHolder = TR("\"玩家名(如:黄四郎)\""),
+					pos = {
+						x = 33.51,
+						y = 281.8
+					},
+					size = {
+						width = 275,
+						height = 60
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = 30
+							},
+							text = TR("玩家名：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "EditBox",
+				custom = {
+					{
+						value = 4,
+						name = "editBox",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_41.png",
+					fontSize = 24,
+					fontColor = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					placeHolder = TR("\"区服登录地址(如:ws://s4803-sd3.7qule.com:19606/client)\""),
+					pos = {
+						x = 35.95,
+						y = 201.33
+					},
+					size = {
+						width = 275,
+						height = 60
+					}
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = 30
+							},
+							text = TR("区服登录地址：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onLoginTest2",
+					pos = {
+						x = 397.55,
+						y = 63.47
+					},
+					titleText = TR("内网试登录")
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onLogin",
+					pos = {
+						x = -124.49,
+						y = 64.8
+					},
+					titleText = TR("试登录")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onClose",
+					pos = {
+						x = 131.51,
+						y = 64.8
+					},
+					titleText = TR("返回")
+				},
+				children = {}
+			},
+			{
+				name = "checkBox",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					isSelect = true,
+					selectImage = "c_44.png",
+					pos = {
+						x = -410.79,
+						y = 66.29
+					}
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 80.78,
+								y = 15.7
+							},
+							text = TR("测试地址")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.keyEditTable = {
+		"PartnerId",
+		"userId",
+		"name",
+		"serverUrl"
+	}
+	slot0.editControlTable = slot0.getCustomChildren(slot0, slot0.bottomNode, "editBox") or {}
+	slot0.editInfoList = {
+		partnerId = {
+			index = 1,
+			editBoxObj = slot0.editControlTable[1],
+			checkText = function (slot0)
+				if not tonumber(slot0 or "") or slot1 == 0 then
+					ui.showFlashView(TR("渠道Id不合法"))
+
+					return false
+				end
+
+				return true
+			end
+		},
+		userId = {
+			index = 2,
+			editBoxObj = slot0.editControlTable[2],
+			checkText = function (slot0)
+				return true
+			end
+		},
+		playerName = {
+			index = 3,
+			editBoxObj = slot0.editControlTable[3],
+			checkText = function (slot0)
+				return true
+			end
+		},
+		serverUrl = {
+			index = 4,
+			editBoxObj = slot0.editControlTable[4],
+			checkText = function (slot0)
+				return true
+			end
+		}
+	}
+
+	dump(LocalData:getGameDataValue("TestLoginAccout", "Testuid"))
+	dump(slot0.keyEditTable)
+
+	for slot5, slot6 in ipairs(slot0.editControlTable) do
+		if slot1 and slot1[slot0.keyEditTable[slot5]] then
+			slot6.setText(slot6, slot7)
+		end
+	end
+
+	slot0.checkBox:setSelected(not IPlatform:getInstance():getConfigItem("Channel") or slot2 == "" or string.lower(slot2) == "mqkk")
+
+	return 
+end
+slot0.onLogin = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.editInfoList) do
+		if not slot6.checkText(slot6.editBoxObj:getText()) then
+			return 
+		end
+
+		slot1[slot5] = slot7
+	end
+
+	if (not slot1.userId or slot1.userId == "") and (not slot1.playerName or slot1.playerName == "") then
+		ui.showFlashView(TR("请输入 userId 或者 玩家名"))
+
+		return 
+	end
+
+	slot1.versionId = tonumber(IPlatform:getInstance():getConfigItem("Version") or "100")
+	slot1.userId = (slot1.userId ~= "" and slot1.userId) or "1"
+	slot1.playerName = (slot1.playerName ~= "" and slot1.playerName) or "1"
+	slot1.loginKey = "1d7f0abf-7822-4c68-a18a-48522680cfdf"
+
+	slot2.setConfigItems(slot2, "LoginKey=" .. slot1.loginKey)
+	slot2.setConfigItems(slot2, "PartnerID=" .. slot1.partnerId)
+	slot2.setConfigItems(slot2, "Version=" .. slot1.versionId)
+
+	if slot0.checkBox:isSelected() then
+		slot2.setConfigItems(slot2, "ManageCenter=https://loginsvrtest-sd3.7qule.com/API/ServerList_Client.ashx")
+	else
+		slot2.setConfigItems(slot2, "ManageCenter=https://loginsvr-sd3.7qule.com/API/ServerList_Client.ashx")
+	end
+
+	slot0.loginForTest(slot0)
+	LayerManager.addLayer({
+		name = "login.StartGameLayer",
+		data = {
+			testLoginData = slot1
+		}
+	})
+
+	return 
+end
+slot0.onLoginTest2 = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.editControlTable) do
+		table.insert(slot1, slot6.getText(slot6))
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Login_ForDebugTest",
+		moduleName = "Player",
+		url = slot1[4],
+		methodData = {
+			slot1[3]
+		},
+		successCallback = function (slot0)
+			PlayerAttrObj:updatePlayerInfo(slot0)
+			slot0:socketRequest({
+				methodName = "GetInitData",
+				moduleName = "Player",
+				methodData = {},
+				successCallback = function (slot0)
+					Player:updateInitData(slot0)
+
+					if slot0.IsNewPlayer then
+						LayerManager.addLayer({
+							name = "login.VideoPlayLayer",
+							data = {
+								notRemoveSelf = true,
+								videoName = "cg1.mp4",
+								callback = function ()
+									Guide.manager:enterGame()
+
+									return 
+								end
+							}
+						})
+					else
+						Guide.manager:enterGame()
+					end
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.loginForTest = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.editControlTable) do
+		table.insert(slot1, slot6.getText(slot6))
+	end
+
+	LocalData:saveGameDataValue("TestLoginAccout", {
+		PartnerId = ({
+			LoginKey = "7D90C8C95C4379CFF13D02B6FC034260",
+			testCenter = false,
+			PartnerId = tonumber(slot1[1]),
+			VersionId = tonumber(IPlatform:getInstance():getConfigItem("Version") or "100"),
+			UserId = slot1[2],
+			name = slot1[3],
+			serverUrl = slot1[4]
+		})["PartnerId"],
+		VersionId = ({
+			LoginKey = "7D90C8C95C4379CFF13D02B6FC034260",
+			testCenter = false,
+			PartnerId = tonumber(slot1[1]),
+			VersionId = tonumber(IPlatform.getInstance().getConfigItem("Version") or "100"),
+			UserId = slot1[2],
+			name = slot1[3],
+			serverUrl = slot1[4]
+		})["VersionId"],
+		userId = ({
+			LoginKey = "7D90C8C95C4379CFF13D02B6FC034260",
+			testCenter = false,
+			PartnerId = tonumber(slot1[1]),
+			VersionId = tonumber(IPlatform.getInstance().getConfigItem("Version") or "100"),
+			UserId = slot1[2],
+			name = slot1[3],
+			serverUrl = slot1[4]
+		})["UserId"],
+		name = ({
+			LoginKey = "7D90C8C95C4379CFF13D02B6FC034260",
+			testCenter = false,
+			PartnerId = tonumber(slot1[1]),
+			VersionId = tonumber(IPlatform.getInstance().getConfigItem("Version") or "100"),
+			UserId = slot1[2],
+			name = slot1[3],
+			serverUrl = slot1[4]
+		})["name"],
+		serverUrl = ({
+			LoginKey = "7D90C8C95C4379CFF13D02B6FC034260",
+			testCenter = false,
+			PartnerId = tonumber(slot1[1]),
+			VersionId = tonumber(IPlatform.getInstance().getConfigItem("Version") or "100"),
+			UserId = slot1[2],
+			name = slot1[3],
+			serverUrl = slot1[4]
+		})["serverUrl"]
+	}, "Testuid")
+
+	return 
+end
+
+return slot0

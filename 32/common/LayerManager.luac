@@ -1,0 +1,466 @@
+LayerManager = {
+	accCount = 0,
+	layerStack = {}
+}
+slot0 = require("data.LayerConfig")
+slot1 = {
+	"pve.PveChapterInfoLayer"
+}
+
+function needPreload(slot0)
+	for slot4, slot5 in ipairs(slot0) do
+		if slot5 == slot0 then
+			return true
+		end
+	end
+
+	return false
+end
+
+function preloadLayer(slot0, slot1)
+	slot3 = nil
+
+	if require(slot0.name).preload then
+		slot3 = slot2.preload(slot0.data)
+	end
+
+	slot4 = {}
+
+	if slot3 then
+		for slot8, slot9 in ipairs(slot3) do
+			table.insert(slot4, slot9)
+		end
+	end
+
+	function slot5(slot0)
+		slot1 = false
+
+		for slot5, slot6 in ipairs(slot0) do
+			if slot6 == slot0 then
+				slot1 = true
+
+				break
+			end
+		end
+
+		if not slot1 then
+			table.insert(slot0, slot0)
+		end
+
+		return 
+	end
+
+	slot6(slot2.uiTree)
+
+	if 0 < #slot4 then
+		slot7 = #slot4
+
+		for slot11, slot12 in ipairs(slot4) do
+			display.loadImage(slot12, function ()
+				if slot0 - 1 == 0 and slot1 then
+					slot1()
+				end
+
+				return 
+			end)
+		end
+
+		return 
+	end
+
+	slot1()
+end
+
+LayerManager.changeBgMusic = function (slot0)
+	if not slot0.layerBgm[slot0] then
+		return 
+	end
+
+	slot3 = slot0.bgmInfo[slot2]
+
+	if LayerManager.curMusicItem and slot3 and slot3.musicList[1] == slot4.musicList[1] then
+		return 
+	end
+
+	slot3.playIndex = slot3.playIndex or 0
+	LayerManager.curMusicItem = slot3
+
+	LayerManager.nextCurrentMusic(true)
+
+	return 
+end
+LayerManager.nextCurrentMusic = function (slot0)
+	slot1 = LayerManager.curMusicItem
+
+	if (not MqAudio.isMusicPlaying() and slot1 and slot1.needLoop) or slot0 then
+		slot1.playIndex = (#slot1.musicList <= slot1.playIndex and 1) or slot1.playIndex + 1
+
+		MqAudio.playMusic(slot1.musicList[slot1.playIndex], false)
+	end
+
+	return 
+end
+LayerManager.showModuleLayer = function (slot0, slot1)
+	if Utility.moduleIsOpen(slot0, true) then
+		if slot0.jumpInfo[slot0] then
+			if type(slot2) == "table" then
+				slot3 = clone(slot2)
+
+				if slot1 then
+					if slot3.data then
+						table.merge(slot3.data, slot1)
+					else
+						slot3.data = slot1
+					end
+				end
+
+				return LayerManager.addLayer(slot3)
+			elseif type(slot2) == "function" then
+				return slot2(slot1)
+			end
+		else
+			print("指定的中转模块未配置: " .. slot0)
+		end
+	end
+
+	return 
+end
+LayerManager._removeStackLayer = function (slot0, slot1)
+	if not tolua.isnull(slot0.layer) then
+		if slot0.layer.getRestoreData then
+			slot0.data = slot0.layer:getRestoreData()
+		end
+
+		slot0.layer:removeFromParent()
+
+		slot0.layer = nil
+
+		print("删除旧Layer:", slot0.name)
+	end
+
+	if slot1 then
+		table.remove(LayerManager.layerStack, slot1)
+	end
+
+	return 
+end
+LayerManager._createStackLayer = function (slot0)
+	slot1 = require(slot0.name).new(slot0.data or {})
+
+	slot0.runScene or display.getRunningScene():addChild(slot1, slot0.zOrder)
+
+	slot0.layer = slot1
+
+	return slot1
+end
+LayerManager.layerAnimation = function (slot0, slot1)
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = cc.Layer:create()
+	})
+	display.getRunningScene().addChild(slot2, slot3)
+
+	slot4 = cc.Sprite:create("qieping_2.png")
+
+	slot4.setAnchorPoint(slot4, cc.p(1, 0.5))
+	slot4.setPosition(slot4, cc.p(display.cxSafeInPixels*3, display.cySafeInPixels))
+	slot4.setScale(slot4, (display.isIpadClass and display.maxSafeScale) or display.minSafeScale)
+	slot2.addChild(slot2, slot4, Enums.ZOrderType.eNetErrorMsg)
+	slot4.runAction(slot4, cc.MoveTo:create(0.3, cc.p(display.cxSafeInPixels*2, display.cySafeInPixels)))
+
+	slot5 = cc.Sprite:create("qieping_1.png")
+
+	slot5.setAnchorPoint(slot5, cc.p(0, 0.5))
+	slot5.setPosition(slot5, cc.p(-display.cxSafeInPixels, display.cySafeInPixels))
+	slot5.setScale(slot5, (display.isIpadClass and display.maxSafeScale) or display.minSafeScale)
+	slot2.addChild(slot2, slot5, Enums.ZOrderType.eNetErrorMsg)
+
+	function slot6()
+		slot0()
+		Utility.performWithDelay(slot1, function ()
+			slot0:runAction(cc.MoveTo:create(0.3, cc.p(display.cxSafeInPixels*3, display.cySafeInPixels)))
+			slot0:runAction(cc.Sequence:create({
+				cc.MoveTo:create(0.3, cc.p(-display.cxSafeInPixels, display.cySafeInPixels)),
+				cc.CallFunc:create(function ()
+					slot0:removeFromParent()
+					slot0:removeFromParent()
+					slot2:removeFromParent()
+
+					return 
+				end)
+			}))
+
+			return 
+		end, 0.01)
+
+		return 
+	end
+
+	slot7 = 0
+
+	preloadLayer(slot0, function ()
+		if slot0 + 1 == 2 then
+			slot1()
+		end
+
+		return 
+	end)
+	slot5.runAction(slot5, cc.Sequence:create({
+		cc.MoveTo:create(0.3, cc.p(0, display.cySafeInPixels)),
+		cc.CallFunc:create(function ()
+			if slot0 + 1 == 2 then
+				slot1()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+LayerManager.addLayer = function (slot0)
+	function slot1()
+		if 10 <= LayerManager.accCount or slot0.name == "battle.views.GameScene" or slot0.name == "battle.views.ScriptScene" then
+			require("common.SpineManager").clearCaches()
+			cc.Director:getInstance():purgeCachedData()
+
+			LayerManager.accCount = 0
+		end
+
+		slot0.cleanUp = (slot0.cleanUp == nil and true) or slot0.cleanUp
+		slot0.zOrder = slot0.zOrder or 0
+
+		if 0 < slot0.zOrder and slot0.cleanUp then
+			printError("全屏界面如需隐藏导航栏，请在layer:ctor()中添加参数")
+		end
+
+		LayerManager.changeBgMusic(slot0.name)
+
+		slot0 = nil
+
+		for slot4 = #LayerManager.layerStack, 1, -1 do
+			slot5 = LayerManager.layerStack[slot4]
+
+			if not slot0 and slot5.cleanUp then
+				slot0 = slot5.name
+			end
+
+			slot6 = false
+
+			if (slot5.cleanUp and slot5.name == slot0.name and slot0 == slot0.name) or (not slot5.cleanUp and slot5.name == slot0.name) then
+				slot6 = slot4
+			end
+
+			if slot0.cleanUp or slot6 then
+				LayerManager._removeStackLayer(slot5, slot6)
+			end
+		end
+
+		if table.indexof(slot1.rootList, slot0.name) then
+			for slot4, slot5 in ipairs(LayerManager.layerStack) do
+				if not tolua.isnull(slot5.layer) then
+					slot5.layer:removeFromParent()
+				end
+			end
+
+			LayerManager.layerStack = {}
+		end
+
+		LayerManager._postNavigateResources(slot0.name, slot0.cleanUp)
+		print("添加新Layer:", slot0.name)
+
+		slot1 = LayerManager._createStackLayer(slot0)
+
+		table.insert(LayerManager.layerStack, slot0)
+
+		LayerManager.accCount = LayerManager.accCount + 1
+
+		if slot0.battleModuleId and require("common.BattleEntry"):isBattleRunning(slot0.battleModuleId) then
+			slot2.resumeBattle(slot2, slot0.battleModuleId)
+		end
+
+		return slot1
+	end
+
+	if slot0.preload or needPreload(slot0.name) then
+		LayerManager.layerAnimation(slot0, slot1)
+
+		return nil
+	else
+		return slot1()
+	end
+
+	return 
+end
+LayerManager.removeLayer = function (slot0)
+	if #LayerManager.layerStack <= 1 then
+		print("栈底结点不可移除")
+
+		return 
+	end
+
+	for slot4 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot4].layer == slot0 then
+			function slot6()
+				LayerManager._removeStackLayer(LayerManager._removeStackLayer, )
+
+				if slot0.cleanUp and 1 < slot1 then
+					for slot4 = slot1 - 1, 1, -1 do
+						if (LayerManager.layerStack[slot4].cleanUp or slot5.popRestore) and slot5.name ~= "battle.views.GameScene" then
+							LayerManager._createStackLayer(slot5)
+							print("恢复显示Layer:", slot5.name)
+
+							if slot5.battleModuleId then
+								slot0 = slot5
+							end
+
+							LayerManager._postNavigateResources(slot5.name, slot5.cleanUp)
+
+							if slot5.cleanUp then
+								LayerManager.changeBgMusic(slot5.name)
+
+								break
+							end
+						else
+							table.remove(LayerManager.layerStack, slot4)
+						end
+					end
+				end
+
+				if slot0 and require("common.BattleEntry"):isBattleRunning(slot0.battleModuleId) then
+					slot1.resumeBattle(slot1, slot0.battleModuleId)
+				end
+
+				return 
+			end
+
+			slot7 = nil
+
+			if slot5.cleanUp and 1 < slot4 then
+				for slot11 = slot4 - 1, 1, -1 do
+					if (LayerManager.layerStack[slot11].cleanUp or slot12.popRestore) and slot12.name ~= "battle.views.GameScene" and (slot12.preload or needPreload(slot12.name)) then
+						slot7 = slot12
+					end
+				end
+			end
+
+			if slot7 then
+				LayerManager.layerAnimation(slot7, slot6)
+			else
+				slot6()
+			end
+
+			return 
+		end
+	end
+end
+LayerManager.removeTopCleanUpLayer = function (slot0)
+	for slot4 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot4].cleanUp then
+			if slot0 == false then
+				LayerManager._removeStackLayer(slot5, slot4)
+
+				break
+			end
+
+			LayerManager.removeLayer(slot5.layer)
+
+			break
+		else
+			LayerManager._removeStackLayer(slot5, slot4)
+		end
+	end
+
+	return 
+end
+LayerManager.removeStackByName = function (slot0)
+	for slot4 = #LayerManager.layerStack, 1, -1 do
+		if slot0 == LayerManager.layerStack[slot4].name then
+			dump("删除界面")
+			table.remove(LayerManager.layerStack, slot4)
+
+			break
+		end
+	end
+
+	return 
+end
+LayerManager.removeAllPopLayers = function ()
+	for slot3 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot3].cleanUp then
+			break
+		else
+			LayerManager._removeStackLayer(slot4, slot3)
+		end
+	end
+
+	return 
+end
+LayerManager.getTopCleanUpLayerName = function ()
+	for slot3 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot3].cleanUp then
+			return slot4.name
+		end
+	end
+
+	return 
+end
+LayerManager.getRestoreData = function (slot0)
+	for slot4 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot4].name == slot0 then
+			print("获取构建参数Layer:", slot0)
+
+			return slot5.data
+		end
+	end
+
+	return {}
+end
+LayerManager.setRestoreData = function (slot0, slot1)
+	for slot5 = #LayerManager.layerStack, 1, -1 do
+		if LayerManager.layerStack[slot5].name == slot0 then
+			print("修改构建参数Layer:", slot0)
+
+			slot6.data = slot1
+
+			break
+		end
+	end
+
+	return 
+end
+LayerManager._postNavigateResources = function (slot0, slot1)
+	if slot1 then
+		EventAuto:postEvent(EventDefine.eNavigateSecondRes, slot0.navigateSecondResList[slot0] or ResourceTypeSub.eDiamond)
+	end
+
+	return 
+end
+LayerManager.showGuideLayer = function (slot0)
+	print("显示commonlayer.GuideLayer")
+
+	if not tolua.isnull(LayerManager.guideLayer) then
+		LayerManager.guideLayer:exeConfig(slot0)
+	else
+		LayerManager.guideLayer = require("commonlayer.GuideLayer").new(slot0)
+
+		display.getRunningScene():addChild(LayerManager.guideLayer, Enums.ZOrderType.eGuide)
+		EventAuto:postEvent(EventDefine.eGuideNoti, true)
+	end
+
+	return 
+end
+LayerManager.closeGuideLayer = function ()
+	if not tolua.isnull(LayerManager.guideLayer) then
+		print("删除commonlayer.GuideLayer")
+		LayerManager.guideLayer:removeFromParent()
+
+		LayerManager.guideLayer = nil
+
+		EventAuto:postEvent(EventDefine.eGuideNoti, false)
+	end
+
+	return 
+end
+
+return 

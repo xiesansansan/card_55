@@ -1,0 +1,1143 @@
+slot0 = class("AircraftTeamLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "zq_18.jpg",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled60",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/MiniChatLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "controlBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onFunClickAction",
+					pos = {
+						x = 476.46,
+						y = -270
+					},
+					titleText = TR("开始匹配")
+				},
+				children = {}
+			},
+			{
+				name = "matchSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "zq_31.png",
+					pos = {
+						x = 0,
+						y = -272.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mIntegraLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "",
+					emptyInit = true,
+					align = 1,
+					isRichText = true,
+					valign = 1,
+					outlineColor = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 0,
+						y = 232
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "nameLabel-text",
+						name = "nameStr",
+						type = "string"
+					},
+					{
+						value = "fapLabel-text",
+						name = "fapStr",
+						type = "string"
+					},
+					{
+						value = "mountBgSprite-hide|playerSprite-hide|nameLabel-hide|lvLabel-hide|fapLabel-hide",
+						name = "emptyHide",
+						type = "string"
+					},
+					{
+						value = "lvLabel-text",
+						name = "lvStr",
+						type = "string"
+					},
+					{
+						value = "playerSprite-image",
+						name = "heroPic",
+						type = "string"
+					},
+					{
+						value = "untitled50-image",
+						name = "mountPic",
+						type = "string"
+					},
+					{
+						value = "mountBgSprite-image",
+						name = "mountBgPic",
+						type = "string"
+					}
+				},
+				params = {
+					scale = 0.8,
+					pos = {
+						x = -418.71,
+						y = -122.3
+					}
+				},
+				children = {
+					{
+						name = "mountBgSprite",
+						cType = "Sprite",
+						params = {
+							image = "zq_1.png",
+							hide = false,
+							pos = {
+								x = 88.81,
+								y = -41.8
+							}
+						},
+						children = {
+							{
+								name = "untitled50",
+								cType = "Sprite",
+								params = {
+									image = "zqtx_caoji.png",
+									pos = {
+										x = 77,
+										y = 49.5
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled39",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xkxx_45.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "kickBtn",
+						cType = "Button",
+						params = {
+							image = "c_130.png",
+							clickAction = "onKickClickAction",
+							scale = 1.2,
+							pos = {
+								x = 17.32,
+								y = 359.94
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerSprite",
+						cType = "Sprite",
+						params = {
+							image = "bsx_11101.png",
+							hide = false,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "Sprite",
+						params = {
+							image = "xkxx_46.png",
+							pos = {
+								x = 87.66,
+								y = 46.85
+							}
+						},
+						children = {}
+					},
+					{
+						name = "touchBtn",
+						cType = "Button",
+						params = {
+							image = "c_58.png",
+							pos = {
+								x = 87.08,
+								y = 183.5
+							},
+							size = {
+								width = 160.65,
+								height = 296.76
+							}
+						},
+						children = {}
+					},
+					{
+						name = "addSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_87.png",
+							pos = {
+								x = 88.14,
+								y = 197.26
+							}
+						},
+						children = {}
+					},
+					{
+						name = "readySprite",
+						cType = "Sprite",
+						params = {
+							scale = 1.2,
+							image = "zq_30.png",
+							pos = {
+								x = 88.42,
+								y = 192.44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							hide = false,
+							pos = {
+								x = 88.73,
+								y = 61.22
+							},
+							text = TR("没怎么嘛这种")
+						},
+						children = {}
+					},
+					{
+						name = "lvLabel",
+						cType = "Label",
+						params = {
+							hide = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 16.23,
+								y = 37.47
+							},
+							text = TR("等级：100 ")
+						},
+						children = {}
+					},
+					{
+						name = "fapLabel",
+						cType = "Label",
+						params = {
+							hide = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 16.23,
+								y = 16.22
+							},
+							text = TR("战力：99999万")
+						},
+						children = {}
+					},
+					{
+						name = "campBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onCampBtnAction",
+							pos = {
+								x = 88.31,
+								y = -117.5
+							},
+							titleText = TR("布阵")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled51",
+		cType = "Button",
+		custom = {
+			{
+				value = 3,
+				name = "tag",
+				type = "integer"
+			}
+		},
+		params = {
+			clickAction = "onBtnClickAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled52",
+				cType = "Sprite",
+				params = {
+					image = "zq_52.png",
+					pos = {
+						x = 57.4,
+						y = 2.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled53",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleClickAction",
+					pos = {
+						x = 182,
+						y = 3
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled54",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "btnNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled59",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "tb_gn_20.png",
+					clickAction = "onBtnClickAction",
+					pos = {
+						x = -267,
+						y = -85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled58",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "tb_gn_12.png",
+					clickAction = "onBtnClickAction",
+					pos = {
+						x = -165,
+						y = -85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled56",
+				cType = "Button",
+				custom = {
+					{
+						value = 4,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "tb_gn_286.png",
+					clickAction = "onBtnClickAction",
+					pos = {
+						x = -63,
+						y = -85
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mBarrageLayer",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/BarrageTextLayer.lua"
+		},
+		children = {}
+	}
+}
+heroPosList = {
+	cc.p(200, 700),
+	cc.p(380, 590),
+	cc.p(140, 445),
+	cc.p(320, 365),
+	cc.p(500, 295)
+}
+slot0.ctor = function (slot0, slot1)
+	require("aircraft.AircraftHelper")
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+
+	slot0.mTeamInfo = slot1.teamInfo or {}
+	slot0.themeId = slot1.themeId or 1
+	slot0.mFormation = slot1.formation or {}
+	slot0.mSocketServerIP = slot1.ip or ""
+	slot0.heroNodeList = {}
+
+	slot0.initUI(slot0)
+	slot0.showChatInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if AircraftHelper:getLeaderId() == Utility.EMPTY_ENTITY_ID then
+		slot0.creatTeam(slot0)
+	else
+		slot0.requestGetMyTeamInfo(slot0)
+	end
+
+	EventAuto:registerAutoEvent(slot0.mBgSprite, EventDefine.eAircraftTeam, function ()
+		print("成员变化")
+		print:requestGetMyTeamInfo()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mBgSprite, EventDefine.eAircraftMatch, function (slot0, slot1)
+		AircraftHelper:setTeamState(2)
+
+		slot0.mSocketServerIP = slot1
+
+		slot0:dealWithState()
+		slot0:refreshUI()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mBgSprite, AircraftHelper.Events.eGodDomainCancelTeam, function ()
+		print("接受到取消匹配通知")
+		AircraftHelper:setTeamState(1)
+		AircraftHelper.setTeamState:requestGetMyTeamInfo()
+
+		if AircraftHelper:getLeaderId() ~= Utility.EMPTY_ENTITY_ID and slot0 ~= PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			slot0:refreshUI()
+			ui.showFlashView(TR("队长取消匹配!"))
+		end
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mBgSprite, AircraftHelper.Events.eGodDomainEnterBattle, function ()
+		print("inter mapLayer......")
+		LayerManager.addLayer({
+			name = "aircraft.AircraftMapLayer"
+		})
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.mBgSprite, EventDefine.eAircraftCancelMatch, function ()
+		print("cancel match......")
+
+		if AircraftHelper:getLeaderId() ~= Utility.EMPTY_ENTITY_ID and slot0 == PlayerAttrObj:getPlayerAttrByName("PlayerId") and AircraftHelper:getTeamState() == 2 then
+			slot2 = AircraftHelper:cancelMatch(function (slot0)
+				if slot0.Code == 0 then
+					AircraftHelper:setTeamState(1)
+					print("canceled")
+					slot0:refreshUI()
+				end
+
+				return 
+			end)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.matchSprite:setVisible(AircraftHelper:getTeamState() == 2)
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mTeamInfo.TeamMember) do
+		if PlayerAttrObj:isPlayerSelf(slot6.PlayerId) then
+			slot1 = slot6
+
+			break
+		end
+	end
+
+	if PlayerAttrObj:isPlayerSelf(slot0.mTeamInfo.LeaderId) then
+		if AircraftHelper:getTeamState() == 2 then
+			slot0.controlBtn:setTitleText(TR("取消匹配"))
+
+			slot0.controlBtn.tag = 3
+		else
+			slot0.controlBtn:setTitleText(TR("开始匹配"))
+
+			slot0.controlBtn.tag = 1
+		end
+	elseif slot1.ReadyStatus == 1 then
+		slot0.controlBtn:setTitleText(TR("取消准备"))
+
+		slot0.controlBtn.tag = 4
+	else
+		slot0.controlBtn:setTitleText(TR("准备"))
+
+		slot0.controlBtn.tag = 2
+	end
+
+	return 
+end
+slot1 = {
+	"zq_1.png",
+	"zq_2.png",
+	"zq_3.png",
+	"zq_4.png",
+	"zq_5.png",
+	"zq_6.png"
+}
+slot0.refreshTeamInfo = function (slot0)
+	for slot4, slot5 in ipairs(slot0.heroNodeList) do
+		slot5.removeFromParent(slot5)
+
+		slot5 = nil
+	end
+
+	slot0.heroNodeList = {}
+	slot1 = slot0.mTeamInfo.TeamMember
+
+	for slot5 = 1, AircraftConfig.items[1].signUpMaxNum, 1 do
+		if slot1[slot5] then
+			slot7 = false
+
+			if slot0.mTeamInfo.LeaderId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+				slot10 = slot0.createLayoutTemplateNode(slot0, "tempNode", {
+					emptyHide = false,
+					nameStr = slot6.Name,
+					fapStr = TR("战力:%s", Utility.numberWithUnit(slot6.FAP)),
+					lvStr = TR("等级：%s", slot6.Lv),
+					heroPic = Resource.getModelInfo(slot6.FashionModelId).halfBodyPic .. ".png",
+					mountPic = MountModel.items[slot6.PlaneModelId].headImage .. ".png",
+					mountBgPic = slot0[MountModel.items[slot6.PlaneModelId].colorLv]
+				})
+
+				slot10.setPosition(slot10, (slot5 - 1)*170 + -480, -120)
+				slot0.centerNode:addChild(slot10)
+				slot10.addSprite:setVisible(false)
+				slot10.readySprite:setVisible(slot6.ReadyStatus == 1)
+
+				slot10.kickBtn.kickID = slot6.PlayerId or ""
+
+				slot10.kickBtn:setVisible(slot0.mTeamInfo.LeaderId ~= slot6.PlayerId)
+				slot10.campBtn:setVisible(PlayerAttrObj:isPlayerSelf(slot6.PlayerId))
+				slot10.touchBtn:setClickAction(function ()
+					return 
+				end)
+
+				slot10.PlayerId = slot6.PlayerId
+
+				table.insert(slot0.heroNodeList, slot10)
+			end
+		else
+			slot7 = slot0.createLayoutTemplateNode(slot0, "tempNode", {
+				fapStr = "",
+				nameStr = "",
+				mountPic = "c_58.png",
+				heroPic = "c_58.png",
+				emptyHide = true,
+				lvStr = "",
+				mountBgPic = slot0[1]
+			})
+
+			slot7.campBtn:setVisible(false)
+			slot7.readySprite:setVisible(false)
+			slot7.addSprite:setVisible(true)
+			slot7.setPosition(slot7, (slot5 - 1)*170 + -480, -120)
+			slot7.kickBtn:setVisible(false)
+			slot7.touchBtn:setClickAction(function ()
+				if AircraftHelper:getTeamState() == 2 then
+					ui.showFlashView(TR("匹配中不能邀请组队"))
+
+					return 
+				end
+
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "aircraft.AircraftInviteTeamLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end)
+			slot7.addSprite:runAction(cc.RepeatForever:create(cc.Sequence:create({
+				cc.ScaleTo:create(1, 0.6),
+				cc.ScaleTo:create(1, 1)
+			})))
+			slot0.centerNode:addChild(slot7)
+			table.insert(slot0.heroNodeList, slot7)
+		end
+	end
+
+	return 
+end
+slot0.refreshIntegral = function (slot0)
+	slot1 = slot0.mTeamInfo.TeamMember
+
+	function slot2()
+		slot1 = 0
+
+		for slot5, slot6 in pairs(slot0) do
+			if slot6.PlayerId and slot6.PlayerId ~= Utility.EMPTY_ENTITY_ID and slot6.PlayerId ~= PlayerAttrObj:getPlayerAttrByName("PlayerId") and slot1:getFriendInfoByPlayerId(slot6.PlayerId) and next(slot7) ~= nil and slot1 <= slot7.Intimacy then
+				slot1 = slot7.Intimacy
+				slot0 = clone(slot7)
+			end
+		end
+
+		if next(slot0) == nil then
+			slot1.mIntegraLabel:setString("")
+
+			return 
+		end
+
+		slot2 = Utility.getPlayerNameColor(5, true)
+		slot3 = slot0.IntimacyLv
+		slot4 = (ShengyuanwarsFriendpointLv.items[slot0.IntimacyLv] and ShengyuanwarsFriendpointLv.items[slot0.IntimacyLv].lvAddAttrR) or 0
+
+		if slot1.mIntegraLabel then
+			slot1.mIntegraLabel:setString(TR("与好友%s%s#fff8ea亲密度最高\n亲密度达到#37ff40%s#fff8ea级，战力加成#37ff40%s%%", slot2, slot0.Name, slot3, slot4/100))
+		end
+
+		return 
+	end
+
+	if not slot0.mFriendsList then
+		FriendObj:getFriendList(function (slot0)
+			slot0.mFriendsList = slot0
+
+			slot0()
+
+			return 
+		end)
+	else
+		slot2()
+	end
+
+	return 
+end
+slot0.onFunClickAction = function (slot0, slot1)
+	if slot1.tag == 1 then
+		if slot0.mTeamInfo.LeaderId ~= PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			ui.showFlashView(TR("只有队长才能开始匹配"))
+
+			return 
+		end
+
+		if slot0.getPersonNum(slot0) <= 1 then
+			ui.showFlashView(TR("至少需要两人在队伍中才能开始匹配,邀请好友加入游戏吧！"))
+
+			return 
+		end
+
+		slot0.startMarch(slot0)
+	elseif slot1.tag == 2 then
+		slot0.requestReady(slot0, true)
+	elseif slot1.tag == 3 then
+		if not AircraftHelper:cancelMatch(function (slot0)
+			if slot0.Code == 0 then
+				AircraftHelper:setTeamState(1)
+				ui.showFlashView(TR("取消匹配!"))
+				slot0:refreshUI()
+			end
+
+			return 
+		end) then
+			LayerManager.addLayer({
+				name = "home.HomeCtrlNodeLayer",
+				data = {
+					defaultModuleId = ModuleSub.eShengyuanWars
+				}
+			})
+		end
+	elseif slot1.tag == 4 then
+		slot0.requestReady(slot0, false)
+	end
+
+	return 
+end
+slot0.onRealyClickAction = function (slot0, slot1)
+	slot0.requestReady(slot0)
+
+	return 
+end
+slot0.onKickClickAction = function (slot0, slot1)
+	if AircraftHelper:getTeamState() == 2 then
+		ui.showFlashView(TR("匹配中,无法踢出人员"))
+
+		return 
+	end
+
+	slot0.requestExitTeam(slot0, slot1.kickID)
+
+	return 
+end
+slot0.onBtnClickAction = function (slot0, slot1)
+	if slot1.tag == 1 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "aircraft.AircraftRankLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	elseif slot1.tag == 2 then
+		LayerManager.addLayer({
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eShenyuanShop
+			}
+		})
+	elseif slot1.tag == 3 then
+		if AircraftHelper:getTeamState() == 2 then
+			ui.showFlashView(TR("匹配中,队长取消匹配才能退出队伍"))
+
+			return 
+		elseif slot0.mTeamInfo and slot0.mTeamInfo.LeaderId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			slot0.dismissTeam(slot0)
+		else
+			slot0.exitTeam(slot0)
+		end
+	elseif slot1.tag == 4 and Utility.isEntityId(AircraftHelper:getLeaderId()) then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "aircraft.AircraftDlgBarrageLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onRuleClickAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、战江湖夺旗为6v6战场，玩家好友组队匹配人数必须为偶数"),
+			TR("2、战场上共分布有五个资源点，资源点上没有对方玩家即可占领，占领后必须有一名玩家在点上防守"),
+			TR("3、占领资源点可以获得积分，根据一方占领资源点数量每秒获得的积分不同，占领数量越多，获得积分越多"),
+			TR("4、首先达到%s分的队伍获得胜利", AircraftConfig.items[1].victoryNeedResource),
+			TR("5、每场比赛只能设置5支队伍，队伍死亡无法复活"),
+			TR("6、每周结算一次奖励，周一凌晨零点30分发放个人排行奖励"),
+			TR("7、勾选离线挂机将自动进行单人匹配、战斗、结算、再匹配，直至活动结束（挂机开始后，即便退出游戏，挂机也将继续进行）"),
+			TR("8、挂机进入匹配后，角色会自行向资源点移动，但不会携带任何道具，也不会主动进攻")
+		}
+	})
+
+	return 
+end
+slot0.onCampBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "feiji.FeiJiCampReadyLayer",
+		data = {
+			noNeedVit = true,
+			minCount = 5,
+			callModelSub = ModuleSub.eAircraft,
+			titleText = TR("布  阵"),
+			teamData = slot0.mFormation,
+			callback = function (slot0)
+				slot0:socketRequest({
+					methodName = "SetSlotFormation",
+					moduleName = "AircraftTeam",
+					methodData = {
+						slot0
+					},
+					successCallback = function (slot0)
+						slot0.mFormation = slot0.OwnSlotFormationInfo or {}
+
+						ui.showFlashView("布阵成功！")
+
+						return 
+					end
+				})
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getPersonNum = function (slot0)
+	if next(slot0.mTeamInfo.TeamMember) == nil then
+		return 0
+	end
+
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.mTeamInfo.TeamMember) do
+		if slot6.PlayerId ~= Utility.EMPTY_ENTITY_ID then
+			slot1 = slot1 + 1
+		end
+	end
+
+	return slot1
+end
+slot0.getFriendInfoByPlayerId = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mFriendsList) do
+		if slot6.PlayerId == slot1 then
+			return clone(slot6)
+		end
+	end
+
+	return {}
+end
+slot0.requestGetMyTeamInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetMyTeamInfo",
+		moduleName = "AircraftTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mTeamInfo = slot0.TeamInfo
+
+			AircraftHelper:setLeaderId(slot0.mTeamInfo.LeaderId)
+
+			if not tolua.isnull(slot0) then
+				slot0:refreshTeamInfo()
+			end
+
+			AircraftHelper:setTeamInfo(slot0.TeamInfo.TeamMember)
+			slot0:refreshUI()
+
+			if not AircraftHelper:getSocketState() and AircraftHelper:getTeamState() == 2 then
+				print("桃花岛断线重连")
+				slot0:dealWithState()
+			end
+
+			slot1 = {}
+
+			for slot5, slot6 in ipairs(slot0.TeamInfo.ChatText) do
+				table.insert(slot1, cjson.decode(slot6).From.Name .. ":" .. cjson.decode(slot6).Message)
+			end
+
+			slot0.mBarrageLayer:initTextList(slot1)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0.Status == -10003 then
+				ui.showFlashView(TR("组队已结束"))
+				AircraftHelper:setTeamState(0)
+				AircraftHelper:setLeaderId(Utility.EMPTY_ENTITY_ID)
+				AircraftHelper:setTeamInfo({})
+				LayerManager.removeLayer(slot0)
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.creatTeam = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "CreateTeam",
+		moduleName = "AircraftTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mTeamInfo = slot0.TeamInfo
+
+			AircraftHelper:setLeaderId(slot0.mTeamInfo.LeaderId)
+			AircraftHelper:setTeamState(1)
+			AircraftHelper:setTeamInfo(slot0.TeamInfo.TeamMember)
+			slot0:refreshTeamInfo()
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExitTeam = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "KickOutTeam",
+		moduleName = "AircraftTeam",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTeamInfo = slot0.TeamInfo
+
+			slot0:refreshTeamInfo()
+			AircraftHelper:setTeamInfo(slot0.TeamInfo.TeamMember)
+			ui.showFlashView(TR("踢出成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.exitTeam = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ExitTeam",
+		moduleName = "AircraftTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("退出组队"))
+			AircraftHelper:setTeamState(0)
+			AircraftHelper:setLeaderId(Utility.EMPTY_ENTITY_ID)
+			AircraftHelper:setTeamInfo({})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -10034 then
+				LayerManager.removeLayer(slot0)
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.dismissTeam = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DismissTeam",
+		moduleName = "AircraftTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("解散组队"))
+			AircraftHelper:setTeamState(0)
+			AircraftHelper:setLeaderId(Utility.EMPTY_ENTITY_ID)
+			AircraftHelper:setTeamInfo({})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0.Status == -10034 then
+				LayerManager.removeLayer(slot0)
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReady = function (slot0, slot1)
+	if AircraftHelper:getTeamState() == 2 then
+		ui.showFlashView(TR("匹配中,无法取消准备"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "ChangeReadyState",
+		moduleName = "AircraftTeam",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTeamInfo = slot0.TeamInfo
+
+			slot0:refreshTeamInfo()
+			slot0:refreshUI()
+			AircraftHelper:setTeamInfo(slot0.TeamInfo.TeamMember)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0.Status == -10072 then
+				slot0:onCampBtnAction()
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.startMarch = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "StartMatch",
+		moduleName = "AircraftTeam",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSocketServerIP = slot0.SocketServerIP
+
+			AircraftHelper:setTeamState(2)
+			slot0:dealWithState()
+			slot0:refreshUI()
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0.Status == -10072 then
+				slot0:onCampBtnAction()
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.dealWithState = function (slot0)
+	if AircraftHelper:getTeamState() == 3 or AircraftHelper:getTeamState() == 2 then
+		print(slot0.mSocketServerIP, "self.mSocketServerIP")
+		AircraftHelper:setUrl(slot0.mSocketServerIP)
+		AircraftHelper:connect(function (slot0)
+			if (slot0 == nil or slot0.Code == 0) and AircraftHelper:getTeamState() == 3 then
+				EventAuto:postEvent(AircraftHelper.Events.eGodDomainEnterBattle)
+			end
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.showChatInfo = function (slot0)
+	EventAuto:registerAutoEvent(slot0.mBarrageLayer, {
+		AircraftHelper.Events.eGodDomainChatInfo
+	}, function (slot0, slot1)
+		if slot1 ~= nil and type(slot1) == "string" then
+			slot0.mBarrageLayer:showOneText(slot1)
+		end
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

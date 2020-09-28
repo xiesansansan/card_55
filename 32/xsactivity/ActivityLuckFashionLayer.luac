@@ -1,0 +1,325 @@
+slot0 = class("ActivityLuckFashionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 578
+			},
+			titleText = TR("时装属性")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "xsbk_14.png",
+					pos = {
+						x = 257.5,
+						y = 299.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 32.47,
+						y = 36.18
+					},
+					text = TR("时装属性可叠加最强战总加成")
+				},
+				children = {}
+			},
+			{
+				name = "fashSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.58,
+					image = "lh_10000.png",
+					pos = {
+						x = 257.5,
+						y = 304.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "xsbk_15.png",
+					pos = {
+						x = 250.5,
+						y = 513.83
+					}
+				},
+				children = {
+					{
+						name = "fashName",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 125.47,
+								y = 13.75
+							},
+							text = TR("时装名字")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onEffectShowAction",
+					childName = "effectBtn",
+					pos = {
+						x = 423,
+						y = 219.79
+					}
+				},
+				children = {}
+			},
+			{
+				name = "qualityImage",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 421.53,
+						y = 397.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fapSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_80.png",
+					pos = {
+						x = 83.2,
+						y = 189.41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mFapLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					charCount = 12,
+					text = "",
+					fontName = "c_81.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 130.7,
+						y = 184.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xsbk_16.png",
+					pos = {
+						x = 257.5,
+						y = 113.77
+					},
+					size = {
+						width = 430,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "cardNode",
+						cType = "CardNode",
+						params = {
+							allowClick = false,
+							pos = {
+								x = 49.25,
+								y = 50.12
+							}
+						},
+						children = {}
+					},
+					{
+						name = "scrollView",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 99.79,
+								y = 3.09
+							},
+							size = {
+								width = 320,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "skillIntroLabel",
+								cType = "Label",
+								params = {
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									pos = {
+										x = 5,
+										y = 90
+									},
+									size = {
+										width = 300,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.fashionModel = slot1.fashionModelId
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	if Utility.moduleIsOpen(ModuleSub.eFashion) then
+		slot0.requestFapInfo(slot0)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = clone(FashionModel.items[slot0.fashionModel])
+
+	slot0.fapSprite:setVisible(Utility.moduleIsOpen(ModuleSub.eFashion))
+	slot0.mFapLabel:setVisible(Utility.moduleIsOpen(ModuleSub.eFashion))
+	slot0.fashName:setString(slot1.name)
+	slot0.fashSprite:setTexture(slot1.pic .. ".png")
+	slot0.qualityImage:setTexture(({
+		nil,
+		"xkxx_16.png",
+		"xkxx_17.png",
+		"xkxx_18.png",
+		"xkxx_19.png",
+		"xkxx_20.png",
+		"xkxx_20.png"
+	})[slot1.colorLv] or xkxx_17.png)
+	slot0.cardNode:setCardData({
+		resourceId = slot0.fashionModel
+	})
+
+	slot3 = ""
+
+	if slot1.actSkillId ~= "" then
+		slot3 = SkillModel.items[tonumber(slot1.actSkillId)].skillIntro
+	end
+
+	slot0.skillIntroLabel:setString((slot3 ~= "" and TR("%s\n%s", slot3, slot0.getAttrStr(slot0, slot1))) or slot0.getAttrStr(slot0, slot1))
+
+	slot4 = slot0.skillIntroLabel:getContentSize()
+
+	slot0.scrollView:setInnerContainerSize(cc.size(slot4.width, slot4.height))
+	slot0.skillIntroLabel:setPositionY(slot4.height)
+
+	return 
+end
+slot0.onEffectShowAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot0.fashionModel
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getAttrStr = function (slot0, slot1)
+	if slot1.actAttrStr and slot1.actAttrStr ~= "" then
+		slot2 = "#319712"
+		slot3 = ""
+
+		for slot7, slot8 in ipairs(Utility.analysisStrAttrList(slot1.actAttrStr)) do
+			slot9 = "#FFF8EA"
+
+			if 1 < slot7 then
+				slot9 = "#FFF8EA "
+			end
+
+			slot3 = slot3 .. ((Utility.isAttrNeedPercent(slot8.fightattr) and slot9 .. string.format("%s%s+%s%%", FightAttrTypeName[slot8.fightattr], slot2, slot8.value/100)) or slot9 .. string.format("%s%s+%s", FightAttrTypeName[slot8.fightattr], slot2, slot8.value))
+		end
+
+		return slot3
+	else
+		return TR("无属性加成")
+	end
+
+	return 
+end
+slot0.requestFapInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFap",
+		moduleName = "Fashion",
+		successCallback = function (slot0)
+			dump(slot0)
+			slot0.mFapLabel:setString(slot0.Fap or {}[tostring(slot0.fashionModel)] or 0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

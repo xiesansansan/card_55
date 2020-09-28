@@ -1,0 +1,283 @@
+slot0 = class("JzwlRewardDlgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("赏赐奖励")
+		},
+		children = {
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423.68,
+						y = 476.11
+					},
+					text = TR("奖赏结算倒计时：")
+				},
+				children = {}
+			},
+			{
+				name = "gridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCampGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 140,
+					pos = {
+						x = 423.92,
+						y = 245.11
+					},
+					size = {
+						width = 800,
+						height = 430
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.refreshData(slot0)
+	slot0.requestGetInfo(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshData = function (slot0)
+	slot0.mRewardData = {}
+
+	for slot5 = 1, LeaguetopfinalConfig.items[1].oddrewardNums, 1 do
+		table.insert(slot0.mRewardData, {
+			ID = slot5
+		})
+	end
+
+	return 
+end
+slot0.refreshReward = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mRewardData) do
+		slot5.visitInfo = nil
+
+		for slot9, slot10 in ipairs(slot0.mVisitBoxInfo) do
+			if slot10.BoxId == slot5.ID then
+				slot5.visitInfo = slot10
+
+				break
+			end
+		end
+	end
+
+	slot0.gridView:setItemNum(#slot0.mRewardData)
+
+	return 
+end
+slot0.addCardNode = function (slot0, slot1, slot2, slot3)
+	slot5 = slot2.getContentSize(slot2)
+
+	if slot1.visitInfo and slot4.BoxId then
+		slot8 = UIWrap.newControl("CardNode", {
+			allowClick = true,
+			pos = cc.p((not slot3 or 0) and slot5.width/2, (slot3 and 30) or slot5.height/2 + 30)
+		})
+
+		slot8.setCardData(slot8, {
+			modelId = Utility.analysisStrResList(slot6)[1].resourceId,
+			num = Utility.analysisStrResList(slot6)[1].num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot2.addChild(slot2, slot8)
+
+		slot10 = "Sprite"
+		slot11 = {
+			image = "tzsj_10.png",
+			pos = cc.p(slot5.width/2, (slot3 and -60) or 10)
+		}
+
+		slot2.addChild(slot2, UIWrap.newControl)
+		slot2.addChild(slot2, UIWrap.newControl("Label", {
+			text = slot4.PlayerInfo.Name,
+			pos = cc.p((not slot3 or 0) and slot5.width/2, (slot3 and -60) or 10),
+			outlineColor = cc.c3b(51, 42, 24)
+		}))
+	end
+
+	return 
+end
+slot0.onCampGridAction = function (slot0, slot1, slot2, slot3)
+	slot4 = slot1.getContentSize(slot1)
+
+	function slot5()
+		"Sprite":addChild(slot0)
+		"Sprite":addCardNode(slot2.mRewardData[], UIWrap.newControl("Sprite", {
+			image = "tzsj_9.png",
+			pos = cc.p(slot0.width/2, slot0.height/2)
+		}))
+
+		return 
+	end
+
+	function slot6()
+		slot3:addChild(UIWrap.newControl("Button", {
+			image = "tzsj_8.png",
+			swallowTouch = false,
+			pos = cc.p(slot0.width/2, slot0.height/2),
+			clickAction = function (slot0)
+				slot0:requestDrawGongFengReward(slot0.mRewardData[slot1].ID, slot0.requestDrawGongFengReward, slot0)
+
+				return 
+			end
+		}))
+
+		return 
+	end
+
+	if slot0.mRewardData[slot2] and slot0.mRewardData[slot2].visitInfo then
+		slot5()
+	else
+		slot6()
+	end
+
+	return 
+end
+slot0.getReward = function (slot0, slot1, slot2, slot3, slot4)
+	ui.showFlashReward({
+		BaseGetGameResourceList = slot4
+	})
+	slot0.refreshReward(slot0)
+
+	return 
+end
+slot0.refTimeUpate = function (slot0)
+	if slot0.mTimeUpdate then
+		slot0.stopAction(slot0, slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot0.mTimeUpdate = Utility.schedule(slot0, function ()
+		if 0 < slot0.mEndTime - Player.mTimeTick then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString(TR("已结束"))
+
+			if slot0.mTimeUpdate then
+				slot0:stopAction(slot0.mTimeUpdate)
+
+				slot0.mTimeUpdate = nil
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.checkHaveReward = function (slot0)
+	slot1 = false
+
+	dump(slot0.mVisitBoxInfo)
+
+	for slot5, slot6 in pairs(slot0.mVisitBoxInfo) do
+		if slot6.PlayerInfo.Name == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+			slot1 = true
+		end
+	end
+
+	return slot1
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GongFengInfo",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			1,
+			10
+		},
+		successCallback = function (slot0)
+			dump(slot0, "MMMMM")
+
+			slot0.mFundNum = slot0.VisitBoxInfo.VisitInfo.VisitNum
+			slot0.mEndTime = slot0.VisitBoxInfo.VisitInfo.VisitBoxEndDate
+			slot0.mCanOpenGongFengReward = slot0.CanOpenGongFengReward
+			slot0.mGongFengRecord = slot0.VisitBoxInfo.GongFengRecord
+			slot0.mMyRecord = slot0.GongFengRecord
+			slot0.mGongFengRecordCount = slot0.VisitBoxInfo.GongFengRecordCount
+			slot0.mVisitBoxInfo = slot0.VisitBoxInfo.VisitBoxInfo
+
+			slot0:refreshReward()
+			slot0:refTimeUpate()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawGongFengReward = function (slot0, slot1, slot2, slot3)
+	if slot0.mMyRecord == nil or next(slot0.mMyRecord) == nil then
+		ui.showFlashView(TR("未参与供奉"))
+
+		return 
+	end
+
+	if slot0.checkHaveReward(slot0) then
+		ui.showFlashView(TR("已领取赏赐"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "DrawGongFengReward",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mVisitBoxInfo = slot0.VisitBoxInfo.VisitBoxInfo
+
+			slot0:getReward(slot0.getReward, slot0, , slot0.BaseGetGameResourceList)
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -21040 then
+				slot0:requestGetInfo()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

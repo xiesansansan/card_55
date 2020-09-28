@@ -1,0 +1,327 @@
+slot0 = class("DlgMaterialDetailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 634,
+				height = 500
+			},
+			titleText = TR("提 示")
+		},
+		children = {
+			{
+				name = "materialCardNode",
+				cType = "CardNode",
+				params = {
+					allowClick = false,
+					pos = {
+						x = 95.06,
+						y = 396.84
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 152.67,
+						y = 417.53
+					},
+					text = TR("名字")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 301.95,
+						y = 416.94
+					},
+					text = TR("已拥有：")
+				},
+				children = {}
+			},
+			{
+				name = "ownLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					text = "0",
+					isRichText = false,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 384.93,
+						y = 416.9
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 152.96,
+						y = 386.61
+					},
+					text = TR("可用于激活侠客训练")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Sprite",
+				params = {
+					reverse = 1,
+					image = "c_36.png",
+					pos = {
+						x = 459.29,
+						y = 314.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 0,
+					image = "c_36.png",
+					pos = {
+						x = 173,
+						y = 313.78
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 316.72,
+						y = 314.06
+					},
+					text = TR("可训练侠客")
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 318.21,
+						y = 165.13
+					},
+					size = {
+						width = 570.62,
+						height = 254.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onHeroGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 100,
+					pos = {
+						x = 317.89,
+						y = 164.61
+					},
+					size = {
+						width = 551.01,
+						height = 239.14
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNullTips",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bp_25.png",
+					hide = true,
+					pos = {
+						x = 317.63,
+						y = 160.72
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.35,
+								y = 54.98
+							},
+							text = TR("暂无可训练侠客")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.materialModelId = slot1.materialModelId or 16040001
+
+	slot0.sortData(slot0)
+	slot0.initUI(slot0)
+	slot0.setMaterialInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.gridView:setItemNum(#slot0.layerData)
+
+	if #slot0.layerData <= 0 then
+		slot0.mNullTips:setVisible(true)
+	else
+		slot0.mNullTips:setVisible(false)
+	end
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.sortData = function (slot0)
+	slot0.layerData = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = clone(HeroObj:getItem(slot6))
+		slot8 = HeroModel.items[slot6]
+
+		for slot12 = 1, 4, 1 do
+			for slot16, slot17 in pairs(HeroTrainRelation.items) do
+				if slot17.profession == slot8.profession and slot17.trainLv == slot7.TrainLv and slot17.trainPartNum == slot12 then
+					if Utility.analysisStrResList(slot17.consumeStrC)[1].resourceId == slot0.materialModelId then
+						table.insert(slot0.layerData, {
+							heroModelId = slot6,
+							cosNum = slot18.num
+						})
+					end
+
+					break
+				end
+			end
+		end
+	end
+
+	return 
+end
+slot0.onHeroGridAction = function (slot0, slot1, slot2, slot3)
+	if slot0.layerData[slot2] == nil then
+		return 
+	end
+
+	slot1.addChild(slot1, slot5)
+	slot1.addChild(slot1, UIWrap.newControl("Label", {
+		text = TR("%s", Resource.getName(slot4.heroModelId)),
+		pos = cc.p(120, 70),
+		anchor = cc.p(0, 0.5),
+		color = Utility.getColorValue(HeroTrainColorlvRelation.items[clone(HeroObj:getItem(slot4.heroModelId)).TrainLv].colorLv)
+	}))
+	slot1.addChild(slot1, UIWrap.newControl("Label", {
+		isRichText = true,
+		text = string.format("%s%s%s/%s", (slot4.cosNum <= Resource.getCount(slot0.materialModelId) and "#258711") or "#C04141", slot10, "#252525", slot4.cosNum),
+		pos = cc.p(120, 30),
+		anchor = cc.p(0, 0.5)
+	}))
+
+	return 
+end
+slot0.setMaterialInfo = function (slot0)
+	slot0.materialCardNode:setCardData({
+		modelId = slot0.materialModelId
+	}, {})
+	slot0.ownLabel:setString(Resource.getCount(slot0.materialModelId))
+	slot0.ownLabel:setColor(cc.c3b(37, 135, 17))
+	slot0.nameLabel:setString(string.format("%s", Resource.getName(slot0.materialModelId)))
+	slot0.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(slot0.materialModelId)))
+
+	return 
+end
+
+return slot0

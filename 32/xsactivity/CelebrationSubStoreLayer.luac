@@ -1,0 +1,589 @@
+slot0 = class("CelebrationSubStoreLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled28",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 279.79,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					image = "hfqd_14.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = -23.59,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -242.45,
+						y = 218.5
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 39,
+								y = 33
+							},
+							text = TR("活动倒计时:")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "22:22:22",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 165,
+								y = 33
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "hfqd_2.png",
+					pos = {
+						x = 258.08,
+						y = -32
+					}
+				},
+				children = {
+					{
+						name = "taskTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 58.59,
+								y = 16.02
+							},
+							size = {
+								width = 530,
+								height = 490
+							}
+						},
+						children = {
+							{
+								name = "taskTempNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -199.1
+									},
+									size = {
+										width = 530,
+										height = 140
+									}
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "Scale9Sprite",
+										params = {
+											image = "cz_101.png",
+											pos = {
+												x = 265,
+												y = 70
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "Button",
+										params = {
+											childName = "btn",
+											image = "c_32.png",
+											clickAction = "onGetBtnAction",
+											pos = {
+												x = 440,
+												y = 65
+											},
+											titleText = TR("购买")
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 112,
+												y = 59
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Sprite",
+										params = {
+											image = "cz_81.png",
+											pos = {
+												x = 28.58,
+												y = 80.96
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											isRichText = true,
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											color = {
+												g = 199,
+												r = 223,
+												b = 42
+											},
+											pos = {
+												x = 32.03,
+												y = 77.81
+											},
+											text = TR("折")
+										},
+										children = {}
+									},
+									{
+										name = "untitled22",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											childName = "discountLabel",
+											text = "8",
+											color = {
+												g = 199,
+												r = 223,
+												b = 42
+											},
+											pos = {
+												x = 32.03,
+												y = 94.21
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled23",
+										cType = "Label",
+										params = {
+											childName = "goodsName",
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 172.4,
+												y = 82.69
+											},
+											text = TR("道具")
+										},
+										children = {}
+									},
+									{
+										name = "untitled24",
+										cType = "Sprite",
+										params = {
+											image = "db_1101.png",
+											childName = "resSprite",
+											pos = {
+												x = 190.83,
+												y = 41
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled25",
+										cType = "Label",
+										params = {
+											text = "Label",
+											isRichText = true,
+											childName = "priceLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 209.72,
+												y = 39.38
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "Sprite",
+										params = {
+											scaleX = 0.6,
+											rotationAngle = 14,
+											image = "c_109.png",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 180.33,
+												y = 47.05
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled26",
+										cType = "Label",
+										params = {
+											childName = "remainNumLabel",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 438.74,
+												y = 25.79
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eMergedShop
+	slot0.mActivityType = slot1.activityType or 7
+	slot0.type = slot1.eType
+
+	if slot0.type == 1 then
+		slot0.mActivityId = Player:getGameData("MergedActivityOpenInfo") or {}[tostring(ModuleSub.eMergedShop)].Id
+	elseif slot0.type == 2 then
+		slot0.mActivityId = Player:getGameData("NormalCrossActivityOpenInfo") or {}[tostring(ModuleSub.eClassOverShop)].Id
+	end
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	table.sort(slot0.mSellList, function (slot0, slot1)
+		if slot0.Status == 1 ~= slot1.Status == 1 then
+			return slot0.Status == 1
+		end
+
+		if slot0.Status ~= slot1.Status then
+			return slot0.Status < slot1.Status
+		end
+
+		return slot0.Id < slot1.Id
+	end)
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.refTimeUpate = function (slot0)
+	slot1 = ""
+	slot2 = nil
+
+	if slot0.type == 1 then
+		slot2 = Player:getGameData("MergedActivityOpenInfo") or {}
+		slot1 = ModuleSub.eMergedShop
+	elseif slot0.type == 2 then
+		slot2 = Player:getGameData("NormalCrossActivityOpenInfo") or {}
+		slot1 = ModuleSub.eClassOverShop
+	end
+
+	if slot0.mTimeUpdate then
+		slot0.stopAction(slot0, slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot3 = slot2[tostring(slot1)]
+	slot0.mTimeUpdate = Utility.schedule(slot0, function ()
+		if 0 < slot0.EndDate - Player.mTimeTick then
+			slot1.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		elseif slot1.mTimeUpdate then
+			slot1:stopAction(slot1.mTimeUpdate)
+
+			slot1.stopAction.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 530, 140
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mSellList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot1.btn.shopInfo = slot0.mSellList[slot1 + 1]
+		slot5, slot11 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.mSellList[slot1 + 1].SellResource)[1].resourceId), true)
+
+		slot1.goodsName:setString(TR("%s%s", slot6, Resource.getName(Utility.analysisStrResList(slot0.mSellList[slot1 + 1].SellResource)[1].resourceId)))
+		slot1.cardNode:setCardData({
+			modelId = Utility.analysisStrResList(slot0.mSellList[slot1 + 1].SellResource)[1].resourceId,
+			num = Utility.analysisStrResList(slot0.mSellList[slot1 + 1].SellResource)[1].num
+		}, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		})
+		slot1.discountLabel:setString(slot0.mSellList[slot1 + 1].Discount/10)
+		slot1.resSprite:setTexture(Resource.getDaibiImg(Utility.analysisStrResList(slot0.mSellList[slot1 + 1].ConsumeResource)[1].resourceId))
+		slot1.priceLabel:setString(string.format("#252525%d #8ba857%d", Utility.analysisStrResList(slot0.mSellList[slot1 + 1].ConsumeResource)[1].num, math.ceil(Utility.analysisStrResList(slot0.mSellList[slot1 + 1].ConsumeResource)[1].num*slot0.mSellList[slot1 + 1].Discount/100)))
+
+		slot7 = slot0.mBuyNumList[slot0.mSellList[slot1 + 1].Id] or 0
+
+		if slot2.BuyCount ~= 0 then
+			slot1.remainNumLabel:setString(TR("今日可购买%d次", slot2.BuyCount - slot7))
+			slot1.btn:setEnabled(0 < slot2.BuyCount - slot7)
+		else
+			slot1.remainNumLabel:setVisible(false)
+			slot1.btn:setEnabled(true)
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot1 = ""
+
+	if slot0.type == 1 then
+		slot1 = "MergedShop"
+	elseif slot0.type == 2 then
+		slot1 = "NormalCrossShop"
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = slot1,
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mServerData = slot0
+
+			dump(slot0)
+
+			slot0.mSellList = slot0.SellResource
+			slot0.mBuyNumList = {}
+
+			for slot5, slot6 in pairs(slot1) do
+				slot0.mBuyNumList[slot6.fightattr] = slot6.value
+			end
+
+			slot0:refreshUI()
+			slot0:refTimeUpate()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetBtnAction = function (slot0, slot1)
+	slot2 = Utility.analysisStrResList(slot1.shopInfo.ConsumeResource)[1]
+	slot3 = Utility.analysisStrResList(slot1.shopInfo.SellResource)[1]
+
+	if slot1.shopInfo.BuyCount ~= 0 and slot1.shopInfo.BuyCount <= (slot0.mBuyNumList[slot1.shopInfo.Id] or 0) then
+		ui.showFlashView(TR("今日购买数量已达上限"))
+
+		return 
+	elseif not Resource.isEnough(slot2.resourceId, math.ceil(slot2.num*slot1.shopInfo.Discount/100)) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.commBuyGoodSeclectLayer",
+		data = {
+			info = {
+				modelId = slot3.resourceId,
+				goodsNum = slot3.num,
+				sellTypeID = slot2.resourceId,
+				sellNum = math.ceil(slot2.num*slot1.shopInfo.Discount/100),
+				maxNum = slot1.shopInfo.BuyCount - (slot0.mBuyNumList[slot1.shopInfo.Id] or 0)
+			},
+			callBack = function (slot0)
+				if not Resource.isEnough(slot0.resourceId, math.ceil(slot0.num*slot1.shopInfo.Discount/100)*slot0) then
+					return 
+				end
+
+				slot1 = ""
+
+				if slot2.type == 1 then
+					slot1 = "MergedShop"
+				elseif slot2.type == 2 then
+					slot1 = "NormalCrossShop"
+				end
+
+				slot2:socketRequest({
+					methodName = "Buy",
+					moduleName = slot1,
+					methodData = {
+						slot2.mActivityId,
+						slot1.shopInfo.Id,
+						slot0
+					},
+					successCallback = function (slot0)
+						ui.showFlashReward(slot0)
+
+						slot0.mServerData.BuyStr = slot0.BuyStr
+						slot0.mBuyNumList = {}
+
+						for slot5, slot6 in pairs(slot1) do
+							slot0.mBuyNumList[slot6.fightattr] = slot6.value
+						end
+
+						slot0.taskTableView:reloadData()
+
+						return 
+					end
+				})
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+
+return slot0

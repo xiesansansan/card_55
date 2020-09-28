@@ -1,0 +1,174 @@
+slot1 = {
+	AllControl = {
+		buffText = "免控",
+		effectType = "special"
+	}
+}
+
+return {
+	Stun = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_buff_xuanyun",
+		scale = 1,
+		buffText = "眩晕",
+		zorder = 80,
+		pos = cc.p(0, 180)
+	},
+	Ice = {
+		topAnimation = "bin",
+		effectType = "spine",
+		scale = 0.85,
+		groundAnimation = "di",
+		buffText = "冰冻",
+		fileName = "effect_buff_bindong",
+		zorder = 69,
+		pos = cc.p(0, 76)
+	},
+	Stone = {
+		buffText = "石化",
+		effectType = "stone"
+	},
+	Forbid = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_buff_chenmo",
+		scale = 0.6,
+		buffText = "沉默",
+		zorder = 68,
+		pos = cc.p(0, 80)
+	},
+	Shield = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 1,
+		fileName = "effect_buff_hudun",
+		zorder = 70,
+		pos = cc.p(0, 20)
+	},
+	HardSkin = {
+		topAnimation = "chuxian",
+		effectType = "spine",
+		fileName = "effect_buff_jinzhongzhao",
+		loop = false,
+		scale = 0.85,
+		zorder = 70,
+		pos = cc.p(0, 100)
+	},
+	Chain = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 0.85,
+		fileName = "effect_bd_mengyinshenqian",
+		zorder = 70,
+		pos = cc.p(0, 100)
+	},
+	Taunt = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 0.85,
+		fileName = "effect_bd_jihunqishu",
+		zorder = 70,
+		pos = cc.p(0, 100)
+	},
+	Sign = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_buff_sign",
+		loop = false,
+		scale = 0.85,
+		zorder = 70,
+		pos = cc.p(0, 145)
+	},
+	Shackles = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 0.85,
+		fileName = "effect_tupo_tianluodiwang",
+		zorder = 70,
+		pos = cc.p(0, 100)
+	},
+	Enchantment = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 0.85,
+		fileName = "effect_buff_meihuo",
+		zorder = 70,
+		pos = cc.p(0, 100)
+	},
+	Fear = {
+		topAnimation = "animation",
+		effectType = "spine",
+		scale = 0.85,
+		fileName = "effect_buff_kongju",
+		zorder = 70,
+		pos = cc.p(0, 145)
+	},
+	Fire = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_buff_ranshao",
+		zorder = 59,
+		pos = cc.p(0, 70)
+	},
+	Poison = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_buff_zhongdu",
+		zorder = 60,
+		pos = cc.p(0, 80)
+	},
+	Blood = {
+		topAnimation = "xue",
+		effectType = "spine",
+		groundAnimation = "di",
+		fileName = "effect_buff_liuxue",
+		zorder = 61,
+		pos = cc.p(0, 0)
+	},
+	DefendTogether = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_ui_xiaodunpai",
+		zorder = 62,
+		pos = cc.p(0, 80)
+	},
+	Defend = {
+		topAnimation = "animation",
+		effectType = "spine",
+		fileName = "effect_ui_xiaodunpai",
+		zorder = 62,
+		pos = cc.p(0, 80)
+	},
+	SiphonAtk = {
+		effectType = "special",
+		fileName = "effect_ui_xinuji",
+		animation = "animation"
+	},
+	SiphonHp = {
+		effectType = "special",
+		fileName = "effect_ui_xixue",
+		animation = "animation"
+	},
+	SiphonArm = {
+		effectType = "special",
+		fileName = "effect_ui_xihujia",
+		animation = "animation"
+	},
+	SiphonAng = {
+		effectType = "special",
+		fileName = "effect_ui_xinuqi",
+		animation = "animation"
+	},
+	getEffectConf = function (slot0)
+		if slot0.buffType == "Hurt" then
+			slot1 = slot0.buffParameter
+		end
+
+		if slot1 == "Immune" then
+			return slot0[slot0.buffParameter]
+		end
+
+		return slot1[slot1]
+	end
+}

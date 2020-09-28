@@ -1,0 +1,299 @@
+slot0 = class("StrategyStarAttrInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			titleText = "",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.56,
+						y = 179.78
+					},
+					size = {
+						width = 465,
+						height = 301.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "emptyStr",
+				cType = "Label",
+				params = {
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 244,
+						y = 182
+					},
+					text = TR("暂无阵魂属性加成")
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 27.99,
+						y = 38.41
+					},
+					size = {
+						width = 460,
+						height = 280.86
+					}
+				},
+				children = {
+					{
+						name = "allAttrLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "titleLabel-text",
+								name = "titleStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 161.86
+							},
+							size = {
+								width = 460,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "attrNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled9-text",
+										name = "tempStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 260,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Label",
+										params = {
+											text = "Label",
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "titleLabel",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 230,
+										y = 99
+									},
+									text = TR("属性总览")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mZhenfaInfo = slot1.zhenfaInfo
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot1 = {
+	TR("前下"),
+	TR("前上"),
+	TR("后下"),
+	TR("后中"),
+	TR("后上")
+}
+slot0.refreshUI = function (slot0)
+	slot0.emptyStr:setVisible(slot0.mZhenfaInfo.StarLv <= 0)
+
+	slot7, slot2 = slot0.handleData(slot0)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "allAttrLayout", {
+		titleStr = TR("属性总览")
+	})
+	slot4 = 40
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(slot1) do
+		slot3.addChild(slot3, slot12)
+		table.insert(slot5, slot0.createLayoutTemplateNode(slot0, "attrNode", {
+			tempStr = (Utility.isAttrNeedPercent(slot10.fightattr) and "" .. TR("%s#8bA857+%0.1f%%  ", FightAttrTypeName[slot10.fightattr], slot10.value/100)) or "" .. TR("%s#8bA857+%d  ", FightAttrTypeName[slot10.fightattr], slot10.value)
+		}))
+	end
+
+	slot6 = (#slot1%2 == 0 and #slot1/2) or math.floor(#slot1/2) + 1
+
+	slot3.setContentSize(slot3, 460, slot4)
+
+	for slot10, slot11 in ipairs(slot5) do
+		slot11.setPosition(slot11, (slot10%2 == 0 and 40) or 280, slot4 - 20 - ((slot10%2 == 0 and slot10/2) or math.floor(slot10/2) + 1)*40)
+	end
+
+	slot3.titleLabel:setPosition(230, slot4 - 20)
+	slot0.mListView:pushBackCustomItem(slot3)
+
+	for slot10, slot11 in ipairs(slot2) do
+		slot12 = 40
+		slot13 = slot0.createLayoutTemplateNode(slot0, "allAttrLayout", {
+			titleStr = slot0[slot11.posNum]
+		})
+		slot15 = ""
+
+		for slot19, slot20 in ipairs(slot14) do
+			slot15 = (Utility.isAttrNeedPercent(slot20.fightattr) and slot15 .. TR("%s#8bA857+%0.1f%%  ", FightAttrTypeName[slot20.fightattr], slot20.value/100)) or slot15 .. TR("%s#8bA857+%d  ", FightAttrTypeName[slot20.fightattr], slot20.value)
+		end
+
+		slot16 = slot0.createLayoutTemplateNode(slot0, "attrNode", {
+			tempStr = slot15
+		})
+
+		slot13.addChild(slot13, slot16)
+		slot13.setContentSize(slot13, 460, 80)
+		slot16.setPosition(slot16, 40, 30)
+		slot13.titleLabel:setPosition(230, 60)
+		slot0.mListView:pushBackCustomItem(slot13)
+	end
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+
+	for slot5 = 1, slot0.mZhenfaInfo.StarLv, 1 do
+		table.insert(slot1, ZhenfaStarConfig.items[slot5])
+	end
+
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot1) do
+		if slot8.addAttrStr ~= "" then
+			table.insert(slot2, slot8.addAttrStr)
+		end
+
+		if slot8.positionAttr ~= "" then
+			table.insert(slot3, slot8.positionAttr)
+		end
+	end
+
+	slot4 = {}
+
+	for slot8, slot9 in ipairs(slot2) do
+		for slot14, slot15 in ipairs(slot10) do
+			if slot4[slot15.fightattr] then
+				slot4[slot15.fightattr] = slot4[slot15.fightattr] + slot15.value
+			else
+				slot4[slot15.fightattr] = slot15.value
+			end
+		end
+	end
+
+	slot5 = {}
+
+	for slot9, slot10 in pairs(slot4) do
+		table.insert(slot5, {
+			fightattr = slot9,
+			value = slot10
+		})
+	end
+
+	slot6 = {}
+
+	for slot10, slot11 in ipairs(slot3) do
+		slot13 = ""
+		slot14 = ""
+
+		for slot18, slot19 in ipairs(slot12) do
+			if string.find(slot19, "|") then
+				slot14 = slot19
+			else
+				slot13 = tonumber(slot19)
+			end
+		end
+
+		table.insert(slot6, {
+			posNum = slot13,
+			attrStr = slot14
+		})
+	end
+
+	return slot5, slot6
+end
+
+return slot0

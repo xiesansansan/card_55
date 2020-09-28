@@ -1,0 +1,415 @@
+slot0 = class("MarketCitywarLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled9",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "guildShopGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGuildShopGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 370,
+					pos = {
+						x = 104.69,
+						y = -13.42
+					},
+					size = {
+						width = 768.07,
+						height = 409.28
+					}
+				},
+				children = {
+					{
+						name = "guildShopNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled17-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled14-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled15-text",
+								name = "nameText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 175.65,
+								y = 163.18
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = -2.51,
+										y = 168.02
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Sprite",
+								params = {
+									image = "sc_29.png",
+									pos = {
+										x = 0.26,
+										y = -20.12
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 0.23,
+										y = 60.13
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -20.77,
+										y = -39.21
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Sprite",
+								params = {
+									image = "sc_30.png",
+									pos = {
+										x = 0,
+										y = -89.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "ResLabel",
+								params = {
+									fontSize = 20,
+									num = 5555,
+									modelId = 1113,
+									childName = "costLabel",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -28.08,
+										y = -74.82
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "btn",
+									image = "c_19.png",
+									clickAction = "onGuildShopBuyAction",
+									pos = {
+										x = 0.24,
+										y = -150.64
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "remainLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 0.66,
+										y = -103.93
+									},
+									text = TR("不限购")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "hintLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 77.98,
+						y = 222.41
+					},
+					text = TR("尚未加入帮派，按照1级帮派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					image = "sc_17.png",
+					pos = {
+						x = 104,
+						y = 194
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled20",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGuildShopDataList = {}
+	slot0.mGuildShopInfo = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eMarketGuild) then
+		RedDotObj:seeRedDot("MarketGuild", "1104")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetGuildShopInfo(slot0)
+
+	return 
+end
+slot0.refreshGuildShopUI = function (slot0)
+	if (PlayerAttrObj:getPlayerAttrByName("GuildInfo") or {}.GuildLevel or 1) == 0 then
+		slot2 = 1
+	end
+
+	slot0.maxCount = Utility.getConfigItems("GuildLvRelation")[slot2].guildShopBuyTimes or 0
+
+	if Utility.isEntityId(slot1.GuildId) then
+		slot0.hintLabel:setString(TR("当前帮派等级可购买%s%s次%s，提升等级可增加次数！", "#258711", slot0.maxCount, "#ffffff"))
+	else
+		slot0.hintLabel:setString(TR("您尚未加入帮派，按照%s1级%s帮派限制可购买%s%s次%s！", "#EA2C00", "#ffffff", "#258711", slot0.maxCount, "#ffffff"))
+	end
+
+	slot0.mGuildShopDataList = {}
+
+	for slot7, slot8 in pairs(GuildShopRelation.items) do
+		table.insert(slot0.mGuildShopDataList, slot8)
+	end
+
+	table.sort(slot0.mGuildShopDataList, function (slot0, slot1)
+		return slot0.Id < slot1.Id
+	end)
+
+	return 
+end
+slot0.onGuildShopGridAction = function (slot0, slot1, slot2)
+	if slot0.mGuildShopDataList[slot2] == nil then
+		return 
+	end
+
+	slot8 = slot0.createLayoutTemplateNode(slot0, "guildShopNode", {
+		goodId = slot2,
+		cardInfo = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot3.goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(slot3.goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum
+			}
+		},
+		nameText = Resource.getName(Utility.analysisStrResList(slot3.goodStr)[1].resourceId)
+	})
+
+	slot1.addChild(slot1, slot8)
+	slot8.setPosition(slot8, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot8.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot3.goodStr)[1].resourceId)))
+	slot8.costLabel:setType(slot5.resourceId)
+	slot8.costLabel:setString(slot5.num, (Utility.analysisStrResList(slot3.buyNeedStr)[1].num <= Resource.getCount(Utility.analysisStrResList(slot3.buyNeedStr)[1].resourceId) and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+
+	slot10 = 0
+
+	for slot14, slot15 in pairs(slot0.mGuildShopInfo) do
+		slot10 = slot10 + slot15.BuyNum
+	end
+
+	if slot0.maxCount - slot10 < 0 then
+		slot11 = 0
+	end
+
+	slot12 = TR("剩余数量：%s", slot11)
+
+	if slot11 <= 0 then
+		slot8.remainLabel:setColor(cc.c3b(234, 44, 0))
+	end
+
+	slot8.remainLabel:setString(slot12)
+	slot8.btn:setEnabled(0 < slot11)
+
+	return 
+end
+slot0.onGuildShopBuyAction = function (slot0, slot1)
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.mGuildShopDataList) do
+		if slot7.Id == slot1.goodId then
+			slot2 = clone(slot7)
+
+			break
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if Resource.isEnough(Utility.analysisStrResList(slot2.buyNeedStr)[1].resourceId, Utility.analysisStrResList(slot2.buyNeedStr)[1].num) == false then
+		return 
+	end
+
+	slot0.requestGuildShopBuy(slot0, slot1.goodId)
+
+	return 
+end
+slot0.refreshAllShopInfo = function (slot0)
+	slot0.guildShopGridView:setItemNum(#slot0.mGuildShopDataList)
+
+	return 
+end
+slot0.requestGetGuildShopInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildShopList",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mGuildShopInfo = slot0.ShopInfo
+
+			slot0:refreshGuildShopUI()
+			slot0:refreshAllShopInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGuildShopBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GuildShopBuy",
+		moduleName = "Guild",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mGuildShopInfo = slot0.ShopInfo
+
+			slot0:refreshAllShopInfo()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashView(TR("购买成功"))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

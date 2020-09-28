@@ -1,0 +1,169 @@
+slot0 = class("TeamCopyBuyCountLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 157)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("购买次数")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 258.86,
+						y = 219.51
+					},
+					size = {
+						width = 448,
+						height = 186
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 256.92,
+						y = 105.24
+					},
+					text = TR("价格")
+				},
+				children = {}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onSelectChanged",
+					currSelCount = 1,
+					btnSize = {
+						width = 65,
+						height = 32.4
+					},
+					pos = {
+						x = 256.35,
+						y = 159.21
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onBuyBtn",
+					pos = {
+						x = 258.1,
+						y = 63.05
+					},
+					titleText = TR("购 买")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 258.41,
+						y = 247.54
+					},
+					text = TR("购买群策群力组队挑战次数")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.callBack = slot1 or {}.callBack
+	slot0.selectNum = 1
+	slot0.vip = PlayerAttrObj:getPlayerAttrByName("Vip")
+	slot0.hadBought = VipConfig.items[slot0.vip].teamCopyNum - TeamCopyHelper.BuyNum
+	slot0.useRes = Utility.analysisStrResList(TeamCopyBuyNumConfig.items[1].use)[1]
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.selectCountView:setMaxCount(TeamCopyHelper.BuyNum)
+
+	return 
+end
+slot0.onSelectChanged = function (slot0, slot1)
+	slot0.selectNum = slot1
+	slot2 = TeamCopyBuyNumConfig.items
+	slot3 = 0
+
+	for slot7 = slot0.hadBought + 1, slot0.hadBought + slot1, 1 do
+		slot3 = slot3 + Utility.analysisStrResList(slot2[slot7] or slot2[TeamCopyBuyNumConfig.items_count].use)[1].num
+	end
+
+	slot0.priceLabel:setString(TR("价格{%s}%s", Resource.getDaibiImg(slot0.useRes.resourceId), slot3))
+
+	slot0.totalPrice = slot3
+
+	return 
+end
+slot0.onBuyBtn = function (slot0)
+	if not Resource.isEnough(1111, slot0.totalPrice) then
+		return 
+	end
+
+	TeamCopyHelper:requestBuyFightNum({
+		buyNum = slot0.selectNum,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			ui.showFlashView(TR("购买成功"))
+
+			if slot0.callBack then
+				slot0.callBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

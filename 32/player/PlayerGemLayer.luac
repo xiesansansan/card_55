@@ -1,0 +1,1197 @@
+slot0 = class("PlayerGemLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zj_49.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mEquipParent",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "zj_50.png",
+			scaleApt = 2,
+			pos = {
+				x = 360.29,
+				y = 313.23
+			}
+		},
+		children = {
+			{
+				name = "EquipTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled67-subKey",
+						name = "redDotKey",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 239.76,
+						y = 296.44
+					}
+				},
+				children = {
+					{
+						name = "untitled66",
+						cType = "Sprite",
+						params = {
+							image = "zj_94.png",
+							childName = "attrSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Sprite",
+						params = {
+							childName = "selectSprite",
+							scale = 1.1,
+							hide = true,
+							image = "c_26.png",
+							pos = {
+								x = -1,
+								y = -3
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Node",
+						custom = {
+							{
+								value = 1,
+								name = "gemOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							pos = {
+								x = -30,
+								y = -60
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "CardNode",
+								params = {
+									scale = 0.3,
+									childName = "gemCard",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									image = "c_79.png",
+									scaleX = 0.5,
+									childName = "lvSprite",
+									scaleY = 0.8,
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "lvLabel",
+									text = "1",
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled18",
+						cType = "Node",
+						custom = {
+							{
+								value = 2,
+								name = "gemOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = -60
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "CardNode",
+								params = {
+									scale = 0.3,
+									childName = "gemCard",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									image = "c_79.png",
+									scaleX = 0.5,
+									childName = "lvSprite",
+									scaleY = 0.8,
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "lvLabel",
+									text = "1",
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled22",
+						cType = "Node",
+						custom = {
+							{
+								value = 3,
+								name = "gemOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							pos = {
+								x = 30,
+								y = -60
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "CardNode",
+								params = {
+									scale = 0.3,
+									childName = "gemCard",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "Sprite",
+								params = {
+									image = "c_79.png",
+									scaleX = 0.5,
+									childName = "lvSprite",
+									scaleY = 0.8,
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "lvLabel",
+									text = "1",
+									pos = {
+										x = 0,
+										y = 24
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled52",
+						cType = "Button",
+						params = {
+							childName = "clickBtn",
+							image = "c_pure.png",
+							clickAction = "onClickEquip",
+							pos = {
+								x = 0,
+								y = -15
+							},
+							size = {
+								width = 90,
+								height = 115
+							}
+						},
+						children = {
+							{
+								name = "untitled67",
+								cType = "RedDot",
+								params = {
+									subKey = "",
+									moduleId = 3303
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled26",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			image = "c_9.png",
+			scaleApt = 2,
+			pos = {
+				x = 880,
+				y = 265
+			}
+		},
+		children = {
+			{
+				name = "untitled36",
+				cType = "Button",
+				params = {
+					image = "tb_gn_24.png",
+					clickAction = "onAttrProView",
+					pos = {
+						x = 165,
+						y = 551
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled37",
+				cType = "Button",
+				params = {
+					image = "tb_gn_27.png",
+					clickAction = "onGemResonance",
+					pos = {
+						x = 265,
+						y = 551
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled39",
+				cType = "Button",
+				params = {
+					image = "tb_gn_29.png",
+					clickAction = "onGemCompose",
+					pos = {
+						x = 365,
+						y = 551
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mEquipCard",
+				cType = "CardNode",
+				params = {
+					allowClick = false,
+					pos = {
+						x = 228,
+						y = 410
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled41",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_10.png",
+					pos = {
+						x = 228,
+						y = 295
+					},
+					size = {
+						width = 436,
+						height = 36
+					}
+				},
+				children = {
+					{
+						name = "untitled42",
+						cType = "Sprite",
+						params = {
+							opacity = 125,
+							image = "c_78.png",
+							pos = {
+								x = 115,
+								y = 18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled43",
+						cType = "Sprite",
+						params = {
+							opacity = 125,
+							image = "c_78.png",
+							pos = {
+								x = 338,
+								y = 18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mPartLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "Label",
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 222,
+								y = 18
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mPartHintLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 228,
+						y = 240
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGemNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 228,
+						y = 150
+					}
+				},
+				children = {
+					{
+						name = "untitled49",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 1,
+								name = "cardOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onClickGem",
+							allowClick = true,
+							pos = {
+								x = -120,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled55",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									childName = "attrLabel",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 45,
+										y = -40
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled48",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 2,
+								name = "cardOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onClickGem",
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled56",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "attrLabel",
+									text = "Label",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 45,
+										y = -40
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled50",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 3,
+								name = "cardOrder",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onClickGem",
+							allowClick = true,
+							pos = {
+								x = 120,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled57",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "attrLabel",
+									text = "Label",
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 45,
+										y = -40
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "operaPane",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_56.png",
+							hide = true,
+							pos = {
+								x = -207.72,
+								y = 3.75
+							},
+							size = {
+								width = 79.71,
+								height = 142.24
+							}
+						},
+						children = {
+							{
+								name = "untitled64",
+								cType = "Button",
+								params = {
+									childName = "firstBtn",
+									image = "c_58.png",
+									clickAction = "onGemUpOrChange",
+									pos = {
+										x = 39.24,
+										y = 98.52
+									},
+									size = {
+										width = 75.35,
+										height = 43.41
+									},
+									titleText = TR("替换")
+								},
+								children = {}
+							},
+							{
+								name = "untitled65",
+								cType = "Button",
+								params = {
+									childName = "unsetBtn",
+									image = "c_58.png",
+									clickAction = "onUnset",
+									pos = {
+										x = 39.85,
+										y = 46.75
+									},
+									size = {
+										width = 75.35,
+										height = 43.41
+									},
+									titleText = TR("卸下")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = 10
+slot0.ctor = function (slot0, slot1)
+	slot0.mSelectPartId = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	GemObj:checkResonanceUpLv()
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	ui.addTouchEvent({
+		swallowTouch = false,
+		node = slot0.operaPane,
+		endedEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.operaPane) then
+				slot0.operaPane:setVisible(false)
+			end
+
+			return 
+		end
+	})
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.getEquipPart = function (slot0, slot1)
+	slot2 = {
+		{
+			image = "zj_28.png",
+			attrImg = "zj_96.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eHelmet]
+		},
+		{
+			image = "zj_29.png",
+			attrImg = "zj_100.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eClothes]
+		},
+		{
+			image = "zj_30.png",
+			attrImg = "zj_98.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eBelt]
+		},
+		{
+			image = "zj_31.png",
+			attrImg = "zj_95.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eShoes]
+		},
+		{
+			image = "zj_32.png",
+			attrImg = "zj_94.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eWeapon]
+		},
+		{
+			image = "zj_33.png",
+			attrImg = "zj_97.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eGlove]
+		},
+		{
+			image = "zj_34.png",
+			attrImg = "zj_101.png",
+			name = ResourceTypeSubName[ResourceTypeSub.eRing]
+		},
+		{
+			image = "zj_35.png",
+			attrImg = "zj_99.png",
+			name = ResourceTypeSubName[ResourceTypeSub.ePendant]
+		}
+	}
+
+	if slot1 then
+		return slot2[slot1]
+	else
+		return slot2
+	end
+
+	return 
+end
+slot0.refreshLeft = function (slot0)
+	slot0.mEquipParent:removeAllChildren()
+
+	slot0.mEquipNodeList = {}
+	slot2 = SlotEquipObj:getList()
+	slot3 = slot0.getPolygonsPosints(slot0, #slot0.getEquipPart(slot0), cc.p(280, 300), 200)
+
+	for slot7, slot8 in ipairs(slot1) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "EquipTempNode", {
+			redDotKey = "Gem_" .. slot7
+		})
+
+		slot9.setPosition(slot9, slot3[slot7])
+		slot0.mEquipParent:addChild(slot9)
+
+		slot0.mEquipNodeList[slot7] = slot9
+		slot9.clickBtn.partId = slot7
+
+		slot9.attrSprite:setTexture(slot8.attrImg)
+		slot0.refreshEquipGem(slot0, slot7)
+	end
+
+	return 
+end
+slot0.refreshEquipGem = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		if slot0.getGemModelId(slot0, slot1, slot7.gemOrder) and 0 < slot8 then
+			slot7.gemCard:setCardData({
+				modelId = slot8
+			}, {
+				Enums.CardShowAttr.eBorder
+			})
+			slot7.lvSprite:setVisible(true)
+			slot7.lvLabel:setString(GemModel.items[slot8].Lv)
+		elseif next(GemObj:getListByPartId(slot1)) then
+			slot7.gemCard:setCardData(nil, {
+				Enums.CardShowAttr.eAddMark
+			})
+			slot7.lvSprite:setVisible(false)
+			slot7.lvLabel:setString("")
+		else
+			slot7.gemCard:setCardData(nil, {
+				Enums.CardShowAttr.eBorder
+			})
+			slot7.lvSprite:setVisible(false)
+			slot7.lvLabel:setString("")
+		end
+	end
+
+	return 
+end
+slot0.refreshLeftSelect = function (slot0)
+	for slot4, slot5 in pairs(slot0.mEquipNodeList) do
+		slot5.selectSprite:setVisible(slot4 == slot0.mSelectPartId)
+	end
+
+	return 
+end
+slot0.getPolygonsPosints = function (slot0, slot1, slot2, slot3)
+	slot4 = {}
+
+	if slot1 < 3 then
+		return slot4
+	end
+
+	slot5 = (math.pi*2)/slot1
+	slot6 = math.pi*0.5
+
+	for slot10 = 1, slot1, 1 do
+		table.insert(slot4, {
+			x = slot2.x + slot3*math.cos(slot6),
+			y = slot2.y + slot3*math.sin(slot6)
+		})
+
+		slot6 = slot6 + slot5
+	end
+
+	return slot4
+end
+slot0.refreshRight = function (slot0)
+	slot2 = slot0.getEquipPart(slot0, slot0.mSelectPartId)
+
+	if 0 < SlotEquipObj:getItem(slot0.mSelectPartId).EquipModelId then
+		slot9.Star, slot4 = Utility.getStarImgByRefineLv(slot1.RefineLv)
+
+		slot0.mEquipCard:setCardData(nil, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eLevel,
+			Enums.CardShowAttr.eStar
+		}, {
+			resourceId = slot1.EquipModelId,
+			Level = slot1.LvUp,
+			Star = slot3
+		})
+	else
+		slot0.mEquipCard:setCardData({})
+		slot0.mEquipCard:setExtraImg(slot2.image)
+	end
+
+	slot0.mPartLabel:setString(TR("%s部位宝石", slot2.name))
+	slot0.mPartHintLabel:setString(TR("该部位只能镶嵌#d90607%s", GemNameConfig.items[slot0.mSelectPartId].nameStr))
+
+	slot3 = slot0.getCustomChildren(slot0, slot0.mGemNode, "cardOrder")
+	slot4 = slot1.GemList or {}
+
+	for slot8, slot9 in pairs(slot3) do
+		if slot4[tostring(slot9.cardOrder)] and 0 < slot10 then
+			slot9.setCardData(slot9, {
+				modelId = slot10
+			}, {
+				Enums.CardShowAttr.eBorder,
+				Enums.CardShowAttr.eName
+			})
+
+			slot9.attrLabel = UIWrap.newControl("Label", {
+				fontSize = 20,
+				text = Utility.analysisStrAttrToFromat(GemModel.items[slot10].addAttrStr, "%s+%s", "  "),
+				pos = cc.p(45, -40),
+				color = cc.c3b(37, 37, 37)
+			})
+
+			slot9.addChild(slot9, slot9.attrLabel)
+		else
+			slot9.setCardData(slot9, {}, {
+				Enums.CardShowAttr.eAddMark
+			})
+		end
+
+		if slot9.redDot and not tolua.isnull(slot9.redDot) then
+			slot9.redDot:removeFromParent()
+
+			slot9.redDot = nil
+		end
+
+		slot9.redDot = UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eGemPoint,
+			subKey = "Gem_" .. slot0.mSelectPartId .. "_" .. slot8
+		})
+
+		slot9.addChild(slot9, slot9.redDot)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshLeft(slot0)
+	slot0.refreshLeftSelect(slot0)
+	slot0.refreshRight(slot0)
+
+	return 
+end
+slot0.isRarePart = function (slot0, slot1)
+	return (table.indexof({
+		5,
+		6,
+		7,
+		8
+	}, slot1) and true) or false
+end
+slot0.changeGem = function (slot0, slot1)
+	if not next(clone(GemObj:getListByPartId(slot0.mSelectPartId))) then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.PlayerGemGetwayLayer",
+			data = {
+				isRare = slot0.isRarePart(slot0, slot0.mSelectPartId)
+			}
+		})
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerGemChooseLayer",
+		data = {
+			layerType = 1,
+			partId = slot0.mSelectPartId,
+			posId = slot1,
+			callback = function (slot0)
+				slot0:requestGemInlays(slot0.mSelectPartId, slot0.requestGemInlays, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.isShowUpBtn = function (slot0, slot1)
+	if slot0 <= GemModel.items[slot0.getGemModelId(slot0, slot0.mSelectPartId, slot1)].Lv then
+		return false
+	end
+
+	return not slot0.isNeedChange(slot0, slot0.mSelectPartId, slot1)
+end
+slot0.isCanLvUp = function (slot0, slot1, slot2)
+	if slot0 <= GemModel.items[slot0.getGemModelId(slot0, slot1, slot2)].Lv then
+		return false
+	end
+
+	slot5, slot6, slot7, slot8 = slot0.gemCanLvUp(slot0, slot3)
+
+	return slot5 and slot6 and slot7
+end
+slot0.isNeedChange = function (slot0, slot1, slot2)
+	slot4 = GemModel.items[slot0.getGemModelId(slot0, slot1, slot2)].Lv
+
+	for slot8, slot9 in pairs(GemObj:getListByPartId(slot1)) do
+		if slot4 < GemModel.items[slot8].Lv then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.getGemModelId = function (slot0, slot1, slot2)
+	return SlotEquipObj:getItem(slot1 or slot0.mSelectPartId).GemList or {}[tostring(slot2)]
+end
+slot0.gemUpLv = function (slot0, slot1)
+	if GemModel.items[slot0.getGemModelId(slot0, nil, slot1)].Lv == slot0 then
+		ui.showFlashView(TR("该宝石已至最高等级！"))
+
+		return 
+	end
+
+	slot4, slot5, slot6, slot7 = slot0.gemCanLvUp(slot0, slot2)
+
+	if not slot4 or not slot5 or not slot6 then
+		slot8 = Utility.analysisStrResList(GemModel.items[slot2 + 1].composeNeed)[1].resourceId
+
+		if not slot5 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.PlayerGemGetwayLayer"
+			})
+
+			return 
+		end
+
+		if not slot6 then
+			Resource.isEnough(slot8, PlayerAttrObj:getPlayerAttrByName(PlayerAttrObj:getNameByResType(slot8)) + 1)
+
+			return 
+		end
+	end
+
+	ui.showMessageBox({
+		titleText = TR("宝石升级"),
+		diyUICallback = function (slot0, slot1)
+			slot0.addChild(slot0, UIWrap.newControl("Label", {
+				fontSize = 22,
+				text = TR("是否消耗同部位宝石和%s%s升级宝石到%s级？", slot0.num, Resource.getName(slot0.resourceId), slot1 + 1),
+				pos = cc.p(slot1.width/2, slot1.height*0.6),
+				color = cc.c3b(58, 28, 18),
+				size = cc.size(400, 48),
+				align = cc.TEXT_ALIGNMENT_CENTER
+			}))
+
+			return 
+		end,
+		okCallback = function ()
+			slot0:requestGemUpLv(slot0.mSelectPartId, slot0)
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.gemCanLvUp = function (slot0, slot1)
+	slot5 = GemObj:getItemCount(slot1)
+	slot6 = clone(GemObj:getListByPartId(slot3))
+	slot7 = GemConfig.items[1].lvUpNeedNum
+	slot8 = 0
+
+	if slot0 == GemModel.items[slot1].Lv then
+		return false, true, true, nil
+	end
+
+	slot10 = PlayerAttrObj:getPlayerAttrByName(PlayerAttrObj:getNameByResType(Utility.analysisStrResList(GemModel.items[slot1 + 1].composeNeed)[1].resourceId))
+
+	if slot7 - 1 <= slot5 then
+		return true, true, slot9.num <= slot10, slot9
+	end
+
+	slot11 = slot1 - slot4
+	slot12 = 11
+	slot13 = slot4 - 1
+	slot14 = slot7 - 1 - slot5
+
+	for slot18, slot19 in pairs(slot6) do
+		if GemModel.items[slot18].Lv < slot12 then
+			slot12 = slot20
+		end
+	end
+
+	while slot12 <= slot13 do
+		slot10 = slot10 - Utility.analysisStrResList(GemModel.items[slot11 + slot13 + 1].composeNeed)[1].num*slot14
+		slot8 = slot8 + Utility.analysisStrResList(GemModel.items[slot11 + slot13 + 1].composeNeed)[1].num*slot14
+
+		if 0 <= GemObj:getItemCount(slot11 + slot13) - slot7*slot14 then
+			if slot10 - slot9.num < 0 then
+				return true, true, false, nil
+			end
+
+			slot16.num = slot8 + slot9.num
+
+			return true, true, true, slot16
+		end
+
+		slot13 = slot13 - 1
+		slot14 = math.abs(slot17)
+	end
+
+	return false, false, true, nil
+end
+slot0.onClickEquip = function (slot0, slot1)
+	slot0.mSelectPartId = slot1.partId
+
+	slot0.refreshLeftSelect(slot0)
+	slot0.refreshRight(slot0)
+
+	return 
+end
+slot0.onClickGem = function (slot0, slot1)
+	if slot0.getGemModelId(slot0, slot0.mSelectPartId, slot1.cardOrder) and 0 < slot2 then
+		slot0.operaPane:setVisible(true)
+		slot0.operaPane:setPositionX(slot1.getPositionX(slot1) - 90)
+		slot0.operaPane.firstBtn:setTitleText((slot0.isShowUpBtn(slot0, slot1.cardOrder) and TR("升级")) or TR("替换"))
+
+		slot0.operaPane.firstBtn.order = slot1.cardOrder
+		slot0.operaPane.unsetBtn.order = slot1.cardOrder
+	else
+		slot0.changeGem(slot0, slot1.cardOrder)
+	end
+
+	if slot0.operaPane.redDot and not tolua.isnull(slot0.operaPane.redDot) then
+		slot0.operaPane.redDot:removeFromParent()
+
+		slot0.operaPane.redDot = nil
+	end
+
+	slot0.operaPane.redDot = UIWrap.newControl("RedDot", {
+		moduleId = ModuleSub.eGemPoint,
+		subKey = "Gem_" .. slot0.mSelectPartId .. "_" .. slot1.cardOrder
+	})
+
+	slot0.operaPane.firstBtn:addChild(slot0.operaPane.redDot)
+
+	return 
+end
+slot0.onGemCompose = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerGemChooseLayer",
+		data = {
+			layerType = 2
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGemShop = function (slot0, slot1)
+	if Utility.moduleIsOpen(ModuleSub.eGemShop, true) == false then
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "shop.ShopLayer",
+		data = {
+			moduleId = ModuleSub.eGemShop
+		}
+	})
+
+	return 
+end
+slot0.onGemResonance = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.EquipResonanceLayer",
+		data = {
+			applyToEquip = false
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onAttrProView = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerGemPropertyLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGemUpOrChange = function (slot0, slot1)
+	slot0.operaPane:setVisible(false)
+
+	if slot0.isShowUpBtn(slot0, slot1.order) then
+		slot0.gemUpLv(slot0, slot1.order)
+	else
+		slot0.changeGem(slot0, slot1.order)
+	end
+
+	return 
+end
+slot0.onUnset = function (slot0, slot1)
+	slot0.operaPane:setVisible(false)
+	slot0.requestGemDown(slot0, slot0.mSelectPartId, slot1.order)
+
+	return 
+end
+slot0.requestGemInlays = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "GemInlays",
+		moduleName = "EquipPosition",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			SlotEquipObj:modifyItem(slot0)
+			GemObj:checkResonanceUpLv()
+			slot0:refreshEquipGem(slot0.refreshEquipGem)
+			slot0:refreshRight()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGemDown = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GemDown",
+		moduleName = "EquipPosition",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			SlotEquipObj:modifyItem(slot0)
+			slot0:refreshEquipGem(slot0.refreshEquipGem)
+			slot0:refreshRight()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGemUpLv = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GemPositionCompose",
+		moduleName = "Gem",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			SlotEquipObj:modifyItem(slot0.PositionInfo)
+			GemObj:checkResonanceUpLv()
+			slot0:refreshEquipGem(slot0.refreshEquipGem)
+			slot0:refreshRight()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

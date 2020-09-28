@@ -1,0 +1,336 @@
+slot0 = class("GuideLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "touchLayer",
+		cType = "Layer",
+		params = {
+			sizeApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "girlSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "xsyd_2.png",
+			scaleApt = 2,
+			pos = {
+				x = 452.36,
+				y = 279.96
+			}
+		},
+		children = {
+			{
+				name = "descLabel",
+				cType = "Label",
+				params = {
+					text = "fasafasfsaf",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 608.09,
+						y = 140.69
+					},
+					size = {
+						width = 280,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Effect",
+				params = {
+					scale = 0.8,
+					dataFile = "effect_ui_xingshouyindao",
+					pos = {
+						x = 293.05,
+						y = -332.31
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "figureNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 629,
+				y = 287
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_yingdaodianji",
+					animation = "xunhuan",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "clipLayer",
+		cType = "Layer",
+		params = {
+			sizeApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "skipGuideBtn",
+		cType = "Button",
+		params = {
+			image = "c_19.png",
+			scaleApt = 2,
+			hide = true,
+			posApt = 1,
+			clickAction = "onSkipGuide",
+			pos = {
+				x = 553.83,
+				y = 32.42
+			},
+			titleText = TR("跳过引导")
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	dump("创建新手引导页面")
+
+	slot0.params = slot1
+
+	slot0.super.ctor(slot0, {
+		swallow = false,
+		endedEvent = function (slot0, slot1)
+			slot2, slot3 = slot0:isTouchInClick(slot0)
+			slot4 = true
+
+			if not slot0.params.clickRect then
+				slot4 = slot2
+			end
+
+			if ui.isTouchNodeClicked(slot0.getStartLocation(slot0), slot3) and slot4 then
+				slot6 = slot0.params.callback
+				slot7 = slot0.params.extCallback
+
+				if slot0.params.overClose then
+					LayerManager.closeGuideLayer()
+				else
+					slot0:enableTouch(false)
+					slot0.skipGuideBtn:setVisible(false)
+				end
+
+				if slot6 then
+					slot6()
+				end
+
+				if slot7 then
+					slot7()
+				end
+
+				slot0.noUseClick = 0
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+
+	slot0.mClip = nil
+	slot0.noUseClick = 0
+	slot0.defaultOpacity = slot0.getOpacity(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.exeConfig(slot0, slot0.params)
+
+	return 
+end
+slot0.exeConfig = function (slot0, slot1)
+	slot0.params = slot1
+
+	if not slot0.params.clickRect and not slot0.params.clickNode then
+		if slot0.params.eventId then
+			printInfo("无法执行引导:%d", slot0.params.eventId)
+			slot0.setVisible(slot0, false)
+			Utility.performWithDelay(slot0.girlSprite, function (...)
+				LayerManager.closeGuideLayer()
+
+				return 
+			end, 0.01)
+		else
+			slot0.enableTouch(slot0, false)
+		end
+
+		return 
+	end
+
+	slot0.enableTouch(slot0, true)
+
+	slot0.clickRect = slot0.params.clickRect
+
+	if slot0.clickRect then
+		slot0.clickRect.width = slot0.clickRect.width*display.xSafeScale
+		slot0.clickRect.height = slot0.clickRect.height*display.minSafeScale
+	end
+
+	if not slot0.params.clickRect then
+		slot3 = cc.size(slot0.params.clickNode.getContentSize(slot2).width*slot0.params.clickNode.getScale(slot2), slot0.params.clickNode.getContentSize(slot2).height*slot0.params.clickNode.getScale(slot2))
+		slot6 = cc.pSub(slot4, cc.p(slot3.width*slot0.params.clickNode.getAnchorPoint(slot2).x, slot3.height*slot0.params.clickNode.getAnchorPoint(slot2).y))
+		slot8 = slot0.convertNodeToLayer(slot0, slot2, slot6)
+		slot0.clickRect = cc.rect(slot8.x, slot8.y, slot0.convertNodeToLayer(slot0, slot2, slot7).x - slot8.x, slot0.convertNodeToLayer(slot0, slot2, slot7).y - slot8.y)
+	end
+
+	slot0.clickPos = cc.p(slot0.clickRect.x + slot0.clickRect.width*0.5, slot0.clickRect.y + slot0.clickRect.height*0.5)
+
+	slot0.figureNode:setPosition(slot0.clickPos)
+
+	if 2 <= #string.split(slot0.params.dialogPos, ",") then
+		slot0.girlSprite:setPosition(tonumber(slot2[1])*display.minSafeScale, tonumber(slot2[2])*display.minSafeScale)
+	else
+		slot0.girlSprite:setPosition(display.cx, display.cy)
+	end
+
+	slot0.descLabel:setString(GuideEventConfig.items[slot0.params.eventId].dialogList)
+	slot0.girlSprite:setVisible(0 < string.len(GuideEventConfig.items[slot0.params.eventId].dialogList))
+
+	if 0 < string.len(slot3.sound) then
+		MqAudio.stopAllEffect()
+
+		slot0.soundID = MqAudio.playEffect(slot3.sound)
+	end
+
+	slot0.showHighLightRect(slot0)
+
+	return 
+end
+slot0.showHighLightRect = function (slot0)
+	if slot0.highLightrender then
+		slot0.highLightrender:removeFromParent()
+
+		slot0.highLightrender = nil
+	end
+
+	if not slot0.params.highLightRect then
+		return 
+	end
+
+	slot0.highLightrender = cc.RenderTexture:create(display.size.width, display.size.height, cc.TEXTURE2_D_PIXEL_FORMAT_RGB_A8888)
+
+	slot0.highLightrender:setPosition(cc.p(320, 568))
+	slot0.addChild(slot0, slot0.highLightrender, -1)
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = display.newLayer()
+	})
+	slot0.highLightrender:addChild(slot2)
+
+	slot3 = UIWrap.newControl("Scale9Sprite", {
+		image = "c_200.png",
+		pos = cc.p(slot0.params.highLightRect.x, slot0.params.highLightRect.y),
+		anchor = cc.p(0, 0),
+		size = cc.size(slot0.params.highLightRect.width, slot0.params.highLightRect.height)
+	})
+
+	slot3.setBlendFunc(slot3, slot4)
+	slot0.highLightrender:clear(0, 0, 0, 0.8)
+	slot0.highLightrender:begin()
+	slot3.visit(slot3)
+	slot0.highLightrender:endToLua()
+
+	return 
+end
+slot0.convertNodeToLayer = function (slot0, slot1, slot2)
+	return slot0.touchLayer:convertToNodeSpace(slot1.getParent(slot1).convertToWorldSpace(slot3, slot2))
+end
+slot0.isTouchInClick = function (slot0, slot1)
+	return cc.rectContainsPoint(slot0.clickRect, slot0.touchLayer:convertToNodeSpace(slot2)), slot1.getLocation(slot1)
+end
+slot0.enableTouch = function (slot0, slot1)
+	slot0.girlSprite:setVisible(slot1)
+
+	if slot0.params.isNotShowFigure then
+		slot0.figureNode:setVisible(not slot0.params.isNotShowFigure)
+	else
+		slot0.figureNode:setVisible(slot1)
+	end
+
+	slot0.setOpacity(slot0, (slot1 and slot0.defaultOpacity) or 0)
+
+	if slot0.touchListener then
+		slot0.getEventDispatcher(slot0):removeEventListener(slot0.touchListener)
+
+		slot0.touchListener = nil
+	end
+
+	slot0.touchListener = ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0.touchLayer,
+		beganEvent = function (slot0, slot1)
+			slot0.noUseClick = slot0.noUseClick + 1
+
+			if slot1 then
+				slot2, slot3 = slot0:isTouchInClick(slot0)
+
+				if not slot2 then
+					slot0:createTouchAction()
+				end
+
+				return not slot2
+			end
+
+			return true
+		end
+	})
+
+	return 
+end
+slot0.onSkipGuide = function (slot0)
+	Guide.manager:guideError()
+
+	return 
+end
+slot0.createTouchAction = function (slot0)
+	return 
+end
+
+return slot0

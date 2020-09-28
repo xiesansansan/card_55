@@ -1,0 +1,1030 @@
+slot0 = class("DlgHeroStarUpResultLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBg",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_67.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mLeft41Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 284,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mHeroBody",
+				cType = "Sprite",
+				params = {
+					image = "lh_12104.png",
+					hide = true,
+					scale = 1,
+					pos = {
+						x = 40,
+						y = -25
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroName",
+				cType = "Sprite",
+				params = {
+					image = "name_11101.png",
+					hide = true,
+					pos = {
+						x = -121.47,
+						y = 151.1
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mLeft43Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 852,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled102",
+				cType = "Node",
+				params = {
+					childName = "node",
+					pos = {
+						x = 0,
+						y = -320
+					}
+				},
+				children = {
+					{
+						name = "bottomNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = -55.33,
+								y = -1.15
+							}
+						},
+						children = {
+							{
+								name = "tipLabel",
+								cType = "Label",
+								params = {
+									align = 1,
+									isRichText = true,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 28,
+										y = 172
+									},
+									text = TR("技能描述")
+								},
+								children = {}
+							},
+							{
+								name = "skillPane",
+								cType = "Node",
+								params = {
+									pos = {
+										x = -287,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "skillIcon",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled76-text",
+												name = "lv",
+												type = "string"
+											},
+											{
+												value = "untitled65-image",
+												name = "borderImg",
+												type = "string"
+											},
+											{
+												value = "untitled77-hide",
+												name = "hideArrow",
+												type = "string"
+											},
+											{
+												value = "untitled79-text",
+												name = "skillDesc",
+												type = "string"
+											},
+											{
+												value = "untitled66-pos",
+												name = "smallPicPos",
+												type = "string"
+											},
+											{
+												value = "lockHintLabel-text",
+												name = "lockHint",
+												type = "string"
+											},
+											{
+												value = "untitled66-image",
+												name = "smallPic",
+												type = "string"
+											},
+											{
+												value = "untitled75-hide",
+												name = "hideLvBg",
+												type = "string"
+											},
+											{
+												value = "untitled66-isGray",
+												name = "isLocked",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 5,
+												y = 10
+											},
+											size = {
+												width = 120,
+												height = 140
+											}
+										},
+										children = {
+											{
+												name = "untitled65",
+												cType = "Button",
+												custom = {
+													{
+														value = 4,
+														name = "posId",
+														type = "integer"
+													}
+												},
+												params = {
+													pressedAction = false,
+													image = "xkxx_79.png",
+													isGray = false,
+													pos = {
+														x = 60,
+														y = 90
+													}
+												},
+												children = {
+													{
+														name = "untitled66",
+														cType = "Sprite",
+														custom = {
+															{
+																value = "(0, 3);(0,-4)",
+																name = "ps",
+																type = "string"
+															}
+														},
+														params = {
+															childName = "smallPicSpr",
+															scale = 0.98,
+															isGray = false,
+															image = "sk_0001_4.png",
+															pos = {
+																x = 0,
+																y = 0
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled75",
+														cType = "Scale9Sprite",
+														params = {
+															childName = "lvBg",
+															hide = true,
+															image = "xkxx_83.png",
+															pos = {
+																x = 0.39,
+																y = -42.52
+															},
+															size = {
+																width = 60,
+																height = 24
+															}
+														},
+														children = {
+															{
+																name = "untitled76",
+																cType = "Label",
+																params = {
+																	fontSize = 16,
+																	childName = "lvLabel",
+																	text = "123",
+																	pos = {
+																		x = 30,
+																		y = 12
+																	}
+																},
+																children = {}
+															}
+														}
+													},
+													{
+														name = "untitled77",
+														cType = "Sprite",
+														params = {
+															childName = "upSprite",
+															image = "c_38.png",
+															hide = true,
+															pos = {
+																x = 36.28,
+																y = 34.07
+															}
+														},
+														children = {}
+													},
+													{
+														name = "lockHintLabel",
+														cType = "Label",
+														params = {
+															fontSize = 16,
+															isRichText = true,
+															align = 1,
+															text = " ",
+															outlineSize = 2,
+															childName = "lvLabel",
+															valign = 1,
+															color = {
+																g = 255,
+																r = 255,
+																b = 255
+															},
+															outlineColor = {
+																g = 33,
+																r = 42,
+																b = 16
+															},
+															pos = {
+																x = 0,
+																y = -5
+															},
+															size = {
+																width = 64,
+																height = 0
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "untitled79",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													isRichText = true,
+													childName = "nameLabel",
+													pos = {
+														x = 60,
+														y = 20
+													},
+													text = TR("落英心法初窥")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled82",
+										cType = "Sprite",
+										params = {
+											image = "c_23.png",
+											childName = "middleArrowSpr",
+											zOrder = 99,
+											pos = {
+												x = 310,
+												y = 105
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "showTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled46-text",
+								name = "oldDes",
+								type = "string"
+							},
+							{
+								value = "untitled48-text",
+								name = "newDes",
+								type = "string"
+							},
+							{
+								value = "untitled100-image",
+								name = "bgImage",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = -216.17,
+								y = 330.91
+							}
+						},
+						children = {
+							{
+								name = "untitled100",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_42.png",
+									pos = {
+										x = 165,
+										y = 9
+									},
+									size = {
+										width = 320,
+										height = 34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled48",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									isRichText = true,
+									childName = "label2",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 193,
+										r = 86,
+										b = 33
+									},
+									pos = {
+										x = 260,
+										y = 9
+									},
+									text = TR("317万")
+								},
+								children = {}
+							},
+							{
+								name = "untitled47",
+								cType = "Sprite",
+								params = {
+									image = "c_23.png",
+									childName = "sprite1",
+									scale = 0.8,
+									pos = {
+										x = 212,
+										y = 7.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "label1",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 21.18,
+										y = 9
+									},
+									text = TR("战力:215万")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "goldArrow",
+						cType = "Sprite",
+						params = {
+							opacity = 0,
+							image = "xkxx_43.png",
+							pos = {
+								x = -27.33,
+								y = 445.9
+							}
+						},
+						children = {}
+					},
+					{
+						name = "oldNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							scale = 1,
+							pos = {
+								x = -115.33,
+								y = 448.85
+							}
+						},
+						children = {
+							{
+								name = "untitled86",
+								cType = "CardNode",
+								params = {
+									scale = 0.75,
+									childName = "header",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled87",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_10.png",
+									childName = "nameBg",
+									pos = {
+										x = -2.28,
+										y = -52.67
+									},
+									size = {
+										width = 130,
+										height = 28
+									}
+								},
+								children = {
+									{
+										name = "untitled88",
+										cType = "Label",
+										params = {
+											emptyInit = true,
+											isRichText = true,
+											align = 1,
+											childName = "label",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											color = {
+												g = 163,
+												r = 103,
+												b = 30
+											},
+											pos = {
+												x = 64.56,
+												y = 14
+											},
+											text = TR("吕布")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled89",
+								cType = "StarNode",
+								params = {
+									space = -15,
+									childName = "starNode",
+									starImg = "c_5.png",
+									starLevel = 1,
+									scale = 0.9,
+									pos = {
+										x = -0.02,
+										y = -32.1
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "newNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							scale = 1,
+							pos = {
+								x = 54.67,
+								y = 448.85
+							}
+						},
+						children = {
+							{
+								name = "untitled96",
+								cType = "CardNode",
+								params = {
+									scale = 0.75,
+									childName = "header",
+									allowClick = false,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled97",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_10.png",
+									childName = "nameBg",
+									pos = {
+										x = -2.28,
+										y = -52.67
+									},
+									size = {
+										width = 130,
+										height = 28
+									}
+								},
+								children = {
+									{
+										name = "untitled98",
+										cType = "Label",
+										params = {
+											emptyInit = true,
+											isRichText = true,
+											align = 1,
+											childName = "label",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											color = {
+												g = 163,
+												r = 103,
+												b = 30
+											},
+											pos = {
+												x = 64.56,
+												y = 14
+											},
+											text = TR("吕布")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled99",
+								cType = "StarNode",
+								params = {
+									space = -15,
+									childName = "starNode",
+									starImg = "c_5.png",
+									starLevel = 1,
+									scale = 0.9,
+									pos = {
+										x = -0.02,
+										y = -32.1
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mStarUpEffect",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_shengxingchenggong",
+							hide = true,
+							animation = "xunhuan",
+							pos = {
+								x = -282,
+								y = 308
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mMidNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mCloseBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					hide = true,
+					pressedAction = false,
+					clickAction = "onClose",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1136,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "untitled101",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_60.png",
+							childName = "tips",
+							pos = {
+								x = 0,
+								y = -274
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroModelId = slot1.heroModelId
+	slot0.mOldInfo = slot1.oldInfo
+	slot0.mNewInfo = slot1.newInfo or HeroObj:getItem(slot0.mHeroModelId)
+	slot0.mStarModel = HeroStarRelation.items[slot0.mHeroModelId]
+	slot0.mOffset = -55.33
+	slot0.mOffsetY = 35
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	MqAudio.playEffect("tongyong_tanchuan.mp3")
+	Utility.performWithDelay(slot0, function ()
+		slot0.mCloseBtn:setVisible(true)
+
+		slot0 = cc.Sequence:create(cc.FadeOut:create(0.8), cc.FadeIn:create(0.4))
+
+		slot0.mCloseBtn:runAction(cc.RepeatForever:create(slot0))
+		slot0:executeGuide()
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mHeroBody" then
+			slot1.image = Utility.getHeroStandImage(slot0.mHeroModelId)
+		elseif slot0.name == "mHeroName" then
+			slot1.image = Utility.getHeroNameImage(slot0.mHeroModelId)
+		end
+
+		return 
+	end)
+
+	if HeroModel.items[slot0.mHeroModelId].drawingPicB ~= "" then
+		if cc.FileUtils:getInstance():isFileExist(slot1.drawingPicB .. ".skel") then
+			slot2 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				scale = 0.63,
+				dataFile = slot1.drawingPicB
+			})
+
+			slot2.setPosition(slot2, cc.p(30, -345))
+			slot0.mLeft41Node:addChild(slot2, 0)
+		else
+			slot0.mHeroBody:setVisible(true)
+		end
+	else
+		slot0.mHeroBody:setVisible(true)
+	end
+
+	slot0.createAttrElement(slot0)
+	slot0.initSkillStatus(slot0)
+	slot0.createActions(slot0)
+
+	return 
+end
+slot0.createAttrElement = function (slot0)
+	slot0.refreshOldViews(slot0)
+	slot0.refreshNewViews(slot0)
+
+	slot0.mShowItemList = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "showTempNode", {
+			oldDes = slot6.oldattrDes,
+			newDes = slot6.newattrDes,
+			bgImage = (slot5%2 == 1 and "c_pure.png") or "c_42.png"
+		}):setPosition(cc.p(slot0.mOffset + -142, (slot0.mOffsetY + 345) - slot5*35))
+
+		for slot13, slot14 in ipairs(slot9) do
+			slot14.setOpacity(slot14, 0)
+		end
+
+		table.insert(slot0.mShowItemList, slot8)
+		slot0.mLeft43Node.node:addChild(slot8)
+	end
+
+	return 
+end
+slot0.refreshOldViews = function (slot0)
+	slot0.oldNode.header:setCardData({}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eLevel
+	}, slot0.mOldInfo)
+	slot0.oldNode.starNode:setStarLevel(slot0.mOldInfo.Star)
+
+	slot1, slot2, slot3, slot4 = Utility.getHeroCampProfessionImg(slot0.mOldInfo.ModelId)
+	slot6, slot12 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot0.mOldInfo.TrainLv].colorLv, true)
+
+	slot0.oldNode.nameBg.label:setString(TR("%s%s%s", slot12, Resource.getName(slot0.mOldInfo.ModelId), (HeroTrainColorlvRelation.items[slot0.mOldInfo.TrainLv].intro == 0 and "") or string.format(" +%s", slot5.intro)))
+
+	return 
+end
+slot0.refreshNewViews = function (slot0)
+	slot0.newNode.header:setCardData({}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eLevel
+	}, slot0.mNewInfo)
+	slot0.newNode.starNode:setStarLevel(slot0.mNewInfo.Star)
+
+	slot1, slot2, slot3, slot4 = Utility.getHeroCampProfessionImg(slot0.mNewInfo.ModelId)
+	slot6, slot12 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot0.mNewInfo.TrainLv].colorLv, true)
+
+	slot0.newNode.nameBg.label:setString(TR("%s%s%s", slot12, Resource.getName(slot0.mNewInfo.ModelId), (HeroTrainColorlvRelation.items[slot0.mNewInfo.TrainLv].intro == 0 and "") or string.format(" +%s", slot5.intro)))
+
+	return 
+end
+slot0.initSkillStatus = function (slot0)
+	slot2 = HeroObj:getItem(slot1)
+	slot3 = HeroModel.items[slot0.mHeroModelId]
+	slot4 = table.maxn(HeroStarRelation.items[slot0.mHeroModelId])
+	slot5 = slot2.Star - 1
+	slot6 = slot2.Star
+	slot7 = {}
+	slot8 = nil
+
+	for slot12, slot13 in ipairs(slot2.SkillInfo) do
+		if tonumber(slot13.SkillId) == slot3.kongFuSkillAttackId then
+			slot8 = slot14
+		end
+
+		slot7[slot14] = slot13
+	end
+
+	table.insert({}, {
+		needTrainLv = 0,
+		skillId = slot8 or slot3.skillAttackId
+	})
+
+	for slot13, slot14 in ipairs(string.splitBySep(slot3.skillId, ",")) do
+		table.insert(slot9, {
+			skillId = tonumber(string.splitBySep(slot14, "|")[1]),
+			needTrainLv = tonumber(string.splitBySep(slot14, "|")[2])
+		})
+	end
+
+	slot10 = {
+		{
+			130,
+			350
+		},
+		{
+			-10,
+			100,
+			210,
+			320
+		}
+	}
+	slot11 = {
+		{
+			color = "",
+			desc = TR("初窥"),
+			smallPicPos = cc.p(0, 1)
+		},
+		{
+			color = "#37ff40",
+			desc = TR("精通"),
+			smallPicPos = cc.p(0, 3)
+		},
+		{
+			color = "#37ff40",
+			desc = TR("圆满"),
+			smallPicPos = cc.p(0, 3)
+		}
+	}
+
+	slot0.tipLabel:setString(TR("侠客技能效果提升#37ff40%s%%", (slot6 ~= slot4 and 20) or 17))
+	slot0.skillPane.middleArrowSpr:setVisible(slot6 ~= slot4)
+
+	if slot6 == slot4 then
+		for slot15, slot16 in ipairs(slot10[2]) do
+			slot18 = SkillModel.items[slot9[slot15].skillId]
+			slot19 = slot11[3]
+			slot20 = ""
+
+			if not slot7[slot9[slot15].skillId] then
+				slot23, slot27 = Utility.getColorValue(slot21)
+				slot20 = TR("%s%s#ffffff品质开启", slot24, Utility.getColorName(slot21))
+			end
+
+			slot21 = slot0.createLayoutTemplateNode(slot0, "skillIcon", {
+				hideArrow = false,
+				borderImg = "xkxx_80.png",
+				smallPic = slot18.skillPic .. ".png",
+				lv = (slot20 ~= "" and "") or slot7[slot17].Lv,
+				lockHint = slot20,
+				hideLvBg = slot20 ~= "",
+				isLocked = slot20 ~= "",
+				smallPicPos = slot19.smallPicPos,
+				skillDesc = TR("%s%s%s", slot18.skillName, slot19.color, slot19.desc)
+			})
+
+			slot21.setPosition(slot21, slot16 + 115, slot0.mOffsetY + -10)
+			slot21.setScale(slot21, 0.9)
+			slot0.skillPane:addChild(slot21)
+		end
+	else
+		for slot15, slot16 in ipairs(slot10[1]) do
+			slot19 = SkillModel.items[slot9[slot6].skillId]
+			slot20 = slot11[slot15]
+			slot21 = ""
+
+			if not slot7[slot9[slot6].skillId] then
+				slot24, slot28 = Utility.getColorValue(slot22)
+				slot21 = TR("%s%s#ffffff品质开启", slot25, Utility.getColorName(slot22))
+			end
+
+			slot22 = slot0.createLayoutTemplateNode(slot0, "skillIcon", {
+				hideArrow = true,
+				smallPic = slot19.skillPic .. ".png",
+				lv = (slot21 ~= "" and "") or slot7[slot18].Lv,
+				lockHint = slot21,
+				hideLvBg = slot21 ~= "",
+				isLocked = slot21 ~= "",
+				borderImg = (slot15 == 1 and "c_25.png") or "xkxx_79.png",
+				smallPicPos = slot20.smallPicPos,
+				skillDesc = TR("%s%s%s", slot19.skillName, slot20.color, slot20.desc)
+			})
+
+			slot22.setPosition(slot22, slot16, slot0.mOffsetY + -10)
+			slot0.skillPane:addChild(slot22)
+		end
+	end
+
+	return 
+end
+slot0.createActions = function (slot0)
+	slot0.mBg:runAction(cc.Speed:create(cc.Sequence:create({
+		cc.CallFunc:create(function ()
+			slot0.goldArrow:runAction(cc.FadeIn:create(0.2))
+
+			for slot3, slot4 in ipairs(slot0.goldArrow) do
+				slot4.setScale(slot4, 0.01)
+			end
+
+			for slot3, slot4 in ipairs(slot1) do
+				slot4.runAction(slot4, cc.Sequence:create({
+					cc.CallFunc:create(function ()
+						slot0:setVisible(true)
+
+						return 
+					end),
+					cc.DelayTime:create(slot3*0.1),
+					cc.ScaleTo:create(0.1, 1)
+				}))
+			end
+
+			return 
+		end),
+		cc.DelayTime:create(#{
+			slot0.oldNode,
+			slot0.newNode
+		}*0.1 + 0.2),
+		cc.CallFunc:create(function ()
+			for slot3, slot4 in ipairs(slot0.mShowItemList) do
+				for slot9, slot10 in ipairs(slot5) do
+					slot10.runAction(slot10, cc.Sequence:create({
+						cc.DelayTime:create(slot3*0.1),
+						cc.CallFunc:create(function ()
+							slot0:setOpacity(255)
+
+							return 
+						end)
+					}))
+				end
+			end
+
+			return 
+		end),
+		cc.DelayTime:create(#slot0.mShowItemList*0.1 + 0.2),
+		cc.CallFunc:create(function ()
+			slot0:showTitileEffect()
+			slot0.showTitileEffect.bottomNode:setPositionY(-150)
+			slot0.showTitileEffect.bottomNode.setPositionY.bottomNode:setVisible(true)
+			slot0.showTitileEffect.bottomNode.setPositionY.bottomNode.setVisible.bottomNode:runAction(cc.MoveTo:create(0.2, cc.p(slot0.mOffset, slot0.mOffsetY)))
+
+			return 
+		end)
+	}), 2))
+
+	return 
+end
+slot0.showTitileEffect = function (slot0)
+	slot0.mLeft43Node.node:addChild(UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "animation",
+		autoDelete = true,
+		dataFile = "effect_ui_shengxingchenggong",
+		pos = cc.p(-282, 308),
+		complete = function ()
+			slot0.mStarUpEffect:setVisible(true)
+
+			return 
+		end
+	}), 99)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 == 301 then
+		LayerManager.removeStackByName("hero.HeroListLayer")
+		LayerManager.removeTopCleanUpLayer()
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[20707] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		}
+	})
+
+	return 
+end
+
+return slot0

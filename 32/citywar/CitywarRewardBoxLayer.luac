@@ -1,0 +1,1049 @@
+slot0 = class("CitywarRewardBoxLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled46",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "jh_31.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled38",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onOutputRuleCb",
+					pos = {
+						x = 590,
+						y = 940
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardIntroNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 497.69,
+						y = 308.61
+					},
+					size = {
+						width = 400,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "situationLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 10,
+								y = 100
+							},
+							text = TR("已占领0座门派，18点可产出以下奖励")
+						},
+						children = {}
+					},
+					{
+						name = "rewardBoxNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled35-image",
+								name = "boxImg",
+								type = "string"
+							},
+							{
+								value = "numLabel-text",
+								name = "num",
+								type = "string"
+							},
+							{
+								value = "untitled53-image",
+								name = "cardImage",
+								type = "string"
+							},
+							{
+								value = "untitled54-clickAction",
+								name = "clickAction",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 15,
+								y = -8
+							},
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled53",
+								cType = "Sprite",
+								params = {
+									image = "c_15.png",
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled35",
+								cType = "Sprite",
+								params = {
+									scale = 0.8,
+									image = "jh_24.png",
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "numLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "0",
+									anchor = {
+										x = 1,
+										y = 0
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 73.76,
+										y = 8.58
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled54",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									clickAction = "onCloseLayerCb",
+									pos = {
+										x = 45,
+										y = 45
+									},
+									size = {
+										width = 85,
+										height = 85
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "contentNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 70,
+						y = 412.81
+					},
+					size = {
+						width = 500,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "boxId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jh_24.png",
+							clickAction = "onPreviewCb",
+							childName = "ABtn",
+							pos = {
+								x = 240.59,
+								y = 16.04
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									childName = "labelBg",
+									scaleX = 0.7,
+									hide = true,
+									image = "c_2.png",
+									pos = {
+										x = 9.22,
+										y = -46.23
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "boxCountLabel",
+									hide = true,
+									pos = {
+										x = 0,
+										y = -45
+									},
+									text = TR("无限")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled10",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "boxId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jh_25.png",
+							clickAction = "onPreviewCb",
+							childName = "BBtn",
+							pos = {
+								x = 338.71,
+								y = -58.41
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Sprite",
+								params = {
+									childName = "labelBg",
+									scaleX = 0.7,
+									hide = true,
+									image = "c_2.png",
+									pos = {
+										x = 9,
+										y = -45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "boxCountLabel",
+									hide = true,
+									text = "0",
+									pos = {
+										x = 0,
+										y = -45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled9",
+						cType = "Button",
+						custom = {
+							{
+								value = 3,
+								name = "boxId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jh_26.png",
+							clickAction = "onPreviewCb",
+							childName = "CBtn",
+							pos = {
+								x = 300.65,
+								y = -189.27
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Sprite",
+								params = {
+									childName = "labelBg",
+									scaleX = 0.7,
+									hide = true,
+									image = "c_2.png",
+									pos = {
+										x = 8,
+										y = -45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "boxCountLabel",
+									hide = true,
+									text = "0",
+									pos = {
+										x = 0,
+										y = -45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled8",
+						cType = "Button",
+						custom = {
+							{
+								value = 4,
+								name = "boxId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jh_27.png",
+							clickAction = "onPreviewCb",
+							childName = "DBtn",
+							pos = {
+								x = 161.28,
+								y = -191
+							}
+						},
+						children = {
+							{
+								name = "untitled24",
+								cType = "Sprite",
+								params = {
+									childName = "labelBg",
+									scaleX = 0.7,
+									hide = true,
+									image = "c_2.png",
+									pos = {
+										x = 10,
+										y = -45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "Label",
+								custom = {
+									{
+										value = 4,
+										name = "boxId",
+										type = "integer"
+									}
+								},
+								params = {
+									fontSize = 20,
+									childName = "boxCountLabel",
+									hide = true,
+									text = "0",
+									pos = {
+										x = 0,
+										y = -45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled7",
+						cType = "Button",
+						custom = {
+							{
+								value = 5,
+								name = "boxId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jh_28.png",
+							clickAction = "onPreviewCb",
+							childName = "EBtn",
+							pos = {
+								x = 118,
+								y = -56.89
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Sprite",
+								params = {
+									childName = "labelBg",
+									scaleX = 0.7,
+									hide = true,
+									image = "c_2.png",
+									pos = {
+										x = 8,
+										y = -45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "boxCountLabel",
+									hide = true,
+									text = "0",
+									pos = {
+										x = 0,
+										y = -45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "rotate2Btn",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onGetRewardCb",
+							titleImage = "wc_64.png",
+							pressedAction = false,
+							image = "jh_29.png",
+							pos = {
+								x = 231.83,
+								y = -107.22
+							},
+							titleImageOffset = {
+								x = 0.5,
+								y = 1.34
+							}
+						},
+						children = {
+							{
+								name = "untitled50",
+								cType = "Sprite",
+								params = {
+									image = "jh_30.png",
+									pos = {
+										x = 0.18,
+										y = 44.13
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "outputTimeNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 526.34,
+						y = 261.66
+					}
+				},
+				children = {
+					{
+						name = "untitled43",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 66,
+								y = 25
+							},
+							text = TR("产出倒计时")
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "00:00:00",
+							childName = "timeLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 125,
+								r = 203,
+								b = 69
+							},
+							pos = {
+								x = 170,
+								y = 25
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 687.77,
+						y = 132.96
+					},
+					text = TR("12点，18点，21点会根据帮派占领门派数产出宝箱")
+				},
+				children = {}
+			},
+			{
+				name = "untitled44",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_39.png",
+					clickAction = "onGetRewardCb",
+					pos = {
+						x = 546.59,
+						y = 189.36
+					},
+					titleText = TR("夺宝十次")
+				},
+				children = {
+					{
+						name = "untitled55",
+						cType = "RedDot",
+						params = {
+							moduleId = 5403
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rotateBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_19.png",
+					clickAction = "onGetRewardCb",
+					pos = {
+						x = 799.5,
+						y = 189.27
+					},
+					titleText = TR("夺宝一次")
+				},
+				children = {}
+			},
+			{
+				name = "resStatusLabelTen",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "0/0",
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 560,
+						y = 230.83
+					}
+				},
+				children = {
+					{
+						name = "untitled45",
+						cType = "Sprite",
+						params = {
+							image = "db_50012.png",
+							pos = {
+								x = -15.56,
+								y = 15.44
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "resStatusLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "0/0",
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 812.32,
+						y = 229.61
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Sprite",
+						params = {
+							image = "db_50012.png",
+							pos = {
+								x = -15.86,
+								y = 13.6
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayerCb",
+					zOrder = 1024,
+					pos = {
+						x = 895.82,
+						y = 458.07
+					}
+				},
+				children = {}
+			},
+			{
+				name = "noTips",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 688.97,
+						y = 347.04
+					},
+					text = TR("占领门派后产出宝箱")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.ourCityNumArr = slot1.ourCityNumArr
+	slot0.ourTotalCityNum = 0
+
+	for slot5, slot6 in ipairs(slot0.ourCityNumArr) do
+		slot0.ourTotalCityNum = slot0.ourTotalCityNum + slot6
+	end
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.rewardIntroNode:setVisible(slot0.ourTotalCityNum ~= 0)
+	slot0.noTips:setVisible(slot0.ourTotalCityNum == 0)
+	slot0.outputTimeNode:setVisible(slot0.ourTotalCityNum ~= 0)
+	slot0.refreshRewardIntro(slot0)
+	slot0.calcFiveBoxsRewards(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.calcOutputBoxNum = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6 = 1, CitywarGuildrewardConfig.items_count, 1 do
+		table.insert(slot2, {
+			value = 0,
+			resourceId = slot6
+		})
+	end
+
+	for slot6, slot7 in ipairs(CitywarRewardboxNumConfig.items) do
+		for slot12, slot13 in ipairs(slot8) do
+			slot2[slot13.fightattr].value = slot2[slot13.fightattr].value + slot13.value*slot1[slot6]
+		end
+	end
+
+	return slot2
+end
+slot0.refreshRewardIntro = function (slot0)
+	if slot0.ourTotalCityNum == 0 then
+		return 
+	end
+
+	dump(slot2, "curDate")
+
+	slot4 = os.date("*t", slot1).hour
+	slot5 = true
+	slot6 = ""
+
+	for slot10, slot11 in ipairs(slot3) do
+		if slot4 < slot11 then
+			slot4 = slot11
+			slot5 = false
+
+			break
+		end
+	end
+
+	if slot5 then
+		slot4 = slot3[1]
+		slot6 = ""
+	end
+
+	slot0.situationLabel:setString(slot7)
+
+	slot8 = {
+		"jh_24",
+		"jh_25",
+		"jh_26",
+		"jh_27",
+		"jh_28"
+	}
+	slot9 = {
+		"c_13.png",
+		"c_14.png",
+		"c_15.png",
+		"c_16.png",
+		"c_17.png"
+	}
+	slot11 = 0
+
+	for slot15, slot16 in ipairs(slot10) do
+		slot17 = slot0.rewardIntroNode:getChildByTag(slot15)
+
+		if slot16.value ~= 0 then
+			if not slot17 then
+				slot0.createLayoutTemplateNode(slot0, "rewardBoxNode", {
+					boxImg = slot8[slot15] .. ".png",
+					num = slot16.value,
+					cardImage = slot9[slot15],
+					clickAction = function ()
+						slot0:onPreviewCb({
+							boxId = slot0
+						})
+
+						return 
+					end
+				}).setPosition(slot17, slot11*90 + 15, -8)
+				slot0.rewardIntroNode:addChild(slot0.createLayoutTemplateNode(slot0, "rewardBoxNode", {
+					boxImg = slot8[slot15] .. ".png",
+					num = slot16.value,
+					cardImage = slot9[slot15],
+					clickAction = function ()
+						slot0.onPreviewCb({
+							boxId = slot0
+						})
+
+						return 
+					end
+				}), 0, slot15)
+			else
+				slot17.numLabel:setString(slot16.value)
+			end
+
+			slot11 = slot11 + 1
+		elseif slot17 then
+			slot17.removeFromParent(slot17)
+
+			slot17 = nil
+		end
+	end
+
+	slot0.outputTimeNode.timeLabel.stopAllActions(slot12)
+
+	slot14 = slot1 - slot2.sec - slot2.min*60 + ((((slot5 and 24) or 0) + slot4) - slot2.hour)*3600
+
+	Utility.schedule(slot12, function ()
+		if Player:getCurrentTime() <  then
+			slot1:setString(TR("%s", MqTime.formatAsHour(slot0 - slot0)))
+		else
+			slot2:refreshRewardIntro()
+			Utility.performWithDelay(slot2, handler(slot2, slot2.requestInfo), 1)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshOwnResStatus = function (slot0)
+	slot0.resStatusLabel:setString(string.format("%s%s#000000/%s", (Utility.analysisStrResList(CitywarConfig.items[1].rewardBoxOpenNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(CitywarConfig.items[1].rewardBoxOpenNeed)[1].resourceId) and "#252525") or "#ea2c00", slot2, slot1.num))
+	slot0.resStatusLabelTen:setString(string.format("%s%s#000000/%s", (slot1.num*10 <= slot2 and "#252525") or "#ea2c00", slot2, slot1.num*10))
+
+	return 
+end
+slot0.playAnimation = function (slot0, slot1)
+	ui.addTouchEvent({
+		node = cc.Layer:create()
+	})
+	slot0.addChild(slot0, slot3)
+	slot0.rotate2Btn:runAction(cc.Sequence:create(cc.EaseSineOut:create(cc.RotateBy:create(2, (math.random(slot5, slot6)*360 + (slot1.BoxId - 1)*5/360) - slot0.rotate2Btn:getRotation()%360)), cc.CallFunc:create(function ()
+		ui.showFlashReward(ui.showFlashReward)
+		ui.showFlashReward:removeFromParent()
+		slot2:refreshOwnResStatus()
+		slot2:refreshBoxCountStatus()
+
+		return 
+	end)))
+
+	return 
+end
+slot0.calcFiveBoxsRewards = function (slot0)
+	slot1 = 1
+	slot0.fiveBoxsRewards = {}
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(CitywarRewardboxConfig.items) do
+		slot9 = {
+			resourceId = (tonumber(string.split(slot7.reward, ",")[2]) == 0 and tonumber(slot8[1])) or tonumber(slot8[2]),
+			num = tonumber(slot8[3])
+		}
+
+		if slot7.boxId ~= slot1 then
+			table.insert(slot0.fiveBoxsRewards, slot2)
+
+			slot1 = slot1 + 1
+			slot2 = {}
+		end
+
+		table.insert(slot2, slot9)
+	end
+
+	table.insert(slot0.fiveBoxsRewards, slot2)
+
+	return 
+end
+slot0.refreshBoxCountStatus = function (slot0)
+	slot1 = slot0.getCustomChildren(slot0, slot0.contentNode, "boxId") or {}
+	slot2 = {}
+	slot5 = pairs
+	slot6 = string.split(slot3, ",") or {}
+
+	for slot8, slot9 in slot5(slot6) do
+		if #string.split(slot9, "|") == 2 then
+			slot2[({
+				boxId = tonumber(slot10[1]),
+				count = tonumber(slot10[2])
+			})["boxId"]] = {
+				boxId = tonumber(slot10[1]),
+				count = tonumber(slot10[2])
+			}
+		end
+	end
+
+	for slot8, slot9 in ipairs(CitywarGuildrewardConfig.items) do
+		slot10 = slot1[slot8]
+
+		if slot9.ifInfinite then
+			slot10.boxCountLabel:setString(TR("无限"))
+		elseif not slot3 or slot3 == "" or not slot2[slot8] then
+			slot10.boxCountLabel:setString("0")
+		else
+			slot10.boxCountLabel:setString(slot2[slot8].count)
+		end
+
+		slot10.labelBg:setVisible(true)
+		slot10.boxCountLabel:setVisible(true)
+	end
+
+	return 
+end
+slot0.onRuleBtnActionCb = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.消耗手谕可在宝库中进行夺宝。"),
+			TR("2.通过帮战、杀敌排行等玩法可获得手谕。"),
+			TR("3.每日12、18、21时会根据帮派占领门派数量产出白色品质以上的高级宝箱。"),
+			TR("4.帮派内成员夺宝时，有一定几率夺取到高级宝箱。"),
+			TR("5.高级宝箱全帮派共享，被夺走后会减少对应数量。")
+		}
+	})
+
+	return 
+end
+slot0.onOutputRuleCb = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CitywarReBoxRuleLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCloseLayerCb = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPreviewCb = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.DlgRewardShowLayer",
+		data = {
+			title = TR("奖励预览"),
+			rewardList = slot0.fiveBoxsRewards[slot1.boxId]
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGetRewardCb = function (slot0, slot1)
+	if Resource.isEnough(Utility.analysisStrResList(CitywarConfig.items[1].rewardBoxOpenNeed)[1].resourceId, (slot1.tag == 1 and Utility.analysisStrResList(CitywarConfig.items[1].rewardBoxOpenNeed)[1].num) or Utility.analysisStrResList(CitywarConfig.items[1].rewardBoxOpenNeed)[1].num*10) then
+		if slot1.tag == 2 then
+			ui.showMessageBox({
+				titleText = TR("提示"),
+				text = TR("夺宝十次只能获得最低级宝箱奖励，是否继续抽取"),
+				okCallback = function (slot0)
+					slot0:requestGuildReward(slot1.tag)
+
+					return 
+				end
+			})
+		else
+			slot0.requestGuildReward(slot0, slot1.tag)
+		end
+	end
+
+	return 
+end
+slot0.requestGuildReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		moduleName = "Citywar",
+		methodName = (slot1 == 1 and "GetReceiveBoxReward") or "GetReceiveBoxRewardTen",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.citywarBoxinfo = slot0.CitywarBoxinfo
+
+			slot0:playAnimation(slot0)
+
+			return 
+		end,
+		failedCallback = function (slot0, slot1)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetDetailedCityInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.citywarBoxinfo = slot0.CitywarBoxinfo
+
+			slot0:refreshOwnResStatus()
+			slot0:refreshBoxCountStatus()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,1098 @@
+slot0 = class("ExpeditionNewMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "bzlj_18.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "heroTemplateNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled39-text",
+						name = "heroName",
+						type = "string"
+					},
+					{
+						value = "untitled40-text",
+						name = "serverName",
+						type = "string"
+					},
+					{
+						value = "untitled41-text",
+						name = "fapText",
+						type = "string"
+					},
+					{
+						value = "untitled42-starLevel",
+						name = "star",
+						type = "string"
+					},
+					{
+						value = "untitled52-dataFile",
+						name = "figureName",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 0,
+						y = 200
+					}
+				},
+				children = {
+					{
+						name = "untitled52",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_lihui_badao",
+							scale = 0.25,
+							animation = "animation",
+							pos = {
+								x = 0,
+								y = -15
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Sprite",
+						params = {
+							image = "bzlj_16.png",
+							pos = {
+								x = 0,
+								y = -25
+							}
+						},
+						children = {
+							{
+								name = "untitled39",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 31.79,
+										y = 70
+									},
+									text = TR("角色名称：XXXXXX")
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 31.79,
+										y = 45
+									},
+									text = TR("区服：XXXXXX")
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 31.79,
+										y = 20
+									},
+									text = TR("战力：XXXXXX")
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "StarNode",
+								params = {
+									starImg = "c_5.png",
+									scale = 1.3,
+									starLevel = 5,
+									pos = {
+										x = 137.5,
+										y = -12.32
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled51",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							childName = "heroBtn",
+							pos = {
+								x = 15.42,
+								y = 120.42
+							},
+							size = {
+								width = 309.08,
+								height = 353.86
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "TopResourceNode",
+				params = {
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = -519.91,
+						y = -50.73
+					}
+				},
+				children = {}
+			},
+			{
+				name = "attrBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_307.png",
+					clickAction = "onExpeditionAttrClick",
+					pos = {
+						x = -55.13,
+						y = -99.56
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "RedDot",
+						params = {
+							moduleId = 1001
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mShopBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_318.png",
+					clickAction = "onPassShop",
+					hide = true,
+					pos = {
+						x = -147.93,
+						y = -100
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "closeBtn",
+				cType = "Button",
+				params = {
+					image = "c_1.png",
+					clickAction = "onClose",
+					pos = {
+						x = 124.97,
+						y = -29.24
+					}
+				},
+				children = {
+					{
+						name = "untitled8",
+						cType = "Sprite",
+						params = {
+							image = "bzlj_1.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -35,
+								y = 30
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "ruleBtn",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleClick",
+					pos = {
+						x = 304.29,
+						y = -26.47
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "countLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					outlineColor = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = -100,
+						y = 74
+					},
+					text = TR("剩余重置次数：2")
+				},
+				children = {}
+			},
+			{
+				name = "resetBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onReSetStartClick",
+					pos = {
+						x = -100,
+						y = 37
+					},
+					titleText = TR("重 置")
+				},
+				children = {
+					{
+						name = "untitled59",
+						cType = "RedDot",
+						params = {
+							subKey = "ResetCount",
+							moduleId = 4100
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Effect",
+				params = {
+					hide = true,
+					dataFile = "effect_ui_anniu",
+					pos = {
+						x = -101,
+						y = 36.73
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "shopBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_20.png",
+					clickAction = "onExpeditionShopClick",
+					hide = true,
+					pos = {
+						x = 55,
+						y = 50
+					}
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "RedDot",
+						params = {
+							moduleId = 1001
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "friendBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_272.png",
+					clickAction = "onClickFriend",
+					hide = true,
+					pos = {
+						x = 150,
+						y = 50
+					}
+				},
+				children = {
+					{
+						name = "untitled22",
+						cType = "RedDot",
+						params = {
+							moduleId = 1001
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled43",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "progress",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_34.png",
+					bgImage = "jyt_33.png",
+					pos = {
+						x = 5.05,
+						y = -100
+					}
+				},
+				children = {
+					{
+						name = "boxTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled49-image",
+								name = "btnImg",
+								type = "string"
+							},
+							{
+								value = "untitled50-text",
+								name = "starText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 101.05,
+								y = 13.76
+							}
+						},
+						children = {
+							{
+								name = "untitled49",
+								cType = "Button",
+								params = {
+									image = "jcgn_3.png",
+									childName = "boxBtn",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									imageScale = 1,
+									text = "100{c_5.png}",
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = -33
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "nowStar",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							isRichText = true,
+							text = "100{c_5.png}",
+							imageScale = 1,
+							anchor = {
+								x = 1,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -5,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled60",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_118.png",
+					pos = {
+						x = -421.9,
+						y = -100.62
+					}
+				},
+				children = {
+					{
+						name = "mCurNodeLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 97,
+								y = 15.5
+							},
+							text = TR("第1/13关")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled56",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mRefreshBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onRefreshClick",
+					pos = {
+						x = 0,
+						y = 35
+					},
+					titleText = TR("刷新")
+				},
+				children = {}
+			},
+			{
+				name = "mRefreshNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					outlineColor = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 0,
+						y = 70
+					},
+					text = TR("剩余刷新次数：2")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.heroNodeList = {}
+	slot0.boxNodeList = {}
+	slot0.isShowShop = slot1.isShowShop
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGeInfo(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		isShowShop = slot0.isShowShop
+	}
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onExpeditionShopClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "shop.ShopLayer",
+		data = {
+			moduleId = ModuleSub.eStoreExpedition
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onExpeditionAttrClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "expedition.ExpeditionNewAttrLayer",
+		data = {
+			buffIdList = slot0.data.ExpeditionInfo.BuffIds
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onClickFriend = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "swxy.SwxyFriendZhuZhenLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleClick = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、每个关卡只可挑战一次，分为三种不同难度供选择。"),
+			TR("2、挑战胜利后会刷新三种增益效果供选择，增益效果会累积至通关。重置后会消失。"),
+			TR("3、拜庄论剑战斗结束后，不会重置武将的剩余血量与怒气状态。"),
+			TR("4、胜利后可获得对应的星数，达到指定星数要求可领取丰厚的宝箱奖励。"),
+			TR("5、每日可免费重置一次挑战，每日凌晨5点重置挑战次数。")
+		}
+	})
+
+	return 
+end
+slot0.onPassShop = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "expedition.DlgPassShopLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in ipairs(slot0.heroNodeList) do
+		slot5.removeFromParent(slot5, true)
+
+		slot5 = nil
+	end
+
+	slot1 = {
+		cc.p(-370, 220),
+		cc.p(0, 180),
+		cc.p(365, 220)
+	}
+
+	for slot5, slot6 in ipairs(slot0.data.ExpeditionCurrentNodeInfo.TargetPlayerInfo) do
+		slot7 = "effect_lihui_badao"
+		slot0.heroNodeList[slot5] = slot0.createLayoutTemplateNode(slot0, "heroTemplateNode", {
+			figureName = (not FashionModel.items[slot6.HeadImageId] or FashionModel.items[slot6.HeadImageId].skillEffect) and HeroModel.items[slot6.HeadImageId].drawingPicB,
+			heroName = TR("角色名称：%s", slot6.Name),
+			serverName = TR("服务器：%s", slot6.ServerName),
+			fapText = TR("战力：%s", Utility.numberWithUnit(slot6.FAP)),
+			star = slot6.StarsNum
+		})
+
+		slot0.heroNodeList[slot5]:setPosition(slot1[slot5])
+		slot0.bottomNode:addChild(slot0.heroNodeList[slot5])
+		slot0.heroNodeList[slot5].heroBtn:setClickAction(function ()
+			if not slot0.data.ExpeditionInfo.IsPass then
+				slot0:onClickHero(slot0)
+			end
+
+			return 
+		end)
+
+		if slot5 == 2 then
+			slot0.mtargetNode = slot0.heroNodeList[slot5].heroBtn
+		end
+	end
+
+	slot0.countLabel:setString(TR("剩余重置次数：%s", slot0.data.ExpeditionInfo.FreeResetCountt))
+	slot0.countLabel:setVisible(0 < slot0.data.ExpeditionInfo.FreeResetCountt)
+	slot0.mRefreshNumLabel:setString(TR("剩余刷新次数：%s", slot0.data.ExpeditionInfo.NodeRefreshCount))
+
+	if slot0.psssTag then
+		slot0.psssTag:removeFromParent(true)
+
+		slot0.psssTag = nil
+	end
+
+	if slot0.data.ExpeditionInfo.IsPass then
+		slot0.psssTag = UIWrap.newControl("Sprite", {
+			image = "bzlj_17.png",
+			pos = cc.p(0, 400)
+		})
+
+		slot0.bottomNode:addChild(slot0.psssTag)
+	end
+
+	slot0.nowStar:setString(TR("%s{c_5.png}", slot0.data.ExpeditionInfo.StarsNum))
+	slot0.refreshRewardBox(slot0)
+
+	slot2 = table.keys(NewexpeditionNodeModel.items)
+
+	table.sort(slot2)
+	slot0.mCurNodeLabel:setString(TR("第%s/%s关", table.indexof(slot2, slot0.data.ExpeditionInfo.CurrentNodeId), #slot2))
+	slot0.mShopBtn:setVisible(slot0.data.ExpeditionInfo.IsPass)
+
+	return 
+end
+slot0.onClickHero = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "expedition.DlgBattleInfoLayer",
+		data = {
+			playerInfo = slot1,
+			nodeIndex = slot0.data.ExpeditionInfo.CurrentNodeId%100,
+			starNum = slot1.StarsNum,
+			myFormationStatus = slot0.data.ExpeditionInfo.CurrentHeroStatus,
+			myFormationStr = slot0.data.AttackSlotFormationInfo.FormationInfo,
+			callback = function (slot0)
+				slot1, slot2 = Guide.manager:getGuideInfo()
+
+				if slot2 then
+					slot0:executeGuide()
+				end
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.dealBoxConfig = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.rewardBoxReward = {}
+
+	for slot5, slot6 in pairs(NewexpeditionBoxDropRelation.items) do
+		for slot10, slot11 in pairs(slot6) do
+			if slot10 <= slot1 then
+				for slot15, slot16 in pairs(slot11) do
+					if slot1 <= slot15 then
+						table.insert(slot0.rewardBoxReward, {
+							starNum = slot16.starNum,
+							reward = slot16.reward
+						})
+
+						break
+					end
+				end
+			end
+		end
+	end
+
+	table.sort(slot0.rewardBoxReward, function (slot0, slot1)
+		return slot0.starNum < slot1.starNum
+	end)
+
+	return 
+end
+slot0.refreshBoxProgBar = function (slot0)
+	slot0.progress:setMaxValue(slot1)
+
+	slot2 = 100/#slot0.rewardBoxReward
+	slot3 = 0
+
+	for slot7, slot8 in ipairs(slot0.rewardBoxReward) do
+		if slot8.starNum <= slot0.data.ExpeditionInfo.StarsNum then
+			slot3 = slot3 + slot2
+		else
+			slot11 = slot8.starNum - ((slot0.rewardBoxReward[slot7 - 1] and slot0.rewardBoxReward[slot7 - 1].starNum) or 0)
+
+			if 0 < slot0.data.ExpeditionInfo.StarsNum - ((slot0.rewardBoxReward[slot7 - 1] and slot0.rewardBoxReward[slot7 - 1].starNum) or 0) then
+				slot3 = slot3 + slot2*slot10/slot11
+			end
+		end
+	end
+
+	slot0.progress:setCurrValue(slot3)
+
+	return 
+end
+slot0.refreshRewardBox = function (slot0)
+	slot1 = slot0.rewardBoxReward[#slot0.rewardBoxReward].starNum
+
+	for slot5, slot6 in ipairs(slot0.boxNodeList) do
+		slot6.removeFromParent(slot6, true)
+
+		slot6 = nil
+	end
+
+	slot0.refreshBoxProgBar(slot0)
+
+	slot2 = (slot0.data.ExpeditionInfo.BoxReceivedStr ~= "" and string.split(slot0.data.ExpeditionInfo.BoxReceivedStr, ",")) or {}
+
+	for slot6, slot7 in ipairs(slot0.rewardBoxReward) do
+		slot0.boxNodeList[slot6] = slot0.createLayoutTemplateNode(slot0, "boxTempNode", {
+			btnImg = (table.indexof(slot2, tostring(slot7.starNum)) and "jcgn_4.png") or "jcgn_3.png",
+			starText = TR("%s{c_5.png}", slot7.starNum)
+		})
+
+		slot0.boxNodeList[slot6]:setPosition(slot6*#slot0.rewardBoxReward/483, 13)
+		slot0.progress:addChild(slot0.boxNodeList[slot6])
+		slot0.boxNodeList[slot6].boxBtn:setClickAction(function ()
+			if table.indexof(table.indexof, tostring(slot1.starNum)) then
+				return 
+			end
+
+			if slot1.starNum <= slot2.data.ExpeditionInfo.StarsNum then
+				slot2:requestReceiveBox(slot1.starNum)
+			else
+				slot1.data = {
+					title = TR("奖励预览"),
+					rewardStr = slot1.reward,
+					extraText = (PlayerAttrObj:isModuleDoubleIncome(ModuleSub.eExpedition) and TR("双倍")) or nil
+				}
+				slot1.zOrder = Enums.ZOrderType.ePopLayer
+
+				LayerManager.addLayer(slot1)
+			end
+
+			return 
+		end)
+
+		if slot7.starNum <= slot0.data.ExpeditionInfo.StarsNum and not table.indexof(slot2, tostring(slot7.starNum)) then
+			slot0.isBoxNotReceive = true
+
+			ui.setWaveAnimation(slot0.boxNodeList[slot6].boxBtn)
+		end
+
+		if slot6 == 1 then
+			slot0.guideBoxBtn = slot0.boxNodeList[slot6].boxBtn
+		end
+	end
+
+	return 
+end
+slot0.onProgRewardClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "expedition.DlgTotalStarRewardLayer",
+		data = {
+			starNum = slot0.data.ExpeditionInfo.TotalStarsNum,
+			receiveReward = slot0.data.ExpeditionInfo.TotalStarsBoxReceivedStr,
+			callback = function (slot0)
+				slot0.data.ExpeditionInfo = slot0
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRefreshClick = function (slot0)
+	slot0.requestRefresh(slot0, function ()
+		slot0.mRefreshBtn:setEnabled(false)
+		Utility.schedule(slot0.mRefreshBtn, function ()
+			if slot0 <= 0 then
+				slot1.mRefreshBtn:setEnabled(true)
+				slot1.mRefreshBtn:setTitleText(TR("刷新"))
+				slot1.mRefreshBtn:stopAllActions()
+			else
+				slot1.mRefreshBtn:setTitleText(TR("%s秒", slot1.mRefreshBtn.setTitleText))
+
+				slot0 = slot1.mRefreshBtn.setTitleText - 1
+			end
+
+			return 
+		end, 1)
+
+		return 
+	end)
+
+	return 
+end
+slot0.onReSetStartClick = function (slot0)
+	if slot0.isBoxNotReceive then
+		ui.showFlashView(TR("有未领取完的宝箱"))
+
+		return 
+	end
+
+	if slot0.mResetCount <= 0 then
+		ui.showFlashView(TR("今日重置次数已用完"))
+
+		return 
+	end
+
+	slot0.requestResetStage(slot0, true)
+
+	return 
+end
+slot0.getVipResetTotalCount = function (slot0)
+	slot2 = nil
+
+	if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")] then
+		slot2 = VipConfig.items[slot1].expeditionPayResetNum
+	end
+
+	return slot2 or VipConfig.items[VipConfig.items_count - 1].expeditionPayResetNum
+end
+slot0.requestGeInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Expedition",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data = clone(slot0)
+			slot0.mResetCount = slot0.ExpeditionInfo.FreeResetCountt + slot0:getVipResetTotalCount() - slot0.ExpeditionInfo.VipResetCount
+			slot0.mFreeResetCountt = slot0.ExpeditionInfo.FreeResetCountt
+			slot0.mCurrentNodeId = slot0.ExpeditionInfo.CurrentNodeId
+
+			slot0:dealBoxConfig()
+			slot0:refreshUI()
+
+			if slot0.isShowShop and slot0.data.ExpeditionInfo.IsPass then
+				slot0:onPassShop()
+			end
+
+			if next(slot0.ExpeditionInfo.BuffToChooseIds) then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "expedition.ExpeditionChooseBuffLayer",
+					data = {
+						buffList = slot0.ExpeditionInfo.BuffToChooseIds,
+						callback = function ()
+							LayerManager.addLayer({
+								name = "expedition.ExpeditionNewMapLayer",
+								data = {
+									canRun = true,
+									currNode = slot0.data.ExpeditionInfo.CurrentNodeId
+								}
+							})
+
+							return 
+						end
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			slot0:executeGuide()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReceiveBox = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveBox",
+		moduleName = "Expedition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.isBoxNotReceive = false
+			slot0.data.ExpeditionInfo = clone(slot0.ExpeditionInfo)
+
+			slot0:refreshRewardBox()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestResetStage = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Reset",
+		moduleName = "Expedition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.data.ExpeditionInfo = slot0.ExpeditionInfo
+			slot0.data.ExpeditionCurrentNodeInfo = slot0.ExpeditionCurrentNodeInfo
+
+			ui.showFlashView(TR("重置成功"))
+
+			slot0.mCurrentNodeId = slot0.ExpeditionInfo.CurrentNodeId
+			slot0.mResetCount = slot0.ExpeditionInfo.FreeResetCountt + slot0:getVipResetTotalCount() - slot0.ExpeditionInfo.VipResetCount
+			slot0.mFreeResetCountt = slot0.ExpeditionInfo.FreeResetCountt
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefresh = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshNode",
+		moduleName = "Expedition",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data.ExpeditionInfo = slot0.ExpeditionInfo
+			slot0.data.ExpeditionCurrentNodeInfo = slot0.ExpeditionCurrentNodeInfo
+			slot0.mCurrentNodeId = slot0.ExpeditionInfo.CurrentNodeId
+			slot0.mResetCount = slot0.ExpeditionInfo.FreeResetCountt + slot0:getVipResetTotalCount() - slot0.ExpeditionInfo.VipResetCount
+			slot0.mFreeResetCountt = slot0.ExpeditionInfo.FreeResetCountt
+
+			slot0:refreshUI()
+
+			if slot0.refreshUI then
+				slot1()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[200602] = {
+			clickNode = slot0.mtargetNode
+		},
+		[200604] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.guideBoxBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

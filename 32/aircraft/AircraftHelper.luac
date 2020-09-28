@@ -1,0 +1,1432 @@
+AircraftHelper = {
+	enemyResCount = 0,
+	heartTick = 0,
+	rebirthTime = 0,
+	remainTime = 1800,
+	currMountModelId = 25010001,
+	isHangUping = false,
+	feijiTeamState = 0,
+	teamResScore = 0,
+	currMountLv = 1,
+	maxMountModelId = 25010001,
+	enemyResScore = 0,
+	teamResCount = 0,
+	mPlayerName = PlayerAttrObj:getPlayerAttrByName("PlayerName"),
+	worldSize = {
+		0,
+		0
+	},
+	playerList = {},
+	enterResInfo = {},
+	chatCache = {},
+	reportList = {},
+	allResList = clone(AircraftPointConfig.items),
+	mountList = {},
+	feijiLeaderId = EMPTY_ENTITY_ID,
+	myTeamInfo = {},
+	teamA = "A",
+	teamB = "B",
+	testTime = 0,
+	enumFootholdStatus = {
+		BOccupyIng = 3,
+		clear = 0,
+		AOccupyEnd = 2,
+		BOccupyEnd = 4,
+		AOccupyIng = 1
+	},
+	planePos = {
+		Our = {
+			cc.p(-160, -277),
+			cc.p(-109, -166),
+			cc.p(-73, -58),
+			cc.p(-211, -42),
+			cc.p(-261, -144),
+			cc.p(-317, -279),
+			cc.p(-461, -305),
+			cc.p(-421, -160),
+			cc.p(-385, -65),
+			cc.p(-332, 10)
+		},
+		Enemy = {
+			cc.p(160, -277),
+			cc.p(109, -166),
+			cc.p(73, -58),
+			cc.p(211, -42),
+			cc.p(261, -144),
+			cc.p(317, -279),
+			cc.p(461, -305),
+			cc.p(421, -160),
+			cc.p(385, -65),
+			cc.p(332, 10)
+		}
+	},
+	Events = {
+		eGodDomainPosTargetChanged = "eGodDomainPosTargetChanged",
+		eGodDomainResInfo = "eGodDomainResInfo",
+		eGodDomainEnterOrQuiteRes = "eGodDomainEnterOrQuiteRes",
+		eGodDomainFightResult = "eGodDomainFightResult",
+		eGodDomainCancelTeam = "eGodDomainCancelTeam",
+		eGodDomainFightOver = "eGodDomainFightOver",
+		eGodDomainResCountChanged = "eGodDomainResCountChanged",
+		eGodDomainEnterBattle = "eGodDomainEnterBattle",
+		eGodDomainPlayerChatInfo = "eGodDomainPlayerChatInfo",
+		eGodDomainChatInfo = "eGodDomainChatInfo"
+	},
+	connect = function (slot0, slot1)
+		if slot0.url == nil then
+			return 
+		end
+
+		if slot0.socketMgr ~= nil then
+			if slot1 then
+				slot1()
+			end
+
+			return 
+		end
+
+		slot0.socketMgr = require("network.SocketMng").new()
+
+		slot0.socketMgr:open(slot0.url, false, {
+			onMessage = handler(slot0, slot0.onMessage),
+			onLogin = slot1
+		})
+
+		return 
+	end,
+	onMessage = function (slot0, slot1)
+		if slot1.Code == 0 then
+			if type(slot1.Data) == "userdata" then
+				return 
+			end
+
+			if slot1.Data and slot1.Data.InfoName then
+				if slot1.Data.InfoName == "BattleInfo" then
+					slot0.battleInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "MoveInfo" then
+					slot0.moveInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "ResPointStatus" then
+					slot0.resPointStatusCallback(slot0, slot1.Data)
+				elseif slot2 == "PlayerEnterOrQuite" then
+					slot0.playerEnterOrQuiteCallback(slot0, slot1.Data)
+				elseif slot2 == "ChatInfo" then
+					slot0.chatInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "LoginAgainInfo" then
+					slot0.loginAgainInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "FightInfo" then
+					slot0.fightInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "ResInfo" then
+					slot0.resPointInfoCallback(slot0, slot1.Data)
+				elseif slot2 == "BattleResult" then
+					slot0.fightResultCallback(slot0, slot1.Data)
+				elseif slot2 == "CancelTeam" then
+					slot0.cancelTeamCallback(slot0, slot1.Data)
+				elseif slot2 == "ResourceOutputInfo" then
+					slot0.resOutputCallback(slot0, slot1.Data)
+				elseif slot2 == "SkillEffect" then
+					slot0.skillEffectCallback(slot0, slot1.Data)
+				elseif slot2 == "SocketDisconnect" then
+					ui.showMessageBox({
+						text = TR("服务器连接已断开，点击确定重新进入"),
+						titleText = TR("提示"),
+						okCallback = function ()
+							slot0:leave()
+							LayerManager.addLayer({
+								name = "challenge.ChallengeLayer",
+								data = {
+									fromNavigate = true
+								}
+							})
+
+							return 
+						end
+					})
+				end
+			end
+		else
+			ui.showFlashView(SocketStates.errorCode[slot1.Code])
+		end
+
+		return 
+	end
+}
+AircraftHelper.scheduleTime = function (slot0)
+	if not slot0.socketSheduler then
+		slot0.socketSheduler = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function (slot0)
+			if slot0.socketMgr and slot0.socketMgr:isConnected() and slot0.myTeamName then
+				if 0 < slot0.remainTime then
+					slot0.remainTime = slot0.remainTime - 1
+				end
+
+				if 0 < slot0.rebirthTime then
+					slot0.rebirthTime = slot0.rebirthTime - 1
+				end
+
+				if slot0.enterResInfo and slot0.enterResInfo.Time and 0 < slot0.enterResInfo.Time then
+					slot0.enterResInfo.Time = slot0.enterResInfo.Time - 1
+				end
+
+				for slot4, slot5 in ipairs(slot0.playerList) do
+					if slot5.Status == 2 then
+						if math.sqrt(math.pow(slot6, 2) + math.pow(slot5.TargetPos[2] - slot5.CurPos[2], 2)) < 10 then
+							slot5.CurPos[1] = slot5.TargetPos[1]
+							slot5.CurPos[2] = slot5.TargetPos[2]
+						elseif 0 < slot8 then
+							slot9 = slot5.Speed
+
+							if slot6 ~= 0 then
+								slot5.CurPos[1] = slot5.CurPos[1] + (slot9*slot6)/slot8
+							end
+
+							if slot7 ~= 0 then
+								slot5.CurPos[2] = slot5.CurPos[2] + (slot9*slot7)/slot8
+							end
+						end
+					end
+
+					if slot5.ReceiveActiveSkillInfo ~= nil then
+						slot6 = false
+
+						for slot10 = #slot5.ReceiveActiveSkillInfo, 1, -1 do
+							if 0 <= slot5.ReceiveActiveSkillInfo[slot10].ValidTime - 1 then
+								slot5.ReceiveActiveSkillInfo[slot10].ValidTime = slot5.ReceiveActiveSkillInfo[slot10].ValidTime - 1
+							else
+								table.remove(slot5.ReceiveActiveSkillInfo, slot10)
+
+								slot12 = slot0:removeBuffFromLocalPlayerInfo(slot11.SkillId, slot5.PlayerId)
+								slot6 = true
+							end
+						end
+
+						if slot6 then
+							EventAuto:postEvent(AircraftHelper.Events.eGoddoMainSkillUpdatePre .. slot5.PlayerId)
+						end
+					end
+
+					if slot5.ActiveSkillsInfo ~= nil then
+						for slot9 = #slot5.ActiveSkillsInfo, 1, -1 do
+							if 0 <= slot5.ActiveSkillsInfo[slot9].ValidTime - 1 then
+								slot5.ActiveSkillsInfo[slot9].ValidTime = slot5.ActiveSkillsInfo[slot9].ValidTime - 1
+							else
+								slot5.ActiveSkillsInfo[slot9].ValidTime = 0
+							end
+
+							if 0 <= slot10.CdTime - 1 then
+								slot5.ActiveSkillsInfo[slot9].CdTime = slot5.ActiveSkillsInfo[slot9].CdTime - 1
+							else
+								slot5.ActiveSkillsInfo[slot9].CdTime = 0
+							end
+						end
+					end
+				end
+			end
+
+			return 
+		end, 1, false)
+	end
+
+	return 
+end
+AircraftHelper.leave = function (slot0)
+	if slot0.socketSheduler then
+		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(slot0.socketSheduler)
+
+		slot0.socketSheduler = nil
+	end
+
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:close()
+
+		slot0.socketMgr = nil
+	end
+
+	return 
+end
+AircraftHelper.resetCache = function (slot0)
+	slot0.url = nil
+	slot0.myTeamName = nil
+	slot0.playerList = {}
+	slot0.enterResInfo = {}
+	slot0.teamResCount = 0
+	slot0.enemyResCount = 0
+	slot0.teamResScore = 0
+	slot0.enemyResScore = 0
+	slot0.remainTime = 1800
+	slot0.chatCache = {}
+	slot0.reportList = {}
+	slot0.rebirthTime = 0
+	slot0.battleResultData = nil
+	slot0.allResList = clone(AircraftPointConfig.items)
+	slot0.mountList = {}
+	slot0.currMountModelId = 25010001
+	slot0.maxMountModelId = 25010001
+	slot0.currMountLv = 1
+	slot0.currMountSkillInfo = {}
+	slot0.feijiTeamState = 0
+	slot0.feijiLeaderId = Utility.EMPTY_ENTITY_ID
+	slot0.myTeamInfo = {}
+
+	Player:saveGameData("ShengyuanwarsBarrageTextList", nil)
+
+	return 
+end
+AircraftHelper.clearUpBattleResult = function (slot0)
+	slot0.battleResultData = nil
+
+	return 
+end
+AircraftHelper.goHomeLayer = function (slot0)
+	LayerManager.addLayer({
+		name = "home.HomeLayer",
+		data = {
+			defaultModuleId = ModuleSub.eAircraft
+		}
+	})
+
+	return 
+end
+AircraftHelper.battleInfoCallback = function (slot0, slot1)
+	slot0.resetCache(slot0)
+
+	slot0.battleResultData = nil
+
+	slot0.splitAllPlayerData(slot0, slot1.Info)
+
+	for slot5, slot6 in ipairs(slot0.allResList) do
+		slot6.occupyState = AircraftHelper.enumFootholdStatus.clear
+	end
+
+	slot0.scheduleTime(slot0)
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainEnterBattle)
+	slot0.autoMatchedNotify(slot0)
+
+	return 
+end
+AircraftHelper.loginAgainInfoCallback = function (slot0, slot1)
+	slot0.resetCache(slot0)
+
+	slot0.battleResultData = nil
+
+	slot0.splitAllPlayerData(slot0, slot1.Info.AllPlayerInfo)
+
+	slot0.enterResInfo = slot1.Info.ResInfo or {}
+	slot3 = slot1.Info.OutPutPointNum
+
+	if slot0.myTeamName == AircraftHelper.teamA then
+		slot0.teamResScore = slot3.OutputNumA
+		slot0.enemyResScore = slot3.OutputNumB
+		slot0.teamResCount = slot3.A
+		slot0.enemyResCount = slot3.B
+	else
+		slot0.teamResScore = slot3.OutputNumB
+		slot0.enemyResScore = slot3.OutputNumA
+		slot0.teamResCount = slot3.B
+		slot0.enemyResCount = slot3.A
+	end
+
+	slot0.remainTime = slot3.Time
+
+	for slot7, slot8 in ipairs(slot0.allResList) do
+		slot8.occupyState = AircraftHelper.enumFootholdStatus.clear
+	end
+
+	for slot7, slot8 in ipairs(slot2.AllResOccupyedInfo) do
+		for slot12, slot13 in ipairs(slot0.allResList) do
+			if slot8.ResPointId == slot13.Id and (slot8.ResPointStatus == 2 or slot8.ResPointStatus == 1) then
+				slot14 = slot8.ResPointStatus == 2
+
+				if slot8.TeamName == AircraftHelper.teamA then
+					slot13.occupyState = (slot14 and AircraftHelper.enumFootholdStatus.AOccupyEnd) or AircraftHelper.enumFootholdStatus.AOccupyIng
+
+					break
+				end
+
+				slot13.occupyState = (slot14 and AircraftHelper.enumFootholdStatus.BOccupyEnd) or AircraftHelper.enumFootholdStatus.BOccupyIng
+
+				break
+			end
+		end
+	end
+
+	slot0.scheduleTime(slot0)
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainEnterBattle)
+	slot0.autoMatchedNotify(slot0)
+
+	if slot1.Info.ChatInfo then
+		for slot7, slot8 in ipairs(slot1.Info.ChatInfo) do
+			slot0.addNewChatInfo(slot0, slot8)
+		end
+
+		EventAuto:postEvent(AircraftHelper.Events.eGodDomainChatInfo)
+	end
+
+	return 
+end
+AircraftHelper.autoMatchedNotify = function (slot0)
+	if not string.find(LayerManager.getTopCleanUpLayerName(), "aircraft.Aircraft") then
+		ui.showMessageBox({
+			text = TR("战江湖-夺旗已经开启，是否立即进入？"),
+			msgBoxParams = {
+				btnPosY = 55,
+				cancelText = TR("取 消"),
+				okText = TR("进 入")
+			},
+			okCallback = function ()
+				LayerManager.showModuleLayer(ModuleSub.eAircraft)
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	end
+
+	return 
+end
+AircraftHelper.splitAllPlayerData = function (slot0, slot1)
+	slot0.playerList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		if slot6.ActiveSkillsInfo == nil then
+			slot6.ActiveSkillsInfo = {}
+
+			for slot10, slot11 in ipairs(slot6.SkillIds) do
+				if GoddomainChipbuffModel.items[slot11].buffFireType == 1 then
+					table.insert(slot6.ActiveSkillsInfo, {
+						CdTime = 0,
+						ValidTime = 0,
+						SkillId = slot11
+					})
+				end
+			end
+		end
+
+		if slot6.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			slot0.myTeamName = slot6.TeamName
+
+			break
+		end
+	end
+
+	for slot5, slot6 in pairs(slot1) do
+		if slot6.CurPos then
+			slot6.TargetPos = slot6.TargetPos
+			slot6.CurPos = slot6.CurPos
+		else
+			slot6.CurPos = slot0.getCurrentResourcePos(slot0, slot6.BornPoint)
+			slot6.TargetPos = clone(slot6.CurPos)
+		end
+
+		slot6.Status = slot6.Status or 2
+
+		table.insert(slot0.playerList, slot6)
+	end
+
+	return 
+end
+AircraftHelper.getCurrentResourcePos = function (slot0, slot1)
+	return {
+		AircraftPointConfig.items[slot1].X,
+		AircraftPointConfig.items[slot1].Y
+	}
+end
+AircraftHelper.moveInfoCallback = function (slot0, slot1)
+	slot2 = slot1.Info
+
+	for slot6, slot7 in ipairs(slot0.playerList) do
+		if slot7.PlayerId == slot2.PlayerId then
+			slot7.CurPos = slot2.CurPos
+			slot7.TargetPos = slot2.TargetPos
+			slot7.Status = 2
+
+			EventAuto:postEvent(AircraftHelper.Events.eGodDomainPosTargetChanged)
+
+			break
+		end
+	end
+
+	return 
+end
+AircraftHelper.resPointStatusCallback = function (slot0, slot1)
+	if slot0.enterResInfo.ResPointId == slot1.Info.ResPointId then
+		slot0.enterResInfo.ResPointStatus = slot1.Info.ResPointStatus
+		slot0.enterResInfo.TeamName = slot1.Info.TeamName
+		slot0.enterResInfo.OccupyTeamName = slot1.Info.OccupyTeamName or ""
+		slot0.enterResInfo.OperatePlayerId = slot1.Info.PlayerId
+
+		if slot0.enterResInfo.ResPointStatus == 1 then
+			slot0.enterResInfo.Time = AircraftConfig.items[1].occupyNeedSeconds + slot0.getSuboccupyTimeByTeam(slot0, slot1.Info.PlayerId)
+		else
+			slot0.enterResInfo.Time = nil
+		end
+
+		EventAuto:postEvent(AircraftHelper.Events.eGodDomainResInfo)
+	end
+
+	if slot0.myTeamName == AircraftHelper.teamA then
+		slot0.teamResCount = slot1.Info.A
+		slot0.enemyResCount = slot1.Info.B
+	else
+		slot0.teamResCount = slot1.Info.B
+		slot0.enemyResCount = slot1.Info.A
+	end
+
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.allResList) do
+		if slot7.Id == slot1.Info.ResPointId then
+			slot2 = slot7
+
+			break
+		end
+	end
+
+	if slot1.Info.ResPointStatus == 1 then
+		if slot1.Info.TeamName == AircraftHelper.teamA then
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.AOccupyIng
+		else
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.BOccupyIng
+		end
+	elseif slot1.Info.ResPointStatus == 2 then
+		if slot1.Info.TeamName == AircraftHelper.teamA then
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.AOccupyEnd
+		else
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.BOccupyEnd
+		end
+	else
+		slot2.occupyState = AircraftHelper.enumFootholdStatus.clear
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainResCountChanged)
+
+	return 
+end
+AircraftHelper.resPointInfoCallback = function (slot0, slot1)
+	slot0.enterResInfo = slot1.Info or {}
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.allResList) do
+		if slot7.Id == slot1.Info.ResPointId then
+			slot2 = slot7
+
+			break
+		end
+	end
+
+	if slot1.Info.ResPointStatus == 1 then
+		if slot1.Info.TeamName == AircraftHelper.teamA then
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.AOccupyIng
+		else
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.BOccupyIng
+		end
+	elseif slot1.Info.ResPointStatus == 2 then
+		if slot1.Info.TeamName == AircraftHelper.teamA then
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.AOccupyEnd
+		else
+			slot2.occupyState = AircraftHelper.enumFootholdStatus.BOccupyEnd
+		end
+	else
+		slot2.occupyState = AircraftHelper.enumFootholdStatus.clear
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainResInfo)
+
+	return 
+end
+AircraftHelper.playerEnterOrQuiteCallback = function (slot0, slot1)
+	slot2 = slot1.Info
+
+	function slot3()
+		if slot0.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			return 
+		end
+
+		if not slot1.enterResInfo or next(slot1.enterResInfo) == nil then
+			return 
+		end
+
+		if slot0.ResPointId == slot1.enterResInfo.ResPointId then
+			if not slot1.enterResInfo.A then
+				slot1.enterResInfo.A = {}
+			end
+
+			if not slot1.enterResInfo.B then
+				slot1.enterResInfo.B = {}
+			end
+
+			if slot1.myTeamName == slot0.TeamName then
+				if slot1.myTeamName == AircraftHelper.teamA then
+					if slot0.IsEnter then
+						table.insert(slot1.enterResInfo.A, slot0.PlayerId)
+					else
+						for slot3 = #slot1.enterResInfo.A, 1, -1 do
+							if slot1.enterResInfo.A[slot3] == slot0.PlayerId then
+								table.remove(slot1.enterResInfo.A, slot3)
+							end
+						end
+					end
+				elseif slot0.IsEnter then
+					table.insert(slot1.enterResInfo.B, slot0.PlayerId)
+				else
+					for slot3 = #slot1.enterResInfo.B, 1, -1 do
+						if slot1.enterResInfo.B[slot3] == slot0.PlayerId then
+							table.remove(slot1.enterResInfo.B, slot3)
+						end
+					end
+				end
+			elseif slot1.myTeamName == AircraftHelper.teamA then
+				if slot0.IsEnter then
+					table.insert(slot1.enterResInfo.B, slot0.PlayerId)
+				else
+					for slot3 = #slot1.enterResInfo.B, 1, -1 do
+						if slot1.enterResInfo.B[slot3] == slot0.PlayerId then
+							table.remove(slot1.enterResInfo.B, slot3)
+						end
+					end
+				end
+			elseif slot0.IsEnter then
+				table.insert(slot1.enterResInfo.A, slot0.PlayerId)
+			else
+				for slot3 = #slot1.enterResInfo.A, 1, -1 do
+					if slot1.enterResInfo.A[slot3] == slot0.PlayerId then
+						table.remove(slot1.enterResInfo.A, slot3)
+					end
+				end
+			end
+		end
+
+		return 
+	end
+
+	function slot4(slot0)
+		if slot0.PlayerId == slot0.PlayerId then
+			if slot0.IsEnter then
+				slot0.Status = 1
+			else
+				slot0.Status = 3
+				slot0.CurPos = 3:getCurrentResourcePos(slot0.ResPointId)
+			end
+
+			slot2()
+			EventAuto:postEvent(AircraftHelper.Events.eGodDomainEnterOrQuiteRes, slot0)
+		end
+
+		return 
+	end
+
+	for slot8, slot9 in ipairs(slot0.playerList) do
+		slot4(slot9)
+	end
+
+	return 
+end
+AircraftHelper.chatInfoCallback = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.addNewChatInfo(slot0, slot7)
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainChatInfo)
+
+	return 
+end
+AircraftHelper.addNewChatInfo = function (slot0, slot1)
+	slot2 = {}
+
+	if slot1.Type == 2 then
+		slot3 = AircraftPointConfig.items[slot1.PointId].name
+
+		if slot1.Status == 1 then
+			slot2.message = TR("%s正在占领据点%d", slot1.PlayerName, slot1.PointId)
+		elseif slot1.Status == 2 then
+			slot2.message = TR("据点%d被%s占领", slot1.PointId, slot1.PlayerName)
+		elseif slot1.Status == 3 then
+			slot2.message = TR("%s防守住了据点%d", slot1.PlayerName, slot1.PointId)
+		end
+
+		slot2.name = TR("系统消息")
+		slot2.isSelf = false
+		slot2.Type = slot1.Type
+		slot2.TimeStamp = slot1.TimeStamp
+	elseif slot1.Type == 1 then
+		slot2.name = slot1.Name
+		slot2.message = slot1.Message
+		slot2.isSelf = slot1.Name == slot0.mPlayerName
+		slot2.allData = slot1
+		slot2.Type = slot1.Type
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainPlayerChatInfo, clone(slot2))
+
+	if table.getn(slot2) then
+		table.insert(slot0.chatCache, slot2)
+	end
+
+	return 
+end
+AircraftHelper.fightInfoCallback = function (slot0, slot1)
+	if slot0.enterResInfo and next(slot0.enterResInfo) then
+		if slot1.Info.isWin == true then
+			if slot0.enterResInfo.A then
+				for slot5 = #slot0.enterResInfo.A, 1, -1 do
+					if slot0.enterResInfo.A[slot5] == slot1.Info.targetPlayerId then
+						table.remove(slot0.enterResInfo.A, slot5)
+					end
+				end
+			end
+
+			if slot0.enterResInfo.B then
+				for slot5 = #slot0.enterResInfo.B, 1, -1 do
+					if slot0.enterResInfo.B[slot5] == slot1.Info.targetPlayerId then
+						table.remove(slot0.enterResInfo.B, slot5)
+					end
+				end
+			end
+		else
+			if slot0.enterResInfo.A then
+				for slot5 = #slot0.enterResInfo.A, 1, -1 do
+					if slot0.enterResInfo.A[slot5] == slot1.Info.attackPlayerId then
+						table.remove(slot0.enterResInfo.A, slot5)
+					end
+				end
+			end
+
+			if slot0.enterResInfo.B then
+				for slot5 = #slot0.enterResInfo.B, 1, -1 do
+					if slot0.enterResInfo.B[slot5] == slot1.Info.attackPlayerId then
+						table.remove(slot0.enterResInfo.B, slot5)
+					end
+				end
+			end
+		end
+	end
+
+	slot2 = (slot1.Info.isWin and slot1.Info.targetPlayerId) or slot1.Info.attackPlayerId
+	slot3 = (not slot1.Info.isWin and slot1.Info.targetPlayerId) or slot1.Info.attackPlayerId
+	slot4 = (not slot1.Info.isWin and slot1.Info.targetPlayerHp) or slot1.Info.atrackPlayerHp
+	slot5 = (not slot1.Info.isWin and slot1.Info.targetPlayerTotalHp) or slot1.Info.atrackPlayerTotalHp
+
+	if PlayerAttrObj:getPlayerAttrByName("PlayerId") == slot2 then
+		slot0.enterResInfo = {}
+		slot0.rebirthTime = AircraftConfig.items[1].resurrectSecond
+	end
+
+	for slot9, slot10 in ipairs(slot0.playerList) do
+		if slot10.PlayerId == slot2 then
+			slot10.CurPos = slot0.getCurrentResourcePos(slot0, slot10.BornPoint)
+			slot10.TargetPos = slot10.CurPos
+			slot10.Status = 2
+			slot10.DeadNum = slot10.DeadNum + 1
+			slot10.Hp = slot10.TotalHp
+			slot10.ReceiveActiveSkillInfo = {}
+		elseif slot10.PlayerId == slot3 then
+			slot10.Hp = slot4
+			slot10.TotalHp = slot5
+		end
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainFightOver, slot1.Info)
+
+	function slot6(slot0, slot1)
+		slot2, slot3 = nil
+
+		for slot7, slot8 in ipairs(slot0.playerList) do
+			if slot8.PlayerId == slot0 then
+				slot2 = slot8.PlayerName
+				slot3 = slot8.TeamName
+
+				break
+			end
+		end
+
+		if 3 <= slot1 and slot4 < 5 then
+			slot4 = 3
+		elseif 5 <= slot4 and slot4 < 8 then
+			slot4 = 5
+		elseif 8 <= slot4 and slot4 < 10 then
+			slot4 = 8
+		elseif 10 <= slot4 then
+			slot4 = 10
+		end
+
+		slot5 = {
+			[3] = TR("正在大杀特杀！"),
+			[5] = TR("已经所向披靡！"),
+			[8] = TR("接近举世无双！"),
+			[10] = TR("已然天下无敌！")
+		}
+
+		if slot2 and slot5[slot4] then
+			ui.showFlashView(TR("#D9D919%s的[%s]，%s", (slot3 == slot0.myTeamName and TR("我方")) or TR("敌方"), slot2, slot5[slot4]))
+		end
+
+		return 
+	end
+
+	if slot1.Info.isWin then
+		slot6(slot1.Info.attackPlayerId, slot1.Info.attackPlayerKillNum)
+	else
+		slot6(slot1.Info.targetPlayerId, slot1.Info.targetPlayerKillNum)
+	end
+
+	return 
+end
+AircraftHelper.fightResultCallback = function (slot0, slot1)
+	if slot0.myTeamName == AircraftHelper.teamA then
+		slot0.teamResScore = slot1.Info.ResourceOutputA
+		slot0.enemyResScore = slot1.Info.ResourceOutputB
+	else
+		slot0.teamResScore = slot1.Info.ResourceOutputB
+		slot0.enemyResScore = slot1.Info.ResourceOutputA
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainFightResult, slot1.Info)
+
+	slot0.battleResultData = slot1.Info
+
+	if not slot0.isHangUping then
+		slot0.leave(slot0)
+	end
+
+	return 
+end
+AircraftHelper.cancelTeamCallback = function (slot0, slot1)
+	EventAuto:postEvent(AircraftHelper.Events.eGodDomainCancelTeam, slot1.Info)
+
+	return 
+end
+AircraftHelper.resOutputCallback = function (slot0, slot1)
+	if slot0.myTeamName == AircraftHelper.teamA then
+		slot0.teamResScore = slot1.Info.A
+		slot0.enemyResScore = slot1.Info.B
+	else
+		slot0.teamResScore = slot1.Info.B
+		slot0.enemyResScore = slot1.Info.A
+	end
+
+	return 
+end
+AircraftHelper.skillEffectCallback = function (slot0, slot1)
+	slot2 = GoddomainChipbuffModel.items[slot1.Info.SkillId]
+
+	for slot6, slot7 in ipairs(slot0.playerList) do
+		if slot7.PlayerId == slot1.Info.PlayerId then
+			if slot7.ActiveSkillsInfo ~= nil then
+				for slot11, slot12 in ipairs(slot7.ActiveSkillsInfo) do
+					if slot12.SkillId == slot1.Info.SkillId then
+						slot12.CdTime = slot2.CD + AircraftHelper.testTime
+						slot12.ValidTime = slot2.duration + AircraftHelper.testTime
+
+						break
+					end
+				end
+			end
+
+			break
+		end
+	end
+
+	EventAuto:postEvent(AircraftHelper.Events.eGoddoMainSkillReleasePre .. slot1.Info.PlayerId, slot1.Info)
+
+	for slot6, slot7 in ipairs(slot0.playerList) do
+		for slot11, slot12 in ipairs(slot1.Info.EffectInfo) do
+			if slot7.PlayerId == slot12.PlayerId then
+				slot13 = {
+					SkillId = slot1.Info.SkillId,
+					ValidTime = slot2.duration + AircraftHelper.testTime
+				}
+
+				if slot7.ReceiveActiveSkillInfo == nil then
+					slot7.ReceiveActiveSkillInfo = {}
+				end
+
+				table.insert(slot7.ReceiveActiveSkillInfo, slot13)
+
+				slot7.Speed = slot12.FinalValue
+
+				EventAuto:postEvent(AircraftHelper.Events.eGoddoMainSkillUpdatePre .. slot7.PlayerId)
+			end
+		end
+	end
+
+	return 
+end
+AircraftHelper.getMountList = function (slot0, slot1)
+	if slot1 == nil then
+		return 
+	end
+
+	if 0 < table.maxn(slot0.mountList) then
+		slot1(slot0.mountList)
+	else
+		require("network.GameSocket"):socketRequest({
+			methodName = "GetGodDomainMountData",
+			moduleName = "GodDomain",
+			ignoreNode = true,
+			successCallback = function (slot0)
+				slot0.mountList = clone(slot0.MountInfo)
+
+				slot0(slot0.mountList)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+AircraftHelper.addOneMountItem = function (slot0, slot1)
+	if slot1 ~= nil and slot1.MountModelId ~= nil and 0 < slot1.MountModelId and slot0.isHaveOneMount(slot0, slot1.MountModelId) == false then
+		table.insert(slot0.mountList, clone(slot1))
+	end
+
+	return 
+end
+AircraftHelper.delOneMountItem = function (slot0, slot1)
+	if slot1 ~= nil and slot1 ~= 25010001 then
+		for slot5, slot6 in ipairs(slot0.mountList) do
+			if slot6.MountModelId ~= nil and slot6.MountModelId == slot1 then
+				table.remove(slot0.mountList, slot5)
+
+				break
+			end
+		end
+	end
+
+	return 
+end
+AircraftHelper.isHaveOneMount = function (slot0, slot1)
+	if slot1 == nil then
+		return false
+	end
+
+	for slot5, slot6 in pairs(slot0.mountList) do
+		if slot6.MountModelId ~= nil and slot6.MountModelId == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+AircraftHelper.changeMyMount = function (slot0, slot1, slot2)
+	if slot1 == nil then
+		return 
+	end
+
+	HttpClient:request({
+		methodName = "GodDomainMountCombat",
+		moduleName = "GodDomain",
+		methodData = {
+			slot1,
+			0
+		},
+		successCallback = function (slot0)
+			slot0:setCurrMountSkillInfo(slot0.SlotInfo)
+			slot0:setMountModelId(slot0.setMountModelId)
+			slot0:setMaxMountModelId(slot0.setMaxMountModelId)
+
+			if slot0 ~= nil then
+				slot2()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+AircraftHelper.setCurrMountSkillInfo = function (slot0, slot1)
+	slot0.currMountSkillInfo = slot1
+
+	return 
+end
+AircraftHelper.getCurrMountSkillInfo = function (slot0)
+	return slot0.currMountSkillInfo
+end
+AircraftHelper.setMountModelId = function (slot0, slot1)
+	if slot1 ~= nil then
+		slot0.currMountModelId = slot1
+	end
+
+	return 
+end
+AircraftHelper.getMountModelId = function (slot0)
+	return slot0.currMountModelId
+end
+AircraftHelper.setMaxMountModelId = function (slot0, slot1)
+	if slot1 ~= nil and slot0.maxMountModelId < slot1 then
+		slot0.maxMountModelId = slot1
+	end
+
+	return 
+end
+AircraftHelper.getMaxMountModelId = function (slot0)
+	return slot0.maxMountModelId
+end
+AircraftHelper.setMountLv = function (slot0, slot1)
+	if slot1 ~= nil then
+		slot0.currMountLv = slot1
+	end
+
+	return 
+end
+AircraftHelper.getMountLv = function (slot0)
+	return slot0.currMountLv
+end
+AircraftHelper.getSocketState = function (slot0)
+	if slot0.socketMgr ~= nil then
+		return slot0.socketMgr:isConnected()
+	else
+		return false
+	end
+
+	return 
+end
+AircraftHelper.setUrl = function (slot0, slot1)
+	if slot0.url ~= slot1 then
+		slot0.url = slot1
+	end
+
+	return 
+end
+AircraftHelper.setWorldSize = function (slot0, slot1)
+	slot0.worldSize = {
+		slot1.width,
+		slot1.height
+	}
+
+	return 
+end
+AircraftHelper.isInTeamB = function (slot0)
+	return slot0.myTeamName == AircraftHelper.teamB
+end
+AircraftHelper.getSelfData = function (slot0)
+	for slot4, slot5 in ipairs(slot0.playerList) do
+		if slot5.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			return slot5
+		end
+	end
+
+	return 
+end
+AircraftHelper.getMountSpeed = function (slot0, slot1, slot2, slot3)
+	if slot3 == nil then
+		return ((MountModel.items[slot1] and MountModel.items[slot1].speedPro) or 1)*((MountLvRelation.items[slot2] and MountLvRelation.items[slot2].speed) or 1)
+	else
+		for slot7, slot8 in ipairs(slot0.playerList) do
+			if slot8.PlayerId == slot3 then
+				return slot8.Speed
+			end
+		end
+	end
+
+	return 
+end
+AircraftHelper.getReCalculateBuffValue = function (slot0, slot1, slot2)
+	if slot2 == GoddomainChipbuff.eSpeed or slot2 == GoddomainChipbuff.eSpeedR then
+		slot5 = ((MountModel.items[slot1.MountModelId] and MountModel.items[slot1.MountModelId].speedPro) or 1)*((MountLvRelation.items[slot1.MountModelLevel] and MountLvRelation.items[slot1.MountModelLevel].speed) or 1)
+		slot6 = 0
+		slot7 = 0
+
+		for slot11, slot12 in ipairs(slot1.ReceiveActiveSkillInfo) do
+			if GoddomainChipbuffModel.items[slot12.SkillId].buffEffectType == GoddomainChipbuff.eSpeed then
+				slot6 = slot6 + slot13.changeValue
+			end
+
+			if slot13.buffEffectType == GoddomainChipbuff.eSpeedR then
+				slot7 = slot7 + slot13.changeValue
+			end
+		end
+
+		for slot11, slot12 in ipairs(slot1.ReceivePassiveSkills) do
+			if GoddomainChipbuffModel.items[slot12].buffEffectType == GoddomainChipbuff.eSpeed then
+				slot6 = slot6 + slot13.changeValue
+			end
+
+			if slot13.buffEffectType == GoddomainChipbuff.eSpeedR then
+				slot7 = slot7 + slot13.changeValue
+			end
+		end
+
+		if GoddomainChipConfig.items[1].speedMax < slot5*(slot7 + 1) + slot6 then
+			return GoddomainChipConfig.items[1].speedMax
+		end
+
+		if slot8 < GoddomainChipConfig.items[1].speedMin then
+			return GoddomainChipConfig.items[1].speedMin
+		end
+
+		return slot8
+	else
+		print("待扩展")
+	end
+
+	return -1
+end
+AircraftHelper.removeBuffFromLocalPlayerInfo = function (slot0, slot1, slot2)
+	slot3 = GoddomainChipbuffModel.items[slot1]
+
+	for slot7, slot8 in ipairs(slot0.playerList) do
+		if slot8.PlayerId == slot2 then
+			slot9 = slot0.getReCalculateBuffValue(slot0, slot8, slot3.buffEffectType)
+
+			if slot3.buffEffectType == GoddomainChipbuff.eSpeed or slot3.buffEffectType == GoddomainChipbuff.eSpeedR then
+				slot0.playerList[slot7].Speed = slot9
+
+				return slot9
+			end
+		end
+	end
+
+	return 
+end
+AircraftHelper.updateBuffFromLocalPlayerInfo = function (slot0, slot1, slot2)
+	for slot6, slot7 in ipairs(slot0.playerList) do
+		if slot7.PlayerId == slot2 then
+			return slot7.Speed
+		end
+	end
+
+	return 
+end
+AircraftHelper.rebirth = function (slot0)
+	slot0.rebirthTime = 0
+
+	return 
+end
+AircraftHelper.cancelMatch = function (slot0, slot1)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Cancel",
+			Parameters = {}
+		}, slot1)
+
+		return true
+	else
+		ui.showFlashView("连接已断开")
+
+		return false
+	end
+
+	return 
+end
+AircraftHelper.playerMove = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Move",
+			Parameters = {
+				slot1
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.playerFight = function (slot0, slot1, slot2, slot3)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Fight",
+			Parameters = {
+				slot1,
+				slot2
+			}
+		}, slot3)
+	end
+
+	return 
+end
+AircraftHelper.playerViewInfo = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "ViewMemberInfo",
+			Parameters = {
+				slot1
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.playerGiveOffSkill = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Skill",
+			Parameters = {
+				slot1,
+				""
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.getLocalPlayerInfo = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.playerList) do
+		if slot6.PlayerId == slot1 then
+			return slot6
+		end
+	end
+
+	return 
+end
+AircraftHelper.isRealDead = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.playerList) do
+		if slot6.PlayerId == slot1 then
+			return 5 <= slot6.DeadNum
+		end
+	end
+
+	assert(false, "没找到对应的玩家ID" .. slot1)
+
+	return 
+end
+AircraftHelper.playerViewBattle = function (slot0, slot1)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "ViewBattleInfo",
+			Parameters = {}
+		}, slot1)
+	end
+
+	return 
+end
+AircraftHelper.viewFightReport = function (slot0, slot1, slot2, slot3)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "ViewFightReport",
+			Parameters = {
+				slot1,
+				slot2
+			}
+		}, slot3)
+	end
+
+	return 
+end
+AircraftHelper.occupyPoint = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Occupy",
+			Parameters = {
+				slot1
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.enterPoint = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Enter",
+			Parameters = {
+				slot1
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.quitPoint = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Quit",
+			Parameters = {
+				slot1
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.cencelHangup = function (slot0, slot1)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "SetOfflineCombatState",
+			Parameters = {
+				false
+			}
+		}, slot1)
+	end
+
+	return 
+end
+AircraftHelper.chatToAll = function (slot0, slot1, slot2)
+	if slot0.socketMgr ~= nil then
+		slot0.socketMgr:sendCmd({
+			ModuleName = "GodDomain",
+			MethodName = "Chat",
+			Parameters = {
+				slot1,
+				""
+			}
+		}, slot2)
+	end
+
+	return 
+end
+AircraftHelper.getOffsetByMidel = function (slot0, slot1, slot2, slot3)
+	if slot2%2 == 0 then
+		if slot1 <= slot2/2 then
+			return -(slot3/2 + (slot4 - slot1)*slot3)
+		else
+			return slot3/2 + (slot1 - (slot4 + 1))*slot3
+		end
+	else
+		return slot3*((math.floor(slot2/2) + 1) - slot1)
+	end
+
+	return 
+end
+AircraftHelper.addSkillEffectByBuffID = function (slot0, slot1, slot2, slot3)
+	slot4 = slot2.getContentSize(slot2)
+
+	if (GoddomainChipbuffModel.items[slot1].buffEffectType == GoddomainChipbuff.eSpeed or slot5.buffEffectType == GoddomainChipbuff.eSpeed) and slot5.isDebuff == false and slot5.buffFireType == 1 then
+		slot6 = ui.newEffect({
+			effectName = "effect_ui_zhengbabuff",
+			loop = true,
+			endRelease = true,
+			scale = 0.2,
+			animation = "jiasu",
+			parent = slot2,
+			position = cc.p(slot4.width*0.5, -slot4.height*0.5)
+		})
+
+		performWithDelay(slot2, function ()
+			slot0:removeFromParent()
+
+			return 
+		end, slot3 or slot5.duration + AircraftHelper.testTime)
+	end
+
+	if (slot5.buffEffectType == GoddomainChipbuff.eSpeedR or slot5.buffEffectType == GoddomainChipbuff.eSpeed) and slot5.isDebuff == false and slot5.buffFireType == 0 then
+		slot6 = ui.newEffect({
+			effectName = "effect_ui_zhengbabuff",
+			loop = true,
+			endRelease = true,
+			scale = 0.6,
+			animation = "jieshouzhufu",
+			parent = slot2,
+			position = cc.p(slot4.width*0.5, slot4.height*0.5)
+		})
+	end
+
+	return 
+end
+AircraftHelper.getSuboccupyTimeByTeam = function (slot0, slot1)
+	if slot1 == "" then
+		slot1 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+	end
+
+	slot2 = 0
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(slot0.playerList) do
+		if slot8.PlayerId == slot1 then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	if slot3.ReceiveActiveSkillInfo ~= nil then
+		for slot7, slot8 in ipairs(slot3.ReceiveActiveSkillInfo) do
+			if GoddomainChipbuffModel.items[slot8.SkillId].buffEffectType == GoddomainChipbuff.eOccupyTime then
+				slot2 = slot2 + slot9.changeValue
+			end
+		end
+	end
+
+	for slot7, slot8 in ipairs(slot3.ReceivePassiveSkills) do
+		if GoddomainChipbuffModel.items[slot8].buffEffectType == GoddomainChipbuff.eOccupyTime then
+			slot2 = slot2 + slot9.changeValue
+		end
+	end
+
+	return slot2
+end
+AircraftHelper.isConnected = function (slot0)
+	return slot0.socketMgr and slot0.socketMgr:isConnected()
+end
+AircraftHelper.setTeamState = function (slot0, slot1)
+	if slot0.feijiTeamState ~= slot1 and slot1 ~= nil then
+		slot0.feijiTeamState = slot1
+	end
+
+	return 
+end
+AircraftHelper.getTeamState = function (slot0)
+	return slot0.feijiTeamState
+end
+AircraftHelper.setLeaderId = function (slot0, slot1)
+	if slot0.feijiLeaderId ~= slot1 and slot1 ~= nil then
+		slot0.feijiLeaderId = slot1
+	end
+
+	return 
+end
+AircraftHelper.getLeaderId = function (slot0)
+	return slot0.feijiLeaderId
+end
+AircraftHelper.getTeamInfo = function (slot0)
+	return slot0.myTeamInfo
+end
+AircraftHelper.setTeamInfo = function (slot0, slot1)
+	slot0.myTeamInfo = clone(slot1)
+
+	return 
+end
+AircraftHelper.convertServerPos = function (slot0, slot1)
+	if slot1.x and slot1.y then
+		return slot1
+	else
+		return cc.p(slot1[1], slot1[2])
+	end
+
+	return 
+end
+AircraftHelper.getRotationStepLists = function (slot0, slot1, slot2, slot3)
+	slot5 = cc.p(slot1.x - slot2.x, slot1.y - slot2.y)
+	slot7 = math.atan(slot5.x/slot5.y)
+	slot9 = (slot2.x - slot1.x)/math.ceil(math.sqrt(slot5.x*slot5.x + slot5.y*slot5.y)/(slot3 or 30))
+	slot10 = (slot2.y - slot1.y)/math.ceil(math.sqrt(slot5.x*slot5.x + slot5.y*slot5.y)/(slot3 or 30))
+	slot11 = {}
+
+	for slot15 = 1, slot8, 1 do
+		if slot15 == slot8 then
+			table.insert(slot11, slot2)
+		else
+			table.insert(slot11, cc.p(slot1.x + slot15*slot9, slot1.y + slot15*slot10))
+		end
+	end
+
+	return (slot1.y < slot2.y and (slot7*180)/math.pi) or (slot7*180)/math.pi + 180, slot11
+end
+AircraftHelper.getPlayerData = function (slot0, slot1)
+	if not slot1 then
+		return 
+	end
+
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(AircraftHelper.playerList) do
+		if slot7.PlayerId == slot1 then
+			slot2 = clone(slot7)
+		end
+	end
+
+	return slot2
+end
+
+return 

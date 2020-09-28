@@ -1,0 +1,1134 @@
+slot0 = class("WuXueDetailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled80",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1136,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "remainLabel",
+						cType = "Label",
+						params = {
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 568,
+								y = 34.19
+							},
+							text = TR("点击空白处关闭")
+						},
+						children = {}
+					},
+					{
+						name = "sp1",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xkwx_7.png",
+							pos = {
+								x = 368,
+								y = 320
+							},
+							size = {
+								width = 346,
+								height = 545
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "Sprite",
+								params = {
+									image = "xkwx_17.png",
+									childName = "wuxuePic",
+									scale = 0.85,
+									pos = {
+										x = 90,
+										y = 465
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Sprite",
+								params = {
+									image = "c_88.png",
+									pos = {
+										x = 35,
+										y = 494.86
+									}
+								},
+								children = {
+									{
+										name = "untitled47",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											rotationAngle = -45,
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 20.85,
+												y = 35.26
+											},
+											text = TR("使用中")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled49",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 135,
+										y = 500
+									},
+									text = TR("武学名字名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "lvlabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 145,
+										y = 465
+									},
+									text = TR("强化等级+99")
+								},
+								children = {}
+							},
+							{
+								name = "untitled77",
+								cType = "StarNode",
+								params = {
+									childName = "starNode",
+									scale = 0.7,
+									hide = true,
+									starImg = "c_5.png",
+									exStarLevel = 5,
+									starLevel = 1,
+									pos = {
+										x = 200,
+										y = 436
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled51",
+								cType = "Label",
+								params = {
+									fontSize = 19,
+									childName = "baseAttr",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 145,
+										y = 437
+									},
+									text = TR("属性+9999")
+								},
+								children = {}
+							},
+							{
+								name = "untitled81",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_24.png",
+									pos = {
+										x = 170,
+										y = 345
+									},
+									size = {
+										width = 270,
+										height = 140
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled52",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = true,
+									pos = {
+										x = 38.38,
+										y = 280
+									},
+									size = {
+										width = 260,
+										height = 130
+									}
+								},
+								children = {
+									{
+										name = "labelLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled54-text",
+												name = "attrText",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 260,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled54",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 8,
+														y = 15
+													},
+													text = TR("属性+9999")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "newAttrLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled84-text",
+												name = "attStr",
+												type = "string"
+											},
+											{
+												value = "untitled85-text",
+												name = "tipStr",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 260,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled84",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													text = "Label",
+													childName = "attNameLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 15,
+														y = 15
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled85",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													text = "Label",
+													anchor = {
+														x = 1,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 251.95,
+														y = 15
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled55",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "btn",
+									pos = {
+										x = 95,
+										y = 82
+									},
+									size = {
+										width = 105,
+										height = 46
+									},
+									titleText = TR("强 化")
+								},
+								children = {
+									{
+										name = "untitled86",
+										cType = "Sprite",
+										params = {
+											childName = "LvUpTips",
+											image = "c_38.png",
+											hide = true,
+											pos = {
+												x = 38.04,
+												y = 19.06
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled56",
+								cType = "Button",
+								params = {
+									image = "c_39.png",
+									childName = "upBtn",
+									pos = {
+										x = 250,
+										y = 82
+									},
+									size = {
+										width = 105,
+										height = 46
+									},
+									titleText = TR("卸 下")
+								},
+								children = {}
+							},
+							{
+								name = "untitled75",
+								cType = "ListView",
+								params = {
+									childName = "attrListView",
+									direction = true,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									pos = {
+										x = 35,
+										y = 260
+									},
+									size = {
+										width = 260,
+										height = 160
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled88",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 163.93,
+										y = 43.01
+									},
+									text = TR("同名套装优先激活更高品质套装")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "sp2",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xkwx_7.png",
+							pos = {
+								x = 768,
+								y = 320
+							},
+							size = {
+								width = 346,
+								height = 545
+							}
+						},
+						children = {
+							{
+								name = "untitled62",
+								cType = "Sprite",
+								params = {
+									image = "xkwx_17.png",
+									childName = "wuxuePic",
+									scale = 0.85,
+									pos = {
+										x = 90,
+										y = 465
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled63",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 135,
+										y = 500
+									},
+									text = TR("武学名字名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled64",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "lvlabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 145,
+										y = 465
+									},
+									text = TR("强化等级+99")
+								},
+								children = {}
+							},
+							{
+								name = "untitled78",
+								cType = "StarNode",
+								params = {
+									childName = "starNode",
+									scale = 0.7,
+									hide = true,
+									starImg = "c_5.png",
+									exStarLevel = 5,
+									starLevel = 1,
+									pos = {
+										x = 200,
+										y = 436
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled65",
+								cType = "Label",
+								params = {
+									fontSize = 19,
+									childName = "baseAttr",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 145,
+										y = 437
+									},
+									text = TR("属性+9999")
+								},
+								children = {}
+							},
+							{
+								name = "untitled82",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_24.png",
+									pos = {
+										x = 170,
+										y = 345
+									},
+									size = {
+										width = 270,
+										height = 140
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled66",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = true,
+									pos = {
+										x = 38.38,
+										y = 280
+									},
+									size = {
+										width = 260,
+										height = 130
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled67",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "btn",
+									pos = {
+										x = 95,
+										y = 82
+									},
+									titleText = TR("强 化")
+								},
+								children = {}
+							},
+							{
+								name = "untitled68",
+								cType = "Button",
+								params = {
+									image = "c_39.png",
+									childName = "upBtn",
+									pos = {
+										x = 250,
+										y = 82
+									},
+									size = {
+										width = 105,
+										height = 46
+									},
+									titleText = TR("卸 下")
+								},
+								children = {}
+							},
+							{
+								name = "untitled73",
+								cType = "ListView",
+								params = {
+									childName = "attrListView",
+									direction = true,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									pos = {
+										x = 35,
+										y = 260
+									},
+									size = {
+										width = 260,
+										height = 160
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled87",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 163.93,
+										y = 43.01
+									},
+									text = TR("同名套装优先激活更高品质套装")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.wuxueInfo = slot1.wuxueInfo
+	slot0.partId = slot1.partId
+	slot0.mHeroModelId = slot1.heroModelId
+	slot0.callback = slot1.callback
+	slot0.parent = slot1.parent
+
+	slot0.initUI(slot0)
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0.mBg,
+		beganEvent = function (slot0, slot1)
+			return true
+		end,
+		endedEvent = function (slot0, slot1)
+			slot2 = slot0.sp1:isVisible() and ui.touchInNode(slot0, slot0.sp1)
+			slot3 = slot0.sp2:isVisible() and ui.touchInNode(slot0, slot0.sp2)
+
+			if not slot2 and not slot3 then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.remainLabel:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeOut:create(0.7), cc.DelayTime:create(0.3), cc.FadeIn:create(0.7), cc.DelayTime:create(0.3))))
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0, slot1)
+	slot2 = HeroObj:getItem(slot0.mHeroModelId)
+
+	if slot0.wuxueInfo.entityItem.HeroModelId == slot0.mHeroModelId then
+		slot0.sp1:setPosition(568, 320)
+		slot0.sp2:setVisible(false)
+		slot0.sp1:setVisible(true)
+		slot0.refreshNode(slot0, slot0.sp1, slot0.wuxueInfo.entityItem, false)
+	elseif slot2.WuxueInfo and slot2.WuxueInfo[tostring(slot0.partId)] then
+		slot0.sp1:setPosition(368, 320)
+		slot0.sp2:setPosition(768, 320)
+		slot0.sp2:setVisible(true)
+		slot0.sp1:setVisible(true)
+		slot0.refreshNode(slot0, slot0.sp1, slot2.WuxueInfo[tostring(slot0.partId)], false)
+		slot0.refreshNode(slot0, slot0.sp2, slot0.wuxueInfo.entityItem, true)
+	else
+		slot0.sp2:setPosition(568, 320)
+		slot0.sp1:setVisible(false)
+		slot0.sp2:setVisible(true)
+		slot0.refreshNode(slot0, slot0.sp2, slot0.wuxueInfo.entityItem, true)
+	end
+
+	if slot1 then
+		slot0.sp1:setVisible(false)
+		slot0.sp2:setVisible(false)
+	end
+
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.refreshNode = function (slot0, slot1, slot2, slot3)
+	slot5 = HeroObj:getItem(slot0.mHeroModelId)
+	slot8 = WuxueModel.items[slot2.ModelId].suitId
+	slot9 = WuxueModel.items[slot2.ModelId].suitGroupId
+	slot11, slot12 = Utility.getColorValue(WuxueModel.items[slot2.ModelId].colorLv)
+
+	slot1.wuxuePic:setTexture((cc.FileUtils:getInstance():isFileExist(WuxueModel.items[slot2.ModelId].pic .. ".png") and slot4.pic .. ".png") or ({
+		"wx_24016011.png",
+		"wx_24016012.png",
+		"wx_24016013.png",
+		"wx_24016014.png",
+		"wx_24016015.png",
+		"wx_24016016.png"
+	})[slot4.partId])
+	slot1.name:setString(string.format("%s%s", slot12, slot4.name))
+	slot1.lvlabel:setString(TR("强化等级%s", slot2.Lv))
+
+	slot13 = nil
+	slot13 = (slot2.Lv ~= 0 or 0) and WuxueLvupConfig.items[slot2.Lv][WuxueModel.items[slot2.ModelId].partId][WuxueModel.items[slot2.ModelId].quality].addBaseAttrStrR
+
+	function slot15(slot0)
+		if slot0 == nil then
+			return ""
+		end
+
+		slot3 = string.format("%s+%s", FightAttrTypeName[slot0.fightattr], math.ceil((slot0/10000 + 1)*slot0.value))
+
+		if Utility.isAttrNeedPercent(slot0.fightattr) then
+			slot3 = string.format("%s+%s%%", FightAttrTypeName[slot1], slot2/100)
+		end
+
+		return slot3
+	end
+
+	slot16 = ""
+
+	for slot20, slot21 in ipairs(slot14) do
+		slot22 = " "
+
+		if slot20 == #slot14 then
+			slot22 = ""
+		end
+
+		slot16 = slot16 .. slot15(slot21) .. slot22
+	end
+
+	if slot1.baseAttr and not tolua.isnull(slot1.baseAttr) then
+		slot1.baseAttr:removeFromParent()
+
+		slot1.baseAttr = nil
+	end
+
+	slot1.baseAttr = UIWrap.newControl("Label", {
+		fontSize = 19,
+		text = slot16,
+		pos = cc.p(145, 437),
+		anchor = cc.p(0, 0.5),
+		color = cc.c3b(37, 37, 37)
+	})
+
+	slot1.addChild(slot1, slot1.baseAttr)
+	ui.createLabelClipRoll({
+		label = slot1.baseAttr,
+		dimensions = cc.size(160, 20),
+		anchorPoint = cc.p(0, 0.5),
+		position = cc.p(145, 437)
+	})
+
+	slot17 = clone(WuxueLvattrModel.items[slot7][slot6])
+	slot18 = {}
+	slot19 = {}
+
+	if slot2.UnLockInfo ~= "" then
+		slot19 = cjson.decode(slot2.UnLockInfo)
+	end
+
+	function slot20(slot0, slot1)
+		slot2 = nil
+
+		return (Utility.analysisStrAttrList(slot1) and next(slot3) and slot3[1]) or {}, (slot0 ~= 0 or 0) and WuxueLvupConfig.items[slot0][slot0][slot1].addBaseAttrStrR
+	end
+
+	slot1.listView:removeAllItems()
+
+	for slot24, slot25 in pairs(slot17) do
+		table.insert(slot18, clone(slot25))
+	end
+
+	table.sort(slot18, function (slot0, slot1)
+		if slot0.Lv ~= slot1.Lv then
+			return slot0.Lv < slot1.Lv
+		end
+
+		return slot0.quality < slot1.quality
+	end)
+
+	for slot24, slot25 in ipairs(slot18) do
+		slot26 = "??????"
+		slot27 = TR("强化%d级解锁", slot25.Lv)
+		slot28 = false
+
+		if slot25.Lv <= slot2.Lv then
+			if slot19[tostring(slot25.Lv)] then
+				slot30, slot31 = slot20(slot25.Lv, slot29)
+				slot26 = (not Utility.isAttrNeedPercent(slot30.fightattr) or string.format("#FFFFFF%s%s+%s%%", FightAttrTypeName[slot32], "#37FF40", slot30.value/100)) and string.format("#FFFFFF%s%s+%s", FightAttrTypeName[slot32], "#37FF40", slot30.value)
+				slot28 = true
+			else
+				slot26 = TR("服务器没传数据呢")
+			end
+
+			slot27 = ""
+		end
+
+		slot1.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "newAttrLayout", {
+			attStr = slot26,
+			tipStr = slot27
+		}))
+
+		if slot28 then
+			slot29.attNameLabel:enableOutline(cc.c4b(37, 37, 37, 255), 2)
+		end
+	end
+
+	slot21 = {}
+
+	for slot26, slot27 in pairs(clone(slot0.dealSuitData(slot0, slot8)).suitconfig) do
+		table.insert(slot21, slot27)
+	end
+
+	table.sort(slot21, function (slot0, slot1)
+		return slot0.needPartNum < slot1.needPartNum
+	end)
+
+	slot23 = 0
+	slot24 = {}
+
+	if slot3 == false then
+		slot25 = {}
+
+		for slot29, slot30 in pairs(slot5.WuxueInfo) do
+			if WuxueModel.items[slot30.ModelId].suitGroupId == slot9 then
+				if slot25[slot31.quality] then
+					slot25[slot31.quality] = slot25[slot31.quality] + 1
+				else
+					slot25[slot31.quality] = 1
+				end
+			end
+		end
+
+		slot26 = clone(slot25)
+
+		for slot30, slot31 in pairs(slot25) do
+			for slot35, slot36 in pairs(slot26) do
+				if slot30 < slot35 then
+					slot25[slot30] = slot25[slot30] + slot36
+				end
+			end
+		end
+
+		slot28 = {}
+
+		for slot32, slot33 in ipairs(slot27) do
+			for slot37, slot38 in pairs(slot25) do
+				if slot33 <= slot38 then
+					if slot28[slot33] then
+						table.insert(slot28[slot33], tonumber(slot37))
+					else
+						slot28[slot33] = {
+							tonumber(slot37)
+						}
+					end
+				end
+			end
+		end
+
+		for slot32, slot33 in pairs(slot28) do
+			table.sort(clone(slot33), function (slot0, slot1)
+				return slot1 < slot0
+			end)
+
+			slot28[slot32] = clone(slot33)[1]
+		end
+
+		slot24 = clone(slot28)
+	end
+
+	slot25 = {}
+	slot26 = {
+		[6] = TR("【初】"),
+		[10] = TR("【中】"),
+		[13] = TR("【高】"),
+		[15] = TR("【顶】")
+	}
+
+	for slot30, slot31 in ipairs(slot21) do
+		slot32 = false
+
+		if next(slot24) ~= nil and slot24[slot31.needPartNum] then
+			slot34 = TR("%s%s%s套属性: ", (slot24[slot31.needPartNum] == slot31.quality and "#258711") or "#252525", slot26[slot31.quality], slot31.needPartNum)
+		end
+
+		if slot31.actAttrStr ~= "" then
+			for slot38, slot39 in ipairs(Utility.analysisStrAttrList(slot31.actAttrStr)) do
+				slot40 = ""
+
+				if 1 < slot30 then
+					slot40 = " "
+				end
+
+				slot34 = slot34 .. ((Utility.isAttrNeedPercent(slot39.fightattr) and slot40 .. string.format("%s+%s%%", FightAttrTypeName[slot39.fightattr], slot39.value/100)) or slot40 .. string.format("%s+%s", FightAttrTypeName[slot39.fightattr], slot39.value))
+			end
+		else
+			table.insert(slot25, (slot31.actSkillId ~= "" and slot34 .. Resource.getSkillIntroStr(tonumber(slot31.actSkillId), 1, 1, slot33, slot33)) or slot34 .. TR("无"))
+		end
+	end
+
+	slot1.attrListView:removeAllItems()
+
+	for slot30, slot31 in ipairs(slot25) do
+		slot32 = UIWrap.newControl("Label", {
+			fontSize = 20,
+			isRichText = true,
+			text = slot31,
+			pos = cc.p(0, 0),
+			anchor = cc.p(0, 0.5),
+			color = cc.c3b(37, 37, 37),
+			size = cc.size(260, 0)
+		})
+		slot34 = UIWrap.newControl("Layout", {
+			size = cc.size(260, slot32.getContentSize(slot32).height + 10)
+		})
+
+		slot32.setPosition(slot32, 0, cc.size(260, slot32.getContentSize(slot32).height + 10).height/2)
+		slot34.addChild(slot34, slot32)
+		slot1.attrListView:pushBackCustomItem(slot34)
+	end
+
+	if slot3 then
+		slot1.upBtn:loadTextures("c_39.png", "c_39.png")
+		slot1.upBtn:setContentSize(cc.size(105, 46))
+		slot1.upBtn:setTitleText(TR("上 阵"))
+	else
+		slot1.upBtn:loadTextures("c_27.png", "c_27.png")
+		slot1.upBtn:setContentSize(cc.size(105, 46))
+		slot1.upBtn:setTitleText(TR("卸 下"))
+	end
+
+	slot1.upBtn:setClickAction(function ()
+		slot0:requestUpOrDown(slot0, )
+
+		return 
+	end)
+	slot1.btn:setClickAction(function ()
+		slot0:onClickXilianWuXue(slot0)
+
+		return 
+	end)
+
+	if slot1.btn.LvUpTips then
+		slot1.btn.LvUpTips:setVisible(slot0.dealRedDotVisible_CanLvUp(slot0, slot0.mHeroModelId, slot6))
+
+		if slot0.dealRedDotVisible_CanLvUp(slot0, slot0.mHeroModelId, slot6) then
+			slot0.starJumpAction(slot0, slot1.btn.LvUpTips)
+		else
+			slot1.btn.LvUpTips:stopAllActions()
+		end
+	end
+
+	return 
+end
+slot0.isActvateSuitNum = function (slot0, slot1)
+	slot3 = slot1.suitGroupId
+	slot5 = {}
+
+	for slot9, slot10 in pairs(HeroObj:getItem(slot2).WuxueInfo) do
+		if WuxueModel.items[wuxueId].suitGroupId == slot3 then
+			suitModelNum = suitModelNum + 1
+
+			if slot5[slot11.quality] then
+				slot5[slot11.quality] = slot5[slot11.quality] + 1
+			else
+				slot5[slot11.quality] = 1
+			end
+		end
+	end
+
+	dump(slot5, "hello")
+
+	return 
+end
+slot0.starJumpAction = function (slot0, slot1)
+	slot1.stopAllActions(slot1)
+	slot1.runAction(slot1, cc.RepeatForever:create(cc.Sequence:create({
+		cc.MoveBy:create(0.2, cc.p(0, 10)),
+		cc.MoveBy:create(0.3, cc.p(0, -10)),
+		cc.DelayTime:create(slot2)
+	})))
+
+	return 
+end
+slot0.dealSuitData = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(WuxueSuitConfig.items) do
+		for slot11, slot12 in pairs(slot7) do
+			for slot16, slot17 in pairs(WuxueModel.items) do
+				if slot17.quality == slot11 and slot17.suitId == slot6 then
+					table.insert(slot2, {
+						suitId = slot6,
+						quality = slot11,
+						suitconfig = slot12,
+						colorLv = slot17.colorLv
+					})
+
+					break
+				end
+			end
+		end
+	end
+
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot8.suitId == slot1 then
+			slot3 = clone(slot8)
+
+			break
+		end
+	end
+
+	return slot3
+end
+slot0.dealRedDotVisible_CanLvUp = function (slot0, slot1, slot2)
+	return RedDotObj:isValid(ModuleSub.eHeroAttrPoint, tostring(slot1) .. "_WxIsLvUp_" .. tostring(slot2))
+end
+slot0.onClickXilianWuXue = function (slot0, slot1)
+	slot0.sp1:setVisible(false)
+	slot0.sp2:setVisible(false)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "wuxue.DlgWuXueIntensifyLayer",
+		data = {
+			info = slot1,
+			callback = function (slot0, slot1)
+				slot0.callback()
+
+				slot0.wuxueInfo.entityItem = slot0
+
+				slot0:refreshLayer(slot1)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestUpOrDown = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "UpOrDown",
+		moduleName = "Wuxue",
+		methodData = {
+			slot0.partId,
+			slot0.mHeroModelId,
+			(slot2 and slot1.EntityId) or Utility.EMPTY_ENTITY_ID
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			if slot0.callback then
+				slot0.callback(slot0.callback)
+			end
+
+			if slot0.parent then
+				slot0.parent:executeGuide()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[201405] = {
+			clickNode = slot0.sp2.upBtn
+		},
+		[201407] = {
+			overClose = true,
+			clickNode = slot0.sp1.btn
+		}
+	})
+
+	return 
+end
+
+return slot0

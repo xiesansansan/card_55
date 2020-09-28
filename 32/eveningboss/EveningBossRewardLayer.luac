@@ -1,0 +1,713 @@
+slot0 = class("EveningBossRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 550,
+				height = 460
+			},
+			titleText = TR("排名奖励")
+		},
+		children = {
+			{
+				name = "rankTitleNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 410
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 112,
+								y = 0
+							},
+							text = TR("名次")
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 362,
+								y = 0
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					},
+					{
+						name = "mMyRankLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 39.48,
+								y = -371.98
+							},
+							text = TR("我的名次：未上榜 累计伤害：1888万")
+						},
+						children = {}
+					},
+					{
+						name = "mMyRewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 373.61,
+								y = -383.8
+							},
+							size = {
+								width = 140,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "MyRewardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled12-initParams",
+										name = "cardData",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 45,
+										height = 40
+									}
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "CardNode",
+										params = {
+											scale = 0.5,
+											childName = "card",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 22.5,
+												y = 20
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "hurtTitleNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 410
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 102,
+								y = 0
+							},
+							text = TR("累计伤害")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 252,
+								y = 0
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					},
+					{
+						name = "mOnekeyBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onOneKeyGetReward",
+							pos = {
+								x = 275.75,
+								y = -361.75
+							},
+							titleText = TR("一键领取")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled28",
+				cType = "ScrollView",
+				params = {
+					pos = {
+						x = 38.4,
+						y = 75.08
+					},
+					size = {
+						width = 475,
+						height = 318
+					}
+				},
+				children = {
+					{
+						name = "mTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "onCellNum",
+							isVertical = true,
+							cellUpdateFunc = "onCellRefresh",
+							cellSizeFunc = "onCellSize",
+							cellFillFunc = "onCellCreate",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 475,
+								height = 318
+							}
+						},
+						children = {
+							{
+								name = "RankRewardNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -105
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_98.png",
+											pos = {
+												x = 237,
+												y = 52
+											},
+											size = {
+												width = 475,
+												height = 105
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											childName = "rankPic",
+											pos = {
+												x = 77,
+												y = 52
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Label",
+										params = {
+											text = "4",
+											isRichText = true,
+											childName = "rankLabel",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 77,
+												y = 52
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "ListView",
+										params = {
+											childName = "rewardListView",
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 180.99,
+												y = 7.5
+											},
+											size = {
+												width = 280,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "RewardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled22-initParams",
+														name = "cardData",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 90,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "untitled22",
+														cType = "CardNode",
+														params = {
+															childName = "card",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 45,
+																y = 45
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "HurtRewardNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -220
+									}
+								},
+								children = {
+									{
+										name = "untitled17",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_98.png",
+											pos = {
+												x = 237,
+												y = 52
+											},
+											size = {
+												width = 475,
+												height = 105
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled23",
+										cType = "Label",
+										params = {
+											childName = "hurtLabel",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 56.6,
+												y = 52
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled24",
+										cType = "ListView",
+										params = {
+											childName = "rewardListView",
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 147.99,
+												y = 7.5
+											},
+											size = {
+												width = 200,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "CardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled31-initParams",
+														name = "cardData",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 90,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "untitled31",
+														cType = "CardNode",
+														params = {
+															childName = "card",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 45,
+																y = 45
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "untitled27",
+										cType = "Button",
+										params = {
+											childName = "getBtn",
+											image = "c_27.png",
+											clickAction = "onGetReward",
+											pos = {
+												x = 404.55,
+												y = 52
+											},
+											titleText = TR("领 取")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRewardType = slot1.rewardType
+	slot0.mMyInfo = slot1.myInfo
+	slot0.mCallback = slot1.callback
+	slot0.mDataList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mBgSprite.titleLabel:setString((slot0.mRewardType == 1 and TR("排行奖励")) or TR("伤害奖励"))
+	slot0.rankTitleNode:setVisible(slot0.mRewardType == 1)
+	slot0.hurtTitleNode:setVisible(slot0.mRewardType == 2)
+	slot0.mTableView:reloadData()
+
+	if slot0.mRewardType == 1 then
+		slot0.mMyRankLabel:setString(TR("我的名次：%s 累计伤害：%s", (slot0.mMyInfo.Rank and slot0.mMyInfo.Rank) or TR("未上榜"), Utility.numberWithUnit(slot0.mMyInfo.TotalHurt)))
+
+		if slot0.mMyInfo.Rank then
+			slot1 = ""
+
+			for slot5, slot6 in pairs(slot0.mDataList) do
+				if slot6.rankMin <= slot0.mMyInfo.Rank and slot6.rankMax <= slot0.mMyInfo.Rank then
+					slot1 = slot6.reward
+
+					break
+				end
+			end
+
+			if slot1 ~= "" then
+				slot0.mMyRewardListView:removeAllChildren()
+
+				for slot6, slot7 in pairs(slot2) do
+					slot0.mMyRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "MyRewardLayout", {
+						cardData = {
+							cardInfo = slot7,
+							showAttrs = {
+								Enums.CardShowAttr.eNum
+							}
+						}
+					}))
+				end
+			end
+		end
+	else
+		slot0.refreshOnekey(slot0)
+	end
+
+	return 
+end
+slot0.initData = function (slot0)
+	if slot0.mRewardType == 1 then
+		slot1 = table.keys(EveningbossRewardRankRelation.items)
+
+		table.sort(slot1, function (slot0, slot1)
+			return slot1 < slot0
+		end)
+
+		slot2 = slot1[#slot1]
+
+		for slot6, slot7 in ipairs(slot1) do
+			if slot7 <= slot0.mMyInfo.WorldLv then
+				slot2 = slot7
+
+				break
+			end
+		end
+
+		slot0.mDataList = table.values(EveningbossRewardRankRelation.items[slot2])
+
+		table.sort(slot0.mDataList, function (slot0, slot1)
+			return slot0.rankMin < slot1.rankMin
+		end)
+	else
+		slot0.mDataList = clone(EveningbossRewardHpcutRelation.items)
+
+		table.sort(slot0.mDataList, function (slot0, slot1)
+			if ((table.indexof(slot0.mMyInfo.HpcutRewardIds, slot0.ID) and true) or false) ~= ((table.indexof(slot0.mMyInfo.HpcutRewardIds, slot1.ID) and true) or false) then
+				return not slot2
+			end
+
+			if (slot0.hpCutTotal <= slot0.mMyInfo.TotalHurt) ~= (slot1.hpCutTotal <= slot0.mMyInfo.TotalHurt) then
+				return slot4
+			end
+
+			return slot0.ID < slot1.ID
+		end)
+	end
+
+	return 
+end
+slot0.refreshOnekey = function (slot0)
+	for slot4, slot5 in pairs(slot0.mDataList) do
+		slot6 = (table.indexof(slot0.mMyInfo.HpcutRewardIds, slot5.ID) and true) or false
+
+		if slot5.hpCutTotal <= slot0.mMyInfo.TotalHurt and not slot6 then
+			slot0.mOnekeyBtn:setEnabled(true)
+
+			return 
+		end
+	end
+
+	slot0.mOnekeyBtn:setEnabled(false)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.initData(slot0)
+	slot0.mTableView:reloadData()
+	slot0.refreshOnekey(slot0)
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 475, 105
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.mDataList
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	(slot0.mRewardType ~= 1 or slot0.createLayoutTemplateNode(slot0, "RankRewardNode")) and slot0.createLayoutTemplateNode(slot0, "HurtRewardNode"):setPosition(0, 0)
+	slot1.addChild(slot1, (slot0.mRewardType ~= 1 or slot0.createLayoutTemplateNode(slot0, "RankRewardNode")) and slot0.createLayoutTemplateNode(slot0, "HurtRewardNode"))
+
+	slot4 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot1.refresh = function (slot0)
+		slot1 = slot0.mDataList[slot0 + 1]
+
+		if slot0.mRewardType == 1 then
+			if slot1.rankMin == slot1.rankMax then
+				slot2.rankPic:setVisible((slot1[slot1.rankMin] and true) or false)
+				slot2.rankLabel:setVisible(not slot2)
+
+				if slot2 then
+					slot2.rankPic:setTexture(slot2)
+				end
+
+				slot2.rankLabel:setString(slot1.rankMin)
+			else
+				slot2.rankPic:setVisible(false)
+				slot2.rankPic.setVisible.rankLabel:setVisible(true)
+				slot2.rankPic.setVisible.rankLabel.setVisible.rankLabel:setString(slot1.rankMin .. "-" .. slot1.rankMax)
+			end
+		else
+			slot2.hurtLabel:setString(Utility.numberWithUnit(slot1.hpCutTotal))
+
+			slot2.hurtLabel.setString.getBtn.rewardId = slot1.ID
+
+			(table.indexof(slot0.mMyInfo.HpcutRewardIds, slot1.ID) and true) or false.getBtn:setEnabled(slot1.hpCutTotal <= slot0.mMyInfo.TotalHurt and not ((table.indexof(slot0.mMyInfo.HpcutRewardIds, slot1.ID) and true) or false))
+			(table.indexof(slot0.mMyInfo.HpcutRewardIds, slot1.ID) and true) or false.getBtn:setTitleText((((table.indexof(slot0.mMyInfo.HpcutRewardIds, slot1.ID) and true) or false) and TR("已领取")) or TR("领取"))
+		end
+
+		slot2.rewardListView:removeAllChildren()
+
+		for slot6, slot7 in pairs(slot2) do
+			slot2.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode((slot0.mRewardType == 1 and "RewardLayout") or "CardLayout", {
+				cardData = {
+					cardInfo = slot7,
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		return 
+	end
+
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onGetReward = function (slot0, slot1)
+	slot0.requestGetReward(slot0, slot1.rewardId)
+
+	return 
+end
+slot0.onOneKeyGetReward = function (slot0)
+	slot0.requestOneKeyGetReward(slot0)
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "EveningbossInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "奖励")
+			ui.showFlashReward(slot0)
+
+			slot0.mMyInfo = slot0.Myinfo
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.mMyInfo)
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestOneKeyGetReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRewardAll",
+		moduleName = "EveningbossInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+
+			slot0.mMyInfo = slot0.Myinfo
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.mMyInfo)
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

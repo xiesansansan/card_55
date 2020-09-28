@@ -1,0 +1,104 @@
+slot0 = class("WaitingLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 0)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "effect",
+		cType = "Effect",
+		params = {
+			dataFile = "effect_ui_loding_x",
+			scaleApt = 2,
+			hide = true,
+			posApt = 1,
+			animation = "animation2",
+			pos = {
+				x = 568,
+				y = 353
+			}
+		},
+		children = {}
+	},
+	{
+		name = "noticeLabel",
+		cType = "Label",
+		params = {
+			posApt = 1,
+			delayInit = true,
+			scaleApt = 2,
+			pos = {
+				x = 577,
+				y = 309
+			},
+			text = TR("等待中...")
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0._cacheString = "等待中"
+	slot0._extendStrig = ""
+
+	if not slot0.haveEffect then
+		Utility.performWithDelay(slot0, function (...)
+			slot0:setOpacity(127)
+			slot0.setOpacity:createUISubTree("noticeLabel")
+			Utility.schedule(slot0.noticeLabel, function ()
+				if #slot0._extendStrig < 3 then
+					slot0._extendStrig = slot0._extendStrig .. "."
+				else
+					slot0._extendStrig = ""
+				end
+
+				slot0.noticeLabel:setString(slot0._cacheString .. slot0._extendStrig)
+
+				return 
+			end, 1)
+
+			return 
+		end, 0.5)
+	end
+
+	return 
+end
+slot0.setString = function (slot0, slot1, slot2)
+	slot0._cacheString = slot1
+
+	if slot0.noticeLabel then
+		slot0.noticeLabel:setString(slot0._cacheString .. slot0._extendStrig)
+	end
+
+	if slot2 then
+		if slot0.noticeLabel then
+			slot0.noticeLabel:setVisible(false)
+		end
+
+		slot0.haveEffect = true
+
+		slot0.effect:setVisible(true)
+	else
+		if slot0.noticeLabel then
+			slot0.noticeLabel:setVisible(true)
+		end
+
+		slot0.haveEffect = false
+
+		slot0.effect:setVisible(false)
+	end
+
+	return 
+end
+
+return slot0

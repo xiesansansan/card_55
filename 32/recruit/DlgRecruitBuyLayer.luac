@@ -1,0 +1,244 @@
+slot0 = class("DlgRecruitBuyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onExitLayer",
+			hideCloseButton = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 550,
+				height = 430
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 275,
+						y = 415
+					}
+				},
+				children = {
+					{
+						name = "untitled2",
+						cType = "Label",
+						params = {
+							fontSize = 27,
+							pos = {
+								x = 144,
+								y = 17.5
+							},
+							text = TR("购买")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 275,
+						y = 275
+					},
+					size = {
+						width = 448,
+						height = 184
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGoodCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 270.29,
+						y = 319.34
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPriceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "Label",
+					outlineColor = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 270.29,
+						y = 230.84
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onChangeNum",
+					currSelCount = 1,
+					pos = {
+						x = 275,
+						y = 142.32
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mBuyBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 275,
+						y = 73.37
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 526.06,
+						y = 407.14
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGoodInfo = slot1.costInfo
+	slot0.mDiscountNum = slot1.discountNum or 0
+	slot0.mCallback = slot1.callback
+	slot0.mCloseCb = slot1.closeCb
+	slot0.mCurCount = slot0.mGoodInfo.num
+
+	if slot0.mCurCount and slot0.mGoodInfo then
+		slot0.mCurCount = slot0.mCurCount - Resource.getCount(slot0.mGoodInfo.resourceId)
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mCountView" then
+			slot1.currSelCount = slot0.mCurCount
+		end
+
+		return 
+	end)
+	slot0.mGoodCard:setCardData(slot0.mGoodInfo, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eName
+	})
+	slot0.mPriceLabel:setString(string.format("{%s}%s", Resource.getDaibiImg(slot0.calculatePrice(slot0).resourceId), slot0.calculatePrice(slot0).num))
+
+	return 
+end
+slot0.calculatePrice = function (slot0)
+	slot1 = slot0.mCurCount
+	slot3 = 0
+	slot4 = 0
+	slot6 = Utility.analysisStrResList(RecruitShopConfig.items[slot0.mGoodInfo.resourceId].price)[1].num
+
+	if not slot0.mDiscountNum then
+		slot3 = slot6*slot1
+	else
+		for slot10 = 1, slot1, 1 do
+			slot3 = slot3 + ((slot10 <= slot0.mDiscountNum and slot6*0.5) or slot6)
+		end
+	end
+
+	slot5.num = slot3
+
+	return slot5
+end
+slot0.onChangeNum = function (slot0, slot1)
+	slot0.mCurCount = slot1
+
+	slot0.mPriceLabel:setString(string.format("{%s}%s", Resource.getDaibiImg(slot0.calculatePrice(slot0).resourceId), slot0.calculatePrice(slot0).num))
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	if Resource.isEnough(slot0.calculatePrice(slot0).resourceId, slot0.calculatePrice(slot0).num, true, true) then
+		slot0.requestBuyGoods(slot0)
+	end
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	if slot0.mCloseCb then
+		slot0.mCloseCb()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestBuyGoods = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyGoods",
+		moduleName = "HeroRecruit",
+		methodData = {
+			slot0.mGoodInfo.resourceId,
+			slot0.mCurCount,
+			0 < slot0.mDiscountNum
+		},
+		successCallback = function (slot0)
+			if slot0 and next(slot0) then
+				if slot0.mCallback then
+					slot0.mCallback()
+				end
+
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

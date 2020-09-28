@@ -1,0 +1,245 @@
+slot0 = class("TurnTableRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zd_66.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled11",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled12",
+				cType = "Effect",
+				params = {
+					loop = true,
+					dataFile = "effect_ui_zhuanpanjiangli",
+					isPlayAnimation = true,
+					animation = "animation",
+					pos = {
+						x = -1.53,
+						y = 232.9
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onClose",
+					pos = {
+						x = 0,
+						y = -277.34
+					},
+					titleText = TR("全部领取")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "reward",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "rewardNode",
+		cType = "TemplateNode",
+		params = {
+			pos = {
+				x = 220,
+				y = 390
+			}
+		},
+		children = {
+			{
+				name = "backSprite",
+				cType = "Sprite",
+				params = {
+					image = "xyzp_9.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "frontSprite",
+				cType = "Sprite",
+				params = {
+					childName = "frontSprite",
+					image = "xyzp_10.png",
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled",
+						cType = "CardNode",
+						params = {
+							childName = "goodCard",
+							allowClick = true,
+							pos = {
+								x = 62.27,
+								y = 113.96
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							childName = "tripleLabel",
+							text = "X3",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 62.64,
+								y = 53.45
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRewardList = slot1.rewardList
+	slot0.closeCallback = slot1.closeCallback
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mRewardInfo = {}
+
+	for slot4, slot5 in pairs(slot0.mRewardList) do
+		slot5.Order = tonumber(slot4)
+
+		table.insert(slot0.mRewardInfo, slot5)
+	end
+
+	table.sort(slot0.mRewardInfo, function (slot0, slot1)
+		if slot0.Order ~= slot1.Order then
+			return slot0.Order < slot1.Order
+		end
+
+		return 
+	end)
+	slot0.createReward(slot0)
+
+	return 
+end
+slot0.createReward = function (slot0)
+	slot0.mRewardNodeList = {}
+	slot1 = -400
+	slot2 = 200
+
+	for slot6, slot7 in ipairs(slot0.mRewardInfo) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "rewardNode")
+
+		slot9.setPosition(slot9, slot1 + (((slot6%5 == 0 and 5) or slot6%5) - 1)*slot2, (slot6 <= 5 and 60) or -120)
+		slot0.reward:addChild(slot9)
+		dump(slot7.RewardStr)
+
+		if slot7.RewardStr == "InterRoll" then
+			slot9.frontSprite.goodCard:setExtraImg("xyzp_11.png")
+			slot9.frontSprite.goodCard:setBorder("c_16.png")
+			slot9.frontSprite.goodCard:setAllowClick(false)
+		elseif slot7.RewardStr == "NextTriple" then
+			slot9.frontSprite.goodCard:setExtraImg("xyzp_12.png")
+			slot9.frontSprite.goodCard:setBorder("c_16.png")
+			slot9.frontSprite.goodCard:setAllowClick(false)
+		elseif slot7.RewardStr == "LastTurnStatus" then
+			slot9.frontSprite.goodCard:setExtraImg("xyzp_13.png")
+			slot9.frontSprite.goodCard:setBorder("c_16.png")
+			slot9.frontSprite.goodCard:setAllowClick(false)
+		else
+			slot9.frontSprite.goodCard:setCardData(Utility.analysisStrResList(slot7.RewardStr)[1], {
+				Enums.CardShowAttr.eNum
+			})
+		end
+
+		slot9.frontSprite.tripleLabel:setVisible(slot7.IsTriple)
+		table.insert(slot0.mRewardNodeList, slot9)
+		slot0.turnCardAction(slot0)
+	end
+
+	return 
+end
+slot0.turnCardAction = function (slot0)
+	slot1 = 0.08
+
+	for slot5, slot6 in ipairs(slot0.mRewardNodeList) do
+		slot6.runAction(slot6, cc.Sequence:create(slot7, slot8, cc.CallFunc:create(function ()
+			slot0.backSprite:setVisible(false)
+			slot0.backSprite.setVisible.frontSprite:setVisible(true)
+
+			return 
+		end), cc.ScaleTo:create(0.2, 1, 1, 0)))
+	end
+
+	return 
+end
+slot0.onClose = function (slot0)
+	if slot0.closeCallback then
+		slot0.closeCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

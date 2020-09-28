@@ -1,0 +1,660 @@
+slot0 = class("PracticeUpBoxLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 431.21,
+						y = 509.7
+					}
+				},
+				children = {
+					{
+						name = "title",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							isRichText = "false",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 143.86,
+								y = 16.88
+							},
+							text = TR("修炼")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabViewChangeAction",
+					isNeedOutline = false,
+					selectTag = 1,
+					lightedImage = "zj_85.png",
+					direction = true,
+					normalImage = "zj_86.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					btnSize = {
+						width = 115,
+						height = 51
+					},
+					pos = {
+						x = 18.54,
+						y = 107.13
+					},
+					selectTitleColor = {
+						g = 125,
+						r = 203,
+						b = 69
+					},
+					size = {
+						width = 130,
+						height = 360
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "attrNodeBg",
+				cType = "Sprite",
+				params = {
+					image = "zj_84.png",
+					pos = {
+						x = 475.77,
+						y = 287.45
+					}
+				},
+				children = {
+					{
+						name = "templateLayerNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 34.11,
+								y = 247.82
+							},
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "zj_87.png",
+									childName = "bgSprite",
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "attrLabel",
+									isRichText = "false",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 49.6,
+										y = 60.06
+									},
+									text = TR("攻击")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "valueLabel",
+									text = "+20",
+									isRichText = "false",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 48.57,
+										y = 38.45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_xiulian",
+									scale = 1.5,
+									childName = "effect",
+									animation = "zhuan",
+									pos = {
+										x = 50.66,
+										y = 49.76
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mBtnPractice",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBtnPracticeAction",
+					pos = {
+						x = 431.32,
+						y = 57
+					},
+					titleText = TR("修炼")
+				},
+				children = {}
+			},
+			{
+				name = "mNeedLvLabel",
+				cType = "Label",
+				params = {
+					isRichText = "false",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 266.21,
+						y = 57
+					},
+					text = TR("需要等级")
+				},
+				children = {}
+			},
+			{
+				name = "mResOneLabel1",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 617.9,
+						y = 58.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mResTwoLabel1",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 638.9,
+						y = 58.46
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	{
+		position = cc.p(58, 307),
+		offset = cc.p(57, 306)
+	},
+	{
+		position = cc.p(57, 163),
+		offset = cc.p(57, 164)
+	},
+	{
+		position = cc.p(149, 61),
+		offset = cc.p(149, 61)
+	},
+	{
+		position = cc.p(199, 194),
+		offset = cc.p(199, 194)
+	},
+	{
+		position = cc.p(283, 309),
+		offset = cc.p(283, 309)
+	},
+	{
+		position = cc.p(400, 218),
+		offset = cc.p(400, 218)
+	},
+	{
+		position = cc.p(330, 89),
+		offset = cc.p(330, 89)
+	},
+	{
+		position = cc.p(467, 59),
+		offset = cc.p(467, 59)
+	},
+	{
+		position = cc.p(541, 169),
+		offset = cc.p(541, 169)
+	},
+	{
+		position = cc.p(609, 296),
+		offset = cc.p(609, 296)
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mSelectedTag = slot1.selectedTag
+	slot0.mCurrTab = slot1.currTab
+	slot0.professionNodeList = {}
+	slot0.layerNodeList = {}
+	slot0.lineNodeList = {}
+	slot0.needRequestMaster = false
+	slot0.titleName = slot1.titleName
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {}
+
+	for slot5 = 1, #PracticeConfig.items[1], 1 do
+		table.insert(slot1, {
+			tag = slot5,
+			title = TR("第%s重", Utility.getChineseNum(slot5))
+		})
+	end
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0
+			slot1.selectTag = slot1.mCurrTab
+		end
+
+		return 
+	end)
+
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "templateLayerNode")
+
+		slot8.setIgnoreAnchorPointForPosition(slot8, false)
+		slot8.setAnchorPoint(slot8, cc.p(0.5, 0.5))
+		slot8.setPosition(slot8, slot7.position)
+		slot8.setScale(slot8, (slot6 == #slot0 and 1) or 0.7)
+		slot8.attrLabel:setString("")
+		slot8.valueLabel:setString("")
+		slot0.attrNodeBg:addChild(slot8, 1)
+		table.insert(slot0.layerNodeList, slot8)
+
+		if slot2 ~= nil then
+			slot9 = UIWrap.newControl("Scale9Sprite", {
+				image = "zj_89.png",
+				anchor = cc.p(0, 0.5),
+				pos = slot7.offset,
+				size = cc.size(cc.pGetDistance(slot7.offset, slot2), 6),
+				rotationAngle = Utility.getPointAngle(slot7.offset, slot2)
+			})
+
+			slot9.setGray(slot9, true)
+			slot0.attrNodeBg:addChild(slot9)
+			table.insert(slot0.lineNodeList, slot9)
+		end
+
+		slot2 = slot7.position
+	end
+
+	slot0.mCurrPage, slot0.mCurrLayer = slot0.getCurrPageAndLayer(slot0)
+
+	slot0.title:setString(TR("%s道修炼", slot0.titleName))
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot2 = PracticeConfig.items[slot0.mSelectedTag] or {}[slot0.mCurrTab] or {}
+
+	slot0.mNeedLvLabel:setVisible(slot0.mCurrTab == slot0.mCurrPage)
+	slot0.mResOneLabel1:setVisible(slot0.mCurrTab == slot0.mCurrPage)
+	slot0.mResTwoLabel1:setVisible(slot0.mCurrTab == slot0.mCurrPage)
+	slot0.mBtnPractice:setEnabled(slot0.mCurrTab == slot0.mCurrPage)
+
+	for slot6, slot7 in ipairs(slot0.layerNodeList) do
+		slot9 = {}
+		slot11 = tonumber((0 >= #slot2[slot6] or {}.attrStrC or string.split(slot2[slot6] or {}.attrStrC, "|")) and string.split(slot2[slot6] or {}.allAttrStrC, "|")[2])
+
+		if Utility.isAttrNeedPercent(tonumber((0 >= #slot2[slot6] or {}.attrStrC or string.split(slot2[slot6] or {}.attrStrC, "|")) and string.split(slot2[slot6] or {}.allAttrStrC, "|")[1])) then
+			slot7.valueLabel:setString(string.format("+%s%%", slot11/100))
+		else
+			slot7.valueLabel:setString(string.format("+%s", slot11))
+		end
+
+		slot7.attrLabel:setString(FightAttrTypeName[slot10])
+	end
+
+	if slot0.mCurrPage < slot0.mCurrTab then
+		for slot6, slot7 in ipairs(slot0.layerNodeList) do
+			slot7.effect:setVisible(false)
+		end
+
+		for slot6, slot7 in ipairs(slot0.lineNodeList) do
+			slot7.setGray(slot7, true)
+		end
+	elseif slot0.mCurrTab < slot0.mCurrPage then
+		for slot6, slot7 in ipairs(slot0.layerNodeList) do
+			slot7.effect:setVisible(true)
+		end
+
+		for slot6, slot7 in ipairs(slot0.lineNodeList) do
+			slot7.setGray(slot7, false)
+		end
+	else
+		slot3 = false
+		slot4 = slot2[slot0.mCurrLayer]
+
+		if slot2[slot0.mCurrLayer + 1] == nil then
+			slot0.mNeedLvLabel:setVisible(false)
+			slot0.mResOneLabel1:setVisible(false)
+			slot0.mResTwoLabel1:setVisible(false)
+			slot0.mBtnPractice:setEnabled(false)
+		else
+			slot0.mNeedLvLabel:setString(TR("玩家等级需达到 %s级", slot5.needPlayerLv))
+
+			slot8 = Resource.getDaibiImg(Utility.analysisStrResList(slot5.stepNeed)[1].resourceId)
+			slot10 = (Utility.analysisStrResList(slot5.stepNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(slot5.stepNeed)[1].resourceId) and "#8ba857") or "#c04141"
+
+			if slot9 < slot7.num then
+				slot3 = false
+			end
+
+			slot0.mResOneLabel1:setString(TR("{%s}%s%s/%s", slot8, slot10, Utility.numberWithUnit(slot7.num), Utility.numberWithUnit(slot9)))
+			slot0.mResTwoLabel1:setString(TR("{%s}%s%s/%s", Resource.getDaibiImg(slot6[2].resourceId), (slot6[2].num <= Resource.getCount(slot6[2].resourceId) and "#8ba857") or "#c04141", Utility.numberWithUnit(slot11.num), Utility.numberWithUnit(slot13)))
+
+			if slot13 < slot11.num then
+				slot3 = false
+			end
+		end
+
+		for slot9, slot10 in ipairs(slot0.layerNodeList) do
+			slot10.effect:setVisible(slot9 <= slot0.mCurrLayer)
+		end
+
+		for slot9, slot10 in ipairs(slot0.lineNodeList) do
+			slot10.setGray(slot10, slot0.mCurrLayer <= slot9)
+		end
+	end
+
+	return 
+end
+slot0.selectOnePage = function (slot0, slot1)
+	slot0.mTabView:activeTabBtnByTag2(slot1)
+
+	return 
+end
+slot0.onTabViewChangeAction = function (slot0, slot1)
+	if slot0.mCurrTab == nil then
+		slot0.mCurrTab = slot1
+
+		return 
+	end
+
+	slot0.mCurrTab = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onBtnPracticeAction = function (slot0, slot1)
+	slot5 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if PracticeConfig.items[slot0.mSelectedTag] or {}[slot0.mCurrPage] or {}[slot0.mCurrLayer + 1] and slot5 < slot4.needPlayerLv then
+		ui.showFlashView(TR("玩家等级需达到 %s%s", "#EA2C00", slot4.needPlayerLv))
+
+		return 
+	end
+
+	if slot4 then
+		for slot10, slot11 in ipairs(slot6) do
+			if slot11.resourceId == ResourceTypeSub.eGold then
+				if Resource.isEnough(slot11.resourceId, slot11.num) == false then
+					return 
+				end
+			elseif Resource.getCount(slot11.resourceId) < slot11.num then
+				ui.showMessageBox({
+					text = TR("%s%s%s不足！是否前往获取？", "#EA2C00", Resource.getName(slot11.resourceId), "#46220d"),
+					okCallback = function ()
+						LayerManager.showModuleLayer(ModuleSub.eSwing)
+
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60
+					}
+				})
+
+				return 
+			end
+		end
+
+		slot0.requestPractice(slot0, slot0.mCurrLayer)
+	end
+
+	return 
+end
+slot0.caleMasterNum = function (slot0)
+	slot1 = 0
+	slot2 = 10
+	slot3 = Player:getGameData("PlayerPracticeData") or {}
+	slot0.needRequestMaster = false
+
+	if not slot3.ReceivedNum then
+		return slot1
+	end
+
+	if not PracticeNumConfig.items[slot3.ReceivedNum + 10] then
+		slot1 = slot2
+	elseif slot3.Count == 0 then
+		slot1 = 0
+	else
+		slot0.needRequestMaster = 10 <= ((slot4.actNum <= slot3.Count and 10) or slot2 - slot4.actNum - slot3.Count)
+	end
+
+	if slot3.ReceivedNum ~= 0 and (slot4 or false) then
+		slot0.attrList:removeAllItems()
+
+		for slot8, slot9 in ipairs(slot0.caleTotalAttr(slot0, slot4.actNum)) do
+			slot0.attrList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "attrLayout", {
+				text = TR("全体%s#37ff40+%s", FightAttrTypeName[slot9.fightattr], slot9.value)
+			}))
+		end
+	end
+
+	slot0.masterBtn.remainLabel:setVisible(slot0.needRequestMaster)
+	slot0.masterBtn.remainLabel:stopAllActions()
+
+	if slot0.needRequestMaster then
+		slot0.masterBtn.remainLabel:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeIn:create(0.7), cc.DelayTime:create(0.3), cc.FadeOut:create(0.7), cc.DelayTime:create(0.3))))
+	end
+
+	return slot1
+end
+slot0.getPracticeData = function (slot0, slot1)
+	if Player:getGameData("PlayerPracticeData") ~= nil then
+		return slot1()
+	end
+
+	slot0.requestGetInfo(slot0, slot1)
+
+	return 
+end
+slot0.getCurrPageAndLayer = function (slot0)
+	dump(PlayerAttrObj:getPlayerAttrByName("PlayerId"), "PlayerId")
+
+	slot3 = (Player:getGameData("PlayerPracticeData") or {}.PracticeStr and Player.getGameData("PlayerPracticeData") or {}.PracticeStr[tostring(slot0.mSelectedTag)]) or {}.Page or 1
+	slot4 = (Player.getGameData("PlayerPracticeData") or {}.PracticeStr and Player.getGameData("PlayerPracticeData") or {}.PracticeStr[tostring(slot0.mSelectedTag)]) or {}.Layer or 0
+	slot5 = PracticeConfig.items[slot0.mSelectedTag] or {}
+
+	if slot4 == 10 and slot5[slot3 + 1] ~= nil then
+		slot3 = slot3 + 1
+		slot4 = 0
+	end
+
+	return slot3, slot4
+end
+slot0.requestGetInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Practice",
+		methodData = {},
+		successCallback = function (slot0)
+			Player:saveGameData("PlayerPracticeData", slot0)
+			slot0()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPractice = function (slot0, slot1)
+	function slot2(slot0)
+		Player:saveGameData("PlayerPracticeData", slot0)
+
+		slot2 = slot0.PracticeStr[tostring(slot0.mSelectedTag)].Page
+
+		if slot0.PracticeStr[tostring(slot0.mSelectedTag)].Layer == 10 then
+			slot0.mCurrLayer = slot3
+			slot0.mCurrPage = slot2
+
+			slot0:refreshUI()
+
+			slot0.mCurrPage, slot0.mCurrLayer = slot0:getCurrPageAndLayer()
+
+			slot0:selectOnePage(slot0.mCurrPage)
+		else
+			slot0.mCurrPage, slot0.mCurrLayer = slot0:getCurrPageAndLayer()
+
+			slot0:refreshUI()
+		end
+
+		EventAuto:postEvent("ePRACTICEUPEVENT", {
+			mCurrPage = slot2,
+			mCurrLayer = slot3
+		})
+		slot0.mBtnPractice:setEnabled(true)
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Practice",
+		moduleName = "Practice",
+		methodData = {
+			slot0.mSelectedTag,
+			slot0.mCurrPage,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mBtnPractice:setEnabled(false)
+
+			slot2 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "dianliang",
+				dataFile = "effect_ui_xiulian",
+				pos = cc.p(320, 30)
+			})
+
+			slot2.runAction(slot2, cc.Sequence:create({
+				cc.MoveTo:create(0.5, cc.p(slot0.mBtnPractice.setEnabled[slot0.mBtnPractice + 1].position.x, slot0.mBtnPractice.setEnabled[slot0.mBtnPractice + 1].position.y - 20)),
+				cc.CallFunc:create(function ()
+					slot0:removeFromParent()
+
+					slot0 = nil
+
+					slot0(slot2)
+
+					return 
+				end)
+			}))
+			slot0.attrNodeBg:addChild(slot2, 1)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,174 @@
+UIButton2Files = {}
+slot0 = "/Users/moqikaka/Work/SheDiao3/201901/Client/Src/home/HomeBtnConfig.lua"
+UIButton2Files.getUiTree = function (slot0)
+	slot2 = string.split(slot0, ".")[#string.split(slot0, ".")]
+
+	if require(slot0):create({}).uiTree then
+		return slot3.uiTree
+	end
+
+	return {}
+end
+UIButton2Files.setEnumsIdList = function ()
+	require("config.EnumsConfig")
+
+	slot0 = {}
+
+	for slot4, slot5 in pairs(ModuleSub) do
+		slot0[slot5] = string.format("ModuleSub.%s", slot4)
+	end
+
+	UIButton2Files.enumsIdList = slot0
+
+	return 
+end
+UIButton2Files.getButton = function (slot0)
+	UIButton2Files.setEnumsIdList()
+
+	slot1 = {}
+	slot2 = {}
+	slot3 = {}
+	slot4 = {}
+
+	function slot5(slot0, slot1)
+		slot2 = nil
+
+		if string.find(slot1, "moreBtnBg") then
+			slot2 = slot0
+		elseif string.find(slot1, "leftBtnBg") then
+			slot2 = slot1
+		elseif string.find(slot1, "mAdventurePlane") then
+			slot2 = slot2
+		elseif string.find(slot1, "activitListNode") then
+			slot2 = slot3
+		else
+			return 
+		end
+
+		if slot0.cType == "Button" then
+			slot3, slot4, slot5, slot6 = nil
+
+			if slot0.custom then
+				for slot10, slot11 in ipairs(slot0.custom) do
+					if slot11.name == "moduleId" then
+						slot3 = slot11.value
+
+						break
+					end
+				end
+			end
+
+			if slot0.children and 0 < #slot0.children then
+				if slot0.children[1].cType == "RedDot" then
+					slot4 = slot0.children[1].params.moduleId
+					slot6 = slot0.children[1].params.subKey
+				end
+
+				if slot0.children[2] and slot0.children[2].params.childName == "timeNode" then
+					slot5 = true
+				end
+			end
+
+			if slot3 then
+				table.insert(slot2, {
+					name = slot0.name,
+					moduleName = (ModuleSubConfig.items[slot3] and ModuleSubConfig.items[slot3].name) or "",
+					moduleStr = (slot3 and UIButton2Files.enumsIdList[slot3]) or nil,
+					reddotStr = (slot4 and UIButton2Files.enumsIdList[slot4]) or nil,
+					imgName = slot0.params.image,
+					moduleId = slot3,
+					redDotId = slot4,
+					redDotsubKey = slot6,
+					pathStr = slot1,
+					countDown = slot5
+				})
+			end
+		end
+
+		return 
+	end
+
+	slot6 = nil
+
+	function slot6(slot0, slot1)
+		for slot5, slot6 in ipairs(slot0.children) do
+			slot0(slot6, slot1 .. "." .. slot5)
+
+			if slot6.children and 0 < #slot6.children then
+				slot1(slot6, slot1 .. "." .. slot6.name)
+			end
+		end
+
+		return 
+	end
+
+	for slot10, slot11 in ipairs(slot0) do
+		slot6(slot11, slot11.name)
+	end
+
+	dump(slot1)
+	dump(slot2)
+	dump(slot3)
+
+	slot7 = io.open(slot0, "w+")
+
+	function slot8(slot0)
+		slot1 = ""
+
+		slot0:write(string.format("\t{-- %s\n", slot0.moduleName))
+		slot0:write(string.format("\t\tname = TR(\"%s\"),\n", slot0.moduleName))
+		slot0:write(string.format("\t\ticon = \"%s\",\n", slot0.imgName))
+		slot0:write(string.format("\t\tmoduleId = %s,\n", slot0.moduleStr))
+
+		if slot0.reddotStr then
+			slot0:write(string.format("\t\tredDotId = %s,\n", slot0.reddotStr))
+		end
+
+		if slot0.redDotsubKey then
+			slot0:write(string.format("\t\tredDotSubKey = \"%s\",\n", slot0.redDotsubKey))
+		end
+
+		if slot0.countDown then
+			slot0:write(string.format("\t\tneedCountDown = %s,\n", slot0.countDown))
+		end
+
+		slot0:write("\t},\n")
+
+		return 
+	end
+
+	slot7.write(slot7, slot9)
+	slot7.write(slot7, "-- 首页右上角显示的活动\nHomeActiveConfig = {\n")
+
+	for slot13, slot14 in ipairs(slot3) do
+		slot8(slot14)
+	end
+
+	slot7.write(slot7, "}\n\n")
+	slot7.write(slot7, "-- 首页最左边显示的功能按钮\nHomeLeftActiveConfig = {\n")
+
+	for slot13, slot14 in ipairs(slot4) do
+		slot8(slot14)
+	end
+
+	slot7.write(slot7, "}\n\n")
+	slot7.write(slot7, "-- 点击更多显示的活动\nHomeMoreActiveConfig = {\n")
+
+	for slot13, slot14 in ipairs(slot1) do
+		slot8(slot14)
+	end
+
+	slot7.write(slot7, "}\n\n")
+	slot7.write(slot7, "-- 点击奇遇显示的活动\nHomeAdventureActiveConfig = {\n")
+
+	for slot13, slot14 in ipairs(slot2) do
+		slot8(slot14)
+	end
+
+	slot7.write(slot7, "}\n\n")
+	slot7.close(slot7)
+
+	return ret
+end
+
+return UIButton2Files

@@ -1,0 +1,81 @@
+slot0 = class("HeroSubTempLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled201",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "hero/HeroMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "mBg",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			image = "c_9.png",
+			scaleApt = 2,
+			pos = {
+				x = 852,
+				y = 300
+			}
+		},
+		children = {
+			{
+				name = "mTestTitle",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "XXXX",
+					color = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					pos = {
+						x = 217.41,
+						y = 478.27
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mModuleInfo = slot1.moduleInfo or {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTestTitle" then
+			slot1.text = slot0.mModuleInfo.titleName or TR("未知")
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.immediateRefreshUi = function (slot0)
+	dump(TR("刷新%s页面", slot0.mModuleInfo.titleName))
+
+	return 
+end
+slot0.requestGetServerInfo = function (slot0)
+	return 
+end
+
+return slot0

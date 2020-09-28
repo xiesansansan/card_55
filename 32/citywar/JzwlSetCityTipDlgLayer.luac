@@ -1,0 +1,181 @@
+slot0 = class("JzwlSetCityTipDlgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "tc_1.png"
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_144.png",
+					pos = {
+						x = 257.14,
+						y = 190.77
+					},
+					size = {
+						width = 450.73,
+						height = 168.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_13.png",
+					clickAction = "onCancleBtn",
+					pos = {
+						x = 377.33,
+						y = 62.03
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_70.png",
+					clickAction = "onSureBtn",
+					pos = {
+						x = 148.89,
+						y = 63.07
+					},
+					titleText = TR("确 认")
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 56.54,
+						y = 240.67
+					},
+					text = TR("是否将【xxx】选为钦点城池？")
+				},
+				children = {}
+			},
+			{
+				name = "timedLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 54.54,
+						y = 207.67
+					},
+					text = TR("选定后，该城池占领产出将增加5倍")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 53.54,
+						y = 176.67
+					},
+					text = TR("每日仅有一次选定钦点城池的机会，请谨慎使用")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCityId = slot1.cityId
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.cityName = CitywarCityConfig.items[slot0.mCityId].name
+
+	slot0.nameLabel:setString(TR("是否将【%s】选为钦点城池？", slot0.cityName))
+	slot0.timedLabel:setString(TR("选定后，该城池占领产出将增加%s倍", LeaguetopConfig.items[1].cityOutPutMultiple))
+
+	return 
+end
+slot0.onSureBtn = function (slot0)
+	slot0.requestSetCity(slot0)
+
+	return 
+end
+slot0.onCancleBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestSetCity = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "SetCityId",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("已将钦点城池设置为%s", slot0.cityName))
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

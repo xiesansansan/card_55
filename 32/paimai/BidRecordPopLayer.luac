@@ -1,0 +1,451 @@
+slot0 = class("BidRecordPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 155)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 846,
+				height = 500
+			},
+			titleText = TR("拍卖记录")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423.39,
+						y = 237.38
+					},
+					size = {
+						width = 795,
+						height = 414
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 93.99,
+								y = 387.78
+							},
+							text = TR("交易时间")
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 303.46,
+								y = 387.78
+							},
+							text = TR("拍卖品")
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 498.88,
+								y = 385.26
+							},
+							text = TR("交易消耗")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 695.05,
+								y = 385.26
+							},
+							text = TR("交易备注")
+						},
+						children = {}
+					},
+					{
+						name = "tableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "onNumOfCellFunc",
+							isVertical = true,
+							cellUpdateFunc = "onCellUpdateFunc",
+							cellSizeFunc = "onCellSizeFunc",
+							cellFillFunc = "onCellFillFunc",
+							pos = {
+								x = 0,
+								y = 4.51
+							},
+							size = {
+								width = 795,
+								height = 365
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -103.52
+									},
+									size = {
+										width = 795,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled10",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_99.png",
+											pos = {
+												x = 397.5,
+												y = 50
+											},
+											size = {
+												width = 790,
+												height = 95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "titleLabel",
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 59.97,
+												y = 63.94
+											},
+											size = {
+												width = 100,
+												height = 0
+											},
+											text = TR("6月20日19：25：25")
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Button",
+										params = {
+											childName = "drawBtn",
+											image = "c_32.png",
+											clickAction = "onDrawBtn",
+											pos = {
+												x = 698.33,
+												y = 50
+											},
+											titleText = TR("领取")
+										},
+										children = {
+											{
+												name = "untitled16",
+												cType = "RedDot",
+												params = {
+													childName = "redDot"
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											childName = "desLabel",
+											hide = true,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 696.6,
+												y = 50
+											},
+											text = TR("已领取")
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "CardNode",
+										params = {
+											scale = 0.75,
+											childName = "cardNode",
+											allowClick = true,
+											pos = {
+												x = 267.49,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 309.32,
+												y = 55.34
+											},
+											text = TR("道具名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "Sprite",
+										params = {
+											image = "pmh_5.png",
+											childName = "statuImg",
+											pos = {
+												x = 354.37,
+												y = 36.06
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											childName = "costRes",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 467.34,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "noLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 398.69,
+								y = 204.97
+							},
+							text = TR("暂无交易记录")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 795, 100
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mMyAuctionRecord
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rewardLayout")
+	slot3.refreshCell = function (slot0, slot1)
+		slot4 = Utility.analysisStrResList(AuctionRewardRelation.items[slot0.mMyAuctionRecord[slot1 + 1].RewardId].rewardStr)[1]
+
+		slot0.titleLabel:setString(TR("%d月%d日 %s:%s:%s", slot5.month, slot5.day, (9 < os.date("*t", slot0.mMyAuctionRecord[slot1 + 1].CrDate).hour and tostring(slot5.hour)) or "0" .. slot5.hour, (9 < slot5.min and tostring(slot5.min)) or "0" .. slot5.min, (9 < slot5.sec and tostring(slot5.sec)) or "0" .. slot5.sec))
+		slot0.drawBtn:setVisible(slot2.Status == 2 and slot2.IsDraw == 1)
+		slot0.desLabel:setVisible(slot2.Status ~= 2 or (slot2.Status == 2 and slot2.IsDraw ~= 1))
+
+		if slot2.Status == 0 then
+			slot0.desLabel:setString(TR("竞拍中"))
+		elseif slot2.Status == 1 then
+			slot0.desLabel:setString(TR("竞拍成功"))
+		elseif slot2.Status == 2 then
+			slot0.desLabel:setString(TR("元宝已返还"))
+		elseif slot2.Status == 3 then
+			slot0.desLabel:setString(TR("一口价"))
+		elseif slot2.Status == 4 then
+			slot0.desLabel:setString(TR(""))
+		end
+
+		slot0.costRes:setString(slot2.PayPrice)
+		slot0.cardNode:setCardData(slot4)
+		slot0.nameLabel:setString(Resource.getName(slot4.resourceId))
+
+		if slot2.Status == 2 then
+			slot0.statuImg:setTexture("pmh_6.png")
+		else
+			slot0.statuImg:setTexture("pmh_5.png")
+		end
+
+		slot0.drawBtn.info = slot2
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.sortMyAuctionRecord = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mMyAuctionRecord) do
+		if slot5.Status == 2 then
+			slot5.canDarw = 10000
+		else
+			slot5.canDarw = 0
+		end
+	end
+
+	table.sort(slot0.mMyAuctionRecord, function (slot0, slot1)
+		return slot1.canDarw < slot0.canDarw
+	end)
+
+	return 
+end
+slot0.onDrawBtn = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "GlobalAuction",
+		methodData = {
+			slot1.info.SeasonId,
+			slot1.info.RecordId
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.mMyAuctionRecord = slot0.MyAuctionRecord
+
+			slot0:sortMyAuctionRecord()
+			slot0.tableView:reloadData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetMyAuctionRecord",
+		moduleName = "GlobalAuction",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mMyAuctionRecord = slot0.MyAuctionRecord
+
+			slot0.noLabel:setVisible(next(slot0.mMyAuctionRecord) == nil)
+			slot0:sortMyAuctionRecord()
+			slot0.tableView:reloadData()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

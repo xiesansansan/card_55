@@ -1,0 +1,112 @@
+slot0 = class("CacheMainCityWar", {})
+slot0.ctor = function (slot0)
+	slot0.mMainCityWarInfo = nil
+	slot0.mLeaguetopBaseInfo = nil
+	slot0.isRequesting = false
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mMainCityWarInfo = nil
+	slot0.mLeaguetopBaseInfo = nil
+	slot0.isRequesting = false
+
+	return 
+end
+slot0.resetMainCityInfo = function (slot0, slot1)
+	slot1.LeaguetopInfo = slot1.LeaguetopInfo or {}
+	slot1.CanJoinGuild = slot1.CanJoinGuild or {}
+	slot0.mMainCityWarInfo = slot1
+
+	return 
+end
+slot0.setLeaguetopBaseInfo = function (slot0, slot1)
+	slot0.mLeaguetopBaseInfo = slot1
+
+	return 
+end
+slot0.getLeaguetopBaseInfo = function (slot0)
+	return slot0.mLeaguetopBaseInfo
+end
+slot0.getNextCountDown = function (slot0)
+	return slot0.mLeaguetopBaseInfo and slot0.mLeaguetopBaseInfo.NextTimeOfActivityStatusChange
+end
+slot0.setOpenTime = function (slot0, slot1)
+	if not slot0.mMainCityWarInfo then
+		return 0
+	end
+
+	if not next(slot0.mMainCityWarInfo.LeaguetopInfo) then
+		return 0
+	end
+
+	slot0.mMainCityWarInfo.LeaguetopInfo.CountDown = slot1
+
+	return 
+end
+slot0.setIsOver = function (slot0, slot1)
+	if not slot0.mMainCityWarInfo then
+		return false
+	end
+
+	if not next(slot0.mMainCityWarInfo.LeaguetopInfo) then
+		return false
+	end
+
+	slot0.mMainCityWarInfo.LeaguetopInfo.GameOver = slot1
+
+	return 
+end
+slot0.getIsOnLookStatus = function (slot0)
+	if not slot0.mMainCityWarInfo then
+		return true
+	end
+
+	if not next(slot0.mMainCityWarInfo.CanJoinGuild) then
+		return true
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mMainCityWarInfo.CanJoinGuild) do
+		if slot6.GuildInfo and next(slot6.GuildInfo) then
+			slot1[slot6.GuildInfo.GuildId] = true
+		end
+	end
+
+	return not slot1[PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId]
+end
+slot0.getIsFirstOpen = function (slot0)
+	if not slot0.mMainCityWarInfo then
+		return false
+	end
+
+	return 0 < #slot0.mMainCityWarInfo.WinnerHistoryInfo
+end
+slot0.requestMainCityWarInfo = function (slot0, slot1, slot2)
+	if not slot0.isRequesting then
+		slot1.socketRequest(slot1, {
+			methodName = "GetLeaguetopInfo",
+			moduleName = "Leaguetop",
+			svrMethodData = {},
+			successCallback = function (slot0)
+				dump(slot0)
+
+				slot0.isRequesting = false
+				slot0.mMainCityWarInfo = slot0 or {}
+
+				if slot1 then
+					slot1(slot2, slot0)
+				end
+
+				return 
+			end
+		})
+
+		slot0.isRequesting = true
+	end
+
+	return 
+end
+
+return slot0

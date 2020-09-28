@@ -1,0 +1,660 @@
+slot0 = class("DlgBwldGuessLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 626,
+				height = 594
+			},
+			titleText = TR("押注")
+		},
+		children = {
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 313,
+						y = 266
+					},
+					size = {
+						width = 574,
+						height = 464
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "id",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "bwld_44.png",
+					clickAction = "onTeamBtnAction",
+					pos = {
+						x = 174.68,
+						y = 533
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							scale = 0.6,
+							image = "gcz_5.png",
+							pos = {
+								x = -120,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "c_26.png",
+							childName = "selectSprite",
+							scale = 0.6,
+							pos = {
+								x = -120,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							childName = "numLabel",
+							pos = {
+								x = 0,
+								y = 3
+							},
+							text = TR("0人选择")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rightBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "id",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "bwld_45.png",
+					clickAction = "onTeamBtnAction",
+					pos = {
+						x = 456.25,
+						y = 533
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							scale = 0.6,
+							image = "gcz_7.png",
+							pos = {
+								x = 120,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "c_26.png",
+							childName = "selectSprite",
+							scale = 0.6,
+							pos = {
+								x = 120,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							childName = "numLabel",
+							pos = {
+								x = 0,
+								y = 3
+							},
+							text = TR("0人选择")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 313,
+						y = 366
+					},
+					size = {
+						width = 560,
+						height = 250
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled29-index",
+								name = "index",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 562,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_106.png",
+									pos = {
+										x = 281,
+										y = 45
+									},
+									size = {
+										width = 562,
+										height = 90
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "ListView",
+								params = {
+									childName = "rewardList",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 10,
+										y = 10
+									},
+									size = {
+										width = 400,
+										height = 70
+									}
+								},
+								children = {
+									{
+										name = "cardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled19-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 70,
+												height = 70
+											}
+										},
+										children = {
+											{
+												name = "untitled19",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 35,
+														y = 35
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled28",
+								cType = "Sprite",
+								params = {
+									image = "c_119.png",
+									pos = {
+										x = 462,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Checkbox",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "integer"
+									}
+								},
+								params = {
+									selectImage = "c_44.png",
+									callback = "onSelectBtnAction",
+									normalImage = "c_43.png",
+									childName = "checkBox",
+									pos = {
+										x = 510,
+										y = 58
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "ResLabel",
+								params = {
+									modelId = 1111,
+									num = 0,
+									childName = "resLabel",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 486,
+										y = 23
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled20",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onGuessClickAction",
+					pos = {
+						x = 313,
+						y = 203
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					pos = {
+						x = 120,
+						y = 163
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				params = {
+					scaleX = -1,
+					image = "c_36.png",
+					pos = {
+						x = 506,
+						y = 163
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 313,
+						y = 163
+					},
+					text = TR("极限翻盘")
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 125,
+						r = 203,
+						b = 37
+					},
+					pos = {
+						x = 313,
+						y = 133
+					},
+					text = TR("若支持人数较少的队伍获得胜利则额外获得以下奖励")
+				},
+				children = {}
+			},
+			{
+				name = "exRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 313,
+						y = 82.5
+					},
+					size = {
+						width = 500,
+						height = 80
+					}
+				},
+				children = {
+					{
+						name = "exLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled27-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 40,
+										y = 40
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.guessInfo = slot1.guessInfo
+	slot0.guessCallBack = slot1.guessCallBack
+	slot0.curOrder = slot0.guessInfo.Id or ""
+	slot0.guessId = 1
+	slot0.selectIndex = 0
+	slot0.checkBoxList = {}
+
+	slot0.initUI(slot0)
+	slot0.sortGuessData(slot0)
+	slot0.refreshGuessInfo(slot0)
+	slot0.refreshJiXianRewardInfo(slot0)
+	slot0.refreshSelectBtns(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshSelectBtns = function (slot0)
+	slot0.refreshSingleSelectBtn(slot0, slot0.leftBtn)
+	slot0.refreshSingleSelectBtn(slot0, slot0.rightBtn)
+
+	return 
+end
+slot0.refreshSingleSelectBtn = function (slot0, slot1)
+	slot1.setOpacity(slot1, (slot0.guessId == slot1.id and 255) or 128)
+	slot1.selectSprite:setVisible(slot0.guessId == slot1.id)
+	slot1.numLabel:setString(TR("%s#FFF8EA玩家已选择", (slot1.id == 1 and slot0.guessInfo.TeamASupportNum) or slot0.guessInfo.TeamBSupportNum))
+
+	return 
+end
+slot0.onTeamBtnAction = function (slot0, slot1)
+	if slot0.guessId == slot1.id then
+		return 
+	end
+
+	slot0.guessId = slot1.id
+
+	slot0.refreshSelectBtns(slot0)
+	slot0.refreshJiXianRewardInfo(slot0)
+
+	return 
+end
+slot0.sortGuessData = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.mGuessInfo = {}
+	slot3 = 0
+	slot4 = {}
+
+	for slot8, slot9 in pairs(slot2) do
+		table.insert(slot4, clone(slot9))
+	end
+
+	table.sort(slot4, function (slot0, slot1)
+		return slot0.needLv < slot1.needLv
+	end)
+
+	for slot8, slot9 in ipairs(slot4) do
+		if slot9.needLv <= slot1 then
+			slot3 = slot9.needLv
+		else
+			break
+		end
+	end
+
+	for slot8, slot9 in ipairs(BiwuLundaoRewardConfig.items) do
+		table.insert(slot0.mGuessInfo, clone(slot9[slot3]))
+	end
+
+	return 
+end
+slot0.refreshGuessInfo = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mGuessInfo) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "layout", {
+			index = slot5.num,
+			resStr = string.format("{%s} %s", Resource.getDaibiImg(Utility.analysisStrResList(slot5.supportNeed)[1].resourceId), Utility.analysisStrResList(slot5.supportNeed)[1].num)
+		})
+
+		slot0.listView:pushBackCustomItem(slot7)
+		slot7.resLabel:setType(Utility.analysisStrResList(slot5.supportNeed)[1].resourceId)
+		slot7.resLabel:setString(Utility.analysisStrResList(slot5.supportNeed)[1].num)
+		table.insert(slot0.checkBoxList, slot7.checkBox)
+
+		for slot12, slot13 in ipairs(slot8) do
+			slot7.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot13.resourceId,
+						num = slot13.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.refreshJiXianRewardInfo = function (slot0)
+	slot0.exRewardListView:removeAllItems()
+	slot0.exRewardListView:setContentSize(cc.size(#Utility.analysisStrResList(slot0.mGuessInfo[(slot0.selectIndex == 0 and 1) or slot0.selectIndex].turnoverReward)*80, 80))
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.exRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "exLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot6.resourceId,
+					num = slot6.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onSelectBtnAction = function (slot0, slot1)
+	if slot0.selectIndex == slot1.index then
+		return 
+	end
+
+	slot0.selectIndex = slot2
+
+	for slot6, slot7 in ipairs(slot0.checkBoxList) do
+		slot7.setSelected(slot7, slot7.index == slot2)
+	end
+
+	slot0.refreshJiXianRewardInfo(slot0)
+
+	return 
+end
+slot0.onGuessClickAction = function (slot0, slot1)
+	if slot0.guessId == 0 then
+		ui.showFlashView(TR("请选择需要押注的对象！"))
+
+		return 
+	end
+
+	if not slot0.mGuessInfo[slot0.selectIndex] then
+		ui.showFlashView(TR("请选择需要押注的奖励！"))
+
+		return 
+	end
+
+	if not Resource.isEnough(Utility.analysisStrResList(slot2.supportNeed)[1].resourceId, Utility.analysisStrResList(slot2.supportNeed)[1].num) then
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("押注确认"),
+		text = TR("当前押注：%s\n#252525当前花费：{%s}%s", (slot0.guessId == 1 and TR("#c04141进攻方#252525")) or TR("#5ca7bb防守方#252525"), Resource.getDaibiImg(slot3[1].resourceId), slot3[1].num),
+		okCallback = function ()
+			slot0:socketRequest({
+				methodName = "Guess",
+				moduleName = "BiwuInfo",
+				methodData = {
+					slot0.curOrder,
+					slot0.guessId,
+					slot1.num
+				},
+				successCallback = function (slot0)
+					ui.showFlashView(TR("押注成功！"))
+
+					if slot0.guessCallBack then
+						slot0.guessCallBack()
+					end
+
+					LayerManager.removeLayer(slot0)
+
+					return 
+				end
+			})
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -24016 then
+				ui.showFlashView(TR("未在竞猜时间之内！"))
+				LayerManager.removeLayer(slot0)
+			end
+
+			return true
+		end
+	})
+
+	return 
+end
+
+return slot0

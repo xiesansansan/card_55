@@ -1,0 +1,216 @@
+slot0 = class("ActivityTurnSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 640,
+				height = 450
+			},
+			titleText = TR("乾坤转盘")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 319.25,
+						y = 356.1
+					},
+					size = {
+						width = 550,
+						height = 80
+					},
+					text = TR("从下列道具中选择一种作为您想要的奖励，选完全部奖励以后可以开始抽取奖励，选定奖励之后不能重新选择哦！")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 313.77,
+						y = 323.83
+					},
+					size = {
+						width = 550,
+						height = 220
+					}
+				},
+				children = {
+					{
+						name = "mRewardListView",
+						cType = "ListView",
+						params = {
+							margin = 15,
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 550,
+								height = 220
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 550,
+										height = 160
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onClick",
+					pos = {
+						x = 319.74,
+						y = 50.82
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mRewardList = slot1.rewardList
+
+	dump(slot0.mRewardList, "KKKKKKK")
+
+	slot0.mCallback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mRewardListView:removeAllItems()
+
+	slot2 = slot0.mRewardListView:getContentSize().width
+	slot3 = 120
+	slot4 = {}
+
+	for slot8 = 1, 3, 1 do
+		slot4[slot8] = cc.p((slot8 - 1)*150 + 90, 60)
+	end
+
+	for slot9 = 1, math.ceil(#table.keys(slot0.mRewardList)/slot1), 1 do
+		slot0.mRewardListView:pushBackCustomItem(slot10)
+
+		slot11 = nil
+		slot11 = (slot9 <= math.floor(#slot0.mRewardList/slot1) and slot1) or #slot0.mRewardList%slot1
+
+		for slot15 = 1, slot11, 1 do
+			if Utility.analysisStrResList(slot0.mRewardList[slot5[slot1*(slot9 - 1) + slot15]])[1] then
+				slot19 = nil
+
+				slot10.addChild(slot10, UIWrap.newControl("CardNode", {
+					allowClick = true,
+					initParams = {
+						cardInfo = {
+							modelId = slot18.resourceId,
+							num = slot18.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eName,
+							Enums.CardShowAttr.eNum
+						}
+					},
+					pos = slot4[slot15],
+					clickAction = function ()
+						if slot0.mProId == slot1 then
+							slot2:defaultCardClick()
+						else
+							if slot0.mBeforeHeader then
+								slot0.mBeforeHeader:setSelected(false)
+							end
+
+							slot2:setSelected(true)
+
+							slot2.setSelected.mBeforeHeader = slot2
+							slot2.setSelected.mProId = slot2
+						end
+
+						return 
+					end
+				}))
+			end
+		end
+	end
+
+	return 
+end
+slot0.onClick = function (slot0)
+	if not slot0.mProId then
+		ui.showFlashView(TR("还没有选择奖励哦"))
+
+		return 
+	else
+		ui.showMessageBox({
+			text = TR("选定奖励后不能重新选择，是否确定?"),
+			okCallback = function ()
+				if slot0.mCallback then
+					slot0.mCallback(slot0.mProId)
+					LayerManager.removeLayer(LayerManager.removeLayer)
+				end
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	end
+
+	return 
+end
+
+return slot0

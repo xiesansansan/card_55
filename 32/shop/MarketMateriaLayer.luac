@@ -1,0 +1,586 @@
+slot0 = class("MarketMateriaLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled17",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled16",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChangedAction",
+					isNeedOutline = false,
+					lightedImage = "sc_23.png",
+					direction = false,
+					normalImage = "sc_24.png",
+					allowChangeCallback = "cbTabAllowChange",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = -274.33,
+						y = 211.99
+					},
+					selectTitleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					size = {
+						width = 560,
+						height = 60
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					direction = true,
+					colCount = 4,
+					selectIndex = 1,
+					celHeight = 246,
+					pos = {
+						x = 103.66,
+						y = -10.52
+					},
+					size = {
+						width = 768.07,
+						height = 411.18
+					}
+				},
+				children = {
+					{
+						name = "mTemplateCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled10-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled6-initParams",
+								name = "cardParams",
+								type = "string"
+							},
+							{
+								value = "untitled7-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled9-modelId",
+								name = "costResId",
+								type = "string"
+							},
+							{
+								value = "untitled8-text",
+								name = "limitText",
+								type = "string"
+							},
+							{
+								value = "untitled10-cellIdx",
+								name = "cellIdx",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 199.36,
+								y = 234.66
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 2.31,
+										y = 107.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 2.55,
+										y = -5.91
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 0,
+										y = 19.48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "nameLabel",
+									text = "name",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0,
+										y = 91.33
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "ResLabel",
+								params = {
+									fontSize = 20,
+									modelId = 1111,
+									num = 0,
+									childName = "priceLabel",
+									pos = {
+										x = -49.17,
+										y = -50.57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Sprite",
+								params = {
+									hide = true,
+									image = "c_46.png",
+									childName = "discountSprite",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = -22.17,
+										y = -50.51
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									hide = true,
+									text = "0",
+									childName = "discountLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 35.83,
+										y = -51.51
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									text = "limit",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 2.6,
+										y = -30.51
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									},
+									{
+										value = 1,
+										name = "cellIdx",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "btn",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 2.44,
+										y = -83.6
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled20",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				params = {
+					image = "sc_17.png",
+					pos = {
+						x = 104,
+						y = 199
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mResetTimeLabel",
+		cType = "Label",
+		params = {
+			fontSize = 20,
+			emptyInit = true,
+			scaleApt = 2,
+			text = "Label",
+			posApt = 1,
+			isRichText = true,
+			anchor = {
+				x = 0.5,
+				y = 0.5
+			},
+			color = {
+				g = 255,
+				r = 255,
+				b = 255
+			},
+			outlineColor = {
+				g = 42,
+				r = 51,
+				b = 24
+			},
+			pos = {
+				x = 634,
+				y = 40
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPageTag = slot1.pageTag or 1
+	slot0.mCachePageDataList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {}
+	slot2 = {}
+
+	for slot6, slot7 in pairs(HeartmethodRelation.items) do
+		if slot1[slot7.page] == nil then
+			slot1[slot7.page] = clone(slot7)
+		end
+	end
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, slot7)
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0.page < slot1.page
+	end)
+
+	slot0.tabConfigs = {}
+
+	for slot6, slot7 in ipairs(slot2) do
+		table.insert(slot0.tabConfigs, {
+			tag = slot7.page,
+			title = Utility.getColorName(Resource.getColorLv(Utility.analysisStrResList(slot7.sellStr)[1].resourceId))
+		})
+	end
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "TabView" then
+			slot1.btnInfos = slot0.tabConfigs
+			slot1.selectTag = slot0.mPageTag
+		end
+
+		return 
+	end)
+	slot0.mResetTimeLabel:setString(TR("折扣将在每日%s%s%s重置", "#F7A735", HeartmethodConfig.items[1].saleRefreshTime, "#FFFFFF"))
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	slot0.mGridView:setItemNum(#slot0.mDataList)
+
+	if slot1 then
+		slot0.mGridView:jumpToTop()
+	end
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if not slot0.mDataInfo then
+		return 
+	end
+
+	slot7, slot8 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.mDataList[slot2].sellStr)[1].resourceId))
+	slot9 = TR("购买等级达到:%s%s", (slot0.mDataList[slot2].needLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and "#258711") or "#EA2C00", slot3.needLv)
+	slot3.needResourceId = Utility.analysisStrResList(slot0.mDataList[slot2].buyNeed)[1].resourceId
+	slot3.needNum = Utility.analysisStrResList(slot0.mDataList[slot2].buyNeed)[1].num
+	slot10 = {
+		Enums.CardShowAttr.eNum
+	}
+
+	if Utility.isMaterialCanRecommend(slot5.resourceId) == true then
+		table.insert(slot10, Enums.CardShowAttr.eRecommend)
+	end
+
+	slot11 = slot0.createLayoutTemplateNode(slot0, "mTemplateCell", {
+		goodId = slot3.sellNum,
+		cellIdx = slot2,
+		cardParams = {
+			cardInfo = {
+				modelId = slot5.resourceId,
+				num = slot5.num
+			},
+			showAttrs = slot10
+		},
+		nameText = Resource.getName(slot5.resourceId),
+		costResId = slot6.resourceId,
+		limitText = slot9
+	})
+
+	slot11.setPosition(slot11, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot11)
+	slot11.nameLabel:setColor(slot7)
+
+	slot11.refreshCell = function (slot0)
+		slot2 = nil
+
+		if slot1.discountPer < 1 then
+			slot0.discountLabel:setString(math.ceil(slot0.num*slot1.discountPer))
+			slot0.discountLabel:setColor((math.ceil(slot0.num*slot1.discountPer) <= slot1 and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+			slot0.priceLabel:setString(slot0.num, cc.c3b(95, 95, 95))
+
+			slot2 = slot3
+		else
+			slot0.priceLabel:setString(slot0.num, (slot0.num <= slot1 and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+			slot0.priceLabel:setPositionX(-29)
+
+			slot2 = slot0.num
+		end
+
+		slot0.discountSprite:setVisible(slot1.discountPer < 1)
+		slot0.discountLabel:setVisible(slot1.discountPer < 1)
+		slot0.discountLabel.setVisible(slot0.btn, slot0.discountLabel.setVisible.needLv <= slot2)
+
+		return 
+	end
+
+	slot11.refreshCell(slot11)
+
+	return 
+end
+slot0.cbTabAllowChange = function (slot0, slot1)
+	return true
+end
+slot0.onTabChangedAction = function (slot0, slot1)
+	if not slot0.mCachePageDataList[slot1] then
+		slot0.mDataList = {}
+
+		for slot5, slot6 in pairs(HeartmethodRelation.items) do
+			if slot6.page == slot1 then
+				table.insert(slot0.mDataList, slot6)
+			end
+		end
+
+		slot2 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+		table.sort(slot0.mDataList, function (slot0, slot1)
+			slot2 = slot0.needLv <= slot0
+			slot3 = slot1.needLv <= slot0
+
+			if slot2 and slot3 then
+				return slot1.sellNum < slot0.sellNum
+			end
+
+			return slot0.sellNum < slot1.sellNum
+		end)
+
+		slot0.mCachePageDataList[slot1] = slot0.mDataList
+	else
+		slot0.mDataList = slot0.mCachePageDataList[slot1]
+	end
+
+	slot0.currTag = slot1
+
+	if slot0.mDataInfo ~= nil then
+		slot0.refreshUI(slot0, true)
+	end
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.mDataList) do
+		if slot7.sellNum == slot1.goodId then
+			slot2 = clone(slot7)
+
+			break
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < slot2.needLv then
+		ui.showFlashView(TR("玩家需要达到%s%s级%s才能购买该材料", "#FFE748", slot2.needLv, "#fff8ea"))
+
+		return 
+	end
+
+	if Resource.isEnough(slot2.needResourceId, slot2.needNum*slot0.discountPer) == false then
+		return 
+	end
+
+	slot0.requestBuy(slot0, slot1.goodId, slot1.cellIdx)
+
+	return 
+end
+slot0.reloadBuyInfoData = function (slot0, slot1)
+	slot0.mDataInfo = slot1
+
+	if HeartmethodSaleConfig.items[(slot1.BuyCount or 0) + 1] ~= nil and slot3.discount ~= nil then
+		slot0.discountPer = slot3.discount
+	else
+		slot0.discountPer = 1
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Heartmethod",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:reloadBuyInfoData(slot0.HeartmethodInfo)
+			slot0:refreshUI(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Buy",
+		moduleName = "Heartmethod",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:reloadBuyInfoData(slot0.HeartmethodInfo)
+			slot0:refreshUI()
+			ui.showFlashView(TR("购买成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

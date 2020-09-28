@@ -1,0 +1,458 @@
+slot0 = class("DlgManorBuildSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("建筑一览")
+		},
+		children = {
+			{
+				name = "mBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 425.06,
+						y = 38.81
+					},
+					size = {
+						width = 776,
+						height = 448
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 0,
+								y = 2.69
+							},
+							size = {
+								width = 776,
+								height = 445
+							}
+						},
+						children = {
+							{
+								name = "buildLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 776,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "tmpOneBulid",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 9.97,
+												y = 15
+											},
+											size = {
+												width = 375,
+												height = 130
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "Sprite",
+												params = {
+													image = "zy_22.png",
+													pos = {
+														x = 184.5,
+														y = 65
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled65",
+												cType = "Label",
+												params = {
+													childName = "nameLabel",
+													pos = {
+														x = 50.38,
+														y = 106.42
+													},
+													text = TR("集市")
+												},
+												children = {}
+											},
+											{
+												name = "untitled46",
+												cType = "Button",
+												params = {
+													childName = "opbtn",
+													image = "c_32.png",
+													swallowTouch = false,
+													clickAction = "onClickBuild",
+													pos = {
+														x = 251.16,
+														y = 35.49
+													},
+													size = {
+														width = 110,
+														height = 40
+													},
+													titleText = TR("建 造")
+												},
+												children = {}
+											},
+											{
+												name = "untitled66",
+												cType = "Sprite",
+												params = {
+													image = "zy_1402.png",
+													childName = "buildImage",
+													scale = 0.57,
+													pos = {
+														x = 68.31,
+														y = 40
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled67",
+												cType = "Label",
+												params = {
+													childName = "limmitLabel",
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 182.29,
+														y = 98.72
+													},
+													text = TR("建造数量:6/7")
+												},
+												children = {}
+											},
+											{
+												name = "untitled69",
+												cType = "Label",
+												params = {
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 183.06,
+														y = 72
+													},
+													text = TR("价 格: ")
+												},
+												children = {}
+											},
+											{
+												name = "untitled70",
+												cType = "Sprite",
+												params = {
+													image = "db_1111.png",
+													childName = "priceImage",
+													scale = 0.8,
+													pos = {
+														x = 263.62,
+														y = 72
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled71",
+												cType = "Label",
+												params = {
+													text = "1000",
+													childName = "priceLabel",
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 280,
+														y = 72
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled72",
+												cType = "Button",
+												params = {
+													childName = "infoButton",
+													image = "c_pure.png",
+													clickAction = "onClickBuildInfo",
+													pos = {
+														x = 69.24,
+														y = 53.71
+													},
+													size = {
+														width = 100,
+														height = 100
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mLandId = slot1.landId
+	slot0.mCallBack = slot1 and slot1.callBack
+
+	slot0.dealData(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		return 
+	end)
+
+	return 
+end
+slot0.dealData = function (slot0, slot1)
+	slot0.mCanBuildList = {}
+	slot2 = TerritoryMainbuildConfig.items[ManorHelper.lv]
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(TerritoryBuildModel.items) do
+		if slot8.isMainBuild == 0 then
+			slot9 = clone(slot8)
+
+			if slot8.modelId == 2 then
+				slot9.curLimmitMax = slot2.playgroundNum
+			elseif slot8.modelId == 3 then
+				slot9.curLimmitMax = slot2.artisanNum
+			elseif slot8.modelId == 4 then
+				slot9.curLimmitMax = slot2.granaryNum
+			elseif slot8.modelId == 5 then
+				slot9.curLimmitMax = slot2.bankNum
+			elseif slot8.modelId == 6 then
+				slot9.curLimmitMax = slot2.farmlandNum
+			elseif slot8.modelId == 7 then
+				slot9.curLimmitMax = slot2.houseNum
+			elseif slot8.modelId == 8 then
+				slot9.curLimmitMax = slot2.pastureNum
+			elseif slot8.modelId == 9 then
+				slot9.curLimmitMax = slot2.shopNum
+			elseif slot8.modelId == 10 then
+				slot9.curLimmitMax = slot2.smithyNum
+			end
+
+			slot9.curHaveNum = ManorHelper:getBuildNumByType(slot8.modelId)
+
+			table.insert(slot0.mCanBuildList, slot9)
+		end
+	end
+
+	table.sort(slot0.mCanBuildList, function (slot0, slot1)
+		slot2 = slot0.curLimmitMax - slot0.curHaveNum
+		slot3 = slot1.curLimmitMax - slot1.curHaveNum
+
+		if ManorHelper.lv == 1 then
+			return slot0.showOrder < slot1.showOrder
+		end
+
+		if slot2 ~= slot3 then
+			return slot3 < slot2
+		end
+
+		return slot0.modelId < slot1.modelId
+	end)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mListView:removeAllChildren()
+	dump(slot1, "hello")
+
+	slot2 = slot0.createLayoutTemplateNode(slot0, "buildLayout", {})
+
+	slot2.setContentSize(slot2, slot4)
+	slot0.mListView:pushBackCustomItem(slot2)
+
+	for slot8 = 1, #slot0.mCanBuildList, 1 do
+		slot13 = slot0.createLayoutTemplateNode(slot0, "tmpOneBulid", {})
+
+		slot13.setPosition(slot13, cc.p((slot8 - 1)%2*370 + 20, slot4.height - 135 - (math.ceil(slot8/2) - 1)*135))
+		slot2.addChild(slot2, slot13)
+
+		if slot0.mCanBuildList[slot8].modelId == 6 then
+			slot0.farmland = slot13.opbtn
+		elseif slot14.modelId == 10 then
+			slot0.simithy = slot13.opbtn
+		end
+
+		slot13.nameLabel:setString(TR("%s", slot14.name))
+		slot13.buildImage:setTexture(slot15 .. ".png")
+		slot13.limmitLabel:setString(TR("建筑数量:%s%d/%d", (slot14.curHaveNum < slot14.curLimmitMax and "#258711") or "#EA2C00", slot14.curHaveNum, slot14.curLimmitMax))
+		slot13.priceImage:setTexture(Resource.getDaibiImg(slot19.resourceId))
+		slot13.priceLabel:setString(TR("%s%s", (Resource.isEnough(Utility.analysisStrResList(slot18)[1].resourceId, Utility.analysisStrResList(slot18)[1].num, false) and "#258711") or "#EA2C00", slot19.num))
+
+		slot13.opbtn.info = slot14
+
+		slot13.opbtn:setEnabled(slot14.curHaveNum < slot14.curLimmitMax)
+
+		slot13.infoButton.info = slot14
+	end
+
+	Utility.performWithDelay(slot0, function ()
+		slot0:executeGuide()
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.onClickBuild = function (slot0, slot1)
+	for slot8, slot9 in ipairs(slot4) do
+		if not Resource.isEnough(slot9.resourceId, slot9.num, true) then
+			return 
+		end
+	end
+
+	dump({
+		slot0.mLandId,
+		slot2
+	})
+	slot0.socketRequest(slot0, {
+		methodName = "Build",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot2
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.ePlayEffectToLand, {
+				slot0.mLandId,
+				ManorHelper.effectType.buildIng
+			})
+
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClickBuildInfo = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "manor.DlgManorDetailLayer",
+		data = {
+			fromDetail = true,
+			Lv = 0,
+			Type = slot1.info.modelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.setDoubleRecommend = function (slot0, slot1)
+	slot2 = UIWrap.newControl("BadgeText", {
+		fontSize = 25,
+		fontRotation = -45,
+		image = "c_88.png",
+		text = TR("双倍"),
+		fontPos = cc.p(19, 36)
+	})
+
+	slot2.setAnchorPoint(slot2, cc.p(1, 1))
+	slot2.setPosition(slot2, cc.p(56.83, 79.1))
+
+	slot1.tmpBadgeText = slot2
+
+	slot1.addChild(slot1, slot2, Enums.CardShowAttr.eRecommend)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		slot0.mListView:setTouchEnabled(false)
+	end
+
+	Guide.manager:exeGuideList({
+		[201805] = {
+			clickNode = slot0.simithy
+		},
+		[201803] = {
+			clickNode = slot0.farmland
+		}
+	})
+
+	return 
+end
+
+return slot0

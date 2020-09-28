@@ -1,0 +1,205 @@
+slot0 = class("FeiJiHangUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 100)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_93.png",
+					pos = {
+						x = 0,
+						y = 50
+					},
+					size = {
+						width = 418.54,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "mHintLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 209.27,
+								y = 20
+							},
+							text = TR("离线挂机中")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onCancelHandup",
+					pos = {
+						x = 0,
+						y = -30
+					},
+					titleText = TR("取消挂机")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled5",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.scheduleText(slot0)
+
+	return 
+end
+slot0.scheduleText = function (slot0)
+	slot1 = 3
+	slot2 = 0
+
+	slot0.mHintLabel:setString(slot3)
+	Utility.schedule(slot0.mHintLabel, function ()
+		slot0.mHintLabel:setString(slot0.mHintLabel:getString() .. ".")
+
+		if 3 < slot0.mHintLabel.setString + 1 then
+			slot0.mHintLabel:setString(slot0.mHintLabel)
+
+			slot1 = 0
+		end
+
+		if FeiJiHelper.isHangUping and (FeiJiHelper.endTime or 0) < Player:getCurrentTime() then
+			FeiJiHelper.isHangUping = false
+
+			LayerManager.removeLayer(slot0)
+			EventAuto:postEvent(EventDefine.eFeijiHangup)
+		end
+
+		if AircraftHelper.isHangUping and (AircraftHelper.endTime or 0) < Player:getCurrentTime() then
+			AircraftHelper.isHangUping = false
+
+			LayerManager.removeLayer(slot0)
+			EventAuto:postEvent(EventDefine.eFeijiHangup)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onCancelHandup = function (slot0)
+	ui.showMessageBox({
+		titleText = TR("取消挂机"),
+		text = TR("确认取消离线挂机吗？（取消后需要手动操作完成战江湖）"),
+		okCallback = function ()
+			if FeiJiHelper.isHangUping then
+				slot0:requestFeijiHangup()
+			else
+				slot0:requestAircraftHangup()
+			end
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFeijiHangup = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "SetOfflineCombatState",
+		moduleName = "ShengyuanTeam",
+		methodData = {
+			false
+		},
+		successCallback = function (slot0)
+			FeiJiHelper.isHangUping = false
+
+			EventAuto:postEvent(EventDefine.eFeijiHangup)
+			LayerManager.removeLayer(slot0)
+
+			if FeiJiHelper:getTeamState() == 3 then
+				FeiJiHelper:cencelHangup(function ()
+					return 
+				end)
+			end
+
+			if FeiJiHelper:getTeamState() ~= 2 and FeiJiHelper:getTeamState() ~= 3 then
+				FeiJiHelper:leave()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestAircraftHangup = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "SetOfflineCombatState",
+		moduleName = "AircraftTeam",
+		methodData = {
+			false
+		},
+		successCallback = function (slot0)
+			AircraftHelper.isHangUping = false
+
+			EventAuto:postEvent(EventDefine.eFeijiHangup)
+			LayerManager.removeLayer(slot0)
+
+			if AircraftHelper:getTeamState() == 3 then
+				AircraftHelper:cencelHangup(function ()
+					return 
+				end)
+			end
+
+			if AircraftHelper:getTeamState() ~= 2 and AircraftHelper:getTeamState() ~= 3 then
+				AircraftHelper:leave()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

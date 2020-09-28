@@ -1,0 +1,441 @@
+slot0 = class("HeroPrActiveLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "xkxx_85.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "activeEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_jihuojiban",
+					complete = "onCompleteEffect",
+					pos = {
+						x = 517.63,
+						y = 284.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_42.png",
+					pos = {
+						x = 637.41,
+						y = 388.28
+					},
+					size = {
+						width = 258,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							text = "",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 129,
+								y = 17
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "leftHeroNode",
+				cType = "CardNode",
+				params = {
+					allowClick = false,
+					pos = {
+						x = 539.33,
+						y = 305.51
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightHeroList",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 619.69,
+						y = 254.73
+					},
+					size = {
+						width = 300,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "heroNodeItem",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "cardNode",
+								cType = "CardNode",
+								params = {
+									allowClick = false,
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled19",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "CardNode",
+								params = {
+									allowClick = false,
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "activeBtn",
+				cType = "Button",
+				params = {
+					image = "xkxx_87.png",
+					clickAction = "onActivePr",
+					pos = {
+						x = 858.96,
+						y = 150.98
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_93.png",
+							pos = {
+								x = 1.5,
+								y = -45
+							},
+							size = {
+								width = 132,
+								height = 32
+							}
+						},
+						children = {
+							{
+								name = "costLabel",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1111,
+									pos = {
+										x = 34,
+										y = 16
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "attrLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 499.26,
+						y = 225.7
+					},
+					text = TR("增加属性:")
+				},
+				children = {}
+			},
+			{
+				name = "attrList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 606,
+						y = 246.13
+					},
+					size = {
+						width = 240,
+						height = 44
+					}
+				},
+				children = {
+					{
+						name = "attrItem",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled17-text",
+								name = "content",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 240,
+								height = 22
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = " ",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 2,
+										y = 11
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled22",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 925.13,
+						y = 471.37
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	dump(slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		endedEvent = function ()
+			if slot0.isActived then
+				slot0:onCloseLayer()
+			end
+
+			return 
+		end
+	})
+
+	slot0.leftHeroModels = slot1.leftHeroModels
+	slot0.canActivePrIndexs = slot1.canActivePrIndexs
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.initContent(slot0)
+
+	return 
+end
+slot0.initContent = function (slot0)
+	slot0.rightHeroList:removeAllItems()
+	slot0.attrList:removeAllItems()
+	slot0.nameLabel:setString(HeroPrRelation.items[slot0.leftHeroModels[1]][slot0.canActivePrIndexs[1][1]][0].name)
+	slot0.leftHeroNode:setCardData(nil, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eStar,
+		Enums.CardShowAttr.eLevel
+	}, HeroObj:getItem(slot0.leftHeroModels[1]))
+
+	for slot7, slot8 in ipairs(string.split(HeroPrRelation.items[slot0.leftHeroModels[1]][slot0.canActivePrIndexs[1][1]][0].prHeroIdStr, ",")) do
+		if slot8 ~= "" then
+			slot0.createLayoutTemplateNode(slot0, "heroNodeItem").cardNode:setCardData(nil, {
+				Enums.CardShowAttr.eBorder,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eLevel
+			}, HeroObj:getItem(tonumber(slot8)))
+			slot0.rightHeroList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "heroNodeItem"))
+		end
+	end
+
+	slot6 = slot0.createLayoutTemplateNode(slot0, "attrItem", {
+		content = TR("%s", (Utility.isAttrNeedPercent(Utility.analysisStrAttrList(slot3[1].totalAttr)[1].fightattr) and "" .. string.format(TR("%s提升%d"), FightAttrTypeName[slot4[1].fightattr], slot4[1].value/100) .. "%") or "" .. string.format(TR("%s提升%d"), FightAttrTypeName[slot4[1].fightattr], slot4[1].value))
+	})
+	slot7 = slot3[0].consume
+
+	slot0.costLabel:setVisible(slot3[0].consume ~= "")
+
+	if slot7 ~= "" then
+		slot0.costLabel:setType(slot8)
+		slot0.costLabel:setString(Utility.analysisStrResList(slot7)[1].num)
+	end
+
+	slot0.attrList:pushBackCustomItem(slot6)
+	slot0.activeBtn:setVisible(true)
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	if next(slot0.canActivePrIndexs[1] or {}) then
+		table.remove(slot0.canActivePrIndexs[1], 1)
+	end
+
+	if not next(slot0.canActivePrIndexs[1] or {}) then
+		table.remove(slot0.canActivePrIndexs, 1)
+		table.remove(slot0.leftHeroModels, 1)
+	end
+
+	if next(slot0.leftHeroModels or {}) then
+		slot0.initContent(slot0)
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.onActivePr = function (slot0, slot1)
+	if HeroPrRelation.items[slot0.leftHeroModels[1]][slot0.canActivePrIndexs[1][1]][0].consume ~= "" then
+		if Resource.isEnough(Utility.analysisStrResList(slot4[0].consume)[1].resourceId, Utility.analysisStrResList(slot4[0].consume)[1].num) then
+			slot0.requestActivePr(slot0, function ()
+				slot0:setVisible(false)
+				slot1.costLabel:setVisible(false)
+				slot1.costLabel:onActiveEndCallBack()
+
+				return 
+			end)
+		end
+	else
+		slot0.requestActivePr(slot0, function ()
+			slot0:setVisible(false)
+			slot1.costLabel:setVisible(false)
+			slot1.costLabel:onActiveEndCallBack()
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.onCompleteEffect = function (slot0)
+	slot0.activeEffect:playAnimation("xunhuan")
+
+	return 
+end
+slot0.onActiveEndCallBack = function (slot0)
+	table.remove(slot0.canActivePrIndexs[1], 1)
+
+	if not next(slot0.canActivePrIndexs[1] or {}) then
+		table.remove(slot0.canActivePrIndexs, 1)
+		table.remove(slot0.leftHeroModels, 1)
+	end
+
+	if next(slot0.leftHeroModels or {}) then
+		slot0.initContent(slot0)
+	end
+
+	return 
+end
+slot0.requestActivePr = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "PrLvUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.leftHeroModels[1],
+			slot0.canActivePrIndexs[1][1]
+		},
+		successCallback = function (slot0)
+			HeroObj:modifyItem(slot0)
+			MqAudio.playEffect("ui_jibanjh.mp3")
+
+			if slot0 then
+				slot0(slot0)
+			end
+
+			slot1.isActived = true
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,210 @@
+slot0 = class("commExchangeGoodsSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 360
+			},
+			titleText = TR("选择数量")
+		},
+		children = {
+			{
+				name = "untitled23",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 260,
+						y = 200
+					},
+					size = {
+						width = 440,
+						height = 210
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSureClick",
+					pos = {
+						x = 350.52,
+						y = 58.43
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "untitled16",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onClose",
+					pos = {
+						x = 173.73,
+						y = 56.24
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "mSelectCount",
+				cType = "SelectCountView",
+				params = {
+					maxCount = 1,
+					currSelCount = 1,
+					pos = {
+						x = 260,
+						y = 125
+					},
+					size = {
+						width = 440,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "noticeLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260,
+						y = 162
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 260,
+						y = 240
+					},
+					size = {
+						width = 350,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 100,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 50,
+										y = 55
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.maxNum = slot1.maxNum
+	slot0.mCallBack = slot1.callBack
+	slot0.resInfo = slot1.outPutResource
+	slot0.choseNum = 1
+
+	dump(slot1)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mSelectCount:setMaxCount(slot0.maxNum)
+
+	if slot0.resInfo then
+		slot0.mListView:setContentSize(cc.size(math.min(#slot0.resInfo*100, 350), 110))
+
+		for slot4, slot5 in ipairs(slot0.resInfo) do
+			slot0.createLayoutTemplateNode(slot0, "layout").card:setCardData({
+				modelId = slot5.resourceId,
+				num = slot5.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout"))
+		end
+	end
+
+	slot0.noticeLabel:setString(TR("可兑换%d个", slot0.maxNum))
+
+	return 
+end
+slot0.onSureClick = function (slot0)
+	slot0.choseNum = slot0.mSelectCount.mCurrSelCount
+
+	print("选择数量", slot0.choseNum)
+
+	if slot0.mCallBack then
+		slot0.mCallBack(slot0.choseNum)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

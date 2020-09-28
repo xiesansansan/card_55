@@ -1,0 +1,207 @@
+slot0 = class("CacheGoods", {})
+slot0.ctor = function (slot0)
+	slot0.mNewPropsIdObj = require("data.NewIdList"):create()
+
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.entityList = {}
+	slot0.heroDebrisList = {}
+	slot0.equipDebrisList = {}
+	slot0.materialList = {}
+	slot0.propsList = {}
+	slot0.kongFuDebrisList = {}
+	slot0.TitleDebrisList = {}
+	slot0.WuxueDebrisList = {}
+
+	slot0.mNewPropsIdObj:clearNewId()
+
+	return 
+end
+slot0.setList = function (slot0, slot1, slot2)
+	if slot2 == BagType.eGoodsBag then
+		slot0.propsList = slot1
+
+		table.merge(slot0.entityList, slot0.propsList)
+	elseif slot2 == BagType.eMaterialBag then
+		slot0.materialList = slot1
+
+		table.merge(slot0.entityList, slot0.materialList)
+	elseif slot2 == BagType.eEquipDebrisBag then
+		slot0.equipDebrisList = slot1
+
+		table.merge(slot0.entityList, slot0.equipDebrisList)
+	elseif slot2 == BagType.eHeroDebrisBag then
+		slot0.heroDebrisList = slot1
+
+		table.merge(slot0.entityList, slot0.heroDebrisList)
+	elseif slot2 == BagType.eKongFuDebrisBag then
+		slot0.kongFuDebrisList = slot1
+
+		table.merge(slot0.entityList, slot0.kongFuDebrisList)
+	elseif slot2 == BagType.eTitleDebris then
+		slot0.TitleDebrisList = slot1
+
+		table.merge(slot0.entityList, slot0.TitleDebrisList)
+	elseif slot2 == BagType.eWuxueDebris then
+		slot0.WuxueDebrisList = slot1
+
+		table.merge(slot0.entityList, slot0.WuxueDebrisList)
+	end
+
+	return 
+end
+slot0.getGoodsList = function (slot0, slot1)
+	if slot1 == BagType.eGoodsBag then
+		return slot0.propsList
+	elseif slot1 == BagType.eMaterialBag then
+		return slot0.materialList
+	elseif slot1 == BagType.eEquipDebrisBag then
+		return slot0.equipDebrisList
+	elseif slot1 == BagType.eHeroDebrisBag then
+		return slot0.heroDebrisList
+	elseif slot1 == BagType.eKongFuDebrisBag then
+		return slot0.kongFuDebrisList
+	elseif slot1 == BagType.eTitleDebris then
+		return slot0.TitleDebrisList
+	elseif slot1 == BagType.eWuxueDebris then
+		return slot0.WuxueDebrisList
+	elseif slot1 == ResourceTypeSub.eFashionDebris then
+		slot2 = {}
+
+		for slot6, slot7 in pairs(slot0.propsList) do
+			if Resource.getSubType(slot7.ModelId) == ResourceTypeSub.eFashionDebris then
+				table.insert(slot2, clone(slot7))
+			end
+		end
+
+		return slot2
+	else
+		return slot0.entityList
+	end
+
+	return 
+end
+slot0.modifyItem = function (slot0, slot1)
+	slot2 = slot1.EntityId
+
+	if not slot1 or not Utility.isEntityId(slot2) then
+		return 
+	end
+
+	if Resource.getSubType(slot1.ModelId) == ResourceTypeSub.eBoxOdds or slot3 == ResourceTypeSub.eBoxChoice then
+		if slot0.entityList[slot2] then
+			if slot0.entityList[slot2].Num < slot1.Num then
+				slot0.mNewPropsIdObj:insertNewId(slot1.EntityId)
+			end
+		else
+			slot0.mNewPropsIdObj:insertNewId(slot1.EntityId)
+		end
+	end
+
+	slot0.entityList[slot2] = clone(slot1)
+	slot5 = GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eHelmetDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eClothesDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eBeltDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eShoesDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eWeaponDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eGloveDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.eRingDebris or GoodsModel.items[slot1.ModelId] or GoodsVoucherModel.items[slot1.ModelId].typeID == ResourceTypeSub.ePendantDebris
+
+	if slot4.typeID == ResourceTypeSub.eHeroDebris then
+		slot0.heroDebrisList[slot2] = slot0.entityList[slot2]
+	elseif slot5 then
+		slot0.equipDebrisList[slot2] = slot0.entityList[slot2]
+	elseif slot4.typeID == ResourceTypeSub.eHeroStepNeed then
+		slot0.materialList[slot2] = slot0.entityList[slot2]
+	elseif slot4.typeID == ResourceTypeSub.eKongFuDebris then
+		slot0.kongFuDebrisList[slot2] = slot0.entityList[slot2]
+	elseif slot4.typeID == ResourceTypeSub.eTitleDebris then
+		slot0.TitleDebrisList[slot2] = slot0.entityList[slot2]
+	elseif slot4.typeID == ResourceTypeSub.eWuxueDebris then
+		slot0.WuxueDebrisList[slot2] = slot0.entityList[slot2]
+	else
+		slot0.propsList[slot2] = slot0.entityList[slot2]
+	end
+
+	return 
+end
+slot0.modifyAvatarItemList = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		for slot10, slot11 in pairs(slot6) do
+			slot0.modifyItem(slot0, slot11)
+		end
+
+		for slot10, slot11 in pairs(slot0.entityList) do
+			if slot11.ModelId == tonumber(slot5) and not slot6[slot10] then
+				slot0.deleteItemById(slot0, slot10)
+			end
+		end
+
+		EventAuto:postEvent(EventDefine.eGoodsChangePrefix .. tostring(slot5))
+	end
+
+	return 
+end
+slot0.deleteItemById = function (slot0, slot1)
+	if slot0.entityList[slot1] then
+		slot0.entityList[slot1] = nil
+
+		if slot0.propsList[slot1] then
+			slot0.propsList[slot1] = nil
+		end
+
+		if slot0.materialList[slot1] then
+			slot0.materialList[slot1] = nil
+		end
+
+		if slot0.equipDebrisList[slot1] then
+			slot0.equipDebrisList[slot1] = nil
+		end
+
+		if slot0.heroDebrisList[slot1] then
+			slot0.heroDebrisList[slot1] = nil
+		end
+
+		if slot0.kongFuDebrisList[slot1] then
+			slot0.kongFuDebrisList[slot1] = nil
+		end
+
+		if slot0.TitleDebrisList[slot1] then
+			slot0.TitleDebrisList[slot1] = nil
+		end
+
+		if slot0.WuxueDebrisList[slot1] then
+			slot0.WuxueDebrisList[slot1] = nil
+		end
+	end
+
+	return 
+end
+slot0.getItemCount = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.entityList) do
+		if slot7.ModelId == slot1 then
+			slot2 = slot2 + slot7.Num
+		end
+	end
+
+	return slot2
+end
+slot0.getNewPropsIdObj = function (slot0)
+	return slot0.mNewPropsIdObj
+end
+slot0.getWuxueExpGoodsList = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.propsList) do
+		for slot10, slot11 in pairs(WuxueGoodsExpConfig.items) do
+			if slot6.ModelId == slot10 then
+				slot6.addExpValue = slot11.expAdd
+
+				table.insert(slot1, clone(slot6))
+			end
+		end
+	end
+
+	return slot1
+end
+
+return slot0

@@ -1,0 +1,502 @@
+slot0 = class("FunctionsOpenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallBack",
+			image = "xgnkq_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "xgnkq_3.png",
+					pos = {
+						x = 75.89,
+						y = 230.67
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "xgnkq_1.png",
+					pos = {
+						x = 373.22,
+						y = 405.47
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "xgnkq_5.png",
+							pos = {
+								x = 149.5,
+								y = 25
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "funTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "funcSprite-image",
+						name = "icon",
+						type = "string"
+					},
+					{
+						value = "untitled9-subKey",
+						name = "redSubkey",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 294.85,
+						y = 346.12
+					}
+				},
+				children = {
+					{
+						name = "selectSprite",
+						cType = "Sprite",
+						params = {
+							image = "xgnkq_4.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = -11
+							}
+						},
+						children = {}
+					},
+					{
+						name = "funcSprite",
+						cType = "Sprite",
+						params = {
+							image = "tb_sy_gn_8.png",
+							pos = {
+								x = 0,
+								y = -13
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "RedDot",
+								params = {
+									subKey = "",
+									moduleId = 8401,
+									offset = {
+										x = 0.8,
+										y = 0.8
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "statusSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_58.png",
+							pos = {
+								x = 0,
+								y = 18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "hintLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 39
+							},
+							text = TR("开启等级")
+						},
+						children = {}
+					},
+					{
+						name = "btn",
+						cType = "Button",
+						params = {
+							image = "c_58.png",
+							swallowTouch = false,
+							pos = {
+								x = 0.18,
+								y = -1.77
+							},
+							size = {
+								width = 85,
+								height = 110
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateColCb",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 130,
+					pos = {
+						x = 413.02,
+						y = 311.51
+					},
+					size = {
+						width = 430,
+						height = 120
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 369.71,
+						y = 184.29
+					},
+					text = TR("奖励")
+				},
+				children = {}
+			},
+			{
+				name = "curTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 373.93,
+						y = 219.86
+					},
+					text = TR("开启奖励")
+				},
+				children = {}
+			},
+			{
+				name = "getBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onGetRewardCb",
+					pos = {
+						x = 370.73,
+						y = 45.6
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			},
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 372.21,
+						y = 120.75
+					},
+					size = {
+						width = 200,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "rewardTempCard",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "goodCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSelectIndex = 1
+	slot0.config = slot1.config
+	slot0.playerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onActionCallBack = function (slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.config) do
+		slot7 = 2
+
+		if table.indexof(slot0.hasGotRewardModuleIds, slot6.moduleId) then
+			slot7 = 1
+		elseif slot6.openLv <= slot0.playerLv then
+			slot7 = 3
+		end
+
+		slot0.config[slot5].status = slot7
+	end
+
+	dump(slot0.config, "ALLLLAAAAAALLALALALA")
+
+	for slot5, slot6 in ipairs(slot0.config) do
+		slot7 = 0
+
+		if 4 <= #slot1 then
+			break
+		end
+
+		if slot6.status == 3 then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	if #slot1 < 4 then
+		for slot5, slot6 in ipairs(slot0.config) do
+			if 4 <= #slot1 then
+				break
+			end
+
+			if PlayerAttrObj:getPlayerAttrByName("Lv") < slot6.openLv then
+				table.insert(slot1, slot6)
+			end
+		end
+	end
+
+	if #slot1 < 4 then
+		for slot5 = #slot0.config - 3, #slot0.config, 1 do
+			if 4 <= #slot1 then
+				break
+			end
+
+			table.insert(slot1, slot0.config[slot5])
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.openLv < slot1.openLv
+	end)
+
+	slot0.mShowIcon = slot1
+
+	slot0.mGridView:setItemNum(#slot0.mShowIcon)
+	slot0.mGridView.mTableView:setTouchEnabled(false)
+
+	return 
+end
+slot0.updateBottomUI = function (slot0, slot1)
+	slot0.rewardListView:removeAllItems()
+
+	slot0.getBtn.moduleId = slot1.moduleId
+
+	slot0.curTipLabel:setString(TR("%s功能开启奖励", slot1.name))
+
+	slot3 = slot0.curTipLabel:getContentSize().width
+
+	if slot1.status == 1 then
+		slot0.getBtn:setTitleText(TR("已领取"))
+		slot0.getBtn:setEnabled(false)
+	elseif slot2.status == 3 then
+		slot0.getBtn:setTitleText(TR("领 取"))
+		slot0.getBtn:setEnabled(true)
+	else
+		slot0.getBtn:setTitleText(TR("未开启"))
+		slot0.getBtn:setEnabled(false)
+	end
+
+	slot5 = #Utility.analysisStrResList(slot2.reward)*100
+
+	if 2 < #Utility.analysisStrResList(slot2.reward) then
+		slot5 = 200
+	end
+
+	slot0.rewardListView:setContentSize(cc.size(slot5, 90))
+
+	for slot9, slot10 in ipairs(slot4) do
+		slot0.createLayoutTemplateNode(slot0, "rewardTempCard").goodCard:setCardData(nil, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		}, slot10)
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardTempCard"))
+	end
+
+	return 
+end
+slot0.onCreateColCb = function (slot0, slot1, slot2, slot3)
+	slot0.createLayoutTemplateNode(slot0, "funTempNode", {
+		icon = slot0.mShowIcon[slot2].pic .. ".png",
+		redSubkey = tostring(slot0.mShowIcon[slot2].moduleId)
+	}).btn.index = slot2
+
+	if slot0.mShowIcon[slot2].status == 2 then
+		slot5.statusSprite:setVisible(false)
+		slot5.hintLabel:setVisible(true)
+		slot5.hintLabel:setString(TR("%s级开启", slot4.openLv))
+	elseif slot4.status == 1 then
+		slot5.statusSprite:setTexture("c_55.png")
+	else
+		slot5.btn:addChild(UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eFunctionOpen,
+			subKey = tostring(slot4.moduleId)
+		}))
+	end
+
+	slot5.btn:setClickAction(function ()
+		slot0.mGridView:setSelect(slot0.mGridView)
+		slot0.mGridView.setSelect:updateBottomUI(slot0.mGridView)
+
+		return 
+	end)
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5 + 10)
+	slot1.addChild(slot1, slot5)
+
+	if slot3 then
+		slot5.selectSprite:setVisible(true)
+
+		slot0.mSelectIndex = slot2
+		slot0.mSelectModelId = slot4.moduleId
+
+		slot0.updateBottomUI(slot0, slot4)
+	end
+
+	slot1.moduleNode = slot5
+
+	return 
+end
+slot0.onGetRewardCb = function (slot0)
+	slot0.getReward(slot0, slot0.mSelectModelId)
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "FunctionOpen",
+		successCallback = function (slot0)
+			slot0.hasGotRewardModuleIds = {}
+
+			for slot5, slot6 in ipairs(slot1) do
+				if slot6 ~= "" then
+					table.insert(slot0.hasGotRewardModuleIds, tonumber(slot6))
+				end
+			end
+
+			slot0:dealData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "FunctionOpen",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.hasGotRewardModuleIds = {}
+
+			for slot5, slot6 in ipairs(slot1) do
+				if slot6 ~= "" then
+					table.insert(slot0.hasGotRewardModuleIds, tonumber(slot6))
+				end
+			end
+
+			slot0:dealData()
+			ui.showFlashReward(slot0)
+
+			if slot1 then
+				slot1()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

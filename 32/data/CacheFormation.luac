@@ -1,0 +1,90 @@
+slot0 = class("CacheFormation", {})
+slot0.ctor = function (slot0)
+	slot0.mFormationData = nil
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mFormationData = nil
+
+	return 
+end
+slot0.setFormationData = function (slot0, slot1)
+	slot0.mFormationData = slot1
+
+	return 
+end
+slot0.getFormationData = function (slot0)
+	return clone(slot0.mFormationData)
+end
+slot0.setModuleFormation = function (slot0, slot1, slot2)
+	slot0.mFormationData[tostring(slot1)] = slot2
+
+	return 
+end
+slot0.getModuleFormation = function (slot0, slot1, slot2)
+	slot3 = ""
+
+	for slot7 = 1, 9, 1 do
+		slot3 = slot3 .. string.format("%d|%s,", slot7, Utility.EMPTY_ENTITY_ID)
+	end
+
+	slot4 = {
+		StrategyId = 1,
+		ThroneModelId = 0,
+		FormationInfo = string.sub(slot3, 1, -2),
+		SubModuleId = slot1
+	}
+
+	if slot0.mFormationData[tostring(slot1)] then
+		return slot0.mFormationData[tostring(slot1)]
+	else
+		if slot0.mFormationData[tostring(FormationSaveConfig.items[1].prModuleId)] and not slot2 then
+			return {
+				FormationInfo = slot5.FormationInfo,
+				StrategyId = slot5.StrategyId,
+				ThroneModelId = slot5.ThroneModelId,
+				SubModuleId = slot1
+			}
+		end
+
+		return slot4
+	end
+
+	return 
+end
+slot0.analysisFormStr = function (slot0, slot1)
+	slot2 = {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot2[tonumber(string.splitBySep(slot8, "|")[1])] = string.splitBySep(slot8, "|")[2]
+	end
+
+	return slot2
+end
+slot0.analysisFormTab = function (slot0, slot1)
+	slot2 = ""
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot2 = slot2 .. string.format("%d|%s,", slot6, slot7)
+	end
+
+	return string.sub(slot2, 1, -2)
+end
+slot0.isHeroInFormation = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(FormationSaveConfig.items) do
+		table.insert(slot2, slot7.prModuleId)
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		if string.find(slot0.getModuleFormation(slot0, slot8).FormationInfo, slot1, 1, true) then
+			return tonumber(slot8)
+		end
+	end
+
+	return false
+end
+
+return slot0

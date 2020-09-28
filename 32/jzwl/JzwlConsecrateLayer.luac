@@ -1,0 +1,352 @@
+slot0 = class("JzwlConsecrateLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("供奉盟主")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jg_14.png",
+					pos = {
+						x = 139.95,
+						y = 175.86
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_4.png",
+							pos = {
+								x = 98.8,
+								y = 204.44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 99.69,
+								y = 145.32
+							},
+							text = TR("供奉奖励")
+						},
+						children = {}
+					},
+					{
+						name = "mLowRewardNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 8.03,
+								y = 88.52
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									scale = 0.5,
+									allowClick = true,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 74.75,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mLowUseLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 100,
+								y = 72
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mLowBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onConsecrate",
+							image = "c_32.png",
+							pos = {
+								x = 105.83,
+								y = 40.02
+							},
+							size = {
+								width = 110,
+								height = 40
+							},
+							titleText = TR("供 奉")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_1.png",
+							pos = {
+								x = 10,
+								y = 188.77
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jg_14.png",
+					pos = {
+						x = 380,
+						y = 175.86
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_3.png",
+							pos = {
+								x = 98.8,
+								y = 204.44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 99.69,
+								y = 145.32
+							},
+							text = TR("供奉奖励")
+						},
+						children = {}
+					},
+					{
+						name = "mSeniorRewardNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 8.03,
+								y = 88.52
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "CardNode",
+								params = {
+									scale = 0.5,
+									allowClick = true,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 74.75,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mSeniorUseLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 100,
+								y = 72
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mSeniorBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onConsecrate",
+							image = "c_32.png",
+							pos = {
+								x = 105.83,
+								y = 40.02
+							},
+							size = {
+								width = 110,
+								height = 40
+							},
+							titleText = TR("供 奉")
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_2.png",
+							pos = {
+								x = 10,
+								y = 188.77
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRecord = slot1.record or {}
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in pairs(LeaguetopfinalVisitRewardRelation.items) do
+		if slot5.ID == 1 then
+			slot0.createRewardCard(slot0, slot0.mLowRewardNode, slot5.outputResource)
+			slot0.setUseRes(slot0, slot0.mLowUseLabel, slot5.useResource)
+
+			slot0.mLowBtn.Id = slot5.ID
+
+			slot0.mLowBtn:setEnabled(not table.indexof(slot0.mRecord, slot5.ID))
+			slot0.mLowBtn:setTitleText((not table.indexof(slot0.mRecord, slot5.ID) and TR("供 奉")) or TR("已供奉"))
+		elseif slot5.ID == 2 then
+			slot0.createRewardCard(slot0, slot0.mSeniorRewardNode, slot5.outputResource)
+			slot0.setUseRes(slot0, slot0.mSeniorUseLabel, slot5.useResource)
+
+			slot0.mSeniorBtn.Id = slot5.ID
+
+			slot0.mSeniorBtn:setEnabled(not table.indexof(slot0.mRecord, slot5.ID))
+			slot0.mSeniorBtn:setTitleText((not table.indexof(slot0.mRecord, slot5.ID) and TR("供 奉")) or TR("已供奉"))
+		end
+	end
+
+	return 
+end
+slot0.createRewardCard = function (slot0, slot1, slot2)
+	slot1.removeAllChildren(slot1)
+
+	slot4 = 50
+	slot5 = (#Utility.analysisStrResList(slot2)*50 - 190)*0.5
+
+	for slot9, slot10 in ipairs(slot3) do
+		slot1.addChild(slot1, UIWrap.newControl("CardNode", {
+			scale = 0.5,
+			allowClick = true,
+			pos = cc.p(slot5 + (slot9 - 1)*slot4, 0),
+			anchor = cc.p(0, 0),
+			initParams = {
+				cardInfo = slot10,
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.setUseRes = function (slot0, slot1, slot2)
+	if slot2 == "" then
+		slot1.setString(slot1, "")
+
+		return 
+	end
+
+	slot3 = ""
+
+	for slot8, slot9 in pairs(slot4) do
+		slot3 = slot3 .. string.format("{%s}%s", Resource.getDaibiImg(slot9.resourceId), slot9.num)
+	end
+
+	slot1.setString(slot1, slot3)
+
+	return 
+end
+slot0.onConsecrate = function (slot0, slot1)
+	for slot7, slot8 in pairs(slot3) do
+		if not Resource.isEnough(slot8.resourceId, slot8.num, true, true) then
+			return 
+		end
+	end
+
+	if slot0.mCallback then
+		slot0.mCallback(slot1.Id)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

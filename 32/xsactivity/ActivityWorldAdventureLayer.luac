@@ -1,0 +1,583 @@
+slot0 = class("ActivityWorldAdventureLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "wlqy_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onClose",
+					pos = {
+						x = 908.12,
+						y = 498.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "wlqy_2.png",
+					pos = {
+						x = 589.39,
+						y = 252.01
+					}
+				},
+				children = {
+					{
+						name = "costGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateCostItem",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 2,
+							celHeight = 90,
+							pos = {
+								x = 121.47,
+								y = 196.69
+							},
+							size = {
+								width = 175.13,
+								height = 200
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 121.42,
+								y = 325.34
+							},
+							text = TR("累计消费")
+						},
+						children = {}
+					},
+					{
+						name = "needCostLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							emptyInit = true,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 118.8,
+								y = 76.2
+							}
+						},
+						children = {}
+					},
+					{
+						name = "costGetBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							pos = {
+								x = 122.5,
+								y = 30.76
+							},
+							titleText = TR("领取")
+						},
+						children = {}
+					},
+					{
+						name = "noTig1",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 122.5,
+								y = 176.5
+							},
+							text = TR("奖励已领完")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "wlqy_3.png",
+					pos = {
+						x = 819,
+						y = 252.01
+					}
+				},
+				children = {
+					{
+						name = "rechargeGirdView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateRechargeItem",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 2,
+							celHeight = 90,
+							pos = {
+								x = 121.47,
+								y = 196.69
+							},
+							size = {
+								width = 175.13,
+								height = 200
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled19",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 121.42,
+								y = 325.34
+							},
+							text = TR("累计充值")
+						},
+						children = {}
+					},
+					{
+						name = "needRechargeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							emptyInit = true,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 118.8,
+								y = 76.2
+							}
+						},
+						children = {}
+					},
+					{
+						name = "rechargeBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onRechargeBtnAction",
+							pos = {
+								x = 122.5,
+								y = 30.76
+							},
+							titleText = TR("充值")
+						},
+						children = {}
+					},
+					{
+						name = "rechargeGetBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							pos = {
+								x = 122.5,
+								y = 30.76
+							},
+							titleText = TR("领取")
+						},
+						children = {}
+					},
+					{
+						name = "noTig2",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 122.5,
+								y = 176.5
+							},
+							text = TR("奖励已领完")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tempShowCard",
+				cType = "TemplateNode",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 562.93,
+						y = 313
+					},
+					size = {
+						width = 80,
+						height = 80
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "CardNode",
+						params = {
+							childName = "cardNode",
+							allowClick = true,
+							pos = {
+								x = 40,
+								y = 40
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "timeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 682.67,
+						y = 451.68
+					},
+					text = TR("活动倒计时：")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eTimedWorldAdventure)
+	slot0.costActivityList = {}
+	slot0.rechargeActivityList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eTimedWorldAdventure) then
+		RedDotObj:seeRedDot("TimedWorldAdventure")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mCostRewardInfo = {}
+	slot0.mRechargeRewardInfo = {}
+
+	if 0 < #slot0.costActivityList then
+		slot0.mCostRewardInfo = Utility.analysisStrResList(slot0.costActivityList[1].RewardStr)
+	end
+
+	slot0.costGridView:setItemNum(#slot0.mCostRewardInfo)
+
+	if 0 < #slot0.rechargeActivityList then
+		slot0.mRechargeRewardInfo = Utility.analysisStrResList(slot0.rechargeActivityList[1].RewardStr)
+	end
+
+	slot0.rechargeGirdView:setItemNum(#slot0.mRechargeRewardInfo)
+	slot0.timeLabel:stopAllActions()
+
+	slot1 = PlayerAttrObj:getPlayerAttrByName("WorldAdventureEndTime")
+
+	Utility.schedule(slot0.timeLabel, function ()
+		if 0 < slot0 - Player:getCurrentTime() then
+			slot1.timeLabel:setString(TR("活动剩余时间 : %s", MqTime.completeFormat(slot0)))
+		else
+			slot1.timeLabel:stopAllActions()
+			slot1.timeLabel.stopAllActions.timeLabel:setString(TR("活动已结束"))
+		end
+
+		return 
+	end, 1)
+	slot0.noTig1:setVisible(#slot0.costActivityList == 0)
+	slot0.noTig2:setVisible(#slot0.rechargeActivityList == 0)
+	slot0.costGetBtn:setVisible(0 < #slot0.costActivityList)
+
+	if 0 < #slot0.costActivityList then
+		slot0.needCostLabel:setString(TR("消费:%s{%s}%s%s/%s", (slot0.costActivityList[1].Condition <= slot0.costCurrentValue and "#258711") or "#ea2c00", Resource.getDaibiImg(1111), Utility.numberWithUnit(slot0.costCurrentValue), "#252525", Utility.numberWithUnit(slot0.costActivityList[1].Condition)))
+
+		if slot0.costActivityList[1].Condition <= slot0.costCurrentValue then
+			slot0.costGetBtn:setEnabled(true)
+			slot0.costGetBtn:setClickAction(function ()
+				slot0:requestGetReward(slot0.costActivityList[1].Id)
+
+				return 
+			end)
+		else
+			slot0.costGetBtn:setEnabled(false)
+		end
+	end
+
+	slot0.rechargeGetBtn:setVisible(0 < #slot0.rechargeActivityList)
+	slot0.rechargeBtn:setVisible(0 < #slot0.rechargeActivityList)
+
+	if 0 < #slot0.rechargeActivityList then
+		slot0.needRechargeLabel:setString(TR("充值: %s%s%s%s/%s", (slot0.rechargeActivityList[1].Condition <= slot0.rechargeCurrentValue and "#258711") or "#ea2c00", "￥", Utility.numberWithUnit(slot0.rechargeCurrentValue), "#252525", Utility.numberWithUnit(slot0.rechargeActivityList[1].Condition)))
+
+		if slot0.rechargeActivityList[1].Condition <= slot0.rechargeCurrentValue then
+			slot0.rechargeGetBtn:setEnabled(true)
+			slot0.rechargeBtn:setVisible(false)
+			slot0.rechargeGetBtn:setClickAction(function ()
+				slot0:requestGetReward(slot0.rechargeActivityList[1].Id)
+
+				return 
+			end)
+		else
+			slot0.rechargeGetBtn:setVisible(false)
+			slot0.rechargeBtn:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.onCreateCostItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mCostRewardInfo[slot2] or next(slot4) == nil then
+		return 
+	end
+
+	slot5 = slot0.createLayoutTemplateNode(slot0, "tempShowCard")
+
+	slot5.cardNode:setCardData({
+		modelId = slot4.resourceId,
+		num = slot4.num
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.onCreateRechargeItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mRechargeRewardInfo[slot2] or next(slot4) == nil then
+		return 
+	end
+
+	slot5 = slot0.createLayoutTemplateNode(slot0, "tempShowCard")
+
+	slot5.cardNode:setCardData({
+		modelId = slot4.resourceId,
+		num = slot4.num
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.onRechargeBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		popRestore = true,
+		name = "recharge.RechargeHomeLayer"
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedWorldAdventure",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			dump(slot0, "获取信息")
+
+			slot0.costActivityList = {}
+			slot0.rechargeActivityList = {}
+			slot1 = 0
+			slot2 = 0
+			slot3 = slot0.TimedWorldAdventureConfig.WorldAdventureRelationList or {}
+			slot4 = string.splitBySep(slot0.GetRewards, ",")
+
+			for slot8, slot9 in pairs(slot3) do
+				if slot9.TypeEnum == 1 then
+					slot1 = slot9.Id
+					slot10 = false
+
+					for slot14, slot15 in pairs(slot4) do
+						if tonumber(slot15) == slot9.Id then
+							slot10 = true
+						end
+					end
+
+					if not slot10 then
+						table.insert(slot0.costActivityList, slot9)
+					end
+				elseif slot9.TypeEnum == 2 then
+					slot2 = slot9.Id
+					slot10 = false
+
+					for slot14, slot15 in pairs(slot4) do
+						if tonumber(slot15) == slot9.Id then
+							slot10 = true
+						end
+					end
+
+					if not slot10 then
+						table.insert(slot0.rechargeActivityList, slot9)
+					end
+				end
+			end
+
+			slot0.costCurrentValue = 0
+			slot0.rechargeCurrentValue = 0
+
+			for slot9, slot10 in pairs(slot5) do
+				if slot10.fightattr == slot1 then
+					slot0.costCurrentValue = slot10.value
+				elseif slot10.fightattr == slot2 then
+					slot0.rechargeCurrentValue = slot10.value
+				end
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "TimedWorldAdventure",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "领取")
+
+			slot0.costActivityList = {}
+			slot0.rechargeActivityList = {}
+			slot1 = 0
+			slot2 = 0
+			slot3 = slot0.ActivityInfo.TimedWorldAdventureConfig.WorldAdventureRelationList or {}
+			slot4 = string.splitBySep(slot0.ActivityInfo.GetRewards, ",")
+
+			for slot8, slot9 in pairs(slot3) do
+				if slot9.TypeEnum == 1 then
+					slot1 = slot9.Id
+					slot10 = false
+
+					for slot14, slot15 in pairs(slot4) do
+						if tonumber(slot15) == slot9.Id then
+							slot10 = true
+						end
+					end
+
+					if not slot10 then
+						table.insert(slot0.costActivityList, slot9)
+					end
+				elseif slot9.TypeEnum == 2 then
+					slot2 = slot9.Id
+					slot10 = false
+
+					for slot14, slot15 in pairs(slot4) do
+						if tonumber(slot15) == slot9.Id then
+							slot10 = true
+						end
+					end
+
+					if not slot10 then
+						table.insert(slot0.rechargeActivityList, slot9)
+					end
+				end
+			end
+
+			slot0.costCurrentValue = 0
+			slot0.rechargeCurrentValue = 0
+
+			for slot9, slot10 in pairs(slot5) do
+				if slot10.fightattr == slot1 then
+					slot0.costCurrentValue = slot10.value
+				elseif slot10.fightattr == slot2 then
+					slot0.rechargeCurrentValue = slot10.value
+				end
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

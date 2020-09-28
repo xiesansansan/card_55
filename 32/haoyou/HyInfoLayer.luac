@@ -1,0 +1,342 @@
+slot0 = class("HyInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "myBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 257.75,
+						y = 336.64
+					}
+				},
+				children = {
+					{
+						name = "untitled2",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 140.96,
+								y = 18.05
+							},
+							text = TR("好友信息")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 257,
+						y = 259.83
+					},
+					size = {
+						width = 450,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "playerName",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 120,
+								y = 75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerLv",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 120,
+								y = 35
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerFap",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 268,
+								y = 75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerGuildName",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 268,
+								y = 35
+							}
+						},
+						children = {}
+					},
+					{
+						name = "playerHead",
+						cType = "PlayerHeroNode",
+						params = {
+							modelId = 19010000,
+							allowClick = true,
+							pos = {
+								x = 63,
+								y = 49
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onAddFriendClick",
+					pos = {
+						x = 137,
+						y = 175
+					},
+					titleText = TR("加为好友")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onUnSayClick",
+					pos = {
+						x = 377,
+						y = 175
+					},
+					titleText = TR("屏蔽发言")
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSiLiaoClick",
+					pos = {
+						x = 137,
+						y = 120
+					},
+					titleText = TR("私聊")
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onZhenRongClick",
+					pos = {
+						x = 377,
+						y = 120
+					},
+					titleText = TR("阵容")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onQieCuoClick",
+					pos = {
+						x = 137,
+						y = 65
+					},
+					titleText = TR("切磋")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mPlayerInfo = slot1.playerInfo
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.playerName:setString(slot0.mPlayerInfo.Name)
+	slot0.playerLv:setString(TR("等级:%s", slot0.mPlayerInfo.Lv))
+	slot0.playerFap:setString(Utility.numberWithUnit(slot0.mPlayerInfo.FAP))
+
+	if slot0.mPlayerInfo.GuildName == "" then
+		slot1 = TR("暂无帮派")
+	end
+
+	slot0.playerGuildName:setString(slot1)
+	slot0.playerHead:setPlayerHeader(slot0.mPlayerInfo.HeadImageId, nil, {
+		fashionLv = slot0.mPlayerInfo.FashionLevel
+	})
+
+	return 
+end
+slot0.onAddFriendClick = function (slot0)
+	slot0.frilayer = ui.showMessageBox({
+		titleText = TR("好友请求"),
+		diyUICallback = function (slot0, slot1)
+			slot0.addChild(slot0, slot2)
+
+			slot0.introEditBox = UIWrap.newControl("EditBox", {
+				fontSize = 22,
+				image = "c_41.png",
+				multiLine = true,
+				pos = cc.p(slot1.width/2, slot1.height/2 + 10),
+				size = cc.size(slot1.width - 50, slot1.height - 160)
+			})
+
+			slot0.introEditBox:setText(TR("久仰大侠，愿能与大侠结为好友，共闯江湖！"))
+			slot0.addChild(slot0, slot0.introEditBox)
+
+			return 
+		end,
+		msgBoxParams = {
+			needTouchClose = true,
+			image = "tc_2.png",
+			btnPosY = 60
+		},
+		okCallback = function ()
+			FriendObj:requestFriendApply(slot0.mPlayerInfo.PlayerId, slot0.introEditBox:getText(), function ()
+				LayerManager.removeLayer(slot0.frilayer)
+
+				return 
+			end)
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onUnSayClick = function (slot0)
+	return 
+end
+slot0.onSiLiaoClick = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < 40 or slot0.mPlayerInfo.Lv < 40 then
+		ui.showFlashView(TR("双方等级40级可使用"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "chat.ChatLayer",
+		data = {
+			privateToPlayer = {
+				PlayerId = slot0.mPlayerInfo.PlayerId,
+				Name = slot0.mPlayerInfo.Name,
+				Vip = slot0.mPlayerInfo.Vip,
+				Zone = Player:getSelectServer().ServerName
+			}
+		},
+		zOrder = Enums.ZOrderType.eChat
+	})
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onZhenRongClick = function (slot0)
+	return 
+end
+slot0.onQieCuoClick = function (slot0)
+	return 
+end
+
+return slot0

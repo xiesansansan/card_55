@@ -1,0 +1,605 @@
+return {
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jq_loginmusic.mp3"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqmh_0003a.png",
+			tag = "mhbg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_cyyewan01.png",
+				"1.1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line11",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"1.15",
+				"line11bg",
+				"line11zm",
+				TR("商队被金人围杀")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line12",
+				"950",
+				"600",
+				"jqdh_12.png",
+				"1.32",
+				"line12bg",
+				"line12zm",
+				TR("伙计护卫或亡或逃")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqmh_0003b.png",
+			tag = "mhbg02",
+			order = 5,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			parent = "mhbg02",
+			file = "jqmh_0003b.png",
+			tag = "mhbg0200",
+			scale = 1,
+			order = 5,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(2079, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqmh_0003b1.png",
+			tag = "mhbg0201",
+			order = 5,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg01",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line13",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"1.32",
+				"line13bg",
+				"line13zm",
+				TR("你撑着受伤的身体")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line14",
+				"850",
+				"600",
+				"jqdh_12.png",
+				"1.15",
+				"line14bg",
+				"line14zm",
+				TR("保护着少女掌柜")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line11zm",
+				"line11bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line12zm",
+				"line12bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line13zm",
+				"line13bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line14zm",
+				"line14bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "mhbg02",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.8,
+							by = cc.p(0, 60)
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.4
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg0201",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.8,
+							by = cc.p(0, 96)
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.4
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0301.mp3",
+				TR("现在就剩你们两人了，看你们还往哪里逃？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0302.mp3",
+				TR("【夜小蝶】:"),
+				TR("我们只是普通跑商的，各位金国的大老爷，行行好，放了我们！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_m",
+			params = {
+				"hz",
+				"hzname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hz",
+				"hzname",
+				"sd3jq_0304.mp3",
+				TR("住手，谁让你们在草原上胡作非为的！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"jgsz",
+				"jgszname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"jgsz",
+				"jgszname",
+				"sd3jq_0305.mp3",
+				TR("我们王爷在此捉拿奸细，请你们不要多管闲事！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namem",
+				"hz",
+				"hzname",
+				"sd3jq_0306.mp3",
+				TR("他们是和我们通商的商队！根本就不是什么奸细，要抓？回你们金国去抓，这里可是草原！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"jgsz",
+				"jgszname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0307.mp3",
+				TR("你是谁？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namem",
+				"hz",
+				"hzname",
+				"sd3jq_0308.mp3",
+				TR("我是这片草原的主人——成吉思汗的女儿，我叫华筝！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out12",
+			params = {
+				"hz",
+				"hzname"
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "mhbg02",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.6,
+							by = cc.p(-600, 0)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg0201",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.6,
+							by = cc.p(-600, 0)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "rtol",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"jgsz",
+				"jgszname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"jgsz",
+				"jgszname",
+				"sd3jq_0309.mp3",
+				TR("王爷，我们怎么办？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0310.mp3",
+				TR("既然碰到蒙古人，就不必再横生枝节，放他们走。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"jgsz",
+				"jgszname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out23",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"mhbg0201"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg02",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 0.3,
+							by = cc.p(600, 0)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"yxd",
+				"yxdname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"yxd",
+				"yxdname",
+				"sd3jq_0311.mp3",
+				TR("华筝姐姐，幸好你来得及时，要再晚来一会，我可就两腿一蹬，那个啥来着——香消玉殒。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"hz",
+				"hzname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hz",
+				"hzname",
+				"sd3jq_0312.mp3",
+				TR("平时，你们都是这个日子来草原做买卖，迟迟不见你们来，我便带人来寻你们了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd",
+				"yxdname",
+				"sd3jq_0314.mp3",
+				TR("唉！小命虽然保住了，可惜货物伙计全没了，亏光了，亏光了！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hz",
+				"hzname",
+				"sd3jq_0315.mp3",
+				TR("你们的伤要紧，还是先回我的大帐疗伤吧。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"hz",
+				"hzname",
+				"yxd",
+				"yxdname"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

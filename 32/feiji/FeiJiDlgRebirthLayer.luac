@@ -1,0 +1,108 @@
+slot0 = class("FeiJiDlgRebirthLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 100)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "xksg_6.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mRemainTimeLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 44.29,
+						y = 50.52
+					},
+					text = TR("复活倒计时: #FFE7480秒")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					image = "tb_gn_285.png",
+					clickAction = "onBtnChatAction",
+					pos = {
+						x = -54.14,
+						y = 143.21
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	Utility.schedule(slot0.mRemainTimeLabel, function ()
+		slot0.mRemainTimeLabel:setString(TR("复活倒计时: #FFE748%s秒", FeiJiHelper.rebirthTime))
+
+		if FeiJiHelper.rebirthTime <= 0 then
+			LayerManager.removeLayer(LayerManager.removeLayer)
+		end
+
+		return 
+	end, 0.5)
+	EventAuto:registerAutoEvent(slot0.mBgSprite, {
+		FeiJiHelper.Events.eFeiJiFightResult
+	}, function ()
+		LayerManager.removeLayer(LayerManager.removeLayer)
+
+		return 
+	end)
+
+	return 
+end
+slot0.onBtnChatAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "feiji.FeiJiDlgChatLayer",
+		zOrder = Enums.ZOrderType.ePopLayer + 2
+	})
+
+	return 
+end
+
+return slot0

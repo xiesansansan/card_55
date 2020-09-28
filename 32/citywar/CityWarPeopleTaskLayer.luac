@@ -1,0 +1,776 @@
+slot0 = class("CityWarPeopleTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onJumpOutCallBack",
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 860,
+				height = 556
+			},
+			titleText = TR("江湖大势")
+		},
+		children = {
+			{
+				name = "mMainNode",
+				cType = "Scale9Sprite",
+				params = {
+					hide = true,
+					image = "c_pure.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 880,
+						height = 556
+					}
+				},
+				children = {
+					{
+						name = "mHeroBody",
+						cType = "Sprite",
+						params = {
+							image = "lh_12104.png",
+							hide = true,
+							scale = 0.8,
+							pos = {
+								x = 58.61,
+								y = 300.38
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Sprite",
+						params = {
+							image = "wltj_10.png",
+							pos = {
+								x = 338.13,
+								y = 488.89
+							}
+						},
+						children = {
+							{
+								name = "mTitleLabel",
+								cType = "Label",
+								params = {
+									fontSize = 48,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 14.21,
+										y = 28.37
+									},
+									text = TR("九阴出世")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled46",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 505.85,
+								y = 314.81
+							},
+							size = {
+								width = 640,
+								height = 300
+							}
+						},
+						children = {
+							{
+								name = "untitled62",
+								cType = "Scale9Sprite",
+								params = {
+									image = "wltj_9.png",
+									pos = {
+										x = 346.64,
+										y = 68.48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mDesLabel",
+								cType = "Label",
+								params = {
+									text = "Label",
+									align = 0,
+									valign = 0,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 319.99,
+										y = 244.28
+									},
+									size = {
+										width = 560,
+										height = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mTaggetLabel",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 111.69,
+										y = 191.83
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled49",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = 188.97,
+										y = 144.94
+									}
+								},
+								children = {
+									{
+										name = "untitled50",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 213.05,
+												y = 6.31
+											},
+											text = TR("奖 励")
+										},
+										children = {}
+									},
+									{
+										name = "untitled51",
+										cType = "Sprite",
+										params = {
+											reverse = 1,
+											image = "c_36.png",
+											pos = {
+												x = 344.2,
+												y = 6.36
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "mRewardList",
+								cType = "ListView",
+								params = {
+									direction = false,
+									pos = {
+										x = 74.68,
+										y = 16.85
+									},
+									size = {
+										width = 300,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 100,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled55",
+												cType = "CardNode",
+												params = {
+													childName = "card",
+													allowClick = true,
+													pos = {
+														x = 50,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "mGetBtn",
+								cType = "Button",
+								params = {
+									clickAction = "onGetRwardBtnAction",
+									image = "c_39.png",
+									pos = {
+										x = 543.16,
+										y = 69.19
+									},
+									size = {
+										width = 105,
+										height = 46
+									},
+									titleText = TR("领 取")
+								},
+								children = {
+									{
+										name = "untitled63",
+										cType = "RedDot",
+										params = {
+											childName = "redDot",
+											visibleFunc = "cbGetBtnRedDotVisible",
+											hide = true,
+											moduleId = 5411
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "mFinshSprite",
+								cType = "Sprite",
+								params = {
+									image = "wltj_11.png",
+									hide = true,
+									pos = {
+										x = 515.64,
+										y = 200.65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mGetedTips",
+								cType = "Sprite",
+								params = {
+									image = "c_55.png",
+									hide = true,
+									pos = {
+										x = 539.43,
+										y = 71.65
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mLineBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "wltj_6.png",
+							pos = {
+								x = 430,
+								y = 100
+							},
+							size = {
+								width = 834,
+								height = 18
+							}
+						},
+						children = {
+							{
+								name = "mProgBar",
+								cType = "ProgressBar",
+								params = {
+									maxValue = 834,
+									currValue = 200,
+									normalImage = "wltj_6.png",
+									pos = {
+										x = 417,
+										y = 9
+									},
+									size = {
+										width = 834,
+										height = 18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "stageLayout",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled58-image",
+										name = "btnImage",
+										type = "string"
+									},
+									{
+										value = "untitled58-btnIndex",
+										name = "btnIndex",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 100,
+										y = 9
+									}
+								},
+								children = {
+									{
+										name = "untitled58",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "btnIndex",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "wltj_1.png",
+											clickAction = "onStageBtnCallBack",
+											childName = "stageBtn",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {
+											{
+												name = "untitled64",
+												cType = "RedDot",
+												params = {
+													childName = "redDot",
+													visibleFunc = "cbStageBtnRedDotVisible",
+													hide = true,
+													moduleId = 5411,
+													offset = {
+														x = 0.75,
+														y = 0.8
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled59",
+										cType = "Sprite",
+										params = {
+											image = "wltj_8.png",
+											childName = "goingSprite",
+											pos = {
+												x = 0.49,
+												y = -45.26
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled60",
+										cType = "Scale9Sprite",
+										params = {
+											image = "wltj_7.png",
+											childName = "unGoingSprite",
+											pos = {
+												x = 0,
+												y = 1.86
+											}
+										},
+										children = {
+											{
+												name = "untitled61",
+												cType = "Label",
+												params = {
+													childName = "label",
+													pos = {
+														x = 70,
+														y = 15
+													},
+													text = TR("未开启")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled66",
+										cType = "Scale9Sprite",
+										params = {
+											childName = "unTimeSprite",
+											image = "wltj_7.png",
+											hide = true,
+											pos = {
+												x = 0,
+												y = 1.86
+											}
+										},
+										children = {
+											{
+												name = "untitled67",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													childName = "label",
+													align = 1,
+													valign = 1,
+													pos = {
+														x = 70,
+														y = 15
+													},
+													size = {
+														width = 100,
+														height = 0
+													},
+													text = TR("未开启")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mSelectTaskId = nil
+
+	slot0.parseLocalData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mStageLayoutList = {}
+
+	for slot4, slot5 in ipairs(slot0.mLocalData) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "stageLayout", {
+			btnIndex = slot4,
+			btnImage = "wltj_" .. slot4 .. ".png"
+		})
+
+		slot6.setPosition(slot6, cc.p((slot4 - 1)*160 + 95, 9))
+		slot6.setVisible(slot6, false)
+
+		slot6.taskId = slot5.Id
+
+		table.insert(slot0.mStageLayoutList, slot6)
+		slot0.mLineBg:addChild(slot6)
+	end
+
+	return 
+end
+slot0.onJumpOutCallBack = function (slot0)
+	slot0.getPeopleTaskInfo(slot0)
+
+	return 
+end
+slot0.cbGetBtnRedDotVisible = function (slot0, slot1)
+	slot1.setVisible(slot1, RedDotObj:isValid(ModuleSub.eCityWarPeopleTaskPoint, tostring(slot0.mSelectTaskId)))
+
+	return 
+end
+slot0.cbStageBtnRedDotVisible = function (slot0, slot1)
+	slot1.setVisible(slot1, RedDotObj:isValid(ModuleSub.eCityWarPeopleTaskPoint, tostring(slot1.getParent(slot1):getParent().btnIndex)))
+
+	return 
+end
+slot0.parseLocalData = function (slot0)
+	slot0.mLocalData = clone(CitywarPeopletaskRelation.items)
+
+	return 
+end
+slot0.parseServerData = function (slot0, slot1)
+	slot0.mTaskInfo = {}
+
+	for slot6, slot7 in pairs(slot2) do
+		table.insert(slot0.mTaskInfo, clone(slot7))
+	end
+
+	table.sort(slot0.mTaskInfo, function (slot0, slot1)
+		if slot0.OpenTime ~= slot1.OpenTime then
+			return slot0.OpenTime < slot1.OpenTime
+		end
+
+		return slot0.TaskId < slot1.TaskId
+	end)
+
+	for slot6, slot7 in ipairs(slot0.mTaskInfo) do
+		slot7.moduleInfo = slot0.mLocalData[slot7.TaskId]
+		slot7.TaskProgress = (slot7.CompleteProgress and tonumber(slot7.CompleteProgress)) or 0
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0, slot1)
+	slot2 = Player:getCurrentTime()
+	slot3 = 1
+	slot4 = 1
+
+	for slot8, slot9 in ipairs(slot0.mTaskInfo) do
+		slot0.mStageLayoutList[slot8].OpenTime = slot9.OpenTime
+
+		slot0.mStageLayoutList[slot8]:setVisible(true)
+
+		if slot9.OpenTime <= slot2 then
+			slot10.stageBtn:setBright(true)
+
+			slot10.stageBtn.openState = true
+
+			slot10.goingSprite:setVisible(false)
+			slot10.unGoingSprite:setVisible(false)
+
+			slot3 = slot9.TaskId
+			slot4 = slot8
+		else
+			slot10.stageBtn:setBright(false)
+
+			slot10.stageBtn.openState = false
+
+			slot10.goingSprite:setVisible(false)
+			slot10.unGoingSprite:setVisible(true)
+		end
+	end
+
+	if slot4 == 1 then
+		if slot0.mTaskInfo[1].OpenTime <= slot2 then
+			slot0.mStageLayoutList[slot4].stageBtn:setBright(true)
+
+			slot0.mStageLayoutList[slot4].stageBtn.openState = true
+
+			slot0.mStageLayoutList[slot4].goingSprite:setVisible(true)
+			slot0.mStageLayoutList[slot4].unGoingSprite:setVisible(false)
+		else
+			slot0.mStageLayoutList[slot4].stageBtn:setBright(false)
+
+			slot0.mStageLayoutList[slot4].stageBtn.openState = false
+
+			slot0.mStageLayoutList[slot4].goingSprite:setVisible(false)
+			slot0.mStageLayoutList[slot4].unGoingSprite:setVisible(true)
+		end
+	else
+		slot0.mStageLayoutList[slot4].stageBtn:setBright(true)
+
+		slot0.mStageLayoutList[slot4].stageBtn.openState = true
+
+		slot0.mStageLayoutList[slot4].goingSprite:setVisible(true)
+		slot0.mStageLayoutList[slot4].unGoingSprite:setVisible(false)
+	end
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	if slot0.mStageLayoutList[slot4 + 1] then
+		slot0.mTimeStageNode = slot0.mStageLayoutList[slot4 + 1]
+
+		slot0.upDateTime(slot0)
+
+		slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), 1)
+		slot0.mTimeIndex = slot4 + 1
+	end
+
+	slot0.mProgBar:setCurrValue((slot3 - 1)*160 + 95)
+
+	if not slot0.mSelectTaskId then
+		slot0.mSelectTaskId = slot3
+	end
+
+	slot0.onStageBtnCallBack(slot0, slot0.mStageLayoutList[slot0.mSelectTaskId].stageBtn, slot1)
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if not slot0.mTimeStageNode then
+		return 
+	end
+
+	slot0.mTimeStageNode.unTimeSprite:setVisible(true)
+
+	if 0 < slot0.mTimeStageNode.OpenTime - Player:getCurrentTime() then
+		slot0.mTimeStageNode.unTimeSprite.label:setString(TR("%s后开启", MqTime.completeFormat(slot1)))
+	else
+		slot0.mTimeStageNode.unTimeSprite.label:setString(TR("00:00:00后开启"))
+
+		slot0.mTimeStageNode = nil
+		slot0.mTimeIndex = nil
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+
+		slot0.getPeopleTaskInfo(slot0)
+	end
+
+	return 
+end
+slot0.refreshStageRedDot = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mStageLayoutList) do
+		slot5.stageBtn.redDot:setVisible(tonumber(slot0.mLocalData[slot4].completeCondition) <= slot0.mTaskInfo[slot4].TaskProgress and not slot6.IsGetReward)
+	end
+
+	return 
+end
+slot0.onStageBtnCallBack = function (slot0, slot1, slot2)
+	if slot0.mTimeIndex and slot1.btnIndex == slot0.mTimeIndex then
+		ui.showFlashView(TR("%s后开启", MqTime.completeFormat(slot0.mTimeStageNode.OpenTime - Player:getCurrentTime())))
+
+		return 
+	end
+
+	if not slot1.openState then
+		ui.showFlashView(TR("还未开启此阶段"))
+
+		return 
+	end
+
+	if slot0.mSelectTaskId == slot1.btnIndex and not slot2 then
+		return 
+	end
+
+	slot3 = TR("%d", slot1.btnIndex)
+	slot5 = slot0.mTaskInfo[slot1.btnIndex]
+
+	if slot0.mLocalData[slot1.btnIndex].des then
+		slot0.mDesLabel:setString(slot4.des)
+	else
+		slot0.mDesLabel:setString(slot3)
+	end
+
+	slot0.mTaggetLabel:setString(TR(slot4.intro, string.format("(%d/%s)", slot5.TaskProgress, slot4.completeCondition)))
+	slot0.mHeroBody:setTexture(slot6)
+	slot0.mHeroBody:setVisible(true)
+	slot0.mTitleLabel:setString(slot4.name)
+	slot0.mFinshSprite:setVisible(tonumber(slot4.completeCondition) <= slot5.TaskProgress)
+	slot0.mGetBtn:setEnabled(tonumber(slot4.completeCondition) <= slot5.TaskProgress and not slot5.IsGetReward)
+
+	if slot5.IsGetReward then
+		slot0.mGetBtn:setTitleText(TR("已领取"))
+		slot0.mGetBtn:setVisible(false)
+		slot0.mGetedTips:setVisible(true)
+	else
+		slot0.mGetedTips:setVisible(false)
+		slot0.mGetBtn:setVisible(true)
+		slot0.mGetBtn:setTitleText(TR("领 取"))
+	end
+
+	slot0.mRewardList:removeAllChildren()
+
+	for slot12, slot13 in pairs(slot8) do
+		slot0.createLayoutTemplateNode(slot0, "rewardLayout").card:setCardData({
+			modelId = slot13.resourceId,
+			num = slot13.num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot0.mRewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+	end
+
+	slot0.mSelectTaskId = slot1.btnIndex
+
+	slot0.mMainNode:setVisible(true)
+	slot0.cbGetBtnRedDotVisible(slot0, slot0.mGetBtn.redDot)
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGetRwardBtnAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPeopletaskReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mSelectTaskId
+		},
+		successCallback = function (slot0)
+			slot0:parseServerData(slot0.PeopleTaskInfo)
+			ui.showFlashReward(slot0)
+			slot0:refreshLayer(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getPeopleTaskInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPeopletaskInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:parseServerData(slot0)
+			slot0:refreshLayer(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

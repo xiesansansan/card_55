@@ -1,0 +1,487 @@
+slot0 = class("ChasingChallengeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "zjzty_5.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mNpcSprite",
+				cType = "Sprite",
+				params = {
+					scaleX = -0.8,
+					image = "lh_12202.png",
+					scaleY = 0.8,
+					pos = {
+						x = 211,
+						y = 288.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "zjzty_6.png",
+					pos = {
+						x = 63.2,
+						y = 257.72
+					}
+				},
+				children = {
+					{
+						name = "mNpcNameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 46.18,
+								y = 292.03
+							},
+							size = {
+								width = 30,
+								height = 200
+							},
+							text = TR("铁木真")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "zjzty_3.png",
+					pos = {
+						x = 222.24,
+						y = 67.3
+					}
+				},
+				children = {
+					{
+						name = "mNpcDescLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							pos = {
+								x = 144.26,
+								y = 49.23
+							},
+							size = {
+								width = 250.27,
+								height = 78.2
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mCampParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "HeroTmepNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 370,
+								y = 125
+							},
+							size = {
+								width = 115,
+								height = 375
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									childName = "heroCard",
+									allowClick = false,
+									pos = {
+										x = 57.5,
+										y = 304
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "CardNode",
+								params = {
+									childName = "rewardCard",
+									allowClick = true,
+									pos = {
+										x = 57.5,
+										y = 196
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									childName = "timesLabel",
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 57.5,
+										y = 143
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									childName = "isLockLabel",
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 57.5,
+										y = 101
+									},
+									text = TR("已锁定")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Button",
+								params = {
+									childName = "lockBtn",
+									image = "c_27.png",
+									clickAction = "onLock",
+									pos = {
+										x = 57.5,
+										y = 61
+									},
+									titleText = TR("锁定")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Scale9Sprite",
+								params = {
+									rotationAngle = 90,
+									image = "c_11.png",
+									childName = "lineSprite",
+									pos = {
+										x = 115,
+										y = 203.5
+									},
+									size = {
+										width = 330,
+										height = 3
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled15",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 676.33,
+						y = 139.19
+					},
+					text = TR("上方出现的侠客将无法出战")
+				},
+				children = {}
+			},
+			{
+				name = "mUseResLabel",
+				cType = "ResLabel",
+				params = {
+					modelId = 1111,
+					num = 0,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 525.62,
+						y = 96.08
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRefreshBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onRefresh",
+					pos = {
+						x = 563.19,
+						y = 55
+					},
+					titleText = TR("刷 新")
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onFight",
+					pos = {
+						x = 778.06,
+						y = 55
+					},
+					titleText = TR("战 斗")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChasingData = slot1.chasingData
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mNpcNameLabel:setString(ChasingNodeModel.items[slot0.mChasingData.CurChapterId][slot0.mChasingData.CurNodeId].name)
+	slot0.mNpcDescLabel:setString(ChasingNodeModel.items[slot0.mChasingData.CurChapterId][slot0.mChasingData.CurNodeId].intro)
+	slot0.mNpcSprite:setTexture(HeroModel.items[ChasingNodeModel.items[slot0.mChasingData.CurChapterId][slot0.mChasingData.CurNodeId].npcModelId].drawingPicA .. ".png")
+
+	return 
+end
+slot0.createCamp = function (slot0)
+	slot0.mCampParent:removeAllChildren()
+
+	for slot5 = 1, ChasingConfig.items[1].nodeRewardNum, 1 do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "HeroTmepNode")
+
+		slot7.setPosition(slot7, (slot5 - 1)*115 + 370, 125)
+		slot0.mCampParent:addChild(slot7)
+
+		if slot0.mChasingData.PointHeroStr[tostring(slot5)] then
+			slot7.heroCard:setCardData(nil, {
+				Enums.CardShowAttr.eLevel,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv,
+				Enums.CardShowAttr.eName
+			}, HeroObj:getItem(slot8))
+		end
+
+		if Utility.analysisStrResList(slot0.mChasingData.PointReward[slot6])[1] then
+			slot7.rewardCard:setCardData({
+				modelId = slot9.resourceId,
+				num = slot9.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+
+			if ({
+				nil,
+				nil,
+				nil,
+				nil,
+				"cheng",
+				"hong",
+				"jinse",
+				"zuanshi"
+			})[Resource.getColorLv(slot9.resourceId)] then
+				slot7.rewardCard:setLiubian("effect_ui_touxiangkuang", slot11[slot10])
+			end
+		end
+
+		if slot0.mChasingData.PointMultiple[slot6] then
+			slot7.timesLabel:setString(TR("x%s倍", slot10))
+
+			if 6 < slot10 then
+				slot11 = 6
+			end
+
+			slot7.timesLabel:setColor(Utility.getColorValue(slot11))
+		end
+
+		slot7.isLockLabel:setVisible((table.indexof(slot0.mChasingData.PointLockStr, slot5) and true) or false)
+
+		slot7.lockBtn.pointId = slot5
+
+		slot7.lockBtn:setTitleText((((table.indexof(slot0.mChasingData.PointLockStr, slot5) and true) or false) and TR("解锁")) or TR("锁定"))
+		slot7.lockBtn:setTitleText((((table.indexof(slot0.mChasingData.PointLockStr, slot5) and true) or false) and TR("解锁")) or TR("锁定"))
+		slot7.lockBtn:loadTextures((((table.indexof(slot0.mChasingData.PointLockStr, slot5) and true) or false) and "c_32.png") or "c_27.png", )
+		slot7.lineSprite:setVisible(slot5 ~= slot1)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createCamp(slot0)
+
+	Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num = Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num + Utility.analysisStrResList(ChasingConfig.items[1].refreshNeedAdd)[1].num*#slot0.mChasingData.PointLockStr
+
+	slot0.mUseResLabel:setType(Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].resourceId)
+	slot0.mUseResLabel:setString(Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num)
+	slot0.mRefreshBtn:setEnabled(#slot0.mChasingData.PointLockStr < ChasingConfig.items[1].nodeRewardNum)
+
+	return 
+end
+slot0.onRefresh = function (slot0)
+	Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num = Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num + Utility.analysisStrResList(ChasingConfig.items[1].refreshNeedAdd)[1].num*#slot0.mChasingData.PointLockStr
+
+	if not Resource.isEnough(Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].resourceId, Utility.analysisStrResList(ChasingConfig.items[1].refreshNeed)[1].num) then
+		return 
+	end
+
+	slot0.requestRefresh(slot0)
+
+	return 
+end
+slot0.onFight = function (slot0)
+	ui.showCampReady({
+		noNeedVit = true,
+		callModelSub = ModuleSub.eChasing,
+		titleText = TR("仗剑走天涯布阵"),
+		ignoreHeroList = table.values(slot0.mChasingData.PointHeroStr),
+		mercenaryList = MercenaryObj:getMercenaryIdByModuleId(ModuleSub.eChasing),
+		callback = function (slot0)
+			slot0:requestFightInfo(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onLock = function (slot0, slot1)
+	slot0.requestLock(slot0, slot1.pointId, not ((table.indexof(slot0.mChasingData.PointLockStr, slot1.pointId) and true) or false))
+
+	return 
+end
+slot0.requestRefresh = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshHero",
+		moduleName = "ChasingInfo",
+		methodData = {
+			slot0.mChasingData.CurChapterId
+		},
+		successCallback = function (slot0)
+			slot0.mChasingData = slot0
+
+			slot0:refreshUI()
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.mChasingData)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLock = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "LockPoint",
+		moduleName = "ChasingInfo",
+		methodData = {
+			slot0.mChasingData.CurChapterId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mChasingData.PointLockStr = slot0.PointLockStr
+
+			slot0:refreshUI()
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.mChasingData)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFightInfo = function (slot0, slot1)
+	slot2 = ""
+
+	for slot6 = 1, 5, 1 do
+		slot2 = slot2 .. ((slot2 == "" and "") or ",") .. (slot1[slot6] or 0)
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetNodeFightInfo",
+		moduleName = "ChasingInfo",
+		methodData = {
+			slot0.mChasingData.CurChapterId,
+			slot2
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					chapterId = slot0.mChasingData.CurChapterId
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

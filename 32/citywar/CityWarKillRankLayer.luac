@@ -1,0 +1,594 @@
+slot0 = class("CityWarKillRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled23",
+		cType = "Scale9Sprite",
+		params = {
+			image = "r_22.png",
+			pos = {
+				x = 320,
+				y = 930
+			},
+			size = {
+				width = 355,
+				height = 20
+			}
+		},
+		children = {}
+	},
+	{
+		name = "killNumLabel",
+		cType = "Label",
+		params = {
+			fontSize = 21,
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			outlineColor = {
+				g = 42,
+				r = 51,
+				b = 24
+			},
+			pos = {
+				x = 37.51,
+				y = 975.81
+			},
+			text = TR("当前杀敌：")
+		},
+		children = {}
+	},
+	{
+		name = "shuaxinLabel",
+		cType = "Label",
+		params = {
+			fontSize = 21,
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			outlineColor = {
+				g = 42,
+				r = 51,
+				b = 24
+			},
+			pos = {
+				x = 337.1,
+				y = 975.81
+			},
+			text = TR("刷新倒计时：")
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Label",
+		params = {
+			color = {
+				g = 34,
+				r = 69,
+				b = 13
+			},
+			pos = {
+				x = 320,
+				y = 885
+			},
+			text = TR("每日完成杀敌任务可获得大量主角经验")
+		},
+		children = {}
+	},
+	{
+		name = "progressBar",
+		cType = "ProgressBar",
+		params = {
+			normalImage = "c_52.png",
+			bgImage = "c_51.png",
+			pos = {
+				x = 320,
+				y = 930
+			},
+			size = {
+				width = 350,
+				height = 17
+			}
+		},
+		children = {}
+	},
+	{
+		name = "expLabel",
+		cType = "Label",
+		params = {
+			fontSize = 18,
+			outlineSize = 1,
+			outlineColor = {
+				g = 0,
+				r = 0,
+				b = 0
+			},
+			pos = {
+				x = 320,
+				y = 930
+			},
+			text = TR("主角经验：")
+		},
+		children = {}
+	},
+	{
+		name = "untitled16",
+		cType = "Scale9Sprite",
+		params = {
+			image = "c_144.png",
+			pos = {
+				x = 320,
+				y = 480
+			},
+			size = {
+				width = 630,
+				height = 740
+			}
+		},
+		children = {}
+	},
+	{
+		name = "cellListView",
+		cType = "ListView",
+		params = {
+			margin = 12,
+			direction = true,
+			anchor = {
+				x = 0.5,
+				y = 1
+			},
+			pos = {
+				x = 320,
+				y = 840
+			},
+			size = {
+				width = 600,
+				height = 690
+			}
+		},
+		children = {
+			{
+				name = "cellItem",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled8-text",
+						name = "titleStr",
+						type = "string"
+					},
+					{
+						value = "remainLabel-text",
+						name = "jinduStr",
+						type = "string"
+					}
+				},
+				params = {
+					size = {
+						width = 600,
+						height = 140
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Scale9Sprite",
+						params = {
+							image = "r_25.png",
+							pos = {
+								x = 300,
+								y = 70
+							},
+							size = {
+								width = 590,
+								height = 140
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						params = {
+							scaleX = 1.2,
+							image = "r_24.png",
+							pos = {
+								x = 170,
+								y = 120
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 10,
+								y = 110
+							},
+							text = TR("在庄园武神阁中制造2次材料")
+						},
+						children = {}
+					},
+					{
+						name = "cardNodeList",
+						cType = "ListView",
+						params = {
+							childName = "cardNodeList",
+							direction = false,
+							swallowTouch = false,
+							pos = {
+								x = 19.35,
+								y = 6
+							},
+							size = {
+								width = 440,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "cardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled19-initParams",
+										name = "cardParams",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled19",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "darwBtn",
+						cType = "Button",
+						params = {
+							image = "c_13.png",
+							childName = "darwBtn",
+							pos = {
+								x = 524.21,
+								y = 57.24
+							},
+							titleText = TR("领 取")
+						},
+						children = {}
+					},
+					{
+						name = "remainLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 529.11,
+								y = 105
+							},
+							text = TR("进度：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							image = "c_162.png",
+							childName = "getSprite",
+							pos = {
+								x = 525.77,
+								y = 70.33
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled24",
+		cType = "Label",
+		params = {
+			fontSize = 21,
+			outlineColor = {
+				g = 42,
+				r = 51,
+				b = 24
+			},
+			pos = {
+				x = 85,
+				y = 930
+			},
+			text = TR("今日获得:")
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mKillData = {}
+	slot0.mRefreshTime = 0
+	slot0.mTemp_CitywarKillDailyrewardConfig = {}
+
+	slot0.requestGetKillInfo(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.reFreshInfo = function (slot0)
+	slot1 = slot0.getTotalExp(slot0)
+	slot2 = 0
+
+	dump(slot0.mKillData)
+
+	if slot0.mKillData.ReceiveKillNum ~= "" then
+		for slot6, slot7 in ipairs(string.split(slot0.mKillData.ReceiveKillNum, ",")) do
+			if slot0.getExpConfig(slot0)[CitywarKillDailyrewardConfig.items[tonumber(slot7)].expRewardID] then
+				for slot16, slot17 in ipairs(slot12) do
+					if slot17.resourceId == ResourceTypeSub.eExp then
+						slot2 = (PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot18 and PlayerConfig.items[1].noEnjoyAnyExpAddsLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and slot2 + slot17.num*(slot18 + 1)) or slot2 + slot17.num
+					end
+				end
+			end
+		end
+	end
+
+	slot0.killNumLabel:setString(TR("当前杀敌：#12ff00%d", slot0.mKillData.KillNum))
+	slot0.shuaxinLabel:setString(TR("刷新倒计时：#12ff00%s", MqTime.completeFormat(slot0.mKillData.UpdateTime)))
+	slot0.expLabel:setString(TR("主角经验：%d/%d", slot2, slot1))
+	slot0.progressBar:setMaxValue(slot1)
+	slot0.progressBar:setCurrValue(slot2)
+	slot0.shuaxinLabel:stopAllActions()
+	Utility.schedule(slot0.shuaxinLabel, function ()
+		slot0.shuaxinLabel:setString(TR("刷新倒计时：#12ff00%s", MqTime.completeFormat(slot0.mRefreshTime - Player:getCurrentTime())))
+
+		if slot0.mRefreshTime - Player.getCurrentTime() <= 0 then
+			slot0:requestInfo()
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.reFreshListView = function (slot0)
+	if slot0.cellListView then
+		slot0.cellListView:removeAllChildren()
+	end
+
+	for slot4, slot5 in ipairs(slot0.mTemp_CitywarKillDailyrewardConfig) do
+		slot7 = slot0
+		slot8 = "cellItem"
+		slot9 = {
+			titleStr = TR("参与门派战击杀门派战敌军%d人", slot5.killNum),
+			jinduStr = TR("进度:%s%d/%d", (slot5.killNum <= slot0.mKillData.KillNum and "#258711") or "#ea2c00", slot0.mKillData.KillNum, slot5.killNum)
+		}
+
+		slot0.cellListView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+
+		slot9 = info.reward
+
+		if slot0.getExpConfig(slot0)[slot5.expRewardID] then
+			slot9 = string.format("%s||%s", slot8[slot7].reward, info.reward)
+		end
+
+		for slot13, slot14 in ipairs(Utility.analysisStrResList(slot9)) do
+			slot16 = slot0.createLayoutTemplateNode(slot0, "cardLayout", {
+				cardParams = {
+					cardInfo = {
+						modelId = slot14.resourceId,
+						num = slot14.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			})
+
+			if slot14.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot17 then
+				slot16.cardNode:addChild(UIWrap.newControl("Label", {
+					fontSize = 15,
+					text = TR("经验+%s%%", slot17*100),
+					color = cc.c3b(55, 255, 64),
+					anchor = cc.p(1, 1),
+					outlineColor = cc.c3b(51, 42, 24),
+					pos = cc.p(85, 88)
+				}))
+			end
+
+			slot6.cardNodeList:pushBackCustomItem(slot16)
+		end
+
+		slot6.darwBtn:setClickAction(function ()
+			if slot0.status == 2 then
+				LayerManager.addLayer({
+					name = "citywar.CityWarHomeLayer",
+					data = {}
+				})
+			elseif slot0.status == 1 then
+				slot1:requestMineReward(slot0.killNum)
+			end
+
+			return 
+		end)
+		slot6.darwBtn:setEnabled(slot5.status ~= 3)
+
+		slot10 = TR("领取")
+
+		if slot5.status == 2 then
+			slot10 = TR("前往")
+		elseif slot5.status == 3 then
+			slot10 = TR("已领取")
+		end
+
+		slot6.darwBtn:setTitleText(slot10)
+
+		if slot5.status == 2 then
+			slot6.darwBtn:loadTextures("c_70.png", "c_70.png")
+		end
+
+		slot6.getSprite:setVisible(slot5.status == 3)
+		slot6.darwBtn:setVisible(slot5.status ~= 3)
+		slot6.remainLabel:setVisible(slot5.status ~= 3)
+	end
+
+	return 
+end
+slot0.getTotalExp = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(CitywarKillDailyrewardConfig.items) do
+		if slot0.getExpConfig(slot0)[slot6.expRewardID] then
+			slot10 = Utility.analysisStrResList(slot9)
+
+			if slot6.needLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+				for slot14, slot15 in ipairs(slot10) do
+					if slot15.resourceId == ResourceTypeSub.eExp then
+						slot1 = (PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot16 and PlayerConfig.items[1].noEnjoyAnyExpAddsLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and slot1 + slot15.num*(slot16 + 1)) or slot1 + slot15.num
+					end
+				end
+			end
+		end
+	end
+
+	return slot1
+end
+slot0.getExpConfig = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot2 = 1
+	slot3 = {}
+
+	for slot7, slot8 in pairs(CitywarMonsterkillExpRelation.items) do
+		if slot2 <= slot7 and slot7 <= slot1 then
+			slot2 = slot7
+			slot3 = slot8
+		end
+	end
+
+	return slot3
+end
+slot0.dealCitywarKillDailyrewardConfig = function (slot0)
+	slot0.mTemp_CitywarKillDailyrewardConfig = {}
+
+	for slot4, slot5 in pairs(CitywarKillDailyrewardConfig.items) do
+		clone(slot5).status = (slot5.killNum <= slot0.mKillData.KillNum and 1) or 2
+
+		for slot10, slot11 in ipairs(string.split(slot0.mKillData.ReceiveKillNum, ",")) do
+			if tonumber(slot11) == slot5.killNum then
+				slot6.status = 3
+			end
+		end
+
+		if slot5.needLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+			table.insert(slot0.mTemp_CitywarKillDailyrewardConfig, slot6)
+		end
+	end
+
+	table.sort(slot0.mTemp_CitywarKillDailyrewardConfig, function (slot0, slot1)
+		slot2 = slot0.killNum
+		slot3 = slot1.killNum
+
+		if slot0.status ~= slot1.status then
+			return slot0.status < slot1.status
+		else
+			return slot0.killNum < slot1.killNum
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.requestGetKillInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetDailyKillRank",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mKillData = clone(slot0)
+			slot0.mRefreshTime = math.floor(slot0.UpdateTime)
+
+			slot0:dealCitywarKillDailyrewardConfig()
+			slot0:reFreshListView()
+			slot0:reFreshInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestMineReward = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "ReceiveKillNumReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mKillData.ReceiveKillNum = slot0.CitywarInfo.ReceiveKillNum
+
+			slot0:dealCitywarKillDailyrewardConfig()
+			slot0:reFreshListView()
+			slot0:reFreshInfo()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

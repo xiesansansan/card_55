@@ -1,0 +1,307 @@
+slot0 = class("GameLoginLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled5",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer",
+			pos = {
+				x = 319.35,
+				y = 568
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "sdkLoginBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					hide = true,
+					clickAction = "onSDKLoginAction",
+					pos = {
+						x = 0,
+						y = -236
+					},
+					titleText = TR("登  录")
+				},
+				children = {}
+			},
+			{
+				name = "mLoginBg",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "emailBg",
+						cType = "Sprite",
+						params = {
+							image = "dl_1.png",
+							pos = {
+								x = 27.26,
+								y = -8.96
+							}
+						},
+						children = {}
+					},
+					{
+						name = "passBg",
+						cType = "Sprite",
+						params = {
+							image = "dl_1.png",
+							pos = {
+								x = 27.26,
+								y = -123.29
+							}
+						},
+						children = {}
+					},
+					{
+						name = "registerBtn",
+						cType = "Button",
+						params = {
+							image = "c_39.png",
+							clickAction = "onRegisteredAction",
+							pos = {
+								x = -157.05,
+								y = -236.44
+							},
+							titleText = TR("注  册")
+						},
+						children = {}
+					},
+					{
+						name = "loginBtn",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onLoginAction",
+							pos = {
+								x = 157.16,
+								y = -236.44
+							},
+							titleText = TR("登  录")
+						},
+						children = {}
+					},
+					{
+						name = "emailEditBox",
+						cType = "EditBox",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 3.06,
+								y = -21.69
+							},
+							size = {
+								width = 200,
+								height = 30
+							}
+						},
+						children = {}
+					},
+					{
+						name = "pwdEditBox",
+						cType = "EditBox",
+						params = {
+							image = "c_pure.png",
+							isPassword = true,
+							pos = {
+								x = 3.06,
+								y = -133.69
+							},
+							size = {
+								width = 200,
+								height = 30
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.notAutoLogin = (slot1 and slot1.notAutoLogin) or false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if IPlatform:getInstance():getConfigItem("Channel") == "MQKK" then
+		slot0.mLoginBg:setVisible(true)
+
+		if LocalData:getMQLoginInfo().account then
+			slot0.emailEditBox:setText(slot1.account)
+		end
+
+		if slot1.password then
+			slot0.pwdEditBox:setText(slot1.password)
+		end
+
+		if not slot0.notAutoLogin and string.isEmail(slot0.emailEditBox:getText()) and string.isValided(slot0.pwdEditBox:getText()) then
+			Utility.performWithDelay(slot0.emailEditBox, handler(slot0, slot0.onLoginAction), 0.2)
+		end
+	else
+		slot0.sdkLoginBtn:setVisible(true)
+
+		slot1 = slot0.notAutoLogin or slot1
+
+		return 
+	end
+end
+slot0.onRegisteredAction = function (slot0)
+	LayerManager.addLayer({
+		name = "login.RegisterLayer"
+	})
+
+	return 
+end
+slot0.onLoginAction = function (slot0)
+	if not string.isEmail(slot0.emailEditBox:getText()) then
+		ui.showFlashView(TR("账号输入有误！"))
+
+		return 
+	end
+
+	if not string.isValided(slot0.pwdEditBox:getText()) then
+		ui.showFlashView(TR("密码输入错误！"))
+
+		return 
+	end
+
+	slot0.loginInfo = {
+		account = slot0.emailEditBox:getText()
+	}
+
+	if string.len(slot1) == 32 then
+		slot0.loginInfo.password = slot1
+	else
+		slot0.loginInfo.password = string.md5Content(slot1)
+	end
+
+	slot0.safeRequest(slot0, {
+		moduleName = "login",
+		svrType = Enums.HttpSvrType.eAccount,
+		methodData = {
+			email = slot0.loginInfo.account,
+			pwd = slot0.loginInfo.password
+		},
+		successCallback = handler(slot0, slot0.responseAccountLogin)
+	})
+
+	return 
+end
+slot0.onSDKLoginAction = function (slot0)
+	if ({
+		107 = 107,
+		103 = 103,
+		1 = 1,
+		104 = 104,
+		106 = 106,
+		111 = 111,
+		113 = 113,
+		116 = 116,
+		120 = 120,
+		118 = 118,
+		119 = 119,
+		117 = 117,
+		115 = 115,
+		114 = 114,
+		108 = 108,
+		102 = 102,
+		105 = 105,
+		110 = 110,
+		112 = 112,
+		109 = 109,
+		101 = 101
+	})[IPlatform:getInstance():getConfigItem("PartnerID")] then
+		IPlatform:getInstance():logout()
+		IPlatform:getInstance():login()
+	else
+		IPlatform:getInstance():login()
+	end
+
+	return 
+end
+slot0.responseAccountLogin = function (slot0, slot1)
+	if slot1.UserID and 0 < string.len(slot2) then
+		LocalData:setMQLoginInfo(slot0.loginInfo)
+		MQHandlerHelper:getInstance():sendEvent("LOGIN", cjson.encode({
+			sessionId = slot2
+		}))
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	if cc.FileUtils:getInstance():isFileExist(IPlatform:getInstance():getConfigItem("ObbMain")) then
+		if not slot1.isDirectoryExist(slot1, slot1.getWritablePath(slot1) .. "Download/") then
+			slot1.createDirectory(slot1, slot3)
+		end
+
+		if not slot1.isFileExist(slot1, slot3 .. "obbhaveUnzip") then
+			cc.SimpleAudioEngine:getInstance():playMusic("res/loginmusic2.mp3", false)
+			slot0.unzipObbFile(slot0, slot2, slot3)
+
+			return 
+		else
+			Utility.performWithDelay(slot0.sdkLoginBtn, handler(slot0, slot0.onSDKLoginAction), 0.2)
+		end
+	else
+		Utility.performWithDelay(slot0.sdkLoginBtn, handler(slot0, slot0.onSDKLoginAction), 0.2)
+	end
+
+	return 
+end
+slot0.unzipObbFile = function (slot0, slot1, slot2)
+	slot3 = ui.showMessageBox({
+		msgBoxParams = {
+			hideCloseButton = true
+		},
+		text = TR("正在解压文件，请稍候...")
+	})
+
+	slot3.addChild(slot3, slot4)
+
+	slot5 = nil
+
+	UnzipFile:new(slot6).unzip(slot5, slot1, slot2)
+	slot3.addChild(slot3, UnzipFile.new(slot6))
+
+	return 
+end
+slot0.onTestResNodeAction = function (slot0)
+	print("添加资源!!!")
+
+	return 
+end
+
+return slot0

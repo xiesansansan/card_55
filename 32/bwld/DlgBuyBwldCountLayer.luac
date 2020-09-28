@@ -1,0 +1,168 @@
+slot0 = class("DlgBuyBwldCountLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png"
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_72.png",
+					pos = {
+						x = 256.23,
+						y = 198.54
+					},
+					size = {
+						width = 434,
+						height = 170
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 256.02,
+						y = 94.67
+					},
+					text = TR("价格")
+				},
+				children = {}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onSelectChanged",
+					currSelCount = 1,
+					btnSize = {
+						width = 65,
+						height = 32.4
+					},
+					pos = {
+						x = 256.35,
+						y = 159.21
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_160.png",
+					clickAction = "onBuyBtn",
+					pos = {
+						x = 257.2,
+						y = 51.48
+					},
+					titleText = TR("购 买")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 256.15,
+						y = 231.54
+					},
+					text = TR("购买比武论道挑战次数")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.MaxNum = BiwuBuynumRelation.items_count
+	slot0.mSelectNum = 1
+	slot0.mHadBought = slot1.hadBought
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.selectCountView:setMaxCount(slot0.MaxNum - slot0.mHadBought)
+
+	return 
+end
+slot0.onSelectChanged = function (slot0, slot1)
+	slot0.mSelectNum = slot1
+	slot2 = 0
+	slot0.mPriceInfo = Utility.analysisStrResList(BiwuBuynumRelation.items[1].price)
+
+	for slot6 = slot0.mHadBought + 1, slot0.mHadBought + slot1, 1 do
+		slot2 = slot2 + Utility.analysisStrResList(BiwuBuynumRelation.items[slot6].price)[1].num
+	end
+
+	slot0.priceLabel:setString(TR("价格{%s}%s", Resource.getDaibiImg(slot0.mPriceInfo[1].resourceId), slot2))
+
+	slot0.mTotalPrice = slot2
+
+	return 
+end
+slot0.onBuyBtn = function (slot0)
+	if not Resource.isEnough(slot0.mPriceInfo[1].resourceId, slot0.mTotalPrice) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "BuyNum",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot0.mSelectNum
+		},
+		successCallback = function (slot0)
+			dump(slot0, "BuyRankCount")
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

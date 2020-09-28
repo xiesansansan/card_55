@@ -1,0 +1,259 @@
+return {
+	ctor = function (slot0, slot1)
+		if slot1 or {}.swallow ~= nil or slot1.beganEvent or slot1.movedEvent or slot1.endedEvent or slot1.cancelledEvent then
+			ui.addTouchEvent({
+				node = slot0,
+				swallowTouch = slot1.swallow == true,
+				beganEvent = slot1.beganEvent,
+				movedEvent = slot1.movedEvent,
+				endedEvent = slot1.endedEvent,
+				cancelledEvent = slot1.cancelledEvent
+			})
+		elseif slot1.clickEvent then
+			ui.addTouchEvent({
+				swallowTouch = true,
+				node = slot0,
+				beganEvent = function (slot0, slot1)
+					slot0.mBeginPos = slot0.getLocation(slot0)
+
+					return true
+				end,
+				endedEvent = function (slot0, slot1)
+					if ui.isTouchNodeClicked(slot0.mBeginPos, slot0.getLocation(slot0)) then
+						slot1.clickEvent(slot0, slot1)
+					end
+
+					return 
+				end
+			})
+		end
+
+		slot0.noNaviagate = slot1.noNaviagate
+
+		return 
+	end,
+	isNoNavigate = function (slot0)
+		return slot0.noNaviagate
+	end,
+	safeRequest = function (slot0, slot1)
+		slot1.responseNode = slot0
+
+		HttpClient:request(slot1)
+
+		return 
+	end,
+	socketRequest = function (slot0, slot1)
+		slot1._dependLayer = slot0
+
+		require("network.GameSocket"):socketRequest(slot1)
+
+		return 
+	end,
+	getCustomChildren = function (slot0, slot1, slot2, slot3)
+		slot5 = {}
+
+		for slot9, slot10 in ipairs(slot4) do
+			if (slot3 and slot10[slot2] == slot3) or (not slot3 and slot10[slot2]) then
+				table.insert(slot5, slot10)
+			end
+		end
+
+		return slot5
+	end,
+	createUITree = function (slot0, slot1)
+		slot0.uiTreeTLList = {}
+		slot0.uiDelayTreeParentList = {}
+
+		slot0._createUIController(slot0, slot0, slot0, slot0.uiTree, slot1)
+
+		return 
+	end,
+	createUISubTree = function (slot0, slot1, slot2)
+		slot3 = slot0.uiTreeTLList[slot1]
+		slot4 = slot0.uiDelayTreeParentList[slot1]
+
+		if not slot0[slot1] or tolua.isnull(slot0[slot1]) then
+			if slot3 and slot4 then
+				if slot0._createOneUIController(slot0, slot0, slot4, slot3, slot2) and next(slot3.children) then
+					slot0._createUIController(slot0, slot0, slot5, slot3.children, slot2)
+				end
+			else
+				printLog("WARN", "找不到延时结点%s", slot1)
+			end
+		else
+			printLog("WARN", "重复创建结点%s", slot1)
+		end
+
+		return 
+	end,
+	createLayoutTemplateNode = function (slot0, slot1, slot2, slot3)
+		if slot0.uiTreeTLList[slot1] then
+			slot5 = clone(slot4.params)
+
+			if slot3 then
+				table.merge(slot5, slot3)
+			end
+
+			if display.safeArea then
+				slot0._checkControllerAdapter(slot0, slot5)
+			end
+
+			slot6 = UIWrap[slot4.cType](slot5)
+			slot7 = {}
+
+			if slot4.custom and slot2 then
+				for slot11, slot12 in ipairs(slot4.custom) do
+					if slot12.value and 0 < string.len(slot12.value) and slot2[slot12.name] ~= nil then
+						for slot17, slot18 in ipairs(slot13) do
+							slot21 = string.split(slot18, "-")[2]
+
+							if string.split(slot18, "-")[1] and slot21 then
+								slot7[slot20] = slot7[slot20] or {}
+								slot7[slot20][slot21] = slot2[slot12.name]
+							end
+						end
+					elseif slot2[slot12.name] == nil then
+						printLog("WARN", string.format("创建%s结点时缺少参数%s", slot1, slot12.name))
+					end
+				end
+			end
+
+			slot8(slot4.children)
+			slot0._createUIController(slot0, slot6, slot6, slot4.children)
+
+			return slot6
+			return 
+		end
+
+		printError("未找到模版结点:%s", slot1)
+	end,
+	_createOneUIController = function (slot0, slot1, slot2, slot3, slot4)
+		function slot5(slot0, slot1, slot2)
+			if type(slot2) == "string" then
+				if (string.find(slot2, "on") == 1 or string.find(slot2, "cb") == 1) and slot0[slot2] then
+					slot0[slot1] = handler(slot0, slot0[slot2])
+
+					return true
+				elseif string.byte(slot2, 1) == 123 and string.byte(slot2, string.len(slot2)) == 125 and string.find(slot2, "=") then
+					slot0[slot1] = loadstring("return " .. slot2)()
+
+					return true
+				end
+			end
+
+			return false
+		end
+
+		for slot10, slot11 in pairs(slot6) do
+			slot5(slot6, slot10, slot11)
+		end
+
+		if slot4 then
+			slot4(slot3, slot6)
+		end
+
+		if display.safeArea then
+			slot0._checkControllerAdapter(slot0, slot6)
+		end
+
+		if not UIWrap[slot3.cType](slot6) then
+			dump(slot6, string.format("结点%s创建失败", slot3.name))
+
+			return 
+		end
+
+		if slot6.zOrder then
+			slot2.addChild(slot2, slot7, slot6.zOrder)
+		else
+			slot2.addChild(slot2, slot7)
+		end
+
+		if slot6.hide == true then
+			slot7.setVisible(slot7, false)
+		end
+
+		if not string.find(slot3.name, "untitled") then
+			slot1[slot3.name] = slot7
+		elseif slot6.childName and 0 < string.len(slot6.childName) then
+			slot2[slot6.childName] = slot7
+		end
+
+		if slot3.custom then
+			for slot11, slot12 in ipairs(slot3.custom) do
+				if not slot5(slot7, slot12.name, slot12.value) then
+					slot7[slot12.name] = slot12.value
+				end
+			end
+		end
+
+		return slot7
+	end,
+	_createUIController = function (slot0, slot1, slot2, slot3, slot4)
+		for slot8, slot9 in ipairs(slot3) do
+			if (slot9.cType == "Layout" or string.find(slot9.cType, "Template") or slot9.params.delayInit) and not IN_EDITER_ENVIRONMENT then
+				slot0.uiTreeTLList[slot9.name] = slot9
+
+				if slot9.params.delayInit then
+					slot0.uiDelayTreeParentList[slot9.name] = slot2
+				end
+			elseif UIWrap[slot9.cType] and (slot9.cType ~= "FileLayer" or slot9.params.onlyEditer ~= true) and slot0._createOneUIController(slot0, slot1, slot2, slot9, slot4) and next(slot9.children) then
+				slot0._createUIController(slot0, slot1, slot10, slot9.children, slot4)
+			end
+		end
+
+		return 
+	end,
+	_checkControllerAdapter = function (slot0, slot1)
+		if slot1.pos and slot1.posApt then
+			if slot1.isLiuHai then
+				slot1.pos = cc.p(slot1.pos.x + (LocalData:getCacheData("liuhaiWidth") or 0), slot1.pos.y)
+			end
+
+			if slot1.posApt == Enums.Adapter.eList then
+				slot1.pos = cc.p(slot1.pos.x*display.xSafeScale, slot1.pos.y*display.minSafeScale)
+			elseif slot1.posApt == Enums.Adapter.eMin then
+				slot1.pos = cc.p(slot1.pos.x*display.minSafeScale, slot1.pos.y*display.minSafeScale)
+			elseif slot1.posApt == Enums.Adapter.eMax then
+				slot1.pos = cc.p(slot1.pos.x*display.xSafeScale, slot1.pos.y*display.xSafeScale)
+			else
+				slot1.pos = cc.p(slot1.pos.x*display.xSafeScale, slot1.pos.y*display.ySafeScale)
+			end
+		end
+
+		if slot1.size and slot1.sizeApt then
+			if display.isIpadClass and slot1.isFullScale then
+				slot1.size = cc.size(slot1.size.width*display.xSafeScale, slot1.size.height*display.ySafeScale)
+			elseif slot1.sizeApt == Enums.Adapter.eList then
+				slot1.size = cc.size(slot1.size.width*display.xSafeScale, slot1.size.height*display.minSafeScale)
+			elseif slot1.sizeApt == Enums.Adapter.eMin then
+				slot1.size = cc.size(slot1.size.width*display.minSafeScale, slot1.size.height*display.minSafeScale)
+			elseif slot1.sizeApt == Enums.Adapter.eMax then
+				slot1.size = cc.size(slot1.size.width*display.xSafeScale, slot1.size.height*display.xSafeScale)
+			else
+				slot1.size = cc.size(slot1.size.width*display.xSafeScale, slot1.size.height*display.ySafeScale)
+			end
+		end
+
+		if slot1.conSize and slot1.sizeApt then
+			if display.isIpadClass and slot1.isFullScale then
+				slot1.conSize = cc.size(slot1.conSize.width*display.ySafeScale, slot1.conSize.height*display.ySafeScale)
+			else
+				slot1.conSize = cc.size(slot1.conSize.width*display.minSafeScale, slot1.conSize.height*display.ySafeScale)
+			end
+		end
+
+		if slot1.scaleApt then
+			if display.isIpadClass and slot1.isFullScale then
+				slot1.scale = (slot1.scale or 1)*display.maxSafeScale
+			elseif slot1.scaleApt == Enums.Adapter.eMin then
+				slot1.scale = (slot1.scale or 1)*display.minSafeScale
+			elseif slot1.scaleApt == Enums.Adapter.eMax then
+				slot1.scale = (slot1.scale or 1)*display.xSafeScale
+			else
+				printError("参数scale适配方式只能设置为Min或Max")
+			end
+		end
+
+		return 
+	end
+}

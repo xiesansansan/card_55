@@ -1,0 +1,174 @@
+slot0 = class("FlashTopTipLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mBgSprite",
+				cType = "Sprite",
+				params = {
+					image = "wulin_2.png",
+					pos = {
+						x = 0,
+						y = 420
+					}
+				},
+				children = {
+					{
+						name = "mTextLabel",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							align = 1,
+							text = "Label",
+							valign = 1,
+							pos = {
+								x = 308.26,
+								y = 59.97
+							},
+							size = {
+								width = 400,
+								height = 70
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.params = slot1 or {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.needShowList = {}
+	slot0.isShowing = false
+
+	slot0.mTextLabel:setString("")
+	slot0.mBgSprite:setVisible(false)
+	slot0.mBgSprite:setPosition(cc.p(0, 420))
+	EventAuto:registerAutoEvent(slot0.mBgSprite, EventDefine.eAddFlashTopTipText, function (slot0, slot1)
+		if slot1 then
+			slot0:addShowText(slot1)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.addShowText = function (slot0, slot1)
+	if slot0.isShowing then
+		table.insert(slot0.needShowList, 1, slot1)
+
+		return 
+	end
+
+	slot0.isShowing = true
+
+	slot0.mTextLabel:setString(slot1)
+	slot0.mBgSprite:stopAllActions()
+	slot0.mBgSprite:runAction(cc.Sequence:create({
+		cc.CallFunc:create(function ()
+			slot0.mBgSprite:setVisible(true)
+
+			return 
+		end),
+		cc.EaseElasticOut:create(cc.MoveTo:create(1.2, cc.p(0, 270))),
+		cc.DelayTime:create(2),
+		cc.CallFunc:create(function ()
+			if slot0:getNextText() == "" then
+				slot0:endShowText()
+
+				return 
+			end
+
+			slot0:showNextText(slot0)
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.endShowText = function (slot0)
+	slot0.isShowing = false
+
+	slot0.mBgSprite:runAction(cc.Sequence:create({
+		cc.EaseBackOut:create(cc.MoveTo:create(0.5, cc.p(0, 420))),
+		cc.CallFunc:create(function ()
+			slot0.mBgSprite:setVisible(false)
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.getNextText = function (slot0)
+	if #slot0.needShowList == 0 then
+		return ""
+	end
+
+	table.remove(slot0.needShowList, 1)
+
+	return slot0.needShowList[1]
+end
+slot0.showNextText = function (slot0, slot1)
+	slot0.mTextLabel:stopAllActions()
+	slot0.mTextLabel:setPosition(cc.p(308, 60))
+	slot0.mTextLabel:runAction(cc.Sequence:create({
+		cc.Spawn:create({
+			cc.FadeOut:create(0.5),
+			cc.MoveTo:create(0.5, cc.p(262, 85))
+		}),
+		cc.DelayTime:create(0.5),
+		cc.CallFunc:create(function ()
+			slot0.mTextLabel:setPosition(cc.p(308, 5))
+			slot0.mTextLabel.setPosition.mTextLabel:setString(slot0.mTextLabel.setPosition.mTextLabel)
+
+			return 
+		end),
+		cc.Spawn:create({
+			cc.FadeIn:create(0.5),
+			cc.MoveTo:create(0.5, cc.p(308, 60))
+		}),
+		cc.DelayTime:create(1.5),
+		cc.CallFunc:create(function ()
+			if slot0:getNextText() == "" then
+				slot0:endShowText()
+
+				return 
+			end
+
+			slot0:showNextText(slot0)
+
+			return 
+		end)
+	}))
+
+	return 
+end
+
+return slot0

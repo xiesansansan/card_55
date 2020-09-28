@@ -1,0 +1,360 @@
+slot0 = class("RewardShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 450,
+				height = 550
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 216.11,
+						y = 529.05
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 143.24,
+								y = 17.31
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onSelectAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("总积分")
+						},
+						{
+							title = TR("单队积分")
+						}
+					},
+					btnSize = {
+						width = 140,
+						height = 45
+					},
+					pos = {
+						x = 27.19,
+						y = 461.84
+					},
+					size = {
+						width = 300,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 226.22,
+						y = 442.54
+					},
+					size = {
+						width = 400,
+						height = 24
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 75.52,
+								y = 11.77
+							},
+							text = TR("排行")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 276,
+								y = 11.77
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "list",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 25.72,
+						y = 67.52
+					},
+					size = {
+						width = 400,
+						height = 360
+					}
+				},
+				children = {
+					{
+						name = "rewardItemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled11-image",
+								name = "rankBg",
+								type = "string"
+							},
+							{
+								value = "untitled12-text",
+								name = "rankLabel",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 400,
+								height = 76
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "fuli_36.png",
+									pos = {
+										x = 200,
+										y = 38
+									},
+									size = {
+										width = 395,
+										height = 74
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									pos = {
+										x = 85.48,
+										y = 38
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									childName = "rankLab",
+									text = "88",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 76.88,
+										y = 36
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "ListView",
+								params = {
+									childName = "rewardList",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 210.26,
+										y = -0.3
+									},
+									size = {
+										width = 180,
+										height = 75
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled15-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 76,
+												height = 76
+											}
+										},
+										children = {
+											{
+												name = "untitled15",
+												cType = "CardNode",
+												params = {
+													scale = 0.7,
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 38,
+														y = 38
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled16",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 224.71,
+						y = 47.36
+					},
+					text = TR(" 奖励每天0点通过邮件发放")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.curData = BoundaryKillRankConfig.items
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0, ...)
+	slot0.list:removeAllItems()
+
+	for slot4, slot5 in ipairs(slot0.curData) do
+		slot6 = "c_58.png"
+		slot7 = ""
+		slot8 = false
+
+		if slot4 == 1 then
+			slot6 = "c_51.png"
+		elseif slot4 == 2 then
+			slot6 = "c_52.png"
+		elseif slot4 == 3 then
+			slot6 = "c_53.png"
+		else
+			slot8 = true
+			slot7 = slot5.rankMax .. "-" .. slot5.rankMin
+		end
+
+		slot0.createLayoutTemplateNode(slot0, "rewardItemLayout", {
+			rankBg = slot6,
+			rankLabel = slot7
+		}).rankLab:setVisible(slot8)
+
+		for slot14, slot15 in ipairs(slot10) do
+			slot9.rewardList:setSwallowTouches(false)
+			slot9.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = slot15,
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot0.list:pushBackCustomItem(slot9)
+	end
+
+	return 
+end
+slot0.onSelectAction = function (slot0, slot1)
+	slot0.curData = (slot1 == 1 and BoundaryKillRankConfig.items) or BoundaryPointsRankConfig.items
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+
+return slot0

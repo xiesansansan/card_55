@@ -1,0 +1,821 @@
+slot0 = class("FeiJiPlayerDetailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 655,
+				height = 567
+			},
+			titleText = TR("详 情")
+		},
+		children = {
+			{
+				name = "buffBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 327.5,
+						y = 264.5
+					},
+					size = {
+						width = 600,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "noBuffLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 300,
+								y = 55
+							},
+							text = TR("暂没获取增益效果")
+						},
+						children = {}
+					},
+					{
+						name = "mBuffListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 600,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "BuffLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled34-image",
+										name = "buffPic",
+										type = "string"
+									},
+									{
+										value = "untitled35-text",
+										name = "buffDesc",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 600,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "untitled34",
+										cType = "Sprite",
+										params = {
+											image = "zq_24.png",
+											pos = {
+												x = 65.32,
+												y = 30
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 135,
+												y = 30
+											},
+											text = TR("击杀积分翻倍")
+										},
+										children = {}
+									},
+									{
+										name = "untitled36",
+										cType = "Label",
+										params = {
+											childName = "remainLabel",
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 440,
+												y = 30
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					capInsets = {
+						x = 90,
+						height = 1,
+						width = 1,
+						y = 65
+					},
+					pos = {
+						x = 327.5,
+						y = 102.5
+					},
+					size = {
+						width = 600,
+						height = 130
+					}
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 170,
+								y = 149
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 180,
+							image = "c_36.png",
+							pos = {
+								x = 435,
+								y = 149
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled23",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 300,
+								y = 149
+							},
+							text = TR("战 报")
+						},
+						children = {}
+					},
+					{
+						name = "noBattLabel",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							pos = {
+								x = 300,
+								y = 65
+							},
+							text = TR("暂无战报信息")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled26",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_69.png",
+					pos = {
+						x = 125.7,
+						y = 372.52
+					}
+				},
+				children = {
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 67,
+								y = 17.5
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled28",
+				cType = "Sprite",
+				params = {
+					scale = 0.65,
+					image = "c_80.png",
+					pos = {
+						x = 81.99,
+						y = 341.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					charCount = 12,
+					scale = 0.7,
+					fontName = "c_81.png",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 111.68,
+						y = 330.14
+					},
+					text = TR("1235万")
+				},
+				children = {}
+			},
+			{
+				name = "teamTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onChangeTeamTag",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							tag = 1,
+							title = TR("第一队")
+						},
+						{
+							tag = 2,
+							title = TR("第二队")
+						},
+						{
+							tag = 3,
+							title = TR("第三队")
+						},
+						{
+							tag = 4,
+							title = TR("第四队")
+						},
+						{
+							tag = 5,
+							title = TR("第五队")
+						}
+					},
+					btnSize = {
+						width = 70,
+						height = 40
+					},
+					pos = {
+						x = 213.32,
+						y = 467.02
+					},
+					size = {
+						width = 420,
+						height = 80
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroCardParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 215,
+						y = 330
+					},
+					size = {
+						width = 53.06,
+						height = 47.48
+					}
+				},
+				children = {
+					{
+						name = "cardTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled16-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled29-maxValue",
+								name = "progMax",
+								type = "string"
+							},
+							{
+								value = "untitled29-currValue",
+								name = "progMin",
+								type = "string"
+							},
+							{
+								value = "untitled31-hide",
+								name = "hideDeath",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 50,
+								y = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									allowClick = false,
+									initParams = {},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Scale9Sprite",
+								params = {
+									image = "zq_21.png",
+									pos = {
+										x = 0,
+										y = -41
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "ProgressBar",
+								params = {
+									maxValue = 1,
+									normalImage = "zq_22.png",
+									currValue = 1,
+									pos = {
+										x = 0,
+										y = -41
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled31",
+								cType = "Sprite",
+								params = {
+									image = "fb_23.png",
+									hide = false,
+									pos = {
+										x = 5,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "fightList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 37.42,
+						y = 41.17
+					},
+					size = {
+						width = 580,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "listLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled20-text",
+								name = "str",
+								type = "string"
+							},
+							{
+								value = "untitled21-battleID",
+								name = "battleID",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.24,
+								y = 276.04
+							},
+							size = {
+								width = 580,
+								height = 76
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 5,
+										y = 38
+									},
+									size = {
+										width = 400,
+										height = 76
+									},
+									text = TR("玩家名字往家名字嘎达大国服阿萨德噶的嘎阿嘎反而玩法跟改")
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "battleID",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_27.png",
+									clickAction = "onBattleBtnAction",
+									pos = {
+										x = 500,
+										y = 38
+									},
+									titleText = TR("重  播")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled37",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 416.14,
+						y = 340
+					},
+					text = TR("五队侠客全部战败后只能观战无法继续战斗")
+				},
+				children = {}
+			},
+			{
+				name = "mBoatNode",
+				cType = "Rider",
+				params = {
+					scale = 0.6,
+					delayInit = true,
+					pos = {
+						x = 117.71,
+						y = 406.4
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mPlayerInfo = FeiJiHelper:getPlayerData(slot1.playerId)
+	slot0.mFormation = {}
+	slot0.tableDataList = {}
+	slot0.curTeamTag = 1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	FeiJiHelper:playerViewInfo(slot0.mPlayerInfo.PlayerId, function (slot0)
+		if tolua.isnull(slot0) then
+			return 
+		end
+
+		slot0:dealData(slot1)
+		slot0:refreshBoatNode()
+		slot0.teamTabView:activeTabBtnByTag2(slot0.curTeamTag)
+		slot0:addBattleReportList()
+		slot0:refershBuffInfo()
+		slot0:refreshTabBtns()
+		slot0.nameLabel:setString(slot0.mPlayerInfo.Name or slot0.mPlayerInfo.PlayerName or "")
+		slot0.fapLabel:setString(Utility.numberWithUnit(slot1.Fap))
+
+		return 
+	end)
+
+	return 
+end
+slot0.dealData = function (slot0, slot1)
+	if slot1.Formation then
+		for slot5, slot6 in ipairs(slot1.Formation) do
+			slot0.mFormation[slot5] = json.decode(slot6)
+		end
+	end
+
+	slot0.curTeamId = slot1.LiveNum - 5 + 1
+	slot0.curTeamTag = slot0.curTeamId
+	slot0.tableDataList = slot1.FightBrief or {}
+	slot2 = slot1.HpAndRp or {}
+	slot0.mHpAndRp = {}
+
+	for slot6, slot7 in pairs(slot2) do
+		slot0.mHpAndRp[slot7.PosId] = slot7
+	end
+
+	return 
+end
+slot0.refreshHeroHead = function (slot0)
+	if not slot0.mFormation[slot0.curTeamTag] then
+		return 
+	end
+
+	slot0.heroCardParent:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		if slot0.curTeamTag < slot0.curTeamId then
+			slot6.totalHp = 100
+			slot6.curHp = 0
+		elseif slot0.curTeamId < slot0.curTeamTag then
+			slot6.totalHp = 100
+			slot6.curHp = 100
+		else
+			slot6.totalHp = (slot0.mHpAndRp[slot6.PosId] and slot0.mHpAndRp[slot6.PosId].TotalHp) or 100
+			slot6.curHp = (slot0.mHpAndRp[slot6.PosId] and slot0.mHpAndRp[slot6.PosId].HP) or 100
+		end
+
+		slot7 = slot0.createHeroCard(slot0, slot6)
+
+		slot0.heroCardParent:addChild(slot7)
+		slot7.setPosition(slot7, slot5*80 - 30, 90)
+	end
+
+	return 
+end
+slot0.onChangeTeamTag = function (slot0, slot1)
+	slot0.curTeamTag = slot1
+
+	slot0.refreshHeroHead(slot0)
+
+	return 
+end
+slot0.createHeroCard = function (slot0, slot1)
+	return slot0.createLayoutTemplateNode(slot0, "cardTempNode", {
+		cardInfo = {
+			showAttrs = {
+				Enums.CardShowAttr.eLevel,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv
+			},
+			instanceData = {
+				ModelId = slot1.ModelId,
+				TrainLv = slot1.TrainLv,
+				Star = slot1.Star,
+				StepLv = slot1.StepLv,
+				Level = slot1.Level
+			}
+		},
+		progMax = slot1.totalHp,
+		progMin = slot1.curHp,
+		hideDeath = 0 < slot1.curHp
+	})
+end
+slot0.refreshBoatNode = function (slot0)
+	if slot0.mBoatNode then
+		slot0.mBoatNode:stopAllActions()
+		slot0.mBoatNode:removeFromParent()
+
+		slot0.mBoatNode = nil
+	end
+
+	slot0.createUISubTree(slot0, "mBoatNode", function (slot0, slot1)
+		if slot0.name == "mBoatNode" then
+			slot1.boatModelId = slot0.mPlayerInfo.MountModelId or 25010001
+			slot1.heroModelId = slot0.mPlayerInfo.LeaderModelId
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshTabBtns = function (slot0)
+	for slot4, slot5 in pairs(slot0.teamTabView:getTabBtns()) do
+		if slot4 < slot0.curTeamId then
+			slot5.addChild(slot5, UIWrap.newControl("Sprite", {
+				image = "zq_49.png",
+				pos = cc.p(-20, 20)
+			}))
+		end
+	end
+
+	return 
+end
+slot0.refershBuffInfo = function (slot0)
+	slot0.noBuffLabel:setVisible(false)
+
+	slot2 = slot0.buffBg:getContentSize()
+
+	if slot0.mPlayerInfo.Buff then
+		slot4 = {}
+
+		if slot1.Buff.1 and slot3.1 == -1 then
+			table.insert(slot4, {
+				buffSprite = ShengyuanwarsBuffConfig.items[1].insidePic .. ".png",
+				intro = ShengyuanwarsBuffConfig.items[1].intro,
+				name = ShengyuanwarsBuffConfig.items[1].name
+			})
+		end
+
+		if slot3.3 and 0 < slot3.3 then
+			table.insert(slot4, {
+				buffSprite = ShengyuanwarsBuffConfig.items[3].insidePic .. ".png",
+				intro = ShengyuanwarsBuffConfig.items[3].intro,
+				name = ShengyuanwarsBuffConfig.items[3].name,
+				remainTime = slot3.3
+			})
+		end
+
+		if slot3.4 and 0 < slot3.4 then
+			table.insert(slot4, {
+				buffSprite = ShengyuanwarsBuffConfig.items[4].insidePic .. ".png",
+				intro = ShengyuanwarsBuffConfig.items[4].intro,
+				name = ShengyuanwarsBuffConfig.items[4].name,
+				remainTime = slot3.4
+			})
+		end
+
+		slot5 = {}
+
+		slot0.mBuffListView:removeAllChildren()
+
+		if 0 < #slot4 then
+			for slot9 = 1, #slot4, 1 do
+				slot0.mBuffListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "BuffLayout", {
+					buffPic = slot4[slot9].buffSprite,
+					buffDesc = slot4[slot9].intro
+				}))
+
+				if slot4[slot9].remainTime then
+					Utility.schedule(slot10.remainLabel, function ()
+						slot0.remainLabel:setString(TR("剩余时间 :%s秒", slot1[TR].remainTime))
+
+						slot0.remainLabel[slot2].remainTime = slot2[TR].remainTime - 1
+
+						if slot2[TR].remainTime - 1[slot2].remainTime < 1 then
+							slot0.remainLabel:setString(TR("剩余时间 :%s秒", 0))
+						end
+
+						return 
+					end, 1)
+				end
+			end
+		else
+			slot0.noBuffLabel:setVisible(true)
+		end
+
+		return 
+	end
+
+	slot0.noBuffLabel:setVisible(true)
+end
+slot0.addBattleReportList = function (slot0)
+	slot0.noBattLabel:setVisible(#slot0.tableDataList == 0)
+
+	slot1 = PlayerAttrObj:getPlayerAttrByName("PlayerName")
+
+	for slot5, slot6 in ipairs(slot0.tableDataList) do
+		slot7 = clone(slot6)
+		slot8 = slot7.AttackName
+		slot9 = TR("您")
+		slot10 = not slot7.IsWin
+
+		if slot7.AttackName == slot1 then
+			slot10 = slot7.IsWin
+			slot8 = TR("您")
+			slot9 = slot7.TargetName
+		end
+
+		slot11 = (slot10 == true and TR("您胜利了")) or TR("您失败了")
+
+		if slot7.AttackName ~= slot1 and slot7.TargetName ~= slot1 then
+			slot0.fightList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "listLayout", {
+				str = TR("%s对%s发起了挑战，%s", slot7.AttackName, slot7.TargetName, (slot7.IsWin and TR("%s胜利了", slot7.AttackName)) or TR("%s胜利了", slot7.TargetName)),
+				battleID = slot5 - 1
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onBattleBtnAction = function (slot0, slot1)
+	FeiJiHelper:viewFightReport(slot0.mPlayerInfo.PlayerId, slot1.battleID, function (slot0)
+		slot0.Data.FightModule = ModuleSub.eShengyuanWars
+
+		require("common.BattleEntry"):StartBattle({
+			fightInfo = slot0.Data,
+			extraData = {}
+		})
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

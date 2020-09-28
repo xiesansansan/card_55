@@ -1,0 +1,110 @@
+EventAuto = {
+	eventCache = {},
+	postCache = {},
+	registerAutoEvent = function (slot0, slot1, slot2, slot3)
+		if not slot1 or not slot3 then
+			print("registerAutoEvent can't accept nil node or nil callback")
+
+			return 
+		end
+
+		if IN_EDITER_ENVIRONMENT and not slot0.scheduleHandle then
+			slot0.scheduleHandle = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function (slot0)
+				slot0.postCache = {}
+
+				for slot5, slot6 in ipairs(slot1) do
+					slot0:_exeEvent(slot6.name, slot6.data)
+				end
+
+				return 
+			end, 0, false)
+		end
+
+		function slot4(slot0)
+			if not slot0.eventCache[slot0] then
+				slot0.eventCache[slot0] = {}
+			end
+
+			slot1 = false
+
+			for slot5, slot6 in ipairs(slot0.eventCache[slot0]) do
+				if slot6.node == slot1 then
+					slot6.callback = slot2
+					slot1 = true
+
+					break
+				end
+			end
+
+			if not slot1 then
+				table.insert(slot0.eventCache[slot0], {
+					node = slot1,
+					callback = table.insert
+				})
+			end
+
+			return 
+		end
+
+		if type(slot2) == "table" then
+			for slot8, slot9 in ipairs(slot2) do
+				slot4(slot9)
+			end
+		else
+			slot4(slot2)
+		end
+
+		slot1.onNodeEvent(slot1, "cleanup", function (slot0)
+			slot0:cleanNodeEvents(slot0)
+
+			return 
+		end)
+
+		return 
+	end,
+	postEvent = function (slot0, slot1, slot2, slot3)
+		if IN_EDITER_ENVIRONMENT and not slot3 then
+			table.insert(slot0.postCache, {
+				name = slot1,
+				data = slot2
+			})
+		else
+			slot0._exeEvent(slot0, slot1, slot2)
+		end
+
+		return 
+	end,
+	_exeEvent = function (slot0, slot1, slot2)
+		slot3 = slot0.eventCache[slot1] or {}
+		slot4 = {}
+
+		for slot8, slot9 in ipairs(slot3) do
+			if not tolua.isnull(slot9.node) then
+				slot9.callback(slot9.node, slot2)
+			else
+				table.insert(slot4, slot9.node)
+			end
+		end
+
+		for slot8, slot9 in ipairs(slot4) do
+			slot0.cleanNodeEvents(slot0, slot9)
+		end
+
+		return 
+	end,
+	cleanNodeEvents = function (slot0, slot1)
+		for slot5, slot6 in pairs(slot0.eventCache) do
+			for slot10 = #slot6, 1, -1 do
+				if slot6[slot10].node == slot1 then
+					table.remove(slot6, slot10)
+
+					break
+				end
+			end
+		end
+
+		return 
+	end
+}
+
+return 

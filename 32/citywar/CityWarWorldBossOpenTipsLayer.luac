@@ -1,0 +1,196 @@
+slot0 = class("CityWarWorldBossOpenTipsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			needTouchClose = true,
+			image = "mjrq_4.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 496.59,
+						y = 51.78
+					},
+					size = {
+						width = 280,
+						height = 80
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled4-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 70,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "CardNode",
+								params = {
+									scale = 0.75,
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 35,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "tzsj_18.png",
+					clickAction = "onGotoCallBack",
+					pos = {
+						x = 846.54,
+						y = 105.91
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseCallBack",
+					pos = {
+						x = 823.71,
+						y = 423.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "jhjs_7.png",
+					pos = {
+						x = 459.46,
+						y = 99.48
+					}
+				},
+				children = {
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							pos = {
+								x = 12.5,
+								y = 32.5
+							},
+							size = {
+								width = 22,
+								height = 100
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					pos = {
+						x = 576.9,
+						y = 279.81
+					},
+					text = TR("活动时间：11:30 - 13:00")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.seeTips(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.rewardListView:removeAllChildren()
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardInfo = {
+				cardInfo = slot7,
+				showAttrs = {
+					Enums.CardShowAttr.eName
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onGotoCallBack = function (slot0)
+	LayerManager.removeLayer(slot0)
+	LayerManager.showModuleLayer(ModuleSub.eWorldBoss)
+
+	return 
+end
+slot0.onCloseCallBack = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.seeTips = function (slot0)
+	dump("seeTips")
+	RedDotObj:seeRedDot("CityWarArmyNoticeReddot")
+
+	return 
+end
+
+return slot0

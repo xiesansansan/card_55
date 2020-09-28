@@ -1,0 +1,1114 @@
+slot0 = class("HeroAwakenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBoxBg",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onExitAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 980,
+				height = 530
+			},
+			titleText = TR("觉 醒")
+		},
+		children = {
+			{
+				name = "untitled44",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xkjx_4.png",
+					pos = {
+						x = 260.4,
+						y = 314.91
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled46",
+				cType = "Scale9Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 500,
+						y = 270.03
+					},
+					size = {
+						width = 420,
+						height = 2
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_2.png",
+					zOrder = 9,
+					pos = {
+						x = 270.01,
+						y = 468.62
+					},
+					size = {
+						width = 240,
+						height = 39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroName",
+				cType = "Label",
+				params = {
+					outlineSize = 2,
+					zOrder = 10,
+					isRichText = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 269.72,
+						y = 468
+					},
+					text = TR("侠客名   2阶")
+				},
+				children = {}
+			},
+			{
+				name = "heroNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 30,
+						y = 140
+					}
+				},
+				children = {
+					{
+						name = "untitled27",
+						cType = "ClippingNode",
+						params = {
+							alpha = 1,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = -10.63,
+								y = 0.03
+							},
+							size = {
+								width = 480,
+								height = 330
+							}
+						},
+						children = {
+							{
+								name = "nextHero",
+								cType = "Sprite",
+								params = {
+									image = "lh_12104.png",
+									hide = true,
+									scale = 0.36,
+									pos = {
+										x = 386.26,
+										y = 159.73
+									}
+								},
+								children = {}
+							},
+							{
+								name = "hero",
+								cType = "Sprite",
+								params = {
+									scale = 0.4,
+									image = "lh_12104.png",
+									pos = {
+										x = 241.67,
+										y = 175
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "nextTig",
+						cType = "Sprite",
+						params = {
+							image = "xkjx_2.png",
+							hide = true,
+							pos = {
+								x = 240,
+								y = 200
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "useCardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					hide = true,
+					pos = {
+						x = 46.19,
+						y = 48.16
+					},
+					size = {
+						width = 429.2,
+						height = 105
+					}
+				},
+				children = {
+					{
+						name = "useCardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled32-initParams",
+								name = "cardData",
+								type = "string"
+							},
+							{
+								value = "untitled33-text",
+								name = "useNum",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 105
+							}
+						},
+						children = {
+							{
+								name = "untitled32",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 50,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled33",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "name",
+									text = "0/400",
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 50,
+										y = 12
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "useAwakenParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 8.42,
+						y = 55
+					}
+				},
+				children = {
+					{
+						name = "bar",
+						cType = "ProgressBar",
+						params = {
+							maxValue = 100,
+							bgImage = "jyt_1.png",
+							currValue = 120,
+							normalImage = "jyt_2.png",
+							pos = {
+								x = 269.5,
+								y = 49.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "percent",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "10/50",
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 269,
+								y = 49.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "addBtn",
+						cType = "Button",
+						params = {
+							image = "xkxx_71.png",
+							clickAction = "onAddAction",
+							pos = {
+								x = 399.11,
+								y = 49.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "card",
+						cType = "CardNode",
+						params = {
+							scale = 0.8,
+							allowClick = true,
+							pos = {
+								x = 128.64,
+								y = 55.77
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "maxStepHintLabel",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 273.31,
+						y = 102.89
+					},
+					text = TR("已达满阶")
+				},
+				children = {}
+			},
+			{
+				name = "awakenBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onAwakenAction",
+					pos = {
+						x = 732.42,
+						y = 75
+					},
+					titleText = TR("觉醒")
+				},
+				children = {}
+			},
+			{
+				name = "needStar",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					hide = true,
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 732.42,
+						y = 115
+					},
+					text = TR("侠客需升星至4星")
+				},
+				children = {}
+			},
+			{
+				name = "attBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 731.62,
+						y = 489.52
+					},
+					size = {
+						width = 434,
+						height = 426
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							pos = {
+								x = 217.87,
+								y = 315
+							},
+							size = {
+								width = 420,
+								height = 164
+							}
+						},
+						children = {}
+					},
+					{
+						name = "attList1",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 130.45,
+								y = 355.78
+							},
+							size = {
+								width = 170,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "item1",
+								cType = "Layout",
+								custom = {
+									{
+										value = "text1-text",
+										name = "text",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 170,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "text1",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 15
+											},
+											text = TR("攻击+0")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "attList2",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 333.35,
+								y = 355.39
+							},
+							size = {
+								width = 170,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "item2",
+								cType = "Layout",
+								custom = {
+									{
+										value = "text2-text",
+										name = "text",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 170,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "text2",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 15
+											},
+											text = TR("攻击+0")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "tig",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 273.93,
+								y = 305.39
+							},
+							text = TR("已达最大阶数")
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							pos = {
+								x = 202.28,
+								y = 310.39
+							}
+						},
+						children = {}
+					},
+					{
+						name = "titleBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 26.46,
+								y = 221.9
+							}
+						},
+						children = {
+							{
+								name = "title",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 202.49,
+										y = 3.6
+									},
+									text = TR("特殊加成")
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_36.png",
+									reverse = 1,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									pos = {
+										x = 405.89,
+										y = 6
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "spAttList",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 0.84,
+								y = 204.56
+							},
+							size = {
+								width = 440,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "item",
+								cType = "Layout",
+								custom = {
+									{
+										value = "spAtt-text",
+										name = "text",
+										type = "string"
+									},
+									{
+										value = "starImg-image",
+										name = "img",
+										type = "string"
+									},
+									{
+										value = "spAtt-color",
+										name = "color",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 440,
+										height = 34
+									}
+								},
+								children = {
+									{
+										name = "starImg",
+										cType = "Sprite",
+										params = {
+											image = "c_83.png",
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											pos = {
+												x = 20,
+												y = 32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "spAtt",
+										cType = "Label",
+										params = {
+											fontSize = 19,
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 45,
+												y = 28
+											},
+											size = {
+												width = 380,
+												height = 0
+											},
+											text = TR("属性＋")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "rebornBtn",
+				cType = "Button",
+				params = {
+					image = "xktp_3.png",
+					clickAction = "onRebornAction",
+					pos = {
+						x = 87.9,
+						y = 459.65
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mDefModelId = slot1.defModelId
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	EventAuto:registerAutoEvent(slot0, EventDefine.eChangedHeroAwakenSub, function (slot0)
+		slot0:refreshUI()
+
+		return 
+	end)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createHeroBody(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.getHeroMaxStep = function (slot0, slot1)
+	slot3 = #HeroStepRelation.items[slot1]
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot8.addAttrStr == "" then
+			slot3 = slot8.Lv - 1
+
+			break
+		end
+	end
+
+	return slot3
+end
+slot0.createHeroBody = function (slot0)
+	slot1 = HeroObj:getItem(slot0.mDefModelId)
+	slot2 = HeroStepRelation.items[slot1.ModelId]
+	slot3 = nil
+	slot3 = (slot0.getHeroMaxStep(slot0, slot1.ModelId) >= slot1.StepLv + 1 or slot0.getHeroMaxStep(slot0, slot1.ModelId)) and slot1.StepLv + 1
+	slot4 = slot0.createLayoutTemplateNode(slot0, "heroNode", {})
+
+	slot4.hero:setTexture(slot5)
+	slot4.nextHero:setTexture(slot6)
+	slot0.mMsgBoxBg:addChild(slot4)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot2 = HeroModel.items[HeroObj:getItem(slot0.mDefModelId).ModelId]
+	slot3 = nil
+	slot3 = (HeroStepRelation.items[HeroObj.getItem(slot0.mDefModelId).ModelId] or HeroStepRelation.items[12011311]) and HeroStepRelation.items[slot1.ModelId]
+
+	slot0.awakenBtn:setEnabled(true)
+	slot0.needStar:setVisible(false)
+
+	if slot1.Star < 5 then
+		slot0.needStar:setString(TR("侠客需升星至%s星", slot1.Star + 1))
+		slot0.needStar:setVisible(slot1.Star == slot1.StepLv)
+		slot0.awakenBtn:setEnabled(slot1.StepLv < slot1.Star)
+	end
+
+	if slot0.getHeroMaxStep(slot0, slot1.ModelId) <= slot1.StepLv then
+		slot0.awakenBtn:setEnabled(false)
+	end
+
+	slot5, slot6 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot1.TrainLv].colorLv, true)
+
+	if 0 < slot1.StepLv then
+		slot0.heroName:setString(TR("%s%s   %s阶", slot6, slot2.name, slot1.StepLv))
+	else
+		slot0.heroName:setString(TR("%s%s", slot6, slot2.name))
+	end
+
+	slot7 = slot3[1].needStarLv
+
+	if slot0.starNode1 then
+		slot0.starNode1:removeFromParent()
+	end
+
+	if slot0.starNode2 then
+		slot0.starNode2:removeFromParent()
+	end
+
+	slot0.starNode1 = ui.showHeroStarShow(slot1.Star, slot1.StepLv, cc.p(100, 355), slot1.Star == slot1.StepLv)
+
+	slot0.attBg:addChild(slot0.starNode1)
+
+	slot8, slot9 = nil
+	slot0.starNode2 = ui.showHeroStarShow((slot1.StepLv == slot1.Star and ((5 < slot1.Star + 1 and 5) or slot1.Star + 1)) or slot1.Star, (slot0.getHeroMaxStep(slot0, slot1.ModelId) >= slot1.StepLv + 1 or slot0.getHeroMaxStep(slot0, slot1.ModelId)) and slot1.StepLv + 1, cc.p(305, 355), false)
+
+	slot0.attBg:addChild(slot0.starNode2)
+	slot0.attList1:removeAllChildren()
+
+	slot11 = Utility.analysisStrAttrList(slot3[(slot1.StepLv == 0 and 1) or slot1.StepLv].actSkillId)
+
+	for slot17, slot18 in pairs(slot13) do
+		if Utility.isAttrNeedPercent(slot17) then
+			slot18 = slot18/100 .. "%"
+		end
+
+		slot19 = (0 < slot1.StepLv and v) or 0
+
+		slot0.attList1:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item1", {
+			text = TR("%s+%s", FightAttrTypeName[slot17], slot18)
+		}))
+	end
+
+	if #slot11 ~= 0 then
+		slot0.attList1:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item1", {
+			text = TR("%s+%s", FightAttrTypeName[slot11[1].fightattr], slot11[1].value)
+		}))
+	end
+
+	slot0.attList2:removeAllChildren()
+
+	slot14 = nil
+
+	if slot1.StepLv < slot0.getHeroMaxStep(slot0, slot1.ModelId) then
+		slot0.tig:setVisible(false)
+
+		slot15 = Utility.analysisStrAttrList(slot3[slot1.StepLv + 1].actSkillId)
+
+		for slot20, slot21 in pairs(slot16) do
+			slot0.attList2:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item2", {
+				text = TR("%s%s+%s", FightAttrTypeName[slot20], "#258711", slot21)
+			}))
+		end
+
+		if #slot15 ~= 0 then
+			slot0.attList2:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item2", {
+				text = TR("%s%s+%s", FightAttrTypeName[slot15[1].fightattr], "#258711", slot15[1].value)
+			}))
+		end
+	else
+		slot0.tig:setVisible(true)
+	end
+
+	slot0.spAttList:removeAllChildren()
+
+	for slot18, slot19 in ipairs(slot3) do
+		if slot19.addSpecAttrStr ~= "" then
+			slot20 = slot19.needStarLv + slot19.Lv
+			slot21 = nil
+			slot21 = (slot19.Lv <= 5 and "c_83.png") or "c_84.png"
+
+			if addSpecAttrStr ~= "" then
+				slot22 = nil
+				slot22 = (slot1.StepLv >= slot18 or cc.c3b(95, 95, 95)) and cc.c3b(37, 135, 17)
+				slot23 = Utility.analysisStrAttrToFromat(slot19.addSpecAttrStr, TR("%s + %d"))
+				slot25 = false
+				slot26 = ""
+
+				if #Utility.analysisStrAttrList(slot19.addSpecAttrStr) == 1 and slot24[1].fightattr == FightAttrType.eAng and slot24[1].value == 50 then
+					slot23 = slot23 .. TR("   (开场可释放怒技)")
+					slot25 = true
+					slot26 = "\n"
+				end
+
+				if 0 < slot19.talentAddRC then
+					slot23 = slot23 .. "    " .. TR("%s经脉属性加成 + %d%%", slot26, slot19.talentAddRC/100)
+				end
+
+				slot27 = slot0.createLayoutTemplateNode(slot0, "item", {
+					text = slot23,
+					img = slot21,
+					color = slot22
+				})
+
+				if slot25 then
+					slot27.setContentSize(slot27, cc.size(440, 60))
+					slot27.starImg:setPositionY(60 - 2)
+					slot27.spAtt:setPositionY(60)
+				end
+
+				slot0.spAttList:pushBackCustomItem(slot27)
+			end
+		end
+	end
+
+	if slot1.StepLv < slot0.getHeroMaxStep(slot0, slot1.ModelId) then
+		slot0.maxStepHintLabel:setVisible(false)
+
+		if 1 < #Utility.analysisStrResList(slot3[slot1.StepLv + 1].stepUpConsume) then
+			slot0.useAwakenParent:setVisible(false)
+			slot0.useCardListView:setVisible(true)
+			slot0.useCardListView:removeAllChildren()
+
+			for slot19, slot20 in pairs(slot15) do
+				slot23 = slot0.createLayoutTemplateNode(slot0, "useCardLayout", {
+					cardData = {
+						cardInfo = slot20
+					},
+					useNum = string.format("%s%s/%s", (slot20.num <= Resource.getCount(slot20.resourceId) and "#257811") or "#ea2c00", Utility.numberWithUnit(slot21), Utility.numberWithUnit(slot20.num))
+				})
+
+				if Resource.getMainType(slot20.resourceId) == ResourceType.eDebris and Resource.getMainType(GoodsModel.items[slot20.resourceId].outputModelID) == ResourceType.eHero and Utility.isHeroHide(slot24.outputModelID) then
+					slot23.card.mHeaderSprite:setTexture("txdy_9.png")
+					slot23.card:setClickAction(function ()
+						ui.showFlashView(TR("暂未开放"))
+
+						return 
+					end)
+					slot23.name:setVisible(false)
+				end
+
+				slot0.useCardListView:pushBackCustomItem(slot23)
+			end
+		else
+			slot0.useAwakenParent:setVisible(true)
+			slot0.useCardListView:setVisible(false)
+			slot0.card:setCardData({
+				num = 0,
+				modelId = slot15[1].resourceId
+			}, {})
+			slot0.bar:setMaxValue(slot15[1].num)
+			slot0.bar:setCurrValue(slot16)
+			slot0.percent:setString(TR("%s/%s", Resource.getCount(slot15[1].resourceId), slot15[1].num))
+		end
+	else
+		slot0.useAwakenParent:setVisible(false)
+		slot0.useCardListView:setVisible(false)
+		slot0.maxStepHintLabel:setVisible(true)
+	end
+
+	EventAuto:postEvent(EventDefine.eChangedHeroAwaken)
+
+	return 
+end
+slot0.onAwakenAction = function (slot0)
+	if slot0.isPlaying then
+		return 
+	end
+
+	slot2 = nil
+	slot2 = (HeroStepRelation.items[HeroObj:getItem(slot0.mDefModelId).ModelId] or HeroStepRelation.items[12011101]) and HeroStepRelation.items[slot1.ModelId]
+
+	if slot1.Star < 5 and slot1.Star == slot1.StepLv then
+		ui.showFlashView(TR("侠客需升星至%s星", slot1.Star + 1))
+
+		return 
+	end
+
+	if slot0.getHeroMaxStep(slot0, slot1.ModelId) <= slot1.StepLv then
+		ui.showFlashView(TR("已达最大等阶"))
+
+		return 
+	end
+
+	for slot7, slot8 in pairs(slot3) do
+		slot9 = GoodsModel.items[slot8.resourceId]
+
+		if Resource.getSubType(slot8.resourceId) == ResourceTypeSub.eHeroDebris and Utility.isHeroHide(slot9.outputModelID) then
+			ui.showFlashView(TR("未满足觉醒条件"))
+
+			return 
+		end
+
+		if not Resource.isEnough(slot8.resourceId, slot8.num, true) then
+			ui.showFlashView(TR("%s不足！！！", Resource.getName(slot8.resourceId)))
+
+			return 
+		end
+	end
+
+	slot4 = clone(HeroObj:getItem(slot0.mDefModelId))
+
+	slot0.socketRequest(slot0, {
+		methodName = "HeroStepLvUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.mDefModelId
+		},
+		successCallback = function (slot0)
+			slot1 = slot0
+
+			HeroObj:modifyItem(slot0)
+
+			slot0.isPlaying = true
+
+			slot0:addChild(UIWrap.newControl("Effect", {
+				loop = false,
+				animation = "animation",
+				autoDelete = true,
+				dataFile = "effect_ui_xiakejuexing",
+				pos = cc.p(320, 355),
+				complete = function ()
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "hero.DlgHeroAwakenUpResultLayer",
+						data = {
+							oldInfo = slot0,
+							newInfo = slot1,
+							heroModelId = slot2.mDefModelId
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+
+					slot2.isPlaying = false
+
+					slot2:refreshUI()
+
+					return 
+				end
+			}))
+			MqAudio.playEffect("juexin_success.mp3")
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRebornAction = function (slot0)
+	if slot0.isPlaying then
+		return 
+	end
+
+	slot1 = HeroObj:getItem(slot0.mDefModelId)
+
+	if not Utility.moduleIsOpen(ModuleSub.eHeroStepRebirth, true) then
+		return 
+	end
+
+	if slot1.StepLv == 0 then
+		ui.showFlashView(TR("还未觉醒，无法重生"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.HeroRebornLayer",
+		data = {
+			heroInfo = slot1,
+			callback = function ()
+				slot0:refreshUI()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onAddAction = function (slot0)
+	if slot0.isPlaying then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.GoodsGetWaysLayer",
+		popRestore = true,
+		data = {
+			resourceId = Utility.analysisStrResList(HeroStepRelation.items[12011101][1].stepUpConsume)[1].resourceId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	if slot0.isPlaying then
+		return 
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

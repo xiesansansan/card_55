@@ -1,0 +1,908 @@
+slot0 = class("TargetCompetitionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_32.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "lan",
+				cType = "Sprite",
+				params = {
+					opacity = 0,
+					image = "fuli_35.png",
+					pos = {
+						x = 781.37,
+						y = 455.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "target",
+				cType = "Sprite",
+				params = {
+					opacity = 0,
+					image = "fuli_33.png",
+					scale = 0.18,
+					pos = {
+						x = 773.11,
+						y = 461.04
+					}
+				},
+				children = {}
+			},
+			{
+				name = "archNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "star",
+						cType = "Sprite",
+						params = {
+							image = "fuli_65.png",
+							hide = true,
+							scale = 1.5,
+							pos = {
+								x = 725.6,
+								y = 457.73
+							}
+						},
+						children = {}
+					},
+					{
+						name = "arrowNock",
+						cType = "Sprite",
+						params = {
+							hide = true,
+							scale = 0.9,
+							rotationAngle = 33.5,
+							image = "fuli_34.png",
+							pos = {
+								x = 725.6,
+								y = 393.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "arch",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 758.6,
+								y = 320.73
+							}
+						},
+						children = {
+							{
+								name = "untitled31",
+								cType = "Sprite",
+								params = {
+									image = "fuli_44.png",
+									pos = {
+										x = 5.6,
+										y = -9.67
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled69",
+								cType = "Sprite",
+								params = {
+									rotationAngle = 1.9,
+									image = "fuli_41.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled29",
+										cType = "Sprite",
+										params = {
+											image = "fuli_42.png",
+											pos = {
+												x = 102.83,
+												y = 711.34
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "arrow",
+						cType = "Sprite",
+						params = {
+							opacity = 0,
+							image = "fuli_43.png",
+							rotationAngle = 3.3,
+							pos = {
+								x = 895.18,
+								y = 85.74
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled70",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "left",
+				cType = "Sprite",
+				params = {
+					image = "fuli_66.png",
+					hide = true,
+					reverse = 1,
+					pos = {
+						x = 265.37,
+						y = -94.62
+					}
+				},
+				children = {}
+			},
+			{
+				name = "right",
+				cType = "Sprite",
+				params = {
+					image = "fuli_66.png",
+					hide = true,
+					pos = {
+						x = 347.83,
+						y = -94.62
+					}
+				},
+				children = {}
+			},
+			{
+				name = "windPowerBg",
+				cType = "Sprite",
+				params = {
+					image = "fuli_27.png",
+					pos = {
+						x = 305.45,
+						y = -94.62
+					}
+				},
+				children = {
+					{
+						name = "windLabel",
+						cType = "Label",
+						params = {
+							text = "0",
+							hide = true,
+							pos = {
+								x = 33.27,
+								y = 16.37
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled27",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "rewardList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = -100,
+						y = 76
+					},
+					size = {
+						width = 100,
+						height = 480
+					}
+				},
+				children = {
+					{
+						name = "item",
+						cType = "Layout",
+						custom = {
+							{
+								value = "ringNum-text",
+								name = "ringNum",
+								type = "string"
+							},
+							{
+								value = "btn-id",
+								name = "id",
+								type = "string"
+							},
+							{
+								value = "btn-image",
+								name = "img",
+								type = "string"
+							},
+							{
+								value = "untitled71-subKey",
+								name = "subKey",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "boxBg",
+								cType = "Sprite",
+								params = {
+									image = "fuli_29.png",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 50,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled71",
+										cType = "RedDot",
+										params = {
+											subKey = "",
+											moduleId = 1308
+										},
+										children = {}
+									},
+									{
+										name = "btn",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "id",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "fuli_31.png",
+											clickAction = "onRewardBoxAction",
+											pos = {
+												x = 47.88,
+												y = 58.08
+											}
+										},
+										children = {}
+									},
+									{
+										name = "ringNum",
+										cType = "Label",
+										params = {
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 46,
+												y = 20
+											},
+											text = TR("20环")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "infoBg",
+				cType = "Sprite",
+				params = {
+					image = "fuli_28.png",
+					pos = {
+						x = 339.24,
+						y = 135.77
+					}
+				},
+				children = {
+					{
+						name = "lastNum",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 56.08,
+								y = 78.81
+							},
+							text = TR("剩余箭支：10")
+						},
+						children = {}
+					},
+					{
+						name = "costTime",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 15.15,
+								y = 56.73
+							},
+							text = TR("当前总耗时数：32.2秒")
+						},
+						children = {}
+					},
+					{
+						name = "totalRing",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 44.89,
+								y = 34.43
+							},
+							text = TR("当前总环数：62")
+						},
+						children = {}
+					},
+					{
+						name = "rank",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 54.47,
+								y = 12.77
+							},
+							text = TR("当前排名：27")
+						},
+						children = {}
+					},
+					{
+						name = "rankBtn",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onRankAction",
+							pos = {
+								x = 114.67,
+								y = -28.69
+							},
+							titleText = TR("查看排行")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTargetInfo = {}
+	slot0.mRingRewardList = {}
+
+	slot0.super.ctor(slot0)
+
+	slot0.gameover = true
+
+	slot0.initUI(slot0)
+
+	slot0.defaultArrowPos = cc.p(slot0.arrow:getPositionX(), slot0.arrow:getPositionY())
+	slot0.defaultArchNodePos = cc.p(slot0.archNode:getPositionX(), slot0.archNode:getPositionY())
+
+	slot0.requestGetInfo(slot0)
+	RedDotObj:saveOnceRedDot(ModuleSub.eExtraActivitCompetition, false)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.initPosX = slot0.mTargetInfo.XPosition
+	slot0.initPosY = slot0.mTargetInfo.YPosition
+	slot0.gameover = true
+
+	slot0.lastNum:setString(TR("剩余箭支: %s", slot0.mTargetInfo.ArrowCount))
+	slot0.totalRing:setString(TR("当前总环数: %s", slot0.mTargetInfo.TotalRings))
+	slot0.costTime:setString(TR("当前总耗时数: %s", slot0.mTargetInfo.TotalUseTimes))
+	slot0.rank:setString(TR("当前排名: %s", slot0.mTargetInfo.Rank))
+
+	if slot0.mTargetInfo.Rank == -1 then
+		slot0.rank:setString(TR("当前排名: 未上榜"))
+	end
+
+	slot0.refreshRewardList(slot0)
+
+	slot0.WindPowerLv = slot0.mTargetInfo.WindPowerLv
+
+	if 0 < slot0.WindPowerLv then
+		slot0.left:setVisible(false)
+		slot0.right:setVisible(true)
+		slot0.windLabel:setVisible(true)
+		slot0.windLabel:setString(TR("%s", slot0.WindPowerLv))
+	elseif slot0.WindPowerLv == 0 then
+		slot0.left:setVisible(false)
+		slot0.right:setVisible(false)
+		slot0.windLabel:setVisible(false)
+	else
+		slot0.left:setVisible(true)
+		slot0.right:setVisible(false)
+		slot0.windLabel:setVisible(true)
+		slot0.windLabel:setString(TR("%s", -slot0.WindPowerLv))
+	end
+
+	slot0.mScaleLv = slot0.mTargetInfo.ScaleLv
+	slot0.mScale = ({
+		0.2,
+		0.17,
+		0.14,
+		0.11
+	})[slot0.mScaleLv]
+
+	slot0.target:setScale(({
+		0.2,
+		0.17,
+		0.14,
+		0.11
+	})[slot0.mScaleLv])
+	slot0.target:runAction(cc.FadeIn:create(0.5))
+	slot0.target:setPositionX(slot0.lan:getPositionX())
+	slot0.lan:setScale(({
+		0.65,
+		0.55,
+		0.45,
+		0.35
+	})[slot0.mScaleLv])
+	slot0.lan:runAction(cc.FadeIn:create(0.5))
+	slot0.arrowNock:setScale(1.5)
+	slot0.arrowNock:setVisible(false)
+	slot0.star:setScale(1.5)
+	slot0.arch:setVisible(true)
+	slot0.arrow:setVisible(true)
+
+	if slot0.defaultArrowPos then
+		slot0.arrow:setPosition(slot0.defaultArrowPos)
+	end
+
+	if slot0.defaultArchNodePos then
+		slot0.archNode:setPosition(slot0.defaultArchNodePos)
+	end
+
+	slot0.archNode:setPosition(slot0.archNode:getPositionX() + slot0.initPosX, slot0.archNode:getPositionY() + slot0.initPosY)
+
+	if 0 < slot0.mTargetInfo.ArrowCount then
+		slot0.arrow:runAction(cc.FadeIn:create(0.1))
+		slot0.star:setVisible(true)
+
+		slot0.mMoveSpeedLv = slot0.mTargetInfo.MoveSpeedLv
+		slot3 = {
+			0,
+			2,
+			1.5,
+			1,
+			0.5
+		}
+		slot4 = {
+			170,
+			145,
+			120,
+			100
+		}
+
+		if 2 <= slot0.mMoveSpeedLv then
+			slot0.target:runAction(cc.MoveBy:create(slot3[slot0.mMoveSpeedLv]/2, cc.p(slot4[slot0.mScaleLv], 0)))
+			Utility.performWithDelay(slot0.target, function ()
+				cc.RepeatForever.target:runAction(cc.RepeatForever:create(slot0))
+
+				return 
+			end, slot3[slot0.mMoveSpeedLv]/2)
+		end
+	end
+
+	slot0.createTouchEventLayer(slot0)
+
+	return 
+end
+slot0.refreshRewardList = function (slot0)
+	slot0.rewardList:removeAllChildren()
+	slot0.rewardList:setContentSize(cc.size(100, #slot0.mRingRewardList*120))
+
+	for slot4, slot5 in ipairs(slot0.mRingRewardList) do
+		slot6 = false
+
+		if slot0.mTargetInfo.RewardRingsStr ~= "" and string.find(slot0.mTargetInfo.RewardRingsStr, slot5.ring) then
+			slot6 = true
+		end
+
+		slot0.createLayoutTemplateNode(slot0, "item", {
+			ringNum = TR("%s环", slot5.ring),
+			id = slot4,
+			img = (slot6 and "fuli_31.png") or "fuli_30.png",
+			subKey = tostring(slot5.ring)
+		}).btn:stopAllActions()
+
+		if (not slot6 or false) and slot5.ring <= slot0.mTargetInfo.TotalRings then
+			ui.setWaveAnimation(slot8.btn)
+		end
+
+		slot0.rewardList:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+slot0.gameStart = function (slot0)
+	slot0.gameover = false
+
+	slot0.star:runAction(cc.ScaleTo:create(0.2, 1))
+	slot0.arrow:runAction(cc.MoveBy:create(0.2, cc.p(15, -50)))
+
+	slot0.mCostTime = 0
+
+	Utility.schedule(slot0.arrowNock, function ()
+		slot0.mCostTime = slot0.mCostTime + 0.1
+
+		return 
+	end, 0.1)
+	Utility.performWithDelay(slot0.star, function ()
+		Utility.schedule(slot0.star, function ()
+			slot0.archNode:runAction(cc.MoveBy:create(0.3, slot0))
+
+			return 
+		end, 0.32)
+
+		return 
+	end, 0.2)
+
+	return 
+end
+slot0.shootArrow = function (slot0)
+	slot0.star:stopAllActions()
+	slot0.star:setVisible(false)
+	slot0.arrowNock:setVisible(true)
+	slot0.arrowNock:setPosition(cc.p(slot1, slot2))
+
+	slot4 = {
+		0.3,
+		0.2,
+		0.1,
+		0.1
+	}
+	slot7 = nil
+	slot7 = (slot0.WindPowerLv < 0 and ({
+		5,
+		7,
+		10
+	})[math.abs(slot0.WindPowerLv)]*({
+		0.1,
+		0.15,
+		0.18,
+		0.2
+	})[slot0.mScaleLv]*-5) or (0 < slot0.WindPowerLv and ({
+		5,
+		7,
+		10
+	})[math.abs(slot0.WindPowerLv)]*({
+		0.1,
+		0.15,
+		0.18,
+		0.2
+	})[slot0.mScaleLv]*5) or 0
+
+	slot0.arrowNock:runAction(slot8)
+	Utility.performWithDelay(slot0.target, function ()
+		slot0:gameOver()
+
+		return 
+	end, ({
+		0.1,
+		0.15,
+		0.18,
+		0.2
+	})[slot0.mScaleLv])
+
+	return 
+end
+slot0.gameOver = function (slot0)
+	slot0.arrowNock:stopAllActions()
+	slot0.target:stopAllActions()
+
+	slot5 = nil
+
+	if slot0.target:getBoundingBox().width/2 < math.sqrt(math.pow(cc.p(slot0.target:getPositionX(), slot0.target:getPositionY()).y - cc.p(slot0.arrowNock:getPositionX() + slot0.archNode:getPositionX(), slot0.arrowNock:getPositionY() + slot0.archNode:getPositionY()).y, 2) + math.pow(cc.p(slot0.target.getPositionX(), slot0.target.getPositionY()).x - cc.p(slot0.arrowNock.getPositionX() + slot0.archNode.getPositionX(), slot0.arrowNock.getPositionY() + slot0.archNode.getPositionY()).x, 2)) then
+		slot5 = 0
+	else
+		slot6 = slot3/slot4/10 - math.floor(slot3/slot4/10)
+
+		if math.floor(slot3/slot4/10) - 10 < 10 and slot6 < 0.28 then
+			slot5 = slot5 + 1
+		end
+	end
+
+	slot8 = cc.p((slot2.x - slot1.x)/slot0.mScale + 248.5, (slot2.y - slot1.y)/slot0.mScale + 248.5)
+
+	Utility.performWithDelay(slot0.target, function ()
+		slot0.arch:setVisible(false)
+		slot0.arch.setVisible.arrow:setVisible(false)
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "activity.TargetCompetitionScoreLayer",
+			data = {
+				pos = slot1,
+				ring = slot2,
+				costTime = slot0.mCostTime,
+				callback = function ()
+					slot0:requestArchery(slot0, slot0.mCostTime)
+
+					return 
+				end
+			}
+		})
+
+		return 
+	end, 0.05)
+
+	return 
+end
+slot0.createTouchEventLayer = function (slot0)
+	slot1, slot2 = nil
+	slot7 = cc.EventListenerTouchOneByOne:create()
+
+	slot7.setSwallowTouches(slot7, true)
+	slot7.registerScriptHandler(slot7, slot3, cc.Handler.EVENT_TOUCH_BEGAN)
+	slot7.registerScriptHandler(slot7, slot4, cc.Handler.EVENT_TOUCH_MOVED)
+	slot7.registerScriptHandler(slot7, slot5, cc.Handler.EVENT_TOUCH_ENDED)
+	slot7.registerScriptHandler(slot7, slot6, cc.Handler.EVENT_TOUCH_CANCELLED)
+	slot0.bgSprite:getEventDispatcher():addEventListenerWithSceneGraphPriority(slot7, slot0)
+
+	return 
+end
+slot0.onRewardBoxAction = function (slot0, slot1)
+	slot2 = slot0.mRingRewardList[slot1.id]
+	slot3 = false
+
+	if slot0.mTargetInfo.RewardRingsStr ~= "" and string.find(slot0.mTargetInfo.RewardRingsStr, slot2.ring) then
+		slot3 = true
+	end
+
+	if slot2.ring <= slot0.mTargetInfo.TotalRings then
+		if slot3 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.DlgRewardShowLayer",
+				data = {
+					title = TR("奖励预览"),
+					rewardStr = slot2.reward
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		else
+			slot0.requestGetReward(slot0, slot2.ring)
+		end
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.DlgRewardShowLayer",
+			data = {
+				title = TR("奖励预览"),
+				rewardStr = slot2.reward
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onRankAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "activity.TargetCompetitionRankLayer"
+	})
+
+	return 
+end
+slot0.onRuleAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("射靶竞赛每天5点开启，22点结束并发放排行奖励，次日4点重置次数，环数奖励未领取会在次日5点以邮件的形式自动发放。")
+		}
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TargetCompetition",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mTargetInfo = {}
+			slot0.mTargetInfo = slot0
+
+			slot0:requestGetRingsReward()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetRingsReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRingsReward",
+		moduleName = "TargetCompetition",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRingRewardList = {}
+
+			for slot4, slot5 in pairs(slot0) do
+				table.insert(slot0.mRingRewardList, {
+					ring = tonumber(slot4),
+					reward = slot5
+				})
+			end
+
+			table.sort(slot0.mRingRewardList, function (slot0, slot1)
+				return slot1.ring < slot0.ring
+			end)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestArchery = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Archery",
+		moduleName = "TargetCompetition",
+		methodData = {
+			slot1,
+			slot2*1000
+		},
+		successCallback = function (slot0)
+			slot0.mTargetInfo = {}
+			slot0.mTargetInfo = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "TargetCompetition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTargetInfo = {}
+			slot0.mTargetInfo = slot0.TargetCompetitionInfo
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshRewardList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,883 @@
+slot0 = class("CityWarAssistantLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮战助手")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 425.62,
+						y = 35.78
+					},
+					size = {
+						width = 780,
+						height = 450
+					}
+				},
+				children = {
+					{
+						name = "warListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 3.66,
+								y = 2.59
+							},
+							size = {
+								width = 770,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "warLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "cityName-image",
+										name = "cityNameImage",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 8.97,
+										y = 57.68
+									},
+									size = {
+										width = 240,
+										height = 440
+									}
+								},
+								children = {
+									{
+										name = "cellSprite",
+										cType = "Sprite",
+										params = {
+											image = "mjrq_2.png",
+											pos = {
+												x = 120,
+												y = 247
+											}
+										},
+										children = {
+											{
+												name = "gotoBtn",
+												cType = "Button",
+												params = {
+													image = "c_19.png",
+													swallowTouch = false,
+													pos = {
+														x = 115.59,
+														y = -35.69
+													},
+													titleText = TR("前往")
+												},
+												children = {}
+											},
+											{
+												name = "untitled7",
+												cType = "Sprite",
+												params = {
+													image = "txdy_13.png",
+													pos = {
+														x = 113.2,
+														y = 175.13
+													}
+												},
+												children = {
+													{
+														name = "cityName",
+														cType = "Sprite",
+														params = {
+															image = "mjrq_3.png",
+															pos = {
+																x = 82,
+																y = 38
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "leftSprite",
+												cType = "BadgeText",
+												params = {
+													rotation = -90,
+													hide = true,
+													image = "c_76.png",
+													anchor = {
+														x = 1,
+														y = 1
+													},
+													pos = {
+														x = 16.04,
+														y = 351.44
+													},
+													text = TR("帮派")
+												},
+												children = {}
+											},
+											{
+												name = "rewardListView",
+												cType = "ListView",
+												params = {
+													hide = true,
+													bounce = true,
+													direction = false,
+													pos = {
+														x = 23.47,
+														y = 15
+													},
+													size = {
+														width = 190,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "rewardLayout",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 80,
+																height = 80
+															}
+														},
+														children = {
+															{
+																name = "rewardCard",
+																cType = "CardNode",
+																params = {
+																	scale = 0.8,
+																	allowClick = true,
+																	pos = {
+																		x = 40,
+																		y = 40
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "timeLabel",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 119.4,
+														y = 115.05
+													},
+													text = TR("00:00:00后到达")
+												},
+												children = {}
+											},
+											{
+												name = "infoLabel",
+												cType = "Label",
+												params = {
+													isRichText = true,
+													valign = 0,
+													anchor = {
+														x = 0,
+														y = 1
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 23.7,
+														y = 282.79
+													},
+													size = {
+														width = 190,
+														height = 70
+													},
+													text = TR("帮派 帮派测试测试 正在攻打西夏一品堂 ")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "armyLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "armyCityName-image",
+										name = "cityNameImage",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 272.72,
+										y = 50.37
+									},
+									size = {
+										width = 240,
+										height = 440
+									}
+								},
+								children = {
+									{
+										name = "armyCellSprite",
+										cType = "Sprite",
+										params = {
+											image = "mjrq_2.png",
+											pos = {
+												x = 121.16,
+												y = 247
+											}
+										},
+										children = {
+											{
+												name = "armyGotoBtn",
+												cType = "Button",
+												params = {
+													image = "c_19.png",
+													swallowTouch = false,
+													pos = {
+														x = 119.6,
+														y = -30.62
+													},
+													titleText = TR("前往")
+												},
+												children = {}
+											},
+											{
+												name = "untitled13",
+												cType = "Sprite",
+												params = {
+													image = "txdy_13.png",
+													pos = {
+														x = 119.47,
+														y = 192.32
+													}
+												},
+												children = {
+													{
+														name = "armyCityName",
+														cType = "Sprite",
+														params = {
+															image = "mjrq_3.png",
+															pos = {
+																x = 80,
+																y = 38
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "armyRewardList",
+												cType = "ListView",
+												params = {
+													direction = false,
+													bounce = true,
+													anchor = {
+														x = 0,
+														y = 0
+													},
+													pos = {
+														x = 23.89,
+														y = 20.94
+													},
+													size = {
+														width = 190,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "armyRewardLayout",
+														cType = "Layout",
+														custom = {
+															{
+																value = "armyRewardCard-initParams",
+																name = "cardInfo",
+																type = "string"
+															}
+														},
+														params = {
+															size = {
+																width = 80,
+																height = 80
+															}
+														},
+														children = {
+															{
+																name = "armyRewardCard",
+																cType = "CardNode",
+																params = {
+																	scale = 0.8,
+																	allowClick = true,
+																	initParams = {},
+																	pos = {
+																		x = 40,
+																		y = 40
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "armyTimeLabel",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 43.82,
+														y = 152.89
+													},
+													text = TR("00:00:00后到达")
+												},
+												children = {}
+											},
+											{
+												name = "armyInfoLabel",
+												cType = "Label",
+												params = {
+													isRichText = true,
+													valign = 0,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 25.22,
+														y = 262.31
+													},
+													size = {
+														width = 190,
+														height = 70
+													},
+													text = TR("魔教正在攻打西夏一品堂 ")
+												},
+												children = {}
+											},
+											{
+												name = "untitled20",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 76.12,
+														y = 108.93
+													},
+													text = TR("击杀掉落:")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "bhdLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "bhdInfoLabel-text",
+										name = "infoStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 5.73,
+										y = 57.51
+									},
+									size = {
+										width = 240,
+										height = 440
+									}
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "Sprite",
+										params = {
+											image = "mjrq_2.png",
+											pos = {
+												x = 120,
+												y = 241
+											}
+										},
+										children = {}
+									},
+									{
+										name = "goBtn",
+										cType = "Button",
+										params = {
+											image = "c_19.png",
+											swallowTouch = false,
+											pos = {
+												x = 118.81,
+												y = 28.93
+											},
+											titleText = TR("前往")
+										},
+										children = {}
+									},
+									{
+										name = "bhdTimeLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 56.89,
+												y = 210.07
+											},
+											text = TR("00:00:00后到达")
+										},
+										children = {}
+									},
+									{
+										name = "bhdInfoLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 44.87,
+												y = 343.71
+											},
+											text = TR("魔教将攻打门派 ")
+										},
+										children = {}
+									},
+									{
+										name = "untitled37",
+										cType = "BadgeText",
+										params = {
+											image = "c_76.png",
+											rotation = -90,
+											anchor = {
+												x = 1,
+												y = 1
+											},
+											pos = {
+												x = 18.8,
+												y = 410.96
+											},
+											text = TR("推荐")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "nonSprite",
+						cType = "Label",
+						params = {
+							fontSize = 27,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 384.01,
+								y = 216.37
+							},
+							text = TR("暂无战斗信息")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.callback = slot1.callback
+	slot0.bhdCallback = slot1.bhdCallback
+	slot0.armyInfo = slot1.armyInfo or {}
+	slot0.nextTime = slot1.nextTime or 0
+
+	slot0.initUI(slot0)
+
+	if slot1.cityInfo or slot1.bhdCityInfo then
+		slot0.cityInfo = slot1.cityInfo or {}
+		slot0.bhdCityInfo = slot1.bhdCityInfo or {}
+
+		slot0.dealData(slot0)
+		slot0.refreshLayer(slot0)
+	else
+		slot0.requestInfo(slot0)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.cityFireList = {}
+	slot0.cityArmyList = {}
+	slot0.cityGuildList = {}
+	slot0.bhdCityBattleList = {}
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	for slot5, slot6 in pairs(slot0.cityInfo) do
+		if slot6.IfConcentrateFire then
+			slot6.chapterId = slot5
+
+			table.insert(slot0.cityFireList, slot6)
+		end
+
+		if (slot6.GuildId == slot1.GuildId or slot6.CityStatusInfo.DeclareGuildId == slot1.GuildId) and not IfConcentrateFire and slot6.CityStatusInfo.Status == Enums.CityStatus.eDeclareWar then
+			slot6.chapterId = slot5
+
+			table.insert(slot0.cityGuildList, slot6)
+		end
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(CitymonsterThemeConfig.items) do
+		for slot11, slot12 in ipairs(slot7) do
+			if not table.indexof(slot2, Utility.analysisStrResList(slot12.baseDropRewardStr)[1].resourceId) then
+				table.insert(slot2, slot13.resourceId)
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(CitymonsterNpcdropRelation.items) do
+		for slot11, slot12 in pairs(slot7) do
+			for slot16, slot17 in pairs(slot12) do
+				for slot21, slot22 in pairs(slot17) do
+					if not table.indexof(slot2, Utility.analysisStrResList(slot22.rewardStr)[1].resourceId) then
+						table.insert(slot2, slot23.resourceId)
+					end
+				end
+			end
+		end
+	end
+
+	if slot0.armyInfo and next(slot0.armyInfo) and slot0.armyInfo.State ~= Enums.ArmystrikesType.eClosed then
+		for slot6, slot7 in ipairs(slot0.armyInfo.ArmyAttackCitys) do
+			if clone(slot0.cityInfo[tostring(slot7)]).ArmystrikesInfo and slot8.ArmystrikesInfo.Status ~= Enums.ArmystrikesType.eClosed then
+				slot8.chapterId = slot7
+				slot9 = slot0.armyInfo.ThemeInfo[tostring(slot7)]
+				slot8.rewardList = slot2
+
+				table.insert(slot0.cityArmyList, slot8)
+			end
+		end
+	end
+
+	slot3 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+	if slot0.bhdCityInfo and next(slot0.bhdCityInfo) then
+		for slot7, slot8 in pairs(slot0.bhdCityInfo) do
+			if slot8.PlayerId == slot3 and slot8.CityStatusInfo.Status == Enums.CityStatus.eInWar then
+				table.insert(slot0.bhdCityBattleList, {
+					cityId = tonumber(slot7),
+					infoStr = TR("敌人正在攻打门派#b4582f%s", IcefireCityModel.items[tonumber(slot7)].name)
+				})
+			end
+		end
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	if next(slot0.cityFireList) or next(slot0.cityArmyList) or next(slot0.cityGuildList) or next(slot0.bhdCityBattleList) then
+		slot0.nonSprite:setVisible(false)
+	else
+		slot0.nonSprite:setVisible(true)
+	end
+
+	slot0.warListView:removeAllItems()
+
+	for slot4, slot5 in ipairs(slot0.cityFireList) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "warLayout", {
+			cityNameImage = CitywarCityConfig.items[tonumber(slot5.chapterId)].pic .. ".png"
+		})
+
+		slot0.warListView:pushBackCustomItem(slot7)
+		slot7.timeLabel:setVisible(false)
+		slot7.rewardListView:setVisible(false)
+		slot7.infoLabel:setString(TR("#ff7200集火进攻"))
+		slot7.leftSprite:setVisible(true)
+		slot7.gotoBtn:setClickAction(function ()
+			slot0:gotoClick(tonumber(slot1.chapterId))
+
+			return 
+		end)
+	end
+
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	for slot5, slot6 in ipairs(slot0.cityGuildList) do
+		slot8 = slot6.CityStatusInfo
+		slot9 = slot0.createLayoutTemplateNode(slot0, "warLayout", {
+			cityNameImage = CitywarCityConfig.items[tonumber(slot6.chapterId)].pic .. ".png"
+		})
+
+		slot0.warListView:pushBackCustomItem(slot9)
+		slot9.rewardListView:setVisible(false)
+		slot9.leftSprite:setVisible(true)
+		slot9.gotoBtn:setClickAction(function ()
+			slot0:gotoClick(tonumber(slot1.chapterId))
+
+			return 
+		end)
+
+		slot10, slot11 = nil
+
+		if Utility.isEntityId(slot6.GuildId) then
+			if slot6.GuildId == slot1.GuildId then
+				slot10 = TR("帮派“#ff7200%s#45220d”", slot8.DeclareGuildName)
+				slot11 = TR("本方帮派占领门派#ff7200%s", slot7.name)
+			else
+				slot10 = TR("本方帮派“#ff7200%s#45220d”", slot1.GuildName)
+				slot11 = TR("#ff7200%s#45220d占领门派#ff7200%s", slot6.GuildName, slot7.name)
+			end
+		else
+			slot10 = TR("本方帮派“#ff7200%s#45220d”", slot8.DeclareGuildName or "")
+			slot11 = TR("门派#ff7200%s", slot7.name)
+		end
+
+		if slot8.Time - Player:getCurrentTime() <= 0 then
+			slot9.infoLabel:setString(TR("%s正在进攻%s", slot10, slot11))
+			slot9.timeLabel:setVisible(false)
+		else
+			slot9.timeLabel:setVisible(true)
+			Utility.schedule(slot9.timeLabel, function ()
+				if 0 < slot0.Time - Player:getCurrentTime() then
+					slot1.timeLabel:setString(TR("剩余时间:%s", MqTime.formatAsHour(Player:getCurrentTime() - slot0.Time)))
+					slot1.infoLabel:setString(TR("%s将攻打%s", TR, ))
+				else
+					slot1.timeLabel:setVisible(false)
+					slot1.timeLabel:stopAllActions()
+					slot4:requestInfo()
+				end
+
+				return 
+			end, 1)
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot0.cityArmyList) do
+		slot8 = slot6.ArmystrikesInfo
+
+		slot0.warListView:pushBackCustomItem(slot9)
+		slot0.createLayoutTemplateNode(slot0, "armyLayout", {
+			cityNameImage = CitywarCityConfig.items[tonumber(slot6.chapterId)].pic .. ".png"
+		}).armyGotoBtn:setClickAction(function ()
+			slot0:gotoClick(tonumber(slot1.chapterId))
+
+			return 
+		end)
+
+		for slot13, slot14 in ipairs(slot6.rewardList) do
+			slot9.armyRewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "armyRewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot14
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder
+					}
+				}
+			}))
+		end
+
+		slot10 = TR("#ff7200魔教#45220d")
+
+		if slot8.Time - Player:getCurrentTime() <= 0 then
+			slot9.armyInfoLabel:setString(TR("%s正在进攻#187e6d%s", slot10, slot7.name))
+			slot9.armyTimeLabel:setVisible(false)
+		else
+			slot9.armyTimeLabel:setVisible(true)
+			Utility.schedule(slot9.armyTimeLabel, function ()
+				if 0 < slot0.Time - Player:getCurrentTime() then
+					slot1.armyTimeLabel:setString(TR("%s后到达", MqTime.formatAsHour(Player:getCurrentTime() - slot0.Time)))
+					slot1.armyInfoLabel:setString(TR("%s即将攻打#187e6d%s", TR, slot3.name))
+				else
+					slot1.armyInfoLabel:setString(TR("%s正在进攻#187e6d%s", TR, slot3.name))
+					slot1.armyTimeLabel:setVisible(false)
+					slot1.armyTimeLabel:stopAllActions()
+				end
+
+				return 
+			end, 1)
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot0.bhdCityBattleList) do
+		slot0.warListView:pushBackCustomItem(slot7)
+		slot0.createLayoutTemplateNode(slot0, "bhdLayout", {
+			infoStr = slot6.infoStr
+		}).goBtn:setClickAction(function ()
+			if slot0.bhdCallback then
+				slot0.bhdCallback(slot1.cityId)
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end)
+
+		if slot0.nextTime - Player:getCurrentTime() <= 0 then
+			slot7.bhdTimeLabel:setString("")
+			slot7.bhdTimeLabel:setVisible(false)
+		else
+			slot7.bhdTimeLabel:setVisible(true)
+			Utility.schedule(slot7.bhdTimeLabel, function ()
+				if 0 < slot0.nextTime - Player:getCurrentTime() then
+					slot1.bhdTimeLabel:setString(TR("缩圈倒计时: #ff974a%s", MqTime.formatAsHour(slot0.nextTime - Player:getCurrentTime())))
+				else
+					slot1.bhdTimeLabel:setVisible(false)
+					slot1.bhdTimeLabel:stopAllActions()
+				end
+
+				return 
+			end, 1)
+		end
+	end
+
+	return 
+end
+slot0.gotoClick = function (slot0, slot1)
+	if slot0.callback then
+		slot0.callback(slot1)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			0
+		},
+		successCallback = function (slot0)
+			slot0.cityInfo = slot0.CityInfo
+
+			if PlayerAttrObj:getPlayerAttrByName("IcefireStatus") and 0 <= slot1 and Utility.moduleIsOpen(ModuleSub.eIcefire, false) then
+				slot0:requestBhdInfo()
+			else
+				slot0:dealData()
+				slot0:refreshLayer()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBhdInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Icefire",
+		needWait = false,
+		methodData = {
+			0
+		},
+		successCallback = function (slot0)
+			slot0.nextTime = slot0.NextTime or 0
+			slot0.bhdCityInfo = slot0.CityInfo
+
+			slot0:dealData()
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

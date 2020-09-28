@@ -1,0 +1,375 @@
+slot0 = class("DlgLookPlayerLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 634,
+				height = 370
+			},
+			titleText = TR("玩家信息")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 309.7,
+						y = 329.89
+					},
+					size = {
+						width = 520,
+						height = 160
+					}
+				},
+				children = {
+					{
+						name = "headerNode",
+						cType = "PlayerHeroNode",
+						params = {
+							modelId = 19010000,
+							allowClick = false,
+							pos = {
+								x = 80,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 150,
+								y = 100
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "fapLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 320,
+								y = 100
+							},
+							text = TR("战力")
+						},
+						children = {}
+					},
+					{
+						name = "lvLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 150,
+								y = 60
+							},
+							text = TR("等级")
+						},
+						children = {}
+					},
+					{
+						name = "guildLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 320,
+								y = 60
+							},
+							text = TR("帮派")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "btnFriend",
+				cType = "Button",
+				params = {
+					image = "tb_gn_41.png",
+					clickAction = "onMakeFriendAction",
+					pos = {
+						x = 90,
+						y = 87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnEnemy",
+				cType = "Button",
+				params = {
+					image = "tb_gn_42.png",
+					clickAction = "onDisableChatAction",
+					pos = {
+						x = 200,
+						y = 87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnChat",
+				cType = "Button",
+				params = {
+					image = "tb_gn_43.png",
+					clickAction = "onPrivateChatAction",
+					pos = {
+						x = 315,
+						y = 87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnFormation",
+				cType = "Button",
+				params = {
+					image = "tb_gn_44.png",
+					clickAction = "onLookFormationAction",
+					pos = {
+						x = 542.12,
+						y = 87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnBattle",
+				cType = "Button",
+				params = {
+					image = "tb_gn_45.png",
+					clickAction = "onFightToAction",
+					pos = {
+						x = 431.07,
+						y = 87
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.playerInfo = slot1.playerInfo
+	slot0.callback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = slot0.playerInfo.ExtendInfo.GuildId
+
+	slot0.headerNode:setPlayerHeader(slot0.playerInfo.ExtendInfo.HeadImageId, nil, {
+		headPicId = slot0.playerInfo.ExtendInfo.HeadPicId
+	})
+	slot0.nameLabel:setString(slot0.playerInfo.Name)
+
+	slot3 = slot0.nameLabel
+	slot2 = slot0.nameLabel.setColor
+
+	if slot0.playerInfo.ExtendInfo.FashionLevel ~= 0 or not cc.c3b(37, 37, 37) then
+		slot4 = Utility.getPlayerNameColor(slot0.playerInfo.ExtendInfo.FashionLevel or 0, false)
+	end
+
+	slot2(slot3, slot4)
+	slot0.fapLabel:setString(TR("战力: %s%s", "#258711", Utility.numberWithUnit(slot0.playerInfo.ExtendInfo.Fap or 0)))
+	slot0.lvLabel:setString(TR("等级: %s%s", "#258711", slot0.playerInfo.Lv))
+	slot0.guildLabel:setString(TR("帮派: %s%s", "#258711", (Utility.isEntityId(slot1) and slot0.playerInfo.ExtendInfo.GuildName) or "--"))
+	slot0.refreshPrivateButtonState(slot0)
+	slot0.refreshFriendButtonState(slot0)
+	slot0.btnFormation:setVisible(not (LayerManager.getTopCleanUpLayerName() == "battle.views.GameScene"))
+	slot0.btnBattle:setVisible(not (LayerManager.getTopCleanUpLayerName() == "battle.views.GameScene"))
+	slot0.btnFriend:setPosition((LayerManager.getTopCleanUpLayerName() == "battle.views.GameScene" and cc.p(200, 87)) or cc.p(90, 87))
+	slot0.btnEnemy:setPosition((LayerManager.getTopCleanUpLayerName() == "battle.views.GameScene" and cc.p(310, 87)) or cc.p(200, 87))
+	slot0.btnChat:setPosition((LayerManager.getTopCleanUpLayerName() == "battle.views.GameScene" and cc.p(425, 87)) or cc.p(315, 87))
+
+	return 
+end
+slot0.refreshPrivateButtonState = function (slot0)
+	if EnemyObj:isInEnemy(slot0.playerInfo.Id) then
+		slot0.btnEnemy:loadTextures("tb_gn_46.png", "tb_gn_46.png")
+		slot0.btnChat:setEnabled(false)
+	else
+		slot0.btnEnemy:loadTextures("tb_gn_42.png", "tb_gn_42.png")
+		slot0.btnChat:setEnabled(true)
+	end
+
+	return 
+end
+slot0.refreshFriendButtonState = function (slot0)
+	if FriendObj:playerIsFriend(slot0.playerInfo.Id) then
+		slot0.btnFriend:loadTextures("tb_gn_47.png", "tb_gn_47.png")
+	else
+		slot0.btnFriend:loadTextures("tb_gn_41.png", "tb_gn_41.png")
+	end
+
+	return 
+end
+slot0.onMakeFriendAction = function (slot0)
+	if FriendObj:playerIsFriend(slot0.playerInfo.Id) then
+		FriendObj:requestDeleteFriend(slot0.playerInfo.Id, function ()
+			slot0:refreshFriendButtonState()
+
+			return 
+		end)
+	else
+		FriendObj:requestFriendApply(slot0.playerInfo.Id)
+	end
+
+	return 
+end
+slot0.onDisableChatAction = function (slot0)
+	if slot0.playerInfo.Id == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+		ui.showFlashView(TR("不能屏蔽自己"))
+
+		return 
+	end
+
+	if EnemyObj:isInEnemy(slot0.playerInfo.Id) then
+		EnemyObj:deleteEnemy(slot0.playerInfo.Id, handler(slot0, slot0.refreshPrivateButtonState))
+	else
+		EnemyObj:addEnemy(slot0.playerInfo.Id, handler(slot0, slot0.refreshPrivateButtonState))
+	end
+
+	return 
+end
+slot0.onPrivateChatAction = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < 40 or slot0.playerInfo.Lv < 40 then
+		ui.showFlashView(TR("需要双方等级达到40才可使用"))
+
+		return false
+	end
+
+	if slot0.callback ~= nil then
+		slot0.callback({
+			PlayerId = slot0.playerInfo.Id,
+			Name = slot0.playerInfo.Name,
+			GuildId = slot0.playerInfo.ExtendInfo.GuildId,
+			PositionId = slot0.playerInfo.ExtendInfo.PositionId,
+			FashionLevel = slot0.playerInfo.ExtendInfo.FashionLevel
+		})
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onLookFormationAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = {
+			playerId = slot0.playerInfo.Id
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onFightToAction = function (slot0)
+	ui.showCampReady({
+		noNeedVit = true,
+		callModelSub = ModuleSub.ePvp,
+		titleText = TR("切磋布阵"),
+		callback = function (slot0)
+			slot0:socketRequest({
+				methodName = "Study",
+				moduleName = "Pvp",
+				methodData = {
+					slot0.playerInfo.Id,
+					table.concat(slot0, ",")
+				},
+				successCallback = function (slot0)
+					slot0.FightInfo.hideWinRewardTips = true
+
+					require("common.BattleEntry"):StartBattle({
+						fightInfo = slot0.FightInfo,
+						extraData = {
+							IsWin = slot0.IsWin
+						}
+					})
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

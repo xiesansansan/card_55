@@ -1,0 +1,1731 @@
+slot0 = class("CityWarEmperorBattleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_64.jpg",
+			pos = {
+				x = 320,
+				y = 568
+			}
+		},
+		children = {
+			{
+				name = "topSprite",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_21.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 320,
+						y = 1136
+					}
+				},
+				children = {}
+			},
+			{
+				name = "closeBtn",
+				cType = "Button",
+				params = {
+					image = "c_12.png",
+					clickAction = "onClose",
+					pos = {
+						x = 580.82,
+						y = 1056.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "timeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 340,
+						y = 1060
+					},
+					text = TR("倒计时:#37ff4015#fff8ea小时#37ff4015#fff8ea分钟#37ff4015#fff8ea秒")
+				},
+				children = {}
+			},
+			{
+				name = "rankBtn",
+				cType = "Button",
+				params = {
+					image = "tb_286.png",
+					clickAction = "onClickRankBtn",
+					pos = {
+						x = 580.54,
+						y = 969.5
+					}
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "RedDot",
+						params = {
+							moduleId = 5500
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "campBtn",
+				cType = "Button",
+				params = {
+					image = "jzwl_28.png",
+					clickAction = "onBuildTeam",
+					scale = 0.9,
+					pos = {
+						x = 320,
+						y = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftPanel",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_22.png",
+					pos = {
+						x = 108.11,
+						y = 1000.91
+					}
+				},
+				children = {
+					{
+						name = "eastSpriite",
+						cType = "GuildFlag",
+						custom = {
+							{
+								value = 1,
+								name = "flag",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.29,
+							pos = {
+								x = 30,
+								y = 187
+							}
+						},
+						children = {}
+					},
+					{
+						name = "eastBar",
+						cType = "ProgressBar",
+						custom = {
+							{
+								value = 1,
+								name = "progressTag",
+								type = "integer"
+							}
+						},
+						params = {
+							maxValue = 100,
+							bgImage = "jzwl_24.png",
+							currValue = 0,
+							normalImage = "jzwl_38.png",
+							pos = {
+								x = 105,
+								y = 197
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									fontSize = 17,
+									text = "0/12000",
+									childName = "scoreLabel",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 55,
+										y = -12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "westSprite",
+						cType = "GuildFlag",
+						custom = {
+							{
+								value = 2,
+								name = "flag",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.29,
+							pos = {
+								x = 30,
+								y = 140
+							}
+						},
+						children = {}
+					},
+					{
+						name = "westBar",
+						cType = "ProgressBar",
+						custom = {
+							{
+								value = 2,
+								name = "progressTag",
+								type = "integer"
+							}
+						},
+						params = {
+							maxValue = 100,
+							bgImage = "jzwl_24.png",
+							currValue = 0,
+							normalImage = "jzwl_39.png",
+							pos = {
+								x = 105,
+								y = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 17,
+									text = "0/12000",
+									childName = "scoreLabel",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 55,
+										y = -12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "southSprite",
+						cType = "GuildFlag",
+						custom = {
+							{
+								value = 3,
+								name = "flag",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.29,
+							pos = {
+								x = 30,
+								y = 93
+							}
+						},
+						children = {}
+					},
+					{
+						name = "southBar",
+						cType = "ProgressBar",
+						custom = {
+							{
+								value = 3,
+								name = "progressTag",
+								type = "integer"
+							}
+						},
+						params = {
+							maxValue = 100,
+							bgImage = "jzwl_24.png",
+							currValue = 0,
+							normalImage = "jzwl_40.png",
+							pos = {
+								x = 105,
+								y = 103
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 17,
+									text = "0/12000",
+									childName = "scoreLabel",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 55,
+										y = -12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "northSprite",
+						cType = "GuildFlag",
+						custom = {
+							{
+								value = 4,
+								name = "flag",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.29,
+							pos = {
+								x = 30,
+								y = 46
+							}
+						},
+						children = {}
+					},
+					{
+						name = "northBar",
+						cType = "ProgressBar",
+						custom = {
+							{
+								value = 4,
+								name = "progressTag",
+								type = "integer"
+							}
+						},
+						params = {
+							maxValue = 100,
+							bgImage = "jzwl_24.png",
+							currValue = 0,
+							normalImage = "jzwl_41.png",
+							pos = {
+								x = 105,
+								y = 56
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 17,
+									text = "0/12000",
+									childName = "scoreLabel",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 55,
+										y = -12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "zlSprite",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_23.png",
+							hide = true,
+							pos = {
+								x = 179,
+								y = 192
+							}
+						},
+						children = {}
+					},
+					{
+						name = "zlEffect",
+						cType = "Effect",
+						params = {
+							scale = 0.5,
+							dataFile = "effect_ui_rwlbtx",
+							pos = {
+								x = 105,
+								y = 192
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "reportBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onShowReportMsg",
+					image = "jzwl_26.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "reportBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jzwl_27.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 100,
+						y = 47.52
+					},
+					size = {
+						width = 530,
+						height = 54
+					}
+				},
+				children = {
+					{
+						name = "reportClip",
+						cType = "ClippingNode",
+						params = {
+							alpha = 1,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 530,
+								height = 54
+							}
+						},
+						children = {
+							{
+								name = "reportLabel1",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									pos = {
+										x = 265,
+										y = 27
+									},
+									text = TR("#ff66f3玩家玩家玩家#fff8ea击败了#ff974a玩家玩家玩家#fff8ea获得1连胜")
+								},
+								children = {}
+							},
+							{
+								name = "reportLabel2",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									pos = {
+										x = 265,
+										y = -20
+									},
+									text = TR("#ff66f3玩家玩家玩家#fff8ea击败了#ff974a玩家玩家玩家#fff8ea获得1连胜")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "flag1",
+				cType = "GuildFlag",
+				custom = {
+					{
+						value = 1,
+						name = "flagNode",
+						type = "integer"
+					}
+				},
+				params = {
+					isPole = true,
+					scale = 0.8,
+					pos = {
+						x = 583.44,
+						y = 236.92
+					}
+				},
+				children = {}
+			},
+			{
+				name = "flag2",
+				cType = "GuildFlag",
+				custom = {
+					{
+						value = 2,
+						name = "flagNode",
+						type = "integer"
+					}
+				},
+				params = {
+					isPole = true,
+					scale = 0.8,
+					pos = {
+						x = 33.93,
+						y = 336.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "flag3",
+				cType = "GuildFlag",
+				custom = {
+					{
+						value = 3,
+						name = "flagNode",
+						type = "integer"
+					}
+				},
+				params = {
+					isPole = true,
+					scale = 0.8,
+					pos = {
+						x = 105.21,
+						y = 803.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "flag4",
+				cType = "GuildFlag",
+				custom = {
+					{
+						value = 4,
+						name = "flagNode",
+						type = "integer"
+					}
+				},
+				params = {
+					isPole = true,
+					scale = 0.8,
+					pos = {
+						x = 598.34,
+						y = 760.23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "winnerEffect",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_guiyuanding_yongjiu",
+					pos = {
+						x = 105.21,
+						y = 803.85
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	{
+		cc.p(420, 306),
+		cc.p(420, 127),
+		cc.p(320, 140),
+		cc.p(220, 127),
+		cc.p(220, 320)
+	},
+	{
+		cc.p(48, 580),
+		cc.p(80, 508),
+		cc.p(48, 436),
+		cc.p(80, 364)
+	},
+	{
+		cc.p(211, 725),
+		cc.p(289, 745),
+		cc.p(367, 725),
+		cc.p(445, 745)
+	},
+	{
+		cc.p(592, 580),
+		cc.p(560, 508),
+		cc.p(592, 436),
+		cc.p(560, 364)
+	}
+}
+slot2 = {
+	"lm_172.png",
+	"lm_173.png",
+	"lm_174.png",
+	"lm_175.png",
+	"lm_176.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+
+	slot0.heroList = {
+		{},
+		{},
+		{},
+		{}
+	}
+	slot0.playerHeroList = {
+		{},
+		{},
+		{},
+		{}
+	}
+	slot0.teamId = {}
+	slot0.curHero = {}
+	slot0.reportList = {}
+	slot0.showReportList = {}
+	slot0.mineHero = nil
+	slot0.mineHeroId = 0
+	slot0.isFight = false
+	slot0.fightWinGuildId = 0
+	slot0.mineGuildId = PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId
+	slot0.mainCityInfo = slot1.mainCityInfo
+	slot0.mCanJoinCityInfo = slot1.canJoinCityInfo
+	slot0.scoreRank = slot1.scoreRank or {}
+	slot0.curWinnerGuildId = slot0.mainCityInfo.WinnerGuildId or Utility.EMPTY_ENTITY_ID
+	slot0.nextWinnerGuildId = Utility.EMPTY_ENTITY_ID
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.reportLabelList = {}
+
+	slot0.reportLabel1:setString(TR("#ff66f3欢迎来到决战武林"))
+	slot0.reportLabel2:setString(TR("#ff66f3哈哈哈哈#fff8ea击败了#ff974a嚯嚯嚯嚯#fff8ea获得1连胜"))
+	table.insert(slot0.reportLabelList, {
+		tag = 1,
+		label = slot0.reportLabel1
+	})
+	table.insert(slot0.reportLabelList, {
+		tag = 2,
+		label = slot0.reportLabel2
+	})
+
+	slot0.qizhiList = slot0.getCustomChildren(slot0, slot0.bgSprite, "flagNode")
+
+	slot0.onChoseBattle(slot0, 1)
+	slot0.getReport(slot0)
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.updateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, slot0.updateTime, 1)
+	slot1 = slot0.getCustomChildren(slot0, slot0.leftPanel, "flag")
+	slot2 = ipairs
+	slot3 = slot0.mCanJoinCityInfo or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		slot1[slot5]:setFlag(slot6.BannerInfo)
+		slot1[slot5]:setString(slot6.Logo)
+	end
+
+	slot0.refreshPanel(slot0)
+	EventAuto:registerAutoEvent(slot0.bgSprite, EventDefine.eMainCityWarEnd, function (slot0, slot1)
+		dump(slot1, "datadata")
+
+		if slot1.Name and slot1.GuildId then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "citywar.JzwlEndLayer",
+				data = {
+					endData = slot1,
+					callback = function ()
+						if not tolua.isnull(tolua.isnull) then
+							slot0:onClose()
+						end
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.bgSprite, EventDefine.eMainCityWarFight, function (slot0, slot1)
+		dump(slot1, "eMainCityWarFight data")
+		slot0:dealReport(slot1)
+
+		return 
+	end)
+
+	slot0.mainSchedule = Utility.schedule(slot0.bgSprite, function ()
+		if not slot0.isFight then
+			slot0:safeRequest({
+				methodName = "GetMainCityWarInfo",
+				moduleName = "MaincitywarInfo",
+				methodData = {},
+				successCallback = function (slot0)
+					slot0.scoreRank = slot0.ScoreRank
+					slot0.nextWinnerGuildId = slot0.MainCityInfo.WinnerGuildId
+
+					slot0:refreshPanel()
+
+					return 
+				end
+			})
+		end
+
+		return 
+	end, 20)
+
+	return 
+end
+slot0.createHero = function (slot0, slot1, slot2, slot3, slot4, slot5)
+	slot6 = slot0.getGuildOnlyIndex(slot0, slot2)
+	slot7 = {}
+
+	for slot11, slot12 in pairs(HeroModel.items) do
+		if slot12.ifMainCityWarNpc then
+			table.insert(slot7, slot12.modelId)
+		end
+	end
+
+	slot8 = UIWrap.newControl("FigureHero", {
+		scale = 0.11,
+		heroModelId = (slot1 and tonumber(slot1.heroImageList[1])) or slot7[math.random(1, #slot7)]
+	})
+
+	slot8.setPosition(slot8, slot4)
+	slot0.bgSprite:addChild(slot8)
+	slot8.setLocalZOrder(slot8, slot5)
+	slot8.setOpacity(slot8, 0)
+
+	slot11 = UIWrap.newControl("Label", {
+		fontSize = 17,
+		scale = 8,
+		text = (slot1 and slot1.name) or ({
+			TR("帮众"),
+			TR("帮众"),
+			TR("帮众"),
+			TR("帮众")
+		})[slot6],
+		color = Utility.getPlayerNameColor((slot1 and slot1.fashionLevel) or 0),
+		outlineColor = cc.c3b(51, 42, 24),
+		anchor = cc.p(0.5, 0),
+		pos = cc.p(0, 0)
+	})
+
+	slot8.addChild(slot8, slot11)
+
+	slot8.nameLabel = slot11
+
+	slot11.setVisible(slot11, false)
+
+	slot12 = UIWrap.newControl("ProgressBar", {
+		normalImage = "czhan_13.png",
+		bgImage = "czhan_12.png",
+		currValue = 100,
+		maxValue = 100,
+		pos = cc.p(0, 0)
+	})
+
+	slot12.setScale(slot12, 8)
+	slot8.addChild(slot8, slot12)
+
+	slot8.hpProgress = slot12
+
+	slot12.setVisible(slot12, false)
+
+	slot13 = (slot1 and slot1.titleId) or 0
+	slot14 = nil
+
+	if 0 < slot13 then
+		slot8.addChild(slot8, (not cc.FileUtils:getInstance():isFileExist(slot15 .. ".skel") or UIWrap.newControl("Effect", {
+			scale = 3.6,
+			dataFile = slot15,
+			pos = cc.p(0, 1580)
+		})) and UIWrap.newControl("Sprite", {
+			scale = 3.6,
+			image = slot15 .. ".png",
+			pos = cc.p(0, 1580),
+			anchor = cc.p(0.5, 0)
+		}))
+
+		slot8.titleNode = (not cc.FileUtils.getInstance().isFileExist(slot15 .. ".skel") or UIWrap.newControl("Effect", {
+			scale = 3.6,
+			dataFile = slot15,
+			pos = cc.p(0, 1580)
+		})) and UIWrap.newControl("Sprite", {
+			scale = 3.6,
+			image = slot15 .. ".png",
+			pos = cc.p(0, 1580),
+			anchor = cc.p(0.5, 0)
+		})
+
+		(not cc.FileUtils.getInstance().isFileExist(slot15 .. ".skel") or UIWrap.newControl("Effect", {
+			scale = 3.6,
+			dataFile = slot15,
+			pos = cc.p(0, 1580)
+		})) and UIWrap.newControl("Sprite", {
+			scale = 3.6,
+			image = slot15 .. ".png",
+			pos = cc.p(0, 1580),
+			anchor = cc.p(0.5, 0)
+		}):setVisible(false)
+	end
+
+	slot15 = UIWrap.newControl("Scale9Sprite", {
+		image = "c_pure.png",
+		pos = cc.p(0, 0),
+		anchor = cc.p(0.5, 0),
+		size = cc.size(230, 54)
+	})
+
+	slot8.addChild(slot8, slot15)
+	slot15.setScale(slot15, 4)
+	slot15.setVisible(slot15, false)
+
+	slot8.buffNode = slot15
+
+	slot15.addChild(slot15, slot16)
+	slot15.addChild(slot15, slot17)
+	slot8.addChild(slot8, slot18)
+
+	slot8.shadow = UIWrap.newControl("Sprite", {
+		image = "ef_c_67.png",
+		scale = 4,
+		pos = cc.p(-500, 0),
+		anchor = cc.p(0.5, 1)
+	})
+	slot19 = nil
+	slot20 = ipairs
+	slot21 = slot0.mCanJoinCityInfo or {}
+
+	for slot23, slot24 in slot20(slot21) do
+		if slot2 == slot24.GuildId then
+			slot19 = clone(slot24)
+
+			break
+		end
+	end
+
+	slot20 = UIWrap.newControl("GuildFlag", {
+		scale = 2.2,
+		flagInfo = slot19.BannerInfo,
+		flagLogo = slot19.Logo,
+		pos = cc.p(-5, 0),
+		anchor = cc.p(0.5, 0)
+	})
+
+	slot8.addChild(slot8, slot20)
+
+	slot8.guildSprite = slot20
+
+	slot20.setVisible(slot20, false)
+	Utility.performWithDelay(slot0, function ()
+		slot1:setPosition(cc.p(0, (slot0:getBoundingBox().height + 8)*8))
+		slot1.setPosition:setPosition(cc.p(0, slot0.getBoundingBox().height*8))
+		slot1.setPosition:setPosition(cc.p(0, 130))
+
+		if cc.p then
+			slot4:setPosition(cc.p(0, slot1:getPositionY() + 192))
+			slot5:setPosition(cc.p(0, slot4:getPositionY() + 300))
+		else
+			slot5:setPosition(cc.p(0, slot1:getPositionY() + 192))
+		end
+
+		slot6:setPosition(cc.p(-slot1:getContentSize().width*8, slot1*8))
+
+		if 3 <= slot7 then
+			slot0:setRotationSkewY(180)
+			slot1:setRotationSkewY(180)
+			slot5:setRotationSkewY(180)
+
+			if 180 then
+				slot4:setRotationSkewY(180)
+			end
+
+			slot6:setRotationSkewY(180)
+		end
+
+		return 
+	end, 0.001)
+	slot8.runAction(slot8, cc.Sequence:create(cc.FadeIn:create(0.3), cc.CallFunc:create(function ()
+		slot0:setVisible(true)
+
+		return 
+	end)))
+
+	return slot8
+end
+slot0.createMineHero = function (slot0, slot1)
+	if not slot0.mineHero then
+		slot0.mineHero = slot0.createHero(slot0, (slot1.Id ~= 0 and slot1) or nil, slot0.mineGuildId, 1, cc.p(94, 150), 6)
+	else
+		if slot0.mineHeroId == slot1.Id then
+			return 
+		end
+
+		slot0.mineHero:runAction(cc.Sequence:create(cc.FadeOut:create(0.2), cc.CallFunc:create(function ()
+			slot0.mineHero:removeFromParent()
+
+			slot0.mineHero.removeFromParent.mineHero = nil
+			slot0.mineHero = slot1(slot0, (slot1.Id ~= 0 and slot1) or nil, slot0.mineGuildId, 1, cc.p(94, 150), 6)
+			slot0.mineHeroId = slot1(slot0, (slot1.Id ~= 0 and slot1) or nil, slot0.mineGuildId, 1, cc.p(94, 150), 6).Id
+
+			return 
+		end)))
+	end
+
+	return 
+end
+slot0.getGuildOnlyIndex = function (slot0, slot1)
+	slot2 = 1
+
+	for slot6, slot7 in ipairs(slot0.mCanJoinCityInfo) do
+		if slot7.GuildId == slot1 then
+			slot2 = slot6
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.refreshPanel = function (slot0)
+	slot2 = MaincitywarConfig.items[1].winPoint
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot7.setMaxValue(slot7, MaincitywarConfig.items[1].winPoint)
+		slot7.scoreLabel:setString(string.format("%s/%s", 0, slot2))
+	end
+
+	slot3 = pairs
+	slot4 = slot0.scoreRank or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		slot1[slot0.getGuildOnlyIndex(slot0, slot7.Guild)]:setCurrValue(slot7.Score)
+		slot1[slot0.getGuildOnlyIndex(slot0, slot7.Guild)].scoreLabel:setString(string.format("%s/%s", slot7.Score, slot2))
+	end
+
+	if Utility.isEntityId(slot0.nextWinnerGuildId) and slot0.nextWinnerGuildId ~= slot0.curWinnerGuildId then
+		slot0.curWinnerGuildId = slot0.nextWinnerGuildId
+	end
+
+	if Utility.isEntityId(slot0.curWinnerGuildId) then
+		slot4, slot5 = slot1[slot0.getGuildOnlyIndex(slot0, slot0.curWinnerGuildId)]:getPosition()
+
+		slot0.zlSprite:setPositionY(slot5 - 5)
+		slot0.zlEffect:setPositionY(slot5 - 5)
+
+		slot11, slot12 = slot0.qizhiList[slot0.getPosIndex(slot0, slot0.curWinnerGuildId)]:getPosition()
+
+		slot0.winnerEffect:setPosition(slot7, slot8)
+		slot0.winnerEffect:setLocalZOrder((slot0.getPosIndex(slot0, slot0.curWinnerGuildId) == 2 and 6) or 1)
+	end
+
+	slot0.zlSprite:setVisible(Utility.isEntityId(slot0.curWinnerGuildId))
+	slot0.zlEffect:setVisible(Utility.isEntityId(slot0.curWinnerGuildId))
+	slot0.winnerEffect:setVisible(Utility.isEntityId(slot0.curWinnerGuildId))
+
+	return 
+end
+slot0.updateTime = function (slot0)
+	if 0 < slot0.mainCityInfo.EndTimeOfWar - Player:getCurrentTime() then
+		slot9, slot10, slot11 = MqTime.toHour(slot1, true)
+
+		slot0.timeLabel:setString(TR("倒计时:#37ff40%s#fff8ea小时#37ff40%s#fff8ea分钟#37ff40%s#fff8ea秒", slot2, slot3, slot4))
+	else
+		slot0.timeLabel:setString(TR("倒计时:#37ff400#fff8ea小时#37ff400#fff8ea分钟#37ff400#fff8ea秒"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+
+			ui.showMessageBox({
+				text = TR("决战武林已经结束"),
+				okCallback = function ()
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end
+			})
+		end
+	end
+
+	return 
+end
+slot0.refreshHeroPos = function (slot0, slot1, slot2, slot3)
+	Utility.performWithDelay(slot0, function ()
+		for slot3, slot4 in ipairs(slot0.playerHeroList[]) do
+			slot4.hero:runAction(cc.Sequence:create(cc.MoveTo:create(0.5, slot2[slot1][slot3]), cc.CallFunc:create(function ()
+				if slot0 == #slot1.playerHeroList[slot2] then
+					slot2 = slot1:createHero(slot1, , slot1.createHero, slot3[slot2][#slot3[slot2]], #slot3[slot2])
+					slot3 = true
+					slot4 = 0
+					slot5 = Utility.EMPTY_ENTITY_ID
+
+					if slot2.heroList[slot2][#slot3[slot2]] then
+						slot3 = false
+						slot4 = slot1.Id
+						slot5 = slot1.playerId
+					end
+
+					table.insert(slot1.playerHeroList[slot2], {
+						hero = slot2,
+						guildId = slot4,
+						isRobot = slot3,
+						Id = slot4,
+						playerId = slot5
+					})
+				end
+
+				return 
+			end)))
+		end
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.readyFight = function (slot0)
+	if not slot0.reportList[1] then
+		slot0.isFight = false
+
+		return 
+	end
+
+	dump(slot1, "curReport")
+
+	slot0.isFight = true
+	slot2 = cc.p(-200, 700)
+	slot3 = cc.p(864, 700)
+	slot4 = cc.p(270, 530)
+	slot5 = cc.p(390, 530)
+	slot6 = nil
+
+	if not slot0.curHero[1] and not slot0.curHero[2] then
+		slot0.curHero[1] = slot0.playerHeroList[slot1.winnerPosIndex][1]
+		slot0.curHero[2] = slot0.playerHeroList[slot1.fightPosIndex][1]
+
+		if slot0.curHero[1] then
+			slot0.heroAction(slot0, {
+				isWinner = true,
+				needFilxp = false,
+				index = 1,
+				starPos = (slot1.winnerPosIndex <= 2 and slot2) or slot3,
+				endPos = (slot1.winnerPosIndex <= 2 and slot4) or slot5,
+				guild = slot1.winnerPosIndex
+			})
+
+			slot0.curHero[1].tag = (slot1.winnerPosIndex <= 2 and 1) or 2
+			slot0.curHero[1].isWin = slot1.WinnerIsWin
+
+			table.remove(slot0.playerHeroList[slot1.winnerPosIndex], 1)
+			table.remove(slot0.heroList[slot1.winnerPosIndex], 1)
+			slot0.refreshHeroPos(slot0, slot1.winnerPosIndex, slot1.WinnerGuildId)
+		end
+
+		if slot0.curHero[2] then
+			if slot0.curHero[1].tag == 1 then
+				slot6 = slot1.fightPosIndex <= 2
+			elseif slot0.curHero[1].tag == 2 then
+				slot0.heroAction(slot0, {
+					isWinner = false,
+					index = 2,
+					needFilxp = 2 < slot1.fightPosIndex,
+					starPos = (slot0.curHero[1].tag == 1 and slot3) or slot2,
+					endPos = (slot0.curHero[1].tag == 1 and slot5) or slot4,
+					guild = slot1.fightPosIndex
+				})
+
+				slot0.curHero[2].tag = (slot0.curHero[1].tag == 1 and 2) or 1
+				slot0.curHero[2].isWin = not slot1.WinnerIsWin
+
+				table.remove(slot0.playerHeroList[slot1.fightPosIndex], 1)
+				table.remove(slot0.heroList[slot1.fightPosIndex], 1)
+				slot0.refreshHeroPos(slot0, slot1.fightPosIndex, slot1.FightGuildId)
+			end
+		end
+	else
+		slot7, slot8, slot9 = nil
+
+		if slot1.WinnerGuildId == slot0.fightWinGuildId then
+			slot7 = slot1.fightPosIndex
+			slot8 = slot1.FightGuildId
+			slot9 = not slot1.WinnerIsWin
+		else
+			slot7 = slot1.winnerPosIndex
+			slot8 = slot1.WinnerGuildId
+			slot9 = slot1.WinnerIsWin
+		end
+
+		print(slot0.fightWinGuildId, slot7, slot8, slot9)
+
+		if slot0.curHero[1] then
+			slot0.curHero[2] = slot0.playerHeroList[slot7][1]
+
+			if slot0.curHero[1].tag == 1 then
+				slot6 = slot7 <= 2
+			elseif slot0.curHero[1].tag == 2 then
+				slot0.heroAction(slot0, {
+					isWinner = false,
+					index = 2,
+					starPos = (slot0.curHero[1].tag == 1 and slot3) or slot2,
+					endPos = (slot0.curHero[1].tag == 1 and slot5) or slot4,
+					needFilxp = 2 < slot7,
+					guild = slot7
+				})
+
+				slot0.curHero[2].tag = (slot0.curHero[1].tag == 1 and 2) or 1
+				slot0.curHero[2].isWin = slot9
+				slot0.curHero[1].isWin = not slot9
+
+				table.remove(slot0.playerHeroList[slot7], 1)
+				table.remove(slot0.heroList[slot7], 1)
+				slot0.refreshHeroPos(slot0, slot7, slot8)
+
+				return 
+			end
+		end
+
+		if slot0.curHero[2] then
+			slot0.curHero[1] = slot0.playerHeroList[slot7][1]
+
+			if slot0.curHero[2].tag == 1 then
+				slot6 = slot7 <= 2
+			elseif slot0.curHero[2].tag == 2 then
+				slot0.heroAction(slot0, {
+					isWinner = false,
+					index = 1,
+					starPos = (slot0.curHero[2].tag == 1 and slot3) or slot2,
+					endPos = (slot0.curHero[2].tag == 1 and slot5) or slot4,
+					needFilxp = 2 < slot7,
+					guild = slot7
+				})
+
+				slot0.curHero[1].tag = (slot0.curHero[2].tag == 1 and 2) or 1
+				slot0.curHero[1].isWin = slot9
+				slot0.curHero[2].isWin = not slot9
+
+				table.remove(slot0.playerHeroList[slot7], 1)
+				table.remove(slot0.heroList[slot7], 1)
+				slot0.refreshHeroPos(slot0, slot7, slot8)
+
+				return 
+			end
+		end
+	end
+
+	return 
+end
+slot0.heroAction = function (slot0, slot1)
+	slot0.curHero[slot1.index].hero:runAction(cc.Sequence:create({
+		cc.FadeOut:create(0.2),
+		cc.CallFunc:create(function ()
+			slot0.hero:setPosition(slot1.starPos)
+
+			if slot1.needFilxp then
+				slot0.hero.setRotationSkewY(slot1, (slot1.guild < 3 and 180) or 0)
+				slot0.hero.setRotationSkewY.hero.nameLabel.setRotationSkewY(slot1, (slot1.guild < 3 and 180) or 0)
+				slot0.hero.setRotationSkewY.hero.nameLabel.setRotationSkewY.hero.buffNode.setRotationSkewY(slot1, (slot1.guild < 3 and 180) or 0)
+				slot0.hero.setRotationSkewY.hero.nameLabel.setRotationSkewY.hero.buffNode.setRotationSkewY.hero.guildSprite.setRotationSkewY(slot1, (slot1.guild < 3 and 180) or 0)
+
+				if slot0.hero.titleNode then
+					slot0.hero.titleNode.setRotationSkewY(slot1, (slot1.guild < 3 and 180) or 0)
+				end
+			end
+
+			slot0.hero:setLocalZOrder(8)
+
+			return 
+		end),
+		cc.FadeIn:create(0.1),
+		cc.JumpTo:create(0.8, slot1.endPos, 20, 1),
+		cc.CallFunc:create(function ()
+			slot0.hero.hpProgress:setVisible(true)
+			slot0.hero.hpProgress.setVisible.hero.guildSprite:setVisible(true)
+
+			if slot0.hero.hpProgress.setVisible.hero.guildSprite.setVisible.hero.titleNode then
+				slot0.hero.titleNode:setVisible(true)
+			end
+
+			if not slot1.isWinner then
+				slot2:startFight()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.startFight = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mCanJoinCityInfo) do
+		slot1[slot6.GuildId] = slot6.Logo
+	end
+
+	for slot5, slot6 in ipairs(slot0.reportLabelList) do
+		if slot6.tag == 2 and 0 < #slot0.reportList then
+			slot11 = (slot7.WinnerIsWin and slot1[slot7.WinnerGuildId]) or slot1[slot7.FightGuildId]
+			slot12 = (slot7.WinnerIsWin and slot7.WinnerName) or slot7.FightName
+			slot13 = (slot7.WinnerIsWin and slot1[slot7.FightGuildId]) or slot1[slot7.WinnerGuildId]
+			slot14 = (slot7.WinnerIsWin and slot7.FightName) or slot7.WinnerName
+
+			slot6.label:setString("{%s}#ff66f3%s#fff8ea击败了{%s}#ff974a%s#fff8ea")
+			table.insert(slot0.showReportList, TR .. ((slot0.reportList[1].MultiKillNum and 0 < slot7.MultiKillNum and TR("获得%s连胜", slot7.MultiKillNum)) or ""))
+		end
+	end
+
+	slot2, slot3 = nil
+
+	for slot7 = 1, 2, 1 do
+		if not slot0.curHero[slot7].isWin then
+			slot3 = slot0.curHero[slot7].hero
+		else
+			slot2 = slot0.curHero[slot7].hero
+		end
+	end
+
+	slot4 = 4
+	slot5 = 0
+	slot6 = 100
+	slot7 = 100
+	slot8 = math.ceil((slot0.reportList[1].SurplusHp - 100)/2)
+	slot9 = 50
+
+	function (slot0)
+		slot2 = (slot0 == 1 and ((slot0 == 1 and slot0) or slot1)) or slot0
+
+		if tolua.isnull(slot1) or tolua.isnull(slot2) then
+			return 
+		end
+
+		slot3 = false
+
+		slot1.playAnimation(slot1, "chengzhan", 1)
+		slot1.registerLuaHandler(slot1, "event", function (slot0)
+			if slot0.eventData.stringValue == "daji" then
+				slot0()
+			end
+
+			return 
+		end)
+		Utility.performWithDelay(slot1, slot4, 0.5)
+		slot1.registerLuaHandler(slot1, "complete", function (slot0)
+			if slot0.animation == "chengzhan" then
+				if slot0 + 1 <=  then
+					slot2:onBattleReportAction()
+					slot3:playAnimation("daiji")
+
+					for slot4 = 1, 2, 1 do
+						if not slot2.curHero[slot4].isWin then
+							slot2.curHero[slot4].hero.nameLabel:setVisible(false)
+							slot2.curHero[slot4].hero.hpProgress:setVisible(false)
+							slot2.curHero[slot4].hero.guildSprite:setVisible(false)
+
+							if slot2.curHero[slot4].hero.titleNode then
+								slot2.curHero[slot4].hero.titleNode:setVisible(false)
+							end
+
+							slot2.curHero[slot4].hero:runAction(cc.Sequence:create(cc.FadeOut:create(0.3), cc.CallFunc:create(function ()
+								slot0.scoreRank = clone(slot0.reportList[1].ScoreRank)
+								slot0.nextWinnerGuildId = slot0.reportList[1].NewWinnerGuildId or 0
+
+								slot0:refreshPanel()
+								table.remove(slot0.reportList, 1)
+
+								for slot3, slot4 in ipairs(slot0.teamId) do
+									if slot0.curHero[slot1].Id == slot4 then
+										table.remove(slot0.teamId, slot3)
+
+										break
+									end
+								end
+
+								slot0.curHero[slot1].hero:removeFromParent()
+
+								slot0.curHero[slot1].hero.removeFromParent.curHero[slot0.curHero[slot1].hero] = nil
+
+								slot0.curHero[slot1].hero.removeFromParent.curHero:readyFight()
+
+								return 
+							end)))
+						else
+							slot2.fightWinGuildId = slot2.curHero[slot4].guildId
+
+							slot2.curHero[slot4].hero.hpProgress:setCurrValue(100)
+							slot2.curHero[slot4].hero.buffNode:setVisible(true)
+							slot2.curHero[slot4].hero.buffNode:runAction(cc.Sequence:create(cc.MoveBy:create(1, cc.p(0, 80)), cc.FadeOut:create(0.4), cc.CallFunc:create(function ()
+								slot0.curHero[slot1].hero.buffNode:setVisible(false)
+
+								return 
+							end), cc.MoveBy:create(0.1, cc.p(0, -80))))
+						end
+					end
+				else
+					slot4(-slot5)
+				end
+			end
+
+			return 
+		end)
+
+		return 
+	end(1)
+
+	return 
+end
+slot0.onShowReportMsg = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarEmperorReportLayer",
+		data = {
+			reportShowList = slot0.showReportList
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBattleReportAction = function (slot0)
+	for slot4, slot5 in ipairs(slot0.reportLabelList) do
+		if slot5.tag == 1 then
+			slot5.label:runAction(cc.Sequence:create(cc.MoveTo:create(0.8, cc.p(265, 67)), cc.CallFunc:create(function ()
+				slot0.label:setPosition(265, -20)
+
+				slot0.label.setPosition.tag = 2
+
+				return 
+			end)))
+		elseif slot5.tag == 2 then
+			slot5.label:runAction(cc.Sequence:create(cc.MoveTo:create(0.8, cc.p(265, 27)), cc.CallFunc:create(function ()
+				slot0.tag = 1
+
+				return 
+			end)))
+		end
+	end
+
+	return 
+end
+slot0.dealReport = function (slot0, slot1)
+	slot2 = false
+
+	for slot6, slot7 in ipairs(slot0.reportList) do
+		if slot7.Id == slot1.Id then
+			slot2 = true
+		end
+	end
+
+	if not slot2 then
+		table.insert(slot0.reportList, {
+			Id = slot1.Id,
+			WinnerGuildId = slot1.WinnerGuildId,
+			FightGuildId = slot1.FightGuildId,
+			winnerPosIndex = slot0.getPosIndex(slot0, slot1.WinnerGuildId),
+			fightPosIndex = slot0.getPosIndex(slot0, slot1.FightGuildId),
+			WinnerName = slot1.WinnerName,
+			FightName = slot1.FightName,
+			WinnerPlayerId = slot1.WinnerPlayerId,
+			FightPlayerId = slot1.FightPlayerId,
+			WinnerTeamId = slot1.WinnerTeamId,
+			FightTeamId = slot1.FightTeamId,
+			MultiKillNum = slot1.MultiKillNum,
+			WinnerIsWin = slot1.WinnerIsWin,
+			SurplusHp = slot1.SurplusHp,
+			ScoreRank = slot1.ScoreRank,
+			NewWinnerGuildId = slot1.NewWinnerGuildId
+		})
+	end
+
+	slot3 = false
+	slot4 = clone(slot1.TeamInfo)
+
+	for slot8, slot9 in ipairs(slot1.TeamInfo) do
+		if slot9.Id == slot1.WinnerTeamId then
+			table.insert(slot4, {
+				MultiKillNum = 0,
+				Dead = true,
+				HeroInfoList = slot1.FightHeroInfoList,
+				Id = slot1.FightTeamId,
+				Name = slot1.FightName,
+				PlayerId = slot1.FightPlayerId,
+				KillerTeamId = slot1.WinnerTeamId,
+				GuildId = slot1.FightGuildId,
+				FashionLevel = slot1.FightFashionLevel
+			})
+		elseif slot9.Id == slot1.FightTeamId then
+			table.insert(slot4, {
+				MultiKillNum = 0,
+				Dead = true,
+				HeroInfoList = slot1.WinnerHeroInfoList,
+				Id = slot1.WinnerTeamId,
+				Name = slot1.WinnerName,
+				PlayerId = slot1.WinnerPlayerId,
+				KillerTeamId = slot1.FightTeamId,
+				GuildId = slot1.WinnerGuildId,
+				FashionLevel = slot1.WinnerFashionLevel
+			})
+		end
+	end
+
+	slot0.dealTeamInfo(slot0, slot4)
+	slot0.changeHero(slot0)
+
+	if #slot0.reportList == 1 and not slot0.isFight then
+		Utility.performWithDelay(slot0, function ()
+			slot0:readyFight()
+
+			return 
+		end, 0.9)
+	end
+
+	return 
+end
+slot0.getPosIndex = function (slot0, slot1)
+	slot2 = 1
+	slot4 = slot0.getGuildOnlyIndex(slot0, slot1)
+
+	if slot0.getGuildOnlyIndex(slot0, slot0.mineGuildId) == 1 then
+		slot2 = slot4
+	end
+
+	if slot3 == 2 then
+		slot2 = (slot4 == slot3 and 1) or (slot4 == 3 and 2) or (slot4 == 4 and 3) or (slot4 == 1 and 4)
+	end
+
+	if slot3 == 3 then
+		slot2 = (slot4 == slot3 and 1) or (slot4 == 4 and 2) or (slot4 == 1 and 3) or (slot4 == 2 and 4)
+	end
+
+	if slot3 == 4 then
+		return (slot4 == slot3 and 1) or (slot4 == 1 and 2) or (slot4 == 2 and 3) or (slot4 == 3 and 4)
+	end
+end
+slot0.onClose = function (slot0)
+	slot0.onChoseBattle(slot0, 2)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.dealWithCampReadyData = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot1.TeamInfo) do
+		if not slot8.Dead then
+			for slot12, slot13 in pairs(slot8.HeroInfoList) do
+				table.insert(slot2, slot13)
+			end
+		end
+	end
+
+	for slot7, slot8 in pairs(slot1.RevivalInfo.RevivalTimeInfo) do
+		table.insert(slot3, {
+			Hp = 0,
+			Ang = 0,
+			ModelId = slot8.HeroModelId
+		})
+	end
+
+	return slot2, slot3
+end
+slot0.onBuildTeam = function (slot0, slot1)
+	slot2 = nil
+
+	function ()
+		slot0:safeRequest({
+			methodName = "GetTeamInfo",
+			moduleName = "MaincitywarInfo",
+			methodData = {},
+			successCallback = function (slot0)
+				slot5.alreadyGotoWork, slot5.statusList = slot0:dealWithCampReadyData(slot0)
+
+				ui.showCampReady({
+					minCount = 5,
+					isMainCityWar = true,
+					callModelSub = ModuleSub.eMainCityWar,
+					titleText = TR("派遣部队"),
+					alreadyGotoWork = slot1,
+					statusList = slot2,
+					rebirthCallback = function ()
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "citywar.JzwlReviveLayer",
+							data = {
+								revivalInfo = slot0.RevivalInfo.RevivalTimeInfo,
+								callback = function ()
+									slot0()
+
+									return 
+								end
+							},
+							zOrder = Enums.ZOrderType.ePopLayer
+						})
+
+						return 
+					end,
+					minTrainLv = MaincitywarConfig.items[1].fightTrainLvMin,
+					revivalInfo = slot0.RevivalInfo.RevivalTimeInfo,
+					callback = function (slot0)
+						slot0:safeRequest({
+							methodName = "BuildingTeam",
+							moduleName = "MaincitywarInfo",
+							methodData = {
+								table.concat(slot0, ",")
+							},
+							successCallback = function (slot0)
+								slot0:dealTeamInfo(slot0.FightTeamInfo)
+								slot0:changeHero()
+
+								return 
+							end
+						})
+
+						return 
+					end
+				})
+
+				return 
+			end
+		})
+
+		return 
+	end()
+
+	return 
+end
+slot0.dealTeamInfo = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = slot0.getPosIndex(slot0, slot6.GuildId)
+
+		if not table.indexof(slot0.teamId, slot6.Id) then
+			table.insert(slot0.heroList[slot7], {
+				Id = slot6.Id,
+				guildId = slot6.GuildId,
+				heroImageList = slot6.HeroInfoList,
+				name = slot6.Name,
+				playerId = slot6.PlayerId,
+				fashionLevel = slot6.FashionLevel,
+				titleId = slot6.TitleId
+			})
+			table.insert(slot0.teamId, slot6.Id)
+		end
+	end
+
+	slot2 = {
+		Id = 0
+	}
+
+	if not next(slot0.reportList) or slot0.reportList[1].WinnerGuildId == slot0.mineGuildId or slot0.reportList[1].FightGuildId == slot0.mineGuildId then
+		slot0.safeRequest(slot0, {
+			methodName = "GetTeamInfo",
+			moduleName = "MaincitywarInfo",
+			methodData = {},
+			successCallback = function (slot0)
+				for slot4, slot5 in ipairs(slot0.TeamInfo) do
+					if not table.indexof(slot0.teamId, slot5.Id) then
+						slot1.Id = slot5.Id
+						slot1.guildId = slot5.GuildId
+						slot1.heroImageList = slot5.HeroInfoList
+						slot1.name = slot5.Name
+						slot1.playerId = slot5.PlayerId
+					end
+				end
+
+				slot0:createMineHero(slot0.createMineHero)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.changeHero = function (slot0)
+	for slot4, slot5 in ipairs(slot0) do
+		for slot9, slot10 in ipairs(slot5) do
+			slot11 = slot0.playerHeroList[slot4][slot9]
+
+			if slot0.playerHeroList[slot4][slot9] and slot0.playerHeroList[slot4][slot9].isRobot and slot0.heroList[slot4][slot9] then
+				slot12 = clone(slot0.heroList[slot4][slot9])
+
+				slot0.playerHeroList[slot4][slot9].hero:runAction(cc.Sequence:create(cc.FadeOut:create(0.2), cc.CallFunc:create(function ()
+					slot0.playerHeroList[slot1][slot2].hero:removeFromParent()
+
+					slot0.playerHeroList[slot1][slot2].hero.removeFromParent.playerHeroList[slot0.playerHeroList[slot1][slot2].hero][slot2].hero = slot0:createHero(slot3, slot3.guildId, slot0.createHero, , slot0)
+					slot0.playerHeroList[slot1][slot2].hero.removeFromParent.playerHeroList[slot0.playerHeroList[slot1][slot2].hero][slot2].playerHeroList[slot0.createHero(slot3, slot3.guildId, slot0.createHero, , slot0)][slot2].isRobot = false
+					slot0.playerHeroList[slot1][slot2].hero.removeFromParent.playerHeroList[slot0.playerHeroList[slot1][slot2].hero][slot2].playerHeroList[slot0.createHero(slot3, slot3.guildId, slot0.createHero, , slot0)][slot2].playerHeroList[false][slot2].guildId = slot3.guildId
+					slot0.playerHeroList[slot1][slot2].hero.removeFromParent.playerHeroList[slot0.playerHeroList[slot1][slot2].hero][slot2].playerHeroList[slot0.createHero(slot3, slot3.guildId, slot0.createHero, , slot0)][slot2].playerHeroList[false][slot2].playerHeroList[slot3.guildId][slot2].Id = slot3.Id
+
+					return 
+				end)))
+			end
+		end
+	end
+
+	return 
+end
+slot0.onChoseBattle = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "GetMainFightInfo",
+		moduleName = "MaincitywarInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:dealTeamInfo(slot0.TeamInfo)
+
+			for slot4, slot5 in ipairs(slot0.mCanJoinCityInfo) do
+				for slot10, slot11 in ipairs(slot1[slot0:getPosIndex(slot5.GuildId)]) do
+					slot12 = slot0:createHero(slot0.heroList[slot6][slot10], slot5.GuildId, slot6, slot11, slot10)
+					slot13 = true
+					slot14 = 0
+					slot15 = Utility.EMPTY_ENTITY_ID
+
+					if slot0.heroList[slot6][slot10] then
+						slot13 = false
+						slot14 = slot0.heroList[slot6][slot10].Id
+						slot15 = slot0.heroList[slot6][slot10].playerId
+					end
+
+					table.insert(slot0.playerHeroList[slot6], {
+						hero = slot12,
+						guildId = slot5.GuildId,
+						isRobot = slot13,
+						Id = slot14,
+						playerId = slot15
+					})
+				end
+
+				if slot6 == 2 then
+					slot0.qizhiList[slot6]:setLocalZOrder(5)
+				end
+
+				slot7 = string.splitBySep(slot5.BannerInfo, ",")
+
+				slot0.qizhiList[slot6]:setFlag(slot5.BannerInfo)
+				slot0.qizhiList[slot6]:setString(slot5.Logo)
+
+				if Utility.isEntityId(slot0.curWinnerGuildId) and slot0.curWinnerGuildId == slot5.GuildId then
+					slot12, slot13 = slot0.qizhiList[slot6]:getPosition()
+
+					slot0.winnerEffect:setPosition(slot8, slot9)
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getReport = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetHistoryInfo",
+		moduleName = "MaincitywarInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot1 = {}
+
+			for slot5, slot6 in ipairs(slot0.mCanJoinCityInfo) do
+				slot1[slot6.GuildId] = slot6.Logo
+			end
+
+			if next(slot0.HistoryInfo) then
+				table.sort(slot0.HistoryInfo, function (slot0, slot1)
+					return slot0.FightDate < slot1.FightDate
+				end)
+			end
+
+			slot2 = ipairs
+			slot3 = slot0.HistoryInfo or {}
+
+			for slot5, slot6 in slot2(slot3) do
+				slot9 = "{%s}#ff66f3%s#fff8ea击败了{%s}#ff974a%s#fff8ea"
+				slot10 = (slot6.WinnerIsWin and slot1[slot6.WinnerGuildId]) or slot1[slot6.FightGuildId]
+				slot11 = (slot6.WinnerIsWin and slot6.WinnerName) or slot6.FightName
+				slot12 = (slot6.WinnerIsWin and slot1[slot6.FightGuildId]) or slot1[slot6.WinnerGuildId]
+				slot13 = (slot6.WinnerIsWin and slot6.FightName) or slot6.WinnerName
+
+				table.insert(slot0.showReportList, TR .. ((slot6.MultiKillNum and 0 < slot6.MultiKillNum and TR("获得%s连胜", slot6.MultiKillNum)) or ""))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClickRankBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.JzwlRankLayer"
+	})
+
+	return 
+end
+
+return slot0

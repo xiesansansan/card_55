@@ -1,0 +1,235 @@
+slot0 = class("MailSelectTargetLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled21",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			closeAction = "onExitAction",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSelectAction",
+					pos = {
+						x = 259.28,
+						y = 55.23
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "userListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 39.26,
+						y = 91.78
+					},
+					size = {
+						width = 442.18,
+						height = 176
+					}
+				},
+				children = {
+					{
+						name = "UserLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "selectBox-isSelect",
+								name = "isSelected",
+								type = "string"
+							},
+							{
+								value = "selectBox-tag",
+								name = "tag",
+								type = "string"
+							},
+							{
+								value = "untitled20-text",
+								name = "name",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 128.51
+							},
+							size = {
+								width = 442.18,
+								height = 47.59
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 180.99,
+										y = 24.52
+									},
+									text = TR("特产待发")
+								},
+								children = {}
+							},
+							{
+								name = "selectBox",
+								cType = "Checkbox",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									isSelect = false,
+									selectImage = "c_44.png",
+									callback = "onSelectTargetAction",
+									normalImage = "c_43.png",
+									pos = {
+										x = 158.82,
+										y = 24.84
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.targetData = {}
+
+	FriendObj:getFriendList(function (slot0)
+		for slot4, slot5 in ipairs(slot0) do
+			table.insert(slot0.targetData, {
+				playerId = slot5.PlayerId,
+				name = slot5.Name
+			})
+		end
+
+		function slot1(slot0)
+			if slot0 == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+				return true
+			end
+
+			for slot4, slot5 in ipairs(slot0) do
+				if slot5.PlayerId == slot0 then
+					return true
+				end
+			end
+
+			return false
+		end
+
+		if Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+			slot0:socketRequest({
+				methodName = "GetGuildMemberInfo",
+				moduleName = "Guild",
+				successCallback = function (slot0)
+					for slot4, slot5 in ipairs(slot0.MemberInfo) do
+						if not slot0(slot5.PlayerId) then
+							table.insert(slot1.targetData, {
+								playerId = slot5.PlayerId,
+								name = slot5.Name
+							})
+						end
+					end
+
+					slot1:showListView()
+
+					return 
+				end
+			})
+		else
+			slot0:showListView()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.showListView = function (slot0)
+	slot0.selectIndex = 1
+
+	for slot4, slot5 in ipairs(slot0.targetData) do
+		slot0.userListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "UserLayout", {
+			isSelected = slot4 == slot0.selectIndex,
+			tag = slot4,
+			name = slot5.name
+		}))
+	end
+
+	return 
+end
+slot0.onSelectTargetAction = function (slot0, slot1)
+	slot3 = slot0.userListView:getItem(slot0.selectIndex - 1)
+
+	if slot1.tag ~= slot0.selectIndex then
+		slot3.selectBox:setSelected(false)
+		slot0.userListView:getItem(slot2 - 1).selectBox:setSelected(true)
+
+		slot0.selectIndex = slot2
+	else
+		slot3.selectBox:setSelected(true)
+	end
+
+	return 
+end
+slot0.onSelectAction = function (slot0)
+	slot0.callback(slot0.targetData[slot0.selectIndex])
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,117 @@
+slot0 = class("RwlzJiaoBenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseClick",
+			hideCloseButton = true,
+			image = "xklz_53.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroImage",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "lh_11401.png",
+					pos = {
+						x = 313.93,
+						y = 265.51
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroNameImage",
+				cType = "Sprite",
+				params = {
+					image = "xklz_55.png",
+					pos = {
+						x = 430.44,
+						y = 336.64
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroTipsImage",
+				cType = "Sprite",
+				params = {
+					image = "xklz_66.png",
+					pos = {
+						x = 504.2,
+						y = 198.48
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tishi",
+				cType = "Sprite",
+				params = {
+					image = "xklz_54.png",
+					pos = {
+						x = 429.83,
+						y = 169.23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 353.64,
+						y = -28.69
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mHeroInfoList = slot1.mHeroInfoList
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.heroImage:setTexture(HeroModel.items[slot0.mHeroInfoList.matchHeroModelId].drawingPicA .. ".png")
+	slot0.heroNameImage:setTexture(slot0.mHeroInfoList.heroNamePic .. ".png")
+	slot0.heroTipsImage:setTexture(slot0.mHeroInfoList.heroLifePic .. ".png")
+	slot0.heroImage:setOpacity(0)
+	slot0.heroNameImage:setOpacity(0)
+	slot0.heroTipsImage:setOpacity(0)
+	slot0.tishi:setOpacity(0)
+	slot0.heroImage:runAction(cc.FadeIn:create(3))
+	slot0.heroNameImage:runAction(cc.FadeIn:create(3.5))
+	slot0.heroTipsImage:runAction(cc.FadeIn:create(4.5))
+	slot0.tishi:runAction(cc.FadeIn:create(5))
+
+	return 
+end
+slot0.onCloseClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

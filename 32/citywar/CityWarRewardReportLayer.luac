@@ -1,0 +1,246 @@
+slot0 = class("CityWarRewardReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallback",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 626,
+				height = 448
+			},
+			titleText = TR("挂机战报")
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 313,
+						y = 218
+					},
+					size = {
+						width = 572,
+						height = 382
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 313,
+						y = 218
+					},
+					size = {
+						width = 572,
+						height = 375
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "reportText",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 572,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Sprite",
+								params = {
+									scaleX = 0.9,
+									image = "c_95.png",
+									pos = {
+										x = 285,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "reporeLabel",
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 18.17,
+										y = 101.18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "ListView",
+								params = {
+									childName = "RewardList",
+									direction = false,
+									pos = {
+										x = 15.08,
+										y = 6.54
+									},
+									size = {
+										width = 300,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 90,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "untitled10",
+												cType = "CardNode",
+												params = {
+													scale = 0.9,
+													childName = "rewardNode",
+													allowClick = true,
+													pos = {
+														x = 45,
+														y = 40
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "noticeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 313.77,
+						y = 216.04
+					},
+					text = TR("暂无战报信息")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	dump(slot1)
+
+	slot0.teamId = slot1.teamIndex
+
+	slot0.initUI(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, slot0.refreshUI), 2)
+
+	slot0.RequestGetReport(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = {}
+
+	if slot0.ReportData.FightRecordStr ~= "" then
+		slot1 = json.decode(slot0.ReportData.FightRecordStr)
+	end
+
+	slot0.noticeLabel:setVisible(slot0.ReportData.FightRecordStr == "")
+	slot0.mListView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "layout", {
+			reportText = slot6.Content
+		}).RewardList:removeAllItems()
+
+		for slot12, slot13 in ipairs(slot8) do
+			slot0.createLayoutTemplateNode(slot0, "rewardLayout").rewardNode:setCardData(slot13, {
+				Enums.CardShowAttr.eNum
+			})
+			slot7.RewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+		end
+
+		slot0.mListView:pushBackCustomItem(slot7)
+	end
+
+	return 
+end
+slot0.onActionCallback = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.RequestGetReport = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeamStateInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.ReportData = slot0.Value[slot0.teamId] or {}
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

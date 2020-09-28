@@ -1,0 +1,628 @@
+slot0 = class("RwlzHeroListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "bb_14.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "touchAreaNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 22.15,
+						y = 17.71
+					},
+					size = {
+						width = 950,
+						height = 490
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 509.85,
+						y = 512.03
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							pos = {
+								x = 144,
+								y = 17
+							},
+							text = TR("群侠谱")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTableClick",
+					space = 1,
+					normalImage = "c_58.png",
+					lightedImage = "bb_4.png",
+					direction = true,
+					btnInfos = {
+						{
+							title = "113"
+						}
+					},
+					btnSize = {
+						width = 141,
+						height = 80
+					},
+					pos = {
+						x = 17.13,
+						y = 53.94
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 145,
+						height = 450
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mLeftArrowSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_4.png",
+					pos = {
+						x = 169,
+						y = 260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRightArrowSprite",
+				cType = "Sprite",
+				params = {
+					reverse = 1,
+					image = "c_4.png",
+					pos = {
+						x = 947,
+						y = 260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = false,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 184.06,
+						y = 43.66
+					},
+					size = {
+						width = 750,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "mHeroTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -420
+							},
+							size = {
+								width = 200,
+								height = 420
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Sprite",
+								params = {
+									image = "xklz_16.png",
+									pos = {
+										x = 100,
+										y = 233.29
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Button",
+								params = {
+									childName = "heroBtn",
+									scale = 0.95,
+									swallowTouch = false,
+									pressedAction = false,
+									image = "bsx_11101.png",
+									pos = {
+										x = 100,
+										y = 232
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_46.png",
+									pos = {
+										x = 100,
+										y = 96
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled4",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									isRichText = true,
+									childName = "heroName",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 100,
+										y = 94
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "countLabel",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 100,
+										y = 69
+									},
+									text = TR("树上熟")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_16.png",
+									childName = "zizhiBg",
+									pos = {
+										x = 169.32,
+										y = 325.02
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									childName = "isOwn",
+									image = "c_88.png",
+									hide = true,
+									pos = {
+										x = 49.53,
+										y = 373.3
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											rotationAngle = -45,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 19.67,
+												y = 36.71
+											},
+											text = TR("未拥有")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtnClick",
+					pos = {
+						x = 971,
+						y = 509.66
+					}
+				},
+				children = {}
+			},
+			{
+				name = "jiesuo",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 929.08,
+						y = 479.11
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		endedEvent = function (slot0, slot1)
+			if not slot0.bgSprite then
+				return 
+			end
+
+			if not cc.rectContainsPoint(cc.rect(0, 0, slot0.touchAreaNode:getContentSize().width, slot0.touchAreaNode.getContentSize().height), slot0.touchAreaNode:convertToNodeSpace(slot0.getLocation(slot0))) then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	slot0.mAllChapterInfo = slot1.allChapterInfo
+	slot0.mQiecuoCount = slot1.qiecuoCount
+	slot0.mFightBuyNum = slot1.fightBuyNum
+	slot0.QunxiaNodeDataList = slot1.mQunxiaNodeDataList
+	slot0.mUnLockHeroList = {}
+	slot0.mHeroList = {}
+
+	slot0.dealUnLockHero(slot0)
+	slot0.dataConfig(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tebBtnInfos = {
+		{
+			tag = 1,
+			title = "  全部",
+			spPic = "xklz_74.png",
+			spPicLight = "xklz_75.png"
+		},
+		{
+			tag = 2,
+			title = "  射雕",
+			spPic = "xklz_76.png",
+			spPicLight = "xklz_77.png"
+		},
+		{
+			tag = 3,
+			title = "  神雕",
+			spPic = "xklz_78.png",
+			spPicLight = "xklz_79.png"
+		},
+		{
+			tag = 4,
+			title = "  倚天",
+			spPic = "xklz_80.png",
+			spPicLight = "xklz_81.png"
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0.tebBtnInfos
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = UIWrap.newControl("Sprite", {
+			image = "bb_5.png"
+		})
+
+		slot7.setPosition(slot7, -10, -40)
+		slot6.addChild(slot6, slot7)
+
+		slot8 = UIWrap.newControl("Sprite", {
+			image = slot0.tebBtnInfos[slot5].spPicLight
+		})
+
+		slot8.setPosition(slot8, -35, 1)
+		slot6.addChild(slot6, slot8)
+
+		slot6.boxSprite = slot8
+	end
+
+	EventAuto:registerAutoEvent(slot0, "eXUNXIACOUNTEVENT", function (slot0, slot1)
+		slot0.mQiecuoCount = slot1.mFightNum
+		slot0.mFightBuyNum = slot1.mFightBuyNum
+
+		slot0.mHeroTableView:reloadData()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, "eXUNXIACHAPTEREVENTONE", function (slot0, slot1)
+		slot0.QunxiaTableList = slot1
+
+		slot0.mHeroTableView:reloadData()
+
+		return 
+	end)
+
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.mHeroList[1]) do
+		slot8, slot9 = slot0.foundCount(slot0, slot7)
+
+		if 0 < slot9 then
+			slot2 = slot2 + 1
+		end
+	end
+
+	slot0.jiesuo:setString(TR("寻侠完成度: %s%s/%s", "#8ba857", slot2, #slot0.mHeroList[1]))
+
+	return 
+end
+slot0.dealUnLockHero = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mAllChapterInfo) do
+		for slot10, slot11 in pairs(slot6.QunxiaNodeInfo) do
+			if slot11.NormalPass then
+				slot1[slot10] = clone(slot11)
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if QunxiaNodeModel.items[tonumber(slot7)].matchHeroModelId ~= 0 then
+			slot0.mUnLockHeroList[slot8.matchHeroModelId] = true
+		end
+	end
+
+	return 
+end
+slot0.dataConfig = function (slot0)
+	for slot4, slot5 in pairs(QunxiaNodeModel.items) do
+		if HeroModel.items[slot5.matchHeroModelId] then
+			slot0.mHeroList[1] = slot0.mHeroList[1] or {}
+			slot0.mHeroList[1][slot5.matchHeroModelId] = true
+			slot0.mHeroList[slot6.camp + 1] = slot0.mHeroList[slot6.camp + 1] or {}
+			slot0.mHeroList[slot6.camp + 1][slot5.matchHeroModelId] = true
+		end
+	end
+
+	for slot4, slot5 in pairs(slot0.mHeroList) do
+		table.sort(table.keys(slot5), function (slot0, slot1)
+			if slot0.mUnLockHeroList[slot0] ~= slot0.mUnLockHeroList[slot1] then
+				return slot0.mUnLockHeroList[slot0]
+			end
+
+			return HeroModel.items[slot1].quality < HeroModel.items[slot0].quality
+		end)
+
+		slot0.mHeroList[slot4] = table.keys(slot5)
+	end
+
+	slot0.dataTableConfig(slot0)
+
+	return 
+end
+slot0.dataTableConfig = function (slot0)
+	slot0.QunxiaTableList = {}
+
+	for slot4, slot5 in pairs(QunxiaNodeModel.items) do
+		slot0.QunxiaTableList[slot5.nodeId] = slot5
+		slot0.QunxiaTableList[slot5.nodeId].Draw = false
+		slot0.QunxiaTableList[slot5.nodeId].VisitNum = 0
+		slot0.QunxiaTableList[slot5.nodeId].NormalPass = false
+	end
+
+	for slot4, slot5 in pairs(slot0.mAllChapterInfo) do
+		for slot9, slot10 in pairs(slot5.QunxiaNodeInfo) do
+			slot0.QunxiaTableList[slot10.NodeId].Draw = slot10.Draw
+			slot0.QunxiaTableList[slot10.NodeId].VisitNum = slot10.VisitNum
+			slot0.QunxiaTableList[slot10.NodeId].NormalPass = slot10.NormalPass
+		end
+	end
+
+	return 
+end
+slot0.foundCount = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot0.QunxiaTableList) do
+		if slot8.matchHeroModelId == slot1 and slot8.NormalPass then
+			slot2 = slot2 + slot8.VisitNum
+			slot3 = slot3 + QunxiaConfig.items[1].nodeVisitNum
+		end
+	end
+
+	return slot2, slot3
+end
+slot0.onTableClick = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		if slot6 == slot1 then
+			slot7.boxSprite:setTexture(slot0.tebBtnInfos[slot6].spPicLight)
+		else
+			slot7.boxSprite:setTexture(slot0.tebBtnInfos[slot6].spPic)
+		end
+	end
+
+	if not slot0.mHeroList then
+		return 
+	end
+
+	if slot1 == 1 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 2 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 3 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 4 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	end
+
+	slot0.mHeroTableView:reloadData()
+	slot0.mHeroTableView:jumpToTop()
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 200, 420
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.QunxiaInfo
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mHeroTemplate")
+	slot3.refreshCell = function (slot0, slot1)
+		slot3 = clone(HeroObj:getItem(slot2))
+		slot5 = HeroObj:getItem(HeroModel.items[slot0.QunxiaInfo[slot1 + 1]].modelId)
+
+		slot0.heroName:setString(TR("%s", HeroModel.items[slot0.QunxiaInfo[slot1 + 1]].name))
+		slot0.heroName:setColor(slot6)
+		slot0.isOwn:setVisible(not HeroObj:isHaveModel(slot2))
+		slot0.zizhiBg:setTexture(Utility.getHeroQualityImage(slot2))
+
+		slot7, slot8 = slot0:foundCount(slot2)
+
+		slot0.countLabel:setString(TR("今日寻侠次数:%s%s/%s", "#67a31e", slot8 - slot7, slot8))
+		slot0.heroBtn:setBright(0 < slot8)
+		slot0.heroBtn:loadTextures(slot0.heroBtn.setBright, TR("%s.png", HeroModel.items[slot2].halfBodyPic))
+		slot0.heroBtn:setClickAction(function ()
+			if slot0 <= 0 then
+				ui.showFlashView(TR("通过对应侠客群侠谱后解锁!"))
+
+				return 
+			end
+
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "renwuliezhuan.RwlzHeroInfoLayer",
+				data = {
+					allChapterInfo = slot1.mAllChapterInfo,
+					qiecuoCount = slot1.mQiecuoCount,
+					fightBuyNum = slot1.mFightBuyNum,
+					heroId = slot2,
+					mQunxiaNodeDataList = slot1.QunxiaNodeDataList
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+
+return slot0

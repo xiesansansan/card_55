@@ -1,0 +1,550 @@
+slot0 = class("CityWarFirstPassRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568.97,
+				y = 313.78
+			},
+			size = {
+				width = 606,
+				height = 541
+			},
+			titleText = TR("首通奖励")
+		},
+		children = {
+			{
+				name = "aboveBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 304.27,
+						y = 332.41
+					},
+					size = {
+						width = 520,
+						height = 329
+					}
+				},
+				children = {
+					{
+						name = "RewardCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled11-modelId",
+								name = "rewardModel1",
+								type = "string"
+							},
+							{
+								value = "untitled11-num",
+								name = "rewardCount1",
+								type = "string"
+							},
+							{
+								value = "untitled12-modelId",
+								name = "rewardModel2",
+								type = "string"
+							},
+							{
+								value = "untitled12-num",
+								name = "rewardCount2",
+								type = "string"
+							},
+							{
+								value = "untitled13-modelId",
+								name = "rewardModel3",
+								type = "string"
+							},
+							{
+								value = "untitled13-num",
+								name = "rewardCount3",
+								type = "string"
+							},
+							{
+								value = "untitled9-image",
+								name = "iconImage",
+								type = "string"
+							},
+							{
+								value = "untitled16-text",
+								name = "playerName",
+								type = "string"
+							},
+							{
+								value = "untitled18-text",
+								name = "killText",
+								type = "string"
+							},
+							{
+								value = "untitled19-text",
+								name = "ratioText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 3.1,
+								y = 210.09
+							},
+							size = {
+								width = 510,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 255,
+										y = 50
+									},
+									size = {
+										width = 510,
+										height = 97
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											pos = {
+												x = 61.4,
+												y = 47.95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Label",
+										params = {
+											text = "Name",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 166.56,
+												y = 48.2
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 255.72,
+												y = 28.86
+											},
+											text = TR("奖励:")
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "ResLabel",
+										params = {
+											fontSize = 22,
+											modelId = 1111,
+											num = 0,
+											resScale = 0.8,
+											color = {
+												g = 50,
+												r = 62,
+												b = 34
+											},
+											pos = {
+												x = 278.17,
+												y = 29.58
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "ResLabel",
+										params = {
+											fontSize = 22,
+											modelId = 1111,
+											num = 0,
+											resScale = 0.8,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 359.69,
+												y = 29.58
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "ResLabel",
+										params = {
+											fontSize = 22,
+											modelId = 1111,
+											num = 0,
+											resScale = 0.8,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 435.06,
+												y = 29.58
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 235.04,
+												y = 68
+											},
+											text = TR("杀敌人数: 0")
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 371.97,
+												y = 68
+											},
+											text = TR("杀敌占比: 0%")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "NullCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled22-image",
+								name = "iconImage",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 3.1,
+								y = 111.09
+							},
+							size = {
+								width = 510,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 255,
+										y = 50
+									},
+									size = {
+										width = 510,
+										height = 97
+									}
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											pos = {
+												x = 66.4,
+												y = 47.95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Label",
+										params = {
+											fontSize = 30,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 261.25,
+												y = 48.33
+											},
+											text = TR("暂无排名")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "rewardNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 34.16,
+						y = 64
+					}
+				},
+				children = {
+					{
+						name = "myRankLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 17.12,
+								y = 71.38
+							},
+							text = TR("我的排名:  #2587100")
+						},
+						children = {}
+					},
+					{
+						name = "myRatioLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 514.48,
+								y = 71.38
+							},
+							text = TR("杀敌占比: #2587100%")
+						},
+						children = {}
+					},
+					{
+						name = "myCountLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 266.27,
+								y = 71.38
+							},
+							text = TR("杀敌人数:  #2587100")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled15",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onRewardDrawAction",
+					pos = {
+						x = 295.85,
+						y = 52.68
+					},
+					titleText = TR("领取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.cityId = slot1.cityId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot2 = CitywarFirstRankRelation.items[slot0.cityId]
+
+	for slot7 = 1, #slot0.response.RankingList, 1 do
+		slot10 = Utility.analysisStrResList(slot9)
+		slot11 = slot0.createLayoutTemplateNode(slot0, "RewardCell", {
+			iconImage = slot1[slot7],
+			playerName = (slot0.response.RankingList[slot7] and slot8.Name) or TR("无"),
+			killText = TR("杀敌人数：%d", (slot8 and slot8.KillNum) or 0),
+			ratioText = TR("杀敌占比：%d%%", (slot8 and math.floor(slot8.Percent*100)) or 0),
+			rewardModel1 = slot10[1].resourceId,
+			rewardCount1 = slot10[1].num,
+			rewardModel2 = slot10[2].resourceId,
+			rewardCount2 = slot10[2].num,
+			rewardModel3 = slot10[3].resourceId,
+			rewardCount3 = slot10[3].num
+		})
+
+		slot11.setPosition(slot11, 3, (slot7 - 1)*101 - 220)
+		slot0.aboveBg:addChild(slot11)
+	end
+
+	for slot7 = slot3 + 1, 3, 1 do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "NullCell", {
+			iconImage = slot1[slot7]
+		})
+
+		slot8.setPosition(slot8, 3, (slot7 - 1)*101 - 220)
+		slot0.aboveBg:addChild(slot8)
+	end
+
+	slot0.myRankLabel:setString(TR("我的排名：%d", slot0.response.Rank))
+	slot0.myRatioLabel:setString(TR("杀敌占比：%d%%", math.floor(slot0.response.Percent*100)))
+	slot0.myCountLabel:setString(TR("杀敌人数：%d", slot0.response.KillNum))
+
+	slot4 = slot2[4].rewardStr
+
+	if slot0.response.Rank <= 3 then
+		slot4 = slot2[slot0.response.Rank].rewardStr
+	end
+
+	for slot9, slot10 in ipairs(slot5) do
+		slot0.rewardNode:addChild(UIWrap.newControl("ResLabel", {
+			pos = cc.p((slot9 - 1)*171 + 70, 29),
+			modelId = slot10.resourceId,
+			num = slot10.num,
+			color = cc.c3b(62, 50, 34)
+		}))
+	end
+
+	return 
+end
+slot0.onRewardDrawAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveBigCityFirstPassedReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.cityId
+		},
+		successCallback = function (slot0)
+			EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRankInfo",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.cityId,
+			3
+		},
+		successCallback = function (slot0)
+			slot0.response = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

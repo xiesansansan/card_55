@@ -1,0 +1,133 @@
+slot0 = class("BagEquipFatherLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					normalImage = "c_31.png",
+					isNeedOutline = false,
+					lightedImage = "c_30.png",
+					direction = false,
+					btnInfos = {
+						{
+							title = TR("神功")
+						}
+					},
+					pos = {
+						x = -350.21,
+						y = 188.38
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 260,
+						height = 45
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "equipLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagEquipLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "debrisLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagEquipDebrisLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tebBtnInfos = {
+		{
+			tag = 1,
+			moduleId = 0,
+			layer = "equipLayer",
+			title = TR("装 备")
+		},
+		{
+			tag = 2,
+			layer = "debrisLayer",
+			title = TR("碎 片"),
+			moduleId = ModuleSub.eBagEquipDebris
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.tebBtnInfos
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		if slot0.tebBtnInfos[slot5].moduleId ~= 0 then
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				moduleId = slot0.tebBtnInfos[slot5].moduleId
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	if slot0.mShowLayer then
+		slot0.mShowLayer:removeFromParent()
+
+		slot0.mShowLayer = nil
+	end
+
+	slot0.createUISubTree(slot0, slot0.tebBtnInfos[slot1].layer)
+
+	slot0.mShowLayer = slot0[slot0.tebBtnInfos[slot1].layer]
+
+	return 
+end
+
+return slot0

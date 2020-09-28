@@ -1,0 +1,305 @@
+slot0 = class("SectFightLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "zm_15.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 860,
+				height = 540
+			}
+		},
+		children = {
+			{
+				name = "heroSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "lh_11205.png",
+					pos = {
+						x = 197.67,
+						y = 269.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 368,
+						y = 378
+					}
+				},
+				children = {}
+			},
+			{
+				name = "figthNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					hide = true,
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 368,
+						y = 338
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 368,
+						y = 338
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 363.68,
+						y = 293.61
+					},
+					text = TR("成功挑战晋升为宗师，解锁唯一称号")
+				},
+				children = {}
+			},
+			{
+				name = "attrLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					text = "Label",
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 366.7,
+						y = 269.15
+					},
+					size = {
+						width = 400,
+						height = 90
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "times",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_27.png",
+					hide = true,
+					clickAction = "onChallengeCallBack",
+					pos = {
+						x = 535.4,
+						y = 83.85
+					},
+					titleText = TR("普通挑战")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "times",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onChallengeCallBack",
+					pos = {
+						x = 533.37,
+						y = 86.06
+					},
+					titleText = TR("挑 战")
+				},
+				children = {}
+			},
+			{
+				name = "effectNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 524.87,
+						y = 121.4
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_beigaidazongshi",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.nameLabel:setString(TR("宗师：#DFC72A%s", (slot0.data.MasterName ~= "" and slot1.MasterName) or slot0.mSectCfg.name))
+	slot0.figthNumLabel:setString(TR("挑战次数：%s", slot1.WinNum))
+	slot0.fapLabel:setString(TR("宗师难度：%s", slot1.WinNum*10 + (SectConfig.items[1].masterChallengeInitLv or 0)))
+	slot0.attrLabel:setString(TR("称号属性：%s", TitleConfig.items[slot0.mSectCfg.masterTitleId].addIntro))
+
+	if FashionModel.items[slot1.FashionModelId] then
+		slot0.heroSprite:setTexture(FashionModel.items[slot1.FashionModelId].pic .. ".png")
+	else
+		slot0.heroSprite:setTexture(HeroModel.items[slot0.mSectCfg.initHeroMOdelId].drawingPicA .. ".png")
+	end
+
+	if TitleConfig.items[slot0.mSectCfg.masterTitleId] and slot2.pic and cc.FileUtils:getInstance():isFileExist(slot2.pic .. ".skel") then
+		slot0.effectNode:removeAllChildren()
+		slot0.effectNode:addChild(UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 1,
+			dataFile = slot2.pic
+		}))
+	end
+
+	return 
+end
+slot0.onChallengeCallBack = function (slot0, slot1)
+	times = slot1.times
+
+	ui.showCampReady({
+		noNeedVit = true,
+		isPve = true,
+		callModelSub = ModuleSub.eSect,
+		currSlotString = PveObj:getNodeFormationStr(),
+		callback = function (slot0)
+			slot0:requetFight(times, table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requetFight = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Sect",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					fightNum = slot0
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,2346 @@
+slot0 = class("QinxiuRoadLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled69",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "txdy_10.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mMidNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled224",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -320
+					}
+				},
+				children = {
+					{
+						name = "mMainBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "tc_1.png",
+							pos = {
+								x = 0,
+								y = 300
+							},
+							size = {
+								width = 1046,
+								height = 530
+							}
+						},
+						children = {
+							{
+								name = "untitled144",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_41.png",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 10,
+										y = 265
+									},
+									size = {
+										width = 130,
+										height = 500
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "bgInfoNode",
+						cType = "Node",
+						params = {
+							hide = false,
+							pos = {
+								x = -363,
+								y = 438
+							},
+							size = {
+								width = 740,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled156",
+								cType = "Scale9Sprite",
+								params = {
+									image = "qxzl_10.png",
+									pos = {
+										x = 85,
+										y = 70
+									},
+									size = {
+										width = 142,
+										height = 30
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									emptyInit = true,
+									childName = "txtLevel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 35,
+										y = 70
+									},
+									text = TR("等级:0/1")
+								},
+								children = {}
+							},
+							{
+								name = "untitled157",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									isRichText = true,
+									emptyInit = true,
+									childName = "expLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 160,
+										y = 70
+									},
+									text = TR("经验值 #8BA857100/1000")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								params = {
+									fontSize = 22,
+									clickAction = "onBuyLevelAction",
+									image = "c_27.png",
+									childName = "btnBuyLevel",
+									pos = {
+										x = 390.06,
+										y = 70
+									},
+									size = {
+										width = 110,
+										height = 36
+									},
+									titleText = TR("购买等级")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "txtActiveQiyu",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 380,
+										y = -365
+									},
+									text = TR("任何时候激活奇遇，都可领取全部已完成的奇遇奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "StarNode",
+								params = {
+									space = 10,
+									hide = true,
+									childName = "starNode",
+									starImg = "c_5.png",
+									starLevel = 10,
+									scale = 0.8,
+									pos = {
+										x = 334.97,
+										y = -366.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled158",
+								cType = "Scale9Sprite",
+								params = {
+									image = "jyt_33.png",
+									childName = "proBg",
+									pos = {
+										x = 253.41,
+										y = 36
+									}
+								},
+								children = {
+									{
+										name = "untitled159",
+										cType = "ProgressBar",
+										params = {
+											normalImage = "jyt_34.png",
+											childName = "proBar",
+											pos = {
+												x = 252.69,
+												y = 10
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled198",
+								cType = "Node",
+								params = {
+									childName = "qiyuNode",
+									pos = {
+										x = 557.81,
+										y = -352.37
+									},
+									size = {
+										width = 300,
+										height = 370
+									}
+								},
+								children = {
+									{
+										name = "untitled199",
+										cType = "Sprite",
+										params = {
+											childName = "heroBody",
+											image = "qxzl_12.png",
+											hide = true,
+											pos = {
+												x = 175.18,
+												y = 197.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled203",
+										cType = "Scale9Sprite",
+										params = {
+											image = "qxzl_8.png",
+											capInsets = {
+												x = 15,
+												height = 10,
+												width = 10,
+												y = 15
+											},
+											pos = {
+												x = 77.78,
+												y = 222.13
+											},
+											size = {
+												width = 40,
+												height = 150
+											}
+										},
+										children = {
+											{
+												name = "untitled204",
+												cType = "Label",
+												params = {
+													align = 1,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 20,
+														y = 75
+													},
+													size = {
+														width = 40,
+														height = 0
+													},
+													text = TR("奇遇奖励角色")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled200",
+										cType = "Scale9Sprite",
+										params = {
+											rotationAngle = 90,
+											image = "c_11.png",
+											pos = {
+												x = 8.07,
+												y = 199.16
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled201",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_7.png",
+											pos = {
+												x = 35.21,
+												y = 276.19
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled205",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											clickAction = "onLookQiyuRewardAction",
+											pos = {
+												x = 148.9,
+												y = 34.97
+											},
+											titleText = TR("奇遇一览")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "bgDayTaskNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = -363,
+								y = 56
+							},
+							size = {
+								width = 840,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "untitled187",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_pure.png",
+									childName = "bgXiuxing",
+									pos = {
+										x = 369.16,
+										y = 213.79
+									},
+									size = {
+										width = 740,
+										height = 370
+									}
+								},
+								children = {
+									{
+										name = "untitled34",
+										cType = "ListView",
+										params = {
+											childName = "listView",
+											direction = false,
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											pos = {
+												x = 430.77,
+												y = 0
+											},
+											size = {
+												width = 860,
+												height = 370
+											}
+										},
+										children = {
+											{
+												name = "templateXiuxingCell",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled37-text",
+														name = "strTitle",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 220,
+														height = 370
+													}
+												},
+												children = {
+													{
+														name = "untitled36",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_13.png",
+															pos = {
+																x = 110,
+																y = 185
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled188",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_14.png",
+															pos = {
+																x = 105,
+																y = 325
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled189",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_6.png",
+															pos = {
+																x = 110,
+																y = 244.68
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled37",
+														cType = "Label",
+														params = {
+															fontSize = 24,
+															pos = {
+																x = 110,
+																y = 332
+															},
+															text = TR("标题")
+														},
+														children = {}
+													},
+													{
+														name = "untitled38",
+														cType = "Label",
+														params = {
+															fontSize = 20,
+															align = 1,
+															childName = "introLabel",
+															valign = 0,
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 110,
+																y = 168
+															},
+															size = {
+																width = 170,
+																height = 0
+															},
+															text = TR("任务描述")
+														},
+														children = {}
+													},
+													{
+														name = "untitled223",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															isRichText = true,
+															align = 1,
+															childName = "doneNumLabel",
+															valign = 0,
+															color = {
+																g = 135,
+																r = 37,
+																b = 17
+															},
+															pos = {
+																x = 110,
+																y = 77
+															},
+															text = TR("任务描述")
+														},
+														children = {}
+													},
+													{
+														name = "untitled39",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															childName = "progressLabel",
+															isRichText = true,
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 110,
+																y = 123.85
+															},
+															text = TR("当前进度: 10/15")
+														},
+														children = {}
+													},
+													{
+														name = "untitled41",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															childName = "getInfoLabel",
+															isRichText = true,
+															color = {
+																g = 135,
+																r = 37,
+																b = 17
+															},
+															pos = {
+																x = 110,
+																y = 77
+															},
+															text = TR("每15次可领1经验")
+														},
+														children = {}
+													},
+													{
+														name = "untitled45",
+														cType = "Button",
+														params = {
+															childName = "btnGoto",
+															image = "c_27.png",
+															scale = 0.9,
+															pos = {
+																x = 110,
+																y = 42
+															},
+															titleText = TR("前往")
+														},
+														children = {}
+													},
+													{
+														name = "untitled46",
+														cType = "Button",
+														params = {
+															childName = "btnGet",
+															image = "c_39.png",
+															scale = 0.85,
+															pos = {
+																x = 110,
+																y = 44
+															},
+															size = {
+																width = 105,
+																height = 46
+															},
+															titleText = TR("领取10经验")
+														},
+														children = {}
+													},
+													{
+														name = "untitled190",
+														cType = "Scale9Sprite",
+														params = {
+															image = "jyt_33.png",
+															childName = "proBg",
+															pos = {
+																x = 110,
+																y = 103.36
+															},
+															size = {
+																width = 190,
+																height = 17
+															}
+														},
+														children = {
+															{
+																name = "untitled191",
+																cType = "ProgressBar",
+																params = {
+																	normalImage = "jyt_34.png",
+																	childName = "proBar",
+																	pos = {
+																		x = 90,
+																		y = 7
+																	},
+																	size = {
+																		width = 165,
+																		height = 8
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "bgWeekTaskNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = -363,
+								y = 56
+							},
+							size = {
+								width = 740,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "untitled192",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_pure.png",
+									childName = "bgQuwen",
+									pos = {
+										x = 369.16,
+										y = 213.79
+									},
+									size = {
+										width = 740,
+										height = 370
+									}
+								},
+								children = {
+									{
+										name = "untitled193",
+										cType = "ListView",
+										params = {
+											childName = "listView",
+											direction = false,
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											pos = {
+												x = 430.77,
+												y = 0
+											},
+											size = {
+												width = 860,
+												height = 370
+											}
+										},
+										children = {
+											{
+												name = "templateQuwenCell",
+												cType = "Layout",
+												params = {
+													size = {
+														width = 220,
+														height = 370
+													}
+												},
+												children = {
+													{
+														name = "untitled178",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_13.png",
+															pos = {
+																x = 110,
+																y = 185
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled195",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_6.png",
+															pos = {
+																x = 110,
+																y = 244.68
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled185",
+														cType = "Sprite",
+														params = {
+															image = "qxzl_14.png",
+															childName = "hardSprite",
+															pos = {
+																x = 105,
+																y = 325
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled179",
+														cType = "Label",
+														params = {
+															fontSize = 24,
+															childName = "titleLabel",
+															pos = {
+																x = 110,
+																y = 330.44
+															},
+															text = TR("标题")
+														},
+														children = {}
+													},
+													{
+														name = "untitled180",
+														cType = "Label",
+														params = {
+															fontSize = 20,
+															align = 1,
+															childName = "introLabel",
+															valign = 0,
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 110,
+																y = 168
+															},
+															size = {
+																width = 170,
+																height = 0
+															},
+															text = TR("任务描述")
+														},
+														children = {}
+													},
+													{
+														name = "untitled181",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															childName = "progressLabel",
+															isRichText = true,
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 110,
+																y = 123.85
+															},
+															text = TR("当前进度: 10/15")
+														},
+														children = {}
+													},
+													{
+														name = "untitled182",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															childName = "getInfoLabel",
+															isRichText = true,
+															color = {
+																g = 135,
+																r = 37,
+																b = 17
+															},
+															pos = {
+																x = 110,
+																y = 77
+															},
+															text = TR("每15次可领100经验")
+														},
+														children = {}
+													},
+													{
+														name = "untitled183",
+														cType = "Button",
+														params = {
+															childName = "btnRefresh",
+															image = "c_27.png",
+															scale = 0.9,
+															pos = {
+																x = 110,
+																y = 42
+															},
+															titleText = TR("刷新")
+														},
+														children = {}
+													},
+													{
+														name = "untitled184",
+														cType = "Button",
+														params = {
+															childName = "btnGet",
+															image = "c_39.png",
+															scale = 0.85,
+															pos = {
+																x = 110,
+																y = 44
+															},
+															size = {
+																width = 105,
+																height = 46
+															},
+															titleText = TR("领取10")
+														},
+														children = {}
+													},
+													{
+														name = "untitled186",
+														cType = "Sprite",
+														params = {
+															childName = "doneSprite",
+															image = "c_17.png",
+															hide = true,
+															pos = {
+																x = 110,
+																y = 75
+															}
+														},
+														children = {
+															{
+																name = "untitled194",
+																cType = "Label",
+																params = {
+																	pos = {
+																		x = 41,
+																		y = 40.84
+																	},
+																	text = TR("已完成")
+																},
+																children = {}
+															}
+														}
+													},
+													{
+														name = "untitled196",
+														cType = "Scale9Sprite",
+														params = {
+															image = "jyt_33.png",
+															childName = "proBg",
+															pos = {
+																x = 110,
+																y = 103.36
+															},
+															size = {
+																width = 190,
+																height = 17
+															}
+														},
+														children = {
+															{
+																name = "untitled197",
+																cType = "ProgressBar",
+																params = {
+																	normalImage = "jyt_34.png",
+																	childName = "proBar",
+																	pos = {
+																		x = 90,
+																		y = 7
+																	},
+																	size = {
+																		width = 165,
+																		height = 8
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "bgRewardNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = -363,
+								y = 56
+							},
+							size = {
+								width = 740,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "qxzl_2.png",
+									pos = {
+										x = 60,
+										y = 321.44
+									}
+								},
+								children = {
+									{
+										name = "untitled150",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_5.png",
+											pos = {
+												x = 61.5,
+												y = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled147",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 61.5,
+												y = 35
+											},
+											text = TR("普通奖励")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled59",
+								cType = "Sprite",
+								params = {
+									image = "qxzl_1.png",
+									childName = "qiYuBg",
+									pos = {
+										x = 60,
+										y = 126.59
+									}
+								},
+								children = {
+									{
+										name = "untitled148",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 61.5,
+												y = 86.17
+											},
+											text = TR("奇遇奖励")
+										},
+										children = {}
+									},
+									{
+										name = "untitled149",
+										cType = "Button",
+										params = {
+											fontSize = 26,
+											clickAction = "onActiveQiyuAction",
+											scale = 0.75,
+											image = "c_27.png",
+											childName = "btnActiveQiyu",
+											pos = {
+												x = 61.5,
+												y = 48.18
+											},
+											size = {
+												width = 120,
+												height = 50
+											},
+											titleText = TR("激活奇遇")
+										},
+										children = {}
+									},
+									{
+										name = "untitled151",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_6.png",
+											pos = {
+												x = 61.5,
+												y = 153.52
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled22",
+								cType = "Node",
+								params = {
+									childName = "maxRewardNode",
+									pos = {
+										x = 450.55,
+										y = 29.75
+									},
+									size = {
+										width = 100,
+										height = 370
+									}
+								},
+								children = {
+									{
+										name = "untitled23",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_2.png",
+											pos = {
+												x = 50,
+												y = 297.59
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled155",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_9.png",
+											pos = {
+												x = 51.04,
+												y = 335.35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled152",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_1.png",
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											pos = {
+												x = 50,
+												y = -12
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled154",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_11.png",
+											childName = "rankSprite",
+											pos = {
+												x = 74.73,
+												y = 342.28
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											text = "999",
+											emptyInit = true,
+											childName = "txtRank",
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 51.04,
+												y = 335.35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "templateRewardCardNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = -3.7,
+												y = 5
+											},
+											size = {
+												width = 110,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled68",
+												cType = "CardNode",
+												params = {
+													childName = "cardNode",
+													allowClick = true,
+													pos = {
+														x = 55,
+														y = 50
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled66",
+												cType = "Sprite",
+												params = {
+													childName = "getSprite",
+													image = "c_44.png",
+													hide = true,
+													pos = {
+														x = 55,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled212",
+								cType = "TableView",
+								params = {
+									numOfCellsFunc = "cbNumOfCellsFunc",
+									isVertical = false,
+									cellUpdateFunc = "cbCellUpdateFunc",
+									cellFillFunc = "cbCellFillFunc",
+									isNeedBounce = false,
+									cellSizeFunc = "cbCellSizeFunc",
+									childName = "tabView",
+									pos = {
+										x = 118,
+										y = 28.24
+									},
+									size = {
+										width = 325,
+										height = 370
+									}
+								},
+								children = {
+									{
+										name = "templateRewardCell",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled29-text",
+												name = "strLv",
+												type = "string"
+											},
+											{
+												value = "untitled145-image",
+												name = "rankImg",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = -5.71,
+												y = -367.69
+											},
+											size = {
+												width = 90,
+												height = 370
+											}
+										},
+										children = {
+											{
+												name = "untitled25",
+												cType = "Sprite",
+												params = {
+													image = "qxzl_3.png",
+													pos = {
+														x = 45,
+														y = 297.59
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled146",
+												cType = "Sprite",
+												params = {
+													image = "qxzl_4.png",
+													scaleY = 1.4,
+													anchor = {
+														x = 0.5,
+														y = 0
+													},
+													pos = {
+														x = 45,
+														y = -16
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled28",
+												cType = "Sprite",
+												params = {
+													image = "qxzl_9.png",
+													pos = {
+														x = 45,
+														y = 335.35
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled145",
+												cType = "Sprite",
+												params = {
+													image = "qxzl_11.png",
+													childName = "canGetSprite",
+													pos = {
+														x = 70,
+														y = 342.28
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled29",
+												cType = "Label",
+												params = {
+													fontSize = 22,
+													childName = "lvLabel",
+													text = "999",
+													outlineColor = {
+														g = 42,
+														r = 51,
+														b = 24
+													},
+													pos = {
+														x = 45,
+														y = 335.35
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled61",
+												cType = "Button",
+												params = {
+													childName = "btnGetReward",
+													image = "c_27.png",
+													scale = 0.65,
+													pos = {
+														x = 45,
+														y = 232.59
+													},
+													titleText = TR("领 取")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mTimeNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 255.77,
+								y = 508.57
+							}
+						},
+						children = {
+							{
+								name = "untitled206",
+								cType = "Sprite",
+								params = {
+									image = "qxzl_11.png",
+									pos = {
+										x = 0,
+										y = 7.3
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled209",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 10,
+										y = 7.3
+									},
+									text = TR("距离活动结束还有：")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									emptyInit = true,
+									childName = "txtSeason",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 92.88,
+										y = -20.12
+									},
+									text = TR("第一季（10.10-10.17）")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled133",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mRightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled138",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseAction",
+			posApt = 1,
+			sizeApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled139",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "qxzl_24.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 125,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled140",
+		cType = "Button",
+		params = {
+			clickAction = "onRuleAction",
+			sizeApt = 2,
+			posApt = 1,
+			image = "c_3.png",
+			pos = {
+				x = 319.09,
+				y = 614.57
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mLeftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {}
+	}
+}
+slot1 = {
+	"qxzl_15.png",
+	"qxzl_16.png",
+	"qxzl_17.png",
+	"qxzl_18.png",
+	"qxzl_19.png"
+}
+
+function slot2(slot0)
+	slot0.setGLProgram(slot0, require("common.ShaderManager").loadShader(require("common.ShaderManager").Darklight))
+
+	return 
+end
+
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eQinXiu)
+	slot2 = ActivityObj:getActivityList()
+
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. tostring(16), function (slot0)
+		slot0:requestGetInfo()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mPageEnum = {
+		{
+			l_BtnImage = "bb_4.png",
+			pageIndex = 1,
+			g_BtnImage = "c_pure.png",
+			title = TR("勤修奖励")
+		},
+		{
+			l_BtnImage = "bb_4.png",
+			pageIndex = 2,
+			g_BtnImage = "c_pure.png",
+			title = TR("每日任务")
+		},
+		{
+			l_BtnImage = "bb_4.png",
+			pageIndex = 3,
+			g_BtnImage = "c_pure.png",
+			title = TR("每周任务")
+		}
+	}
+	slot0.mCurPageIndex = 1
+	slot0.mTagBtnList = {}
+
+	for slot4, slot5 in ipairs(slot0.mPageEnum) do
+		slot6 = UIWrap.newControl("Button", {
+			image = "c_pure.png",
+			size = cc.size(150, 80)
+		})
+
+		slot6.setPosition(slot6, cc.p(89, (slot4 - 1)*80 - 480))
+
+		slot6.configInfo = clone(slot5)
+		slot7 = UIWrap.newControl("RedDot", {
+			offset = cc.p(0.75, 0.75)
+		})
+
+		slot7.setVisible(slot7, false)
+
+		slot6.redDot = slot7
+
+		slot6.addChild(slot6, slot7)
+		slot6.setClickAction(slot6, function (slot0)
+			slot0:onSwitchTagCallBack(slot0)
+
+			return 
+		end)
+		table.insert(slot0.mTagBtnList, slot6)
+		slot6.addChild(slot6, slot8)
+		slot0.mMainBg:addChild(slot6)
+	end
+
+	slot0.onSwitchTagCallBack(slot0, slot0.mTagBtnList[1])
+
+	for slot4 = 1, #slot0.mTagBtnList + 1, 1 do
+		slot5 = UIWrap.newControl("Scale9Sprite", {
+			image = "bb_5.png",
+			size = cc.size(140, 3)
+		})
+
+		slot5.setPosition(slot5, cc.p(70, (slot4 - 1)*80 - 515))
+		slot0.mMainBg:addChild(slot5)
+	end
+
+	return 
+end
+slot0.refreshRedDots = function (slot0)
+	slot1 = false
+
+	for slot5 = 1, slot0.mTotalInfo.Lv, 1 do
+		slot7 = table.indexof(slot0.getNormalReward, tostring(slot5)) ~= false
+		slot8 = table.indexof(slot0.getQiyuReward, tostring(slot6)) ~= false
+
+		if slot0.mTotalInfo.IsAdventures == true then
+			if slot8 == true then
+				slot1 = false
+			else
+				slot1 = true
+
+				break
+			end
+		elseif slot7 == true then
+			slot1 = false
+		else
+			slot1 = true
+
+			break
+		end
+	end
+
+	slot3 = false
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot8.btnGet:isVisible() then
+			slot3 = true
+
+			break
+		end
+	end
+
+	slot5 = false
+
+	for slot9, slot10 in ipairs(slot4) do
+		if slot10.btnGet:isVisible() then
+			slot5 = true
+
+			break
+		end
+	end
+
+	for slot9, slot10 in ipairs(slot0.mTagBtnList) do
+		if slot9 == 1 then
+			slot10.redDot:setVisible(slot1)
+		elseif slot9 == 2 then
+			slot10.redDot:setVisible(slot3)
+		elseif slot9 == 3 then
+			slot10.redDot:setVisible(slot5)
+		end
+	end
+
+	return 
+end
+slot0.onSwitchTagCallBack = function (slot0, slot1)
+	slot2 = slot1.configInfo.pageIndex
+
+	for slot6, slot7 in ipairs(slot0.mTagBtnList) do
+		slot8 = nil
+
+		slot7.loadTextures(slot7, (slot7.configInfo.pageIndex ~= slot2 or slot7.configInfo.l_BtnImage) and slot7.configInfo.g_BtnImage, )
+		slot7.setContentSize(slot7, cc.size(150, 80))
+	end
+
+	slot0.mCurPageIndex = slot2
+
+	slot0.onTabViewClick(slot0, slot2)
+
+	return 
+end
+slot0.setTimeNodeInfo = function (slot0)
+	slot0.mTimeNode.txtSeason:stopAllActions()
+	Utility.schedule(slot0.mTimeNode.txtSeason, function ()
+		if 0 < slot0.mTotalInfo.EndDate - Player:getCurrentTime() then
+			slot0.mTimeNode.txtSeason:setString(TR("#258711%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeNode.txtSeason:setString(TR("活动已结束"))
+			slot0.mTimeNode.txtSeason:stopAllActions()
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshInfoNode = function (slot0)
+	if slot0.mTotalInfo == nil then
+		return 
+	end
+
+	slot0.bgInfoNode.txtLevel:setString(TR("等级:%s/%s", slot0.mTotalInfo.Lv, slot0.mTotalInfo.ConfigData.MaxLv))
+	slot0.bgInfoNode.btnBuyLevel:setEnabled(slot0.mTotalInfo.Lv < slot0.mTotalInfo.ConfigData.MaxLv)
+	slot0.bgInfoNode.expLabel:setString(TR("经验值 #258711%d/%d", slot0.mTotalInfo.Star*100, slot0.mTotalInfo.ConfigData.StarEveryLv*100))
+	slot0.bgInfoNode.proBg.proBar:setMaxValue(slot0.bgInfoNode.btnBuyLevel)
+	slot0.bgInfoNode.proBg.proBar:setCurrValue(slot0.mTotalInfo.Star)
+
+	return 
+end
+slot0.refreshTaskNode = function (slot0)
+	if slot0.mTotalInfo == nil then
+		return 
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(QinxiuModel.items) do
+		if slot6.typeId == 1 then
+			table.insert(slot1, clone(slot6))
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.modelId < slot1.modelId
+	end)
+	slot0.bgDayTaskNode.bgXiuxing.listView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "templateXiuxingCell", {
+			strTitle = slot6.name
+		})
+		slot7.Id = slot6.modelId
+		slot7.refreshCell = function (slot0)
+			slot3 = slot0:readXiuxingConfig(slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId, slot0.xiuxingFinishNumData[slot1.modelId] or 0)
+
+			slot0.introLabel:setString(string.format(slot0.xiuxingFinishNumData[slot1.modelId] or 0.intro, Utility.numberWithUnit(tonumber(slot3.taskParameter))))
+			slot0.progressLabel:setString(TR("当前进度: #EA2C00%s/%s", Utility.numberWithUnit(slot0.xiuxingProgressData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0), Utility.numberWithUnit(tonumber(slot3.taskParameter))))
+			slot0.doneNumLabel:setString(TR("已完成:#EA2C00%s#258711次", slot0.xiuxingFinishNumData[slot1.modelId] or 0))
+			slot0.getInfoLabel:setString(TR("每%s次可领#EA2C00%s#258711经验", slot3.taskParameter, slot3.getStars*100))
+			slot0.getInfoLabel:setVisible(not (0 < (slot0.xiuxingStarData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0)))
+			slot0.proBg.proBar:setMaxValue(tonumber(slot3.taskParameter))
+			slot0.proBg.proBar:setCurrValue(slot0.xiuxingProgressData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0)
+			slot0.btnGet:setVisible(0 < (slot0.xiuxingStarData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0))
+			slot0.btnGoto:setVisible(not (0 < (slot0.xiuxingStarData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0)))
+			slot0.doneNumLabel:setVisible(0 < (slot0.xiuxingStarData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0))
+			slot0.btnGet:setTitleText(TR("领取"))
+			slot0.xiuxingProgressData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0.btnGet:setClickAction(function ()
+				slot0:requestGetStar(slot1.modelId, slot2.btnGet.titleLabel)
+
+				return 
+			end)
+			slot0.xiuxingProgressData[slot0.xiuxingFinishNumData[slot1.modelId] or 0.modelId] or 0.btnGoto:setClickAction(function ()
+				if slot0.moduleId == ModuleSub.eRepository then
+					LayerManager.showModuleLayer(slot0.moduleId, {
+						closeCallback = function ()
+							slot0:requestGetInfo(function ()
+								for slot3, slot4 in ipairs(slot0.bgDayTaskNode.bgXiuxing.listView:getItems()) do
+									slot4.refreshCell(slot4)
+								end
+
+								for slot3, slot4 in ipairs(slot0.bgWeekTaskNode.bgQuwen.listView:getItems()) do
+									slot4.refreshCell(slot4)
+								end
+
+								return 
+							end)
+
+							return 
+						end
+					})
+				else
+					LayerManager.showModuleLayer(slot0.moduleId)
+				end
+
+				return 
+			end)
+
+			return 
+		end
+
+		slot7.refreshCell(slot7)
+		slot0.bgDayTaskNode.bgXiuxing.listView:pushBackCustomItem(slot7)
+	end
+
+	slot0.bgWeekTaskNode.bgQuwen.listView:removeAllItems()
+
+	for slot5, slot6 in pairs(slot0.quwenTaskData) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "templateQuwenCell")
+		slot7.refreshCell = function (slot0, slot1)
+			slot0.Id = slot1 or slot0.Id
+
+			slot0.titleLabel:setString(QinxiuModel.items[QinxiuQuwenRelation.items[slot0.Id].modelId].name)
+			slot0.introLabel:setString(string.format(QinxiuModel.items[QinxiuQuwenRelation.items[slot0.Id].modelId].intro, Utility.numberWithUnit(tonumber(slot1 or slot0.Id.taskParameter))))
+			slot0.progressLabel:setString(TR("当前进度: #EA2C00%s/%s", Utility.numberWithUnit(slot0.quwenTaskData[slot0.Id] or 0), Utility.numberWithUnit(tonumber(slot1 or slot0.Id.taskParameter))))
+			slot0.getInfoLabel:setString(TR("完成奖励#EA2C00%s#258711经验", slot1 or slot0.Id.getStars*100))
+			slot0.proBg.proBar:setMaxValue(tonumber(slot1 or slot0.Id.taskParameter))
+			slot0.proBg.proBar:setCurrValue(slot0.quwenTaskData[slot0.Id] or 0)
+			slot0.btnGet:setTitleText(TR("领取%s", slot1 or slot0.Id.getStars*100))
+			slot0.btnGet:setVisible(0 < (slot0.xiuxingStarData[slot0.Id] or 0) and (slot0.xiuxingFinishNumData[slot1 or slot0.Id.modelId] or 0) == 0)
+			slot0.getInfoLabel:setVisible(not (0 < (slot0.xiuxingStarData[slot0.Id] or 0)))
+			slot0.hardSprite:setTexture(slot1[slot1 or slot0.Id.difficulty])
+			slot0.doneSprite:setVisible(0 < (slot0.xiuxingFinishNumData[slot1 or slot0.Id.modelId] or 0))
+			slot0.btnRefresh:setVisible(not (0 < (slot0.xiuxingStarData[slot0.Id] or 0)))
+			slot0.btnRefresh:setClickAction(function ()
+				ui.showMessageBox({
+					titleText = TR("提 示"),
+					text = TR("#252525是否花费#EA2C0050元宝#252525刷新该任务？\n \n注意：刷新会导致原任务进度清空！"),
+					okCallback = function (slot0)
+						slot0:requestRefreshTask(slot1.Id)
+
+						return 
+					end,
+					cancelCallback = function ()
+						return 
+					end,
+					msgBoxParams = {
+						btnPosY = 60,
+						okText = TR("刷 新")
+					}
+				})
+
+				return 
+			end)
+			slot1 or slot0.Id.btnGet:setClickAction(function ()
+				slot0:requestGetStar(slot1.Id, slot1.btnGet.titleLabel)
+
+				return 
+			end)
+
+			return 
+		end
+
+		slot7.refreshCell(slot7, tonumber(slot5))
+		slot0.bgWeekTaskNode.bgQuwen.listView:pushBackCustomItem(slot7)
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 90, 370
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mRewardList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "templateRewardCell")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot0.createRewardList(slot0, slot3, 0.8, {
+		cc.p(3, 244),
+		cc.p(3, 110),
+		cc.p(3, 32)
+	})
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		slot0.lvLabel:setString(slot1)
+		slot0.canGetSprite:setTexture("c_pure.png")
+		slot1:refreshRewardList(slot0, slot2)
+
+		slot3 = table.indexof(slot1.getNormalReward, tostring(slot1.mRewardList[slot0 + 1].Lv)) ~= false
+		slot4 = table.indexof(slot1.getQiyuReward, tostring(slot2.Lv)) ~= false
+
+		if (slot2.Lv <= slot1.mTotalInfo.Lv) == false then
+			slot0.btnGetReward:setTitleText(TR("等级未到"))
+			slot0.btnGetReward:setEnabled(false)
+		else
+			slot0.btnGetReward:setEnabled(true)
+
+			if slot1.mTotalInfo.IsAdventures == true then
+				if slot4 == true then
+					slot0.btnGetReward:setTitleText(TR("已领取"))
+					slot0.btnGetReward:setEnabled(false)
+				elseif slot3 == true then
+					slot0.btnGetReward:setTitleText(TR("继续领取"))
+				else
+					slot0.btnGetReward:setTitleText(TR("全部领取"))
+				end
+			elseif slot3 == true then
+				slot0.btnGetReward:setTitleText(TR("继续领取"))
+				slot0.btnGetReward:setEnabled(false)
+			else
+				slot0.btnGetReward:setTitleText(TR("领 取"))
+			end
+		end
+
+		slot0.btnGetReward:setClickAction(function ()
+			slot0:requestGetReward(slot1.Lv)
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.refreshRewardNode = function (slot0)
+	if slot0.mTotalInfo == nil then
+		return 
+	end
+
+	slot1 = {}
+	slot2 = nil
+
+	for slot6, slot7 in pairs(slot0.mTotalInfo.ConfigData.LvRewardDict) do
+		if slot7.Lv == 30 then
+			slot2 = clone(slot7)
+		end
+
+		table.insert(slot1, clone(slot7))
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.Lv < slot1.Lv
+	end)
+
+	slot0.mRewardList = clone(slot1)
+	slot3 = #slot0.mRewardList
+
+	if cc.FileUtils:getInstance():isFileExist(HeroModel.items[GoodsModel.items[tonumber(string.split(string.split(slot2.AdventuresReward, "||")[1], ",")[2])].outputModelID].drawingPicA .. ".png") then
+		slot0.bgInfoNode.qiyuNode.heroBody:setVisible(true)
+		slot0.bgInfoNode.qiyuNode.heroBody:setScale(0.7)
+		slot0.bgInfoNode.qiyuNode.heroBody:setTexture(slot7)
+	else
+		slot0.bgInfoNode.qiyuNode.heroBody:setVisible(true)
+		slot0.bgInfoNode.qiyuNode.heroBody:setScale(1)
+	end
+
+	slot0.bgRewardNode.qiYuBg.btnActiveQiyu:setEnabled(not slot0.mTotalInfo.IsAdventures)
+
+	if slot0.mTotalInfo.IsAdventures then
+		slot0.bgRewardNode.qiYuBg.btnActiveQiyu:setTitleText(TR("已激活"))
+	end
+
+	slot0.currListIndex = 0
+
+	slot0.createRewardList(slot0, slot0.bgRewardNode.maxRewardNode, 0.9, {
+		cc.p(0, 234),
+		cc.p(0, 100),
+		cc.p(0, 17)
+	})
+	slot0.refreshMaxRewardNode(slot0, slot1)
+
+	slot8 = 1
+
+	for slot12, slot13 in ipairs(slot1) do
+		slot14 = table.indexof(slot0.getNormalReward, tostring(slot13.Lv)) ~= false
+		slot15 = table.indexof(slot0.getQiyuReward, tostring(slot13.Lv)) ~= false
+
+		if slot13.Lv <= slot0.mTotalInfo.Lv then
+			if slot0.mTotalInfo.IsAdventures == true then
+				if slot15 == false or slot14 == false then
+					slot8 = slot12
+
+					break
+				end
+			elseif slot14 == false then
+				slot8 = slot12
+
+				break
+			end
+		end
+	end
+
+	slot0.bgRewardNode.tabView:reloadData()
+	slot0.bgRewardNode.tabView:setContentOffset(cc.p(-(slot8 - 1)*90, 0), false)
+	slot0.bgRewardNode.tabView:registerScriptHandler(function (slot0)
+		if slot1.currListIndex ~= math.ceil((slot0.getCurrPercentage(slot0)*slot0)/100) then
+			slot1.currListIndex = slot2
+
+			slot1:refreshMaxRewardNode(slot2)
+		end
+
+		return 
+	end, cc.SCROLLVIEW_SCRIPT_SCROLL)
+
+	return 
+end
+slot0.createOneRewardHeader = function (slot0, slot1, slot2, slot3, slot4)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "templateRewardCardNode")
+	slot5.refreshHeader = function (slot0, slot1, slot2, slot3, slot4)
+		if slot1 == nil or slot1 == "" then
+			slot0.setVisible(slot0, false)
+
+			return 
+		end
+
+		slot0.cardNode:setCardData({
+			resourceId = Utility.analysisStrResList(slot1)[1].resourceId,
+			num = Utility.analysisStrResList(slot1)[1].num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+
+		if slot4 ~= nil and slot4 == true then
+			slot0.cardNode:setLiubian("effect_ui_liubian_cheng")
+		end
+
+		slot0.setVisible(slot0, true)
+
+		if slot2 == true and slot0.mTotalInfo.IsAdventures == false and not tolua.isnull(slot0.cardNode.mHeaderSprite) then
+			slot1(slot0.cardNode.mHeaderSprite)
+			slot1(slot0.cardNode:getAttrCtrl(Enums.CardShowAttr.eBorder).sprite)
+		end
+
+		slot0.getSprite:setVisible(slot3)
+
+		return 
+	end
+
+	slot5.setScale(slot5, slot3)
+	slot5.setPosition(slot5, slot4)
+	slot1.addChild(slot1, slot5)
+
+	slot1[slot2] = slot5
+
+	return 
+end
+slot0.createRewardList = function (slot0, slot1, slot2, slot3)
+	slot0.createOneRewardHeader(slot0, slot1, "normalReward", slot2, slot3[1])
+	slot0.createOneRewardHeader(slot0, slot1, "qiyuReward1", slot2, slot3[2])
+	slot0.createOneRewardHeader(slot0, slot1, "qiyuReward2", slot2, slot3[3])
+
+	return 
+end
+slot0.refreshRewardList = function (slot0, slot1, slot2, slot3)
+	slot1.normalReward:refreshHeader(slot2.Reward, false, table.indexof(slot0.getNormalReward, tostring(slot2.Lv)) ~= false, slot3)
+	slot1.qiyuReward1:refreshHeader(string.split(slot2.AdventuresReward, "||")[1], true, table.indexof(slot0.getQiyuReward, tostring(slot2.Lv)) ~= false, slot3)
+	slot1.qiyuReward2:refreshHeader(string.split(slot2.AdventuresReward, "||")[2], true, table.indexof(slot0.getQiyuReward, tostring(slot2.Lv)) ~= false, slot3)
+
+	return 
+end
+slot0.refreshMaxRewardNode = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		if slot0.currListIndex <= slot5 and slot6.IsSpecialShow then
+			slot7 = string.split(slot6.AdventuresReward, "||")
+
+			slot0.bgRewardNode.maxRewardNode.txtRank:setString(slot6.Lv)
+			slot0.bgRewardNode.maxRewardNode.rankSprite:setTexture((slot6.Lv <= slot0.mTotalInfo.Lv and "c_pure.png") or "c_pure.png")
+			slot0.refreshRewardList(slot0, slot0.bgRewardNode.maxRewardNode, slot6, true)
+
+			break
+		end
+	end
+
+	return 
+end
+slot0.getStarAction = function (slot0, slot1, slot2, slot3)
+	slot7 = UIWrap.newControl("Sprite", {
+		image = "c_56.png",
+		pos = cc.p((slot0.convertToNodeSpace(slot0, slot1.getParent(slot1):convertToWorldSpace(cc.p(slot1.getPosition(slot1)))).x + slot1.getContentSize(slot1).width/2) - 20, slot0.convertToNodeSpace(slot0, slot1.getParent(slot1).convertToWorldSpace(cc.p(slot1.getPosition(slot1)))).y)
+	})
+
+	slot0.addChild(slot0, slot7, 99)
+	slot7.runAction(slot7, cc.EaseSineOut:create(cc.Sequence:create({
+		cc.MoveTo:create(1, slot5),
+		cc.CallFunc:create(function (slot0)
+			slot0:removeFromParent()
+			slot0.removeFromParent()
+
+			return 
+		end)
+	})))
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("一、活动概述"),
+			TR("1.活动持续28天，开始时间为凌晨0:00:01，截止时间为23:59:59；"),
+			TR("2.完成【砥砺修行】和【每周趣闻】任务都可以获得活动星星，积攒星星可提升活动等级；"),
+			TR("3.提高活动等级，可在奖励页面中领取丰厚奖品，【激活奇遇】后，更可领取额外豪华礼物。"),
+			TR("二、砥砺修行"),
+			TR("1.本栏为是固定任务，可无限次循环完成；"),
+			TR("2.随着同一个任务的完成次数提升，该任务每轮的难度也会逐渐提高，建议各位大侠要雨露均沾哦~"),
+			TR("3.点击前往按钮可跳转到对应的玩法界面。"),
+			TR("三、每周趣闻"),
+			TR("1.每个任务仅可完成一次，活动状态将在每周一凌晨5:00自动刷新；"),
+			TR("2.每次自动刷新都将重置任务的状态，并随机分配当周的新任务以供大侠挑战；"),
+			TR("3.任务在提交之前都可点击刷新按钮进行刷新，仅需消耗少量元宝，但也将会导致刷新前的任务进度清空，请深思熟虑后再做决定；"),
+			TR("4.手动进行刷新操作，可将指定任务类型和难度进行随机刷新；"),
+			TR("5.任何情况下，每周趣闻里都不会同时出现重复的任务。"),
+			TR("四、购买等级"),
+			TR("您可以通过购买资助礼包来增加一级活动等级，整个活动期间仅可购买10次。"),
+			TR("五、充值相关"),
+			TR("在本活动中进行【激活奇遇】和【购买等级】均不参与其他任何运营活动，仅增加会员经验值。")
+		}
+	})
+
+	return 
+end
+slot0.onTabViewClick = function (slot0, slot1)
+	slot0.bgDayTaskNode:setVisible(false)
+	slot0.bgWeekTaskNode:setVisible(false)
+	slot0.bgRewardNode:setVisible(false)
+	slot0.bgInfoNode.qiyuNode:setVisible(false)
+
+	if slot1 == 1 then
+		slot0.bgRewardNode:setVisible(true)
+		slot0.bgInfoNode.qiyuNode:setVisible(true)
+	elseif slot1 == 2 then
+		slot0.bgDayTaskNode:setVisible(true)
+	elseif slot1 == 3 then
+		slot0.bgWeekTaskNode:setVisible(true)
+	end
+
+	return 
+end
+slot0.onBuyLevelAction = function (slot0)
+	if slot0.mTotalInfo.ConfigData.MaxLv <= slot0.mTotalInfo.Lv then
+		ui.showFlashView(TR("当前等级已到最高了~"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.QinxiuBuyLevelLayer",
+		data = {
+			productId = slot0.mTotalInfo.PartnerIdLv,
+			currBuyNum = slot0.mTotalInfo.BuyLvNum,
+			callback = function ()
+				slot0.mTotalInfo.BuyLvNum = slot0.mTotalInfo.BuyLvNum + 1
+				slot0.mTotalInfo.mTotalInfo.Lv = slot0.mTotalInfo.Lv + 1
+
+				slot0.mTotalInfo.mTotalInfo:refreshInfoNode()
+				slot0.mTotalInfo.mTotalInfo.refreshInfoNode:refreshRewardNode()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onActiveQiyuAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.QinxiuActiveQiyuLayer",
+		data = {
+			productId = slot0.mTotalInfo.PartnerIdAdventures,
+			rewardStr = slot0.mTotalInfo.ConfigData.BuyAdventuresShowInfo,
+			callback = function ()
+				slot0.mTotalInfo.IsAdventures = true
+
+				slot0.mTotalInfo:refreshInfoNode()
+				slot0.mTotalInfo.refreshInfoNode:refreshRewardNode()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onLookQiyuRewardAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.QinxiuRewardProViewLayer",
+		data = {
+			rewardList = slot0.mTotalInfo.ConfigData.LvRewardDict
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.analyzeTotalData = function (slot0)
+	slot0.startDate = os.date("*t", slot0.mTotalInfo.StartDate)
+	slot0.endDate = os.date("*t", slot0.mTotalInfo.EndDate)
+
+	slot0.setTimeNodeInfo(slot0)
+
+	slot0.xiuxingFinishNumData = slot1(slot0.mTotalInfo.XiuxingTaskFinishNumStr)
+	slot0.xiuxingProgressData = slot1(slot0.mTotalInfo.XiuxingTaskValue)
+	slot0.xiuxingStarData = slot1(slot0.mTotalInfo.TaskStar)
+	slot0.quwenTaskData = slot1(slot0.mTotalInfo.QuwenTaskValue)
+	slot0.getNormalReward = string.split(slot0.mTotalInfo.GetNormalReward, ",")
+	slot0.getQiyuReward = string.split(slot0.mTotalInfo.GetAdventuresReward, ",")
+
+	return 
+end
+slot0.readXiuxingConfig = function (slot0, slot1, slot2)
+	slot3 = QinxiuXiuxingRelation.items[slot1]
+
+	if slot2 == 0 then
+		return clone(slot3[1])
+	else
+		slot4 = {
+			timesUp = 0
+		}
+
+		for slot8, slot9 in pairs(slot3) do
+			if slot4.timesUp < slot9.timesUp then
+				slot4 = slot9
+			end
+		end
+
+		if slot4.timesUp <= slot2 then
+			return clone(slot4)
+		end
+
+		slot5 = slot2 + 1
+
+		for slot9, slot10 in pairs(slot3) do
+			if slot10.timesDown <= slot5 and slot5 <= slot10.timesUp then
+				return clone(slot10)
+			end
+		end
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedQinxiu",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mTotalInfo = slot0
+
+			slot0:analyzeTotalData()
+
+			if slot0.analyzeTotalData ~= nil then
+				slot1()
+			else
+				slot0:refreshInfoNode()
+				slot0:refreshTaskNode()
+				slot0:refreshRewardNode()
+				slot0:refreshRedDots()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetStar = function (slot0, slot1, slot2)
+	slot3 = slot0.mTotalInfo.Star
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetStar",
+		moduleName = "TimedQinxiu",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot1 = slot0.Star
+			slot2 = slot0.mTotalInfo.Lv < slot0.Lv
+
+			if slot2 == true then
+				slot1 = slot1 + slot0.mTotalInfo.ConfigData.StarEveryLv
+			end
+
+			slot0.xiuxingStarData[slot1] = 0
+			slot0.mTotalInfo.Star = slot0.Star
+			slot0.mTotalInfo.Lv = slot0.Lv
+
+			for slot6, slot7 in ipairs(slot0.bgDayTaskNode.bgXiuxing.listView:getItems()) do
+				if slot7.Id == slot1 then
+					slot7.refreshCell(slot7)
+				end
+			end
+
+			for slot6, slot7 in ipairs(slot0.bgWeekTaskNode.bgQuwen.listView:getItems()) do
+				if slot7.Id == slot1 then
+					slot7.refreshCell(slot7, slot1)
+				end
+			end
+
+			slot0:refreshInfoNode()
+
+			if slot2 == true then
+				slot0:refreshRewardNode()
+			end
+
+			ui.showFlashView(TR("任务完成，成功获取经验值~"))
+			slot0:refreshRedDots()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "TimedQinxiu",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTotalInfo.GetNormalReward = slot0.GetNormalReward
+			slot0.mTotalInfo.GetAdventuresReward = slot0.GetAdventuresReward
+
+			slot0:analyzeTotalData()
+			slot0:refreshRewardNode()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0:refreshRedDots()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefreshTask = function (slot0, slot1)
+	slot2 = clone(slot0.quwenTaskData)
+
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshTask",
+		moduleName = "TimedQinxiu",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			for slot4, slot5 in pairs(slot0.QuwenTaskValue) do
+				slot0.quwenTaskData[tonumber(slot4)] = slot5
+			end
+
+			slot0.quwenTaskData[] = nil
+			slot0.xiuxingStarData[] = nil
+			slot1 = 0
+
+			for slot5, slot6 in pairs(slot0.quwenTaskData) do
+				if slot2[slot5] == nil then
+					slot1 = slot5
+				end
+			end
+
+			if 0 < slot1 then
+				for slot5, slot6 in ipairs(slot0.bgWeekTaskNode.bgQuwen.listView:getItems()) do
+					if slot6.Id == slot1 then
+						slot6.refreshCell(slot6, slot1)
+					end
+				end
+			end
+
+			slot0:refreshRedDots()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

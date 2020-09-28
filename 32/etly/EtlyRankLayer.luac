@@ -1,0 +1,427 @@
+slot0 = class("EtlyRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			needTouchClose = true,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "myRank",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 45.34,
+						y = 35.52
+					},
+					text = TR("我的排名：0")
+				},
+				children = {}
+			},
+			{
+				name = "mLevel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 251.01,
+						y = 34.5
+					},
+					text = TR("最高层数：0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 126.64,
+						y = 451.58
+					},
+					text = TR("排名")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 307.95,
+						y = 451.46
+					},
+					text = TR("玩家")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 489.72,
+						y = 452.16
+					},
+					text = TR("帮派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 635.15,
+						y = 452.12
+					},
+					text = TR("战力")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 749.14,
+						y = 451.59
+					},
+					text = TR("最高层数")
+				},
+				children = {}
+			},
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					delayInit = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 31.67,
+						y = 50.64
+					},
+					size = {
+						width = 784,
+						height = 380.74
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0.73,
+								y = -107.72
+							},
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 393.13,
+										y = 51.41
+									},
+									size = {
+										width = 784,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "image",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									pos = {
+										x = 76.86,
+										y = 51.74
+									}
+								},
+								children = {}
+							},
+							{
+								name = "head",
+								cType = "CardNode",
+								params = {
+									scale = 0.95,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 172.51,
+										y = 51.42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "name",
+								cType = "Label",
+								params = {
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 296,
+										y = 51.97
+									},
+									text = TR("姓名大师的啊")
+								},
+								children = {}
+							},
+							{
+								name = "jiazu",
+								cType = "Label",
+								params = {
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 470.73,
+										y = 51.01
+									},
+									text = TR("姓名大师的啊")
+								},
+								children = {}
+							},
+							{
+								name = "fap",
+								cType = "Label",
+								params = {
+									text = "0",
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 600.14,
+										y = 50.76
+									}
+								},
+								children = {}
+							},
+							{
+								name = "jilu",
+								cType = "Label",
+								params = {
+									text = "0",
+									align = 1,
+									valign = 1,
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 714.64,
+										y = 50.83
+									},
+									size = {
+										width = 130.77,
+										height = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rank",
+								cType = "Label",
+								params = {
+									text = "0",
+									charCount = 10,
+									fontName = "c_54.png",
+									pos = {
+										x = 62.75,
+										y = 50.38
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:createUISubTree("tableView")
+		slot0.createUISubTree.tableView:reloadData()
+		slot0.createUISubTree.tableView.reloadData.tableView:jumpToTop()
+		slot0.createUISubTree.tableView.reloadData.tableView.jumpToTop:refreshUI()
+
+		return 
+	end, 2)
+
+	slot0.getRankInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 784, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mRankListData
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "itemLayout")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot4 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot1.refreshCell = function (slot0)
+		slot1.image:setTexture((slot0.mRankListData[slot0 + 1].RankingId < 4 and slot1.image.setTexture[slot1.RankingId]) or "c_58.png")
+		slot1.jilu:setString(string.format("第%s层", Utility.getChineseNum(EtlyNodeModel.items[slot1.MaxNodeId].showNumC)))
+		slot1.name:setString(slot1.Name)
+		slot1.fap:setString(Utility.numberWithUnit(slot1.Fap))
+		slot1.jiazu:setString((Utility.isEntityId(slot1.GuildId) and TR("%s", slot1.GuildName)) or TR("暂无帮派"))
+		slot1.rank:setString((slot1.RankingId < 4 and "") or slot1.RankingId)
+		slot1.head:setPlayerHeader(slot1.HeadImageId, nil, {
+			headPicId = slot1.HeadPicId
+		})
+		slot1.head:setAllowClick(false)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if slot0.mMyRankData and slot0.mMyRankData.RankingId then
+		slot0.myRank:setString(TR("我的排名：%d", slot0.mMyRankData.RankingId))
+	else
+		slot0.myRank:setString(TR("暂未上榜"))
+	end
+
+	if slot0.mMyRankData.MaxNodeId then
+		slot0.mLevel:setString(string.format("最高层数：第%s层", Utility.getChineseNum(EtlyNodeModel.items[slot0.mMyRankData.MaxNodeId].showNumC)))
+	end
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.getRankInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRankingInfo",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRankListData = slot0.RankingList
+			slot0.mMyRankData = slot0.PlayerRanking
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

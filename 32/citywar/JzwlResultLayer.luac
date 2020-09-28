@@ -1,0 +1,856 @@
+slot0 = class("JzwlResultLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_134.jpg",
+			pos = {
+				x = 320.34,
+				y = 568.34
+			}
+		},
+		children = {
+			{
+				name = "untitled52",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_136.png",
+					pos = {
+						x = 348.74,
+						y = 1002.29
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "jzwl_115.png",
+					clickAction = "onHistoryBtnAction",
+					titleImage = "jzwl_118.png",
+					pos = {
+						x = 170,
+						y = 695
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled51",
+				cType = "Button",
+				params = {
+					image = "jzwl_115.png",
+					clickAction = "onConsecrateBtnAction",
+					titleImage = "jzwl_116.png",
+					pos = {
+						x = 170,
+						y = 820
+					}
+				},
+				children = {
+					{
+						name = "untitled53",
+						cType = "RedDot",
+						params = {
+							subKey = "CanDrawBoxReward",
+							moduleId = 11900
+						},
+						children = {}
+					},
+					{
+						name = "untitled54",
+						cType = "RedDot",
+						params = {
+							subKey = "CanOpenGongFengReward",
+							moduleId = 11900
+						},
+						children = {}
+					},
+					{
+						name = "untitled56",
+						cType = "RedDot",
+						params = {
+							subKey = "CanFreeGongFeng",
+							moduleId = 11900
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "jzwl_115.png",
+					clickAction = "onRankBtnAction",
+					titleImage = "jzwl_119.png",
+					pos = {
+						x = 470,
+						y = 695
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "RedDot",
+						params = {
+							subKey = "CanDrawReward",
+							moduleId = 11900
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "jzwl_115.png",
+					clickAction = "onShopBtnAction",
+					titleImage = "jzwl_117.png",
+					pos = {
+						x = 470,
+						y = 820
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled25",
+				cType = "Button",
+				params = {
+					image = "jzwl_115.png",
+					clickAction = "onBestGuildBtnAction",
+					titleImage = "jzwl_120.png",
+					pos = {
+						x = 170,
+						y = 570
+					}
+				},
+				children = {}
+			},
+			{
+				name = "time",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 320,
+						y = 895.69
+					},
+					text = TR("下赛季开始：15天3小时33分钟")
+				},
+				children = {}
+			},
+			{
+				name = "shenfenBgNode",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_96.png",
+					pos = {
+						x = 320,
+						y = 320
+					}
+				},
+				children = {
+					{
+						name = "untitled28",
+						cType = "Sprite",
+						params = {
+							image = "slrw_2.png",
+							pos = {
+								x = 50.66,
+								y = 254.35
+							}
+						},
+						children = {
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 4.82,
+										y = 51.95
+									},
+									size = {
+										width = 25,
+										height = 100
+									},
+									text = TR("上流")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "slrw_2.png",
+							pos = {
+								x = 50.66,
+								y = 100.35
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 4.82,
+										y = 51.95
+									},
+									size = {
+										width = 25,
+										height = 100
+									},
+									text = TR("下流")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled34",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 100,
+								y = 100
+							}
+						},
+						children = {}
+					},
+					{
+						name = "headListNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "playerNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled45-text",
+										name = "chenghao",
+										type = "string"
+									},
+									{
+										value = "playerName-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "playerHead-modelId",
+										name = "modelId",
+										type = "string"
+									},
+									{
+										value = "playerHead-fashionLv",
+										name = "fashionId",
+										type = "string"
+									},
+									{
+										value = "playerHead-clickAction",
+										name = "clickAction",
+										type = "string"
+									},
+									{
+										value = "playerHead-headPicId",
+										name = "headPicId",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 80.66,
+										y = 175.03
+									},
+									size = {
+										width = 120,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "untitled43",
+										cType = "Sprite",
+										params = {
+											image = "jzwl_95.png",
+											pos = {
+												x = 60,
+												y = 75
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerHead",
+										cType = "PlayerHeroNode",
+										params = {
+											headPicId = 1,
+											fashionLv = 1,
+											modelId = 19010000,
+											scale = 0.8,
+											clickAction = "onRuleBtnAction",
+											allowClick = true,
+											pos = {
+												x = 59.13,
+												y = 68.59
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled45",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "Label",
+											color = {
+												g = 114,
+												r = 255,
+												b = 0
+											},
+											pos = {
+												x = 59.1,
+												y = 134.86
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerName",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "",
+											outlineColor = {
+												g = 42,
+												r = 58,
+												b = 24
+											},
+											pos = {
+												x = 60,
+												y = 17.76
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 329,
+						y = 926.98
+					},
+					text = TR("前三强帮派可参加，夺取绝版奖励！")
+				},
+				children = {}
+			},
+			{
+				name = "mOnLookRewardNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 570.2,
+						y = 581.92
+					}
+				},
+				children = {
+					{
+						name = "mDrawBtn",
+						cType = "Button",
+						params = {
+							image = "136tc_3.png",
+							clickAction = "onReceiveBox",
+							pos = {
+								x = -488.86,
+								y = 370.94
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "RedDot",
+								params = {
+									subKey = "CanDrawOnLookReward",
+									moduleId = 11900
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = -10.12,
+										y = -35.59
+									},
+									text = TR("观战宝箱")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "progressLabel",
+						cType = "Label",
+						params = {
+							text = "0/100",
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = -498.1,
+								y = 311.12
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "titleBtn",
+				cType = "Button",
+				params = {
+					image = "tb_650.png",
+					clickAction = "onTitleBtnAction",
+					pos = {
+						x = 580.13,
+						y = 931.16
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "ruleBtn",
+		cType = "Button",
+		params = {
+			image = "jzwl_115.png",
+			clickAction = "onRuleBtnAction",
+			titleImage = "jzwl_121.png",
+			pos = {
+				x = 470,
+				y = 570
+			}
+		},
+		children = {}
+	},
+	{
+		name = "closeBtn",
+		cType = "Button",
+		params = {
+			image = "c_12.png",
+			clickAction = "onCloseBtnAction",
+			pos = {
+				x = 600,
+				y = 1050
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "commonlayer/NavigateLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/TopResourceObserverLayer.lua"
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mData = slot1.response or {}
+	slot0.mWinnerInfo = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if MainCityWarObj:getIsOnLookStatus() then
+		slot0.mOnLookRewardNode:setVisible(true)
+	end
+
+	if not slot1.response then
+		slot0.getMainCityWarInfo(slot0)
+	else
+		if slot1.response.WinnerHistoryInfo and 0 < #slot1.response.WinnerHistoryInfo then
+			slot0.mWinnerInfo = slot1.response.WinnerHistoryInfo[#slot1.response.WinnerHistoryInfo]
+		end
+
+		slot0.mMyinfo = slot1.response.Myinfo
+
+		if MainCityWarObj:getIsOnLookStatus() then
+			slot0.refreshDrawBtn(slot0)
+		end
+
+		slot0.refreshUI(slot0)
+	end
+
+	slot0.getIdentityInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.titleBtn:setVisible(Utility.moduleIsOpen(ModuleSub.eTitle, false))
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.time:stopAllActions()
+	Utility.schedule(slot0.time, function ()
+		if 0 < slot0.mData.LeaguetopInfo.CountDown - Player:getCurrentTime() then
+			slot0.time:setVisible(true)
+			slot0.time:setString(TR("倒计时: %s", MqTime.completeFormat(slot0)))
+		else
+			slot0.time:setVisible(false)
+			slot0.time:stopAllActions()
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshIdentityInfo = function (slot0)
+	slot0.headListNode:removeAllChildren()
+
+	for slot4, slot5 in ipairs(NewleaguetopIdentityRelation.items) do
+		slot6 = nil
+		slot7 = pairs
+		slot8 = slot0.mIdentityList or {}
+
+		for slot10, slot11 in slot7(slot8) do
+			if slot11.LeaguetopIdentityId == slot5.Id then
+				slot6 = slot11
+
+				break
+			end
+		end
+
+		slot7 = slot0.createLayoutTemplateNode(slot0, "playerNode", {
+			chenghao = slot5.name,
+			name = (slot6 and slot6.Name) or "",
+			modelId = (slot6 and slot6.HeadImageId) or "0",
+			fashionId = (slot6 and slot6.FashionId) or 0,
+			headPicId = (slot6 and slot6.HeadPicId) or 0,
+			clickAction = function ()
+				if slot0.mMyinfo.IsLeaguetopLeader then
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "citywar.CitywarDesnIdentityLayer",
+						data = {
+							identityInfo = slot1,
+							identityId = slot2.Id,
+							callBack = function (slot0)
+								slot0.mIdentityList = slot0
+
+								slot0:refreshIdentityInfo()
+
+								return 
+							end
+						}
+					})
+				else
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "citywar.JzwlIdentityInfoLayer",
+						data = {
+							identityInfo = slot1,
+							identityId = slot2.Id
+						}
+					})
+				end
+
+				return 
+			end
+		})
+
+		slot7.setPosition(slot7, cc.p((slot4 - 1)%4*130 + 80, math.floor(slot4/5)*160 - 180))
+		slot0.headListNode:addChild(slot7)
+		slot7.playerHead:addChild(UIWrap.newControl("Sprite", {
+			image = slot5.pic
+		}))
+
+		if slot6 and slot6.HeadPicId and 0 < slot6.HeadPicId then
+			slot7.playerName:setPosition(60, 7)
+		end
+
+		if slot5.type then
+			slot8.setAnchorPoint(slot8, cc.p(0.5, 0.5))
+			slot8.setPosition(slot8, cc.p(46, 92))
+		else
+			slot8.setPosition(slot8, cc.p(20, 46))
+		end
+	end
+
+	return 
+end
+slot0.refreshDrawBtn = function (slot0)
+	slot1 = {}
+
+	for slot5 = 1, 4, 1 do
+		if slot5*25*6 <= slot0.mMyinfo.OnLookTimes then
+			slot1[slot6] = true
+		end
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mMyinfo.OnLookDrawRecord) do
+		slot2[tonumber(slot7)] = true
+	end
+
+	slot0.mDrawBtn.time = nil
+	slot3 = false
+
+	for slot7 = 1, 4, 1 do
+		if slot1[slot7*25*6] and not slot2[slot8] then
+			slot0.progressLabel:setString(string.format("%d/%d", math.min(math.floor(MqMath.showDecimal(slot0.mMyinfo.OnLookTimes/600*100, 2)), 100), slot8/6))
+
+			slot0.mDrawBtn.time = slot8
+
+			ui.setWaveAnimation(slot0.mDrawBtn)
+
+			slot3 = true
+
+			break
+		end
+	end
+
+	if not slot3 then
+		slot0.progressLabel:setString(string.format("%d/%d", 100, 100))
+		slot0.mDrawBtn:loadTextures("136tc_4.png", "136tc_4.png")
+		slot0.mDrawBtn:stopAllActions()
+	end
+
+	return 
+end
+slot0.onHistoryBtnAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.JzwlHistoryLayer",
+		data = {
+			historyList = slot0.mData.WinnerHistoryInfo or {}
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRankBtnAction = function (slot0)
+	LayerManager.addLayer({
+		name = "citywar.JzwlRankLayer"
+	})
+
+	return 
+end
+slot0.onShopBtnAction = function (slot0)
+	LayerManager.addLayer({
+		name = "citywar.JzwlShopLayer"
+	})
+
+	return 
+end
+slot0.onBestGuildBtnAction = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eLeaderBoardGuild, true) then
+		return false
+	end
+
+	LayerManager.addLayer({
+		name = "guild.StrongestGuildLayer"
+	})
+
+	return 
+end
+slot0.onConsecrateBtnAction = function (slot0)
+	LayerManager.addLayer({
+		name = "jzwl.JzwlConsecrateMainLayer",
+		data = {
+			winnerInfo = slot0.mWinnerInfo,
+			isWinner = slot0.mMyinfo.IsLeaguetopLeader
+		}
+	})
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.开服第%d天20:00开启，21:00结束，只有培养紫色以上的5人侠客小队才可参与，之后以七天为一个周期开启活动；", LeaguetopConfig.items[1].firstOpenDay),
+			TR("2.活动仅限本服前三强帮派参与，角逐武林盟主之位；"),
+			TR("3.三方帮派各有一处擂台，活动前10分钟为备战期，玩家可在这此期间进入擂台排兵布阵；"),
+			TR("4.每个擂台分为上中下三路，派遣在某一路的侠客队伍将只会进攻/驻守该路线，不可撤回，直至战败复活后可重新指定进攻/防守路线；"),
+			TR("5.每个擂台有数量不等的系统守卫，守卫全部被击败的擂台视为战败；"),
+			TR("6.活动将在两个擂台被攻破，或者时间到达21:00时结束。擂台越早被攻破，活动排名越低，若无擂台被攻破，则剩余系统守卫越多的帮派排名越高；"),
+			TR("7.活动当天19:00开始，将无法参与普通武林帮派战，已派出的队伍不受影响。21:00后，所有城池的归属权将变更为中立，并重置城池首通奖励；"),
+			TR("8.派遣队伍和击败敌人均会增加功绩，连杀会有功绩加成，排行奖励珍稀道具【秘藏钥匙】，可在专属商店【武林秘藏】中兑换稀有道具奖励；"),
+			TR("9.当武林盟主选出来后，可以给其他玩家指定身份；"),
+			TR("10.身份分为上流身份和下流身份。上流身份的玩家在城战中有增益效果，下流身份在城战中有一定的减弱效果；"),
+			TR("11.任命身份后有1个小时冷却时间，冷却时间结束后才能重新任命身份；"),
+			TR("12.身份任命后不能取消，请武林盟主大人谨慎；"),
+			TR("13.战败帮派将获得愈挫愈勇buff加成，在决战武林玩法中获得30%攻击和护甲加成，连续失败会叠加，最高150%，获得决战武林第一名或决战武林开始时没有参赛资格时将会清空buff。")
+		}
+	})
+
+	return 
+end
+slot0.onTitleBtnAction = function (slot0, ...)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.TitleInfoLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getMainCityWarInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetLeaguetopInfo",
+		moduleName = "Leaguetop",
+		methodData = {},
+		successCallback = function (slot0)
+			MainCityWarObj:resetMainCityInfo(slot0)
+
+			slot0.mData = {}
+			slot0.mData = slot0
+			slot0.mWinnerInfo = {}
+
+			if 0 < #slot0.WinnerHistoryInfo then
+				slot0.mWinnerInfo = slot0.WinnerHistoryInfo[#slot0.WinnerHistoryInfo]
+			end
+
+			slot0.mMyinfo = slot0.Myinfo
+
+			if MainCityWarObj:getIsOnLookStatus() then
+				slot0:refreshDrawBtn()
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onReceiveBox = function (slot0, slot1)
+	if not slot1.time then
+		ui.showFlashView(TR("奖励已领取完毕~"))
+
+		return 
+	end
+
+	slot0.safeRequest(slot0, {
+		methodName = "DrawOnLookReward",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot1.time
+		},
+		successCallback = function (slot0)
+			slot0.mMyinfo.OnLookTimes = slot0.OnLookTimes
+			slot0.mMyinfo.OnLookDrawRecord = slot0.OnLookDrawRecord
+
+			ui.showFlashReward(slot0)
+			slot0:refreshDrawBtn()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getIdentityInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetSetIdentityInfo",
+		moduleName = "Leaguetop",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mIdentityList = slot0
+
+			slot0:refreshIdentityInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

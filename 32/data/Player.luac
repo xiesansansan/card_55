@@ -1,0 +1,940 @@
+Player = {
+	mAutoFightEndTime = 0,
+	needShowNotice = true,
+	mExpeditionStatus = true,
+	mAvatarTick = 0,
+	mAutoFightStartTime = 0,
+	mViewPos = 0,
+	mTimeTick = 0,
+	mOpenModuleInfo = {},
+	mGameCache = {}
+}
+HeroObj = require("data.CacheHero"):create()
+EquipObj = require("data.CacheEquip"):create()
+GemObj = require("data.CacheGem"):create()
+GoodsObj = require("data.CacheGoods"):create()
+RedDotObj = require("data.CacheRedDot"):create()
+PlayerAttrObj = require("data.CachePlayerAttr"):create()
+SlotEquipObj = require("data.CacheSlotEquip"):create()
+PveObj = require("data.CachePve"):create()
+CityWarObj = require("data.CacheCityWar"):create()
+ActivityObj = require("data.CacheActivity"):create()
+OnlineRewardObj = require("data.CacheOnlineReward"):create()
+FriendObj = require("data.CacheFriend"):create()
+EnemyObj = require("data.CacheEnemy"):create()
+KongfuObj = require("data.CacheKongfu"):create()
+MainTaskObj = require("data.CacheMainTask"):create()
+MainCityWarObj = require("data.CacheMainCityWar"):create()
+WuxueObj = require("data.CacheWuxue"):create()
+ModuleVisibleObj = require("data.CacheModuleVisible"):create()
+EtlyObj = require("data.CacheEtly"):create()
+EveningBossObj = require("data.CacheEveningBoss"):create()
+
+require("teamCopy.TeamCopyHelper")
+
+MercenaryObj = require("data.CacheMercenary"):create()
+MeetObj = require("data.CacheMeet"):create()
+Player.setUserLoginInfo = function (slot0, slot1, slot2)
+	slot0.mUserLoginInfo = (slot2 and {}) or slot0.mUserLoginInfo or {}
+
+	table.merge(slot0.mUserLoginInfo, slot1 or {})
+
+	return 
+end
+Player.getUserLoginInfo = function (slot0)
+	return slot0.mUserLoginInfo
+end
+Player.saveGameData = function (slot0, slot1, slot2)
+	slot0.mGameCache[slot1] = slot2
+
+	return 
+end
+Player.getGameData = function (slot0, slot1)
+	return slot0.mGameCache[slot1]
+end
+Player.getModuleOpenInfo = function (slot0, slot1)
+	return slot0.mOpenModuleInfo[slot1]
+end
+Player.isLogin = function (slot0)
+	return PlayerAttrObj:getPlayerAttrByName("Lv") ~= nil
+end
+Player.getExpeditionStatus = function (slot0)
+	return slot0.mExpeditionStatus
+end
+Player.setExpeditionStatus = function (slot0, slot1)
+	slot0.mExpeditionStatus = slot1
+
+	return 
+end
+Player.getQunxiaPos = function (slot0)
+	return slot0.mViewPos
+end
+Player.setQunxiaPos = function (slot0, slot1)
+	slot0.mViewPos = slot1
+
+	return 
+end
+Player.setSelectServer = function (slot0, slot1)
+	slot0.mSelectServer = slot1
+
+	return 
+end
+Player.getSelectServer = function (slot0)
+	return slot0.mSelectServer
+end
+Player.cleanCache = function (slot0)
+	slot0.mTimeTick = 0
+	slot0.mOpenModuleInfo = {}
+	slot0.mGameCache = {}
+	slot0.needShowNotice = true
+	slot0.mAutoFightStartTime = 0
+	slot0.mAutoFightEndTime = 0
+
+	HeroObj:reset()
+	EquipObj:reset()
+	GemObj:reset()
+	GoodsObj:reset()
+	RedDotObj:reset()
+	PlayerAttrObj:reset()
+	SlotEquipObj:reset()
+	PveObj:reset()
+	CityWarObj:reset()
+	ActivityObj:reset()
+	OnlineRewardObj:reset()
+	FriendObj:reset()
+	EnemyObj:reset()
+	KongfuObj:reset()
+	MainTaskObj:reset()
+	MainCityWarObj:reset()
+	WuxueObj:reset()
+	EtlyObj:reset()
+	EveningBossObj:reset()
+	MeetObj:reset()
+	MercenaryObj:reset()
+
+	if slot0.mTimeScheduler then
+		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(slot0.mTimeScheduler)
+
+		slot0.mTimeScheduler = nil
+	end
+
+	if slot0.mMarqueeLayer and not tolua.isnull(slot0.mMarqueeLayer) then
+		slot0.mMarqueeLayer:removeFromParent()
+
+		slot0.mMarqueeLayer = nil
+	end
+
+	Guide.manager:reset()
+
+	if FeiJiHelper then
+		FeiJiHelper:leave()
+		FeiJiHelper:resetCache()
+	end
+
+	if AircraftHelper then
+		AircraftHelper:leave()
+		AircraftHelper:resetCache()
+	end
+
+	require("network.GameSocket"):clean()
+
+	return 
+end
+Player.updateAvatar = function (slot0, slot1)
+	slot0.mAvatarTick = slot0.mTimeTick
+
+	if not next(slot1 or {}) then
+		return 
+	end
+
+	PlayerAttrObj:changeAttr(slot1)
+
+	if slot1.AutoStartTime ~= nil and slot1.AutoEndTime ~= nil then
+		slot0.mAutoFightStartTime = slot1.AutoStartTime
+		slot0.mAutoFightEndTime = slot1.AutoEndTime
+	end
+
+	if slot1.PrivilegeInnDailyFreeRefreshNum then
+		PlayerAttrObj:getPlayerAttrByName("PrivilegeCardInfo").InnDailyFreeRefreshNum = slot1.PrivilegeInnDailyFreeRefreshNum
+
+		PlayerAttrObj:changeAttr({
+			PrivilegeCardInfo = PlayerAttrObj.getPlayerAttrByName("PrivilegeCardInfo")
+		})
+	end
+
+	if slot1.OnHook ~= nil then
+		EventAuto:postEvent(EventDefine.eCityWarHelpingEvent)
+	end
+
+	if slot1.GuildInfo then
+		EventAuto:postEvent(EventDefine.eGuildTopPartUpdateEvent)
+	end
+
+	if slot1.MainSlotInfo then
+		HeroObj:updateHerosBattleAttr(slot1.MainSlotInfo)
+	end
+
+	if slot1.NewKongfuHeroInfo then
+		HeroObj:updateHerosKongfuInfo(slot1.NewKongfuHeroInfo)
+	end
+
+	if slot1.ModuleInfo then
+		for slot5, slot6 in pairs(slot1.ModuleInfo) do
+			slot0.mOpenModuleInfo[slot6.SubModuleId] = slot6
+
+			EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(slot6.SubModuleId))
+		end
+	end
+
+	if slot1.TimedActivityOpenInfo then
+		ActivityObj:updateActivityList(slot1.TimedActivityOpenInfo)
+	end
+
+	if slot1.MergedActivityOpenInfo then
+		Player:saveGameData("MergedActivityOpenInfo", slot1.MergedActivityOpenInfo)
+		EventAuto:postEvent(EventDefine.eMergeActivityChanged)
+	end
+
+	if slot1.NormalCrossActivityOpenInfo then
+		Player:saveGameData("NormalCrossActivityOpenInfo", slot1.NormalCrossActivityOpenInfo)
+		EventAuto:postEvent(EventDefine.eNormalCrossActivityChanged)
+	end
+
+	if slot1.GoodsInfo then
+		GoodsObj:modifyAvatarItemList(slot1.GoodsInfo)
+	end
+
+	if slot1.EquipInfo then
+		EquipObj:modifyItemList(slot1.EquipInfo)
+	end
+
+	if slot1.GemInfo then
+		GemObj:modifyItemList(slot1.GemInfo)
+	end
+
+	if slot1.WuxueInfo then
+		WuxueObj:modifyWuxueList(slot1.WuxueInfo)
+	end
+
+	if slot1.WuxueHeroInfo then
+		HeroObj:updateHerosWuxueInfo(slot1.WuxueHeroInfo)
+	end
+
+	if slot1.KongfuInfo then
+		KongfuObj:modifyKongfuList(slot1.KongfuInfo)
+		EventAuto:postEvent(EventDefine.eChangedHeroKongfu)
+	end
+
+	if slot1.MainTaskInfo then
+		dump(slot1.MainTaskInfo, "主线任务信息")
+		MainTaskObj:setList(slot1.MainTaskInfo)
+		EventAuto:postEvent(EventDefine.eMainTaskChanged)
+
+		slot0.mTaskList, slot0.mInfo = MainTaskObj:getList()
+
+		if Utility.moduleIsOpen(ModuleSub.eMainTask, false) then
+			for slot5, slot6 in ipairs(slot0.mTaskList) do
+				if slot6.isDraw == false and slot6.isCanDraw == true then
+					slot8 = {}
+
+					if (slot1.MainTaskInfo.NoticeIds or "") ~= "" then
+						slot8 = string.split(slot7, ",")
+					end
+
+					slot9 = true
+
+					for slot13, slot14 in pairs(slot8) do
+						if tonumber(slot14) == slot6.num then
+							slot9 = false
+
+							break
+						end
+					end
+
+					if slot9 then
+						if MaintaskModel.items[slot6.mainTaskModelId] or {}.modelId == 31 then
+							if 50 <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+								LayerManager.addLayer({
+									cleanUp = false,
+									name = "commonlayer.MissionCompleteLayer",
+									data = {
+										missionInfo = slot6
+									},
+									zOrder = Enums.ZOrderType.eAnnounce
+								})
+
+								break
+							end
+
+							LocalData:saveGameDataValue("ShowMissionCompleteLayer", {
+								isShow = true,
+								info = slot6
+							})
+
+							break
+						end
+
+						if slot10.ifFight then
+							LocalData:saveGameDataValue("ShowMissionCompleteLayer", {
+								isShow = true,
+								info = slot6
+							})
+
+							break
+						end
+
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "commonlayer.MissionCompleteLayer",
+							data = {
+								missionInfo = slot6
+							},
+							zOrder = Enums.ZOrderType.eAnnounce
+						})
+
+						break
+					end
+				end
+			end
+		end
+	end
+
+	if slot1.IsActivePrivilege then
+		require("network.GameSocket"):socketRequest({
+			methodName = "GetInfo",
+			moduleName = "Privilege",
+			ignoreNode = true,
+			successCallback = function (slot0)
+				PlayerAttrObj:changeAttr({
+					PrivilegeCardInfo = slot0.PrivilegeCard
+				})
+
+				return 
+			end
+		})
+	end
+
+	if slot1.CharacterIsFinish then
+		EventAuto:postEvent(EventDefine.eCharacterTaskFinish)
+	end
+
+	if slot1.MarqueeMessage and next(slot1.MarqueeMessage) ~= nil then
+		if slot0.mMarqueeLayer and not tolua.isnull(slot0.mMarqueeLayer) then
+			slot0.mMarqueeLayer:handleData(slot1.MarqueeMessage)
+		else
+			slot0.mMarqueeLayer = require("commonlayer.MarqueeLayer").new({
+				msgInfo = slot1.MarqueeMessage
+			})
+
+			display.getRunningScene():addChild(slot0.mMarqueeLayer, Enums.ZOrderType.eNetErrorMsg)
+		end
+	end
+
+	if slot1.ChargeDiamondInfo then
+		slot2 = nil
+		slot3 = ""
+
+		for slot7, slot8 in pairs(slot1.ChargeDiamondInfo) do
+			if 1 < table.getn(slot8) then
+				slot3 = string.format(TR("您充值的%d{db_1111.png}(赠送%d{db_1111.png})已到账"), slot8[1], slot8[2])
+
+				break
+			end
+		end
+
+		ui.showMessageBox({
+			text = slot3 .. TR("请尽情的挥霍吧~"),
+			okCallback = function (...)
+				return 
+			end
+		})
+		EventAuto:postEvent(EventDefine.eRechargeSuccess)
+	end
+
+	if slot1.Svip and slot1.Svip.First and slot1.Svip.First == true then
+		LayerManager.addLayer({
+			name = "activity.ActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eSvip
+			}
+		})
+	end
+
+	if slot1.IsShowGuildEmail then
+		EventAuto:postEvent(EventDefine.eGuildEmail, slot1.IsShowGuildEmail)
+	end
+
+	if slot1.IsShowPersonEmail then
+		EventAuto:postEvent(EventDefine.ePersonEmail, slot1.IsShowPersonEmail)
+	end
+
+	if slot1.AddHeadPicId then
+		Player:getGameData("NewHeadPic") or {}[slot1.AddHeadPicId] = true
+
+		Player:saveGameData("NewHeadPic", Player.getGameData("NewHeadPic") or {})
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(ModuleSub.eHeadpic))
+	end
+
+	if slot1.UniverseTurntableReward then
+		EventAuto:postEvent(EventDefine.eTimedUniverseTurntable, slot1.UniverseTurntableReward)
+	end
+
+	if slot1.SwdiamondsStatus ~= nil then
+		LocalData:saveGameDataValue("ShiWanYuanBaoStatus", slot1.SwdiamondsStatus)
+	end
+
+	if slot1.IsShowNewKongfuGift ~= nil then
+		PlayerAttrObj:changeAttr({
+			IsShowNewKongfuGift = slot1.IsShowNewKongfuGift
+		})
+	end
+
+	if slot1.FriendshipPoint then
+		PlayerAttrObj:changeAttr({
+			"FriendshipPoint",
+			slot1.FriendshipPoint
+		})
+	end
+
+	if slot1.ChargeNum then
+		PlayerAttrObj:changeAttr({
+			ChargeNum = slot1.ChargeNum
+		})
+	end
+
+	return 
+end
+Player.updateSocketPushData = function (slot0, slot1)
+	if slot1.PushKey == "Push_Reddot" then
+		RedDotObj:setSocketRedDotInfo(slot1.Value)
+	elseif slot1.PushKey == "Push_ModuleVisible" then
+		ModuleVisibleObj:modifyCache(slot1.Value)
+	elseif slot1.PushKey == "Push_ChargeType" then
+		Player:addDropToResData({
+			BaseGetResource = slot1.Value.BaseGetGameResourceList
+		})
+		ui.showFlashReward({
+			BaseGetGameResourceList = slot1.Value.BaseGetGameResourceList
+		})
+		PlayerAttrObj:checkVipLvUp()
+		EventAuto:postEvent(EventDefine.eRechargeType .. tostring(slot1.Value.ChargeType), slot1.Value.ChargeType)
+	elseif slot1.PushKey == "Push_GuildReruitMessage" then
+		ChatMng:assembDataByClient(Enums.ChatChanne.eSystem, {
+			Content = slot1.Value.Content,
+			Data = {
+				GuildId = slot1.Value.Data.GuildId
+			}
+		})
+	elseif slot1.PushKey == "Push_MarqueeForSystemChat" then
+		ChatMng:assembDataByClient(Enums.ChatChanne.eSystem, {
+			Content = slot1.Value
+		})
+	elseif slot1.PushKey == "Push_TeamStateChange" then
+		EventAuto:postEvent(EventDefine.eTeamStateChange)
+	elseif slot1.PushKey == "Push_SendCityWarTeamNew" then
+		EventAuto:postEvent(EventDefine.eSendCityWarTeamEvent, slot1.Value)
+	elseif slot1.PushKey == "Push_EndCityWarFightNew" or slot1.PushKey == "Push_FinalEndCityWarFightNew" then
+		slot2 = slot1.Value
+
+		if slot1.PushKey == "Push_FinalEndCityWarFightNew" then
+			slot2.IsWarOver = slot1.Value ~= nil
+		end
+
+		EventAuto:postEvent(EventDefine.eEndCityWarFightEvent, slot2)
+	elseif slot1.PushKey == "Push_ChangeCityInfo" then
+		EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+	elseif slot1.PushKey == "Push_RecallPlayerTeam" then
+		EventAuto:postEvent(EventDefine.eRecallPlayerTeam, slot1.Value)
+	elseif slot1.PushKey == "Push_CityWarSytemNotice" then
+		EventAuto:postEvent(EventDefine.eAddFlashTopTipText, slot1.Value)
+	elseif slot1.PushKey == "Push_EveningBossIsDead" then
+		EventAuto:postEvent(EventDefine.eTzsjBossIsDead, slot1.Value)
+
+		if Player:getGameData("showEveningBossSellReward") ~= true and Utility.moduleIsOpen(ModuleSub.eEveningBoss) then
+			Player:saveGameData("showEveningBossSellReward", true)
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "eveningboss.EveningBossSellRewardLayer",
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+	elseif slot1.PushKey == "Push_EveningBossEnd" then
+		if Player:getGameData("showEveningBossSellReward") ~= true and Utility.moduleIsOpen(ModuleSub.eEveningBoss) then
+			Player:saveGameData("showEveningBossSellReward", true)
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "eveningboss.EveningBossSellRewardLayer",
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+	elseif slot1.PushKey == "Push_EveningBossFight" then
+		EventAuto:postEvent(EventDefine.eTzsjBossFight, slot1.Value)
+	elseif slot1.PushKey == "Push_Mission" then
+		EventAuto:postEvent(EventDefine.eMission, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFightReport" then
+		EventAuto:postEvent(EventDefine.eJZWLFightInfo, slot1.Value)
+	elseif slot1.PushKey == "Push_FriendInfo" then
+		EventAuto:postEvent(EventDefine.eFriendChanged)
+	elseif slot1.PushKey == "Push_LeaguetopWinner" then
+		if 30 <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "jzwl.JzwlEmperorBornedLayer",
+				data = {
+					emperorData = slot1.Value
+				}
+			})
+		end
+	elseif slot1.PushKey == "Push_LeaguetopInfo" then
+		MainCityWarObj:setLeaguetopBaseInfo(slot1.Value)
+		EventAuto:postEvent(EventDefine.eJZWLStatusInfo)
+	elseif slot1.PushKey == "Push_ChasingList" then
+		Player:saveGameData("Push_ChasingList", slot1.Value)
+		EventAuto:postEvent(EventDefine.eChasingChanged)
+	elseif slot1.PushKey == "Push_LeaguetopBarrageMessage" then
+		EventAuto:postEvent(EventDefine.eJZWLBarrageMessagePush, slot1.Value)
+	elseif slot1.PushKey == "Push_EveningBossIsOpen" then
+		Player:saveGameData("Push_EveningBossIsOpen", true)
+		EventAuto:postEvent(EventDefine.eEveningBossIsOpen)
+	elseif slot1.PushKey == "Push_BoundaryChange" then
+		EventAuto:postEvent(EventDefine.eBoundaryInfo, slot1.Value)
+	elseif slot1.PushKey == "Push_BoundaryEventChange" then
+		EventAuto:postEvent(EventDefine.eBoundaryEventChange, slot1.Value)
+	elseif slot1.PushKey == "Push_BoundaryHpChange" then
+		EventAuto:postEvent(EventDefine.eBoundaryHpChange, slot1.Value)
+	elseif slot1.PushKey == "Push_BoundaryKillChange" then
+		EventAuto:postEvent(EventDefine.eBoundaryKillChange, slot1.Value)
+	elseif slot1.PushKey == "Push_SkillTotalFap" then
+		Player:saveGameData("Push_SkillTotalFap", slot1.Value)
+	elseif slot1.PushKey == "Push_ShengyuanInvite" then
+		PlayerAttrObj:changeAttr({
+			ShengyuanWarsInvitData = {
+				slot1.Value
+			}
+		})
+		EventAuto:postEvent(EventDefine.eFeiJiTeamInvite)
+	elseif slot1.PushKey == "Push_ShengyuanTeam" then
+		EventAuto:postEvent(EventDefine.eFeiJiTeam)
+	elseif slot1.PushKey == "Push_ShengyuanMatch" then
+		EventAuto:postEvent(EventDefine.eFeiJiMatch, slot1.Value)
+	elseif slot1.PushKey == "Push_ShengyuanChat" then
+		EventAuto:postEvent(FeiJiHelper.Events.eFeiJiChatInfo, cjson.decode(slot1.Value).From.Name .. ":" .. cjson.decode(slot1.Value).Message)
+	elseif slot1.PushKey == "Push_AircraftInvite" then
+		dump(slot1)
+		PlayerAttrObj:changeAttr({
+			GoddomainInvitData = {
+				slot1.Value
+			}
+		})
+		EventAuto:postEvent(EventDefine.eAircraftTeamInvite)
+	elseif slot1.PushKey == "Push_AircraftTeam" then
+		EventAuto:postEvent(EventDefine.eAircraftTeam)
+	elseif slot1.PushKey == "Push_AircraftMatch" then
+		EventAuto:postEvent(EventDefine.eAircraftMatch, slot1.Value)
+	elseif slot1.PushKey == "Push_AircraftChat" then
+		EventAuto:postEvent(AircraftHelper.Events.eGodDomainChatInfo, cjson.decode(slot1.Value).From.Name .. ":" .. cjson.decode(slot1.Value).Message)
+	elseif slot1.PushKey == "Push_TeamCopyRoomChange" then
+		TeamCopyHelper:modifyRoomInfo(slot1.Value)
+	elseif slot1.PushKey == "Push_TeamCopyPlayerChange" then
+		TeamCopyHelper:modifyRoomInfo(slot1.Value)
+	elseif slot1.PushKey == "Push_TeamCopyWorldShare" then
+		TeamCopyHelper:dealPushShareInfo(slot1.Value)
+	elseif slot1.PushKey == "Push_TeamCopyFightReport" then
+		TeamCopyHelper:enterBattle(slot1.Value)
+	elseif slot1.PushKey == "Push_MergedAdvertisingInfo" then
+		Player:saveGameData("Push_MergedAdvertisingInfo", slot1.Value)
+	elseif slot1.PushKey == "Push_TerritoryTimer" then
+		EventAuto:postEvent(EventDefine.eTerritoryTimer, slot1.Value)
+	elseif slot1.PushKey == "Push_Meeting" then
+		MeetObj:updateMeet(slot1.Value.Meeting)
+	elseif slot1.PushKey == "Push_MyMercenaryHero" then
+		MercenaryObj:setMercenaryInfo(slot1.Value)
+	elseif slot1.PushKey == "Push_TriggerGiftInfo" then
+		slot2 = PlayerAttrObj:getPlayerAttrByName("TriggerGiftInfo") or {}
+		slot3 = {}
+
+		for slot7, slot8 in pairs(slot2) do
+			slot3[slot8.TriggerType*10000 + slot8.TriggerId] = true
+		end
+
+		slot4 = pairs
+		slot5 = slot1.Value or {}
+
+		for slot7, slot8 in slot4(slot5) do
+			if not slot3[slot8.TriggerType*10000 + slot8.TriggerId] then
+				PlayerAttrObj:changeAttr({
+					TriggerGiftNewInfo = slot8
+				})
+
+				break
+			end
+		end
+
+		PlayerAttrObj:changeAttr({
+			TriggerGiftInfo = slot1.Value
+		})
+		EventAuto:postEvent(EventDefine.eTriggerGift, slot1.Value)
+	elseif slot1.PushKey == "Push_CityWarArmyEnd" then
+		EventAuto:postEvent(EventDefine.eCityWarArmyEnd, slot1.Value)
+	elseif slot1.PushKey == "Push_CityWarArmyRankInfo" then
+		EventAuto:postEvent(EventDefine.eCityWarArmyRankInfo, slot1.Value)
+	elseif slot1.PushKey == "Push_CityWarArmyPlayerJoin" then
+		EventAuto:postEvent(EventDefine.eCityWarArmyPlayerJoin, slot1.Value)
+	elseif slot1.PushKey == "Push_SpecialActivityInfo" then
+		Player:saveGameData("Push_SpecialActivityInfo", slot1.Value)
+	elseif slot1.PushKey == "Push_SeasonAuctionInfo" then
+		EventAuto:postEvent(EventDefine.eSeasonAuctionInfo, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalFightReport" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalFightReport, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalAddQueue" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalAddQueue, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalRemoveQueue" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalRemoveQueue, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalBarrageMessage" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalBarrageMessage, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalMainPage" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalMainPage, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalFightFailed" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalFightFailed, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalFightWinner" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalFightWinner, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopFinalRank" then
+		EventAuto:postEvent(EventDefine.eLeaguetopFinalRank, slot1.Value)
+	elseif slot1.PushKey == "Push_LeaguetopfinalInfo" then
+		PlayerAttrObj:changeAttr({
+			LeaguetopfinalStatus = slot1.Value.LeaguetopfinalStatus,
+			LeaguetopfinalStartTime = slot1.Value.LeaguetopfinalStartTime,
+			LeaguetopfinalFightEndTime = slot1.Value.LeaguetopfinalFightEndTime,
+			LeaguetopfinalIsGameOver = slot1.Value.LeaguetopfinalIsGameOver,
+			LeaguetopfinalGroupId = slot1.Value.GroupId
+		})
+	elseif slot1.PushKey == "Push_LeaguetopfinalWinnerInfo" then
+		PlayerAttrObj:changeAttr({
+			LeaguetopfinalWinnerInfo = slot1.Value
+		})
+	end
+
+	return 
+end
+Player.addDropToResData = function (slot0, slot1)
+	function slot2(slot0)
+		if slot0.Hero then
+			HeroObj:modifyItemList(slot0.Hero)
+		end
+
+		if slot0.Fashion then
+			slot1 = {}
+
+			for slot5, slot6 in pairs(slot0.Fashion) do
+				table.insert(slot1, slot6.ResourceId)
+			end
+
+			PlayerAttrObj:changeAttr({
+				FashionActivedModelIds = slot1
+			})
+		end
+
+		return 
+	end
+
+	if slot1 or {}.BaseGetResource then
+		for slot6, slot7 in ipairs(slot1.BaseGetResource) do
+			slot2(slot7)
+		end
+	end
+
+	if slot1.ChiceResource then
+		for slot6, slot7 in ipairs(slot1.ChiceResource) do
+		end
+	end
+
+	if slot1.ExtraGetResource then
+		slot2(slot1.ExtraGetResource)
+	end
+
+	return 
+end
+Player.updateInitData = function (slot0, slot1)
+	if slot1 or {}.PlayerInfo then
+		PlayerAttrObj:updatePlayerInfo(slot1.PlayerInfo)
+	end
+
+	if slot1.KuangZhanCountdown then
+		PlayerAttrObj:changeAttr({
+			KuangZhanCountdown = slot1.KuangZhanCountdown
+		})
+	end
+
+	if slot1.KuangZhanIsOpen then
+		PlayerAttrObj:changeAttr({
+			KuangZhanIsOpen = slot1.KuangZhanIsOpen
+		})
+	end
+
+	if slot1.IsFirstEnter then
+		PlayerAttrObj:changeAttr({
+			IsFirstEnter = slot1.IsFirstEnter
+		})
+	end
+
+	if slot1.HeroInfo then
+		HeroObj:setList(slot1.HeroInfo)
+	end
+
+	if slot1.EquipInfo then
+		EquipObj:setList(slot1.EquipInfo)
+	end
+
+	if slot1.WuxueInfo then
+		WuxueObj:setWuxueList(slot1.WuxueInfo)
+	end
+
+	if slot1.PositionInfo then
+		SlotEquipObj:setList(slot1.PositionInfo)
+	end
+
+	if slot1.FashionActivedModelIds then
+		PlayerAttrObj:changeAttr({
+			FashionActivedModelIds = slot1.FashionActivedModelIds
+		})
+	end
+
+	if slot1.FashionShowIdList then
+		PlayerAttrObj:changeAttr({
+			FashionShowIdList = slot1.FashionShowIdList
+		})
+	end
+
+	if slot1.AllTitleId then
+		PlayerAttrObj:changeAttr({
+			AllTitleId = slot1.AllTitleId
+		})
+	end
+
+	if slot1.GemInfo then
+		GemObj:setList(slot1.GemInfo)
+	end
+
+	if slot1.NewKongfuInfo then
+		KongfuObj:setKongfuList(slot1.NewKongfuInfo)
+	end
+
+	if slot1.GoodsHeroDebrisInfo then
+		GoodsObj:setList(slot1.GoodsHeroDebrisInfo, BagType.eHeroDebrisBag)
+	end
+
+	if slot1.GoodsEquipDebrisInfo then
+		GoodsObj:setList(slot1.GoodsEquipDebrisInfo, BagType.eEquipDebrisBag)
+	end
+
+	if slot1.GoodsMaterialInfo then
+		GoodsObj:setList(slot1.GoodsMaterialInfo, BagType.eMaterialBag)
+	end
+
+	if slot1.GoodsKongFuDebrisInfo then
+		GoodsObj:setList(slot1.GoodsKongFuDebrisInfo, BagType.eKongFuDebrisBag)
+	end
+
+	if slot1.GoodsTitleDebrisInfo then
+		GoodsObj:setList(slot1.GoodsTitleDebrisInfo, BagType.eTitleDebris)
+	end
+
+	if slot1.GoodsPropsInfo then
+		GoodsObj:setList(slot1.GoodsPropsInfo, BagType.eGoodsBag)
+	end
+
+	if slot1.GoodsWuxueDebrisInfo then
+		GoodsObj:setList(slot1.GoodsWuxueDebrisInfo, BagType.eWuxueDebris)
+	end
+
+	if slot1.ModuleInfo then
+		for slot5, slot6 in pairs(slot1.ModuleInfo) do
+			slot0.mOpenModuleInfo[slot6.SubModuleId] = slot6
+		end
+	end
+
+	if slot1.IsShowStrategyGift ~= nil then
+		PlayerAttrObj:changeAttr({
+			IsShowStrategyGift = slot1.IsShowStrategyGift
+		})
+	end
+
+	if not slot0.mTimeScheduler then
+		slot0.mTimeScheduler = cc.Director:getInstance():getScheduler():scheduleScriptFunc(handler(slot0, slot0.updatePerSecond), 1, false)
+	end
+
+	if slot1.TimedPlayInfo then
+		ActivityObj:setXSPlayerInfo(slot1.TimedPlayInfo)
+	end
+
+	if slot1.AdvanceNoticeInfo then
+		ActivityObj:setXSQiPaoPlayerInfo(slot1.AdvanceNoticeInfo)
+	end
+
+	if slot1.OfflineCombatStateByAircraft then
+		require("aircraft.AircraftHelper")
+
+		AircraftHelper.isHangUping = slot1.OfflineCombatStateByAircraft
+	end
+
+	if slot1.OfflineCombatStateByShengyuan then
+		require("feiji.FeiJiHelper")
+
+		FeiJiHelper.isHangUping = slot1.OfflineCombatStateByShengyuan
+	end
+
+	if TeamCopyHelper.FormationInfo and TeamCopyHelper.FormationInfo ~= "" then
+		TeamCopyHelper.FormationInfo = ""
+
+		TeamCopyHelper:requestGetFormationInfo()
+	end
+
+	if Utility.isEntityId(TeamCopyHelper.RoomId) then
+		TeamCopyHelper:requestGetInfo()
+	end
+
+	return 
+end
+Player.checkIsNewDay = function (slot0, slot1)
+	if not MqTime.isSameDay(slot1, slot0.mTimeTick) then
+		EventAuto:postEvent(EventDefine.eNewDayCome)
+	end
+
+	return 
+end
+Player.updateTimeTick = function (slot0, slot1)
+	slot0.mTimeTick = slot1
+
+	slot0.checkIsNewDay(slot0, slot0.mTimeTick)
+
+	return 
+end
+Player.getCurrentTime = function (slot0)
+	return slot0.mTimeTick
+end
+Player.isAutoFightStart = function (slot0)
+	if slot0.mAutoFightStartTime == nil or slot0.mAutoFightStartTime == 0 then
+		return false
+	end
+
+	if slot0.mAutoFightEndTime == nil or slot0.mAutoFightEndTime == 0 then
+		return false
+	end
+
+	return slot0.mAutoFightStartTime <= slot0.getCurrentTime(slot0) and slot1 <= slot0.mAutoFightEndTime
+end
+Player.updatePerSecond = function (slot0)
+	if slot0.mTimeTick then
+		slot0.mTimeTick = slot0.mTimeTick + 1
+
+		slot0.checkIsNewDay(slot0, slot0.mTimeTick)
+	end
+
+	return 
+end
+Player.updateAvatarTick = function (slot0)
+	slot0.mAvatarTick = slot0.mTimeTick
+
+	return 
+end
+Player.getServerTime = function (slot0)
+	return slot0.mTimeTick
+end
+Player.checkAvatarUpdate = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("PlayerId") and 0 < string.len(slot1) then
+		require("network.GameSocket"):socketRequest({
+			methodName = "ReLogin",
+			moduleName = "Player",
+			ignoreNode = true,
+			guid = "reloginRequest",
+			needWait = false,
+			methodData = {
+				PlayerAttrObj:getPlayerAttrByName("PlayerId"),
+				PlayerAttrObj:getPlayerAttrByName("Session")
+			},
+			successCallback = function (slot0)
+				require("network.GameSocket"):socketRequest({
+					methodName = "GetInitData",
+					moduleName = "Player",
+					ignoreNode = true,
+					needWait = false,
+					methodData = {},
+					successCallback = function (slot0)
+						Player:updateInitData(slot0)
+
+						return 
+					end
+				})
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+Player.setFightTimeStamp = function (slot0, slot1)
+	slot0.mBossTimeStamp = slot1 or 5
+	slot0.mBossTimeId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function (slot0)
+		slot0.mBossTimeStamp = slot0.mBossTimeStamp - 1
+
+		print("setFightTimeStamp", slot0.mBossTimeStamp)
+
+		if slot0.mBossTimeStamp == 0 then
+			slot1:unscheduleScriptEntry(slot0.mBossTimeId)
+
+			slot0.mBossTimeId = nil
+		end
+
+		return 
+	end, 1, false)
+
+	return 
+end
+Player.setTimeTick = function (slot0, slot1)
+	if not slot1 or slot1 <= 0 then
+		return 
+	end
+
+	slot0.mTimeTick = slot1
+
+	return 
+end
+Player.getFightTimeStamp = function (slot0)
+	return slot0.mBossTimeStamp
+end
+Player.reportCallActivityCount = function (slot0, slot1, slot2)
+	if not ActivityObj:getEntityId(slot1, slot2) then
+		if Utility.activeNeedReport(slot1) and Utility.moduleIsOpen(slot1, false) then
+			dump(slot1, "reportCallActivityCount moduleId:")
+			require("network.GameSocket"):socketRequest({
+				methodName = "InherenActiveRecor",
+				ignoreNode = true,
+				moduleName = "TimedActiveRecord",
+				needWait = false,
+				methodData = {
+					slot1
+				}
+			})
+		end
+
+		return 
+	end
+
+	dump(slot1, "reportCallActivityCount moduleId:")
+	dump(slot2, "reportCallActivityCount activityType:")
+	dump(slot3, "reportCallActivityCount activityId:")
+	require("network.GameSocket"):socketRequest({
+		methodName = "ActiveRecor",
+		ignoreNode = true,
+		moduleName = "TimedActiveRecord",
+		needWait = false,
+		methodData = {
+			slot3
+		}
+	})
+
+	return 
+end
+
+return 

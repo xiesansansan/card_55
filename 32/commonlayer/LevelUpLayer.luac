@@ -1,0 +1,623 @@
+slot0 = class("LevelUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled388",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zd_81.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "closeTempBtn",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 693,
+						y = 52
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled389",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled390",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = -514.13,
+						y = 69.07
+					}
+				},
+				children = {
+					{
+						name = "untitled420",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_dengjitisheng",
+							animation = "xunhuan",
+							pos = {
+								x = 561.98,
+								y = 257.96
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled393",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_42.png",
+							pos = {
+								x = 553.87,
+								y = 377.11
+							},
+							size = {
+								width = 350,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "untitled394",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 23.53,
+										y = 19
+									},
+									text = TR("角色等级")
+								},
+								children = {}
+							},
+							{
+								name = "mOldLevelLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "0",
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									pos = {
+										x = 150.01,
+										y = 19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mNewLevelLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "1",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 255.88,
+										y = 19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled397",
+								cType = "Sprite",
+								params = {
+									image = "c_23.png",
+									pos = {
+										x = 205.31,
+										y = 19
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled398",
+						cType = "Sprite",
+						params = {
+							image = "zd_35.png",
+							pos = {
+								x = 553,
+								y = 336
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled399",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 554,
+								y = 336
+							},
+							text = TR("获得奖励")
+						},
+						children = {}
+					},
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							swallowTouch = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 571,
+								y = 276.33
+							},
+							size = {
+								width = 350,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "mLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled404-initParams",
+										name = "head",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled404",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mModuleListView",
+						cType = "ListView",
+						params = {
+							margin = 2,
+							direction = true,
+							swallowTouch = false,
+							pos = {
+								x = 300.3,
+								y = 51.95
+							},
+							size = {
+								width = 510,
+								height = 160
+							}
+						},
+						children = {
+							{
+								name = "mModuleLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 510,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "moduleOpenBg",
+										cType = "Scale9Sprite",
+										params = {
+											image = "zd_39.png",
+											pos = {
+												x = 255,
+												y = 40
+											}
+										},
+										children = {}
+									},
+									{
+										name = "moduleName",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 56,
+												y = 51
+											}
+										},
+										children = {}
+									},
+									{
+										name = "moduleIntro",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											align = 0,
+											valign = 0,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 126,
+												r = 44,
+												b = 217
+											},
+											pos = {
+												x = 56,
+												y = 18
+											},
+											size = {
+												width = 300,
+												height = 37
+											}
+										},
+										children = {}
+									},
+									{
+										name = "moduleImg",
+										cType = "Sprite",
+										params = {
+											image = "zd_42.png",
+											pos = {
+												x = 406.29,
+												y = 29.88
+											}
+										},
+										children = {}
+									},
+									{
+										name = "moduleOpenLabel",
+										cType = "Label",
+										params = {
+											fontSize = 14,
+											rotationAngle = -15,
+											color = {
+												g = 10,
+												r = 223,
+												b = 10
+											},
+											pos = {
+												x = 405.21,
+												y = 32.24
+											},
+											text = TR("18级开启")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled425",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled426",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_dengjitisheng",
+					animation = "animation1",
+					pos = {
+						x = 569.5,
+						y = -4.21
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled427",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled428",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_dengjitisheng",
+					animation = "animation2",
+					pos = {
+						x = -573,
+						y = -8.04
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			slot2, slot3 = Guide.manager:isCurGuideBegin()
+			slot4, slot5 = Utility.getCurLvActionModuleIds()
+			slot6 = slot0.callback
+
+			if slot2 or 0 < #slot4 then
+				if 0 < #slot4 and slot5[slot4[1]] then
+					Player:saveGameData("NeedModuleOpenAction" .. slot4[1], true)
+				end
+
+				if slot7 then
+					LayerManager.addLayer({
+						name = "home.HomeLayer"
+					})
+				else
+					LayerManager.removeLayer(slot0)
+
+					if slot6 then
+						slot6()
+					end
+				end
+			else
+				slot7, slot8 = Guide.manager:getGuideInfo()
+
+				Player:saveGameData("NeedModuleOpenAction", false)
+				LayerManager.removeLayer(slot0)
+
+				if slot6 then
+					slot6()
+				end
+			end
+
+			return 
+		end
+	})
+
+	slot0.mOldLv = (slot1 and slot1.oldLv) or 0
+	slot0.mNewLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.showCount = 3
+	slot0.mBtnInfo = {}
+	slot0.mBtnInfo = slot0.getOpenModuleInfo(slot0, slot0.mNewLv)
+
+	slot0.initUI(slot0)
+	MqAudio.playEffect("dengjitisheng.mp3")
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.showLevelWithAnim(slot0)
+	slot0.showLevelUpReward(slot0)
+	slot0.createModuleOpenList(slot0)
+
+	return 
+end
+slot0.getOpenModuleInfo = function (slot0, slot1)
+	slot2 = {}
+	slot4 = FunctionOpenModel.items[1] or {}
+
+	table.sort(clone, function (slot0, slot1)
+		return slot0.openLv < slot1.openLv
+	end)
+
+	for slot7, slot8 in ipairs(slot3) do
+		if #slot2 == slot0.showCount then
+			break
+		end
+
+		if slot1 <= slot8.openLv then
+			table.insert(slot2, slot8)
+		end
+	end
+
+	return slot2
+end
+slot0.showLevelWithAnim = function (slot0)
+	slot0.mOldLevelLabel:setString(slot0.mOldLv)
+	slot0.mNewLevelLabel:setString(slot0.mNewLv)
+
+	return 
+end
+slot0.showLevelUpReward = function (slot0)
+	slot3 = 420
+
+	if #Utility.analysisStrResList(slot1) < 4 then
+		slot3 = #slot2*140
+	end
+
+	slot0.mListView:setContentSize(cc.size(slot3, 160))
+
+	for slot7, slot8 in pairs(slot2) do
+		slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mLayout", {
+			head = {
+				cardInfo = {
+					modelId = slot8.resourceId,
+					num = slot8.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.createModuleOpenList = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.mBtnInfo) do
+		if next(slot6) then
+			slot7 = slot0.createLayoutTemplateNode(slot0, "mModuleLayout", {})
+
+			slot0.mModuleListView:pushBackCustomItem(slot7)
+
+			slot1 = slot1 + 1
+
+			slot7.moduleName:setString(slot6.moduleName)
+			slot7.moduleIntro:setString(slot6.intro)
+
+			if slot0.mNewLv < slot6.openLv then
+				slot7.moduleImg:setTexture("zd_42.png")
+				slot7.moduleOpenLabel:setString(TR("%d级开启", slot6.openLv))
+			else
+				slot7.moduleImg:setTexture("zd_40.png")
+				slot7.moduleOpenLabel:setString("")
+			end
+		end
+	end
+
+	if slot1 == 0 then
+		slot0.mModuleListView:setVisible(false)
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	dump("升级界面的新手引导")
+	Guide.manager:checkViceUpdate(function ()
+		slot0:executeGuide()
+
+		return 
+	end)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	Guide.manager:exeGuideList({
+		[10108] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[10204] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[10302] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[10404] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[10502] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[20202] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[20404] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[20602] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[20608] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		},
+		[30102] = {
+			clickRect = cc.rect(0, 0, 1136, 92)
+		}
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,368 @@
+require("common.Enums")
+
+slot0 = class("RichTextEx", function ()
+	slot0 = ccui.RichText:create()
+	slot0.__default_insertElement = slot0.insertElement
+	slot0.__default_setContentSize = slot0.setContentSize
+	slot0.__default_getContentSize = slot0.getContentSize
+	slot0.__default_stopAllActions = slot0.stopAllActions
+	slot0.__default_setOpacity = slot0.setOpacity
+
+	return slot0
+end)
+slot1 = {
+	eBold = cc.LightFlag.LIGHT1,
+	eUnderline = cc.LightFlag.LIGHT2,
+	eStrikethrough = cc.LightFlag.LIGHT3,
+	eUrl = cc.LightFlag.LIGHT4,
+	eOutline = cc.LightFlag.LIGHT5,
+	eShadow = cc.LightFlag.LIGHT6,
+	eGlow = cc.LightFlag.LIGHT7
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mContentStr = slot1 or {}.text
+	slot0.mContentList = slot0.analysisString(slot0, slot1 or {}.text)
+
+	slot0.setHorizontalAlignment(slot0, slot1 or {}.align or cc.TEXT_ALIGNMENT_LEFT)
+	slot0.setVerticalAlignment(slot0, slot1 or {}.valign or cc.VERTICAL_TEXT_ALIGNMENT_CENTER)
+
+	if slot1.dimensions and (0 < slot1.dimensions.width or 0 < slot1.dimensions.height) then
+		slot0.ignoreContentAdaptWithSize(slot0, false)
+		slot0.setContentSize(slot0, slot1.dimensions)
+	end
+
+	slot0.mDefFormat = {
+		opacity = 255,
+		imageScale = slot1.formatInfo or {}.imageScale or 1,
+		font = slot1.formatInfo or {}.font,
+		fontSize = slot1.formatInfo or {}.fontSize or 22,
+		color = slot1.formatInfo or {}.color or display.COLOR_WHITE,
+		needBold = slot1.formatInfo or {}.needBold,
+		needUnderline = slot1.formatInfo or {}.needUnderline,
+		needStrikethrough = slot1.formatInfo or {}.needStrikethrough,
+		needUrl = slot1.formatInfo or {}.needUrl,
+		url = slot1.formatInfo or {}.url or "",
+		needOutLine = slot1.formatInfo or {}.needOutLine,
+		outlineColor = slot1.formatInfo or {}.outlineColor or display.COLOR_BLACK,
+		outlineSize = slot1.formatInfo or {}.outlineSize or 2,
+		needShadow = slot1.formatInfo or {}.needShadow,
+		shadowColor = slot1.formatInfo or {}.shadowColor or display.COLOR_BLACK,
+		shadowOffset = slot1.formatInfo or {}.shadowOffset or cc.size(2, -2),
+		shadowBlurRadius = slot1.formatInfo or {}.shadowBlurRadius or 0,
+		needeGlow = slot1.formatInfo or {}.needeGlow,
+		glowColor = slot1.formatInfo or {}.glowColor or display.COLOR_WHITE
+	}
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.analysisString = function (slot0, slot1)
+	slot5 = "{[%w_/]+%.[jpngJPNG]+}"
+	slot6 = "[\r\n]+"
+	slot7 = slot0.mColor
+
+	function (slot0, slot1, slot2)
+		while 0 < string.len(slot0) do
+			slot3, slot4 = string.find(slot0, slot1)
+
+			if not slot3 then
+				slot2(slot0)
+
+				break
+			end
+
+			slot2((1 < slot3 and string.sub(slot0, 1, slot3 - 1)) or nil, (0 < slot3 and string.sub(slot0, slot3, slot4)) or nil)
+
+			slot0 = (string.len(slot0) <= slot4 and "") or string.sub(slot0, slot4 + 1, string.len(slot0))
+		end
+
+		return 
+	end(slot1 or "", "#%x%x%x%x%x%x", function (slot0, slot1)
+		if slot0 and slot0 ~= "" then
+			slot0(slot0, slot1, function (slot0, slot1)
+				if slot0 and slot0 ~= "" then
+					slot0(slot0, slot1, function (slot0, slot1)
+						if slot0 and slot0 ~= "" then
+							table.insert(slot0, {
+								text = slot0,
+								formatInfo = {
+									color = slot1
+								}
+							})
+						end
+
+						if slot1 and slot1 ~= "" then
+							table.insert(slot0, {
+								newLine = true
+							})
+						end
+
+						return 
+					end)
+				end
+
+				if slot1 and slot1 ~= "" then
+					table.insert(table.insert, {
+						imageStr = string.sub(slot1, 2, string.len(slot1) - 1)
+					})
+				end
+
+				return 
+			end)
+		end
+
+		slot4 = (slot1 and slot5:strToColor(string.sub(slot1, 2, string.len(slot1)))) or slot4
+
+		return 
+	end)
+
+	return {}
+end
+slot0.strToColor = function (slot0, slot1)
+	slot2 = cc.c3b(255, 248, 234)
+	slot3 = string.len
+	slot4 = slot1 or ""
+
+	if 6 <= slot3(slot4) then
+		slot2.r = tonumber(string.sub(slot1, 1, 2), 16)
+		slot2.g = tonumber(string.sub(slot1, 3, 4), 16)
+		slot2.b = tonumber(string.sub(slot1, 5, 6), 16)
+	end
+
+	return slot2
+end
+slot0.setString = function (slot0, slot1)
+	slot0.mContentStr = slot1
+	slot0.mContentList = slot0.analysisString(slot0, slot1)
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.getString = function (slot0)
+	return slot0.mContentStr
+end
+slot0.setContent = function (slot0, slot1)
+	slot0.mContentList = slot1 or {}
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.refresh = function (slot0, slot1)
+	function slot2()
+		slot0:clearElement()
+
+		for slot3, slot4 in ipairs(slot0.mContentList) do
+			slot5 = slot4.formatInfo or slot0.mDefFormat
+
+			if slot4.newLine then
+				slot0:pushBackElement(ccui.RichElementNewLine:create(slot3, cc.c3b(255, 255, 255), slot5.opacity or slot0.mDefFormat.opacity))
+			elseif slot4.customCb then
+				slot0:pushBackElement(ccui.RichElementCustomNode:create(slot3, cc.c3b(255, 255, 255), slot5.opacity or slot0.mDefFormat.opacity, slot4.customCb()))
+			elseif slot4.imageStr and slot4.imageStr ~= "" then
+				if ccui.RichElementImage:create(slot3, display.COLOR_WHITE, slot5.opacity or slot0.mDefFormat.opacity, slot4.imageStr) then
+					slot8 = slot5.imageScale or slot0.mDefFormat.imageScale
+
+					if display.loadImage(slot4.imageStr) then
+						slot7.setWidth(slot7, slot9.getContentSize(slot9).width*slot8)
+						slot7.setHeight(slot7, slot9.getContentSize(slot9).height*slot8)
+						slot0:pushBackElement(slot7)
+					end
+				end
+			else
+				slot6 = 0
+
+				if slot5.needBold or (slot5.needBold == nil and slot0.mDefFormat.needBold) then
+					slot6 = slot6 + slot1.eBold
+				end
+
+				if slot5.needUnderline or (slot5.needUnderline == nil and slot0.mDefFormat.needUnderline) then
+					slot6 = slot6 + slot1.eUnderline
+				end
+
+				if slot5.needStrikethrough or (slot5.needStrikethrough == nil and slot0.mDefFormat.needStrikethrough) then
+					slot6 = slot6 + slot1.eStrikethrough
+				end
+
+				if slot5.needUrl or (slot5.needUrl == nil and slot0.mDefFormat.needUrl) then
+					slot6 = slot6 + slot1.eUrl
+				end
+
+				if slot5.needOutLine or (slot5.needOutLine == nil and slot0.mDefFormat.needOutLine) then
+					slot6 = slot6 + slot1.eOutline
+				end
+
+				if slot5.needShadow or (slot5.needShadow == nil and slot0.mDefFormat.needShadow) then
+					slot6 = slot6 + slot1.eShadow
+				end
+
+				if slot5.needeGlow or (slot5.needeGlow == nil and slot0.mDefFormat.needeGlow) then
+					slot6 = slot6 + slot1.eGlow
+				end
+
+				slot0:pushBackElement(ccui.RichElementText:create(slot3, slot5.color or slot0.mDefFormat.color, slot5.opacity or slot0.mDefFormat.opacity, slot4.text, slot5.font or slot0.mDefFormat.font, slot5.fontSize or slot0.mDefFormat.fontSize, slot6, slot5.url or slot0.mDefFormat.url, slot5.outlineColor or slot0.mDefFormat.outlineColor, slot5.outlineSize or slot0.mDefFormat.outlineSize, slot5.shadowColor or slot0.mDefFormat.shadowColor, slot5.shadowOffset or slot0.mDefFormat.shadowOffset, slot5.shadowBlurRadius or slot0.mDefFormat.shadowBlurRadius, slot5.glowColor or slot0.mDefFormat.glowColor))
+			end
+		end
+
+		return 
+	end
+
+	if slot0.mNeedRefresh then
+		if slot1 then
+			slot0.stopAction(slot0, slot0.mRefAction)
+			slot2()
+
+			slot0.mNeedRefresh = false
+		end
+
+		return 
+	end
+
+	slot0.mNeedRefresh = true
+	slot0.mRefAction = slot0.runAction(slot0, cc.CallFunc:create(function ()
+		slot0()
+
+		slot1.mNeedRefresh = false
+
+		return 
+	end))
+
+	return 
+end
+slot0.insertElement = function (slot0, slot1, slot2)
+	slot3 = slot2 or #slot0.mContentList
+
+	table.insert(slot0.mContentList, math.min(slot2, #slot0.mContentList + 1), {
+		customCb = slot1
+	})
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.stopAllActions = function (slot0)
+	slot0.__default_stopAllActions(slot0)
+
+	if slot0.mNeedRefresh then
+		slot0.mNeedRefresh = false
+
+		slot0.refresh(slot0)
+	end
+
+	return 
+end
+slot0.setContentSize = function (slot0, slot1)
+	slot0.__default_setContentSize(slot0, slot1)
+
+	return 
+end
+slot0.getContentSize = function (slot0)
+	slot0.refresh(slot0, true)
+	slot0.formatText(slot0)
+
+	return slot0.__default_getContentSize(slot0)
+end
+slot0.enableShadow = function (slot0, slot1, slot2, slot3)
+	slot0.mDefFormat.needShadow = true
+
+	if slot1 then
+		slot0.mDefFormat.shadowColor = slot1
+	end
+
+	if slot2 then
+		slot0.mDefFormat.shadowOffset = slot2
+	end
+
+	if slot3 then
+		slot0.mDefFormat.shadowBlurRadius = slot3
+	end
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.enableOutline = function (slot0, slot1, slot2)
+	slot0.mDefFormat.needOutLine = true
+
+	if slot1 then
+		slot0.mDefFormat.outlineColor = slot1
+	end
+
+	if slot2 then
+		slot0.mDefFormat.outlineSize = slot2
+	end
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.enableBold = function (slot0)
+	slot0.mDefFormat.needBold = true
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.enableUnderline = function (slot0)
+	slot0.mDefFormat.needUnderline = true
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setColor = function (slot0, slot1)
+	slot0.mDefFormat.color = slot1 or display.COLOR_WHITE
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setOutlineColor = function (slot0, slot1)
+	slot0.mDefFormat.needOutLine = slot1 ~= nil
+
+	if slot1 then
+		slot0.mDefFormat.outlineColor = slot1
+	end
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setTextColor = function (slot0, slot1)
+	slot0.mDefFormat.color = slot1 or display.COLOR_WHITE
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setSystemFontSize = function (slot0, slot1)
+	slot0.mDefFormat.fontSize = slot1 or 22
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setFontSize = function (slot0, slot1)
+	slot0.setSystemFontSize(slot0, slot1)
+
+	return 
+end
+slot0.setImageElementScale = function (slot0, slot1)
+	slot0.mDefFormat.imageScale = slot1 or 1
+
+	slot0.refresh(slot0)
+
+	return 
+end
+slot0.setOpacity = function (slot0, slot1)
+	slot0.__default_setOpacity(slot0, slot1)
+
+	slot0.mDefFormat.opacity = slot1
+
+	slot0.refresh(slot0)
+
+	return 
+end
+
+return slot0

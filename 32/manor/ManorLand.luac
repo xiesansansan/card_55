@@ -1,0 +1,738 @@
+slot0 = class("ManorLand", require("common.BaseLayer"), function (slot0)
+	return ccui.Widget:create()
+end)
+slot0.ctor = function (slot0, slot1)
+	slot0.mLandId = slot1 or {}.landId
+	slot0.mClickCallBack = slot1 or {}.clickCallBack
+	slot0.mAutoReward = false
+	slot0.mLostTimeIter = 0
+	slot0.mMaxTimeIter = 288
+
+	slot0.createUiElement(slot0)
+	slot0.refreshStatus(slot0)
+	EventAuto:registerAutoEvent(slot0, ManorHelper.Events.ePlayEffectToLand, function (slot0, slot1)
+		if slot1[1] == slot0.mLandId then
+			slot0:playEffect(slot1[2])
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.setTimer = function (slot0)
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), 1)
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if (not slot0.mEndTime or not slot0.mStartTime) and not slot0.mAutoReward then
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+
+		return 
+	end
+
+	if slot0.mEndTime and slot0.mStartTime then
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeBg.time:setString(TR("%s", MqTime.completeFormat(slot2)))
+			slot0.mProgressBar:setMaxValue(slot3)
+			slot0.mProgressBar:setCurrValue(slot0.mEndTime - slot0.mStartTime - slot2)
+
+			if slot2 <= TerritoryConfig.items[1].freeSpeedUpTime and not slot0.mProgressBar.speedButton.IsFree then
+				slot0.mProgressBar.speedButton:loadTextures("zy_4.png", "zy_4.png")
+				slot0.mProgressBar.speedButton:setVisible(true)
+				slot0.addFloatAction(slot0, slot0.mProgressBar.speedButton)
+				EventAuto:postEvent(ManorHelper.Events.eHaveFreeSpeedUp, slot0.mLandId)
+
+				slot0.mProgressBar.speedButton.IsFree = true
+			end
+		else
+			slot0.mTimeBg.time:setString(TR("00:00:00"))
+			slot0.mProgressBar:setCurrValue(1)
+			slot0.mProgressBar:setMaxValue(1)
+
+			if slot0.mSchelTime then
+				slot0.stopAction(slot0, slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+		end
+	end
+
+	if slot0.mAutoReward and slot0.mLostTimeIter ~= math.floor((Player:getCurrentTime() - slot0.mLandInfo.LastGetTime)/300) and (slot0.mMaxTimeIter > slot3 or slot0.mMaxTimeIter > slot0.mLostTimeIter) then
+		if slot0.mMaxTimeIter < slot3 then
+			slot0.mLostTimeIter = slot0.mMaxTimeIter
+		else
+			slot0.mLostTimeIter = slot3
+		end
+
+		slot0.addAutoRewardBtn(slot0)
+	end
+
+	return 
+end
+slot0.createUiElement = function (slot0)
+	slot3 = UIWrap.newControl("Sprite", {
+		image = (slot0.mLandId == 99 and "zy_1101.png") or "c_pure.png"
+	})
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot0.addChild(slot0, slot3)
+
+	slot0.mLandBg = slot3
+	slot0.mBtnSize = (slot0.mLandId == 1 and ({
+		cc.size(154, 91),
+		cc.size(94, 61)
+	})[1]) or ({
+		cc.size(154, 91),
+		cc.size(94, 61)
+	})[2]
+	slot4 = UIWrap.newControl("Button", {
+		image = "c_pure.png",
+		swallowTouch = false,
+		size = slot0.mBtnSize,
+		clickAction = function ()
+			if slot0.mClickCallBack then
+				slot0.mClickCallBack(slot0.mLandId)
+			end
+
+			return 
+		end
+	})
+
+	slot4.setPosition(slot4, cc.p(0, 0))
+	slot0.addChild(slot0, slot4)
+
+	slot0.mMainBtn = slot4
+	slot5 = UIWrap.newControl("Sprite", {
+		image = "zy_12.png"
+	})
+
+	slot5.setPosition(slot5, cc.p(0, 0))
+	slot0.addChild(slot0, slot5)
+
+	slot0.mLandStatusNode = slot5
+	slot6 = UIWrap.newControl("Scale9Sprite", {
+		image = "c_93.png",
+		pos = cc.p(0, -35),
+		size = cc.size(150, 28)
+	})
+
+	slot0.addChild(slot0, slot6)
+	slot6.setVisible(slot6, false)
+
+	slot0.mNameBg = slot6
+
+	slot6.addChild(slot6, slot7)
+
+	slot0.mNameBg.name = UIWrap.newControl("Label", {
+		text = TR("XX%d级", 0),
+		pos = cc.p(75, 14),
+		color = cc.c3b(139, 168, 87),
+		outlineColor = cc.c3b(53, 53, 53)
+	})
+	slot8 = UIWrap.newControl("ProgressBar", {
+		normalImage = "zy_16.png",
+		bgImage = "zy_15.png",
+		currValue = 50,
+		maxValue = 100,
+		size = cc.size(120, 20)
+	})
+
+	slot8.setPosition(slot8, cc.p(0, -10))
+	slot8.setVisible(slot8, false)
+	slot0.addChild(slot0, slot8, 1)
+
+	slot0.mProgressBar = slot8
+	slot9 = UIWrap.newControl("Button", {
+		image = "zy_8.png"
+	})
+
+	slot9.setAnchorPoint(slot9, cc.p(1, 0.5))
+	slot9.setPosition(slot9, 20, 11.5)
+	slot9.setScale(slot9, 0.75)
+	slot8.addChild(slot8, slot9)
+	slot9.setVisible(slot9, false)
+
+	slot0.mProgressBar.cancelbutton = slot9
+	slot10 = UIWrap.newControl("Button", {
+		image = "zy_9.png"
+	})
+
+	slot10.setAnchorPoint(slot10, cc.p(0, 0.5))
+	slot10.setPosition(slot10, 30, 65)
+	slot10.setScale(slot10, 0.75)
+	slot10.setVisible(slot10, false)
+	slot8.addChild(slot8, slot10)
+
+	slot0.mProgressBar.speedButton = slot10
+	slot11 = UIWrap.newControl("Scale9Sprite", {
+		image = "c_118.png",
+		pos = cc.p(0, 10),
+		size = cc.size(150, 20)
+	})
+
+	slot0.addChild(slot0, slot11, 0)
+	slot11.setVisible(slot11, false)
+
+	slot0.mTimeBg = slot11
+
+	slot11.addChild(slot11, slot12)
+
+	slot0.mTimeBg.time = UIWrap.newControl("Label", {
+		fontSize = 18,
+		text = TR("%s", "00:00:00"),
+		color = cc.c3b(234, 44, 0),
+		outlineColor = cc.c3b(53, 53, 53),
+		pos = cc.p(75, 10)
+	})
+	slot13 = cc.Node:create()
+
+	slot13.setPosition(slot13, cc.p(0, 0))
+	slot0.addChild(slot0, slot13)
+
+	slot0.mRewardNode = slot13
+	slot14 = cc.Node:create()
+
+	slot14.setPosition(slot14, cc.p(0, 0))
+	slot0.addChild(slot0, slot14)
+
+	slot0.mspStatusNode = slot14
+
+	return 
+end
+slot0.resetStatus = function (slot0)
+	slot0.mLandBg:setVisible(false)
+	slot0.mTimeBg:setVisible(false)
+	slot0.mTimeBg:setPositionY(20)
+	slot0.mProgressBar:setPositionY(-10)
+	slot0.mProgressBar:setVisible(false)
+
+	slot0.mProgressBar.speedButton.IsFree = false
+
+	slot0.mProgressBar.speedButton:loadTextures("zy_9.png", "zy_9.png")
+	slot0.mNameBg:setVisible(false)
+	slot0.mLandStatusNode:setVisible(false)
+	slot0.mRewardNode:removeAllChildren()
+	slot0.mspStatusNode:removeAllChildren()
+
+	slot0.mStartTime = nil
+	slot0.mEndTime = nil
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	if slot0.mBuildIngEffect and not tolua.isnull(slot0.mBuildIngEffect) then
+		slot0.mBuildIngEffect:removeFromParent()
+
+		slot0.mBuildIngEffect = nil
+	end
+
+	slot0.mAutoReward = false
+
+	slot0.mMainBtn:setClickAction(function ()
+		if slot0.mClickCallBack then
+			slot0.mClickCallBack(slot0.mLandId)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshStatus = function (slot0)
+	slot0.resetStatus(slot0)
+
+	slot1 = ManorHelper:getLandInfoByLandId(slot0.mLandId)
+	slot2 = slot1.landModel
+	slot0.mLandInfo = slot1.landStautus.opData
+	slot0.mLandStatus = landStatus
+
+	if slot1.landStautus.status == ManorHelper.landTimeStatus.inUse then
+		slot0.mLandBg:setTexture(TerritoryBuildlvConfig.items[slot4.Type][slot4.Lv].smallPic .. ".png")
+		slot0.mLandBg:setVisible(true)
+		slot0.mNameBg.name:setString(TR("%s%d级", TerritoryBuildModel.items[slot4.Type].name, slot4.Lv))
+		slot0.mNameBg:setVisible(true)
+
+		if slot4.IsLvUp then
+			slot0.mTimeBg:setVisible(true)
+			slot0.mTimeBg:setPositionY(20)
+			slot0.mProgressBar:setPositionY(0)
+			slot0.mProgressBar:setVisible(true)
+
+			slot0.mEndTime = slot4.LastLvUpTime
+
+			if TerritoryBuildlvConfig.items[slot4.Type][slot4.Lv + 1] then
+				slot0.mStartTime = slot4.LastLvUpTime - slot7.lvUpNeedTime
+
+				slot0.setTimer(slot0)
+			else
+				assert(false, "配置表无数据 TerritoryBuildlvConfig.items[" .. slot4.Type .. "]" .. "[" .. slot4.Lv + 1 .. "]")
+			end
+
+			slot0.mProgressBar.cancelbutton:setClickAction(function ()
+				slot0:onCancelClickAction()
+
+				return 
+			end)
+			slot0.mProgressBar.speedButton:setClickAction(function ()
+				slot0:onSpeedUpClickAciton()
+
+				return 
+			end)
+
+			if 0 < ManorHelper.homeFreeNum then
+				slot0.mProgressBar.speedButton:loadTextures("zy_10.png", "zy_10.png")
+			end
+
+			if slot0.mLandInfo.LastLvUpTime - Player:getCurrentTime() <= TerritoryConfig.items[1].freeSpeedUpTime then
+				slot0.mProgressBar.speedButton:setVisible(true)
+				slot0.addFloatAction(slot0, slot0.mProgressBar.speedButton)
+
+				slot0.mProgressBar.speedButton.IsFree = true
+
+				slot0.mProgressBar.speedButton:loadTextures("zy_4.png", "zy_4.png")
+			else
+				slot0.mProgressBar.speedButton.IsFree = false
+
+				slot0.mProgressBar.speedButton:setVisible(false)
+			end
+
+			slot0.addLvUpIngEffect(slot0)
+		else
+			slot0.mMainBtn:setEnabled(true)
+
+			if slot6.outputType == ManorHelper.ProcEnumStatus.choosePudece then
+				slot0.refreshSpStatusNode(slot0, ManorHelper:getBulidProcStatus(slot0.mLandId))
+			elseif slot6.outputType == ManorHelper.ProcEnumStatus.autoPuduce then
+				slot0.mAutoReward = true
+				slot0.mLostTimeIter = math.floor((Player:getCurrentTime() - slot0.mLandInfo.LastGetTime)/300)
+
+				if 0 < slot0.mLostTimeIter then
+					if slot0.mMaxTimeIter < slot0.mLostTimeIter then
+						slot0.mLostTimeIter = slot0.mMaxTimeIter
+					end
+
+					slot0.addAutoRewardBtn(slot0)
+				end
+
+				slot0.setTimer(slot0)
+			end
+		end
+	elseif slot3 == ManorHelper.landTimeStatus.unDig then
+		slot0.mLandStatusNode:setTexture("zy_12.png")
+		slot0.mLandStatusNode:setVisible(true)
+	elseif slot3 == ManorHelper.landTimeStatus.unBuild then
+		slot0.mLandStatusNode:setTexture("zy_13.png")
+		slot0.mLandStatusNode:setVisible(true)
+	elseif slot3 == ManorHelper.landTimeStatus.preView then
+		slot0.mspStatusNode:removeAllChildren()
+
+		slot5 = UIWrap.newControl("Scale9Sprite", {
+			image = "c_118.png",
+			pos = cc.p(0, -10),
+			size = cc.size(150, 20)
+		})
+
+		slot0.mspStatusNode:addChild(slot5, 0)
+		slot5.addChild(slot5, UIWrap.newControl("Label", {
+			fontSize = 18,
+			text = TR("庄园等级%d解锁", ManorHelper.haveNewLandLv),
+			color = cc.c3b(255, 255, 255),
+			outlineColor = cc.c3b(53, 53, 53),
+			pos = cc.p(75, 10)
+		}))
+	end
+
+	return 
+end
+slot0.addLvUpIngEffect = function (slot0)
+	slot0.mLandBg:setTexture("c_pure.png")
+	MqAudio.playEffect("jianzhuxiujian.mp3")
+
+	slot2 = UIWrap.newControl("Effect", {
+		loop = true,
+		dataFile = "effect_ui_jianzhuxiujian",
+		animation = (slot0.mLandId == ManorHelper.MainLandId and "da") or "xiao"
+	})
+	slot0.mBuildIngEffect = slot2
+
+	slot2.setPosition(slot2, cc.p(0, 0))
+	slot0.addChild(slot0, slot2, -1)
+
+	return 
+end
+slot0.playEffect = function (slot0, slot1)
+	if slot1 == ManorHelper.effectType.buildStart then
+		MqAudio.playEffect("shengwangjindutiao.mp3")
+
+		slot2 = UIWrap.newControl("Effect", {
+			loop = false,
+			animation = "jianzhukaishi",
+			autoDelete = true,
+			dataFile = "effect_ui_jianzhushengji"
+		})
+
+		slot2.setPosition(slot2, cc.p(0, 50))
+		slot0.addChild(slot0, slot2, 10)
+	elseif slot1 == ManorHelper.effectType.buildEnd then
+		MqAudio.playEffect("shengwangjindutiao.mp3")
+
+		slot2 = UIWrap.newControl("Effect", {
+			loop = false,
+			animation = "jianzhuchenggong",
+			autoDelete = true,
+			dataFile = "effect_ui_jianzhushengji"
+		})
+
+		slot2.setPosition(slot2, cc.p(0, 50))
+		slot0.addChild(slot0, slot2, 10)
+	elseif slot1 == ManorHelper.effectType.buildIng then
+		slot0.resetStatus(slot0)
+		slot0.mLandBg:setTexture("c_pure.png")
+		MqAudio.playEffect("jianzhuxiujian.mp3")
+
+		slot3 = UIWrap.newControl("Effect", {
+			loop = false,
+			dataFile = "effect_ui_jianzhuxiujian",
+			animation = (slot0.mLandId == ManorHelper.MainLandId and "da") or "xiao",
+			complete = function (slot0)
+				slot0:refreshStatus()
+				EventAuto:postEvent(ManorHelper.Events.ePlayEffectToLand, {
+					slot0.mLandId,
+					ManorHelper.effectType.buildEnd
+				})
+
+				return 
+			end
+		})
+		slot0.mBuildIngEffect = slot3
+
+		slot3.setPosition(slot3, cc.p(0, 0))
+		slot0.addChild(slot0, slot3, -1)
+	end
+
+	return 
+end
+slot0.refreshSpStatusNode = function (slot0, slot1)
+	slot0.mspStatusNode:removeAllChildren()
+
+	if slot1 == 0 then
+		if not slot0.mLandInfo.IsLvUp then
+			slot2 = (slot0.mLandInfo.Type == 2 and "zy_31.png") or "zy_20.png"
+			slot5 = (slot0.mLandInfo.Type == 2 and VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].playgroundNumDaily) or VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].artisanNumDaily
+
+			if slot0.mLandInfo.DailyNum < slot5 then
+				slot6 = UIWrap.newControl("Sprite", {
+					image = slot2
+				})
+
+				slot6.setPosition(slot6, cc.p(0, 20))
+				slot0.mspStatusNode:addChild(slot6)
+				slot0.addFloatAction(slot0, slot6)
+			end
+		end
+	elseif slot1 == 1 then
+		slot3 = UIWrap.newControl("Sprite", {
+			image = (slot0.mLandInfo.Type == 2 and "zy_30.png") or "zy_19.png"
+		})
+
+		slot3.setPosition(slot3, cc.p(0, 25))
+		slot0.mspStatusNode:addChild(slot3)
+		slot0.mTimeBg:setVisible(true)
+		slot0.mTimeBg:setPositionY(0)
+
+		slot0.mEndTime = slot0.mLandInfo.RewardTime
+		slot0.mStartTime = slot0.mLandInfo.LastStartTime
+
+		slot0.setTimer(slot0)
+		slot0.mMainBtn:setClickAction(function ()
+			if slot0.mLandInfo.Type == 2 then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "manor.DlgManorBuildTrainLayer",
+					data = {
+						landId = slot0.mLandId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			else
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "manor.DlgManorBuildMakeLayer",
+					data = {
+						landId = slot0.mLandId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			return 
+		end)
+	elseif slot1 == 2 then
+		slot0.addChooseRewardBtn(slot0)
+	end
+
+	return 
+end
+slot0.getAutoRewardOutPutR = function (slot0, slot1)
+	slot2 = 0
+
+	if TitleConfig.items[PlayerAttrObj:getPlayerAttrByName("TitleId")] then
+		slot2 = slot2 + TitleConfig.items[slot3].addOutPutR
+	end
+
+	if next(PlayerAttrObj:getPlayerAttrByName("GuildInfo") or {}) ~= nil and Utility.isEntityId(slot4.GuildId) and GuildPositionRelation.items[slot4.PositionSeriesId][slot4.PositionId] then
+		if slot1.resourceId == ResourceTypeSub.eGold then
+			slot2 = slot2 + slot5.territoryGoldUp
+		elseif slot1.resourceId == ResourceTypeSub.eVit then
+			slot2 = slot2 + slot5.territoryVitUp
+		end
+	end
+
+	return slot2
+end
+slot0.addAutoRewardBtn = function (slot0)
+	slot0.mRewardNode:removeAllChildren()
+
+	slot2 = TerritoryBuildlvConfig.items[slot0.mLandInfo.Type][slot0.mLandInfo.Lv].fiveMinutesOutputStr
+
+	if slot0.mLandInfo.Type == 10 then
+		slot2 = slot1.fiveMinutesOutputStoneStr
+	end
+
+	slot7 = UIWrap.newControl("CardNode", {
+		allowClick = true,
+		scale = 0.6,
+		initParams = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot2)[1].resourceId,
+				num = slot0.mLostTimeIter*math.floor(Utility.analysisStrResList(slot2)[1].num*(slot0.getAutoRewardOutPutR(slot0, slot4) + 1))
+			},
+			showAttrs = {}
+		},
+		clickAction = function ()
+			slot0:onGetRewardClickAciton()
+
+			return 
+		end
+	})
+
+	slot7.setPosition(slot7, cc.p(0, 30))
+	slot7.getAttrCtrl(slot7, Enums.CardShowAttr.eBorder).sprite:setVisible(false)
+	slot0.addFloatAction(slot0, slot7)
+	slot0.mRewardNode:addChild(slot7)
+	slot0.mMainBtn:setClickAction(function ()
+		slot0:onGetRewardClickAciton()
+
+		return 
+	end)
+
+	return 
+end
+slot0.addChooseRewardBtn = function (slot0)
+	slot0.mRewardNode:removeAllChildren()
+	slot0.mMainBtn:setEnabled(false)
+
+	slot1 = UIWrap.newControl("CardNode", {
+		allowClick = true,
+		scale = 0.6,
+		initParams = {
+			cardInfo = {
+				modelId = slot0.mLandInfo.HeroId
+			},
+			showAttrs = {}
+		},
+		clickAction = function ()
+			if slot0.mLandInfo.Type == 2 then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "manor.DlgManorBuildTrainLayer",
+					data = {
+						landId = slot0.mLandId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			else
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "manor.DlgManorBuildMakeLayer",
+					data = {
+						landId = slot0.mLandId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			return 
+		end
+	})
+
+	slot1.setPosition(slot1, cc.p(0, 20))
+	slot0.addFloatAction(slot0, slot1)
+	slot0.mRewardNode:addChild(slot1)
+
+	return 
+end
+slot0.addFloatAction = function (slot0, slot1)
+	slot1.stopAllActions(slot1)
+	slot1.runAction(slot1, cc.RepeatForever:create(cc.Sequence:create({
+		cc.MoveBy:create(0.2, cc.p(0, 10)),
+		cc.MoveBy:create(0.3, cc.p(0, -10)),
+		cc.DelayTime:create(slot3)
+	})))
+
+	return 
+end
+slot0.refreshLvUpBtnShow = function (slot0, slot1)
+	if not slot0.mLandInfo.IsLvUp then
+		return 
+	end
+
+	if slot0.mLandId == slot1 then
+		slot0.mProgressBar.cancelbutton:setVisible(not slot0.mProgressBar.cancelbutton:isVisible())
+		slot0.mProgressBar.speedButton:setVisible(not slot0.mProgressBar.cancelbutton.isVisible())
+	else
+		slot0.mProgressBar.cancelbutton:setVisible(false)
+		slot0.mProgressBar.speedButton:setVisible(false)
+	end
+
+	return 
+end
+slot0.onCancelClickAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Cancel",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("取消成功"))
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			slot0:refreshStatus()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSpeedUpClickAciton = function (slot0)
+	slot0.requestBuildSpeedUp(slot0, 2)
+
+	return 
+end
+slot0.onGetRewardClickAciton = function (slot0)
+	if TerritoryBuildModel.items[slot0.mLandInfo.Type].outputType == ManorHelper.ProcEnumStatus.autoPuduce then
+		if slot0.mLandInfo.Type == 6 or slot0.mLandInfo.Type == 8 then
+			if ManorHelper.vitLimitNum <= Resource.getCount(ResourceTypeSub.eVit) then
+				ui.showFlashView(TR("干粮储量已达上限"))
+
+				return 
+			end
+		elseif (slot0.mLandInfo.Type == 7 or slot0.mLandInfo.Type == 9) and ManorHelper.goldLimitNum <= Resource.getCount(ResourceTypeSub.eGold) then
+			ui.showFlashView(TR("铜钱储量已达上限"))
+
+			return 
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Haverst",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot0.mLandInfo.HeroId
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.HeroInfo then
+				HeroObj:modifyItem(slot0.HeroInfo)
+			end
+
+			ManorHelper:updateManorInfo(slot0.TerritoryInfo, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			slot0:refreshStatus()
+
+			if slot0.mLandInfo.Type == 10 then
+				ManorHelper:jumpToEquipMain()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuildSpeedUp = function (slot0, slot1)
+	slot2 = TR("元宝加速成功")
+
+	if slot1 == 2 then
+		slot2 = TR("免费加速成功")
+	elseif slot1 == 3 then
+		slot2 = TR("特权卡加速成功")
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "BuildSpeedUp",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			slot0:refreshStatus()
+
+			if slot0.mLandId == ManorHelper.MainLandId then
+				EventAuto:postEvent(ManorHelper.Events.eUpdateMainManorLayer)
+			end
+
+			slot0:playEffect(ManorHelper.effectType.buildEnd)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.removeLandLimitSelf = function (slot0)
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.removeFromParent(slot0)
+
+	return 
+end
+slot0.updatelandInfo = function (slot0, slot1)
+	slot0.refreshStatus(slot0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,216 @@
+slot0 = class("PlayerTitleAttrLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 690,
+				height = 420
+			}
+		},
+		children = {
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 346.2,
+						y = 395.82
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 27,
+					pos = {
+						x = 347,
+						y = 397
+					},
+					text = TR("称号属性总览")
+				},
+				children = {}
+			},
+			{
+				name = "attrListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 45.91,
+						y = 33.11
+					},
+					size = {
+						width = 599.17,
+						height = 324.38
+					}
+				},
+				children = {
+					{
+						name = "attrLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 600,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "c_78.png",
+									childName = "activeSprite",
+									pos = {
+										x = 15,
+										y = 15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "introLabel",
+									text = "",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 45,
+										y = 15
+									},
+									size = {
+										width = 560,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	"#ff66f3",
+	"#ff974a",
+	"#ff4a46"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTitleInfo = slot1.titleInfo
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshAttrList(slot0)
+
+	return 
+end
+slot0.isShow = function (slot0, slot1)
+	if TitleConfig.items[slot1].ifOpen then
+		return true
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7 == slot1 then
+			return true
+		end
+	end
+
+	if Utility.analysisStrResList(TitleConfig.items[slot1].composeNeed)[1] and 0 < Resource.getCount(slot3.resourceId) then
+		return true
+	end
+
+	return false
+end
+slot0.refreshAttrList = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(TitleConfig.items) do
+		if slot0.isShow(slot0, slot6.titleId) then
+			table.insert(slot1, clone(slot6))
+		end
+	end
+
+	for slot5, slot6 in pairs(slot1) do
+		slot6.isActive = false
+
+		for slot10, slot11 in ipairs(slot0.mTitleInfo) do
+			if slot11.TitleId == slot6.titleId then
+				if slot11.StatusType ~= 0 then
+					slot6.isActive = true
+				end
+
+				slot6.EndDate = slot11.EndDate
+
+				break
+			end
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.isActive ~= slot1.isActive then
+			return slot0.isActive
+		end
+
+		if slot0.titleLv ~= slot1.titleLv then
+			return slot1.titleLv < slot0.titleLv
+		end
+
+		return slot0.titleId < slot1.titleId
+	end)
+	slot0.attrListView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = ""
+		slot7 = (slot6.addOutPutR == 0 or string.format(slot6.addIntro, slot6.addOutPutR*100 .. "%")) and string.format("%s", slot6.addIntro)
+		slot8 = "#252525"
+
+		if slot6.isActive then
+			slot8 = "#8bA857"
+		end
+
+		if slot6.holdOnTime ~= 9999 then
+			slot7 = TR("#258711限时%s  ", slot8) .. slot7
+		end
+
+		slot9 = slot0.createLayoutTemplateNode(slot0, "attrLayout", {})
+
+		slot9.introLabel:setString(slot7)
+		slot9.setContentSize(slot9, cc.size(634, slot9.introLabel:getContentSize().height + 7))
+		slot9.activeSprite:setPositionY((slot9.introLabel.getContentSize().height + 7)/2)
+		slot9.introLabel:setPositionY((slot9.introLabel.getContentSize().height + 7)/2)
+		slot0.attrListView:pushBackCustomItem(slot9)
+	end
+
+	return 
+end
+
+return slot0

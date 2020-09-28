@@ -1,0 +1,1737 @@
+slot0 = class("TeamCopyFormLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "qcql_17.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled118",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "firstSprite",
+				cType = "Sprite",
+				params = {
+					image = "qcql_12.png",
+					pos = {
+						x = -298,
+						y = -190
+					}
+				},
+				children = {}
+			},
+			{
+				name = "secondSprite",
+				cType = "Sprite",
+				params = {
+					image = "qcql_12.png",
+					pos = {
+						x = 0,
+						y = -190
+					}
+				},
+				children = {}
+			},
+			{
+				name = "thirdSprite",
+				cType = "Sprite",
+				params = {
+					image = "qcql_12.png",
+					pos = {
+						x = 298,
+						y = -190
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "playerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "playerLayout",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled32-clickAction",
+						name = "onEmptyBtnClick",
+						type = "string"
+					},
+					{
+						value = "untitled32-hide",
+						name = "hideEmpty",
+						type = "string"
+					},
+					{
+						value = "untitled33-hide",
+						name = "hideAdd",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -306.09,
+						y = -204.58
+					},
+					size = {
+						width = 1,
+						height = 1
+					}
+				},
+				children = {
+					{
+						name = "untitled32",
+						cType = "Button",
+						params = {
+							clickAction = "onCloseBtnAction",
+							hide = true,
+							image = "qcql_24.png",
+							childName = "emptyButton",
+							pos = {
+								x = 35,
+								y = 155
+							}
+						},
+						children = {
+							{
+								name = "untitled33",
+								cType = "Sprite",
+								params = {
+									childName = "addSprite",
+									image = "c_87.png",
+									hide = false,
+									pos = {
+										x = -31.68,
+										y = 36.11
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled113",
+						cType = "Node",
+						params = {
+							childName = "figureNode",
+							hide = false,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled44",
+						cType = "Sprite",
+						params = {
+							childName = "readySprite",
+							image = "qcql_13.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = 180
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled117",
+						cType = "Sprite",
+						params = {
+							image = "c_5.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "playerInfoNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "playerInfoLayout",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled48-clickAction",
+						name = "onDeleteBtnClick",
+						type = "string"
+					},
+					{
+						value = "untitled46-text",
+						name = "playerName",
+						type = "string"
+					},
+					{
+						value = "untitled47-text",
+						name = "guildName",
+						type = "string"
+					},
+					{
+						value = "untitled109-hide",
+						name = "hideFlag",
+						type = "string"
+					},
+					{
+						value = "untitled104-text",
+						name = "fap",
+						type = "string"
+					},
+					{
+						value = "untitled25-image",
+						name = "orderImage",
+						type = "string"
+					},
+					{
+						value = "untitled119-hide",
+						name = "hideHelpFlag",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -294.86,
+						y = -207.38
+					},
+					size = {
+						width = 1,
+						height = 1
+					}
+				},
+				children = {
+					{
+						name = "untitled45",
+						cType = "Sprite",
+						params = {
+							childName = "nameBgSprite",
+							image = "qcql_11.png",
+							hide = false,
+							pos = {
+								x = 0,
+								y = 350
+							}
+						},
+						children = {
+							{
+								name = "untitled46",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									pos = {
+										x = 76.61,
+										y = 45
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled47",
+								cType = "Label",
+								params = {
+									childName = "guildLabel",
+									pos = {
+										x = 76.61,
+										y = 20
+									},
+									text = TR("帮派名称")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled48",
+						cType = "Button",
+						params = {
+							clickAction = "onCloseBtnAction",
+							hide = false,
+							image = "qcql_10.png",
+							childName = "deleteButton",
+							pos = {
+								x = -90,
+								y = 350
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled109",
+						cType = "Sprite",
+						params = {
+							childName = "flagSprite",
+							image = "qcql_23.png",
+							hide = false,
+							pos = {
+								x = -80,
+								y = 350
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled119",
+						cType = "Sprite",
+						params = {
+							childName = "helpFlagSprite",
+							image = "qcql_33.png",
+							hide = false,
+							pos = {
+								x = 80,
+								y = 350
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Sprite",
+						params = {
+							image = "qcql_7.png",
+							childName = "orderSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled102",
+						cType = "Sprite",
+						params = {
+							childName = "fapBgSprite",
+							scale = 0.8,
+							hide = false,
+							image = "c_82.png",
+							pos = {
+								x = 20,
+								y = -40
+							}
+						},
+						children = {
+							{
+								name = "untitled103",
+								cType = "Sprite",
+								params = {
+									image = "c_80.png",
+									pos = {
+										x = 43.36,
+										y = 39.91
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled104",
+								cType = "Label",
+								params = {
+									fontSize = 28,
+									charCount = 12,
+									text = "122",
+									fontName = "c_81.png",
+									childName = "fapLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 90.86,
+										y = 35.13
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "baseInfoNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "campButton",
+				cType = "Button",
+				params = {
+					image = "tb_gn_14.png",
+					clickAction = "onCampBtnClick",
+					pos = {
+						x = -513,
+						y = 205
+					}
+				},
+				children = {}
+			},
+			{
+				name = "chatButton",
+				cType = "Button",
+				params = {
+					image = "tb_gn_83.png",
+					clickAction = "onChatBtnClick",
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -513,
+						y = 110
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "helpButton",
+				cType = "Button",
+				params = {
+					image = "tb_gn_308.png",
+					titleText = "",
+					clickAction = "onHelpBtnClick",
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -513,
+						y = 15
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "hintBgSprite",
+				cType = "Sprite",
+				params = {
+					image = "qcql_14.png",
+					pos = {
+						x = 0,
+						y = 230
+					}
+				},
+				children = {
+					{
+						name = "copyNameLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 190.51,
+								y = 53.4
+							},
+							text = TR("讨伐目标：周芷若")
+						},
+						children = {}
+					},
+					{
+						name = "statusLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 190.05,
+								y = 21.39
+							},
+							text = TR("全员已准备，等待队长开启战斗")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "limitNode",
+				cType = "Node",
+				params = {
+					hide = false,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 432,
+						y = 270
+					},
+					size = {
+						width = 220,
+						height = 200
+					}
+				},
+				children = {
+					{
+						name = "limitBgSprite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "txdy_26.png",
+							pos = {
+								x = 110,
+								y = 81
+							},
+							size = {
+								width = 220,
+								height = 160
+							}
+						},
+						children = {
+							{
+								name = "limitListView",
+								cType = "ListView",
+								params = {
+									direction = true,
+									swallowTouch = true,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 110,
+										y = 0
+									},
+									size = {
+										width = 220,
+										height = 160
+									}
+								},
+								children = {
+									{
+										name = "limitLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled115-titleText",
+												name = "limitText",
+												type = "string"
+											},
+											{
+												value = "untitled115-clickAction",
+												name = "onButtonClick",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 220,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled115",
+												cType = "Button",
+												custom = {
+													{
+														value = 1,
+														name = "zoneIndex",
+														type = "integer"
+													}
+												},
+												params = {
+													childName = "button",
+													image = "gjqx_39.png",
+													pressedAction = false,
+													clickAction = "onZoneBtnAction",
+													pos = {
+														x = 110,
+														y = 15
+													},
+													size = {
+														width = 220,
+														height = 30
+													},
+													titleColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													titleText = TR("第一赛区")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled88",
+								cType = "Sprite",
+								params = {
+									image = "c_77.png",
+									pos = {
+										x = 110,
+										y = 5
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "limitButton",
+						cType = "Button",
+						params = {
+							fontSize = 18,
+							clickAction = "onLimitBtnClick",
+							pressedAction = false,
+							image = "qcql_16.png",
+							titleImage = "txdy_24.png",
+							pos = {
+								x = 110,
+								y = 180
+							},
+							size = {
+								width = 220,
+								height = 40
+							},
+							titleColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							titleImageOffset = {
+								x = 0.92,
+								y = 0.5
+							},
+							titleOffset = {
+								x = 0.38,
+								y = 0.5
+							},
+							titleText = TR("战力选择：40万以上")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "boxBgSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_93.png",
+					pos = {
+						x = -320,
+						y = -290
+					}
+				},
+				children = {
+					{
+						name = "helpCheckbox",
+						cType = "Checkbox",
+						params = {
+							isSelect = false,
+							selectImage = "c_44.png",
+							callback = "onHelpCheckboxClick",
+							normalImage = "c_43.png",
+							pos = {
+								x = 50,
+								y = 15
+							}
+						},
+						children = {
+							{
+								name = "untitled91",
+								cType = "Label",
+								params = {
+									align = 0,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 35,
+										y = 13
+									},
+									text = TR("助战")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "autoCheckbox",
+						cType = "Checkbox",
+						params = {
+							isSelect = false,
+							selectImage = "c_44.png",
+							callback = "onAutoCheckboxClick",
+							normalImage = "c_43.png",
+							pos = {
+								x = 170,
+								y = 15
+							}
+						},
+						children = {
+							{
+								name = "autoCheckLabel",
+								cType = "Label",
+								params = {
+									align = 0,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 35,
+										y = 13
+									},
+									text = TR("战后自动准备")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "restoreLabel",
+				cType = "Label",
+				params = {
+					align = 0,
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 80,
+						y = -260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "freeFightLabel",
+				cType = "Label",
+				params = {
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 80,
+						y = -290
+					},
+					text = TR("剩余挑战次数：0")
+				},
+				children = {}
+			},
+			{
+				name = "freeHelpRewardLabel",
+				cType = "Label",
+				params = {
+					align = 2,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					pos = {
+						x = 50,
+						y = -290
+					},
+					text = TR("剩余助战奖励次数：0")
+				},
+				children = {}
+			},
+			{
+				name = "addFreeButton",
+				cType = "Button",
+				params = {
+					image = "c_12.png",
+					clickAction = "onAddFreeBtnClick",
+					pos = {
+						x = 280,
+						y = -290
+					}
+				},
+				children = {}
+			},
+			{
+				name = "readyButton",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onReadyBtnClick",
+					pos = {
+						x = 412,
+						y = -290
+					},
+					titleText = TR("准 备")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "closeButton",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseBtnAction",
+			posApt = 1,
+			titleImage = "qcql_15.png",
+			scaleApt = 4,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			},
+			titleImageOffset = {
+				x = 0.65,
+				y = 0.5
+			}
+		},
+		children = {}
+	},
+	{
+		name = "ruleButton",
+		cType = "Button",
+		params = {
+			clickAction = "onRuleAction",
+			posApt = 1,
+			sizeApt = 1,
+			scaleApt = 4,
+			image = "c_3.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 270,
+				y = 627
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.minFap = TeamCopyHelper.FapLimit
+	slot0.selfPlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+	slot0.selfIsLeader = TeamCopyHelper.LeaderId == slot0.selfPlayerId
+	slot0.playerListMd5 = TeamCopyHelper.playerListMd5 or ""
+	slot0.selfClose = false
+	slot0.posInfoList = {
+		[Enums.TeamCopyPosType.eFirst] = {
+			flagImage = "qcql_7.png",
+			posType = Enums.TeamCopyPosType.eFirst,
+			pos = cc.p(-298, -190),
+			size = cc.size(259, 333)
+		},
+		[Enums.TeamCopyPosType.eSecond] = {
+			flagImage = "qcql_8.png",
+			posType = Enums.TeamCopyPosType.eSecond,
+			pos = cc.p(0, -190),
+			size = cc.size(259, 333)
+		},
+		[Enums.TeamCopyPosType.eThird] = {
+			flagImage = "qcql_9.png",
+			posType = Enums.TeamCopyPosType.eThird,
+			pos = cc.p(298, -190),
+			size = cc.size(259, 333)
+		}
+	}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	Utility.performWithDelay(slot0.closeButton, function ()
+		if not Utility.isEntityId(TeamCopyHelper.RoomId) then
+			ui.showFlashView(TR("你已退出房间"))
+			LayerManager.removeLayer(LayerManager.removeLayer)
+		end
+
+		return 
+	end, 2)
+	slot0.refreshBaseInfo(slot0)
+	slot0.refreshPlayer(slot0)
+	slot0.refreshPlayerInfo(slot0)
+	slot0.refreshFapList(slot0)
+	slot0.createMsgReddot(slot0)
+	slot0.registerTouchEvent(slot0)
+	EventAuto:registerAutoEvent(slot0.baseInfoNode, EventDefine.eTeamCopyRoomInfoChanged, function ()
+		if not Utility.isEntityId(TeamCopyHelper.RoomId) then
+			if not slot0.selfClose and not slot0.selfIsLeader then
+				ui.showFlashView(TR("你已被踢出房间"))
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end
+
+		slot0.minFap = TeamCopyHelper.FapLimit
+		slot0.selfIsLeader = TeamCopyHelper.LeaderId == slot0.selfPlayerId
+
+		slot0:refreshBaseInfo()
+
+		if TeamCopyHelper.playerListMd5 or "".playerListMd5 ~= (TeamCopyHelper.playerListMd5 or "") then
+			slot0.playerListMd5 = slot0
+
+			slot0:refreshPlayer()
+			slot0:refreshPlayerInfo()
+		end
+
+		return 
+	end)
+	Utility.schedule(slot0.helpButton, function ()
+		if 0 < TeamCopyHelper:getWorldShareCD() then
+			slot0.helpButton:setTitleText(MqTime.formatAsHour(slot0))
+		else
+			slot0.helpButton:setTitleText("")
+		end
+
+		return 
+	end, 1)
+	Utility.schedule(slot0.restoreLabel, function ()
+		if 0 < TeamCopyHelper:getFightRestoreTime() then
+			slot0.restoreLabel:setString(TR("恢复时间:%s", MqTime.formatAsHour(slot0)))
+		else
+			slot0.restoreLabel:setString("")
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.createMsgReddot = function (slot0)
+	slot0.chatButton:addChild(UIWrap.newControl("RedDot", {
+		moduleId = Enums.ClientRedDot.eChatTeam
+	}))
+
+	return 
+end
+slot0.getPlayerInfo = function (slot0, slot1)
+	slot2 = TeamCopyHelper.PlayerList or {}
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.FightIndex == slot1 then
+			return slot7
+		end
+	end
+
+	return 
+end
+slot0.getTeamStatusInfo = function (slot0)
+	slot2 = TeamCopyConfig.items[1].maxPlayer
+
+	if #TeamCopyHelper.PlayerList < TeamCopyConfig.items[1].minPlayer then
+		return TR("等待人员到齐")
+	end
+
+	for slot6, slot7 in pairs(TeamCopyHelper.PlayerList) do
+		if not slot7.IfReady and slot7.PlayerId ~= TeamCopyHelper.LeaderId then
+			return TR("请全员进行准备")
+		end
+	end
+
+	if #TeamCopyHelper.PlayerList < slot2 then
+		if slot0.selfIsLeader then
+			return TR("当前人数不齐，但可以开始挑战")
+		else
+			return TR("等待队长开始挑战")
+		end
+	end
+
+	if slot0.selfIsLeader then
+		return TR("全员已就绪，请开始挑战")
+	else
+		return TR("等待队长开始挑战")
+	end
+
+	return 
+end
+slot0.refreshBaseInfo = function (slot0)
+	slot0.copyNameLabel:setString(TR("讨伐目标：%s", TeamCopyNodeModel.items[TeamCopyHelper.NodeId] or {}.name or ""))
+	slot0.statusLabel:setString(slot0.getTeamStatusInfo(slot0))
+	slot0.setLimitFap(slot0)
+	slot0.limitButton:setEnabled(slot0.selfIsLeader)
+	slot0.helpCheckbox:setSelected(TeamCopyHelper.IsHelp)
+	slot0.autoCheckbox:setVisible(not slot0.selfIsLeader)
+	slot0.autoCheckbox:setSelected(TeamCopyHelper.IsAutoReady)
+	slot0.freeFightLabel:setString(TR("剩余挑战次数:%s", TeamCopyHelper.TeamFightNum))
+	slot0.freeHelpRewardLabel:setString(TR("剩余助战奖励次数:%s", TeamCopyHelper.HelpRewardNum))
+	slot0.helpButton:setVisible(slot0.selfIsLeader)
+
+	if slot0.selfIsLeader then
+		slot0.autoCheckLabel:setString(TR("自动挑战"))
+		slot0.readyButton:setTitleText(TR("挑 战"))
+	else
+		slot0.autoCheckLabel:setString(TR("战后自动准备"))
+		slot0.readyButton:setTitleText((slot0.isSelfReady(slot0) and TR("取消准备")) or TR("准 备"))
+	end
+
+	slot0.readyButton:stopAllActions()
+
+	if slot0.allowFight(slot0, false) then
+		slot2 = 5
+
+		Utility.schedule(slot0.readyButton, function ()
+			slot0 = slot0 - 1
+
+			slot1.statusLabel:setString(TR("全员已就绪,%s秒后挑战", slot1.statusLabel.setString))
+
+			if slot1.statusLabel.setString == 0 then
+				slot1.readyButton:stopAllActions()
+
+				if slot1.selfIsLeader then
+					slot1:onReadyBtnClick(slot1.readyButton)
+				end
+			end
+
+			return 
+		end, 1)
+	end
+
+	return 
+end
+slot0.refreshPlayer = function (slot0)
+	slot0.playerNode:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.posInfoList) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "playerLayout", {
+			hideAdd = false,
+			hideEmpty = slot0.getPlayerInfo(slot0, slot4) ~= nil,
+			onEmptyBtnClick = function ()
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "teamCopy.TeamCopyInviteLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end
+		})
+
+		slot7.setPosition(slot7, slot5.pos)
+		slot0.playerNode:addChild(slot7)
+
+		slot5.itemNode = slot7
+
+		slot7.figureNode:removeAllChildren()
+		slot7.figureNode:setVisible(slot6 ~= nil)
+		slot7.readySprite:setVisible(slot6 ~= nil and slot6.IfReady)
+
+		if slot6 ~= nil then
+			if Utility.getPlayerLihuiName(slot6.HeadImageId, slot6.FashionModelId) ~= "" then
+				slot9 = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					scale = 0.35,
+					dataFile = slot8
+				})
+
+				slot9.setPosition(slot9, cc.p(0, 0))
+				slot7.figureNode:addChild(slot9)
+			else
+				slot7.figureNode:addChild(UIWrap.newControl("Sprite", {
+					scale = 0.5,
+					image = Utility.getHeroStandImage(slot6.HeadImageId),
+					pos = cc.p(0, 150)
+				}))
+			end
+		end
+	end
+
+	return 
+end
+slot0.refreshPlayerInfo = function (slot0)
+	slot0.playerInfoNode:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.posInfoList) do
+		slot7 = next(slot0.getPlayerInfo(slot0, slot4) or {}) == nil
+		slot8 = slot0.getPlayerInfo(slot0, slot4) or {}.PlayerId == TeamCopyHelper.LeaderId
+		slot9 = slot0.getPlayerInfo(slot0, slot4) or {}.PlayerId == slot0.selfPlayerId
+
+		if not slot6.GuildName or slot10 == "" then
+			slot10 = TR("无帮派")
+		end
+
+		slot11 = slot0.createLayoutTemplateNode(slot0, "playerInfoLayout", {
+			playerName = slot6.Name or "",
+			guildName = slot10,
+			hideFlag = not slot8,
+			hideHelpFlag = not slot6.IsHelp,
+			fap = Utility.numberWithUnit(slot6.Fap or 0),
+			orderImage = slot5.flagImage,
+			onDeleteBtnClick = function ()
+				if slot0 then
+					return 
+				end
+
+				ui.showMessageBox({
+					titleText = TR("提示"),
+					text = TR("是否请该玩家离开小队？"),
+					okCallback = function (...)
+						TeamCopyHelper:requestKickOut({
+							roomId = TeamCopyHelper.RoomId,
+							playerId = slot0.PlayerId,
+							dependLayer = slot1,
+							successCallback = function (slot0)
+								return 
+							end
+						})
+
+						return 
+					end,
+					cancelCallback = function (...)
+						return 
+					end
+				})
+
+				return 
+			end
+		})
+
+		slot11.setPosition(slot11, slot5.pos)
+		slot0.playerInfoNode:addChild(slot11)
+		slot11.nameBgSprite:setVisible(not slot7)
+		slot11.deleteButton:setVisible(not slot9 and slot0.selfIsLeader and not slot7)
+		slot11.fapBgSprite:setVisible(not slot7)
+
+		if not slot6.IsHelp and slot6.FightNum == 0 and (slot12 or (slot9 and not slot0.selfIsLeader)) then
+			slot13 = 10
+
+			Utility.schedule(slot11.deleteButton, function ()
+				if 0 < slot0 - 1 then
+					if not slot1.selfIsLeader then
+						slot1.freeFightLabel:setString(TR("%s秒后被踢出房间", slot1.freeFightLabel.setString))
+					end
+
+					return 
+				end
+
+				slot2.deleteButton:stopAllActions()
+
+				if not slot3 then
+					return 
+				end
+
+				TeamCopyHelper:requestKickOut({
+					roomId = TeamCopyHelper.RoomId,
+					playerId = slot4.PlayerId,
+					dependLayer = slot1,
+					successCallback = function (slot0)
+						return 
+					end
+				})
+
+				return 
+			end, 1)
+		end
+	end
+
+	return 
+end
+slot0.refreshFapList = function (slot0)
+	slot0.setLimitFap(slot0)
+
+	if not TeamCopyNodeModel.items[TeamCopyHelper.NodeId] then
+		return 
+	end
+
+	slot0.fapInfoList = {
+		{
+			minFap = 0
+		}
+	}
+
+	for slot6 = 1, 4, 1 do
+		table.insert(slot0.fapInfoList, {
+			minFap = slot2.minFap + (slot6 - 1)*slot2.addFap
+		})
+	end
+
+	slot0.limitListView:removeAllChildren()
+
+	for slot6, slot7 in ipairs(slot0.fapInfoList) do
+		slot0.limitListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "limitLayout", {
+			limitText = (0 < slot7.minFap and TR("%s以上", Utility.numberWithUnit(slot7.minFap))) or TR("不 限"),
+			onButtonClick = function ()
+				if slot0.minFap == slot1.minFap then
+					return 
+				end
+
+				slot0.minFap = slot1.minFap
+
+				slot0:setLimitFap()
+				TeamCopyHelper:requestAlterRoom({
+					roomId = TeamCopyHelper.RoomId,
+					limitFap = slot0.minFap,
+					joinType = TeamCopyHelper.JoinType,
+					dependLayer = slot0,
+					successCallback = function (slot0)
+						return 
+					end
+				})
+
+				return 
+			end
+		}))
+	end
+
+	return 
+end
+slot0.setLimitFap = function (slot0)
+	slot0.limitButton:setTitleText(TR("战力选择:%s", (0 < slot0.minFap and TR("%s以上", Utility.numberWithUnit(slot0.minFap))) or TR("不 限")))
+	slot0.limitBgSprite:setVisible(false)
+
+	return 
+end
+slot0.registerTouchEvent = function (slot0)
+	ui.addTouchEvent({
+		node = slot0.playerNode,
+		beganEvent = function (slot0, slot1)
+			if not slot0.selfIsLeader then
+				return false
+			end
+
+			return slot0:onBeganEvent(slot0, slot1)
+		end,
+		movedEvent = function (slot0, slot1)
+			slot0:onMovedEvent(slot0.playerNode:convertTouchToNodeSpace(slot0).x, slot0.playerNode.convertTouchToNodeSpace(slot0).y)
+
+			return 
+		end,
+		endedEvent = function (slot0, slot1)
+			slot0:onEndedEvent(slot0, slot1)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getPosInfo = function (slot0, slot1)
+	slot2 = slot0.playerNode:convertTouchToNodeSpace(slot1)
+
+	for slot6, slot7 in pairs(slot0.posInfoList) do
+		if slot7.itemNode and cc.rectContainsPoint(cc.rect(slot7.pos.x - slot7.size.width/2, slot7.pos.y, slot7.size.width, slot7.size.height), slot2) then
+			return slot7
+		end
+	end
+
+	return 
+end
+slot0.allowFight = function (slot0, slot1)
+	if #TeamCopyHelper.PlayerList < TeamCopyConfig.items[1].minPlayer then
+		if slot1 then
+			ui.showFlashView(TR("最少需要%s人准备好才能战斗", slot2))
+		end
+
+		return false
+	end
+
+	slot3 = true
+
+	for slot7, slot8 in pairs(TeamCopyHelper.PlayerList) do
+		if not slot8.IfReady and slot8.PlayerId ~= TeamCopyHelper.LeaderId then
+			if slot1 then
+				ui.showFlashView(TR("队员没有准备好"))
+			end
+
+			return false
+		end
+
+		if slot8.PlayerId == TeamCopyHelper.LeaderId and not slot8.IsHelp and slot8.FightNum == 0 then
+			ui.showFlashView(TR("请队长选择助战或购买挑战次数"))
+
+			return false
+		end
+
+		if not slot8.IsHelp then
+			slot3 = false
+		end
+	end
+
+	if slot3 then
+		if slot1 then
+			ui.showFlashView(TR("所有成员都是助战无法进行挑战"))
+		end
+
+		return false
+	end
+
+	return true
+end
+slot0.isSelfReady = function (slot0)
+	for slot4, slot5 in pairs(TeamCopyHelper.PlayerList) do
+		if slot5.PlayerId == slot0.selfPlayerId then
+			return slot5.IfReady
+		end
+	end
+
+	return false
+end
+slot0.onBeganEvent = function (slot0, slot1, slot2)
+	if not slot0.getPosInfo(slot0, slot1) or not slot3.itemNode then
+		return false
+	end
+
+	if not slot0.getPlayerInfo(slot0, slot3.posType) then
+		return false
+	end
+
+	slot0.lastClickPos = slot0.playerNode:convertTouchToNodeSpace(slot1)
+	slot0.lastNodePos = cc.p(slot3.itemNode:getPosition())
+
+	slot3.itemNode:setLocalZOrder(5)
+
+	slot0.clickPosInfo = slot3
+
+	return true
+end
+slot0.onMovedEvent = function (slot0, slot1, slot2)
+	if not (slot0.clickPosInfo and slot0.clickPosInfo.itemNode) then
+		return 
+	end
+
+	slot5 = slot2 - slot0.lastClickPos.y
+
+	if 3 <= math.abs(slot4) or 3 <= math.abs(slot5) then
+		slot0.lastNodePos = cc.p(slot0.lastNodePos.x + slot4, slot0.lastNodePos.y + slot5)
+
+		slot3.setPosition(slot3, slot0.lastNodePos)
+
+		slot0.lastClickPos = cc.p(slot1, slot2)
+	end
+
+	return 
+end
+slot0.onEndedEvent = function (slot0, slot1, slot2)
+	if not (slot0.clickPosInfo and slot0.clickPosInfo.itemNode) then
+		return 
+	end
+
+	slot3.setLocalZOrder(slot3, 0)
+
+	if not slot0.getPosInfo(slot0, slot1) or slot0.clickPosInfo.posType == slot4.posType then
+		slot3.setPosition(slot3, slot0.clickPosInfo.pos)
+
+		return 
+	end
+
+	slot3.runAction(slot3, cc.MoveTo:create(0.1, slot4.pos))
+	slot4.itemNode.runAction(slot5, cc.MoveTo:create(0.1, slot0.clickPosInfo.pos))
+
+	slot0.clickPosInfo.itemNode = slot4.itemNode
+	slot4.itemNode = slot3
+
+	for slot9, slot10 in pairs(TeamCopyHelper.PlayerList) do
+		if slot10.FightIndex == slot0.clickPosInfo.posType then
+			slot10.FightIndex = slot4.posType
+		elseif slot10.FightIndex == slot4.posType then
+			slot10.FightIndex = slot0.clickPosInfo.posType
+		end
+	end
+
+	slot6 = {
+		Utility.EMPTY_ENTITY_ID,
+		Utility.EMPTY_ENTITY_ID,
+		Utility.EMPTY_ENTITY_ID
+	}
+	slot7 = {
+		[Enums.TeamCopyPosType.eFirst] = 1,
+		[Enums.TeamCopyPosType.eSecond] = 2,
+		[Enums.TeamCopyPosType.eThird] = 3
+	}
+
+	for slot11, slot12 in pairs(TeamCopyHelper.PlayerList) do
+		slot6[slot7[slot12.FightIndex] or slot12.FightIndex] = slot12.PlayerId
+	end
+
+	TeamCopyHelper:requestSetFightIndex({
+		roomId = TeamCopyHelper.RoomId,
+		playerIdList = slot6,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	slot0.clickPosInfo = nil
+	slot0.lastClickPos = nil
+	slot0.lastNodePos = nil
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0, slot1)
+	slot0.selfClose = true
+
+	TeamCopyHelper:requestExitRoom({
+		roomId = TeamCopyHelper.RoomId,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			return 
+		end,
+		failedCallback = function (slot0)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	TeamCopyHelper:showRule()
+
+	return 
+end
+slot0.onCampBtnClick = function (slot0, slot1)
+	TeamCopyHelper:campFormation({
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			ui.showFlashView(TR("布阵成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onChatBtnClick = function (slot0, slot1)
+	if not Utility.moduleIsOpen(ModuleSub.eChat, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "chat.ChatLayer",
+		data = {
+			defaultChannel = Enums.ChatChanne.eTeam
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onHelpBtnClick = function (slot0, slot1)
+	if not Utility.moduleIsOpen(ModuleSub.eChat, true) then
+		return 
+	end
+
+	slot2 = TeamCopyHelper:getWorldShareCD()
+
+	if not slot0.selfIsLeader or 0 < slot2 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "chat.ChatLayer",
+			data = {
+				defaultChannel = Enums.ChatChanne.eWorld
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		if slot0.selfIsLeader then
+			ui.showFlashView(TR("求助太频繁,稍后再试！"))
+		end
+
+		return 
+	end
+
+	slot0.requestWorldShare(slot0)
+
+	return 
+end
+slot0.onAddFreeBtnClick = function (slot0, slot1)
+	if TeamCopyHelper.BuyNum <= 0 then
+		ui.showFlashView("今日已没有购买次数")
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "teamCopy.TeamCopyBuyCountLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			callBack = function ()
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onReadyBtnClick = function (slot0, slot1)
+	slot2 = TeamCopyConfig.items[1]
+
+	if slot0.helpCheckbox:isSelected() then
+		if TeamCopyHelper.HelpFightNum <= 0 then
+			ui.showFlashView("已没有助战次数")
+
+			return 
+		end
+	elseif TeamCopyHelper.TeamFightNum <= 0 then
+		ui.showFlashView("已没有挑战次数，请购买次数或选择助战")
+
+		return 
+	end
+
+	if slot0.selfIsLeader then
+		if not slot0.allowFight(slot0, true) then
+			return 
+		end
+
+		if TeamCopyHelper:needCampFormation() then
+			TeamCopyHelper:campFormation({
+				dependLayer = slot0,
+				successCallback = function (slot0)
+					slot0:requestStartFight()
+
+					return 
+				end
+			})
+		else
+			slot0.requestStartFight(slot0)
+		end
+	elseif slot0.isSelfReady(slot0) then
+		slot0.requestSetReady(slot0, not slot4)
+	elseif TeamCopyHelper:needCampFormation() then
+		TeamCopyHelper:campFormation({
+			dependLayer = slot0,
+			successCallback = function (slot0)
+				slot0:requestSetReady(not slot1)
+
+				return 
+			end
+		})
+	else
+		slot0.requestSetReady(slot0, not slot4)
+	end
+
+	return 
+end
+slot0.onLimitBtnClick = function (slot0, slot1)
+	slot2 = slot0.limitBgSprite:isVisible()
+
+	if not slot0.selfIsLeader and not slot2 then
+		ui.showFlashView(TR("队长才能改变战力限制"))
+
+		return 
+	end
+
+	slot0.limitBgSprite:setVisible(not slot2)
+
+	return 
+end
+slot0.onHelpCheckboxClick = function (slot0, slot1)
+	if slot0.helpCheckbox:isSelected() then
+		if TeamCopyHelper.HelpFightNum <= 0 then
+			ui.showFlashView("已没有助战次数")
+		elseif TeamCopyHelper.HelpRewardNum <= 0 then
+			ui.showFlashView("今日无法再获得群策群力助战奖励")
+		end
+	end
+
+	TeamCopyHelper:requestSetHelp({
+		roomId = TeamCopyHelper.RoomId,
+		isHelp = slot2,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			if not TeamCopyHelper.IsHelp then
+				if 0 < TeamCopyHelper.TeamFightNum then
+					ui.showFlashView(TR("已取消助战"))
+				else
+					ui.showFlashView("已没有挑战次数，请购买次数或选择助战")
+				end
+			end
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			slot0.helpCheckbox:setSelected(TeamCopyHelper.IsHelp)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onAutoCheckboxClick = function (slot0, slot1)
+	TeamCopyHelper:requestSetAutoReady({
+		roomId = TeamCopyHelper.RoomId,
+		isAuto = slot0.autoCheckbox:isSelected(),
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			if not TeamCopyHelper.IsAutoReady then
+				if slot0.selfIsLeader then
+					ui.showFlashView(TR("已取消自动挑战"))
+				else
+					ui.showFlashView(TR("已取消战后自动准备"))
+				end
+			end
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			slot0.autoCheckbox:setSelected(TeamCopyHelper.IsAutoReady)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestStartFight = function (slot0)
+	TeamCopyHelper:requestStartFight({
+		roomId = TeamCopyHelper.RoomId,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSetReady = function (slot0, slot1)
+	TeamCopyHelper:requestSetReady({
+		roomId = TeamCopyHelper.RoomId,
+		isReady = slot1,
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestWorldShare = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "WorldShare",
+		moduleName = "TeamCopyInfo",
+		methodData = {
+			TeamCopyHelper.RoomId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView("求助成功")
+			TeamCopyHelper:setWorldShareCD()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "chat.ChatLayer",
+				data = {
+					defaultChannel = Enums.ChatChanne.eWorld
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

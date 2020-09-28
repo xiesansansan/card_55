@@ -1,0 +1,104 @@
+slot0 = class("GameLoginFaiedLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 160)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			needTouchClose = false,
+			image = "dl_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 434.98,
+						y = 248.44
+					},
+					text = TR("该服务器竞争过于激烈，已关闭注册。")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 433.98,
+						y = 207.44
+					},
+					text = TR("请前往最新服务器获得最优游戏体验！")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onExitAction",
+					pos = {
+						x = 413.76,
+						y = 91.09
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "dl_14.png",
+					pos = {
+						x = 99,
+						y = 250
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

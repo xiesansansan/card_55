@@ -1,0 +1,40 @@
+if cc.XMLHttpRequest == nil then
+	return 
+end
+
+function slot0(slot0, slot1)
+	print("\n********** \n" .. slot0 .. " was deprecated please use " .. slot1 .. " instead.\n**********")
+
+	return 
+end
+
+if kTargetIphone == CCApplication:getInstance():getTargetPlatform() or kTargetIpad == slot1 or kTargetAndroid == slot1 or kTargetWindows == slot1 then
+	WebSocket.sendTextMsg = ({
+		sendTextMsg = function (slot0, slot1)
+			slot0("WebSocket:sendTextMsg", "WebSocket:sendString")
+
+			return slot0.sendString(slot0, slot1)
+		end,
+		sendBinaryMsg = function (slot0, slot1, slot2)
+			slot0("WebSocket:sendBinaryMsg", "WebSocket:sendString")
+			string.char(unpack(slot1))
+
+			return slot0.sendString(slot0, string.char(unpack(slot1)))
+		end
+	})["sendTextMsg"]
+	WebSocket.sendBinaryMsg = ({
+		sendTextMsg = function (slot0, slot1)
+			slot0("WebSocket:sendTextMsg", "WebSocket:sendString")
+
+			return slot0.sendString(slot0, slot1)
+		end,
+		sendBinaryMsg = function (slot0, slot1, slot2)
+			slot0("WebSocket:sendBinaryMsg", "WebSocket:sendString")
+			string.char(unpack(slot1))
+
+			return slot0.sendString(slot0, string.char(unpack(slot1)))
+		end
+	})["sendBinaryMsg"]
+end
+
+return 

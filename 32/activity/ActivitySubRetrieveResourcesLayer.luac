@@ -1,0 +1,575 @@
+slot0 = class("ActivitySubRetrieveResourcesLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_83.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled21",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "fuli_82.png",
+					pos = {
+						x = 196.45,
+						y = 6.29
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 338.55,
+								y = 507.68
+							},
+							size = {
+								width = 621,
+								height = 377
+							}
+						},
+						children = {
+							{
+								name = "item",
+								cType = "Layout",
+								custom = {
+									{
+										value = "title-text",
+										name = "title",
+										type = "string"
+									},
+									{
+										value = "untitled10-id",
+										name = "freeId",
+										type = "string"
+									},
+									{
+										value = "untitled12-id",
+										name = "costId",
+										type = "string"
+									},
+									{
+										value = "untitled13-text",
+										name = "costNum",
+										type = "string"
+									},
+									{
+										value = "untitled12-payNum",
+										name = "payNum",
+										type = "string"
+									},
+									{
+										value = "untitled12-payModelId",
+										name = "payModelId",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 621,
+										height = 118
+									}
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											pos = {
+												x = 309,
+												y = 59.77
+											},
+											size = {
+												width = 621,
+												height = 118
+											}
+										},
+										children = {}
+									},
+									{
+										name = "title",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											pos = {
+												x = 279.67,
+												y = 100.54
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "goodsList",
+										cType = "ListView",
+										params = {
+											direction = false,
+											swallowTouch = false,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 4.79,
+												y = 44.92
+											},
+											size = {
+												width = 325.79,
+												height = 79.21
+											}
+										},
+										children = {
+											{
+												name = "goodItem",
+												cType = "Layout",
+												params = {
+													size = {
+														width = 90,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "card",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															allowClick = true,
+															pos = {
+																x = 45,
+																y = 45
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "tigSprite",
+										cType = "Sprite",
+										params = {
+											image = "c_55.png",
+											pos = {
+												x = 532.55,
+												y = 46.55
+											}
+										},
+										children = {}
+									},
+									{
+										name = "btnNode",
+										cType = "Node",
+										params = {
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {
+											{
+												name = "untitled13",
+												cType = "Label",
+												params = {
+													text = "{db_1111.png} 12",
+													isRichText = true,
+													childName = "costNum",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 537.1,
+														y = 71.38
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled12",
+												cType = "Button",
+												custom = {
+													{
+														value = 1,
+														name = "id",
+														type = "integer"
+													},
+													{
+														value = 1,
+														name = "payNum",
+														type = "integer"
+													},
+													{
+														value = 1,
+														name = "payModelId",
+														type = "integer"
+													}
+												},
+												params = {
+													childName = "costBtn",
+													image = "c_32.png",
+													swallowTouch = false,
+													clickAction = "onCostBtnAction",
+													pos = {
+														x = 536.6,
+														y = 34.73
+													},
+													titleText = TR("找回100%")
+												},
+												children = {}
+											},
+											{
+												name = "untitled11",
+												cType = "Label",
+												params = {
+													color = {
+														g = 248,
+														r = 255,
+														b = 234
+													},
+													outlineColor = {
+														g = 42,
+														r = 51,
+														b = 24
+													},
+													pos = {
+														x = 391.37,
+														y = 72.29
+													},
+													text = TR("免费")
+												},
+												children = {}
+											},
+											{
+												name = "untitled10",
+												cType = "Button",
+												custom = {
+													{
+														value = 1,
+														name = "id",
+														type = "integer"
+													}
+												},
+												params = {
+													childName = "freeBtn",
+													image = "c_27.png",
+													swallowTouch = false,
+													clickAction = "onFreeBtnAction",
+													pos = {
+														x = 391.74,
+														y = 35.49
+													},
+													titleText = TR("找回50%")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "tigSp",
+						cType = "Sprite",
+						params = {
+							image = "bp_25.png",
+							pos = {
+								x = 337.26,
+								y = 271.16
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 187.78,
+										y = 51.25
+									},
+									text = TR("暂无资源")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "totalCost",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "{db_1111.png} 12",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 335.02,
+						y = -150.43
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oneKeyCostBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onOneKeyCostBtnAction",
+					pos = {
+						x = 334.98,
+						y = -193.3
+					},
+					titleText = TR("一键找回100%")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 58.79,
+						y = -150.66
+					},
+					text = TR("免费")
+				},
+				children = {}
+			},
+			{
+				name = "oneKeyFreeBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onOneKeyFreeBtnAction",
+					image = "c_19.png",
+					pos = {
+						x = 58.29,
+						y = -193.49
+					},
+					size = {
+						width = 160,
+						height = 51
+					},
+					titleText = TR("一键找回50%")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.totalCostNum = 0
+	slot0.totalCostModelId = 1111
+
+	slot0.listView:removeAllChildren()
+	slot0.tigSp:setVisible(#slot0.mRetrieveInfo == 0)
+
+	for slot4, slot5 in pairs(slot0.mRetrieveInfo) do
+		slot6 = Utility.analysisStrResList(slot5.Cost)[1]
+
+		if slot5.Status == 1 then
+			slot0.totalCostNum = slot0.totalCostNum + slot6.num
+		end
+
+		slot0.totalCostModelId = slot6.resourceId
+
+		slot0.createLayoutTemplateNode(slot0, "item", {
+			title = TR("%s", RetrieveModel.items[slot5.ModelId].name),
+			freeId = slot5.ModelId,
+			costId = slot5.ModelId,
+			payModelId = slot6.resourceId,
+			payNum = slot6.num,
+			costNum = TR("{%s} %s", Resource.getDaibiImg(slot6.resourceId), slot6.num)
+		}).goodsList:removeAllChildren()
+
+		for slot12, slot13 in pairs(slot8) do
+			slot0.createLayoutTemplateNode(slot0, "goodItem").card:setCardData({
+				modelId = slot13.resourceId,
+				num = slot13.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot7.goodsList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "goodItem"))
+		end
+
+		slot7.btnNode:setVisible(slot5.Status == 1)
+		slot7.tigSprite:setVisible(slot5.Status == 2)
+		slot0.listView:pushBackCustomItem(slot7)
+	end
+
+	slot0.totalCost:setString(TR("{%s} %s", Resource.getDaibiImg(slot0.totalCostModelId), slot0.totalCostNum))
+
+	if slot0.totalCostNum == 0 then
+		slot0.oneKeyFreeBtn:setEnabled(false)
+		slot0.oneKeyCostBtn:setEnabled(false)
+	end
+
+	return 
+end
+slot0.onFreeBtnAction = function (slot0, slot1)
+	slot0.receiveReward(slot0, slot1.id, true)
+
+	return 
+end
+slot0.onCostBtnAction = function (slot0, slot1)
+	if Resource.isEnough(slot1.payModelId, slot1.payNum) then
+		slot0.receiveReward(slot0, slot1.id, false)
+	end
+
+	return 
+end
+slot0.onOneKeyFreeBtnAction = function (slot0, slot1)
+	slot0.receiveRewardForOnekey(slot0, true)
+
+	return 
+end
+slot0.onOneKeyCostBtnAction = function (slot0, slot1)
+	if Resource.isEnough(slot0.totalCostModelId, slot0.totalCostNum) then
+		slot0.receiveRewardForOnekey(slot0, false)
+	end
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "RetrieveInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRetrieveInfo = {}
+
+			for slot4, slot5 in pairs(slot0.RetrieveInfo) do
+				if slot5.Status ~= 0 then
+					table.insert(slot0.mRetrieveInfo, slot5)
+				end
+			end
+
+			table.sort(slot0.mRetrieveInfo, function (slot0, slot1)
+				return slot0.Status < slot1.Status
+			end)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.receiveReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveReward",
+		moduleName = "RetrieveInfo",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:getInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.receiveRewardForOnekey = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveRewardForOnekey",
+		moduleName = "RetrieveInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:getInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,37 @@
+slot1 = {
+	new = function (slot0)
+		slot0.scene = slot0
+
+		return 
+	end
+}
+
+setmetatable({
+	new = function (slot0)
+		slot0.scene = slot0
+
+		return 
+	end
+}, {
+	__index = function (slot0, slot1)
+		if not rawget(slot0, "scene") or tolua.isnull(slot2) then
+			return function ()
+				return 
+			end
+		else
+			assert(slot2[slot1] ~= nil, "ViewDelegate." .. slot1 .. " is nil!!!!!")
+
+			return handler(slot2, slot2[slot1])
+		end
+
+		return 
+	end
+})
+
+return {
+	new = function (slot0)
+		slot0.scene = slot0
+
+		return 
+	end
+}

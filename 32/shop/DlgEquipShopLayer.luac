@@ -1,0 +1,646 @@
+slot0 = class("DlgEquipShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled16",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChangedAction",
+					isNeedOutline = false,
+					lightedImage = "sc_23.png",
+					direction = false,
+					normalImage = "sc_24.png",
+					allowChangeCallback = "cbTabAllowChange",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = -274.33,
+						y = 211.99
+					},
+					selectTitleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					size = {
+						width = 700,
+						height = 45
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 262,
+					pos = {
+						x = 103.14,
+						y = -10.51
+					},
+					size = {
+						width = 768.07,
+						height = 411.18
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -164.05,
+						y = 32.74
+					}
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						params = {
+							image = "sc_26.png",
+							pos = {
+								x = 3.01,
+								y = 115.72
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						params = {
+							image = "sc_22.png",
+							pos = {
+								x = 3,
+								y = -5.4
+							}
+						},
+						children = {}
+					},
+					{
+						name = "goodCard",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							initParams = {},
+							pos = {
+								x = 5.7,
+								y = 38.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "name",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							text = "Label",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 6.73,
+								y = 101.97
+							}
+						},
+						children = {}
+					},
+					{
+						name = "numLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							hide = true,
+							text = "Label",
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 5.05,
+								y = -10.98
+							}
+						},
+						children = {}
+					},
+					{
+						name = "price1",
+						cType = "ResLabel",
+						params = {
+							fontSize = 20,
+							modelId = 1111,
+							num = 0,
+							pos = {
+								x = -57.27,
+								y = -36.94
+							}
+						},
+						children = {}
+					},
+					{
+						name = "price2",
+						cType = "ResLabel",
+						params = {
+							fontSize = 20,
+							modelId = 1111,
+							hide = true,
+							num = 0,
+							pos = {
+								x = 8.44,
+								y = -36.32
+							}
+						},
+						children = {}
+					},
+					{
+						name = "countLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 6.77,
+								y = -62.82
+							}
+						},
+						children = {}
+					},
+					{
+						name = "button",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "cellTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_32.png",
+							clickAction = "onBuyAction",
+							scale = 0.8,
+							pos = {
+								x = 4.44,
+								y = -93.59
+							},
+							titleText = TR("购 买")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "sc_17.png",
+					pos = {
+						x = 104,
+						y = 199
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = false
+	})
+
+	slot0.callback = slot1.callback
+	slot0.mTopResourceNode = slot1.topResourceNode
+	slot0.currTag = 1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tabConfigs = {
+		{
+			tag = 1,
+			title = TR("材料")
+		},
+		{
+			tag = 2,
+			title = Utility.getColorName(2)
+		},
+		{
+			tag = 3,
+			title = Utility.getColorName(3)
+		},
+		{
+			tag = 4,
+			title = Utility.getColorName(4)
+		},
+		{
+			tag = 5,
+			title = Utility.getColorName(5)
+		},
+		{
+			tag = 6,
+			title = Utility.getColorName(6)
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "TabView" then
+			slot1.btnInfos = slot0.tabConfigs
+		end
+
+		return 
+	end)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	slot0.mGridView:setItemNum(#slot0.goodDataList)
+
+	if slot1 then
+		slot0.mGridView:jumpToTop()
+	end
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if next(slot0.goodDataList) then
+		slot6 = Utility.analysisStrResList(slot0.goodDataList[slot2].buyNeed)
+		slot7, slot14 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId))
+
+		slot0.createLayoutTemplateNode(slot0, "gridNode").goodCard:setCardData({
+			modelId = Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId,
+			num = Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].num
+		}, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		})
+		slot0.createLayoutTemplateNode(slot0, "gridNode").name:setString(TR("%s%s", slot8, Resource.getName(Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId)))
+
+		slot10 = slot0.getLifeRemain(slot0, slot4)
+		slot12 = TR("不限购")
+		slot13 = true
+
+		if 0 <= slot0.getDailyRemain(slot0, slot4) then
+			slot12 = (slot11 == 0 and TR("今日次数已用完")) or TR("今日可购%d次", slot11)
+			slot13 = 0 < slot11
+		elseif 0 <= slot10 then
+			slot13 = 0 < slot10
+
+			slot9.countLabel:setString((slot10 == 0 and TR("次数已用完")) or TR("可购%d次", slot10))
+		end
+
+		if slot11 == 0 then
+			slot9.countLabel:setColor(cc.c3b(234, 44, 0))
+		elseif slot10 == 0 then
+			slot9.countLabel:setColor(cc.c3b(234, 44, 0))
+		end
+
+		slot9.button.cellTag = slot2
+		slot14 = (slot4.needPlayerLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and "#258711") or "#EA2C00"
+		slot15 = 0
+		slot16 = true
+
+		for slot20, slot21 in ipairs(slot6) do
+			slot22 = Resource.getCount(slot21.resourceId)
+
+			if 1 < slot20 then
+				slot9.price2:setType(slot21.resourceId)
+				slot9.price2:setString(slot21.num, (slot21.num <= slot22 and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+				slot9.price2:setVisible(true)
+
+				if slot22 < slot21.num then
+					slot16 = false
+				end
+			else
+				slot9.price1:setType(slot21.resourceId)
+				slot9.price1:setString(slot21.num, (slot21.num <= slot22 and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+
+				if slot22 < slot21.num then
+					slot16 = false
+				end
+			end
+
+			slot15 = slot15 + 1
+		end
+
+		if slot15 == 1 then
+			slot9.price1:setPositionX(-28.55)
+		end
+
+		slot9.button:setEnabled(slot13)
+
+		if Resource.getMainType(slot5.resourceId) == ResourceType.eDebris then
+			slot9.numLabel:setVisible(true)
+
+			slot17 = "#258711"
+
+			if Resource.getCount(slot5.resourceId) < GoodsModel.items[slot5.resourceId].outputNeedNum then
+				slot17 = "#EA2C00"
+			end
+
+			slot9.numLabel:setString(TR("合成:%s%s/%s", slot17, Resource.getCount(slot5.resourceId), GoodsModel.items[slot5.resourceId].outputNeedNum))
+		end
+
+		slot9.setPosition(slot9, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+		slot1.addChild(slot1, slot9)
+	end
+
+	return 
+end
+slot0.cbTabAllowChange = function (slot0, slot1)
+	slot2 = 999
+	slot3 = pairs
+	slot4 = EquipShopConfig.items[slot1] or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		if slot7.needPlayerLv < slot2 then
+			slot2 = slot7.needPlayerLv
+		end
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < slot2 then
+		ui.showFlashView(TR("玩家等级需达到: %s%s级", "#EA2C00", slot2))
+
+		return false
+	end
+
+	return true
+end
+slot0.onTabChangedAction = function (slot0, slot1)
+	slot0.goodDataList = {}
+
+	if not slot0.mDataInfo then
+		return 
+	end
+
+	slot0.goodDataList = {}
+	slot2 = {}
+	slot3 = ""
+	slot4 = {}
+	slot5 = pairs
+	slot6 = EquipShopConfig.items[slot1] or {}
+
+	for slot8, slot9 in slot5(slot6) do
+		if slot9.ifSpecialShow then
+			slot3 = slot9.condition
+
+			table.insert(slot2, slot9)
+		else
+			table.insert(slot4, slot9)
+		end
+	end
+
+	slot0.goodDataList = slot4
+
+	if slot0.mDataInfo.Alternative[tostring(slot1)] then
+		slot0.goodDataList = {}
+		slot5 = string.splitBySep(slot3, ",")
+
+		for slot9, slot10 in ipairs(slot4) do
+			slot11 = false
+
+			for slot15, slot16 in ipairs(slot5) do
+				if slot10.sellNum == tonumber(slot16) then
+					slot11 = true
+
+					break
+				end
+			end
+
+			if not slot11 then
+				table.insert(slot0.goodDataList, slot10)
+			end
+		end
+
+		for slot9, slot10 in ipairs(slot2) do
+			table.insert(slot0.goodDataList, slot10)
+		end
+	end
+
+	table.sort(slot0.goodDataList, function (slot0, slot1)
+		return slot0.sellNum < slot1.sellNum
+	end)
+
+	if slot0.tabConfigs[slot1].resList == nil then
+		slot5 = {}
+		slot6 = {}
+		slot7 = 1
+
+		for slot11, slot12 in ipairs(slot0.goodDataList) do
+			for slot16, slot17 in ipairs(Utility.analysisStrResList(slot12.buyNeed)) do
+				if slot5[slot17.resourceId] == nil then
+					slot5[slot17.resourceId] = {
+						Id = slot17.resourceId,
+						Idx = slot7
+					}
+					slot7 = slot7 + 1
+				end
+			end
+		end
+
+		for slot11, slot12 in pairs(slot5) do
+			table.insert(slot6, slot12)
+		end
+
+		table.sort(slot6, function (slot0, slot1)
+			return slot0.Idx < slot1.Idx
+		end)
+
+		slot0.tabConfigs[slot1].resList = {}
+
+		for slot11, slot12 in ipairs(slot6) do
+			table.insert(slot0.tabConfigs[slot1].resList, slot12.Id)
+		end
+	end
+
+	slot0.currTag = slot1
+
+	slot0.refreshUI(slot0, true)
+	slot0.refreshTopResource(slot0)
+
+	return 
+end
+slot0.refreshTopResource = function (slot0)
+	if slot0.currTag == 1 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, ResourceTypeSub.eGold)
+		slot0.mTopResourceNode:resetThirdBtn(1, ResourceTypeSub.eDiamond)
+	elseif slot0.currTag == 2 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, 16050014)
+		slot0.mTopResourceNode:resetThirdBtn(1, ResourceTypeSub.eDiamond)
+	elseif slot0.currTag == 3 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, 16050014)
+		slot0.mTopResourceNode:resetThirdBtn(1, 16050015)
+	elseif slot0.currTag == 4 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, 16050015)
+		slot0.mTopResourceNode:resetThirdBtn(1, 16050016)
+	elseif slot0.currTag == 5 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, 16050016)
+		slot0.mTopResourceNode:resetThirdBtn(1, 16050017)
+	elseif slot0.currTag == 6 then
+		slot0.mTopResourceNode:resetThirdBtn(3, 16050023)
+		slot0.mTopResourceNode:resetThirdBtn(2, 16050024)
+		slot0.mTopResourceNode:resetThirdBtn(1, 16050018)
+	end
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	if slot0.goodDataList[slot1.cellTag] == nil then
+		return 
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < slot2.needPlayerLv then
+		ui.showFlashView(TR("玩家等级需达到%s%s级%s才能购买该商品", "#FFE748", slot2.needPlayerLv, "#fff8ea"))
+
+		return 
+	end
+
+	slot3 = true
+
+	for slot7, slot8 in ipairs(Utility.analysisStrResList(slot2.buyNeed)) do
+		if not Resource.isEnough(slot8.resourceId, slot8.num) then
+			slot3 = false
+
+			break
+		end
+	end
+
+	if slot3 then
+		slot0.requestBuyGood(slot0, slot2, 1)
+	end
+
+	return 
+end
+slot0.getLifeRemain = function (slot0, slot1)
+	if slot1.lifeBuyNum == -1 then
+		return -1
+	end
+
+	return slot1.lifeBuyNum - (slot0.mDataInfo.LifeBuyInfo or {}[tostring(slot1.page)] or {}[tostring(slot1.sellNum)] or 0)
+end
+slot0.getDailyRemain = function (slot0, slot1)
+	if slot1.dailyBuyNum == -1 then
+		return -1
+	end
+
+	return slot1.dailyBuyNum - (slot0.mDataInfo.DailyBuyInfo or {}[tostring(slot1.page)] or {}[tostring(slot1.sellNum)] or 0)
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "EquipShopInfo",
+		moduleName = "EquipShop",
+		methodData = {
+			strFormation
+		},
+		successCallback = function (slot0)
+			slot0.mDataInfo = slot0
+
+			slot0:onTabChangedAction(slot0.currTag)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyGood = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "EquipShopBuy",
+		moduleName = "EquipShop",
+		methodData = {
+			slot1.page,
+			slot1.sellNum,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mDataInfo = slot0
+
+			slot0:refreshUI()
+			slot0:refreshTopResource()
+			ui.showFlashView(TR("购买成功"))
+
+			if slot0.callback then
+				slot0.callback()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

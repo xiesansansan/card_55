@@ -1,0 +1,216 @@
+slot0 = class("DailyTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 860,
+				height = 540
+			},
+			titleText = TR("任 务")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "jcgn_28.png",
+					pos = {
+						x = 92.8,
+						y = 274.33
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTableViewClick",
+					isNeedOutline = false,
+					fontSize = 26,
+					selectFontSize = 26,
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("每日任务")
+						},
+						{
+							title = TR("门派杀敌")
+						}
+					},
+					btnSize = {
+						width = 140,
+						height = 45
+					},
+					pos = {
+						x = 195,
+						y = 455.95
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 300,
+						height = 50
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.52
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 510.69,
+						y = 278
+					},
+					size = {
+						width = 640,
+						height = 345
+					}
+				},
+				children = {}
+			},
+			{
+				name = "childLayer",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -13
+					},
+					size = {
+						width = 889,
+						height = 557
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mSelectTag = (slot1 ~= nil and slot1) or {}.tag or 1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		tag = slot0.mSelectTag
+	}
+end
+slot0.initUI = function (slot0)
+	slot0.tabBtnInfos = {
+		{
+			tag = 1,
+			title = "每日任务",
+			moduleId = ModuleSub.eDailyTaskPoint
+		},
+		{
+			tag = 2,
+			title = "门派杀敌",
+			moduleId = ModuleSub.eCityWarKillEveryone
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.tabBtnInfos
+			slot1.selectTag = slot0.mSelectTag
+		end
+
+		return 
+	end)
+	slot0.refreshUi(slot0, slot0.mSelectTag)
+
+	for slot5, slot6 in ipairs(slot1) do
+		if slot5 == 1 then
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eDailyTaskPoint,
+				offset = cc.p(0.9, 0.7)
+			}))
+		else
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eCityWarKillEveryone,
+				offset = cc.p(0.9, 0.7)
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onTableViewClick = function (slot0, slot1)
+	if slot0.mSelectTag == slot1 then
+		return 
+	end
+
+	if not Utility.moduleIsOpen(ModuleSub.eCityWarKillEveryone, true) then
+		slot0.tabView:activeTabBtnByTag(1)
+
+		return 
+	end
+
+	slot0.mSelectTag = slot1
+
+	slot0.refreshUi(slot0, slot1)
+
+	return 
+end
+slot0.refreshUi = function (slot0, slot1)
+	if slot0.showLayer ~= nil then
+		slot0.showLayer:removeFromParent()
+
+		slot0.showLayer = nil
+	end
+
+	if slot1 == 1 then
+		slot0.showLayer = UIWrap.newControl("FileLayer", {
+			file = "dailytask.DailyTaskTabViewLayer",
+			initParams = {}
+		})
+
+		slot0.childLayer:addChild(slot0.showLayer)
+	elseif slot1 == 2 then
+		slot0.showLayer = UIWrap.newControl("FileLayer", {
+			file = "dailytask.DailyTaskCityWarTabViewLayer",
+			initParams = {}
+		})
+
+		slot0.childLayer:addChild(slot0.showLayer)
+	end
+
+	return 
+end
+
+return slot0

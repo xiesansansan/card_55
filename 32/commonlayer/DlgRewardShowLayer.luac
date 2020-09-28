@@ -1,0 +1,242 @@
+slot0 = class("DlgRewardShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("奖励预览")
+		},
+		children = {
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					gravity = 2,
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 258.04,
+						y = 207.15
+					},
+					size = {
+						width = 420,
+						height = 130
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "cardNode-initParams",
+								name = "initParams",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.01,
+								y = -2.73
+							},
+							size = {
+								width = 106,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "cardNode",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 53.67,
+										y = 76.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled2",
+								cType = "BadgeText",
+								params = {
+									hide = true,
+									image = "c_76.png",
+									childName = "badgeText",
+									anchor = {
+										x = 1,
+										y = 1
+									},
+									pos = {
+										x = 89.06,
+										y = 111.59
+									},
+									text = TR("双倍")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "okBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOkBtnClickAction",
+					pos = {
+						x = 264.61,
+						y = 72.18
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "touchClose",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					hide = true,
+					pos = {
+						x = 265.15,
+						y = -17.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled1",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.71,
+						y = 207.67
+					},
+					size = {
+						width = 451.47,
+						height = 170
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTitle = slot1 or {}.title or TR("奖励预览")
+	slot0.mTouchClose = slot1 or {}.touchClose ~= false
+	slot0.okTitle = slot1 or {}.okTitle
+	slot0.okCallback = slot1 or {}.okCallback
+	slot0.showClose = slot1 or {}.showClose
+	slot0.extraText = slot1 or {}.extraText
+	slot0.mRewardList = {}
+
+	if slot1.rewardStr ~= nil then
+		slot0.mRewardList = Utility.analysisStrResList(slot1.rewardStr) or {}
+	elseif slot1.rewardList ~= nil then
+		slot0.mRewardList = slot1.rewardList
+	elseif slot1.BaseGetGameResourceList ~= nil then
+		for slot5, slot6 in pairs(slot1.BaseGetGameResourceList) do
+			for slot10, slot11 in pairs(slot6) do
+				for slot15, slot16 in pairs(slot11) do
+					table.insert(slot0.mRewardList, slot16)
+				end
+			end
+		end
+	end
+
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			if slot0.mTouchClose and not ui.touchInNode(slot0, slot0.bgSprite) then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "listView" then
+			slot1.size = cc.size((#slot0.mRewardList <= 4 and #slot0.mRewardList*106) or 400, 130)
+		end
+
+		return 
+	end)
+
+	if not slot0.showClose then
+		slot0.msgBox.btnClose:setVisible(false)
+	end
+
+	if slot0.mTouchClose then
+		slot0.touchClose:setVisible(true)
+	end
+
+	slot0.msgBox.titleLabel:setString(slot0.mTitle)
+
+	if slot0.okTitle then
+		slot0.okBtn:setTitleText(slot0.okTitle)
+	end
+
+	for slot4, slot5 in ipairs(slot0.mRewardList) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			initParams = {
+				cardInfo = {
+					modelId = slot5.resourceId or slot5.ResourceId,
+					num = slot5.num or slot5.Num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+
+		if slot0.extraText then
+			slot6.badgeText:setVisible(true)
+			slot6.badgeText:setText(slot0.extraText)
+		end
+	end
+
+	return 
+end
+slot0.onOkBtnClickAction = function (slot0, slot1)
+	if slot0.okCallback then
+		slot0.okCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCloseBtnClickAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

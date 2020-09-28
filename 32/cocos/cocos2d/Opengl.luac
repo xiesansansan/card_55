@@ -1,0 +1,296 @@
+if not gl then
+	return 
+end
+
+gl.createTexture = function ()
+	return {
+		texture_id = gl._createTexture()
+	}
+end
+gl.createBuffer = function ()
+	return {
+		buffer_id = gl._createBuffer()
+	}
+end
+gl.createRenderbuffer = function ()
+	return {
+		renderbuffer_id = gl._createRenderuffer()
+	}
+end
+gl.createFramebuffer = function ()
+	return {
+		framebuffer_id = gl._createFramebuffer()
+	}
+end
+gl.createProgram = function ()
+	return {
+		program_id = gl._createProgram()
+	}
+end
+gl.createShader = function (slot0)
+	return {
+		shader_id = gl._createShader(slot0)
+	}
+end
+gl.deleteTexture = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.texture_id
+	end
+
+	gl._deleteTexture(slot1)
+
+	return 
+end
+gl.deleteBuffer = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.buffer_id
+	end
+
+	gl._deleteBuffer(slot1)
+
+	return 
+end
+gl.deleteRenderbuffer = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.renderbuffer_id
+	end
+
+	gl._deleteRenderbuffer(slot1)
+
+	return 
+end
+gl.deleteFramebuffer = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.framebuffer_id
+	end
+
+	gl._deleteFramebuffer(slot1)
+
+	return 
+end
+gl.deleteProgram = function (slot0)
+	slot1 = 0
+
+	if type(buffer) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.program_id
+	end
+
+	gl._deleteProgram(slot1)
+
+	return 
+end
+gl.deleteShader = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.shader_id
+	end
+
+	gl._deleteShader(slot1)
+
+	return 
+end
+gl.bindTexture = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot1) == "number" then
+		slot2 = slot1
+	elseif type(slot1) == "table" then
+		slot2 = slot1.texture_id
+	end
+
+	gl._bindTexture(slot0, slot2)
+
+	return 
+end
+gl.bindBuffer = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot1) == "number" then
+		slot2 = slot1
+	elseif type(slot1) == "table" then
+		slot2 = slot1.buffer_id
+	end
+
+	gl._bindBuffer(slot0, slot2)
+
+	return 
+end
+gl.bindRenderBuffer = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot1) == "number" then
+		slot2 = slot1
+	elseif type(slot1) == "table" then
+		slot2 = slot1.buffer_id
+	end
+
+	gl._bindRenderbuffer(slot0, slot2)
+
+	return 
+end
+gl.bindFramebuffer = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot1) == "number" then
+		slot2 = slot1
+	elseif type(slot1) == "table" then
+		slot2 = slot1.buffer_id
+	end
+
+	gl._bindFramebuffer(slot0, slot2)
+
+	return 
+end
+gl.getUniform = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+
+	return gl._getUniform((type(slot0) == "number" and slot0) or slot0.program_id, (type(slot1) == "number" and slot1) or slot1.location_id)
+end
+gl.compileShader = function (slot0)
+	gl._compileShader(slot0.shader_id)
+
+	return 
+end
+gl.shaderSource = function (slot0, slot1)
+	gl._shaderSource(slot0.shader_id, slot1)
+
+	return 
+end
+gl.getShaderParameter = function (slot0, slot1)
+	return gl._getShaderParameter(slot0.shader_id, slot1)
+end
+gl.getShaderInfoLog = function (slot0)
+	return gl._getShaderInfoLog(slot0.shader_id)
+end
+gl.attachShader = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	gl._attachShader(slot2, slot1.shader_id)
+
+	return 
+end
+gl.linkProgram = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.program_id
+	end
+
+	gl._linkProgram(slot1)
+
+	return 
+end
+gl.getProgramParameter = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	return gl._getProgramParameter(slot2, slot1)
+end
+gl.useProgram = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.program_id
+	end
+
+	gl._useProgram(slot1)
+
+	return 
+end
+gl.getAttribLocation = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	return gl._getAttribLocation(slot2, slot1)
+end
+gl.getUniformLocation = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	return gl._getUniformLocation(slot2, slot1)
+end
+gl.getActiveAttrib = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	return gl._getActiveAttrib(slot2, slot1)
+end
+gl.getActiveUniform = function (slot0, slot1)
+	slot2 = 0
+
+	if type(slot0) == "number" then
+		slot2 = slot0
+	elseif type(slot0) == "table" then
+		slot2 = slot0.program_id
+	end
+
+	return gl._getActiveUniform(slot2, slot1)
+end
+gl.getAttachedShaders = function (slot0)
+	slot1 = 0
+
+	if type(slot0) == "number" then
+		slot1 = slot0
+	elseif type(slot0) == "table" then
+		slot1 = slot0.program_id
+	end
+
+	return gl._getAttachedShaders(slot1)
+end
+gl.glNodeCreate = function ()
+	return cc.GLNode:create()
+end
+
+return 

@@ -1,0 +1,248 @@
+slot0 = require("battle.common.AttrHelper")
+slot1 = require("battle.managers.BuffManager")
+
+function slot3(slot0, slot1, slot2, slot3, slot4)
+	if slot0.findBuffByUser(slot1.uid, "", slot4, true) then
+		return true
+	end
+
+	return false
+end
+
+function slot4(slot0, slot1, slot2, slot3, slot4)
+	return slot0.findBadBuffByUser(slot1.uid)
+end
+
+function slot5(slot0, slot1, slot2, slot3, slot4)
+	return slot0.findGainBuffByUser(slot1.uid)
+end
+
+function slot6(slot0, slot1, slot2, slot3, slot4)
+	return true
+end
+
+function slot7(slot0, slot1, slot2, slot3, slot4)
+	return slot1.job == tonumber(slot4)
+end
+
+function slot8(slot0, slot1, slot2, slot3, slot4)
+	return slot1.camp == tonumber(slot4)
+end
+
+function slot9(slot0, slot1, slot2, slot3, slot4)
+	return slot1.attr.hp/slot1.attr.eHp <= tonumber(slot4)
+end
+
+function slot10(slot0, slot1, slot2, slot3, slot4)
+	return tonumber(slot4) < slot1.attr.hp/slot1.attr.eHp
+end
+
+function slot11(slot0, slot1, slot2, slot3, slot4)
+	return slot0.attr.eSpd <= slot1.attr.eSpd
+end
+
+function slot12(slot0, slot1, slot2, slot3, slot4)
+	return slot1.attr.eSpd < slot0.attr.eSpd
+end
+
+function slot13(slot0, slot1, slot2, slot3, slot4)
+	return slot0.roundFirst == true
+end
+
+function slot14(slot0, slot1, slot2, slot3, slot4)
+	return slot0.roundFirst == false
+end
+
+function slot15(slot0, slot1, slot2, slot3, slot4)
+	return tonumber(string.split(slot4, ",")[2]) <= slot0.hasUnitSpecialBuffNum(slot0, string.split(slot4, ",")[1])
+end
+
+function slot16(slot0, slot1, slot2, slot3, slot4)
+	return tonumber(string.split(slot4, ",")[2]) <= slot0.hasUnitSpecialBuffNum(slot1, string.split(slot4, ",")[1])
+end
+
+function slot17(slot0, slot1, slot2, slot3, slot4)
+	slot5 = slot0.getUserBadBuffNum(slot1.uid)
+
+	if tonumber(slot4) and 0 < slot6 then
+		slot5 = math.min(slot5, slot6)
+	end
+
+	return true, slot5
+end
+
+function slot18(slot0, slot1, slot2, slot3, slot4)
+	return true, slot0.hasUnitSpecialBuffNum(slot1, slot4)
+end
+
+function slot19(slot0, slot1, slot2, slot3, slot4)
+	for slot9, slot10 in ipairs(slot5) do
+		if tonumber(slot10) == slot2.conf.skillKind then
+			return true
+		end
+	end
+
+	return false
+end
+
+function slot20(slot0, slot1, slot2, slot3, slot4)
+	return tonumber(slot4) <= slot3/slot1.attr.eHp
+end
+
+function slot21(slot0, slot1, slot2, slot3, slot4)
+	return tonumber(slot4) <= slot3/slot0.attr.eHp
+end
+
+return {
+	getChecker = function (slot0)
+		if ({
+			checkBuff = slot0,
+			checkBadBuff = slot1,
+			checkGainBuff = slot1,
+			checkNone = slot3,
+			checkJob = slot4,
+			checkCamp = slot5,
+			checkHpLess = slot6,
+			checkHpMore = slot7,
+			checkSpdLess = slot8,
+			checkSpdMore = slot9,
+			checkSelfFirstAtk = slot10,
+			checkSelfNotFirstAtk = slot11,
+			checkSelfBuffNum = slot12,
+			checkBadBuffNum = slot13,
+			checkBuffNum = slot14,
+			checkTargetBuffNum = slot15,
+			checkSkillType = slot16,
+			checkTargetDmg = slot17,
+			checkSelfDmg = slot18
+		})[slot0] then
+			return slot2
+		end
+
+		return slot3
+	end,
+	getCheckerPhase = function (slot0)
+		if ({
+			checkTargetBuffNum = 2,
+			checkHpMore = 2,
+			checkCamp = 2,
+			checkSpdLess = 2,
+			checkTargetDmg = 3,
+			checkSelfDmg = 3,
+			checkBadBuff = 2,
+			checkBuff = 2,
+			checkNone = 0,
+			checkSelfFirstAtk = 1,
+			checkSpdMore = 2,
+			checkSelfNotFirstAtk = 1,
+			checkSelfBuffNum = 1,
+			checkBuffNum = 2,
+			checkSkillType = 1,
+			checkBadBuffNum = 2,
+			checkHpLess = 2,
+			checkJob = 2,
+			checkGainBuff = 2
+		})[slot0] then
+			return slot2
+		end
+
+		return 1
+	end,
+	parseAttrByStarLevel = function (slot0, slot1, slot2)
+		slot0.mergeBaseAttr(slot5, slot3, 1)
+		slot0.mergeBaseAttr(slot6, slot3, slot1 - 1)
+		slot0.mergeBaseAttr(slot7, slot3, slot2 - 1)
+		slot0.mergeBaseAttr(slot8, slot4, 1)
+		slot0.mergeBaseAttr(slot9, slot4, slot1 - 1)
+		slot0.mergeBaseAttr(slot10, {}, slot2 - 1)
+
+		return {}, {}
+	end,
+	parseSkillFunc = function (slot0, slot1, slot2)
+		if tonumber(slot0) == nil then
+			print("SkillFunc.parseSkillFunc: funcId1 error")
+
+			return 
+		end
+
+		if SkillFunctionRelation.items[slot0] == nil then
+			print("SkillFunc.parseSkillFunc: funcId2 error")
+
+			return 
+		end
+
+		slot4, slot5 = slot0.parseAttrByStarLevel(slot3, slot1, slot2)
+		slot6 = nil
+
+		if slot3.extraTarget and slot3.extraTarget ~= "" then
+			slot6 = string.split(slot3.extraTarget, ",")
+		end
+
+		slot7 = nil
+
+		if slot3.extraDmgRatio and slot3.extraDmgRatio ~= "" then
+			slot7 = string.split(slot3.extraDmgRatio, ",")
+		end
+
+		slot8 = nil
+
+		if slot3.extraDmgRatioBySurplusHp and slot3.extraDmgRatioBySurplusHp ~= "" then
+			slot8 = tonumber(slot3.extraDmgRatioBySurplusHp)
+		end
+
+		slot9 = nil
+
+		if slot3.shareDmg and slot3.shareDmg ~= "" then
+			slot9 = tonumber(slot3.shareDmg)
+		end
+
+		slot10 = nil
+
+		if slot3.selfAttrPer and slot3.selfAttrPer ~= "" then
+			slot10 = slot1.parseBaseAttr(slot3.selfAttrPer)
+		end
+
+		slot11 = nil
+
+		if slot3.selfAttrHpLosePer and slot3.selfAttrHpLosePer ~= "" then
+			slot11 = slot1.parseBaseAttr(slot3.selfAttrHpLosePer)
+		end
+
+		slot12 = nil
+
+		if slot3.nextSkill and slot3.nextSkill ~= "" then
+			slot12 = string.split(slot3.nextSkill, ",")
+		end
+
+		slot13 = nil
+
+		if slot3.finalDmgChange and slot3.finalDmgChange ~= "" then
+			slot13 = tonumber(slot3.finalDmgChange)
+		end
+
+		slot14 = nil
+
+		if slot3.skillDmgRatioChangeRatio and slot3.skillDmgRatioChangeRatio ~= "" then
+			slot14 = string.split(slot3.skillDmgRatioChangeRatio, ",")
+		end
+
+		return {
+			CheckNum = 0,
+			Type = slot3.functionTestItem,
+			CheckPhase = slot0.getCheckerPhase(slot3.functionTestItem),
+			Checker = slot0.getChecker(slot3.functionTestItem),
+			Args = slot3.itemParameter,
+			AtkAttr = slot4,
+			DefAttr = slot5,
+			ExtraTarget = slot6,
+			ExtraDmgRatio = slot7,
+			ExtraDmgRatioBySurplusHp = slot8,
+			ShareDmg = slot9,
+			BaseNumAttrPer = slot10,
+			BaseHpperAttrPer = slot11,
+			NextSkill = slot12,
+			FinalDmgChange = slot13,
+			SkillDmgRatioChangeRatio = slot14
+		}
+	end
+}

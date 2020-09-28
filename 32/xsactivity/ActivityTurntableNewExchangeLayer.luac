@@ -1,0 +1,401 @@
+slot0 = class("ActivityTurntableNewExchangeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled12",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseBtnClick",
+			needTouchClose = false,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 618,
+				height = 520
+			},
+			titleText = TR("积分兑换")
+		},
+		children = {
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 309,
+						y = 243
+					},
+					size = {
+						width = 560,
+						height = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "totalLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 309,
+						y = 467
+					},
+					text = TR("当前积分：0（此积分只用宝兑换）")
+				},
+				children = {}
+			},
+			{
+				name = "exchangeListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 309,
+						y = 244
+					},
+					size = {
+						width = 540,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "exchangeLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 560,
+								height = 128
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 275,
+										y = 64
+									},
+									size = {
+										width = 550,
+										height = 122
+									}
+								},
+								children = {}
+							},
+							{
+								name = "freeCountLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 479.14,
+										y = 27.05
+									},
+									text = TR("剩余次数：10")
+								},
+								children = {}
+							},
+							{
+								name = "needLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 415,
+										y = 64
+									},
+									text = TR("需要积分：1")
+								},
+								children = {}
+							},
+							{
+								name = "exchangeBtn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									pos = {
+										x = 483.18,
+										y = 61.75
+									},
+									titleText = TR("兑换")
+								},
+								children = {}
+							},
+							{
+								name = "goodsListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 7.88,
+										y = 9.44
+									},
+									size = {
+										width = 300,
+										height = 85
+									}
+								},
+								children = {
+									{
+										name = "goodsLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled18-animation",
+												name = "aniName",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 0,
+												y = 4.5
+											},
+											size = {
+												width = 80,
+												height = 85
+											}
+										},
+										children = {
+											{
+												name = "goodCard",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													allowClick = true,
+													pos = {
+														x = 40,
+														y = 51
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled18",
+												cType = "Effect",
+												params = {
+													dataFile = "effect_ui_touxiangkuang",
+													hide = true,
+													scale = 0.8,
+													childName = "eff",
+													animation = "cheng",
+													pos = {
+														x = 40,
+														y = 49.5
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = slot1 or {}.activityId
+
+	if slot0.activityId == nil then
+		slot0.activityId = ActivityObj:getEntityId(ModuleSub.eTimedLuckyTurntableNew)
+	end
+
+	slot0.closeCallback = slot1.callback
+	slot0.rewardInfo = {}
+	slot0.freeScore = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetRewardInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot1 = {
+	"cheng",
+	"hong",
+	"jinse",
+	"zuanshi"
+}
+slot0.refreshView = function (slot0)
+	slot0.totalLabel:setString(TR("当前积分: #8ba857%s#252525(此积分只用于宝箱兑换)", slot0.freeScore))
+	slot0.exchangeListView:removeAllChildren()
+	table.sort(slot0.rewardInfo, function (slot0, slot1)
+		if (slot0.BuyNum < slot0.LimitNum) == (slot1.BuyNum < slot1.LimitNum) then
+			return slot0.Id < slot1.Id
+		end
+
+		return slot2
+	end)
+
+	for slot4, slot5 in ipairs(slot0.rewardInfo) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "exchangeLayout")
+
+		slot0.exchangeListView:pushBackCustomItem(slot6)
+		slot6.needLabel:setString(TR("需要积分:%s", slot5.Num))
+		slot6.freeCountLabel:setString(TR("剩余次数:%s", slot5.LimitNum - slot5.BuyNum))
+		slot6.exchangeBtn:setEnabled(slot5.BuyNum < slot5.LimitNum)
+
+		for slot11, slot12 in ipairs(slot7) do
+			slot13 = slot0.createLayoutTemplateNode(slot0, "goodsLayout", {
+				aniName = slot0[slot5.RewardFrameInfo] or "cheng"
+			})
+
+			if slot5.RewardFrameInfo then
+				slot13.eff:setVisible(true)
+			else
+				slot13.eff:setVisible(false)
+			end
+
+			slot13.goodCard:setCardData(slot14, {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eName
+			})
+			slot6.goodsListView:pushBackCustomItem(slot13)
+		end
+
+		slot6.exchangeBtn:setClickAction(function ()
+			if slot0.LimitNum <= slot0.BuyNum then
+				ui.showFlashView(TR("兑换次数达到上限"))
+
+				return 
+			end
+
+			if slot1.freeScore < slot0.Num then
+				ui.showFlashView(TR("积分不足"))
+
+				return 
+			end
+
+			slot0 = math.floor(slot1.freeScore/slot0.Num)
+
+			if math.min(slot0.LimitNum - slot0.BuyNum, slot0) == 1 then
+				slot1:requestExchange(slot0.Id, 1)
+
+				return 
+			end
+
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.commExchangeGoodsSelectLayer",
+				zOrder = Enums.ZOrderType.ePopLayer,
+				data = {
+					maxNum = slot1,
+					outPutResource = slot2,
+					callBack = function (slot0)
+						slot0:requestExchange(slot1.Id, slot0)
+
+						return 
+					end
+				}
+			})
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	if slot0.closeCallback then
+		slot0.closeCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestGetRewardInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRewardInfo",
+		moduleName = "TimedLuckyTurntableNew",
+		methodData = {
+			slot0.activityId
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.rewardInfo = slot0.RewardInfo or {}
+			slot0.freeScore = slot0.Score or 0
+
+			slot0:refreshView()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExchange = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Exchange",
+		moduleName = "TimedLuckyTurntableNew",
+		methodData = {
+			slot0.activityId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.rewardInfo = slot0.RewardInfo or {}
+			slot0.freeScore = slot0.Score or 0
+
+			slot0:refreshView()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

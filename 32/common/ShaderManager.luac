@@ -1,0 +1,154 @@
+slot5 = {
+	ShaderPositionTextureColor_noMVP = {
+		name = "ShaderPositionTextureColor_noMVP"
+	},
+	ShaderUIGrayScale = {
+		name = "ShaderUIGrayScale"
+	},
+	MoqiHighlightShader = {
+		name = "MoqiHighlightShader",
+		vshCode = [[
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+attribute vec4 a_color;
+
+#ifdef GL_ES
+varying lowp vec4 v_fragmentColor;
+varying mediump vec2 v_texCoord;
+#else
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+#endif
+
+void main()
+{
+    gl_Position = CC_PMatrix * a_position;
+    v_fragmentColor = a_color;
+    v_texCoord = a_texCoord;
+}
+]],
+		fshCode = [[
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+
+void main()
+{
+    gl_FragColor = texture2D(CC_Texture0, v_texCoord) * v_fragmentColor;
+    if(gl_FragColor.a > 0.0) {
+        gl_FragColor.rgb *= 1.2;
+    }
+}
+]]
+	},
+	MoqiDarkenShader = {
+		name = "MoqiDarkenShader",
+		vshCode = [[
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+attribute vec4 a_color;
+
+#ifdef GL_ES
+varying lowp vec4 v_fragmentColor;
+varying mediump vec2 v_texCoord;
+#else
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+#endif
+
+void main()
+{
+    gl_Position = CC_PMatrix * a_position;
+    v_fragmentColor = a_color;
+    v_texCoord = a_texCoord;
+}
+]],
+		fshCode = [[
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+
+void main()
+{
+    gl_FragColor = texture2D(CC_Texture0, v_texCoord) * v_fragmentColor;
+    if(gl_FragColor.a > 0.0) {
+        gl_FragColor.rgb *= 0.3;
+    }
+}
+]]
+	},
+	MoqiLightGray = {
+		name = "MoqiLightGray",
+		vshCode = [[
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+attribute vec4 a_color;
+
+#ifdef GL_ES
+varying lowp vec4 v_fragmentColor;
+varying mediump vec2 v_texCoord;
+#else
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+#endif
+
+void main()
+{
+    gl_Position = CC_PMatrix * a_position;
+    v_fragmentColor = a_color;
+    v_texCoord = a_texCoord;
+}
+]],
+		fshCode = [[
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+varying vec2 v_texCoord;
+varying vec4 v_fragmentColor;
+
+void main()
+{
+    vec4 col = texture2D(CC_Texture0, v_texCoord);
+    float grey = dot(col.rgb, vec3(0.299, 0.587, 0.114));
+    vec4 baseGrey = vec4(grey, grey, grey, col.a);
+
+    vec3 color = mix(baseGrey.rgb, vec3(0.8, 0.6, 0.26),  col.a*0.2);
+
+    gl_FragColor = vec4(color, col.a);
+}
+]]
+	}
+}
+
+return {
+	Highlight = "MoqiHighlightShader",
+	Graylight = "MoqiLightGray",
+	Gray = "ShaderUIGrayScale",
+	Darklight = "MoqiDarkenShader",
+	Normal = "ShaderPositionTextureColor_noMVP",
+	loadShader = function (slot0)
+		if slot0[slot0] == nil then
+			return nil
+		end
+
+		if cc.GLProgramCache:getInstance():getGLProgram(slot1.name) ~= nil then
+			return slot2
+		end
+
+		cc.GLProgram:createWithByteArrays(slot3, slot4).bindAttribLocation(slot2, cc.ATTRIBUTE_NAME_POSITION, cc.VERTEX_ATTRIB_POSITION)
+		cc.GLProgram.createWithByteArrays(slot3, slot4).bindAttribLocation(slot2, cc.ATTRIBUTE_NAME_COLOR, cc.VERTEX_ATTRIB_COLOR)
+		cc.GLProgram.createWithByteArrays(slot3, slot4).bindAttribLocation(slot2, cc.ATTRIBUTE_NAME_TEX_COORD, cc.VERTEX_ATTRIB_TEX_COORD)
+		cc.GLProgram.createWithByteArrays(slot3, slot4).link(slot2)
+		cc.GLProgram.createWithByteArrays(slot3, slot4).updateUniforms(slot2)
+		cc.GLProgramCache:getInstance():addGLProgram(cc.GLProgram.createWithByteArrays(slot3, slot4), slot0)
+
+		return cc.GLProgram.createWithByteArrays(slot3, slot4)
+	end
+}

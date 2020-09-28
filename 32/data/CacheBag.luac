@@ -1,0 +1,58 @@
+slot0 = class("CacheBag", {})
+slot0.ctor = function (slot0)
+	slot0.mBagInfo = {}
+	slot0.mIdList = {}
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mBagInfo = {}
+	slot0.mIdList = {}
+
+	return 
+end
+slot0.refreshAssistCache = function (slot0)
+	slot0.mIdList = {}
+
+	for slot4, slot5 in ipairs(slot0.mBagInfo) do
+		slot0.mIdList[slot5.OrderId] = slot5
+	end
+
+	return 
+end
+slot0.setBagInfo = function (slot0, slot1)
+	slot0.mBagInfo = slot1 or {}
+
+	slot0.refreshAssistCache(slot0)
+
+	return 
+end
+slot0.getAllBagInfo = function (slot0, slot1, slot2)
+	if slot2 then
+		return (slot1 and clone(slot0.mIdList)) or slot0.mIdList
+	else
+		return (slot1 and clone(slot0.mBagInfo)) or slot0.mBagInfo
+	end
+
+	return 
+end
+slot0.getBagInfo = function (slot0, slot1)
+	return slot0.mIdList[slot1]
+end
+slot0.modifyBagInfo = function (slot0, slot1)
+	if not slot1 or not slot1.OrderId then
+		return 
+	end
+
+	for slot5, slot6 in pairs(slot0.mBagInfo) do
+		if slot6.OrderId == slot1.OrderId then
+			slot0.mBagInfo[slot5] = slot1
+		end
+	end
+
+	slot0.refreshAssistCache(slot0)
+
+	return 
+end
+
+return slot0

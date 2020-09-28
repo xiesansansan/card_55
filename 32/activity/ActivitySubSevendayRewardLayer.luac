@@ -1,0 +1,1025 @@
+slot0 = class("ActivitySubSevendayRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_47.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled70",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mDayLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					pos = {
+						x = 48.94,
+						y = -223.14
+					},
+					size = {
+						width = 20,
+						height = 0
+					},
+					text = TR("第一天")
+				},
+				children = {}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 66.46,
+						y = -227.94
+					},
+					size = {
+						width = 444.21,
+						height = 101.67
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled5-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 92.66,
+								height = 87.84
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45.99,
+										y = 44.51
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "vipLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 893.68,
+								y = 50.42
+							},
+							size = {
+								width = 92.66,
+								height = 87.84
+							}
+						},
+						children = {
+							{
+								name = "untitled53",
+								cType = "Sprite",
+								params = {
+									image = "c_16.png",
+									pos = {
+										x = 47.31,
+										y = 45.22
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "fuli_67.png",
+									pos = {
+										x = 46.02,
+										y = 45.27
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mDaysParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 5.7,
+						y = 192.1
+					}
+				},
+				children = {
+					{
+						name = "untitled37",
+						cType = "Button",
+						custom = {
+							{
+								value = 7,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_57.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 333.64,
+								y = -220.48
+							}
+						},
+						children = {
+							{
+								name = "untitled49",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 0.23,
+										y = 60.66
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled52",
+								cType = "Sprite",
+								params = {
+									image = "fuli_50.png",
+									childName = "tail",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 0,
+										y = -66.9
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled54",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled35",
+						cType = "Button",
+						custom = {
+							{
+								value = 6,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_56.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 193.99,
+								y = -220.55
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 0.51,
+										y = 61.44
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled51",
+								cType = "Sprite",
+								params = {
+									image = "fuli_50.png",
+									childName = "tail",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 0,
+										y = -66.53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled55",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled33",
+						cType = "Button",
+						custom = {
+							{
+								value = 5,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_55.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 54.2,
+								y = -219.9
+							}
+						},
+						children = {
+							{
+								name = "untitled47",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 0.78,
+										y = 61.03
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Sprite",
+								params = {
+									image = "fuli_50.png",
+									childName = "tail",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 0,
+										y = -66.85
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled56",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_51.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 54.13,
+								y = -51.57
+							}
+						},
+						children = {
+							{
+								name = "untitled40",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 0.72,
+										y = 61.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled57",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 0,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled39",
+						cType = "Sprite",
+						params = {
+							image = "fuli_48.png",
+							pos = {
+								x = 54.22,
+								y = 51.63
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Button",
+						custom = {
+							{
+								value = 2,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_52.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 193.68,
+								y = -51.57
+							}
+						},
+						children = {
+							{
+								name = "untitled41",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = -0.28,
+										y = 62.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled58",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled42",
+						cType = "Sprite",
+						params = {
+							image = "fuli_48.png",
+							pos = {
+								x = 192.81,
+								y = 51.36
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled29",
+						cType = "Button",
+						custom = {
+							{
+								value = 3,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_53.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 333.68,
+								y = -51.57
+							}
+						},
+						children = {
+							{
+								name = "untitled43",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = -0.28,
+										y = 62.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled59",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled44",
+						cType = "Sprite",
+						params = {
+							image = "fuli_48.png",
+							pos = {
+								x = 332.46,
+								y = 51.06
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Button",
+						custom = {
+							{
+								value = 4,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "fuli_54.png",
+							clickAction = "onDayAction",
+							pos = {
+								x = 473.77,
+								y = -52.28
+							}
+						},
+						children = {
+							{
+								name = "untitled45",
+								cType = "Sprite",
+								params = {
+									image = "fuli_49.png",
+									childName = "head",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = -0.28,
+										y = 61.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_qiridenglu",
+									hide = true,
+									isPlayAnimation = false,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 1.36,
+										y = -6.12
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled46",
+						cType = "Sprite",
+						params = {
+							image = "fuli_48.png",
+							pos = {
+								x = 473.42,
+								y = 51.37
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mGetBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onRewardAction",
+					pos = {
+						x = 431.88,
+						y = -235.07
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			},
+			{
+				name = "mReciveSprite",
+				cType = "Sprite",
+				params = {
+					image = "fuli_14.png",
+					hide = true,
+					pos = {
+						x = 432.64,
+						y = -235.02
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 284,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "hero",
+				cType = "Sprite",
+				params = {
+					image = "lh_11201.png",
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHintSprite",
+				cType = "Sprite",
+				params = {
+					image = "fuli_68.png",
+					pos = {
+						x = 249.88,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled61",
+				cType = "Sprite",
+				params = {
+					zOrder = 1,
+					image = "fuli_85.png",
+					pos = {
+						x = 191.19,
+						y = 73.41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "showSkillBtn",
+				cType = "Button",
+				params = {
+					image = "fuli_46.png",
+					clickAction = "onEffectShowAction",
+					zOrder = 1,
+					pos = {
+						x = 218.34,
+						y = -173.94
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRewardInfo = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.GetLoadRewardInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if HeroModel.items[12013201].drawingPicB ~= "" then
+		if cc.FileUtils:getInstance():isFileExist(slot1.drawingPicB .. ".skel") then
+			slot2 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				scale = 0.46,
+				dataFile = slot1.drawingPicB
+			})
+
+			slot2.setPosition(slot2, cc.p(426.09, 75))
+			slot0.bgSprite:addChild(slot2, 0)
+		else
+			slot0.hero:setVisible(true)
+		end
+	else
+		slot0.hero:setVisible(true)
+	end
+
+	if display.isIpadClass then
+		slot0.mRewardListView:setScale(display.xSafeScale/display.ySafeScale)
+
+		for slot6, slot7 in pairs(slot2) do
+			slot7.setPosition(slot7, cc.p(slot7.getPositionX(slot7), (slot7.getPositionY(slot7)*display.ySafeScale)/display.xSafeScale))
+		end
+	end
+
+	return 
+end
+slot0.refreshRewardList = function (slot0, slot1)
+	slot0.mRewardListView:removeAllChildren()
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.resourceId == ResourceTypeSub.eVipExp then
+			slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "vipLayout"))
+		else
+			slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardData = {
+					cardInfo = slot7,
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.refreshSelectStatus = function (slot0)
+	slot1 = {
+		"fuli_57.png",
+		"fuli_56.png",
+		"fuli_55.png",
+		"fuli_51.png",
+		"fuli_52.png",
+		"fuli_53.png",
+		"fuli_54.png"
+	}
+	slot2 = {
+		"fuli_64.png",
+		"fuli_63.png",
+		"fuli_62.png",
+		"fuli_58.png",
+		"fuli_59.png",
+		"fuli_60.png",
+		"fuli_61.png"
+	}
+
+	for slot7, slot8 in ipairs(slot3) do
+		if slot0.mRecivedList[slot8.dayTag] and slot8.icon == nil then
+			slot8.addChild(slot8, UIWrap.newControl("Sprite", {
+				image = "fuli_14.png",
+				pos = cc.p(0, 0)
+			}))
+
+			slot8.icon = UIWrap.newControl("Sprite", {
+				image = "fuli_14.png",
+				pos = cc.p(0, 0)
+			})
+		end
+
+		if slot8.dayTag == 2 and not slot8.tig then
+			slot8.addChild(slot8, UIWrap.newControl("Sprite", {
+				image = "songhuiyuan.png",
+				pos = cc.p(0, 0)
+			}))
+
+			slot8.tig = UIWrap.newControl("Sprite", {
+				image = "songhuiyuan.png",
+				pos = cc.p(0, 0)
+			})
+		end
+
+		if slot8.dayTag == slot0.mSelectDay then
+			if slot8.tig then
+				slot8.tig:setPosition(-40, 75)
+			end
+
+			slot8.loadTextures(slot8, slot2[slot7], slot2[slot7])
+			slot8.head:setPosition(0, slot8.getContentSize(slot8).height/2 - 12)
+
+			if slot8.tail then
+				slot8.tail:setPosition(0, -slot8.getContentSize(slot8).height/2 + 5)
+			end
+		else
+			if slot8.tig then
+				slot8.tig:setPosition(-40, 70)
+			end
+
+			slot8.loadTextures(slot8, slot1[slot7], slot1[slot7])
+			slot8.head:setPosition(0, slot8.getContentSize(slot8).height/2 - 9)
+
+			if slot8.tail then
+				slot8.tail:setPosition(0, -slot8.getContentSize(slot8).height/2 + 5)
+			end
+		end
+
+		if not slot0.mRecivedList[slot8.dayTag] and slot8.dayTag <= slot0.mRewardInfo.Day then
+			slot8.effect:setVisible(true)
+			slot8.effect:playAnimation("animation")
+
+			if slot0.mSelectDay == slot8.dayTag then
+				slot8.effect:setPosition(0, -9.120000000000001)
+			else
+				slot8.effect:setPosition(2, -6.12)
+			end
+		else
+			slot8.effect:setVisible(false)
+		end
+	end
+
+	return 
+end
+slot0.refreshDownUI = function (slot0)
+	slot0.mDayLabel:setString(TR("第%s天", Utility.getChineseNum(slot0.mSelectDay)))
+	slot0.refreshRewardList(slot0, OpencontestLoadRewardRelation.items[6][slot0.mSelectDay].rewardStr)
+
+	if slot0.mRecivedList[slot0.mSelectDay] then
+		slot0.mGetBtn:setVisible(false)
+		slot0.mReciveSprite:setVisible(true)
+	elseif slot0.mRewardInfo.Day < slot0.mSelectDay then
+		slot0.mGetBtn:setVisible(true)
+		slot0.mGetBtn:setEnabled(false)
+		slot0.mGetBtn:setTitleText(TR("未达成"))
+		slot0.mReciveSprite:setVisible(false)
+	else
+		slot0.mGetBtn:setVisible(true)
+		slot0.mGetBtn:setEnabled(true)
+		slot0.mGetBtn:setTitleText(TR("领 取"))
+		slot0.mReciveSprite:setVisible(false)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mHintSprite:setTexture(({
+		"fuli_68.png",
+		"fuli_69.png",
+		"fuli_69.png",
+		"fuli_70.png",
+		"fuli_70.png",
+		"fuli_70.png",
+		"fuli_70.png"
+	})[slot0.mRewardInfo.Day])
+	slot0.refreshSelectStatus(slot0)
+	slot0.refreshDownUI(slot0)
+
+	return 
+end
+slot0.onEffectShowAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = 12013201
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onDayAction = function (slot0, slot1)
+	slot0.mSelectDay = slot1.dayTag
+
+	slot0.refreshSelectStatus(slot0)
+	slot0.refreshDownUI(slot0)
+
+	return 
+end
+slot0.dealyData = function (slot0)
+	slot0.mRecivedList = {}
+
+	if slot0.mRewardInfo.RewardedDays ~= "" then
+		for slot5, slot6 in pairs(slot1) do
+			slot0.mRecivedList[tonumber(slot6)] = true
+		end
+	end
+
+	slot0.mLoadList = {}
+
+	if slot0.mRewardInfo.LoadDays ~= "" then
+		for slot5, slot6 in pairs(slot1) do
+			slot0.mLoadList[tonumber(slot6)] = true
+		end
+	end
+
+	slot0.mSelectDay = slot0.mSelectDay or slot0.mRewardInfo.Day
+
+	return 
+end
+slot0.GetLoadRewardInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetLoadRewardInfo",
+		moduleName = "OpencontestLoadReward",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRewardInfo = slot0.LoadReward
+
+			slot0:dealyData()
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRewardAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetLoadReward",
+		moduleName = "OpencontestLoadReward",
+		methodData = {
+			slot0.mSelectDay
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.mRewardInfo = {}
+			slot0.mRewardInfo = slot0.LoadReward
+
+			slot0:dealyData()
+			slot0:refreshUI()
+			EventAuto:postEvent(EventDefine.eRefreshOpenActivityRedDot)
+			PlayerAttrObj:checkVipLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

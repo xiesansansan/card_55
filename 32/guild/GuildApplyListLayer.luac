@@ -1,0 +1,649 @@
+slot0 = class("GuildApplyListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮派申请")
+		},
+		children = {
+			{
+				name = "memberNum",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 36.91,
+						y = 473.63
+					},
+					text = TR("帮派人数：0/0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 423.69,
+						y = 278.12
+					},
+					size = {
+						width = 794.52,
+						height = 335.31
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 423.68,
+						y = 433.88
+					},
+					size = {
+						width = 772,
+						height = 314.09
+					}
+				},
+				children = {
+					{
+						name = "item",
+						cType = "Layout",
+						custom = {
+							{
+								value = "name-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "fap-text",
+								name = "fap",
+								type = "string"
+							},
+							{
+								value = "head-modelId",
+								name = "headImageId",
+								type = "string"
+							},
+							{
+								value = "head-playerId",
+								name = "playerId",
+								type = "string"
+							},
+							{
+								value = "agreeBtn-playerId",
+								name = "agreeBtnID",
+								type = "string"
+							},
+							{
+								value = "noAgreeBtn-playerId",
+								name = "noAgreeBtnID",
+								type = "string"
+							},
+							{
+								value = "head-headPicId",
+								name = "headPicId",
+								type = "string"
+							},
+							{
+								value = "lv-text",
+								name = "lv",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 772,
+								height = 92
+							}
+						},
+						children = {
+							{
+								name = "db",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 386.15,
+										y = 46.15
+									},
+									size = {
+										width = 772,
+										height = 92
+									}
+								},
+								children = {
+									{
+										name = "head",
+										cType = "PlayerHeroNode",
+										custom = {
+											{
+												value = 1,
+												name = "playerId",
+												type = "integer"
+											}
+										},
+										params = {
+											clickAction = "onHeadAction",
+											headPicId = 1,
+											modelId = 19010000,
+											allowClick = true,
+											pos = {
+												x = 46.88,
+												y = 46.21
+											}
+										},
+										children = {}
+									},
+									{
+										name = "name",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 96.77,
+												y = 69.56
+											},
+											text = TR("玩家名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 96.96,
+												y = 22.2
+											},
+											text = TR("最高战力:")
+										},
+										children = {}
+									},
+									{
+										name = "fap",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 195.17,
+												y = 22.7
+											},
+											text = TR("123546万")
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 95.88,
+												y = 46.04
+											},
+											text = TR("等级：")
+										},
+										children = {}
+									},
+									{
+										name = "lv",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "1",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 156.69,
+												y = 45.6
+											}
+										},
+										children = {}
+									},
+									{
+										name = "agreeBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = "",
+												name = "playerId",
+												type = "string"
+											},
+											{
+												value = true,
+												name = "isAgree",
+												type = "bool"
+											}
+										},
+										params = {
+											image = "c_27.png",
+											clickAction = "onOperateAction",
+											scale = 0.9,
+											pos = {
+												x = 698.47,
+												y = 46.69
+											},
+											titleText = TR("同意")
+										},
+										children = {}
+									},
+									{
+										name = "noAgreeBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = "",
+												name = "playerId",
+												type = "string"
+											},
+											{
+												value = false,
+												name = "isAgree",
+												type = "bool"
+											}
+										},
+										params = {
+											image = "c_32.png",
+											clickAction = "onOperateAction",
+											scale = 0.9,
+											pos = {
+												x = 585.71,
+												y = 45.58
+											},
+											titleText = TR("拒绝")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tig",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					hide = true,
+					pos = {
+						x = 423.4,
+						y = 263.58
+					}
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 214.73,
+								y = 50.24
+							},
+							text = TR("暂无申请人员")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "recruitBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onRecruitAction",
+					pos = {
+						x = 424.2,
+						y = 61.45
+					},
+					titleText = TR("世界招募")
+				},
+				children = {}
+			},
+			{
+				name = "timeText",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 409.23,
+						y = 95.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCheckBox",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "onCheckBoxAction",
+					pos = {
+						x = 667.3,
+						y = 472.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 688.06,
+						y = 472.89
+					},
+					text = TR("申请免审批 ")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mApplyListInfo = {}
+	slot0.mIsFull = false
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, slot0.refreshUI), 2)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetApplyList(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mCheckBox" then
+			slot1.isSelect = slot0.IfExemptReview ~= nil and slot0.IfExemptReview == true
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.listView:removeAllChildren()
+
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	slot0.memberNum:setString(TR("帮派人数：%s/%s", slot1.MemberCount, Utility.getConfigItems("GuildLvRelation")[slot1.GuildLevel].memberNum))
+
+	slot0.mIsFull = Utility.getConfigItems("GuildLvRelation")[slot1.GuildLevel].memberNum <= slot1.MemberCount
+
+	if #slot0.mApplyListInfo == 0 then
+		slot0.tig:setVisible(true)
+	else
+		slot0.tig:setVisible(false)
+	end
+
+	for slot6, slot7 in pairs(slot0.mApplyListInfo) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "item", {
+			name = TR("%s", slot7.Name),
+			fap = TR("%s", Utility.numberWithUnit(slot7.FAP)),
+			headImageId = slot7.HeadImageId,
+			headPicId = slot7.HeadPicId,
+			playerId = slot7.PlayerId,
+			agreeBtnID = slot7.PlayerId,
+			noAgreeBtnID = slot7.PlayerId,
+			lv = slot7.Lv
+		})
+
+		if slot7.FashionLevel then
+			slot8.name:setColor(Utility.getPlayerNameColor(slot7.FashionLevel))
+		end
+
+		slot0.listView:pushBackCustomItem(slot8)
+	end
+
+	slot0.timeText:stopAllActions()
+
+	if GuildPositionRelation.items[1][slot1.PositionId].ifWorldRecruit then
+		if Player:getCurrentTime() < slot1.LastRecruitTime then
+			slot0.timeText:setVisible(true)
+			Utility.schedule(slot0.timeText, function ()
+				slot1, slot2, slot3, slot4 = MqTime.toHour(slot0.LastRecruitTime - Player:getCurrentTime())
+
+				if 0 <= slot0.LastRecruitTime - Player:getCurrentTime() then
+					slot1.recruitBtn:setEnabled(false)
+
+					if 0 < slot1 then
+						slot1.timeText:setString(TR("%s%s天%s小时%s后可再次发送招募消息", "#258711", slot1, slot2, "#252525"))
+					elseif 0 < slot2 then
+						slot1.timeText:setString(TR("%s%s小时%s分%s后可再次发送招募消息", "#258711", slot2, slot3, "#252525"))
+					elseif 0 < slot3 then
+						slot1.timeText:setString(TR("%s%s分%s秒%s后可再次发送招募消息", "#258711", slot3, slot4, "#252525"))
+					elseif 0 < slot4 then
+						slot1.timeText:setString(TR("%s%s秒后%s可再次发送招募消息", "#258711", slot4, "#252525"))
+					end
+				else
+					slot1.timeText:setVisible(false)
+					slot1.timeText:stopAllActions()
+					slot1.recruitBtn:setEnabled(true)
+				end
+
+				return 
+			end, 1)
+		else
+			slot0.timeText:setVisible(false)
+			slot0.recruitBtn:setEnabled(true)
+		end
+	else
+		slot0.timeText:setVisible(false)
+		slot0.recruitBtn:setEnabled(false)
+	end
+
+	return 
+end
+slot0.onOperateAction = function (slot0, slot1)
+	if slot1.isAgree and slot0.mIsFull then
+		ui.showFlashView(TR("成员已满"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "ManageApply",
+		moduleName = "Guild",
+		methodData = {
+			slot1.playerId,
+			slot1.isAgree
+		},
+		successCallback = function (slot0)
+			slot0:requestGetApplyList()
+			EventAuto:postEvent(EventDefine.eRefreshGuildInterior)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRecruitAction = function (slot0, slot1)
+	slot0.requestWroldReruit(slot0)
+
+	return 
+end
+slot0.onHeadAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = {
+			playerId = slot1.playerId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCheckBoxAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId ~= 1 and slot2.PositionId ~= 2 and slot2.PositionId ~= 3 then
+		slot1.setSelected(slot1, not slot1.isSelected(slot1))
+		ui.showFlashView("只有帮主和副帮主才有权限修改当前设置！")
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateIfExemptReview",
+		moduleName = "Guild",
+		methodData = {
+			slot1.isSelected(slot1)
+		},
+		successCallback = function (slot0)
+			PlayerAttrObj:changeAttr({
+				GuildInfo = slot0.GuildInfo
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetApplyList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetApplyList",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mApplyListInfo = {}
+			slot0.mApplyListInfo = slot0.ApplyListInfo
+
+			if not slot0.notFirst then
+				slot0.actionRefresh()
+			else
+				slot0:refreshUI()
+			end
+
+			slot0.notFirst = true
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestWroldReruit = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "WroldReruit",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("发送招募消息成功"))
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

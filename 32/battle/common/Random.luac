@@ -1,0 +1,41 @@
+slot0 = require("battle.managers.DebugManager")
+slot1 = require("battle.common.Const")
+
+return {
+	ctor = function (slot0)
+		slot0.seed = 0
+		slot0.s = 16807
+		slot0.e = 2147483647
+
+		return 
+	end,
+	setRandomSeed = function (slot0, slot1)
+		slot0.seed = slot1
+
+		return 
+	end,
+	newRandomSeed = function (slot0)
+		slot1, slot2 = pcall(function ()
+			return require("socket")
+		end)
+
+		if slot1 then
+			slot0.setRandomSeed(slot0, slot2.gettime()*1000)
+		else
+			slot0.setRandomSeed(slot0, os.time())
+		end
+
+		return 
+	end,
+	random = function (slot0, slot1, slot2)
+		slot0.seed = math.floor((slot0.seed*slot0.s)%slot0.e + 0.5)
+		slot3 = 0
+		slot3 = (slot1 and ((slot2 and math.floor(slot0.seed/slot0.e*(slot2 - slot1 + 1)) + slot1) or math.floor(slot0.seed/slot0.e*slot1) + 1)) or slot0.seed/slot0.e
+
+		if slot0.IsDebug == true then
+			slot1.addRandoms(slot3)
+		end
+
+		return slot3
+	end
+}

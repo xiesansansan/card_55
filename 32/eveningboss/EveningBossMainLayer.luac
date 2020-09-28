@@ -1,0 +1,2052 @@
+slot0 = class("EveningBossMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled71",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "tzsj_20.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled72",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_tiaozhansijue",
+					animation = "hou",
+					pos = {
+						x = 568,
+						y = 331
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mBgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "tzsj_16.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled69",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_tiaozhansijue",
+					animation = "qian",
+					pos = {
+						x = 568,
+						y = 316.92
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "titleNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 10,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					clickAction = "onExitLayer",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "tzsj_3.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -35,
+								y = 30
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					clickAction = "onRule",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 285,
+						y = -5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled73",
+		cType = "FileLayer",
+		params = {
+			zOrder = 10,
+			file = "commonlayer/MiniChatLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			zOrder = 10,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 0.5
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 614
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bossNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 1,
+			pos = {
+				x = 957.46,
+				y = 126.32
+			}
+		},
+		children = {
+			{
+				name = "untitled75",
+				cType = "Sprite",
+				params = {
+					image = "zd_black.png",
+					pos = {
+						x = -61,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "figureNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled47",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_56.png",
+					pos = {
+						x = 25.84,
+						y = 137.08
+					}
+				},
+				children = {
+					{
+						name = "bossName",
+						cType = "Label",
+						params = {
+							valign = 0,
+							pos = {
+								x = 28.5,
+								y = 128.5
+							},
+							size = {
+								width = 30,
+								height = 150
+							},
+							text = TR("入魔·杨过")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "damStrLabel",
+				cType = "Label",
+				params = {
+					text = "-123",
+					charCount = 12,
+					hide = true,
+					startChar = 46,
+					fontName = "zd_13.png",
+					isRichText = true,
+					pos = {
+						x = 0,
+						y = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bossStateSprite",
+				cType = "Sprite",
+				params = {
+					image = "tzsj_17.png",
+					pos = {
+						x = -72.97,
+						y = 117.46
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mPlayerParent",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "PlayerTemNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled64-heroModelId",
+						name = "heroModelId",
+						type = "string"
+					},
+					{
+						value = "untitled51-text",
+						name = "playerName",
+						type = "string"
+					},
+					{
+						value = "untitled51-color",
+						name = "nameColor",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 388.65,
+						y = 280.15
+					}
+				},
+				children = {
+					{
+						name = "untitled74",
+						cType = "Sprite",
+						params = {
+							image = "zd_black.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled64",
+						cType = "FigureHero",
+						params = {
+							childName = "heroFigure",
+							heroModelId = 12011103,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled66",
+						cType = "Sprite",
+						params = {
+							image = "c_69.png",
+							pos = {
+								x = 15,
+								y = 216.33
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled51",
+						cType = "Label",
+						params = {
+							text = "Label",
+							pos = {
+								x = 0,
+								y = 217
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mRewardNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 9,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled58",
+				cType = "Button",
+				params = {
+					image = "tzsj_15.png",
+					clickAction = "onBoxReward",
+					scale = 0.5,
+					pos = {
+						x = 27.85,
+						y = 231.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled59",
+				cType = "Label",
+				params = {
+					childName = "numLabel",
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 38.7,
+						y = 328.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled60",
+				cType = "Label",
+				params = {
+					childName = "killNameLabel",
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 39.08,
+						y = 317.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled67",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 46.38,
+						y = 217.46
+					},
+					size = {
+						width = 198.69,
+						height = 133.29
+					}
+				},
+				children = {
+					{
+						name = "untitled68",
+						cType = "RedDot",
+						params = {
+							subKey = "IsBoxReward",
+							moduleId = 12006
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 10,
+			isLiuHai = true,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled10",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tzsj_4.png",
+					capInsets = {
+						x = 5,
+						height = 1,
+						width = 1,
+						y = 20
+					},
+					pos = {
+						x = 152,
+						y = 20.65
+					},
+					size = {
+						width = 300,
+						height = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTimeTitleLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					pos = {
+						x = 110,
+						y = 165.67
+					},
+					text = TR("活动结束倒计时：")
+				},
+				children = {}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					text = "00:00:00",
+					pos = {
+						x = 110,
+						y = 138
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled16",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tzsj_5.png",
+					pos = {
+						x = 129,
+						y = 65
+					},
+					size = {
+						width = 260,
+						height = 50
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 25,
+								y = 25.5
+							},
+							text = TR("名次")
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 113,
+								y = 25.5
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled19",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 189,
+								y = 25.5
+							},
+							text = TR("伤害")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRankView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onRankViewNum",
+					isVertical = true,
+					cellUpdateFunc = "onRankViewRefresh",
+					cellSizeFunc = "onRankViewSize",
+					cellFillFunc = "onRankViewItem",
+					pos = {
+						x = 0,
+						y = -130
+					},
+					size = {
+						width = 260,
+						height = 170
+					}
+				},
+				children = {
+					{
+						name = "RankNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -28
+							},
+							size = {
+								width = 260,
+								height = 26
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Scale9Sprite",
+								params = {
+									image = "tzsj_6.png",
+									childName = "bgSprite",
+									pos = {
+										x = 130,
+										y = 13
+									},
+									size = {
+										width = 260,
+										height = 26
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "rankSprite",
+									scale = 0.4,
+									pos = {
+										x = 25,
+										y = 13
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "rankLabel",
+									text = "4",
+									pos = {
+										x = 25,
+										y = 13
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "nameLabel",
+									pos = {
+										x = 111,
+										y = 13
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "hurtLabel",
+									pos = {
+										x = 186,
+										y = 13
+									},
+									text = TR("1814万")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mRankEmpty",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 113.49,
+						y = -45.05
+					},
+					text = TR("暂无排行")
+				},
+				children = {}
+			},
+			{
+				name = "mMyRankNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -183
+					}
+				},
+				children = {
+					{
+						name = "untitled32",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 25,
+								y = 39.5
+							},
+							text = TR("名次")
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 129,
+								y = 39.5
+							},
+							text = TR("伤害")
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							hide = true,
+							pos = {
+								x = 188,
+								y = 39.5
+							},
+							text = TR("占比")
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "rankLabel",
+							text = "4",
+							pos = {
+								x = 27,
+								y = 15
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled36",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "hurtLabel",
+							text = "4",
+							pos = {
+								x = 129,
+								y = 15
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled37",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "percentLabel",
+							text = "",
+							pos = {
+								x = 190,
+								y = 15
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "middleNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 10,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mAutoFightBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onAutoFightBtn",
+					pos = {
+						x = 5.64,
+						y = 40
+					},
+					titleText = TR("挂机挑战")
+				},
+				children = {}
+			},
+			{
+				name = "mFightBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onFightBtn",
+					pos = {
+						x = 204.64,
+						y = 40
+					},
+					titleText = TR("挑战")
+				},
+				children = {}
+			},
+			{
+				name = "bossHpBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_34.png",
+					bgImage = "jyt_33.png",
+					pos = {
+						x = 105,
+						y = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bossHpLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					text = "Label",
+					pos = {
+						x = 100,
+						y = 100
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 10,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled38",
+				cType = "Button",
+				params = {
+					image = "tb_gn_231.png",
+					clickAction = "onHurtReward",
+					pos = {
+						x = -50,
+						y = -200
+					}
+				},
+				children = {
+					{
+						name = "untitled65",
+						cType = "RedDot",
+						params = {
+							subKey = "IsReward",
+							moduleId = 12006,
+							pos = {
+								z = 0,
+								x = 31.2,
+								y = 31
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled39",
+				cType = "Button",
+				params = {
+					image = "tb_gn_232.png",
+					clickAction = "onRankReward",
+					pos = {
+						x = -50,
+						y = -100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "PopScreenNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled53-text",
+						name = "damStr",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -491.43,
+						y = 429.59
+					}
+				},
+				children = {
+					{
+						name = "untitled53",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "flashParent",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			isFullScale = true,
+			zOrder = 10,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "PopParent",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 10,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {}
+	}
+}
+slot1 = {
+	cc.p(820, 102),
+	cc.p(721, 225),
+	cc.p(580, 200),
+	cc.p(450, 127),
+	cc.p(420, 240)
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPopScreenList = {}
+	slot0.mPopIndex = 1
+	slot0.mPlayerIndex = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createOwnPlayer(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eTzsjBossFight, function (slot0, slot1)
+		table.insert(slot0.mPopScreenList, slot1)
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eTzsjBossIsDead, function (slot0, slot1)
+		slot0:requestGetInfo()
+
+		return 
+	end)
+
+	return 
+end
+slot0.createOwnPlayer = function (slot0)
+	slot1 = cc.p(568, 100)
+	slot0.mPlayerNode = slot0.createLayoutTemplateNode(slot0, "PlayerTemNode", {
+		heroModelId = PlayerAttrObj:getPlayerAttrByName("HeadImageId"),
+		playerName = PlayerAttrObj:getPlayerAttrByName("PlayerName"),
+		nameColor = Utility.getPlayerNameColor(PlayerAttrObj:getPlayerAttrByName("FashionLevel"), false, true)
+	}, {
+		pos = slot1
+	})
+
+	slot0.mPlayerNode.heroFigure:setScale(0.85)
+	slot0.mPlayerParent:addChild(slot0.mPlayerNode, -slot1.y)
+
+	slot0.mPlayerNode.startPos = slot1
+
+	return 
+end
+slot0.compareData = function (slot0, slot1, slot2)
+	if slot1.Name == slot2.Name and slot1.HeadImageId == slot2.HeadImageId and slot1.FashionLevel == slot2.FashionLevel then
+		return true
+	end
+
+	return false
+end
+slot0.createPlayers = function (slot0)
+	slot1 = clone(slot0)
+	slot2 = true
+	slot3 = {}
+
+	if slot0.mPlayerList then
+		for slot7, slot8 in ipairs(slot0.mPlayerList) do
+			slot9 = slot0.mEveningBossData.PlayerInfo[slot7]
+
+			if slot8 and not tolua.isnull(slot8) then
+				if slot9 and slot0.compareData(slot0, slot8.data, slot9) then
+					slot3[slot7] = slot8
+				else
+					slot8.removeFromParent(slot8)
+
+					slot8 = nil
+				end
+			end
+		end
+
+		slot2 = false
+	end
+
+	slot0.mPlayerList = {}
+
+	function createPlayer(slot0, slot1)
+		if slot0[slot0] then
+			table.insert(slot1.mPlayerList, slot0[slot0])
+
+			return 
+		end
+
+		slot2 = Utility.getPlayerNameColor(slot1.FashionLevel, false, true)
+		slot3 = slot1:createLayoutTemplateNode("PlayerTemNode", {
+			heroModelId = slot1.HeadImageId,
+			playerName = slot1.Name,
+			nameColor = slot2
+		}, {
+			pos = slot2[slot0]
+		})
+
+		slot3.heroFigure:setScale(0.85)
+		slot1.mPlayerParent:addChild(slot3, -slot2[slot0].y)
+
+		slot3.startPos = slot2[slot0]
+		slot3.data = slot1
+
+		table.insert(slot1.mPlayerList, slot3)
+
+		return 
+	end
+
+	for slot7, slot8 in pairs(slot0.mEveningBossData.PlayerInfo) do
+		if not slot1[slot7] then
+			break
+		end
+
+		slot9 = 0.1
+
+		if slot2 then
+			Utility.performWithDelay(slot0, function ()
+				createPlayer(createPlayer, )
+
+				return 
+			end, slot7*0.1)
+		else
+			createPlayer(slot7, slot8)
+		end
+	end
+
+	if not slot0.mPlayerNode or tolua.isnull(slot0.mPlayerNode) then
+		slot0.createOwnPlayer(slot0)
+	end
+
+	return 
+end
+slot0.refreshBossState = function (slot0)
+	slot2 = EveningbossNodeRelation.items[slot0.mEveningBossData.BossInfo.BossNodeId]
+
+	if not slot0.figureNode.heroFigure then
+		slot0.figureNode.heroFigure = UIWrap.newControl("FigureHero", {
+			flipX = true,
+			heroModelId = slot2.bossForm,
+			pos = cc.p(-50, 0)
+		})
+
+		slot0.figureNode:addChild(slot3)
+		slot0.bossName:setString(slot2.nodeName)
+	end
+
+	slot0.bossHpBar:setMaxValue(slot1.BossHpTotal)
+	slot0.bossHpBar:setCurrValue(slot1.BossCurrenHp)
+	slot0.bossHpLabel:setString(string.format("%s/%s(%0.2f%%)", slot1.BossCurrenHp, slot1.BossHpTotal, (slot1.BossCurrenHp*100)/slot1.BossHpTotal))
+
+	if slot1.Status == 3 and slot1.IsDead then
+		slot0.bossNode:setVisible(false)
+		slot0.bossHpBar:setVisible(false)
+		slot0.bossHpLabel:setVisible(false)
+		slot0.mPlayerParent:setVisible(false)
+	elseif slot1.Status == 3 then
+		slot0.bossNode:setVisible(true)
+		slot0.bossStateSprite:setVisible(true)
+		slot0.bossNode:setPosition(display.xSafeScale*700, display.ySafeScale*180)
+		slot0.bossHpBar:setVisible(false)
+		slot0.bossHpLabel:setVisible(false)
+		slot0.mPlayerParent:setVisible(false)
+	elseif slot1.Status == 2 then
+		slot0.bossNode:setVisible(true)
+		slot0.bossStateSprite:setVisible(false)
+		slot0.bossNode:setPosition(display.xSafeScale*975, display.ySafeScale*180)
+		slot0.bossHpBar:setVisible(true)
+		slot0.bossHpLabel:setVisible(true)
+		slot0.mPlayerParent:setVisible(true)
+	elseif slot1.Status == 1 then
+		slot0.bossNode:setVisible(true)
+		slot0.bossStateSprite:setVisible(false)
+		slot0.bossNode:setPosition(display.xSafeScale*700, display.ySafeScale*180)
+		slot0.bossHpBar:setVisible(true)
+		slot0.bossHpLabel:setVisible(true)
+		slot0.mPlayerParent:setVisible(false)
+	end
+
+	return 
+end
+slot0.refreshRewardBox = function (slot0)
+	slot0.mRewardNode.numLabel:setString(TR("剩余奖励：%s/%s", EveningbossConfig.items[1].boxNums - #slot0.mEveningBossData.BoxInfo, EveningbossConfig.items[1].boxNums))
+
+	if slot0.mEveningBossData.BossInfo.Status == 3 then
+		slot0.mRewardNode:setVisible(true)
+	else
+		slot0.mRewardNode:setVisible(false)
+	end
+
+	return 
+end
+slot0.refreshRank = function (slot0)
+	slot0.mRankEmpty:setVisible((#slot0.mEveningBossData.RankInfo.Rank <= 0 and true) or false)
+	slot0.mRankView:reloadData()
+
+	slot2 = slot0.mEveningBossData.RankInfo.MyRank
+	slot3 = nil
+	slot4 = slot0.mEveningBossData.Myinfo.TotalHurt
+
+	for slot8, slot9 in ipairs(slot1) do
+		if slot9.PlayerId == slot2.PlayerId then
+			slot3 = slot8
+		end
+	end
+
+	slot0.mEveningBossData.Myinfo.Rank = slot3
+
+	slot0.mMyRankNode.rankLabel:setString((slot3 and slot3) or TR("未上榜"))
+	slot0.mMyRankNode.hurtLabel:setString(Utility.numberWithUnit(slot4))
+
+	return 
+end
+slot0.refreshTimeLabel = function (slot0)
+	slot2 = slot0.mEveningBossData.BossInfo.FightTime
+
+	if slot0.mEveningBossData.BossInfo.Status == 2 then
+		slot2 = slot1.EndTime
+	end
+
+	if slot1.Status == 2 then
+		slot0.mTimeTitleLabel:setString(TR("挑战倒计时："))
+	elseif slot1.Status == 1 then
+		slot0.mTimeTitleLabel:setString(TR("开启倒计时："))
+	else
+		slot0.mTimeTitleLabel:setString(TR("下一轮倒计时："))
+	end
+
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0 - Player:getCurrentTime() then
+			slot1.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot1.mTimeLabel:setString("00:00:00")
+			slot1.mTimeLabel.setString.mTimeLabel:stopAction(slot1.mTimeLabel.timeUpdate)
+
+			slot1.mTimeLabel.setString.mTimeLabel.stopAction.mTimeLabel.timeUpdate = nil
+
+			if not slot1.mTimeLabel.setString.mTimeLabel.stopAction.mTimeLabel.notTimeRequest then
+				slot1:requestGetInfo()
+
+				slot1.requestGetInfo.notTimeRequest = true
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshBossState(slot0)
+	slot0.refreshRewardBox(slot0)
+	slot0.refreshRank(slot0)
+	slot0.refreshBtn(slot0)
+	slot0.refreshTimeLabel(slot0)
+
+	if not slot0.mPlayerList then
+		slot0.createPlayers(slot0)
+	end
+
+	slot0.createSchdule(slot0)
+
+	return 
+end
+slot0.createSchdule = function (slot0)
+	if slot0.mEveningBossData.BossInfo.IsDead then
+		return 
+	end
+
+	slot1 = 0
+	slot2 = 2
+	slot3 = 0
+	slot4 = 1
+
+	if slot0.mIsRefreshSchule then
+		return 
+	end
+
+	slot0.mIsRefreshSchule = true
+
+	slot0.scheduleUpdate(slot0, function (slot0)
+		if slot0.mEveningBossData.BossInfo.Status ~= 2 then
+			return 
+		end
+
+		if 30 <= slot1 + slot0 then
+			slot1 = 0
+
+			slot0:requestGetInfo()
+		end
+
+		if 2 <= slot2 + slot0 then
+			slot2 = 0
+
+			if next(slot0.mPopScreenList) ~= nil then
+				if #slot0.mPopScreenList < slot0.mPopIndex then
+					slot0.mPopIndex = 1
+				end
+
+				slot0:createPopWord()
+
+				slot0.mPopIndex = slot0.mPopIndex + 1
+			end
+		end
+
+		if (slot0.mSpaceTime or 0) <= slot3 + slot0 and 0 < #slot0.mPlayerList then
+			slot3 = 0
+
+			if #slot0.mPlayerList < slot0.mPlayerIndex then
+				slot0:createPlayers()
+
+				slot0.mPlayerIndex = 1
+			end
+
+			if not slot0.mBossAttacking then
+				Utility.performWithDelay(slot0, function ()
+					slot0:playerAttack()
+
+					slot0.playerAttack.mPlayerIndex = slot0.mPlayerIndex + 1
+
+					return 
+				end, 0)
+			end
+		end
+
+		slot4 = slot4 + slot0
+
+		if not slot0.mPlayerAttacking and not slot0.mOwnAttacking then
+			if 60 <= slot4 then
+				slot0:bossNujiAttack()
+
+				slot4 = 1
+			elseif math.floor(slot4)%10 == 0 then
+				slot0:bossPugongAttack()
+
+				slot4 = slot4 + 1
+			end
+		elseif math.floor(slot4%30) == 0 then
+			slot0.mBossAttacking = true
+			slot4 = slot4 + 1
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.createPopWord = function (slot0)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "PopScreenNode", {
+		damStr = TR("#37ff40%s#fff8ea造成了#ffe748%s#fff8ea伤害", slot0.mPopScreenList[slot0.mPopIndex].Name, Utility.numberWithUnit(slot0.mPopScreenList[slot0.mPopIndex].Dam))
+	})
+
+	slot5.setPosition(slot5, slot2)
+	slot0.PopParent:addChild(slot5, 100)
+	slot5.runAction(slot5, cc.Sequence:create(cc.MoveBy:create(5, cc.p(-1500, 0)), cc.CallFunc:create(function ()
+		slot0:removeFromParent()
+
+		slot0 = nil
+
+		return 
+	end)))
+
+	return 
+end
+slot0.playerAttack = function (slot0)
+	slot0.mSpaceTime = math.random(5, 8)
+
+	if not tolua.isnull(slot0.mPlayerList[slot0.mPlayerIndex]) then
+		slot0.attackAction(slot0, slot1)
+	end
+
+	return 
+end
+slot0.attackAction = function (slot0, slot1, slot2)
+	if not slot1 or tolua.isnull(slot1) then
+		return 
+	end
+
+	slot3 = cc.p(slot1.getPosition(slot1))
+
+	if slot2 then
+		slot0.mOwnAttacking = true
+	else
+		slot0.mPlayerAttacking = true
+	end
+
+	function slot4()
+		slot0(slot0.damStrLabel, (slot0.mEveningBossData.Dam and "." .. slot0.mEveningBossData.Dam) or "")
+		slot0.damStrLabel:setPosition(-50, 200)
+		slot0.damStrLabel:runAction(cc.Sequence:create({
+			cc.DelayTime:create(0.1),
+			cc.CallFunc:create(function (slot0)
+				slot0.setVisible(slot0, true)
+
+				return 
+			end),
+			cc.ScaleTo:create(0.1, 1.2),
+			cc.ScaleTo:create(0.05, 1),
+			cc.MoveBy:create(0.5, cc.p(0, 100)),
+			cc.CallFunc:create(function (slot0)
+				slot0.setVisible(slot0, false)
+
+				return 
+			end)
+		}))
+
+		return 
+	end
+
+	slot5 = slot0.bossNode:getParent():convertToWorldSpace(cc.p(slot0.bossNode:getPosition()))
+	slot5.x = slot5.x - display.xSafeScale*240
+
+	slot1.setLocalZOrder(slot1, 1)
+
+	function slot7()
+		slot0.heroFigure:clearLuaHandler()
+
+		if slot0.heroFigure then
+			slot2()
+		end
+
+		slot3.figureNode.heroFigure:playAnimation("aida", 1)
+		slot3.figureNode.heroFigure:appendAnimation("daiji")
+		slot3.figureNode.heroFigure.appendAnimation:runAction(cc.MoveTo:create(0.1, ))
+		slot3.figureNode.heroFigure.appendAnimation.runAction.heroFigure:playAnimation("daiji")
+		slot3.figureNode.heroFigure.appendAnimation.runAction.heroFigure.playAnimation:setLocalZOrder(-slot4.y)
+
+		if slot3.figureNode.heroFigure.appendAnimation.runAction.heroFigure.playAnimation then
+			slot3.mOwnAttacking = false
+		else
+			slot3.mPlayerAttacking = false
+		end
+
+		if slot1 then
+			slot3:refreshUI()
+		end
+
+		return 
+	end
+
+	slot1.runAction(slot1, cc.Sequence:create({
+		cc.MoveTo:create(0.1, slot0.mPlayerParent:convertToNodeSpace(slot5)),
+		cc.CallFunc:create(function ()
+			slot0.heroFigure:registerLuaHandler("complete", function ()
+				slot0()
+
+				return 
+			end)
+			slot0.heroFigure.registerLuaHandler.heroFigure:playAnimation("pugong", 1)
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.bossPugongAttack = function (slot0)
+	slot0.mBossAttacking = true
+
+	table.insert(slot1, slot0.mPlayerNode)
+
+	slot2 = slot0.mPlayerNode
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot1) do
+		if not slot2 or tolua.isnull(slot2) then
+			slot2 = slot8
+		end
+
+		if slot8 and not tolua.isnull(slot8) and slot2.startPos.x < slot8.startPos.x then
+			slot2 = slot8
+			slot3 = slot7
+		end
+	end
+
+	if not slot2 or tolua.isnull(slot2) then
+		slot0.mBossAttacking = false
+
+		return 
+	end
+
+	slot2.setCascadeOpacityEnabled(slot2, true)
+
+	slot4 = slot2.getParent(slot2):convertToWorldSpace(cc.p(slot2.startPos))
+	slot4.x = slot4.x + display.xSafeScale*240
+	slot6 = cc.p(slot0.bossNode:getPosition())
+
+	slot0.bossNode:setLocalZOrder(3)
+
+	function slot7()
+		slot0.figureNode.heroFigure:clearLuaHandler()
+
+		if slot1.heroFigure then
+			slot1.heroFigure:playAnimation("aida", 1)
+			slot1.heroFigure:appendAnimation("daiji")
+		end
+
+		if slot1 and not tolua.isnull(slot1) and slot0.mPlayerNode ~= slot1 then
+			Utility.performWithDelay(slot1, function ()
+				if slot0 and not tolua.isnull(tolua.isnull) then
+					slot0:runAction(cc.Sequence:create({
+						cc.FadeOut:create(1),
+						cc.CallFunc:create(function (slot0)
+							slot0.removeFromParent(slot0)
+
+							slot0 = nil
+
+							return 
+						end)
+					}))
+				end
+
+				return 
+			end, 0.5)
+		end
+
+		slot0.bossNode:runAction(cc.MoveTo:create(0.1, cc.MoveTo.create))
+		slot0.bossNode.runAction.figureNode.heroFigure:playAnimation("daiji")
+		slot0.bossNode.runAction.figureNode.heroFigure.playAnimation.bossNode:setLocalZOrder(1)
+
+		slot0.bossNode.runAction.figureNode.heroFigure.playAnimation.bossNode.setLocalZOrder.mBossAttacking = false
+
+		return 
+	end
+
+	slot0.bossNode:runAction(cc.Sequence:create({
+		cc.MoveTo:create(0.1, slot0.convertToNodeSpace(slot0, slot4)),
+		cc.CallFunc:create(function ()
+			slot0.figureNode.heroFigure:playAnimation("pugong", 1)
+
+			return 
+		end)
+	}))
+	Utility.performWithDelay(slot0.bossNode, function ()
+		slot0()
+
+		return 
+	end, 1.5)
+
+	return 
+end
+slot0.bossNujiAttack = function (slot0)
+	slot0.mBossAttacking = true
+
+	table.insert(slot1, slot0.mPlayerNode)
+	slot0.StartFlash(slot0, EveningbossNodeRelation.items[slot0.mEveningBossData.BossInfo.BossNodeId].bossForm)
+	slot0.bossNode:setLocalZOrder(3)
+	Utility.performWithDelay(slot0.flashParent, function ()
+		slot0.flashParent:removeAllChildren()
+		Utility.performWithDelay(slot0.bossNode, function ()
+			for slot3, slot4 in pairs(pairs) do
+				if slot4 and not tolua.isnull(slot4) then
+					slot4.setCascadeOpacityEnabled(slot4, true)
+
+					if slot4.heroFigure then
+						slot4.heroFigure:playAnimation("aida", 1)
+						slot4.heroFigure:appendAnimation("daiji")
+						Utility.performWithDelay(slot4, function ()
+							slot0:runAction(cc.Sequence:create({
+								cc.FadeOut:create(1),
+								cc.CallFunc:create(function (slot0)
+									slot0.removeFromParent(slot0)
+
+									slot0 = nil
+
+									return 
+								end)
+							}))
+
+							return 
+						end, 0.5)
+					end
+				end
+			end
+
+			slot1.bossNode:setLocalZOrder(1)
+			slot1.figureNode.heroFigure:playAnimation("daiji")
+			Utility.performWithDelay(slot1.figureNode.heroFigure.flashParent, function ()
+				slot0:createPlayers()
+
+				return 
+			end, 3)
+
+			slot1.figureNode.heroFigure.flashParent.mBossAttacking = false
+
+			return 
+		end, 2)
+		Utility.performWithDelay.figureNode.heroFigure:playAnimation("nuji", 1)
+		Utility.performWithDelay.figureNode.heroFigure.playAnimation:playAttackEffect(slot0.bossNode, slot2.bossForm)
+
+		return 
+	end, 1.5)
+
+	return 
+end
+slot0.playAttackEffect = function (slot0, slot1, slot2)
+	slot4 = require("common.SpineManager")
+
+	if require("battle.common.SkillConf")[slot5 .. "_skill"].chargeEffect[1] and slot7 ~= "" then
+		slot8 = slot4.createAnimation(slot7, 1, true)
+
+		slot1.addChild(slot1, slot8)
+		slot8.playAnimation(slot8, slot6.chargeEffect[2], 1)
+	end
+
+	if slot6.skyEffect and slot6.skyEffect[1] and slot8 ~= "" then
+		slot9 = UIWrap.newControl("Effect", {
+			loop = false,
+			scale = 2,
+			dataFile = slot8,
+			animation = slot6.skyEffect[2],
+			pos = cc.p(0, 0)
+		})
+
+		slot0.mPlayerParent:addChild(slot9, 10)
+		slot9.setRotationSkewY(slot9, 180)
+	end
+
+	if slot6.groundEffect and slot6.groundEffect[1] and slot8 ~= "" then
+		slot9 = UIWrap.newControl("Effect", {
+			loop = false,
+			scale = 2,
+			dataFile = slot8,
+			animation = slot6.groundEffect[2],
+			pos = cc.p(0, 0)
+		})
+
+		slot0.mPlayerParent:addChild(slot9, -1)
+		slot9.setRotationSkewY(slot9, 180)
+	end
+
+	return 
+end
+slot0.StartFlash = function (slot0, slot1)
+	slot2 = require("battle.common.LiHuiConf")
+	slot3 = require("common.SpineManager")
+
+	slot0.flashParent:removeAllChildren()
+
+	slot4 = ""
+	slot7 = HeroModel.items[slot1].sex
+	slot8 = HeroModel.items[slot1].drawingPicA
+	slot9 = 1
+	slot10 = 2
+	slot12 = SkillModel.items[HeroModel.items[slot1].skillAttackId].skillWordPic
+
+	MqAudio.playEffect("effect_qieping.mp3")
+
+	if HeroModel.items[slot1].skillSound ~= "" then
+		MqAudio.playEffect(slot6 .. ".mp3")
+	end
+
+	MqAudio.playEffect("qieping_lihui.mp3")
+
+	slot13 = slot3.createAnimation("effect_tongyi_qiepin", 1)
+
+	slot0.flashParent:addChild(slot13)
+	slot13.setTimeScale(slot13, slot9)
+	slot13.playAnimation(slot13, "xia", 1)
+
+	slot14 = slot3.createAnimation("effect_tongyi_qiepin", 1)
+
+	slot0.flashParent:addChild(slot14)
+	slot14.setTimeScale(slot14, slot9)
+
+	slot15 = nil
+
+	if slot7 == 1 then
+		slot14.playAnimation(slot14, "nan", 1)
+
+		slot15 = slot14.bindBoneNode(slot14, "socket_nan")
+	else
+		slot14.playAnimation(slot14, "nv", 1)
+
+		slot15 = slot14.bindBoneNode(slot14, "socket_nv")
+	end
+
+	if cc.FileUtils:getInstance():isFileExist(slot8 .. ".skel") then
+		slot16 = slot3.createAnimation(slot8, 1, true)
+
+		slot16.setName(slot16, "sprite")
+		slot15.addChild(slot15, slot16)
+		slot16.setScale(slot16, 0.7)
+		slot16.playAnimation(slot16, "animation", 1)
+
+		if slot10 == 2 then
+			slot16.setRotation3D(slot16, cc.vec3(0, 180, 0))
+		end
+	elseif cc.FileUtils:getInstance():isFileExist(slot8 .. ".png") then
+		slot16 = cc.Sprite:create(slot8 .. ".png")
+
+		slot16.setName(slot16, "sprite")
+		slot16.setScale(slot16, 1.1)
+		slot15.addChild(slot15, slot16)
+
+		if slot2[slot8] then
+			slot16.setPosition(slot16, cc.p(slot17.x + 60, slot17.y + 120))
+		end
+
+		if slot10 == 2 then
+			slot16.setRotation3D(slot16, cc.vec3(0, 180, 0))
+		end
+	end
+
+	slot16 = slot3.createAnimation("effect_tongyi_qiepin", 1)
+
+	slot0.flashParent:addChild(slot16)
+	slot16.setTimeScale(slot16, slot9)
+	slot16.playAnimation(slot16, "shang", 1)
+
+	slot17 = slot3.createAnimation("effect_tongyi_qiepin", 1)
+
+	slot0.flashParent:addChild(slot17)
+	slot17.setTimeScale(slot17, slot9)
+	slot17.playAnimation(slot17, "ziti", 1)
+
+	if slot12 and cc.FileUtils:getInstance():isFileExist(slot12 .. ".png") then
+		slot19 = cc.Sprite:create(slot12 .. ".png")
+
+		slot19.setPosition(slot19, cc.p(-200, 0))
+		slot19.setName(slot19, "sprite")
+		slot17.bindBoneNode(slot17, "socket_zi"):addChild(slot19)
+	end
+
+	return 
+end
+slot0.updateHeroList = function (slot0)
+	slot1 = {}
+
+	function slot2(slot0)
+		for slot4, slot5 in pairs(HeroObj:getListByProfession(slot0)) do
+			table.insert(slot0, slot5)
+		end
+
+		return 
+	end
+
+	for slot6 = 1, 5, 1 do
+		slot2(slot6)
+	end
+
+	slot0.mDataList = clone(slot1)
+	slot4 = (slot0.mEveningBossData.Myinfo and slot3.RebornInfo) or {}
+
+	for slot8, slot9 in ipairs(slot0.mDataList) do
+		for slot13, slot14 in ipairs(slot4) do
+			if slot9.ModelId == slot14.HeroModelId then
+				slot9.RevivalNum = slot14.RevivalNum
+				slot9.RevivalTime = slot14.RevivalTime
+			end
+		end
+	end
+
+	table.sort(slot0.mDataList, function (slot0, slot1)
+		return slot1.Fap < slot0.Fap
+	end)
+
+	return 
+end
+slot0.refreshBtn = function (slot0)
+	if EveningBossObj.mAutoFight then
+		slot0.mAutoFightBtn:setTitleText(TR("停止战斗"))
+		slot0.mFightBtn:setTitleText(TR("复活"))
+	else
+		slot0.mAutoFightBtn:setTitleText(TR("挂机挑战"))
+		slot0.mFightBtn:setTitleText(TR("挑战"))
+	end
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRule = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.挑战四绝开放时间为每天的18:00-18:40；"),
+			TR("2.挑战后侠客会阵亡，可以使用回魂丹或元宝复活；"),
+			TR("3.玩家在本轮活动中造成累计伤害达到要求即可领取对应奖励，并在活动结束后根据累计伤害排名发放奖励；"),
+			TR("4.伤害排行奖励将在挑战四绝活动当天20:00发放，排行榜将在下轮活动开始前30分钟重置。"),
+			TR("5.可提前半小时挂机，挂机可离开此界面")
+		}
+	})
+
+	return 
+end
+slot0.onRankReward = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "eveningboss.EveningBossRewardLayer",
+		data = {
+			rewardType = 1,
+			myInfo = slot0.mEveningBossData.Myinfo
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onHurtReward = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "eveningboss.EveningBossRewardLayer",
+		data = {
+			rewardType = 2,
+			myInfo = slot0.mEveningBossData.Myinfo,
+			callback = function (slot0)
+				slot0.mEveningBossData.Myinfo = slot0
+				slot0.mEveningBossData.Myinfo.Rank = slot0.mEveningBossData.Myinfo.Rank
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBoxReward = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "eveningboss.EveningBossWinRewardLayer",
+		data = {
+			resetTime = slot0.mEveningBossData.BossInfo.FightTime,
+			boxInfo = slot0.mEveningBossData.BoxInfo,
+			callback = function (slot0)
+				slot0.mEveningBossData.Myinfo = slot0.Myinfo
+				slot0.mEveningBossData.BoxInfo = slot0.BoxInfo
+
+				slot0:refreshRewardBox()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onAutoFightBtn = function (slot0, slot1)
+	if slot0.mEveningBossData.BossInfo.Status ~= 2 and slot0.mEveningBossData.BossInfo.Status ~= 1 then
+		ui.showFlashView(TR("%s开启战斗", EveningbossConfig.items[1].startTime))
+
+		return 
+	end
+
+	if slot0.mEveningBossData.BossInfo.Status == 1 then
+		if EveningBossObj.mAutoFight then
+			EveningBossObj:stopAutoFight()
+		else
+			EveningBossObj:readyFight()
+		end
+	elseif EveningBossObj.mAutoFight then
+		EveningBossObj:stopAutoFight()
+	else
+		EveningBossObj:startAutoFight()
+	end
+
+	return 
+end
+slot0.playFightAction = function (slot0)
+	if not slot0.mPlayerNode or tolua.isnull(slot0.mPlayerNode) then
+		slot0.createOwnPlayer(slot0)
+	end
+
+	slot0.attackAction(slot0, slot0.mPlayerNode, true)
+
+	return 
+end
+slot0.onFightBtn = function (slot0)
+	if slot0.mEveningBossData.BossInfo.Status ~= 2 then
+		ui.showFlashView(TR("%s开启战斗", EveningbossConfig.items[1].startTime))
+
+		return 
+	end
+
+	if slot0.mBossAttacking then
+		ui.showFlashView(TR("boss反击中..."))
+
+		return 
+	end
+
+	slot1 = slot0.mEveningBossData.Myinfo
+
+	if EveningBossObj.mAutoFight then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "eveningboss.EveningBossReviveLayer",
+			data = {
+				revivalInfo = slot1.RebornInfo,
+				callback = function (slot0)
+					slot0.mEveningBossData.Myinfo = slot0
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end
+
+	ui.showCampReady({
+		noNeedVit = true,
+		minCount = 5,
+		isMainCityWar = true,
+		callModelSub = ModuleSub.eEveningBoss,
+		titleText = TR("挑战阵容"),
+		minTrainLv = EveningbossConfig.items[1].fightTrainLvMin,
+		revivalInfo = slot1.RebornInfo,
+		rebirthCallback = function (slot0)
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "eveningboss.EveningBossReviveLayer",
+				data = {
+					revivalInfo = slot0.RebornInfo,
+					callback = function (slot0)
+						ui.showCampReady({
+							noNeedVit = true,
+							minCount = 5,
+							isMainCityWar = true,
+							callModelSub = ModuleSub.eEveningBoss,
+							titleText = TR("挑战阵容"),
+							minTrainLv = EveningbossConfig.items[1].fightTrainLvMin,
+							revivalInfo = slot0.RebornInfo,
+							rebirthCallback = function (slot0)
+								LayerManager.addLayer({
+									cleanUp = false,
+									name = "eveningboss.EveningBossReviveLayer",
+									data = {
+										revivalInfo = slot0.RebornInfo,
+										callback = function (slot0)
+											return 
+										end
+									}
+								})
+
+								return 
+							end,
+							callback = function (slot0)
+								EveningBossObj:requestFightMaster(table.concat(slot0, ","))
+
+								return 
+							end
+						})
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end,
+		callback = function (slot0)
+			EveningBossObj:requestFightMaster(table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRankViewSize = function (slot0)
+	return 260, 26
+end
+slot0.onRankViewNum = function (slot0)
+	return (30 < #slot0.mEveningBossData.RankInfo.Rank and 30) or #slot1
+end
+slot0.onRankViewItem = function (slot0, slot1, slot2)
+	slot1.refresh = function (slot0, slot1)
+		slot3 = slot0.mEveningBossData.RankInfo.Rank[slot1 + 1]
+		slot4 = slot0.mEveningBossData.BossInfo.BossHpTotal
+		slot5 = {
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		}
+
+		slot0.removeAllChildren(slot0)
+		slot0:createLayoutTemplateNode("RankNode").bgSprite:setVisible((slot1 + 1)%2 == 0)
+
+		if slot5[slot1] then
+			slot6.rankSprite:setVisible(true)
+			slot6.rankSprite:setTexture(slot5[slot1])
+			slot6.rankLabel:setVisible(false)
+		else
+			slot6.rankSprite:setVisible(false)
+			slot6.rankLabel:setVisible(true)
+			slot6.rankLabel:setString(slot1)
+		end
+
+		slot6.nameLabel:setString(slot3.PlayerInfo.Name)
+		slot6.hurtLabel:setString(Utility.numberWithUnit(slot3.TotalHurt))
+		slot6.setPosition(slot6, 0, 0)
+		slot0.addChild(slot0, slot6)
+
+		return 
+	end
+
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.onRankViewRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "EveningbossInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetInfo")
+
+			slot0.mEveningBossData = slot0
+
+			slot0:refreshUI()
+			EveningBossObj:setEveningData(slot0, slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.test = function (slot0)
+	slot0.mEveningBossData.BossInfo.Status = 2
+	slot0.mEveningBossData.BossInfo.IsDead = false
+	slot1 = slot0
+	EveningBossObj.requestFightMaster = function (slot0, slot1)
+		if not slot0.mPlayerNode or tolua.isnull(slot0.mPlayerNode) then
+			slot0:createOwnPlayer()
+		end
+
+		slot0:attackAction(slot0.mPlayerNode, true)
+
+		return 
+	end
+	slot0.mPopScreenList = {
+		{
+			Dam = 1000000,
+			Name = TR("测试")
+		}
+	}
+
+	Utility.schedule(slot0.PopParent, function ()
+		slot0.mPopIndex = slot0.mPopIndex%#slot0.mPopScreenList + 1
+
+		slot0:createPopWord()
+
+		return 
+	end, 3)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,310 @@
+slot0 = class("JzwlSetOfficialPositionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 350
+			},
+			titleText = TR("官职特权")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 260,
+						y = 205
+					},
+					size = {
+						width = 454,
+						height = 193
+					}
+				},
+				children = {}
+			},
+			{
+				name = "playerTemplate",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled5-text",
+						name = "titleStr",
+						type = "string"
+					},
+					{
+						value = "untitled7-text",
+						name = "nameStr",
+						type = "string"
+					},
+					{
+						value = "untitled7-color",
+						name = "nameColor",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 105,
+						y = 195
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "bp_37.png",
+							childName = "titleSprite",
+							pos = {
+								x = 0,
+								y = 61.35
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "titleLabel",
+							text = "Label",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 0,
+								y = 62
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "CardNode",
+						params = {
+							childName = "card",
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 9
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							childName = "nameLabel",
+							text = "Label",
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							pos = {
+								x = 0,
+								y = -43
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Button",
+						params = {
+							clickAction = "onSetBtnClick",
+							hide = true,
+							image = "c_87.png",
+							childName = "addBtn",
+							pos = {
+								x = 0,
+								y = 10
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					scale = 0.4,
+					image = "bb_12.png",
+					pos = {
+						x = 180,
+						y = 204.73
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					scaleX = -1,
+					image = "zj_18.png",
+					pos = {
+						x = 260,
+						y = 255
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Sprite",
+				params = {
+					image = "zj_18.png",
+					pos = {
+						x = 390,
+						y = 255
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 327,
+						y = 255
+					},
+					text = TR("特权一览")
+				},
+				children = {}
+			},
+			{
+				name = "mDesLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 327,
+						y = 180
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSetBtnClick",
+					pos = {
+						x = 260,
+						y = 62
+					},
+					titleText = TR("任命职位")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.positionId = slot1.positionId or 1
+	slot0.positionCfg = LeaguetopfinalIdentityRelation.items[slot0.positionId]
+	slot0.isWinner = slot1.isWinner
+	slot0.positionInfo = slot1.positionInfo or {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.createLayoutTemplateNode(slot0, "playerTemplate", {
+		nameStr = (slot0.positionInfo and slot0.positionInfo.Name) or "",
+		titleStr = slot0.positionCfg.name,
+		nameColor = Utility.getPlayerNameColor((slot0.positionInfo and slot0.positionInfo.FashionLevel) or 1)
+	}).setPosition(slot0.createLayoutTemplateNode, 105, 195)
+
+	if Utility.isEntityId(slot0.positionInfo.PlayerId) then
+		slot1.card:setPlayerHeader(slot0.positionInfo.HeadImageId, {}, {
+			fashionLv = slot0.positionInfo.FashionLevel,
+			headPicId = slot0.positionInfo.HeadPicId
+		})
+		slot1.card:setClickAction(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.OtherPlayerInfoLayer",
+				data = {
+					playerId = slot0.positionInfo.PlayerId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+	else
+		slot1.card:setAllowClick(false)
+	end
+
+	slot1.addBtn:setVisible(not Utility.isEntityId(slot0.positionInfo.PlayerId))
+	slot0.msgBox:addChild(slot1)
+	slot0.mDesLabel:setString(slot0.positionCfg.effectIntro)
+
+	return 
+end
+slot0.onSetBtnClick = function (slot0)
+	if not slot0.isWinner then
+		ui.showFlashView(TR("武林至尊才能敕封官职。"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlOfficialPositionSelectPlayerLayer",
+		data = {
+			posisionId = slot0.positionId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

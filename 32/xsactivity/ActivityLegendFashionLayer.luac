@@ -1,0 +1,881 @@
+slot0 = class("ActivityLegendFashionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled6",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "cssz_2.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "cssz_3.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = 320
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "boxSprite",
+				cType = "Sprite",
+				params = {
+					image = "cssz_20.png",
+					pos = {
+						x = 67.03,
+						y = -2.23
+					}
+				},
+				children = {
+					{
+						name = "tabView",
+						cType = "TabView",
+						params = {
+							onSelectChange = "onTabChanged",
+							space = 0,
+							lightedImage = "c_pure.png",
+							direction = true,
+							normalImage = "c_pure.png",
+							btnInfos = {},
+							btnSize = {
+								width = 84,
+								height = 97
+							},
+							pos = {
+								x = 788,
+								y = 160
+							},
+							size = {
+								width = 100,
+								height = 300
+							}
+						},
+						children = {}
+					},
+					{
+						name = "taskListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 115,
+								y = 106
+							},
+							size = {
+								width = 670,
+								height = 360
+							}
+						},
+						children = {
+							{
+								name = "taskLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled55-subKey",
+										name = "redDotSubKey",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 223,
+										height = 359
+									}
+								},
+								children = {
+									{
+										name = "untitled18",
+										cType = "Sprite",
+										params = {
+											image = "cssz_11.png",
+											childName = "bgSprite",
+											pos = {
+												x = 120.5,
+												y = 179.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Label",
+										params = {
+											text = "0",
+											isRichText = true,
+											scale = 0.85,
+											childName = "scoreLabel",
+											fontName = "cssz_1.png",
+											pos = {
+												x = 106.15,
+												y = 284.6
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											isRichText = true,
+											align = 1,
+											childName = "conditionLabel",
+											valign = 1,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 106.15,
+												y = 217.6
+											},
+											size = {
+												width = 160,
+												height = 34
+											},
+											text = TR("条件条件条件")
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "ProgressBar",
+										params = {
+											normalImage = "cssz_16.png",
+											bgImage = "cssz_15.png",
+											childName = "progress",
+											pos = {
+												x = 106.15,
+												y = 192
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled22",
+										cType = "Label",
+										params = {
+											childName = "progressLabel",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 106.15,
+												y = 167.6
+											},
+											text = TR("进度")
+										},
+										children = {}
+									},
+									{
+										name = "untitled23",
+										cType = "CardNode",
+										params = {
+											scale = 0.75,
+											childName = "card",
+											allowClick = true,
+											pos = {
+												x = 106.5,
+												y = 124
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled24",
+										cType = "Button",
+										params = {
+											childName = "btn",
+											image = "c_27.png",
+											clickAction = "onCloseBtnCLick",
+											pos = {
+												x = 106.5,
+												y = 65
+											},
+											titleText = TR("领 取")
+										},
+										children = {
+											{
+												name = "untitled55",
+												cType = "RedDot",
+												params = {
+													subKey = "",
+													moduleId = 24701
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "scoreListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 190.24,
+								y = 37.62
+							},
+							size = {
+								width = 630,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "scoreLayout",
+								cType = "Layout",
+								params = {
+									pos = {
+										z = 0,
+										x = -9,
+										y = -65.26
+									},
+									size = {
+										width = 90,
+										height = 106
+									}
+								},
+								children = {
+									{
+										name = "untitled38",
+										cType = "Sprite",
+										params = {
+											image = "cssz_14.png",
+											pos = {
+												x = 36,
+												y = 53
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "Button",
+										params = {
+											image = "c_pure.png",
+											childName = "btn",
+											pos = {
+												x = 33,
+												y = 53
+											},
+											size = {
+												width = 80,
+												height = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Label",
+										params = {
+											text = "9999",
+											childName = "scoreLabel",
+											scale = 0.85,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 32.12,
+												y = 62.69
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled39",
+										cType = "CardNode",
+										params = {
+											scale = 0.5,
+											childName = "card",
+											allowClick = false,
+											pos = {
+												x = 36,
+												y = 32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled41",
+										cType = "Sprite",
+										params = {
+											image = "cssz_21.png",
+											childName = "drawSprite",
+											pos = {
+												x = 36,
+												y = 30
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled44",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 150,
+								y = 100
+							},
+							text = TR("当前积分")
+						},
+						children = {}
+					},
+					{
+						name = "currScoreLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "50/50",
+							pos = {
+								x = 150,
+								y = 73.57
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled56",
+						cType = "Sprite",
+						params = {
+							image = "cssz_10.png",
+							pos = {
+								x = 375.92,
+								y = 532.3
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "heroFIgureNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -568,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Effect",
+						params = {
+							scale = 0.65,
+							dataFile = "effect_lihui_chaosheng",
+							pos = {
+								x = 167.86,
+								y = -357.08
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tipsLabel",
+				cType = "Label",
+				params = {
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 200.19,
+						y = -304
+					},
+					text = TR("活动期间获得或者培养初始侠客可以获得大量奖励及传说时装")
+				},
+				children = {}
+			},
+			{
+				name = "untitled45",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onEffectShowAction",
+					scale = 0.8,
+					pos = {
+						x = -521.74,
+						y = -51.95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled52",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -345.06,
+						y = -290.79
+					},
+					size = {
+						width = 350,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "countDownLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "",
+							pos = {
+								x = 130.31,
+								y = 17.67
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled54",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_chuanshuohizhuang",
+					animation = "top",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "topRightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "cssz_4.png",
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseBtnCLick",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "cssz_19.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 100,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleBtnCLick",
+					hide = true,
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 270,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.currSelectTag = 1
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	slot0.requesetGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {
+		"cssz_7.png",
+		"cssz_6.png",
+		"cssz_8.png"
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = {}
+
+			for slot5, slot6 in ipairs(NationalHeroPageModel.items) do
+				table.insert(slot1.btnInfos, {
+					title = "",
+					tag = slot5,
+					normalImage = slot0[slot5],
+					lightedImage = slot0[slot5],
+					imgOffset = cc.p(0.5, 0.5)
+				})
+			end
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in pairs(slot0.tabView:getTabBtns()) do
+		slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eNationalHeroPointReward,
+			subKey = tostring(slot5),
+			offset = cc.p(0.9, 0.8)
+		}))
+	end
+
+	slot2 = PlayerAttrObj:getPlayerAttrByName("NationalHeroEndTime")
+
+	Utility.schedule(slot0.countDownLabel, function ()
+		slot0, slot1 = Utility.getCountDownStr(Utility.getCountDownStr)
+
+		if slot0 then
+			slot1.countDownLabel:setString(TR("倒计时:%s", slot1))
+		else
+			slot1.countDownLabel:setString("")
+		end
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.refreshTaskList(slot0)
+	slot0.refreshScore(slot0)
+
+	return 
+end
+slot0.refreshTaskList = function (slot0)
+	if not slot0.data then
+		return 
+	end
+
+	slot1 = slot0.data.TaskInfo
+
+	slot0.taskListView:removeAllChildren()
+
+	slot3 = {
+		"cssz_11.png",
+		"cssz_12.png",
+		"cssz_13.png"
+	}
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.createLayoutTemplateNode(slot0, "taskLayout", {
+			redDotSubKey = string.format("%d_%d", slot0.currSelectTag, tonumber(slot8))
+		}).bgSprite:setTexture(slot3[1])
+		table.remove(slot3, 1)
+		slot0.createLayoutTemplateNode(slot0, "taskLayout", {
+			redDotSubKey = string.format("%d_%d", slot0.currSelectTag, tonumber(slot8))
+		}).scoreLabel:setString(TR("%d", NationalHeroModel.items[slot1[tonumber(slot8)].Task.Id].point))
+
+		if 100 <= NationalHeroModel.items[slot1[tonumber(slot8)].Task.Id].point then
+			slot12.scoreLabel:setScale(0.75)
+		end
+
+		slot12.conditionLabel:setString(slot11.des)
+		slot12.progress:setMaxValue(slot10.Num)
+		slot12.progress:setCurrValue(slot10.Value)
+		slot12.progressLabel:setString(TR("进度: %d/%d", slot10.Value, slot10.Num))
+		slot12.card:setCardData({
+			modelId = Utility.analysisStrResList(slot11.reward)[1].resourceId,
+			num = Utility.analysisStrResList(slot11.reward)[1].num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot12.btn:setEnabled(slot10.IsFinish and not slot10.IsGetReward)
+		slot12.btn:setClickAction(function ()
+			slot0:requesetTaskReward(slot1.Id)
+
+			return 
+		end)
+		slot0.taskListView:pushBackCustomItem(slot12)
+	end
+
+	return 
+end
+slot0.refreshScore = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(NationalHeroPointRewardRelation.items) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.point < slot1.point
+	end)
+
+	slot2 = 0
+	slot3 = {}
+
+	for slot8, slot9 in pairs(slot4) do
+		if slot9 ~= "" then
+			slot3[tonumber(slot9)] = true
+		end
+	end
+
+	slot0.scoreListView:removeAllChildren()
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "scoreLayout").scoreLabel:setString(slot9.point)
+		slot0.createLayoutTemplateNode(slot0, "scoreLayout").card:setCardData({
+			modelId = Utility.analysisStrResList(slot9.reward)[1].resourceId,
+			num = Utility.analysisStrResList(slot9.reward)[1].num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot10.drawSprite:setVisible(slot3[slot9.point] or false)
+
+		if (slot9.point <= slot0.data.CurPoint and not slot12) or (not slot13 and slot2 == 0) then
+			slot2 = slot9.point
+		end
+
+		if slot13 and not slot12 then
+			ui.setWaveAnimation(slot10.card)
+		end
+
+		slot10.btn:setClickAction(function ()
+			if slot0 then
+				slot1.card:defaultCardClick()
+
+				return 
+			end
+
+			if not slot2 then
+				slot1.card:defaultCardClick()
+
+				return 
+			end
+
+			slot3:requesetPointReward(slot4.point)
+
+			return 
+		end)
+		slot0.scoreListView:pushBackCustomItem(slot10)
+	end
+
+	slot0.currScoreLabel:setString(TR("%d/%d", slot0.data.CurPoint, slot2))
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.currSelectTag = slot1
+
+	for slot5, slot6 in ipairs(slot0.tabView:getTabBtns()) do
+		if not slot6.selectSprite then
+			slot6.addChild(slot6, UIWrap.newControl("Sprite", {
+				image = "cssz_9.png",
+				pos = cc.p(0, -5)
+			}))
+
+			slot6.selectSprite = UIWrap.newControl("Sprite", {
+				image = "cssz_9.png",
+				pos = cc.p(0, -5)
+			})
+		end
+
+		slot6.selectSprite:setVisible(slot5 == slot1)
+	end
+
+	slot0.refreshTaskList(slot0)
+
+	return 
+end
+slot0.onCloseBtnCLick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleBtnCLick = function (slot0)
+	return 
+end
+slot0.onEffectShowAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.ActivityLuckFashionLayer",
+		data = {
+			fashionModelId = 19010006
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requesetPointReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPointReward",
+		moduleName = "NationalHero",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:refreshLayer()
+			dump(slot0.data)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requesetTaskReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTaskReward",
+		moduleName = "NationalHero",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:refreshLayer()
+			dump(slot0.data)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requesetGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Getinfo",
+		moduleName = "NationalHero",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

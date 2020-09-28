@@ -1,0 +1,929 @@
+slot0 = class("TeamCopyMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "qcql_22.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "parentNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			sizeApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -61,
+						y = -216
+					}
+				},
+				children = {}
+			},
+			{
+				name = "copyListView",
+				cType = "ListView",
+				params = {
+					bounce = true,
+					direction = true,
+					pos = {
+						x = -552,
+						y = -222
+					},
+					size = {
+						width = 400,
+						height = 473
+					}
+				},
+				children = {
+					{
+						name = "copyLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled14-image",
+								name = "lockImage",
+								type = "string"
+							},
+							{
+								value = "untitled15-text",
+								name = "nodeName",
+								type = "string"
+							},
+							{
+								value = "untitled17-image",
+								name = "campImage",
+								type = "string"
+							},
+							{
+								value = "untitled10-clickAction",
+								name = "onButtonClick",
+								type = "string"
+							},
+							{
+								value = "untitled11-hide",
+								name = "hideSelect",
+								type = "string"
+							},
+							{
+								value = "untitled18-initParams",
+								name = "headParams",
+								type = "string"
+							},
+							{
+								value = "untitled13-pos",
+								name = "initPos",
+								type = "string"
+							},
+							{
+								value = "untitled25-text",
+								name = "lvLimit",
+								type = "string"
+							},
+							{
+								value = "untitled25-hide",
+								name = "lvLimitHide",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 14.46,
+								y = 340.56
+							},
+							size = {
+								width = 320,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled13",
+								cType = "Node",
+								params = {
+									childName = "parent",
+									scale = 1,
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 316,
+										height = 96
+									}
+								},
+								children = {
+									{
+										name = "untitled10",
+										cType = "Button",
+										params = {
+											childName = "button",
+											image = "qcql_3.png",
+											swallowTouch = false,
+											clickAction = "onCloseBtnAction",
+											pos = {
+												x = 158,
+												y = 48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "Sprite",
+										params = {
+											image = "xkxx_61.png",
+											childName = "lockSprite",
+											pos = {
+												x = 45,
+												y = 48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											align = 0,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 75,
+												y = 65
+											},
+											text = TR("梅超风")
+										},
+										children = {}
+									},
+									{
+										name = "untitled25",
+										cType = "Label",
+										params = {
+											fontSize = 17,
+											hide = false,
+											align = 0,
+											childName = "lvLimitLabel",
+											text = "",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 130,
+												y = 32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "Sprite",
+										params = {
+											image = "tyxkxx_2.png",
+											childName = "campSprite",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 75,
+												y = 32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											childName = "headCard",
+											allowClick = false,
+											initParams = {},
+											pos = {
+												x = 260,
+												y = 49
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											image = "qcql_2.png",
+											hide = false,
+											pos = {
+												x = 158,
+												y = 48
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "rightBgSprite",
+				cType = "Sprite",
+				params = {
+					image = "qcql_1.png",
+					pos = {
+						x = 372,
+						y = 15
+					}
+				},
+				children = {
+					{
+						name = "introHintLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 85,
+								y = 424
+							},
+							text = TR("侠客介绍：")
+						},
+						children = {}
+					},
+					{
+						name = "introLabel",
+						cType = "Label",
+						params = {
+							text = "",
+							align = 0,
+							valign = 0,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 25,
+								y = 400
+							},
+							size = {
+								width = 295,
+								height = 230
+							}
+						},
+						children = {}
+					},
+					{
+						name = "rewardHintLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 85,
+								y = 150
+							},
+							text = TR("挑战奖励：")
+						},
+						children = {}
+					},
+					{
+						name = "rewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							swallowTouch = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 25,
+								y = 80
+							},
+							size = {
+								width = 295,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled24-initParams",
+										name = "cardData",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 0.97,
+										y = -0.1
+									},
+									size = {
+										width = 100,
+										height = 110
+									}
+								},
+								children = {
+									{
+										name = "untitled24",
+										cType = "CardNode",
+										params = {
+											childName = "card",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 60
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "campButton",
+				cType = "Button",
+				params = {
+					image = "tb_gn_14.png",
+					clickAction = "onCampBtnAction",
+					pos = {
+						x = -508,
+						y = -260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rankButton",
+				cType = "Button",
+				params = {
+					image = "tb_gn_12.png",
+					clickAction = "onRankBtnAction",
+					pos = {
+						x = -388,
+						y = -260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "challengButton",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onChallengBtnAction",
+					pos = {
+						x = 372,
+						y = -270
+					},
+					titleText = TR("挑 战")
+				},
+				children = {}
+			},
+			{
+				name = "createButton",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onCreateBtnAction",
+					pos = {
+						x = 302,
+						y = -270
+					},
+					titleText = TR("创建队伍")
+				},
+				children = {}
+			},
+			{
+				name = "joinButton",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onJoinBtnAction",
+					pos = {
+						x = 442,
+						y = -270
+					},
+					titleText = TR("加入队伍")
+				},
+				children = {}
+			},
+			{
+				name = "skillButton",
+				cType = "Button",
+				params = {
+					image = "qcql_31.png",
+					clickAction = "onSkillBtnAction",
+					hide = false,
+					pos = {
+						x = 502.28,
+						y = 231.41
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "closeButton",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseBtnAction",
+			posApt = 1,
+			titleImage = "qcql_4.png",
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			},
+			titleImageOffset = {
+				x = 0.6,
+				y = 0.5
+			}
+		},
+		children = {}
+	},
+	{
+		name = "ruleButton",
+		cType = "Button",
+		params = {
+			clickAction = "onRuleAction",
+			posApt = 1,
+			sizeApt = 1,
+			scaleApt = 4,
+			image = "c_3.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 250,
+				y = 625
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	}
+}
+
+require("teamCopy.TeamCopyHelper")
+
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.serverInfo = {}
+	slot0.copyNodeList = {}
+	slot0.selectedId = TeamCopyNodeModel.items[1].ID
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshNodeList = function (slot0)
+	slot0.copyNodeList = {}
+
+	slot0.copyListView:removeAllChildren()
+
+	slot2 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.selectedId = (0 < (slot0.serverInfo.TeamMaxNodeId or 0) and (slot0.serverInfo.TeamMaxNodeId or 0)) or slot0.serverInfo.SingleMaxNodeId or TeamCopyNodeModel.items[1].ID
+
+	if not TeamCopyNodeModel.items[slot0.selectedId] then
+		slot0.selectedId = slot1
+	end
+
+	slot5 = {
+		[ProfessionType.eDao] = "xkxx_56.png",
+		[ProfessionType.eJian] = "xkxx_58.png",
+		[ProfessionType.eLi] = "xkxx_60.png",
+		[ProfessionType.eQi] = "xkxx_62.png",
+		[ProfessionType.eJi] = "xkxx_64.png"
+	}
+
+	for slot9, slot10 in ipairs(TeamCopyNodeModel.items) do
+		slot16 = slot0.createLayoutTemplateNode(slot0, "copyLayout", {
+			lockImage = ((slot3 < slot10.ID or slot2 < slot10.openLv) and "c_21.png") or slot5[HeroModel.items[slot10.bossID].profession],
+			nodeName = slot10.name .. ((slot4 < slot10.ID and TR("(简单)")) or TR("(困难)")),
+			lvLimit = (slot2 < slot10.openLv and TR("%s级开启", slot10.openLv)) or TR("通关上一关"),
+			lvLimitHide = not (slot3 < slot10.ID or slot2 < slot10.openLv),
+			campImage = Utility.getHeroCampProfessionImg(slot10.bossID),
+			hideSelect = slot0.selectedId ~= slot10.ID,
+			initPos = cc.p((slot0.selectedId == slot10.ID and 15) or 0, 0),
+			headParams = {
+				needNotHave = false,
+				cardInfo = {
+					modelId = slot10.bossID
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder
+				}
+			},
+			onButtonClick = function ()
+				if slot0.selectedId == slot1.ID then
+					return 
+				end
+
+				slot0:setNodeSelected(slot0.selectedId, false)
+				slot0.setNodeSelected:setNodeSelected(slot1.ID, true)
+
+				slot0.setNodeSelected.setNodeSelected.selectedId = slot0.setNodeSelected.ID
+
+				slot0.setNodeSelected.setNodeSelected:refreshView()
+
+				return 
+			end
+		})
+
+		if slot15 then
+			slot16.parent.campSprite:setNormalGray(true)
+			slot16.parent.headCard:setGray()
+		elseif slot4 < slot10.ID then
+			slot16.parent.lockSprite:setNormalGray(true)
+		end
+
+		slot0.copyListView:pushBackCustomItem(slot16)
+
+		slot0.copyNodeList[slot10.ID] = {
+			Id = slot10.ID,
+			itemNode = slot16
+		}
+	end
+
+	return 
+end
+slot0.refreshView = function (slot0)
+	if not TeamCopyNodeModel.items[slot0.selectedId] then
+		return 
+	end
+
+	slot2 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot5 = Utility.analysisStrResList
+	slot6 = (slot0.selectedId <= (slot0.serverInfo.TeamMaxNodeId or 0) and slot1.rewardShow) or slot1.singleFirstReward
+
+	slot0.rewardListView:removeAllChildren()
+
+	for slot9, slot10 in pairs(slot5) do
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardData = {
+				cardInfo = slot10,
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	slot0.challengButton:setVisible(not slot4)
+	slot0.challengButton:setBright(slot0.selectedId <= slot0.serverInfo.SingleMaxNodeId and slot1.openLv <= slot2)
+	slot0.createButton:setVisible(slot4)
+	slot0.joinButton:setVisible(slot4)
+	slot0.heroNode:stopAllActions()
+	slot0.heroNode:runAction(cc.Sequence:create({
+		cc.MoveTo:create(0.2, cc.p(568, -216)),
+		cc.CallFunc:create(function ()
+			slot0.heroNode:removeAllChildren()
+			slot0.heroNode.removeAllChildren.heroNode:setPosition(cc.p(-568, -216))
+
+			if HeroModel.items[slot0.heroNode.removeAllChildren.heroNode.bossID] and slot0.drawingPicB ~= "" then
+				slot1 = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					scale = 0.52,
+					dataFile = slot0.drawingPicB
+				})
+
+				slot1.setPosition(slot1, cc.p(30, 0))
+				slot0.heroNode:addChild(slot1)
+			else
+				slot0.heroNode:addChild(UIWrap.newControl("Sprite", {
+					image = Utility.getHeroStandImage(slot1.bossID),
+					pos = cc.p(60, 240)
+				}))
+			end
+
+			return 
+		end),
+		cc.MoveTo:create(0.3, cc.p(-61, -216))
+	}))
+	slot0.introLabel:setString((HeroModel.items[slot1.bossID] and slot0.challengButton.setBright.intro) or "神秘侠客")
+
+	return 
+end
+slot0.setNodeSelected = function (slot0, slot1, slot2)
+	if not slot0.copyNodeList[slot1] then
+		return 
+	end
+
+	slot3.itemNode.parent:setPosition(cc.p((slot2 and 15) or 0, 0))
+	slot3.itemNode.parent.selectSprite:setVisible(slot2)
+
+	return 
+end
+slot0.hintGetReward = function (slot0)
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("有组队挑战奖励没有领取，请立即领取。"),
+		okCallback = function (slot0)
+			TeamCopyHelper:requestGetReward({
+				needShowReward = true,
+				dependLayer = slot0,
+				successCallback = function (slot0)
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleAction = function (slot0, slot1)
+	TeamCopyHelper:showRule()
+
+	return 
+end
+slot0.onCampBtnAction = function (slot0, slot1)
+	TeamCopyHelper:campFormation({
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			ui.showFlashView(TR("布阵成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRankBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "teamCopy.TeamCopyRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onChallengBtnAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < TeamCopyNodeModel.items[slot0.selectedId].openLv then
+		ui.showFlashView(TR("%s级开启", slot3.openLv))
+
+		return 
+	end
+
+	if (slot0.serverInfo.SingleMaxNodeId or 1) < slot0.selectedId then
+		ui.showFlashView(TR("该关卡还未解锁"))
+
+		return 
+	end
+
+	function slot5()
+		TeamCopyHelper:requestGetFightInfo({
+			copyModelId = slot0.selectedId,
+			dependLayer = slot0,
+			successCallback = function (slot0)
+				require("common.BattleEntry"):StartBattle({
+					fightInfo = slot0.FightInfo,
+					extraData = {
+						copyModelId = slot0.selectedId
+					}
+				})
+
+				return 
+			end
+		})
+
+		return 
+	end
+
+	if TeamCopyHelper:needCampFormation() then
+		TeamCopyHelper:campFormation({
+			dependLayer = slot0,
+			successCallback = function (slot0)
+				slot0()
+
+				return 
+			end
+		})
+	else
+		slot5()
+	end
+
+	return 
+end
+slot0.onCreateBtnAction = function (slot0, slot1)
+	slot2 = slot0.serverInfo.TeamFightNum or 99999
+	slot3 = slot0.serverInfo.BuyNum or 99999
+	slot4 = slot0.serverInfo.HelpRewardNum or 99999
+
+	if slot2 <= 0 and slot4 <= 0 then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("今日无法再获得群策群力助战奖励，是否确认？"),
+			okCallback = function ()
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "teamCopy.TeamCopyCreateLayer",
+					zOrder = Enums.ZOrderType.ePopLayer,
+					data = {
+						singleMaxNodeId = slot0.serverInfo.SingleMaxNodeId,
+						teamMaxNodeId = slot0.serverInfo.TeamMaxNodeId,
+						teamFightNum = slot0.serverInfo.TeamFightNum,
+						buyNum = slot0.serverInfo.BuyNum,
+						teamNodeId = slot0.selectedId
+					}
+				})
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "teamCopy.TeamCopyCreateLayer",
+			zOrder = Enums.ZOrderType.ePopLayer,
+			data = {
+				singleMaxNodeId = slot0.serverInfo.SingleMaxNodeId,
+				teamMaxNodeId = slot0.serverInfo.TeamMaxNodeId,
+				teamFightNum = slot0.serverInfo.TeamFightNum,
+				buyNum = slot0.serverInfo.BuyNum,
+				teamNodeId = slot0.selectedId
+			}
+		})
+	end
+
+	return 
+end
+slot0.onJoinBtnAction = function (slot0, slot1)
+	slot2 = slot0.serverInfo.TeamFightNum or 99999
+	slot3 = slot0.serverInfo.BuyNum or 99999
+	slot4 = slot0.serverInfo.HelpRewardNum or 99999
+
+	if slot2 <= 0 and slot4 <= 0 then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("今日无法再获得群策群力助战奖励，是否确认？"),
+			okCallback = function ()
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "teamCopy.TeamCopyJoinLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "teamCopy.TeamCopyJoinLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onSkillBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "teamCopy.TeamCopySkillAttrLayer",
+		data = {
+			npcID = (slot0.selectedId <= (slot0.serverInfo.TeamMaxNodeId or 0) and TeamCopyNodeModel.items[slot0.selectedId].teamNpcID) or TeamCopyNodeModel.items[slot0.selectedId].singleNpcID
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	TeamCopyHelper:requestGetInfo({
+		dependLayer = slot0,
+		successCallback = function (slot0)
+			dump(slot0, "response:")
+
+			slot0.serverInfo = slot0 or {}
+
+			TeamCopyHelper:requestGetFormationInfo()
+
+			if TeamCopyHelper.IsGetReward then
+				slot0:hintGetReward()
+			elseif TeamCopyHelper:isInRoom() then
+				LayerManager.addLayer({
+					name = "teamCopy.TeamCopyFormLayer",
+					data = slot0.RoomInfo
+				})
+
+				return 
+			end
+
+			slot0:refreshNodeList()
+			slot0:refreshView()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

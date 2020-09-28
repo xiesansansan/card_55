@@ -1,0 +1,30 @@
+slot0 = class("CacheModuleVisible", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mVisibleList = {}
+
+	return 
+end
+slot0.modifyCache = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mVisibleList[tonumber(slot5)] = slot6
+
+		EventAuto:postEvent(EventDefine.eModuleVisible .. slot5)
+	end
+
+	return 
+end
+slot0.getModuleVisibleData = function (slot0, slot1)
+	return slot0.mVisibleList[slot1] or {
+		Default = false
+	}
+end
+slot0.moduleIsVisible = function (slot0, slot1)
+	return slot0.getModuleVisibleData(slot0, slot1).Default
+end
+
+return slot0

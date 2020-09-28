@@ -1,0 +1,513 @@
+slot0 = class("FeijiCommTopChatLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled25",
+				cType = "Sprite",
+				params = {
+					image = "gcz_9.png",
+					reverse = 1,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "ourResLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 87.46,
+						y = 62.94
+					},
+					text = TR("我方积分: 0/2000")
+				},
+				children = {}
+			},
+			{
+				name = "ourBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_23.png",
+					bgImage = "jyt_22.png",
+					pos = {
+						x = 189.84,
+						y = 20
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled14",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled26",
+				cType = "Sprite",
+				params = {
+					image = "gcz_9.png",
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnChat",
+				cType = "Button",
+				params = {
+					image = "tb_gn_285.png",
+					clickAction = "onBtnChatAction",
+					pos = {
+						x = -54.14,
+						y = 143.21
+					}
+				},
+				children = {}
+			},
+			{
+				name = "otherResLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -256.05,
+						y = 58.96
+					},
+					text = TR("我方积分: 0/2000")
+				},
+				children = {}
+			},
+			{
+				name = "otherBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_23.png",
+					bgImage = "jyt_22.png",
+					pos = {
+						x = -181.48,
+						y = 20
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled23",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "buffRemainTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 0,
+						y = 30
+					},
+					text = TR("积分获取倒计时: 11:22:33")
+				},
+				children = {}
+			},
+			{
+				name = "resRemainTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 0,
+						y = 60
+					},
+					text = TR("神符刷新倒计时: 11:22:33")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled27",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "btnClose",
+				cType = "Button",
+				custom = {
+					{
+						value = 4,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled29",
+						cType = "Sprite",
+						params = {
+							image = "zq_9.png",
+							pos = {
+								x = 65.58,
+								y = 3.77
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mBarrageLayer",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer/BarrageTextLayer.lua"
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.closeAction = slot1 and slot1.closeAction
+	slot0.needScore = ShengyuanwarsConfig.items[1].winNeedPoint
+
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+	slot0.initUI(slot0)
+	slot0.registerMsgCallback(slot0)
+	slot0.registerChatCallback(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "btnClose" then
+			slot1.clickAction = slot0.closeAction
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	if Player:getGameData("ShengyuanwarsBarrageTextList") ~= nil and 0 < #slot1 then
+		slot0.mBarrageLayer:initTextList(slot1)
+	end
+
+	Player:saveGameData("ShengyuanwarsBarrageTextList", nil)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	Player:saveGameData("ShengyuanwarsBarrageTextList", slot0.mBarrageLayer:saveTextList())
+
+	return 
+end
+slot0.registerMsgCallback = function (slot0)
+	slot1(nil)
+	Utility.schedule(slot0.leftNode, slot1, 0.5)
+	EventAuto:registerAutoEvent(slot0.btnClose, {
+		FeiJiHelper.Events.eFeiJiScoreChanged
+	}, handler(slot0, slot0.resetResLabel))
+
+	return 
+end
+slot0.registerChatCallback = function (slot0)
+	slot1 = table.nums(FeiJiHelper.chatCache)
+
+	EventAuto:registerAutoEvent(slot0.btnChat, {
+		FeiJiHelper.Events.eFeiJiChatInfo
+	}, function (slot0, slot1)
+		if slot1 ~= nil and type(slot1) == "string" then
+			slot0.mBarrageLayer:showOneText(slot1)
+
+			return 
+		end
+
+		for slot6 = slot1 + 1, table.nums(FeiJiHelper.chatCache), 1 do
+			slot0.mBarrageLayer:showOneText(string.format("%s: %s%s", FeiJiHelper.chatCache[slot6].name or TR("#FFE748战江湖助手"), "#FFF8EA", slot7.message))
+
+			slot1 = slot1 + 1
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.resetResLabel = function (slot0)
+	slot0.ourResLabel:setString(TR("我方积分: %s%d/%d", "#37FF40", (FeiJiHelper.myTeamName == FeiJiHelper.teamB and FeiJiHelper.BResScore) or FeiJiHelper.AResScore, slot0.needScore))
+	slot0.otherResLabel:setString(TR("敌方积分: %s%d/%d", "#EA2C00", (FeiJiHelper.myTeamName == FeiJiHelper.teamB and FeiJiHelper.AResScore) or FeiJiHelper.BResScore, slot0.needScore))
+	slot0.ourBar:setMaxValue(slot0.needScore)
+	slot0.ourBar:setCurrValue((FeiJiHelper.myTeamName == FeiJiHelper.teamB and FeiJiHelper.BResScore) or FeiJiHelper.AResScore)
+	slot0.otherBar:setMaxValue(slot0.needScore)
+	slot0.otherBar:setCurrValue((FeiJiHelper.myTeamName == FeiJiHelper.teamB and FeiJiHelper.AResScore) or FeiJiHelper.BResScore)
+
+	return 
+end
+slot0.onGameEndAction = function (slot0)
+	slot0.leftNode:stopAllActions()
+	slot0.resetResLabel(slot0)
+	slot0.resRemainTimeLabel:setString(TR("本场比赛已结束"))
+
+	return 
+end
+slot0.onBtnChatAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "feiji.FeiJiDlgChatLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.initPlaneList = function (slot0)
+	slot0.mOurPlane = {}
+
+	for slot4, slot5 in ipairs(FeiJiHelper.planePos.Our) do
+		table.insert(slot0.mOurPlane, {
+			pos = slot5
+		})
+	end
+
+	slot0.mEnemyPlane = {}
+
+	for slot4, slot5 in ipairs(FeiJiHelper.planePos.Enemy) do
+		table.insert(slot0.mEnemyPlane, {
+			pos = slot5
+		})
+	end
+
+	return 
+end
+slot0.addOnePlane = function (slot0, slot1, slot2)
+	slot3 = slot0.mOurPlane
+
+	if slot2 ~= nil and slot2 == true then
+		slot3 = slot0.mEnemyPlane
+	end
+
+	for slot7, slot8 in ipairs(slot3) do
+		if slot8.node == nil then
+			slot8.node = slot1
+
+			slot8.node:setPosition(slot8.pos)
+			slot8.node:setLocalZOrder(-slot8.pos.y)
+
+			slot8.playerId = slot1.playerId
+
+			return slot7
+		end
+	end
+
+	return 
+end
+slot0.delOnePlane = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mOurPlane) do
+		if slot6.playerId == slot1 then
+			slot6.playerId = nil
+
+			if slot6.node then
+				slot6.node:removeFromParent()
+
+				slot6.node = nil
+			end
+
+			return 
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot0.mEnemyPlane) do
+		if slot6.playerId == slot1 then
+			slot6.playerId = nil
+
+			if slot6.node then
+				slot6.node:removeFromParent()
+
+				slot6.node = nil
+			end
+
+			return 
+		end
+	end
+
+	return 
+end
+slot0.operAllPlane = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mOurPlane) do
+		slot1(slot6)
+	end
+
+	for slot5, slot6 in ipairs(slot0.mEnemyPlane) do
+		slot1(slot6)
+	end
+
+	return 
+end
+slot0.findOnePlane = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mOurPlane) do
+		if slot6.playerId == slot1 then
+			return slot6.node
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot0.mEnemyPlane) do
+		if slot6.playerId == slot1 then
+			return slot6.node
+		end
+	end
+
+	return 
+end
+slot0.cleanPlaneNoInList = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot1.A) do
+		table.insert(slot2, slot7)
+	end
+
+	for slot6, slot7 in ipairs(slot1.B) do
+		table.insert(slot2, slot7)
+	end
+
+	for slot6, slot7 in ipairs(slot0.mOurPlane) do
+		if slot7.playerId ~= nil and table.indexof(slot2, slot7.playerId) == false then
+			slot7.playerId = nil
+
+			slot7.node:removeFromParent()
+
+			slot7.node = nil
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot0.mEnemyPlane) do
+		if slot7.playerId ~= nil and table.indexof(slot2, slot7.playerId) == false then
+			slot7.playerId = nil
+
+			slot7.node:removeFromParent()
+
+			slot7.node = nil
+		end
+	end
+
+	return 
+end
+slot0.onDanmuClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "feiji.FeiJiDlgBarrageLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.showKillFlash = function (slot0, slot1)
+	if slot1 == nil then
+		return 
+	end
+
+	slot2 = slot1.getContentSize(slot1)
+	slot3 = UIWrap.newControl("Sprite", {
+		image = "zq_42.png",
+		pos = cc.p(0, 100)
+	})
+
+	slot1.addChild(slot1, slot3)
+	slot3.runAction(slot3, cc.Sequence:create({
+		cc.MoveBy:create(2, cc.p(0, 30)),
+		cc.CallFunc:create(function ()
+			slot0:removeFromParent()
+
+			return 
+		end)
+	}))
+
+	return 
+end
+
+return slot0

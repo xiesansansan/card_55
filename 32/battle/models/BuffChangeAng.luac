@@ -1,0 +1,14 @@
+slot0 = require("battle.common.Const")
+class("BuffChangeAng", require("battle.models.Buff")).evalBuffHp = function (slot0)
+	slot0.owner:updateEnergy(slot0.damageRatioValue[2])
+
+	if 0 < slot0.damageRatioValue[2] then
+		slot0.owner:buffHintEffect(slot0.BuffValueType.buff_tsnuqi)
+	else
+		slot0.owner:buffHintEffect(slot0.BuffValueType.buff_jdnuqi)
+	end
+
+	return slot1.super.evalBuffHp(slot0)
+end
+
+return class("BuffChangeAng", require("battle.models.Buff"))

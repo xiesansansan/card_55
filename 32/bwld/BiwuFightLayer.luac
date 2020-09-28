@@ -1,0 +1,1567 @@
+slot0 = class("BiwuFightLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled163",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyyz_12.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyyz_12.png",
+			anchor = {
+				x = 0.5,
+				y = 0.5
+			},
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 1386,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled71",
+				cType = "Sprite",
+				params = {
+					image = "bwld_10.png",
+					pos = {
+						x = 693,
+						y = 320
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled72",
+				cType = "Sprite",
+				params = {
+					image = "bwld_20.png",
+					pos = {
+						x = 693,
+						y = 580
+					}
+				},
+				children = {
+					{
+						name = "untitled39",
+						cType = "Label",
+						params = {
+							color = {
+								g = 252,
+								r = 255,
+								b = 252
+							},
+							pos = {
+								x = 117,
+								y = 17
+							},
+							text = TR("请选择您的对决阵容")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "zhenfaTemplate",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 195,
+						y = 230
+					}
+				},
+				children = {
+					{
+						name = "untitled86",
+						cType = "Sprite",
+						params = {
+							image = "bwld_33.png",
+							pos = {
+								x = 0,
+								y = -55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						params = {
+							image = "zhenfaui_1801.png",
+							childName = "zhenfaUiSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled88",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "zhenfaName",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 0,
+								y = -55
+							},
+							text = TR("上阵阵法")
+						},
+						children = {}
+					},
+					{
+						name = "untitled92",
+						cType = "Button",
+						params = {
+							childName = "btn",
+							image = "c_pure.png",
+							clickAction = "onBtnSelectZhenfaAction",
+							pos = {
+								x = 0,
+								y = -10
+							},
+							size = {
+								width = 100,
+								height = 120
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled95",
+						cType = "Sprite",
+						params = {
+							image = "c_20.png",
+							childName = "addSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "nameTemplate",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled102-text",
+						name = "nameLabel",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 200,
+						y = 530
+					}
+				},
+				children = {
+					{
+						name = "untitled79",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_9.png",
+							pos = {
+								x = 0,
+								y = -114
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled80",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_7.png",
+							pos = {
+								x = 0,
+								y = -45
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled81",
+						cType = "Sprite",
+						params = {
+							image = "c_5.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = -80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled82",
+						cType = "Sprite",
+						params = {
+							image = "c_5.png",
+							hide = true,
+							pos = {
+								x = -20,
+								y = -80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled83",
+						cType = "Sprite",
+						params = {
+							image = "c_5.png",
+							hide = true,
+							pos = {
+								x = 20,
+								y = -80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled84",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							align = 1,
+							childName = "nameLabel",
+							valign = 0,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 0,
+								y = -87
+							},
+							size = {
+								width = 14,
+								height = 135
+							},
+							text = TR("名字名字名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled162",
+						cType = "Sprite",
+						params = {
+							image = "bwld_14.png",
+							pos = {
+								x = 0,
+								y = 11
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled85",
+						cType = "Label",
+						params = {
+							text = "1",
+							charCount = 12,
+							isRichText = true,
+							emptyInit = true,
+							fontName = "bwld_15.png",
+							childName = "stepLabel",
+							pos = {
+								x = 0,
+								y = 11
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "positionTemplate",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = 1,
+						name = "standPosTag",
+						type = "integer"
+					}
+				},
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 913.42,
+						y = 431.65
+					},
+					size = {
+						width = 100,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "untitled89",
+						cType = "Sprite",
+						params = {
+							image = "bwld_18.png",
+							pos = {
+								x = 50,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							childName = "label",
+							color = {
+								g = 253,
+								r = 255,
+								b = 253
+							},
+							pos = {
+								x = 50,
+								y = 7
+							},
+							text = TR("前下")
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "CardNode",
+						params = {
+							scale = 0.95,
+							childName = "header",
+							allowClick = true,
+							pos = {
+								x = 50,
+								y = 59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled60",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "speedLabel",
+							color = {
+								g = 255,
+								r = 55,
+								b = 64
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 50,
+								y = 55
+							},
+							text = TR("速度+0")
+						},
+						children = {}
+					},
+					{
+						name = "untitled66",
+						cType = "Sprite",
+						params = {
+							image = "c_pure.png",
+							childName = "zhuanjingSprite",
+							scale = 0.9,
+							pos = {
+								x = -10,
+								y = 59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled145",
+						cType = "Sprite",
+						params = {
+							childName = "wuxue",
+							image = "bwld_21.png",
+							hide = true,
+							pos = {
+								x = 50,
+								y = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled146",
+								cType = "Sprite",
+								params = {
+									image = "c_pure.png",
+									childName = "wuxueSprite",
+									scale = 0.45,
+									pos = {
+										x = 21,
+										y = 21
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled148",
+						cType = "Sprite",
+						params = {
+							childName = "zhuanjing",
+							image = "bwld_22.png",
+							hide = true,
+							pos = {
+								x = 100,
+								y = 60
+							}
+						},
+						children = {
+							{
+								name = "untitled149",
+								cType = "Sprite",
+								params = {
+									image = "bwld_23.png",
+									childName = "zhuanjingSprite",
+									pos = {
+										x = 12,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "pkNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 693,
+						y = 0
+					},
+					size = {
+						width = 568,
+						height = 640
+					}
+				},
+				children = {}
+			},
+			{
+				name = "myNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 125,
+						y = 0
+					},
+					size = {
+						width = 568,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "templateMyHeader",
+						cType = "TemplateNode",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 320,
+								y = 360
+							},
+							size = {
+								width = 160,
+								height = 160
+							}
+						},
+						children = {
+							{
+								name = "untitled153",
+								cType = "Node",
+								params = {
+									childName = "card",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled150",
+										cType = "Sprite",
+										params = {
+											image = "bwld_21.png",
+											childName = "wuxue",
+											pos = {
+												x = 80,
+												y = 142
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled33",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 80,
+												y = 80
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Button",
+										params = {
+											image = "bwld_17.png",
+											childName = "btnZhuanjing",
+											scale = 0.9,
+											pos = {
+												x = 20,
+												y = 82
+											}
+										},
+										children = {
+											{
+												name = "untitled58",
+												cType = "RedDot",
+												params = {
+													childName = "reddotZhuanjing",
+													visibleFunc = "cbTrainRedDotVisible",
+													hide = true,
+													offset = {
+														x = 0.9,
+														y = 1
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled36",
+										cType = "Button",
+										params = {
+											image = "bwld_16.png",
+											childName = "btnWuxue",
+											scale = 1,
+											pos = {
+												x = 80,
+												y = 142
+											}
+										},
+										children = {
+											{
+												name = "untitled57",
+												cType = "RedDot",
+												params = {
+													childName = "reddotWuxue",
+													visibleFunc = "cbTrainRedDotVisible",
+													hide = true,
+													offset = {
+														x = 0.9,
+														y = 0.9
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled59",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "speedLabel",
+											color = {
+												g = 255,
+												r = 55,
+												b = 64
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 80,
+												y = 80
+											},
+											text = TR("速度+0")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled99",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									childName = "addBtn",
+									pos = {
+										x = 80,
+										y = 80
+									},
+									size = {
+										width = 120,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled100",
+										cType = "Sprite",
+										params = {
+											image = "bwld_19.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "templateBottom",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 320,
+								y = 360
+							}
+						},
+						children = {
+							{
+								name = "untitled160",
+								cType = "Sprite",
+								params = {
+									image = "bwld_18.png",
+									pos = {
+										x = 80,
+										y = 18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled161",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "label",
+									color = {
+										g = 253,
+										r = 255,
+										b = 253
+									},
+									pos = {
+										x = 80,
+										y = 25
+									},
+									text = TR("前下")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onBtnStartFightAction",
+					pos = {
+						x = 693,
+						y = 80
+					},
+					titleText = TR("开 始")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled96",
+		cType = "Button",
+		params = {
+			clickAction = "onClose",
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 1024,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	}
+}
+slot1 = 50
+slot2 = {
+	{
+		standPosTag = 1,
+		text = TR("前下"),
+		pos = cc.p(300, 170),
+		pkPos = cc.p(192, 250)
+	},
+	{
+		standPosTag = 2,
+		text = TR("前上"),
+		pos = cc.p(300, 330),
+		pkPos = cc.p(192, 410)
+	},
+	{
+		standPosTag = 3,
+		text = TR("后下"),
+		pos = cc.p(150, 80),
+		pkPos = cc.p(332, 160)
+	},
+	{
+		standPosTag = 4,
+		text = TR("后中"),
+		pos = cc.p(150, 240),
+		pkPos = cc.p(332, 320)
+	},
+	{
+		standPosTag = 5,
+		text = TR("后上"),
+		pos = cc.p(150, 400),
+		pkPos = cc.p(332, 480)
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.targetInfo = slot1.targetInfo
+	slot0.myselfInfo = slot1.myInfo
+	slot0.playerInfo = slot1.playerInfo
+	slot0.mCurThemeId = slot0.myselfInfo.CurThemeId or 0
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.headerNodeList = {}
+
+	for slot4 = 1, 5, 1 do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "templateBottom")
+
+		slot6.setPosition(slot6, slot0[slot4].pos)
+		slot6.label:setString(slot0[slot4].text)
+		slot0.myNode:addChild(slot6)
+
+		slot0.headerNodeList[slot4] = {
+			heroModelId = 0,
+			index = slot4,
+			pos = slot0[slot4].pos,
+			bottomNode = slot6
+		}
+	end
+
+	slot2 = slot0.createLayoutTemplateNode(slot0, "nameTemplate")
+
+	slot2.setPosition(slot2, cc.p(80, 530))
+	slot0.myNode:addChild(slot2)
+	slot2.nameLabel:setString(slot0.playerInfo.Name)
+	slot2.stepLabel:setString(TR("%s胜", slot1(slot0.playerInfo.WinNum)))
+
+	slot3 = slot0.createLayoutTemplateNode(slot0, "nameTemplate")
+
+	slot3.setPosition(slot3, cc.p(488, 530))
+	slot0.pkNode:addChild(slot3)
+	slot3.nameLabel:setString(slot0.targetInfo.Name)
+	slot3.stepLabel:setString(TR("%s胜", function (slot0)
+		if slot0 == 0 then
+			return "0;"
+		end
+
+		slot1 = ""
+		slot3 = math.floor(slot0%10)
+
+		if 1 <= math.floor(slot0/10) then
+			slot1 = (slot2 == 1 and slot1 .. ":") or slot1 .. slot2 .. ":"
+		end
+
+		if slot3 ~= 0 then
+			slot1 = slot1 .. slot3
+		end
+
+		return slot1 .. ";"
+	end(slot0.targetInfo.WinNum)))
+	slot0.showEnemyFormation(slot0, cjson.decode(slot0.targetInfo.FormationInfo))
+
+	for slot7 = 1, 5, 1 do
+		slot0.refreshMyHero(slot0, slot7)
+	end
+
+	slot0.refreshMyZhenfa(slot0)
+	slot0.createLayoutTemplateNode(slot0, "zhenfaTemplate").setPosition(slot4, cc.p(488, 230))
+
+	if ZhenfaModel.items[slot0.targetInfo.StrategyId or 0] ~= nil then
+		slot6, slot7 = Utility.getColorValue(slot5.colorLv)
+
+		slot4.zhenfaUiSprite:setTexture(slot8)
+		slot4.zhenfaName:setString(slot5.name)
+		slot4.addSprite:setVisible(false)
+	end
+
+	slot4.btn:setEnabled(false)
+	slot0.pkNode:addChild(slot4)
+	ui.addTouchEvent({
+		node = slot0.myNode,
+		beganEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.myNode) then
+				return false
+			end
+
+			slot0:onBeganEvent(slot0.myNode:convertTouchToNodeSpace(slot0).x, slot0.myNode.convertTouchToNodeSpace(slot0).y)
+
+			return true
+		end,
+		movedEvent = function (slot0, slot1)
+			slot0:onMovedEvent(slot0.myNode:convertTouchToNodeSpace(slot0).x, slot0.myNode.convertTouchToNodeSpace(slot0).y)
+
+			return 
+		end,
+		endedEvent = function (slot0, slot1)
+			slot0:onEndedEvent(slot0.myNode:convertTouchToNodeSpace(slot0).x, slot0.myNode.convertTouchToNodeSpace(slot0).y)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	return 
+end
+slot0.onExit = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.myselfInfo.Formation) do
+		if 0 < slot6.ModelId then
+			slot1 = slot1 + 1
+		end
+	end
+
+	if slot1 == 0 then
+		return 
+	end
+
+	require("network.GameSocket"):socketRequest({
+		methodName = "Update",
+		moduleName = "BiwuInfo",
+		needWait = false,
+		methodData = {},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.cbTrainRedDotVisible = function (slot0)
+	return 
+end
+slot0.showEnemyFormation = function (slot0, slot1)
+	for slot5 = 1, 5, 1 do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "positionTemplate")
+
+		slot7.setPosition(slot7, slot0[slot5].pkPos)
+		slot0.pkNode:addChild(slot7)
+
+		slot7.standPosTag = slot0[slot5].standPosTag
+
+		slot7.label:setString(slot0[slot5].text)
+
+		if slot1[tostring(slot5)] ~= nil and slot8.ModelId ~= nil and 0 < slot8.ModelId then
+			slot10 = HeroModel.items[(slot0.targetInfo.IsRobot == true and BiwuLundaoNpcRelation.items[slot8.ModelId]) or BiwuNpcRelation.items[slot8.ModelId].heroId]
+
+			slot7.header:setCardData(nil, {
+				Enums.CardShowAttr.eLevel,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv
+			}, {
+				ModelId = (slot0.targetInfo.IsRobot == true and BiwuLundaoNpcRelation.items[slot8.ModelId]) or BiwuNpcRelation.items[slot8.ModelId].heroId,
+				Lv = (slot0.targetInfo.IsRobot == true and BiwuLundaoNpcRelation.items[slot8.ModelId]) or BiwuNpcRelation.items[slot8.ModelId].Lv,
+				Star = (slot0.targetInfo.IsRobot == true and BiwuLundaoNpcRelation.items[slot8.ModelId]) or BiwuNpcRelation.items[slot8.ModelId].star,
+				TrainLv = (slot0.targetInfo.IsRobot == true and BiwuLundaoNpcRelation.items[slot8.ModelId]) or BiwuNpcRelation.items[slot8.ModelId].trainLv,
+				HeroRoadInfo = {
+					RoadID = slot8.RoadId,
+					NodeID = slot1
+				}
+			})
+			slot7.header:setClickAction(function ()
+				slot0 = clone(clone)
+
+				for slot4, slot5 in ipairs({
+					"WuxueSuitId",
+					"RoadId"
+				}) do
+					slot0[slot5] = slot1[slot5]
+				end
+
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "hero.HeroDetialViewLayer",
+					data = {
+						isSelf = true,
+						heroModelId = slot0.heroId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+
+				return 
+			end)
+
+			for slot14, slot15 in pairs(slot7.header:getAttrCtrl(Enums.CardShowAttr.eRightText)) do
+				slot15.setVisible(slot15, false)
+			end
+
+			slot7.header:setVisible(true)
+
+			if not tolua.isnull(slot7.header.heroRoadSprite) then
+				slot7.header.heroRoadSprite:setVisible(false)
+			end
+
+			if ZhenfaModel.items[slot0.targetInfo.StrategyId or 0] ~= nil then
+				slot7.speedLabel:setString(TR("速度+%s", slot12))
+				slot7.speedLabel:stopAllActions()
+				slot7.speedLabel:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeIn:create(1), cc.DelayTime:create(1), cc.FadeOut:create(1))))
+			else
+				slot7.speedLabel:setString("")
+			end
+
+			slot7.speedLabel:setVisible(false)
+
+			if 0 < slot8.RoadId then
+				slot7.zhuanjing:setVisible(true)
+				slot7.zhuanjing.zhuanjingSprite:setTexture(HeroRoadDecRelation.items[slot10.profession][slot8.RoadId].roadPic .. ".png")
+			end
+
+			if WuxueSuitIntroRelation.items[slot8.WuxueSuitId or 0] ~= nil then
+				slot7.wuxue:setVisible(true)
+				slot7.wuxue:setTexture("bwld_21.png")
+				slot7.wuxue.wuxueSprite:setTexture(slot12.suitPic .. ".png")
+			else
+				slot7.wuxue:setTexture("bwld_16.png")
+				slot7.wuxue.wuxueSprite:setTexture("c_pure.png")
+			end
+		else
+			slot7.header:setVisible(false)
+			slot7.speedLabel:setString("")
+			slot7.speedLabel:setVisible(false)
+		end
+	end
+
+	return 
+end
+slot0.refreshMyHero = function (slot0, slot1)
+	if slot0.myselfInfo.Formation[tostring(slot1)] ~= nil and slot2.ModelId ~= nil and 0 < slot2.ModelId then
+		slot0.heroToWork(slot0, slot2.ModelId, slot1)
+	else
+		slot0.heroUnWork(slot0, slot1)
+	end
+
+	return 
+end
+slot0.refreshMyZhenfa = function (slot0)
+	slot1 = slot0.myselfInfo.StrategyId ~= nil and 0 < slot0.myselfInfo.StrategyId
+	slot2 = slot0.myZhenfanNode
+
+	if not slot0.myZhenfanNode then
+		slot0.createLayoutTemplateNode(slot0, "zhenfaTemplate").setPosition(slot2, cc.p(80, 230))
+		slot0.myNode:addChild(slot0.createLayoutTemplateNode(slot0, "zhenfaTemplate"))
+
+		slot0.myZhenfanNode = slot0.createLayoutTemplateNode(slot0, "zhenfaTemplate")
+	end
+
+	if slot1 then
+		slot4, slot5 = Utility.getColorValue(ZhenfaModel.items[slot0.myselfInfo.StrategyId].colorLv)
+
+		slot2.zhenfaUiSprite:setTexture(slot6)
+		slot2.zhenfaName:setString(ZhenfaModel.items[slot0.myselfInfo.StrategyId].name)
+
+		for slot10 = 1, 5, 1 do
+			slot12 = slot3[string.format("position%sSp", slot10)]
+
+			if slot0.headerNodeList[slot10].node.card.speedLabel ~= nil then
+				slot11.card.speedLabel:setString(TR("速度+%s", slot12))
+				slot11.card.speedLabel:stopAllActions()
+				slot11.card.speedLabel:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeIn:create(1), cc.DelayTime:create(1), cc.FadeOut:create(1))))
+			end
+
+			slot11.card.speedLabel:setVisible(false)
+		end
+	else
+		slot2.zhenfaUiSprite:setTexture("zhenfaui_1801.png")
+		slot2.zhenfaName:setString(TR("上阵阵法"))
+
+		for slot6 = 1, 5, 1 do
+			if slot0.headerNodeList[slot6].node.card.speedLabel ~= nil then
+				slot7.card.speedLabel:setString("")
+				slot7.card.speedLabel:stopAllActions()
+			end
+
+			slot7.card.speedLabel:setVisible(false)
+		end
+	end
+
+	slot2.addSprite:setVisible(not slot1)
+	slot2.addSprite:stopAllActions()
+	slot2.addSprite:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.ScaleTo:create(1, 1.2),
+		cc.ScaleTo:create(1, 1)
+	})))
+
+	return 
+end
+slot0.heroToWork = function (slot0, slot1, slot2)
+	if not slot0.headerNodeList[slot2].node then
+		slot0.headerNodeList[slot2].node = slot0.createHeroHeader(slot0, slot1, slot2)
+
+		slot0.myNode:addChild(slot0.createHeroHeader(slot0, slot1, slot2), 1)
+	else
+		slot3.setHero(slot3, slot1, slot2)
+	end
+
+	slot0.headerNodeList[slot2].node = slot3
+
+	return 
+end
+slot0.heroUnWork = function (slot0, slot1)
+	if not slot0.headerNodeList[slot1].node then
+		slot0.headerNodeList[slot1].node = slot0.createHeroHeader(slot0, nil, slot1)
+
+		slot0.myNode:addChild(slot0.createHeroHeader(slot0, nil, slot1), 1)
+	else
+		slot2.setEmpty(slot2, slot1)
+	end
+
+	slot0.headerNodeList[slot1].node = slot2
+
+	return 
+end
+slot0.createHeroHeader = function (slot0, slot1, slot2)
+	slot3 = {
+		Enums.CardShowAttr.eLevel,
+		Enums.CardShowAttr.eStar,
+		Enums.CardShowAttr.eTrainLv
+	}
+	slot4 = slot0.createLayoutTemplateNode(slot0, "templateMyHeader")
+	slot4.setHero = function (slot0, slot1)
+		slot0.getCampIdx(slot0).setPosition(slot0, slot2)
+		slot0.getCampIdx(slot0).setCampIdx(slot0, slot0)
+
+		slot0.getCampIdx(slot0).heroModelId = slot1
+
+		slot0.getCampIdx(slot0).card:setVisible(true)
+		slot0.getCampIdx(slot0).addBtn:setVisible(false)
+
+		slot5 = HeroModel.items[BiwuNpcRelation.items[slot1].heroId]
+
+		slot0.getCampIdx(slot0).card.cardNode:setCardData(nil, slot3, slot6)
+		slot0.getCampIdx(slot0).card.cardNode:setClickAction(function ()
+			ui.showMessageBox({
+				text = TR("是否要换下该侠客？"),
+				okCallback = function ()
+					slot0:requestSelectHero(slot1:getCampIdx(), slot2.heroId, false)
+
+					return 
+				end
+			})
+
+			return 
+		end)
+
+		for slot10, slot11 in pairs(slot0.getCampIdx(slot0).card.cardNode:getAttrCtrl(Enums.CardShowAttr.eRightText)) do
+			slot11.setVisible(slot11, false)
+		end
+
+		if not tolua.isnull(slot0.card.cardNode.heroRoadSprite) then
+			slot0.card.cardNode.heroRoadSprite:setVisible(false)
+		end
+
+		slot0.card.btnWuxue.reddotWuxue:setVisible(not (slot3.WuxueSuitId ~= nil and 0 < slot3.WuxueSuitId))
+		slot0.card.btnZhuanjing.reddotZhuanjing:setVisible(not (slot3.RoadId ~= nil and 0 < slot3.RoadId))
+
+		if slot7 == true then
+			slot0.card.btnWuxue:loadTextures(slot10, WuxueSuitIntroRelation.items[slot3.WuxueSuitId].suitPic .. ".png")
+			slot0.card.btnWuxue:setScale(0.45)
+		else
+			slot0.card.btnWuxue:loadTextures("bwld_16.png", "bwld_16.png")
+			slot0.card.btnWuxue:setScale(1)
+		end
+
+		slot0.card.btnWuxue.heroModelId = slot4.heroId
+
+		slot0.card.btnWuxue:setClickAction(function (slot0)
+			slot0:dlgSelectBiwuWuxue(slot1:getCampIdx())
+
+			return 
+		end)
+
+		if slot8 == true then
+			slot0.card.btnZhuanjing:loadTextures(HeroRoadDecRelation.items[slot5.profession][slot3.RoadId].roadPic .. ".png", )
+		else
+			slot0.card.btnZhuanjing:loadTextures("bwld_17.png", "bwld_17.png")
+		end
+
+		slot0.card.btnZhuanjing.heroModelId = slot4.heroId
+
+		slot0.card.btnZhuanjing:setClickAction(function (slot0)
+			slot0:dlgSelectBiwuZhuanjing(slot1:getCampIdx())
+
+			return 
+		end)
+
+		if HeroModel.items[slot1].roadClassID == 0 then
+			slot0.card.btnZhuanjing:setVisible(false)
+			slot0.card.btnZhuanjing.reddotZhuanjing:setVisible(false)
+		end
+
+		return 
+	end
+	slot4.setEmpty = function (slot0)
+		slot0.getCampIdx(slot0).setPosition(slot0, slot1)
+		slot0.getCampIdx(slot0).setCampIdx(slot0, slot0)
+
+		slot0.getCampIdx(slot0).heroModelId = 0
+
+		slot0.getCampIdx(slot0).card:setVisible(false)
+		slot0.getCampIdx(slot0).addBtn:setVisible(true)
+		slot0.getCampIdx(slot0).addBtn:setClickAction(function (slot0)
+			slot0:dlgSelectBiwuHero(slot1:getCampIdx())
+
+			return 
+		end)
+
+		return 
+	end
+	slot4.setCampIdx = function (slot0, slot1)
+		slot0.campIndex = slot1
+
+		return 
+	end
+	slot4.getCampIdx = function (slot0)
+		return slot0.campIndex
+	end
+
+	slot4.setCampIdx(slot4, slot2)
+
+	if slot1 then
+		slot4.setHero(slot4, slot1, slot2)
+	else
+		slot4.setEmpty(slot4, slot2)
+	end
+
+	slot4.addBtn:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.ScaleTo:create(1, 1.2),
+		cc.ScaleTo:create(1, 1)
+	})))
+
+	return slot4
+end
+slot0.getIndexByHero = function (slot0, slot1)
+	for slot5 = 1, 5, 1 do
+		if slot0.myselfInfo.Formation[tostring(slot5)] or {}.ModelId ~= nil and slot6.ModelId == slot1 then
+			return slot5
+		end
+	end
+
+	return 0
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeTopCleanUpLayer(true)
+	LayerManager.addLayer({
+		name = "challenge.ChallengeLayer"
+	})
+
+	return 
+end
+slot0.onBtnStartFightAction = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.myselfInfo.Formation) do
+		if 0 < slot6.ModelId then
+			slot1 = slot1 + 1
+		end
+	end
+
+	if slot1 == 0 then
+		ui.showFlashView(TR("请先选择要出战的侠客吧~"))
+
+		return 
+	end
+
+	slot0.requestUpdateFormation(slot0, function ()
+		slot0:requestFight()
+
+		return 
+	end)
+
+	return 
+end
+slot0.onBtnSelectZhenfaAction = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(ZhenfaModel.items) do
+		clone(slot6).ZhenfaId = slot5
+
+		table.insert(slot1, clone(slot6))
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "strategy.StrategySelectLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			modleId = ModuleSub.eBiWu,
+			stratageID = slot0.myselfInfo.StrategyId,
+			stratageList = slot1,
+			selectCallBack = function (slot0)
+				slot0:requestSelectZhenfa(slot0)
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.dlgSelectBiwuHero = function (slot0, slot1)
+	dump(slot1)
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.myselfInfo.Formation) do
+		if 0 < slot7.ModelId then
+			table.insert(slot2, slot7.ModelId)
+		end
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bwld.BiwuSelectHeroLayer",
+		data = {
+			biwuThemeId = slot0.mCurThemeId,
+			inTeamHeroList = slot2,
+			selectCallback = function (slot0)
+				slot0:requestSelectHero(slot0.requestSelectHero, slot0, true)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.dlgSelectBiwuWuxue = function (slot0, slot1)
+	dump(slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bwld.BiwuDlgSelectWuxueLayer",
+		data = {
+			wuxueSuitId = slot0.myselfInfo.Formation[tostring(slot1)].WuxueSuitId,
+			callback = function (slot0)
+				slot0:requestSelectTrain(slot0.requestSelectTrain, 2, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.dlgSelectBiwuZhuanjing = function (slot0, slot1)
+	dump(slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bwld.BiwuDlgSelectZhuanjingLayer",
+		data = {
+			jobId = HeroModel.items[slot0.myselfInfo.Formation[tostring(slot1)].ModelId].profession,
+			classId = HeroModel.items[slot0.myselfInfo.Formation[tostring(slot1)].ModelId].roadClassID,
+			roadId = slot0.myselfInfo.Formation[tostring(slot1)].RoadId,
+			callback = function (slot0)
+				slot0:requestSelectTrain(slot0.requestSelectTrain, 3, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getClickItem = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(slot0.headerNodeList) do
+		if cc.rectContainsPoint(cc.rect(slot8.pos.x, slot8.pos.y, 160, 160), cc.p(slot1, slot2)) then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	return slot3
+end
+slot0.onBeganEvent = function (slot0, slot1, slot2)
+	slot0.lastClickPos = nil
+	slot0.lastNodePos = nil
+	slot0.clickItem = slot0.getClickItem(slot0, slot1, slot2)
+
+	if slot0.clickItem ~= nil and slot0.clickItem.node ~= nil then
+		slot0.clickItem.node:setLocalZOrder(2)
+
+		slot0.lastNodePos = slot0.clickItem.pos
+	else
+		slot0.clickItem = nil
+	end
+
+	return 
+end
+slot0.onMovedEvent = function (slot0, slot1, slot2)
+	if slot0.clickItem == nil or slot0.clickItem.node == nil or slot0.lastNodePos == nil then
+		return 
+	end
+
+	if slot0.lastClickPos == nil then
+		slot0.lastClickPos = cc.p(slot1, slot2)
+	else
+		slot4 = slot2 - slot0.lastClickPos.y
+
+		if 3 <= math.abs(slot3) or 3 <= math.abs(slot4) then
+			slot0.lastNodePos = cc.p(slot0.lastNodePos.x + slot3, slot0.lastNodePos.y + slot4)
+
+			slot0.clickItem.node:setPosition(slot0.lastNodePos)
+
+			slot0.lastClickPos = cc.p(slot1, slot2)
+		end
+	end
+
+	return 
+end
+slot0.onEndedEvent = function (slot0, slot1, slot2)
+	if slot0.clickItem == nil or slot0.clickItem.node == nil or slot0.lastClickPos == nil then
+		return 
+	end
+
+	if slot0.getClickItem(slot0, slot1, slot2) ~= nil and slot3.index ~= slot0.clickItem.index then
+		if slot3.node ~= nil then
+			slot3.node:runAction(cc.MoveTo:create(0.1, slot0.clickItem.pos))
+		end
+
+		slot0.clickItem.node:runAction(cc.MoveTo:create(0.1, slot3.pos))
+		slot0.clickItem.node:setLocalZOrder(1)
+
+		slot6 = nil
+		slot7 = slot0.clickItem.node:getCampIdx()
+		slot8 = slot3.node:getCampIdx()
+		slot0.headerNodeList[slot0.clickItem.index].node = slot3.node
+		slot0.headerNodeList[slot0.clickItem.index].heroModelId = slot3.heroModelId
+
+		slot0.headerNodeList[slot0.clickItem.index].node:setCampIdx(slot7)
+
+		slot0.headerNodeList[slot3.index].node = slot0.clickItem.node
+		slot0.headerNodeList[slot3.index].heroModelId = slot0.clickItem.heroModelId
+
+		slot0.clickItem.node.setCampIdx(slot4, slot8)
+		dump(string.format("交换 %d <---> %d", slot7, slot8))
+		slot0.requestDragHero(slot0, slot8, slot7)
+	else
+		slot0.clickItem.node:runAction(cc.MoveTo:create(0.1, slot0.clickItem.pos))
+	end
+
+	slot0.clickItem = nil
+	slot0.lastClickPos = nil
+	slot0.lastNodePos = nil
+
+	return 
+end
+slot0.requestSelectHero = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "SelectHero",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			slot0.myselfInfo = slot0
+
+			slot0:refreshMyHero(slot0.refreshMyHero)
+			slot0:refreshMyZhenfa()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDragHero = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Drag",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.myselfInfo = slot0
+
+			slot0:refreshMyZhenfa()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSelectZhenfa = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "SelectStrategy",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.myselfInfo = slot0
+
+			slot0:refreshMyZhenfa()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSelectTrain = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "SelectFap",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			slot0.myselfInfo = slot0
+
+			slot0:refreshMyHero(slot0.refreshMyHero)
+			slot0:refreshMyZhenfa()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUpdateFormation = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Update",
+		moduleName = "BiwuInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			if slot0 ~= nil then
+				slot0()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFight = function (slot0)
+	slot1 = slot0.playerInfo
+
+	slot0.socketRequest(slot0, {
+		methodName = "Fight",
+		moduleName = "BiwuInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			LayerManager.removeTopCleanUpLayer(false)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo.FightInfo,
+				extraData = {
+					dropList = slot0.BaseGetGameResourceList,
+					newWinNum = slot0.FightInfo.WinNum,
+					oldWinNum = slot0.WinNum,
+					isFightMode = slot0.FightInfo.IsFight,
+					IsWin = slot0.FightInfo.IsWin
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

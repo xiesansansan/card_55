@@ -1,0 +1,13 @@
+function schedule(slot0, slot1, slot2)
+	slot0.runAction(slot0, cc.RepeatForever:create(slot4))
+
+	return cc.RepeatForever.create(slot4)
+end
+
+function performWithDelay(slot0, slot1, slot2)
+	slot0.runAction(slot0, cc.Sequence:create(slot3, cc.CallFunc:create(slot1)))
+
+	return cc.Sequence.create(slot3, cc.CallFunc.create(slot1))
+end
+
+return 

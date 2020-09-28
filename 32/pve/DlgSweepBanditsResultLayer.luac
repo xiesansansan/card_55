@@ -1,0 +1,207 @@
+slot0 = class("DlgSweepBanditsResultLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled19",
+		cType = "MsgBoxBg",
+		params = {
+			okCallback = "onCloseCallback",
+			posApt = 1,
+			image = "tc_2.png",
+			btnPosY = 65,
+			okText = TR("确 定"),
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 550,
+				height = 480
+			},
+			titleText = TR("扫荡结果")
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 275,
+						y = 278
+					},
+					size = {
+						width = 480,
+						height = 300
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 120,
+					pos = {
+						x = 275,
+						y = 278
+					},
+					size = {
+						width = 480,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "templateGridCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled23-initParams",
+								name = "cardParams",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 120,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "CardNode",
+								params = {
+									childName = "cardNode",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 60,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot1 = slot1 or {}
+	slot2 = {}
+
+	function slot3(slot0)
+		slot0[slot0.resourceId] = (slot0[slot0.resourceId] or 0) + slot0.num
+
+		return 
+	end
+
+	for slot7, slot8 in ipairs(slot1.showList) do
+		for slot12, slot13 in ipairs(Utility.analysisStrResList(slot8)) do
+			slot3(slot13)
+		end
+
+		if slot1.otherShowList and slot1.otherShowList[slot7] ~= "" then
+			for slot12, slot13 in pairs(Utility.analysisStrResList(slot1.otherShowList[slot7])) do
+				slot3(slot13)
+			end
+		end
+	end
+
+	slot0.mShowList = {}
+	slot4 = 9999
+
+	function slot5(slot0, slot1)
+		for slot6 = 1, math.ceil(slot1/slot0), 1 do
+			table.insert(slot1.mShowList, {
+				resourceId = slot0,
+				num = (slot6 == slot2 and slot1%slot0) or slot0
+			})
+		end
+
+		return 
+	end
+
+	for slot9, slot10 in pairs(slot2) do
+		if slot9 ~= ResourceTypeSub.eGold and slot9 ~= ResourceTypeSub.eExp then
+			slot5(slot9, slot10)
+		else
+			table.insert(slot0.mShowList, {
+				resourceId = slot9,
+				num = slot10
+			})
+		end
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	PlayerAttrObj:checkLvUp()
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "GridView" then
+			slot1.itemNum = #slot0.mShowList
+		end
+
+		return 
+	end)
+	slot0.mGridView:reloadData()
+
+	return 
+end
+slot0.onCloseCallback = function (slot0)
+	LayerManager.removeLayer(slot0)
+	PlayerAttrObj:checkLvUp()
+
+	return 
+end
+slot0.onCreateGridAction = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "templateGridCell", {
+		cardParams = {
+			cardInfo = {
+				modelId = slot0.mShowList[slot2].resourceId,
+				num = slot0.mShowList[slot2].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eName,
+				Enums.CardShowAttr.eNum
+			}
+		}
+	})
+	slot6 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if slot0.mShowList[slot2].resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < slot6 and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") ~= nil and 0 < slot7 then
+		slot5.cardNode:addChild(UIWrap.newControl("Label", {
+			fontSize = 15,
+			text = TR("经验+%s%%", slot7*100),
+			color = cc.c3b(55, 255, 64),
+			anchor = cc.p(1, 1),
+			outlineColor = cc.c3b(51, 42, 24),
+			pos = cc.p(85, 88)
+		}))
+	end
+
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+
+return slot0

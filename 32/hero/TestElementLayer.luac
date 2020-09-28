@@ -1,0 +1,1370 @@
+slot0 = class("TestElementLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			image = "tc_1.png",
+			closeAction = "onCloseBtnClickAction",
+			size = {
+				width = 700,
+				height = 640
+			},
+			titleText = TR("武将训练")
+		},
+		children = {
+			{
+				name = "listViewBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 346.69,
+						y = 551.11
+					},
+					size = {
+						width = 600,
+						height = 500
+					}
+				},
+				children = {
+					{
+						name = "waysListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							swallowTouch = false,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 299.78,
+								y = 495.6
+							},
+							size = {
+								width = 588,
+								height = 500
+							}
+						},
+						children = {
+							{
+								name = "buyLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 588,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "untitled10",
+										cType = "Scale9Sprite",
+										params = {
+											childName = "bgSprite",
+											image = "c_34.png",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 294,
+												y = 75
+											},
+											size = {
+												width = 580,
+												height = 140
+											}
+										},
+										children = {
+											{
+												name = "untitled19",
+												cType = "CardNode",
+												params = {
+													childName = "cardNode",
+													allowClick = true,
+													pos = {
+														x = 90.54,
+														y = 63.93
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled15",
+												cType = "BadgeText",
+												params = {
+													fontSize = 20,
+													hide = true,
+													image = "c_76.png",
+													childName = "badge",
+													fontColor = {
+														g = 245,
+														r = 255,
+														b = 129
+													},
+													pos = {
+														x = 583,
+														y = 138
+													},
+													text = TR("推荐")
+												},
+												children = {}
+											},
+											{
+												name = "untitled20",
+												cType = "ResLabel",
+												params = {
+													fontSize = 20,
+													num = 0,
+													modelId = 1111,
+													childName = "priceLabel",
+													color = {
+														g = 49,
+														r = 49,
+														b = 49
+													},
+													pos = {
+														x = 155.54,
+														y = 83.93
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled21",
+												cType = "Sprite",
+												params = {
+													hide = true,
+													image = "c_46.png",
+													childName = "discountSprite",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 185.54,
+														y = 83.93
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled22",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													hide = true,
+													text = "0",
+													childName = "discountLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 49,
+														r = 49,
+														b = 49
+													},
+													pos = {
+														x = 240.54,
+														y = 81.93
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled23",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													text = "limit",
+													childName = "limitLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 49,
+														r = 49,
+														b = 49
+													},
+													pos = {
+														x = 155.54,
+														y = 38.93
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled18",
+												cType = "Button",
+												params = {
+													childName = "buyButton",
+													scale = 0.9,
+													swallowTouch = false,
+													image = "c_19.png",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 425.54,
+														y = 63.93
+													},
+													titleText = TR("购 买")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "pveMopLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 588,
+										height = 170
+									}
+								},
+								children = {
+									{
+										name = "untitled25",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_34.png",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 294,
+												y = 85
+											},
+											size = {
+												width = 580,
+												height = 160
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled30",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 127,
+												r = 253,
+												b = 51
+											},
+											pos = {
+												x = 51.05,
+												y = 135.88
+											},
+											text = TR("第1章")
+										},
+										children = {}
+									},
+									{
+										name = "untitled33",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											childName = "resLabel",
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 445.67,
+												y = 117.23
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled34",
+										cType = "ListView",
+										params = {
+											childName = "rewardListView",
+											direction = false,
+											pos = {
+												x = 35.67,
+												y = 22.23
+											},
+											size = {
+												width = 390,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "pveMopRewardCell",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled36-initParams",
+														name = "cardParams",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 96,
+														height = 100
+													}
+												},
+												children = {
+													{
+														name = "untitled36",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															childName = "cardNode",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 48,
+																y = 60
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled51",
+														cType = "BadgeText",
+														params = {
+															fontSize = 22,
+															hide = true,
+															fontRotation = -45,
+															image = "c_88.png",
+															childName = "doubleBadge",
+															fontColor = {
+																g = 245,
+																r = 255,
+																b = 129
+															},
+															fontPos = {
+																x = 20,
+																y = 38
+															},
+															pos = {
+																x = 66,
+																y = 95
+															},
+															text = TR("双倍")
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "untitled32",
+										cType = "Button",
+										params = {
+											childName = "goButton",
+											scale = 0.9,
+											swallowTouch = false,
+											image = "c_19.png",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 435.67,
+												y = 67.23
+											},
+											titleText = TR("扫 荡")
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "BadgeText",
+										params = {
+											fontSize = 20,
+											hide = true,
+											image = "c_76.png",
+											childName = "badge",
+											fontColor = {
+												g = 245,
+												r = 255,
+												b = 129
+											},
+											pos = {
+												x = 583,
+												y = 165
+											},
+											text = TR("推荐")
+										},
+										children = {}
+									},
+									{
+										name = "untitled37",
+										cType = "Sprite",
+										params = {
+											image = "c_49.png",
+											childName = "elitSprite",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 218.63,
+												y = 135.89
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "eliteLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 588,
+										height = 170
+									}
+								},
+								children = {
+									{
+										name = "untitled39",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_34.png",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 294,
+												y = 85
+											},
+											size = {
+												width = 580,
+												height = 160
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 127,
+												r = 253,
+												b = 51
+											},
+											pos = {
+												x = 46.76,
+												y = 140.1
+											},
+											text = TR("第1章")
+										},
+										children = {}
+									},
+									{
+										name = "untitled49",
+										cType = "StarNode",
+										params = {
+											exStarImg = "c_89.png",
+											starImg = "c_5.png",
+											exStarLevel = 3,
+											starLevel = 1,
+											childName = "starNode",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 111.76,
+												y = 140.1
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled50",
+										cType = "Label",
+										params = {
+											childName = "notPassLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 44,
+												r = 234,
+												b = 0
+											},
+											pos = {
+												x = 217.21,
+												y = 139.52
+											},
+											text = TR("（未通关）")
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "ListView",
+										params = {
+											childName = "rewardListView",
+											direction = false,
+											pos = {
+												x = 31.43,
+												y = 25.15
+											},
+											size = {
+												width = 390,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "pveMopRewardCell2",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled44-initParams",
+														name = "cardParams",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 96,
+														height = 100
+													}
+												},
+												children = {
+													{
+														name = "untitled44",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															childName = "cardNode",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 48,
+																y = 60
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled52",
+														cType = "BadgeText",
+														params = {
+															fontSize = 22,
+															hide = true,
+															fontRotation = -45,
+															image = "c_88.png",
+															childName = "doubleBadge",
+															fontColor = {
+																g = 245,
+																r = 255,
+																b = 129
+															},
+															fontPos = {
+																x = 20,
+																y = 38
+															},
+															pos = {
+																x = 66,
+																y = 95
+															},
+															text = TR("双倍")
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "untitled45",
+										cType = "Button",
+										params = {
+											clickAction = "onGoAction",
+											scale = 0.9,
+											swallowTouch = false,
+											image = "c_39.png",
+											childName = "goButton",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 433.36,
+												y = 110.16
+											},
+											titleText = TR("扫 荡")
+										},
+										children = {}
+									},
+									{
+										name = "untitled46",
+										cType = "BadgeText",
+										params = {
+											fontSize = 20,
+											hide = true,
+											image = "c_76.png",
+											childName = "badge",
+											fontColor = {
+												g = 245,
+												r = 255,
+												b = 129
+											},
+											pos = {
+												x = 583,
+												y = 165
+											},
+											text = TR("推荐")
+										},
+										children = {}
+									},
+									{
+										name = "untitled48",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "state",
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 481.43,
+												y = 57.7
+											},
+											text = TR("剩余次数:6")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPartId = slot1.partId or 1
+	slot0.mHeroInfo = slot1.heroInfo or {}
+	slot0.mCallback = slot1.callback
+	slot0.mPlayerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.mEliteInfo = {}
+
+	slot0.dealWithData(slot0)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	if Utility.moduleIsOpen(ModuleSub.eElite, false) then
+		slot0.requestGetEliteInfo(slot0)
+	else
+		slot0.refreshUI(slot0)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1]
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "needGold" then
+			slot1.modelId = slot0.resourceId
+		end
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRefreshTrain, function (slot0)
+		if slot0.consumeCoinC.num <= Resource.getCount(slot0.consumeCoinC.resourceId) then
+			EventAuto:postEvent(EventDefine.eRefreshHeroFormationLayer)
+			LayerManager.removeLayer(slot0)
+		else
+			slot0:refreshUI()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.mHeroTrainRelationInfo = nil
+	slot1 = HeroModel.items[slot0.mHeroInfo.ModelId]
+
+	for slot5, slot6 in pairs(HeroTrainRelation.items) do
+		if slot6.profession == slot1.profession and slot6.trainLv == slot0.mHeroInfo.TrainLv and slot6.trainPartNum == slot0.mPartId then
+			slot0.mHeroTrainRelationInfo = slot6
+
+			break
+		end
+	end
+
+	slot0.consumeCoinC = Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1]
+
+	return 
+end
+slot0.getTextColor = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	return (slot2 <= slot1 and "#258711") or "#ea2c00"
+end
+slot0.refreshUI = function (slot0)
+	slot2 = Resource.getDaibiImg(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].resourceId)
+	slot3 = Utility.numberWithUnit(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].num)
+
+	if Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].resourceId) then
+		slot0.needGold:setString(TR("{%s} %s", slot2, slot3))
+	else
+		slot0.needGold:setString(TR("{%s} %s%s", slot2, "#ea2c00", slot3))
+	end
+
+	slot0.card:setCardData({
+		modelId = Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].resourceId,
+		num = Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].num
+	}, {})
+
+	slot0.ownNumLabel.refreshString = function (slot0)
+		slot1.ownNumLabel:setString(TR("拥有数量：%s%s", (slot0.num <= Resource.getCount(slot0.resourceId) and "#258711") or "#ea2c00", slot1))
+		slot1.trainBtn:setEnabled(slot0.num <= slot1)
+
+		return 
+	end
+
+	slot0.needNumLabel:setString(TR("需要数量：%s", Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].num))
+	slot0.ownNumLabel:refreshString()
+
+	slot7 = tonumber(Utility.analysisStrAttrList(slot0.mHeroTrainRelationInfo.singleAttrStr)[1].value)
+
+	if HeroModel.items[slot0.mHeroInfo.ModelId].trainAddR ~= nil then
+		slot7 = math.ceil((slot7*slot5.trainAddR)/10000)
+	end
+
+	slot0.name:setString(TR("%s", Resource.getName(slot4.resourceId)))
+	slot0.name:setColor(Utility.getColorValue(Resource.getColorLv(slot4.resourceId)))
+
+	if Utility.isAttrNeedPercent(slot6.fightattr) then
+		slot7 = slot7/100 .. "%"
+	end
+
+	slot0.att:setString(TR("%s + %s", FightAttrTypeName[slot6.fightattr], slot7))
+
+	if slot0.mHeroInfo.Lv < slot0.mHeroTrainRelationInfo.needLv then
+		slot0.open:setString(TR("武将%s级开启", slot0.mHeroTrainRelationInfo.needLv))
+	else
+		slot0.open:setVisible(false)
+	end
+
+	slot0.waysListView:removeAllChildren()
+	slot0.dealDropwayListData(slot0, slot4, function (slot0)
+		function slot1(slot0, slot1)
+			if slot0 == nil then
+				return 
+			end
+
+			if slot0.moduleID == ModuleSub.eMarketMateria then
+				slot0:createLayoutTemplateNode("buyLayout").bgSprite.cardNode:setCardData({
+					resourceId = slot0.priceInfo.sellResId,
+					num = slot0.priceInfo.sellResNum
+				}, {
+					Enums.CardShowAttr.eNum
+				})
+				slot0.createLayoutTemplateNode("buyLayout").bgSprite.limitLabel:setString(TR("购买需要玩家等级达到:%s%s", (slot0.priceInfo.needLv <= slot0.mPlayerLv and "#258711") or "#EA2C00", slot0.priceInfo.needLv))
+
+				slot2.refreshCell = function (slot0, slot1)
+					slot2 = Resource.getCount(slot0.priceInfo.needResId)
+					slot3 = slot1.BuyCount or 0
+					slot5 = 1
+
+					if HeartmethodSaleConfig.items[slot3 + 1] ~= nil and slot4.discount ~= nil then
+						slot5 = slot4.discount
+					end
+
+					slot6 = 0
+
+					if slot5 < 1 then
+						slot0.bgSprite.discountLabel:setString(((math.ceil(slot0.priceInfo.needResNum*slot5) <= slot2 and "#258711") or "#EA2C00") .. slot6)
+						slot0.bgSprite.priceLabel:setString(slot0.priceInfo.needResNum, "#5F5F5F")
+					else
+						slot0.bgSprite.priceLabel:setString(slot0.priceInfo.needResNum, (slot0.priceInfo.needResNum <= slot2 and "#258711") or "#EA2C00")
+					end
+
+					slot0.bgSprite.badge:setVisible(slot6 <= slot2)
+					slot0.bgSprite.discountSprite:setVisible(slot5 < 1)
+					slot0.bgSprite.discountLabel:setVisible(slot5 < 1)
+					slot0.bgSprite.buyButton:setClickAction(function ()
+						if slot0.mPlayerLv < slot1.priceInfo.needLv then
+							ui.showFlashView(TR("玩家需要达到%s%s级%s才能购买该材料", "#FFE748", slot1.priceInfo.needLv, "#fff8ea"))
+
+							return 
+						end
+
+						if Resource.isEnough(slot1.priceInfo.needResId, slot2) == false then
+							return 
+						end
+
+						slot0:requestBuyGood(slot1.priceInfo.goodId)
+
+						return 
+					end)
+
+					return 
+				end
+
+				slot0.waysListView:pushBackCustomItem(slot2)
+			else
+				if slot0.moduleID == ModuleSub.ePveMoppingUp then
+					slot0.waysListView:pushBackCustomItem(slot2)
+
+					slot4 = TR("副本") .. PveChapterModel.items[slot0.outPutPoint].name
+
+					if slot0.status == 0 then
+						slot4 = slot4 .. "#EA2C00 " .. TR("（未通关）")
+					end
+
+					slot2.nameLabel:setString(slot4)
+					slot2.resLabel:setType((slot0.status == 2 and Utility.analysisStrResList(slot3.elitesBanditsNeed)[1]) or Utility.analysisStrResList(slot3.baseBanditsNeed)[1].resourceId)
+					slot2.resLabel:setString((slot0.status == 2 and Utility.analysisStrResList(slot3.elitesBanditsNeed)[1]) or Utility.analysisStrResList(slot3.baseBanditsNeed)[1].num)
+					slot2.badge:setVisible(0 < slot0.status and slot1)
+					slot2.goButton:setEnabled(0 < slot0.status)
+					slot2.elitSprite:setPositionX(slot2.nameLabel:getContentSize().width + 40)
+					slot2.elitSprite:setVisible(slot0.status == 2)
+					slot2.goButton:setClickAction(function ()
+						if slot0.mPlayerLv < slot1.needPlayerLv then
+							ui.showFlashView(TR("玩家需要达到%s%s级", "#FFE748", slot1.needPlayerLv))
+
+							return 
+						end
+
+						if not Resource.isEnough(slot2.resourceId, slot2.num) then
+							return 
+						end
+
+						if slot3.status == 2 then
+							LayerManager.addLayer({
+								cleanUp = false,
+								name = "hero.MaterialSweepLayer",
+								data = {
+									sweepType = 2,
+									chapterId = slot3.outPutPoint,
+									modelID = slot3.outPutPoint.modelID,
+									needNum = slot4.num
+								},
+								zOrder = Enums.ZOrderType.ePopLayer
+							})
+						else
+							LayerManager.addLayer({
+								cleanUp = false,
+								name = "home.DlgBanditsLayer",
+								data = {
+									chapterId = slot1.modelId,
+									normalPass = slot1.modelId.NormalPass,
+									elitePass = slot1.modelId.NormalPass.ElitePass,
+									needNum = slot4.num,
+									modelID = slot4.num.modelID,
+									callback = function ()
+										slot0.ownNumLabel:refreshString()
+
+										return 
+									end
+								},
+								zOrder = Enums.ZOrderType.ePopLayer
+							})
+						end
+
+						return 
+					end)
+
+					slot6 = (slot0.status == 2 and slot3.elitesBanditsOutPut) or slot3.baseBanditsOutPut
+
+					for slot10, slot11 in pairs(Utility.analysisStrResList(slot6)) do
+						slot2.rewardListView:pushBackCustomItem(slot12)
+						slot0:createLayoutTemplateNode("pveMopRewardCell", {
+							cardParams = {
+								cardInfo = {
+									modelId = slot11.resourceId,
+									num = slot11.num
+								},
+								showAttrs = {
+									Enums.CardShowAttr.eNum,
+									Enums.CardShowAttr.eStar,
+									Enums.CardShowAttr.eName
+								}
+							}
+						}).doubleBadge:setVisible(PlayerAttrObj:isModuleDoubleIncome(ModuleSub.ePveMoppingUp) and slot11.resourceId ~= ResourceTypeSub.eExp)
+
+						if slot11.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot13 then
+							slot12.cardNode:addChild(UIWrap.newControl("Label", {
+								fontSize = 15,
+								text = TR("经验+%s%%", slot13*100),
+								color = cc.c3b(55, 255, 64),
+								anchor = cc.p(1, 1),
+								outlineColor = cc.c3b(51, 42, 24),
+								pos = cc.p(85, 88)
+							}))
+						end
+					end
+
+					slot2.rewardListView:setSwallowTouches(false)
+
+					return 
+				end
+
+				if slot0.moduleID == ModuleSub.eElite then
+					slot0.waysListView:pushBackCustomItem(slot0:createLayoutTemplateNode("eliteLayout"))
+
+					slot5, slot6 = slot2.nameLabel:getPosition()
+
+					slot2.nameLabel:setString(EliteNodeModel.items[slot0.outPutPoint].name)
+					slot2.starNode:setStarLevel((slot0.mEliteInfo.EliteNode and slot0.mEliteInfo.EliteNode[tostring(slot0.outPutPoint)] and slot0.mEliteInfo.EliteNode and slot0.mEliteInfo.EliteNode[tostring(slot0.outPutPoint)].PassStars) or 0, EliteNodeModel.items[slot0.outPutPoint].starNum)
+					slot2.starNode:setPosition(slot5 + slot2.nameLabel:getContentSize().width + 10, slot6)
+					slot2.notPassLabel:setPosition(slot5 + slot2.nameLabel.getContentSize().width + 10, slot6)
+					slot2.notPassLabel:setVisible(not slot0.isCanSweep)
+					slot2.goButton:setEnabled(slot0.isCanSweep)
+					slot2.badge:setVisible(slot0.isCanSweep and slot1)
+
+					slot8 = ""
+
+					slot2.state:setString((not slot2.starNode.setStarLevel or ((0 >= slot0.mEliteInfo.Elite.CanChallengeCount or TR("剩余次数:%s", slot0.mEliteInfo.Elite.CanChallengeCount)) and TR("购买次数:%s", VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].heroTriedBuyNum - slot0.mEliteInfo.Elite.BuyCount))) and TR("三星通关可扫荡"))
+
+					slot2.goButton.info = slot0
+
+					for slot12, slot13 in pairs(Utility.analysisStrResList(slot3.outPutStr)) do
+						slot2.rewardListView:pushBackCustomItem(slot14)
+						slot0:createLayoutTemplateNode("pveMopRewardCell2", {
+							cardParams = {
+								cardInfo = {
+									modelId = slot13.resourceId,
+									num = slot13.num
+								},
+								showAttrs = {
+									Enums.CardShowAttr.eNum,
+									Enums.CardShowAttr.eStar,
+									Enums.CardShowAttr.eName
+								}
+							}
+						}).doubleBadge:setVisible(PlayerAttrObj:isModuleDoubleIncome(ModuleSub.eElite) and slot13.resourceId ~= ResourceTypeSub.eExp)
+
+						if slot13.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot15 then
+							slot14.cardNode:addChild(UIWrap.newControl("Label", {
+								fontSize = 15,
+								text = TR("经验+%s%%", slot15*100),
+								color = cc.c3b(55, 255, 64),
+								anchor = cc.p(1, 1),
+								outlineColor = cc.c3b(51, 42, 24),
+								pos = cc.p(85, 88)
+							}))
+						end
+					end
+
+					slot2.rewardListView:setSwallowTouches(false)
+				else
+					slot0.waysListView:pushBackCustomItem(slot0:createLayoutTemplateNode("wayLayout", {
+						info = slot0
+					}))
+
+					if slot0.moduleID == ModuleSub.eElite then
+						slot2.headImg:setVisible(false)
+						slot2.tbpic:setVisible(true)
+						slot2.tbpic:setTexture(slot0.pic)
+						slot2.wayName:setString(EliteNodeModel.items[slot0.outPutPoint].name)
+						slot2.badge:setVisible(slot0.isCanSweep and slot1)
+
+						if slot0.isCanSweep then
+							slot2.wayName:setPosition(130, 80)
+							slot2.state:setPosition(130, 50)
+							slot2.state:setString(TR("剩余扫荡次数:%s", slot0.mEliteInfo.Elite.CanChallengeCount))
+							slot2.lock:setVisible(false)
+							slot2.goBtn:setTitleText(TR("扫 荡"))
+							slot2.goBtn:loadTextures("c_10.png", "c_10.png")
+							slot2.goBtn.titleLabel:enableOutline(cc.c3b(24, 126, 109), 2)
+						else
+							slot2.wayName:setPosition(130, 60)
+							slot2.tbpic:setGray(true)
+							slot2.state:setVisible(false)
+							slot2.lock:setVisible(true)
+							slot2.goBtn:setVisible(false)
+						end
+					else
+						slot2.headImg:setVisible(false)
+						slot2.tbpic:setVisible(true)
+						slot2.tbpic:setTexture(slot0.pic)
+						slot2.badge:setVisible(false)
+						slot2.state:setVisible(false)
+						slot2.wayName:setString(slot0.intro)
+						slot2.wayName:setPosition(120, 60)
+						slot2.lock:setVisible(false)
+						slot2.goBtn:setTitleText(TR("前 往"))
+					end
+				end
+			end
+		end
+
+		for slot5, slot6 in ipairs(slot0) do
+			if Utility.moduleIsOpen(slot6.moduleID, false) then
+				slot0.waysListView:pushBackCustomItem(slot7)
+
+				for slot11 = 1, 3, 1 do
+					slot1(slot6.ways[slot11], slot11 == 1)
+				end
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.dealDropwayListData = function (slot0, slot1, slot2)
+	slot3 = Utility.getDropWayList(slot1.resourceId)
+
+	function slot4()
+		slot0 = nil
+
+		for slot4, slot5 in pairs(HeartmethodRelation.items) do
+			if Utility.analysisStrResList(slot5.sellStr)[1].resourceId == slot0.resourceId then
+				slot0 = {
+					goodId = slot5.sellNum,
+					sellResId = slot6.resourceId,
+					sellResNum = slot6.num,
+					needLv = slot5.needLv,
+					needResId = Utility.analysisStrResList(slot5.buyNeed)[1].resourceId,
+					needResNum = Utility.analysisStrResList(slot5.buyNeed)[1].num
+				}
+
+				break
+			end
+		end
+
+		for slot5, slot6 in pairs(slot1) do
+			for slot10, slot11 in pairs(slot6.ways) do
+				if slot11.moduleID == ModuleSub.eMarketMateria then
+					slot11.priceInfo = slot0
+					slot1 = true
+				end
+			end
+		end
+
+		slot2(slot1)
+
+		if slot1 == true then
+			slot3:requestBuyInfo()
+		end
+
+		return 
+	end
+
+	PveObj:getChapterList(function (slot0)
+		slot1 = slot0 or {}
+
+		for slot5, slot6 in pairs(slot0) do
+			for slot10, slot11 in pairs(slot6.ways) do
+				if slot11.moduleID == ModuleSub.eElite then
+					slot6.moduleID = ModuleSub.eElite
+					slot12 = false
+
+					if slot1.mEliteInfo.EliteNode and slot1.mEliteInfo.EliteNode[tostring(slot11.outPutPoint)].PassStars == EliteNodeModel.items[slot11.outPutPoint].starNum then
+						slot12 = true
+					end
+
+					slot11.isCanSweep = slot12
+				elseif slot11.moduleID == ModuleSub.ePveMoppingUp then
+					slot6.moduleID = ModuleSub.ePveMoppingUp
+					slot12 = 0
+
+					if slot1[slot11.outPutPoint] then
+						if slot1[slot11.outPutPoint].FirstPass then
+							slot12 = 1
+						end
+
+						if slot1[slot11.outPutPoint].NormalPass and slot1[slot11.outPutPoint].ElitePass then
+							slot12 = 2
+						end
+
+						slot11.NormalPass = slot1[slot11.outPutPoint].NormalPass
+						slot11.ElitePass = slot1[slot11.outPutPoint].ElitePass
+					end
+
+					slot11.status = slot12
+				end
+			end
+		end
+
+		for slot5, slot6 in pairs(slot0) do
+			if slot6.moduleID == ModuleSub.eElite then
+				table.sort(slot6.ways, function (slot0, slot1)
+					if ((slot0.isCanSweep and 1) or 0) ~= ((slot1.isCanSweep and 1) or 0) then
+						return slot3 < slot2
+					end
+
+					if slot2 == 1 and slot3 == 1 then
+						return slot1.outPutPoint < slot0.outPutPoint
+					else
+						return slot0.outPutPoint < slot1.outPutPoint
+					end
+
+					return 
+				end)
+			elseif slot6.moduleID == ModuleSub.ePveMoppingUp then
+				table.sort(slot6.ways, function (slot0, slot1)
+					if slot0.status ~= 0 and slot1.status ~= 0 then
+						return slot1.outPutPoint < slot0.outPutPoint
+					end
+
+					if slot0.status == 0 and slot1.status == 0 then
+						return slot0.outPutPoint < slot1.outPutPoint
+					end
+
+					if slot0.status == 0 or slot1.status == 0 then
+						return slot1.status < slot0.status
+					end
+
+					return 
+				end)
+			end
+		end
+
+		slot2()
+
+		return 
+	end)
+
+	return 
+end
+slot0.onTrainAction = function (slot0, slot1)
+	if slot0.mHeroInfo.Lv < slot0.mHeroTrainRelationInfo.needLv then
+		ui.showFlashView(TR("武将等级不足"))
+
+		return 
+	end
+
+	if not Resource.isEnough(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].resourceId, Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeCoinC)[1].num, true) then
+		return 
+	end
+
+	if Resource.getCount(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].resourceId) < Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].num then
+		ui.showFlashView(TR("%s不足", Resource.getName(slot3.resourceId)))
+
+		return 
+	end
+
+	slot0.safeRequest(slot0, {
+		methodName = "HeroTrainUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.mHeroInfo.ModelId,
+			slot0.mPartId
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			HeroObj:modifyItem(slot0)
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0)
+			end
+
+			EventAuto:postEvent(EventDefine.eRefreshHeroFormationLayer, {
+				HeroTrain = slot0.mPartId
+			})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGoAction = function (slot0, slot1)
+	slot3 = Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1]
+
+	if slot1.info.moduleID == ModuleSub.eElite then
+		if 0 < slot0.mEliteInfo.Elite.CanChallengeCount then
+			slot0.safeRequest(slot0, {
+				methodName = "MopupEliteNode",
+				moduleName = "Elite",
+				methodData = {
+					slot2.outPutPoint
+				},
+				successCallback = function (slot0)
+					ui.showFlashReward({
+						BaseGetGameResourceList = slot0.BaseGetGameResourceList
+					})
+					ui.showFlopLayer(Enums.FlopType.eElite, function ()
+						if Utility.moduleIsOpen(ModuleSub.eElite, false) then
+							slot0:requestGetEliteInfo()
+						else
+							slot0:refreshUI()
+						end
+
+						return 
+					end)
+
+					return 
+				end
+			})
+		else
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "elite.DlgBuyTimesLayer",
+				data = {
+					boughtNum = slot0.mEliteInfo.Elite.BuyCount,
+					callback = function ()
+						if Utility.moduleIsOpen(ModuleSub.eElite, false) then
+							slot0:requestGetEliteInfo()
+						else
+							slot0:refreshUI()
+						end
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end
+	else
+		slot4 = nil
+
+		if slot2.moduleID == ModuleSub.eMarketMateria then
+			slot4 = {
+				moduleId = ModuleSub.eMarketMateria,
+				pageData = {
+					pageTag = Resource.getColorLv(Utility.analysisStrResList(slot0.mHeroTrainRelationInfo.consumeStrC)[1].resourceId) - 1
+				}
+			}
+		end
+
+		LayerManager.showModuleLayer(slot2.moduleID, slot4)
+	end
+
+	return 
+end
+slot0.onCloseBtnClickAction = function (slot0, slot1)
+	EventAuto:postEvent(EventDefine.eRefreshHeroFormationLayer)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestGetEliteInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetAllNodeInfo",
+		moduleName = "Elite",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mEliteInfo = {}
+			slot0.mEliteInfo = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyInfo = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eMarketMateria, false) then
+		dump("心法铺尚未开启")
+
+		return 
+	end
+
+	slot0.safeRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Heartmethod",
+		methodData = {},
+		successCallback = function (slot0)
+			for slot4, slot5 in ipairs(slot0.waysListView:getItems()) do
+				if slot5.refreshCell ~= nil then
+					slot5.refreshCell(slot5, slot0.HeartmethodInfo)
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyGood = function (slot0, slot1)
+	slot0.safeRequest(slot0, {
+		methodName = "Buy",
+		moduleName = "Heartmethod",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			for slot4, slot5 in ipairs(slot0.waysListView:getItems()) do
+				if slot5.refreshCell ~= nil then
+					slot5.refreshCell(slot5, slot0.HeartmethodInfo)
+				end
+			end
+
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0.ownNumLabel:refreshString()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[10802] = {
+			clickNode = slot0.trainBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

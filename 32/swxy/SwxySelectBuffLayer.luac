@@ -1,0 +1,334 @@
+slot0 = class("SwxySelectBuffLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 618,
+				height = 519
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 308.61,
+						y = 500.14
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 143.68,
+								y = 16.92
+							},
+							text = TR("豪侠助阵")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					align = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 312.31,
+						y = 452.02
+					},
+					size = {
+						width = 500,
+						height = 50
+					},
+					text = TR("神秘豪侠前来助阵，可从中选择一名豪侠加持战力 (仅在限定时间内生效)")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 309.88,
+						y = 271.41
+					},
+					size = {
+						width = 559,
+						height = 295
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSureAction",
+					pos = {
+						x = 311.68,
+						y = 86.11
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 308.65,
+						y = 45.23
+					},
+					text = TR("超过30秒未选择，系统将自动随机选择")
+				},
+				children = {}
+			},
+			{
+				name = "list",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 30.2,
+						y = 125.77
+					},
+					size = {
+						width = 559,
+						height = 290
+					}
+				},
+				children = {
+					{
+						name = "buffLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled10-text",
+								name = "titletxt",
+								type = "string"
+							},
+							{
+								value = "untitled11-text",
+								name = "des",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 180,
+								height = 290
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "jh_56.png",
+									childName = "bg",
+									pos = {
+										x = 90,
+										y = 145
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											childName = "border",
+											image = "jh_70.png",
+											hide = true,
+											pos = {
+												x = 90,
+												y = 123
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 90,
+												y = 213
+											},
+											text = TR("标题文字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											align = 1,
+											valign = 0,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 90,
+												y = 107
+											},
+											size = {
+												width = 140,
+												height = 140
+											},
+											text = TR("哈瞌睡的快阿圣诞贺卡上的哈萨克了")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								params = {
+									childName = "btn",
+									image = "c_pure.png",
+									clickAction = "onSelectAction",
+									pos = {
+										x = 91,
+										y = 151.76
+									},
+									size = {
+										width = 140,
+										height = 200
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.selectId = 1
+	slot0.callFun = slot1.callBack
+	slot0.mainEventId = slot1.evtInfo.EventId
+	slot0.eventIds = string.splitBySep(slot1.evtInfo.Id, ",") or {}
+	slot0.buffItems = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in ipairs(slot0.eventIds) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "buffLayout", {
+			titletxt = BoundaryHelpConfig.items[slot0.mainEventId][tonumber(slot5)] or {}.name,
+			des = BoundaryHelpConfig.items[slot0.mainEventId][tonumber(slot5)] or {}.tips
+		})
+		slot7.btn.eventId = slot5
+
+		slot0.list:pushBackCustomItem(slot7)
+		table.insert(slot0.buffItems, slot7)
+	end
+
+	slot0.initCountDown(slot0)
+
+	return 
+end
+slot0.initCountDown = function (slot0, ...)
+	slot1 = 30
+
+	Utility.schedule(slot0, function ()
+		slot0 = slot0 - 1
+
+		slot1.tipLabel:setString(TR("%s秒后，系统将自动随机选择", slot1.tipLabel.setString))
+
+		if slot1.tipLabel.setString < 0 then
+			slot1:stopAllActions()
+			LayerManager.removeLayer(slot1)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onSelectAction = function (slot0, slot1)
+	slot0.selectId = slot1.eventId
+	slot2 = ipairs
+	slot3 = slot0.buffItems or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		if slot6.btn.eventId == slot1.eventId then
+			slot6.bg.border:setVisible(true)
+			slot0.fadeAction(slot0, slot6.bg.border)
+		else
+			slot6.bg.border:setVisible(false)
+			slot6.bg.border:stopAllActions()
+		end
+	end
+
+	return 
+end
+slot0.fadeAction = function (slot0, slot1)
+	slot1.runAction(slot1, cc.RepeatForever:create(cc.Sequence:create({
+		cc.FadeOut:create(0.5),
+		cc.FadeIn:create(0.5)
+	})))
+
+	return 
+end
+slot0.onSureAction = function (slot0, ...)
+	if slot0.callFun then
+		slot0.callFun(tonumber(slot0.selectId))
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

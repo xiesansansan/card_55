@@ -1,0 +1,350 @@
+slot0 = class("BlessedSpotInvitationLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 394
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 256.6,
+						y = 229.56
+					},
+					size = {
+						width = 465,
+						height = 276
+					}
+				},
+				children = {
+					{
+						name = "noticeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.91,
+								y = 133.27
+							},
+							text = TR("没有好友信息")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 24.86,
+						y = 90.79
+					},
+					size = {
+						width = 455,
+						height = 265
+					}
+				},
+				children = {
+					{
+						name = "item",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 2.46,
+								y = -120.29
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									posApt = 1,
+									image = "c_99.png",
+									pos = {
+										x = 227.5,
+										y = 55
+									},
+									size = {
+										width = 455,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "CardNode",
+								params = {
+									childName = "headCard",
+									allowClick = false,
+									pos = {
+										x = 54.55,
+										y = 55.68
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 106.75,
+										y = 83.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "guild",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 106.75,
+										y = 53.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "fap",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 106.75,
+										y = 24.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "Lv",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 254.75,
+										y = 83.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "invitBtn",
+									pos = {
+										x = 385.06,
+										y = 51.49
+									},
+									titleText = TR("邀 请")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callBackFun = slot1.callBackFun
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getFriendList(slot0)
+
+	return 
+end
+slot0.refershUI = function (slot0)
+	if slot0.friendList == nil or #slot0.friendList == 0 then
+		return slot0.noticeLabel:setVisible(true)
+	end
+
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 455, 110
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.friendList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "item", {})
+	slot3.refreshNode = function (slot0, slot1)
+		slot1.name:setString(slot0.friendList[slot1 + 1].Name)
+		slot1.guild:setString((slot0.friendList[slot1 + 1].GuildName == "" and TR("暂无帮派")) or TR("帮派：%s", slot2.GuildName))
+		slot1.fap:setString(TR("战力：%s", Utility.numberWithUnit(slot2.FAP)))
+		slot1.Lv:setString(TR("等级：%s", slot2.Lv))
+		slot1.headCard:setCardData({
+			resourceId = slot2.FashionModelId
+		})
+
+		return 
+	end
+
+	slot3.refreshNode(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.tempLayout = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.tempLayout:refreshNode(slot2)
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	if slot0.callBackFun then
+		slot0.callBackFun()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getFriendList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFriendList",
+		moduleName = "Friend",
+		methodData = {},
+		successCallback = function (slot0)
+			table.sort(slot0 or {}, function (slot0, slot1)
+				if slot0.IsActive and not slot1.IsActive then
+					return true
+				elseif not slot0.IsActive and slot1.IsActive then
+					return false
+				end
+
+				if slot0.OutTime ~= slot1.OutTime then
+					return slot0.OutTime < slot1.OutTime
+				end
+
+				return 
+			end)
+
+			slot0.friendList = slot0 or {}
+
+			slot0:refershUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInvite = function (slot0, slot1)
+	table.insert(slot2, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Invite",
+		moduleName = "DartInfo",
+		methodData = {
+			slot0.floorId,
+			slot0.carId,
+			slot0.line,
+			slot0.teamStr,
+			{}
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("邀请成功!"))
+
+			slot0.isCanInvite = false
+
+			slot0:upTime()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

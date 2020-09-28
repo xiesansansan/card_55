@@ -1,0 +1,161 @@
+slot0 = {}
+slot1 = math.random()
+slot2 = loadstring([[
+return function(str, mod)
+local h = seed
+for i = 1, string.len(str) do
+    local b = string.byte(str, i)
+    h = (h ^ (h<<5) + (h>>2) + b) % mod
+end
+return h
+]]) or function (slot0, slot1)
+	slot2 = slot0
+
+	for slot6 = 1, string.len(slot0), 1 do
+		slot2 = (slot2*32 + slot2/4 + string.byte(slot0, slot6))%slot1
+	end
+
+	return slot2
+end
+
+function slot4(slot0)
+	if slot1[string.format("%d-%s", slot0(slot0, 973537), string.match(string.gsub(slot0, "%.temp", ""), ".*/(.*/.*)"))] then
+		slot2 = slot0
+	end
+
+	slot1[slot2] = true
+
+	return slot2
+end
+
+slot5 = nil
+slot5 = {
+	downloader_ = cc.LuaDownloader:new(),
+	callbacks_ = {},
+	onprogress_ = {
+		errorids = {}
+	},
+	downloadFile = function (slot0, slot1, slot2, slot3)
+		slot4 = slot0(slot1)
+		slot1.callbacks_[slot4] = slot2
+		slot1.onprogress_[slot4] = slot3
+
+		slot1.downloader_:startFileTask(slot0, slot1, slot4)
+
+		return 
+	end,
+	downloadFileLimit = function (slot0, slot1, slot2, slot3)
+		slot1.callbacks_[slot0(slot1)] = slot2
+		slot1.onprogress_[slot0(slot1)] = slot3
+
+		if slot1.curl_downloader_ then
+			slot1.curl_downloader_:startFileTask(slot0, slot1, slot4)
+		else
+			slot1.downloader_:startFileTask(slot0, slot1, slot4)
+		end
+
+		return 
+	end,
+	downloadData = function (slot0, slot1, slot2)
+		slot3 = slot0(string.urldecode(slot0))
+		slot1.callbacks_[slot3] = slot1
+		slot1.onprogress_[slot3] = slot2
+
+		slot1.downloader_:startDataTask(slot0, slot3)
+
+		return 
+	end,
+	downloadFileWithCancel = function (slot0, slot1, slot2, slot3)
+		slot4 = cc.LuaDownloader:new()
+
+		slot4.setOnFileTaskSuccess(slot4, function (slot0)
+			slot0[slot0] = nil
+
+			return slot0 and slot1(true)
+		end)
+		slot4.setOnTaskProgress(slot4, function (slot0, slot1)
+			return slot0 and slot0(slot1, slot0)
+		end)
+		slot4.setOnTaskFailed(slot4, function (slot0, slot1, slot2, slot3)
+			slot0[slot0] = nil
+
+			return slot1 and slot1(false, slot1, slot2, slot3, slot0)
+		end)
+		slot4.startFileTask(slot4, slot0, slot1, slot1(slot1))
+
+		return slot4
+	end,
+	downloadDataWithCancel = function (slot0, slot1, slot2)
+		slot3 = cc.LuaDownloader:new()
+
+		slot3.setOnDataTaskSuccess(slot3, function (slot0, slot1)
+			slot0[slot0] = nil
+
+			return slot1 and slot1(true, slot1)
+		end)
+		slot3.setOnTaskProgress(slot3, function (slot0, slot1)
+			return slot0 and slot0(slot1, slot0)
+		end)
+		slot3.setOnTaskFailed(slot3, function (slot0, slot1, slot2, slot3)
+			slot0[slot0] = nil
+
+			return slot1 and slot1(false, slot1, slot2, slot3, slot0)
+		end)
+		slot3.startDataTask(slot3, slot0, slot1(string.urldecode(slot0)))
+
+		return slot3
+	end,
+	onFileTaskSuccess = function (slot0)
+		slot0[slot0] = nil
+		slot1.callbacks_[slot0] = nil
+		slot1.onprogress_[slot0] = nil
+
+		return slot0.callbacks_[slot0] and slot1(true, slot0)
+	end,
+	onDataTaskSuccess = function (slot0, slot1)
+		slot0[slot0] = nil
+		slot1.callbacks_[slot0] = nil
+		slot1.onprogress_[slot0] = nil
+
+		return slot1.callbacks_[slot0] and slot2(true, slot0, slot1)
+	end,
+	onTaskProgress = function (slot0, slot1)
+		return slot0.onprogress_[slot0] and slot2(slot1, slot0)
+	end,
+	onTaskFailed = function (slot0, slot1, slot2, slot3)
+		slot0[slot0] = nil
+		slot1.callbacks_[slot0] = nil
+		slot1.onprogress_[slot0] = nil
+
+		return slot1.callbacks_[slot0] and slot4(false, slot1, slot2, slot3, slot0)
+	end
+}
+
+if MQUnCompress.isNewVersion ~= nil then
+	xpcall(function ()
+		slot0.curl_downloader_ = cc.LuaDownloader:new(true)
+
+		slot0.curl_downloader_:setLimitSpeed(200)
+		slot0.curl_downloader_.setLimitSpeed.curl_downloader_:setOnFileTaskSuccess(slot0.onFileTaskSuccess)
+		slot0.curl_downloader_.setLimitSpeed.curl_downloader_.setOnFileTaskSuccess.curl_downloader_:setOnDataTaskSuccess(slot0.onDataTaskSuccess)
+		slot0.curl_downloader_.setLimitSpeed.curl_downloader_.setOnFileTaskSuccess.curl_downloader_.setOnDataTaskSuccess.curl_downloader_:setOnTaskProgress(slot0.onTaskProgress)
+		slot0.curl_downloader_.setLimitSpeed.curl_downloader_.setOnFileTaskSuccess.curl_downloader_.setOnDataTaskSuccess.curl_downloader_.setOnTaskProgress.curl_downloader_:setOnTaskFailed(slot0.onTaskFailed)
+
+		return 
+	end, function ()
+		return 
+	end)
+end
+
+if slot5.downloader_.setOnTaskSuccess then
+	slot5.downloader_:setOnTaskSuccess(slot5.onFileTaskSuccess)
+	slot5.downloader_:setOnTaskProgress(slot5.onTaskProgress)
+	slot5.downloader_:setOnTaskFailed(slot5.onTaskFailed)
+else
+	slot5.downloader_:setOnFileTaskSuccess(slot5.onFileTaskSuccess)
+	slot5.downloader_:setOnDataTaskSuccess(slot5.onDataTaskSuccess)
+	slot5.downloader_:setOnTaskProgress(slot5.onTaskProgress)
+	slot5.downloader_:setOnTaskFailed(slot5.onTaskFailed)
+end
+
+return slot5

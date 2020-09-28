@@ -1,0 +1,402 @@
+slot0 = class("ActivityDiceRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopCallback",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 424.47,
+						y = 458.78
+					},
+					size = {
+						width = 770,
+						height = 35
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 72.39,
+								y = 17.7
+							},
+							text = TR("排名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 257.44,
+								y = 16.88
+							},
+							text = TR("玩家名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 447,
+								y = 17.51
+							},
+							text = TR("累计步数")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 685.2,
+								y = 18.03
+							},
+							text = TR("排行奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRankView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onCellNum",
+					isVertical = true,
+					cellUpdateFunc = "onCellRefresh",
+					cellSizeFunc = "onCellSize",
+					cellFillFunc = "onCellCreate",
+					pos = {
+						x = 36.51,
+						y = 33.38
+					},
+					size = {
+						width = 774.29,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "RankTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0.31,
+								y = -70.51
+							},
+							size = {
+								width = 773,
+								height = 71
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "fuli_36.png",
+									pos = {
+										x = 386.94,
+										y = 35.63
+									},
+									size = {
+										width = 773,
+										height = 71
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "rankBg",
+									pos = {
+										x = 82.17,
+										y = 35.4
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									text = "1",
+									charCount = 10,
+									childName = "rank",
+									fontName = "c_54.png",
+									isRichText = true,
+									pos = {
+										x = 70.21,
+										y = 36.06
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 265.15,
+										y = 36.75
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "82",
+									childName = "stepNum",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 451.45,
+										y = 35.92
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "ListView",
+								params = {
+									childName = "rewardListView",
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 678.08,
+										y = 35.69
+									},
+									size = {
+										width = 180,
+										height = 61.81
+									}
+								},
+								children = {
+									{
+										name = "CardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled18-initParams",
+												name = "cardData",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 0.97,
+												y = -0.1
+											},
+											size = {
+												width = 65.73,
+												height = 61.87
+											}
+										},
+										children = {
+											{
+												name = "untitled18",
+												cType = "CardNode",
+												params = {
+													scale = 0.7,
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 33.24,
+														y = 31.49
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = ActivityObj:getEntityId(ModuleSub.eDice)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:refreshUI()
+
+		return 
+	end, 2)
+
+	slot0.requestGetRank(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mRankView:reloadData()
+
+	return 
+end
+slot0.onPopCallback = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 773, 71
+end
+slot0.onCellNum = function (slot0)
+	return (slot0.rankData and #slot0.rankData) or 0
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "RankTempNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.refresh = function (slot0)
+		if ({
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		})[slot0.rankData[slot0 + 1].Rank] then
+			slot1.rankBg:setTexture(slot3)
+		end
+
+		slot1.rankBg:setVisible((slot3 and true) or false)
+		slot1.rank:setVisible(not slot3)
+		slot1.rank:setString(slot1.Rank)
+		slot1.name:setString(slot1.Name)
+		slot1.stepNum:setString(slot1.Value)
+		slot1.rewardListView:removeAllChildren()
+
+		for slot8, slot9 in pairs(slot4) do
+			slot1.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("CardLayout", {
+				cardData = {
+					cardInfo = slot9,
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		return 
+	end
+
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.requestGetRank = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRank",
+		moduleName = "Dice",
+		methodData = {
+			slot0.activityId
+		},
+		successCallback = function (slot0)
+			slot0.rankData = slot0.Rank
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

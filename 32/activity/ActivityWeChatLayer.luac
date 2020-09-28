@@ -1,0 +1,258 @@
+slot0 = class("ActivityWeChatLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_25.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 697.84,
+						y = 368.77
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0.56,
+								y = 8.54
+							},
+							text = TR("打开微信")
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0.56,
+								y = -11.46
+							},
+							text = TR("点击右上角\"+\"号添加朋友，")
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0.56,
+								y = -31.46
+							},
+							text = TR("点击最下方公众号，")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0.56,
+								y = -51.46
+							},
+							text = TR("输入官方公众号：XXX关注")
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0.56,
+								y = -71.46
+							},
+							text = TR("更多超棒活动礼包奖励等你来拿！")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 608.38,
+						y = 91.68
+					},
+					size = {
+						width = 640,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 1.07,
+								y = -6.47
+							},
+							size = {
+								width = 640,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "templateNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled6-initParams",
+										name = "head",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 38.81,
+										y = -0.24
+									},
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled6",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50.42,
+												y = 49.26
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot3 = slot0.createLayoutTemplateNode(slot0, "layout", {})
+	slot5 = ((#Utility.analysisStrResList(slot1) - 1)*120 - 640)/2
+
+	for slot9, slot10 in ipairs(slot2) do
+		slot11 = slot0.createLayoutTemplateNode(slot0, "templateNode", {
+			head = {
+				cardInfo = {
+					modelId = slot10.resourceId,
+					num = slot10.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		})
+
+		slot11.setIgnoreAnchorPointForPosition(slot11, false)
+		slot11.setAnchorPoint(slot11, 0.5, 0.5)
+		slot11.setPosition(slot11, cc.p(slot5 + (slot9 - 1)*slot4, slot3.getContentSize(slot3).height/2 + 10))
+		slot3.addChild(slot3, slot11)
+	end
+
+	slot0.mListView:pushBackCustomItem(slot3)
+
+	if display.isIpadClass then
+		slot0.bgSprite:setPosition(cc.p(slot0.bgSprite:getPositionX() - slot0.bgSprite.getPositionX()*(display.ySafeScale/display.xSafeScale - 1), slot0.bgSprite:getPositionY()))
+	end
+
+	return 
+end
+
+return slot0

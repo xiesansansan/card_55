@@ -1,0 +1,473 @@
+slot0 = class("ActivityTimeDropLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					scaleX = -1.2,
+					image = "lh_12202.png",
+					scaleY = 1.2,
+					pos = {
+						x = -240.01,
+						y = -233.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled20",
+				cType = "Sprite",
+				params = {
+					image = "xsdl_1.png",
+					pos = {
+						x = -240.12,
+						y = 175.41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = 181.58,
+						y = 250.18
+					},
+					size = {
+						width = 356,
+						height = 38
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 39,
+								y = 18
+							},
+							text = TR("活动倒计时:")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "22:22:22",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 165,
+								y = 18
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 257.08,
+						y = -40
+					},
+					size = {
+						width = 606,
+						height = 542
+					}
+				},
+				children = {
+					{
+						name = "btnList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 32.99,
+								y = 378.19
+							},
+							size = {
+								width = 540,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "btnLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled37",
+										cType = "Sprite",
+										params = {
+											childName = "selectSpr",
+											image = "xsdl_3.png",
+											hide = true,
+											pos = {
+												x = 50,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled36",
+										cType = "Button",
+										params = {
+											image = "tb_gn_101.png",
+											clickAction = "onTabChanged",
+											childName = "clickBtn",
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled23",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_10.png",
+							pos = {
+								x = 301.68,
+								y = 497.19
+							},
+							size = {
+								width = 525,
+								height = 35
+							}
+						},
+						children = {
+							{
+								name = "untitled24",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 266.1,
+										y = 17.16
+									},
+									text = TR("活动期间，一下玩法会额外产出稀有道具")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled21",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							pos = {
+								x = 301.98,
+								y = 208.98
+							},
+							size = {
+								width = 552,
+								height = 351
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled28",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_34.png",
+							pos = {
+								x = 298.05,
+								y = 296.89
+							},
+							size = {
+								width = 538,
+								height = 111
+							}
+						},
+						children = {
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 70.02,
+										y = 54.99
+									},
+									text = TR("限时掉落")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 152.93,
+								y = 246.76
+							},
+							size = {
+								width = 270,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "cardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled32",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled38",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onJumpTo",
+							pos = {
+								x = 499.41,
+								y = 296.66
+							},
+							titleText = TR("前往")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedChargeTotal
+	slot0.mActivityType = slot1.activityType or 1
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+	slot0.selectIndex = -1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.refeshUI = function (slot0)
+	slot0.btnNodeList = {}
+
+	slot0.btnList:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.RewardList) do
+		slot0.selectIndex = (slot0.selectIndex == -1 and slot5.Id) or slot0.selectIndex
+		slot6 = slot0.createLayoutTemplateNode(slot0, "btnLayout")
+
+		slot6.clickBtn:loadTextures((clone(ModuleSubConfig.items[slot5.ModuleId]).pic ~= "" and slot7.pic .. ".png") or "c_pure.png", )
+
+		slot6.clickBtn.index = slot5.Id
+
+		table.insert(slot0.btnNodeList, slot6)
+		slot0.btnList:pushBackCustomItem(slot6)
+	end
+
+	slot0.onTabChanged(slot0)
+
+	return 
+end
+slot0.refTimeUpate = function (slot0)
+	if slot0.mTimeUpdate then
+		slot0.stopAction(slot0, slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot0.mTimeUpdate = Utility.schedule(slot0, function ()
+		if 0 < slot0.mServerData.EndTime - Player.mTimeTick then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		elseif slot0.mTimeUpdate then
+			slot0:stopAction(slot0.mTimeUpdate)
+
+			slot0.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	if slot1 ~= nil then
+		if slot0.selectIndex == slot1.index then
+			return 
+		end
+
+		slot0.selectIndex = slot1.index
+	end
+
+	for slot5, slot6 in ipairs(slot0.btnNodeList) do
+		slot6.selectSpr:setVisible(slot6.clickBtn.index == slot0.selectIndex)
+	end
+
+	slot0.listView:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot0.RewardList) do
+		if slot6.Id == slot0.selectIndex then
+			for slot11, slot12 in ipairs(slot7) do
+				slot0.createLayoutTemplateNode(slot0, "cardLayout").cardNode:setCardData({
+					modelId = slot12.resourceId
+				})
+				slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardLayout"))
+			end
+		end
+	end
+
+	return 
+end
+slot0.onJumpTo = function (slot0)
+	slot1 = nil
+
+	for slot5, slot6 in ipairs(slot0.RewardList) do
+		if slot6.Id == slot0.selectIndex then
+			slot1 = slot6.ModuleId
+		end
+	end
+
+	LayerManager.showModuleLayer(slot1)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedHolidayOutput",
+		methodData = {
+			slot0.mActivityType
+		},
+		successCallback = function (slot0)
+			dump(slot0, "掉落信息")
+
+			slot0.mServerData = slot0
+			slot0.RewardList = slot0.RewardList
+
+			slot0:refeshUI()
+
+			if slot0.mSchelTime then
+				slot0:stopAction(slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+
+			slot0:refTimeUpate()
+
+			slot0.mSchelTime = Utility.schedule(slot0, slot0.refTimeUpate, 1)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

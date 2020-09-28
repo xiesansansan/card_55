@@ -1,0 +1,71 @@
+slot0 = class("CheckUpdateLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled19",
+		cType = "FileLayer",
+		params = {
+			file = "login.LoginBgLayer"
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	require("network.ViceUpdater").stop()
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	Utility.newCpInvoke(110)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.checkHaveUpdate(slot0)
+
+	return 
+end
+slot0.checkHaveUpdate = function (slot0)
+	slot1 = IPlatform:getInstance()
+
+	HttpClient:request({
+		isCheckUpdata = true,
+		moduleName = "login",
+		needWait = false,
+		svrType = Enums.HttpSvrType.eManageCenter,
+		methodData = {
+			gameID = 0,
+			PartnerID = IPlatform:getInstance():getConfigItem("PartnerID"),
+			GameVersionID = slot1.getConfigItem(slot1, "Version"),
+			RandNum = MqMath.random(),
+			EncryptedString = string.md5Content(slot5),
+			ResourceVersionName = LocalData:getResourceVerName(),
+			UserID = "",
+			LoginInfo = "",
+			CheckResourceOnly = true,
+			NewVersion = true
+		},
+		successCallback = function (slot0)
+			LayerManager.addLayer({
+				name = "login.GameLoginLayer"
+			})
+
+			return 
+		end,
+		failedCallback = function (slot0, slot1)
+			if slot0 == 6 then
+				Utility.showResUpdateHint(slot1.Resource)
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

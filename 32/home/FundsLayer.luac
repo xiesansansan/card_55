@@ -1,0 +1,676 @@
+slot0 = class("FundsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 192)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "MsgBox",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("战备库")
+		},
+		children = {
+			{
+				name = "untitled25",
+				cType = "Sprite",
+				params = {
+					image = "jcgn_2.png",
+					pos = {
+						x = 79.57,
+						y = 265.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 518.81,
+						y = 299.3
+					},
+					size = {
+						width = 580,
+						height = 360
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftScaleSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jcgn_11.png",
+					capInsets = {
+						x = 89,
+						height = 1,
+						width = 1,
+						y = 65
+					},
+					pos = {
+						x = 364,
+						y = 345
+					},
+					size = {
+						width = 222,
+						height = 271
+					}
+				},
+				children = {
+					{
+						name = "goldCard",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							pos = {
+								x = 115,
+								y = 144
+							}
+						},
+						children = {}
+					},
+					{
+						name = "goldBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onRequestGold",
+							image = "c_19.png",
+							pos = {
+								x = 115,
+								y = -29
+							},
+							size = {
+								width = 150,
+								height = 50
+							},
+							titleText = TR("强征")
+						},
+						children = {
+							{
+								name = "redDot1",
+								cType = "RedDot",
+								params = {
+									subKey = "Gold",
+									moduleId = 6202
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "goldResLabel",
+						cType = "Label",
+						params = {
+							text = "0",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 127,
+								y = -76
+							}
+						},
+						children = {}
+					},
+					{
+						name = "goldFreeLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 115,
+								y = 31
+							},
+							text = TR("免费次数：0")
+						},
+						children = {}
+					},
+					{
+						name = "doubleSprite1",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							hide = false,
+							image = "c_88.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 76,
+								y = 182
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									rotationAngle = -45,
+									color = {
+										g = 199,
+										r = 223,
+										b = 42
+									},
+									pos = {
+										x = 20.07,
+										y = 37.2
+									},
+									text = TR("双倍")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "remainLabel1",
+						cType = "Label",
+						params = {
+							fontSize = 19,
+							hide = true,
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 115,
+								y = 75
+							},
+							text = TR("终身卡加成20%")
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							pos = {
+								x = 102,
+								y = -74
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rightScaleSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jcgn_12.png",
+					capInsets = {
+						x = 89,
+						height = 1,
+						width = 1,
+						y = 65
+					},
+					pos = {
+						x = 670,
+						y = 345
+					},
+					size = {
+						width = 222,
+						height = 271
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							pos = {
+								x = 108,
+								y = -74
+							}
+						},
+						children = {}
+					},
+					{
+						name = "vitCard",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							pos = {
+								x = 115,
+								y = 145
+							}
+						},
+						children = {}
+					},
+					{
+						name = "vitBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onRequestVit",
+							image = "c_19.png",
+							pos = {
+								x = 115,
+								y = -29
+							},
+							size = {
+								width = 150,
+								height = 50
+							},
+							titleText = TR("强征")
+						},
+						children = {
+							{
+								name = "redDot2",
+								cType = "RedDot",
+								params = {
+									subKey = "Vit",
+									moduleId = 6202,
+									pos = {
+										z = 0,
+										x = 59.97,
+										y = 13.38
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "vitResLabel",
+						cType = "Label",
+						params = {
+							text = "0",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 139,
+								y = -75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "vitFreeLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 115,
+								y = 30
+							},
+							text = TR("免费次数：0")
+						},
+						children = {}
+					},
+					{
+						name = "doubleSprite2",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							hide = false,
+							image = "c_88.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 76,
+								y = 185
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Label",
+								params = {
+									rotationAngle = -45,
+									color = {
+										g = 199,
+										r = 223,
+										b = 42
+									},
+									pos = {
+										x = 20.07,
+										y = 38.63
+									},
+									text = TR("双倍")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "remainLabel2",
+						cType = "Label",
+						params = {
+							fontSize = 19,
+							hide = true,
+							outlineSize = 2,
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							outlineColor = {
+								g = 0,
+								r = 0,
+								b = 0
+							},
+							pos = {
+								x = 115,
+								y = 78
+							},
+							text = TR("终身卡加成20%")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 21,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 192.89,
+						y = 101.67
+					},
+					text = TR("1、征收铜钱和干粮时候，有几率出现多倍暴击")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Label",
+				params = {
+					fontSize = 21,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 190.89,
+						y = 76.67
+					},
+					text = TR("2、会员等级将获得更多的购买次数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Label",
+				params = {
+					fontSize = 21,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 190.73,
+						y = 40.89
+					},
+					text = TR("3、每通关3章副本可获得1次免费次数，购买次数每日凌晨5点重置")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	slot0.closeCallback = slot1.closeCallback
+	slot0.goldTime = 0
+	slot0.vitTime = 0
+
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.goldCard:setCardData({
+		modelId = 1112,
+		num = PlayerLvRelation.items[PlayerAttrObj:getPlayerAttrByName("Lv")].repositoryBaseGold
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+	slot0.vitCard:setCardData({
+		modelId = 1114,
+		num = PlayerLvRelation.items[PlayerAttrObj.getPlayerAttrByName("Lv")].repositoryBaseVit
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+
+	if PlayerAttrObj:isModuleDoubleIncome(ModuleSub.eRepositoryDiamondConsume) then
+		slot0.goldCard:getAttrCtrl(Enums.CardShowAttr.eNum).label.setString(slot4, PlayerLvRelation.items[slot1].repositoryBaseGold*2)
+		slot0.vitCard:getAttrCtrl(Enums.CardShowAttr.eNum).label:setString(PlayerLvRelation.items[slot1].repositoryBaseVit*2)
+	end
+
+	slot0.doubleSprite1:setVisible(slot2)
+	slot0.doubleSprite2:setVisible(slot2)
+
+	if PlayerAttrObj:getPlayerAttrByName("SpCardStatus") ~= 0 then
+		slot0.remainLabel1:setVisible(slot3)
+		slot0.remainLabel2:setVisible(slot3)
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0, slot1)
+	slot2 = nil
+
+	slot0.goldResLabel:setString((0 >= slot1.GoldFreeNum or 0) and (slot1.GoldOutputNum + 1 > RepositoryUseConfig.items_count or Utility.analysisStrResList(RepositoryUseConfig.items[slot1.GoldOutputNum + 1].baseGoldOutputNeed)) and Utility.analysisStrResList(RepositoryUseConfig.items[RepositoryUseConfig.items_count].baseGoldOutputNeed)[1].num)
+	slot0.goldResLabel:setColor(((0 < slot1.GoldFreeNum or (slot1.GoldOutputNum + 1 > RepositoryUseConfig.items_count or Utility.analysisStrResList(RepositoryUseConfig.items[slot1.GoldOutputNum + 1].baseGoldOutputNeed)) and Utility.analysisStrResList(RepositoryUseConfig.items[RepositoryUseConfig.items_count].baseGoldOutputNeed)[1].num*math.ceil((slot1.GoldOutputNum + 1)/5) <= PlayerAttrObj:getPlayerAttrByName("Diamond")) and cc.c3b(37, 37, 37)) or cc.c3b(234, 44, 0))
+
+	slot4 = nil
+
+	slot0.vitResLabel:setString((0 >= slot1.VitFreeNum or 0) and (slot1.VitOutputNum + 1 > RepositoryUseConfig.items_count or Utility.analysisStrResList(RepositoryUseConfig.items[slot1.VitOutputNum + 1].baseVitOutputNeed)) and Utility.analysisStrResList(RepositoryUseConfig.items[RepositoryUseConfig.items_count].baseVitOutputNeed)[1].num)
+	slot0.vitResLabel:setColor(((0 < slot1.VitFreeNum or (slot1.VitOutputNum + 1 > RepositoryUseConfig.items_count or Utility.analysisStrResList(RepositoryUseConfig.items[slot1.VitOutputNum + 1].baseVitOutputNeed)) and Utility.analysisStrResList(RepositoryUseConfig.items[RepositoryUseConfig.items_count].baseVitOutputNeed)[1].num*math.ceil((slot1.VitOutputNum + 1)/5) <= PlayerAttrObj:getPlayerAttrByName("Diamond")) and cc.c3b(37, 37, 37)) or cc.c3b(234, 44, 0))
+	slot0.goldBtn:setTitleText((0 < slot1.GoldFreeNum and TR("免  费")) or TR("强  征"))
+	slot0.vitBtn:setTitleText((0 < slot1.VitFreeNum and TR("免  费")) or TR("强  征"))
+	slot0.goldFreeLabel:setString((0 < slot1.GoldFreeNum and TR("免费次数：#258711%s", slot1.GoldFreeNum)) or TR("剩余次数：#258711%s", VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].goldOutputNum - slot1.GoldOutputNum))
+	slot0.vitFreeLabel:setString((0 < slot1.VitFreeNum and TR("免费次数：#258711%s", slot1.VitFreeNum)) or TR("剩余次数：#258711%s", VipConfig.items[PlayerAttrObj.getPlayerAttrByName("Vip")].vitOutputNum - slot1.VitOutputNum))
+
+	return 
+end
+slot0.showMulti = function (slot0, slot1, slot2, slot3)
+	slot4 = (slot2 == 1 and TR("铜钱+%s", slot3)) or TR("干粮+%s", slot3)
+	slot5 = (slot2 == 1 and cc.p(380, 350)) or cc.p(670, 350)
+
+	if 0 < slot1 then
+		slot6 = (slot1 == 2 and cc.c3b(55, 255, 40)) or cc.c3b(255, 102, 243)
+		slot7 = UIWrap.newControl("Sprite", {
+			image = (slot1 == 2 and "jcgn_14.png") or "jcgn_15.png",
+			pos = slot5
+		})
+
+		slot0.MsgBox:addChild(slot7)
+		slot7.addChild(slot7, "Sprite")
+		slot7.runAction(slot7, cc.Sequence:create({
+			cc.ScaleTo:create(0.1, 1.5),
+			cc.ScaleTo:create(0.1, 1),
+			cc.MoveBy:create(0.9, cc.p(0, 50)),
+			cc.CallFunc:create(function ()
+				slot0:removeFromParent()
+
+				return 
+			end)
+		}))
+
+		return 
+	end
+
+	slot6 = UIWrap.newControl("Label", {
+		fontSize = 22,
+		text = slot4,
+		anchor = cc.p(0.5, 0.5),
+		pos = slot5,
+		outlineColor = cc.c3b(110, 60, 5)
+	})
+
+	slot0.MsgBox:addChild(slot6)
+	slot6.runAction(slot6, cc.Sequence:create({
+		cc.ScaleTo:create(0.1, 1.5),
+		cc.ScaleTo:create(0.1, 1),
+		cc.MoveBy:create(0.9, cc.p(0, 50)),
+		cc.CallFunc:create(function ()
+			slot0:removeFromParent()
+
+			return 
+		end)
+	}))
+end
+slot0.onCloseAction = function (slot0)
+	EventAuto:postEvent(EventDefine.eRefreshDailyTask)
+	LayerManager.removeLayer(slot0)
+
+	if slot0.closeCallback then
+		slot1()
+	end
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Repository",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.repositoryInfo = slot0.RepositoryInfo
+
+			slot0:refreshLayer(slot0.RepositoryInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestGold = function (slot0)
+	if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].goldOutputNum == slot0.repositoryInfo.GoldOutputNum and slot0.repositoryInfo.GoldFreeNum == 0 then
+		ui.showFlashView(TR("次数达到上限，提升会员等级获取更多次数"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetOutput",
+		moduleName = "Repository",
+		methodData = {
+			2
+		},
+		successCallback = function (slot0)
+			slot0.repositoryInfo = slot0.RepositoryInfo
+
+			slot0:refreshLayer(slot0.RepositoryInfo)
+			MqAudio.playEffect("ui_yaoqian.mp3")
+			slot0.leftScaleSprite:addChild(UIWrap.newControl("Effect", {
+				loop = false,
+				animation = "jb",
+				dataFile = "effect_ui_zhanbeiku",
+				pos = cc.p(115, 200)
+			}))
+			slot0:showMulti((1 < slot0.Multiple and slot0.Multiple) or 0, 1, slot0.BaseGetGameResourceList[1].PlayerAttr[1].Num or 0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestVit = function (slot0)
+	if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].vitOutputNum == slot0.repositoryInfo.VitOutputNum and slot0.repositoryInfo.VitFreeNum == 0 then
+		ui.showFlashView(TR("次数达到上限，提升会员等级获取更多次数"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetOutput",
+		moduleName = "Repository",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			slot0.repositoryInfo = slot0.RepositoryInfo
+
+			slot0:refreshLayer(slot0.RepositoryInfo)
+			MqAudio.playEffect("ui_yaoqian.mp3")
+			slot0.rightScaleSprite:addChild(UIWrap.newControl("Effect", {
+				loop = false,
+				animation = "ls",
+				dataFile = "effect_ui_zhanbeiku",
+				pos = cc.p(115, 200)
+			}))
+			slot0:showMulti((1 < slot0.Multiple and slot0.Multiple) or 0, 2, slot0.BaseGetGameResourceList[1].PlayerAttr[1].Num or 0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

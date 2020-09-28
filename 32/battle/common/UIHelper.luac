@@ -1,0 +1,47 @@
+slot0 = require("battle.common.Const")
+
+require("common.UIWrap")
+
+slot6 = 640/2
+slot7 = 1136/2
+slot10 = math.min(slot8, slot9)
+slot11 = math.max(slot8, display.sizeInPixels.height/1136)
+
+return {
+	newLabel = function (slot0)
+		return UIWrap.newControl("Label", slot0)
+	end,
+	newButton = function (slot0)
+		return UIWrap.newControl("Button", slot0)
+	end,
+	newProgress = function (...)
+		return require("common.ProgressBar").new(...)
+	end,
+	autoPos = function (slot0, slot1)
+		slot2 = nil
+
+		if not ((type(slot0) == "table" and slot0) or {
+			x = slot0,
+			y = slot1
+		}.x or (type(slot0) == "table" and slot0) or {
+			x = slot0,
+			y = slot1
+		}.left) then
+			if slot2.right then
+				slot3 = (slot0 - slot2.right*slot1)/slot2
+			elseif slot2.midX then
+				slot3 = (slot0/2 + slot2.midX*slot1)/slot2
+			end
+		end
+
+		if not (slot2.y or slot2.bottom) then
+			if slot2.top then
+				slot4 = (slot3 - slot2.top*slot1)/slot4
+			elseif slot2.midY then
+				slot4 = (slot3/2 + slot2.midY*slot1)/slot4
+			end
+		end
+
+		return cc.p((slot3 or 0)*slot2, (slot4 or 0)*slot4)
+	end
+}

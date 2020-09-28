@@ -1,0 +1,293 @@
+slot0 = class("PlayerGemComposeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 460
+			},
+			titleText = TR("合成")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 261,
+						y = 323
+					},
+					size = {
+						width = 460,
+						height = 192
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					scale = 1.5,
+					image = "c_23.png",
+					pos = {
+						x = 262,
+						y = 363
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 116,
+						y = 363
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 416,
+						y = 363
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftAttrLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					color = {
+						g = 102,
+						r = 197,
+						b = 17
+					},
+					pos = {
+						x = 116,
+						y = 283
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightAttrLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					color = {
+						g = 102,
+						r = 197,
+						b = 17
+					},
+					pos = {
+						x = 416,
+						y = 283
+					}
+				},
+				children = {}
+			},
+			{
+				name = "numLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 10,
+						r = 223,
+						b = 10
+					},
+					pos = {
+						x = 116,
+						y = 253
+					}
+				},
+				children = {}
+			},
+			{
+				name = "useLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 262,
+						y = 115
+					}
+				},
+				children = {}
+			},
+			{
+				name = "countView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onChangeNum",
+					currSelCount = 1,
+					pos = {
+						x = 262,
+						y = 171
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "composeBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCompose",
+					pos = {
+						x = 262,
+						y = 65
+					},
+					titleText = TR("合成")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGemModelId = slot1.gemModelId
+	slot0.mCallback = slot1.callback
+	slot0.composeNeed = Utility.analysisStrResList(GemModel.items[slot0.mGemModelId + 1].composeNeed)[1]
+	slot0.mCurNum = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "countView" then
+			if slot0:getComposeMaxNum() <= 0 then
+				slot2 = 1
+			end
+
+			slot1.maxCount = slot2
+			slot1.currSelCount = slot2
+			slot0.mCurNum = slot2
+		end
+
+		return 
+	end)
+	slot0.leftCard:setCardData({
+		modelId = slot0.mGemModelId
+	}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eName
+	})
+	slot0.rightCard:setCardData({
+		modelId = slot0.mGemModelId + 1
+	}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eName
+	})
+	slot0.leftAttrLabel:setString(Utility.analysisStrAttrToFromat(GemModel.items[slot0.mGemModelId].addAttrStr, "%s+%s", "  "))
+	slot0.rightAttrLabel:setString(Utility.analysisStrAttrToFromat(GemModel.items[slot0.mGemModelId + 1].addAttrStr, "%s+%s", "  "))
+
+	return 
+end
+slot0.getComposeMaxNum = function (slot0)
+	return math.min(math.floor(Resource.getCount(slot0.mGemModelId)/GemConfig.items[1].lvUpNeedNum), math.floor(Resource.getCount(slot0.composeNeed.resourceId)/slot0.composeNeed.num))
+end
+slot0.refreshUI = function (slot0)
+	slot0.useLabel:setString(string.format("{%s}%s", Resource.getDaibiImg(slot0.composeNeed.resourceId), Utility.numberWithUnit(slot0.composeNeed.num*slot0.mCurNum)))
+	slot0.numLabel:setString(string.format("%s%s/%s", (slot0.mCurNum*GemConfig.items[1].lvUpNeedNum <= Resource.getCount(slot0.mGemModelId) and "#c56611") or "#DF0A0A", slot1, slot2))
+
+	return 
+end
+slot0.onChangeNum = function (slot0, slot1)
+	slot0.mCurNum = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onCompose = function (slot0)
+	if slot0.getComposeMaxNum(slot0) <= 0 then
+		if Resource.isEnough(slot0.composeNeed.resourceId, slot0.composeNeed.num*slot0.mCurNum, true, true) then
+			ui.showFlashView(TR("宝石不足！"))
+		end
+
+		LayerManager.removeLayer(slot0)
+
+		return 
+	end
+
+	slot0.requestCompose(slot0)
+
+	return 
+end
+slot0.requestCompose = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GemCompose",
+		moduleName = "Gem",
+		methodData = {
+			slot0.mGemModelId,
+			slot0.mCurNum
+		},
+		successCallback = function (slot0)
+			GemObj:setList(slot0)
+			ui.showFlashReward({
+				rewardStr = Resource.getSubType(slot0.mGemModelId) .. "," .. slot0.mGemModelId + 1 .. "," .. slot0.mCurNum
+			})
+
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			if slot0:getComposeMaxNum() <= 0 then
+				LayerManager.removeLayer(slot0)
+			else
+				slot0.mCurNum = slot2
+
+				slot0.countView:setCount(slot0.mCurNum)
+				slot0:refreshUI()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

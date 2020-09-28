@@ -1,0 +1,381 @@
+slot0 = class("BagLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled10",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_31.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled26",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled14",
+		cType = "Button",
+		params = {
+			clickAction = "onExitAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled30",
+				cType = "Sprite",
+				params = {
+					image = "bb_18.png",
+					pos = {
+						x = 3.4,
+						y = 2.39
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled11",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_14.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bagTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					space = 0,
+					normalImage = "c_58.png",
+					lightedImage = "bb_4.png",
+					direction = true,
+					btnInfos = {
+						{
+							title = "113"
+						}
+					},
+					btnSize = {
+						width = 141,
+						height = 80
+					},
+					pos = {
+						x = -492.27,
+						y = -236.57
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 145,
+						height = 480
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.55,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled28",
+				cType = "GridView",
+				params = {
+					itemNum = 1,
+					colCount = 5,
+					selectIndex = 1,
+					pos = {
+						x = -144,
+						y = -20
+					},
+					size = {
+						width = 400,
+						height = 410
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled29",
+				cType = "Sprite",
+				params = {
+					image = "bb_12.png",
+					pos = {
+						x = 100,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "goodsLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagGoodsLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "heroDebrisLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagHeroDebrisLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "MaterialLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagMaterialLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "WuxueLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagWuxueFatherLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "TitleLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagTitleLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "EquipLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagEquipLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	},
+	{
+		name = "KongFuLayer",
+		cType = "FileLayer",
+		params = {
+			file = "bag/BagKongFuFatherLayer.lua",
+			delayInit = true
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mBtnList = {}
+	slot0.mDefultTag = slot1.tag or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tebBtnInfos = {
+		{
+			spPicLight = "bb_19.png",
+			spPic = "bb_6.png",
+			subKey = "BagGoods",
+			tag = 1,
+			layer = "goodsLayer",
+			title = TR("消耗品"),
+			moduleId = ModuleSub.eBagGoods
+		},
+		{
+			moduleId = 0,
+			spPicLight = "bb_20.png",
+			spPic = "bb_7.png",
+			subKey = "BagHeroDebris",
+			tag = 2,
+			layer = "heroDebrisLayer",
+			title = TR("侠客")
+		},
+		{
+			moduleId = 0,
+			spPicLight = "bb_21.png",
+			spPic = "bb_8.png",
+			subKey = "BagMaterial",
+			tag = 3,
+			layer = "MaterialLayer",
+			title = TR("材料")
+		},
+		{
+			moduleId = 0,
+			spPicLight = "bb_22.png",
+			spPic = "bb_9.png",
+			subKey = "EquipLayer",
+			tag = 4,
+			layer = "EquipLayer",
+			title = TR("装备")
+		},
+		{
+			spPicLight = "bb_24.png",
+			spPic = "bb_11.png",
+			subKey = "BagTitleDebris",
+			tag = 5,
+			layer = "TitleLayer",
+			title = TR("称号"),
+			moduleId = ModuleSub.eBagTitleDebris
+		},
+		{
+			spPicLight = "bb_26.png",
+			spPic = "bb_25.png",
+			subKey = "BagWuxueDebris",
+			tag = 6,
+			layer = "WuxueLayer",
+			title = TR("武学"),
+			moduleId = ModuleSub.eBagWuxueDebris
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "bagTabView" then
+			slot1.btnInfos = slot0.tebBtnInfos
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = UIWrap.newControl("Sprite", {
+			image = "bb_5.png"
+		})
+
+		slot7.setPosition(slot7, -10, -41)
+		slot6.addChild(slot6, slot7)
+
+		slot8 = UIWrap.newControl("Sprite", {
+			image = slot0.tebBtnInfos[slot5].spPicLight
+		})
+
+		slot8.setPosition(slot8, -45, 0)
+		slot6.addChild(slot6, slot8)
+
+		slot6.boxSprite = slot8
+
+		if 0 < slot0.tebBtnInfos[slot5].moduleId then
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				moduleId = slot0.tebBtnInfos[slot5].moduleId
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		if slot6 == slot1 then
+			slot7.boxSprite:setTexture(slot0.tebBtnInfos[slot6].spPicLight)
+		else
+			slot7.boxSprite:setTexture(slot0.tebBtnInfos[slot6].spPic)
+		end
+	end
+
+	print(slot1, "tag")
+
+	if slot0[slot0.mShowLayerName] then
+		slot0[slot0.mShowLayerName]:removeFromParent()
+
+		slot0[slot0.mShowLayerName] = nil
+	end
+
+	slot0.createUISubTree(slot0, slot0.tebBtnInfos[slot1].layer)
+
+	slot0.mShowLayerName = slot0.tebBtnInfos[slot1].layer
+
+	if slot1 == 1 then
+		slot0.mCleanPropNew = true
+	end
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if slot0.mCleanPropNew then
+		GoodsObj:getNewPropsIdObj():clearNewId()
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(ModuleSub.eBagGoods))
+	end
+
+	return 
+end
+
+return slot0

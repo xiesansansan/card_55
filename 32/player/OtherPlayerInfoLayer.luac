@@ -1,0 +1,172 @@
+slot0 = class("OtherPlayerInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bg",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallBack",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 1000,
+				height = 540
+			},
+			titleText = TR("玩家信息")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 15.37,
+						y = 273.88
+					},
+					size = {
+						width = 118,
+						height = 500
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTurnPageAction",
+					space = 0,
+					fontSize = 22,
+					selectFontSize = 26,
+					selectTag = 1,
+					lightedImage = "bb_4.png",
+					direction = true,
+					normalImage = "c_pure.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					btnSize = {
+						width = 141,
+						height = 80
+					},
+					pos = {
+						x = 15.79,
+						y = 53.11
+					},
+					size = {
+						width = 141,
+						height = 480
+					},
+					titleOffset = {
+						x = 0.45,
+						y = 0.5
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.playerId = slot1.playerId
+	slot0.serverId = slot1.serverId or 0
+	slot0.partnerId = slot1.partnerId or 0
+	slot0.mSelectTag = slot1.selectTag or 1
+	slot0.btnInfos = {}
+
+	for slot6, slot7 in ipairs(slot2) do
+		if not slot7.moduleId or (slot7.moduleId and Utility.moduleIsOpen(slot7.moduleId, false)) then
+			table.insert(slot0.btnInfos, slot7)
+
+			slot7.normalImage = "bb_5.png"
+			slot7.lightedImage = "bb_5.png"
+			slot7.imgOffset = cc.p(0.45, 0)
+			slot7.tag = k
+		end
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.onActionCallBack = function (slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0.btnInfos
+			slot1.selectTag = slot0.mSelectTag
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onTurnPageAction = function (slot0, slot1)
+	if not slot0.data then
+		return 
+	end
+
+	if not slot0.btnInfos[slot1] then
+		return 
+	end
+
+	if slot0.mCurrFileLayer ~= nil then
+		slot0.mCurrFileLayer:removeFromParent()
+
+		slot0.mCurrFileLayer = nil
+	end
+
+	slot0.mCurrFileLayer = UIWrap.newControl("FileLayer", {
+		file = slot2.layer,
+		initParams = {
+			data = slot0.data
+		}
+	})
+
+	slot0.addChild(slot0, slot0.mCurrFileLayer)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPlayerAllInfo",
+		moduleName = "Player",
+		methodData = {
+			slot0.playerId,
+			slot0.partnerId,
+			slot0.serverId
+		},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:onTurnPageAction(slot0.mSelectTag)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

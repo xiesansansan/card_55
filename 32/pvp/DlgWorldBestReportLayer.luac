@@ -1,0 +1,409 @@
+slot0 = class("DlgWorldBestReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 620,
+				height = 536
+			},
+			titleText = TR("战 报")
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_93.png",
+					pos = {
+						x = 295,
+						y = 483
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rankLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					pos = {
+						x = 295,
+						y = 482
+					},
+					text = TR("八强赛")
+				},
+				children = {}
+			},
+			{
+				name = "reportList",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 311.43,
+						y = 34.83
+					},
+					size = {
+						width = 530,
+						height = 425
+					}
+				},
+				children = {
+					{
+						name = "reportLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled14-modelId",
+								name = "playerModelId1",
+								type = "string"
+							},
+							{
+								value = "untitled15-modelId",
+								name = "playerModelId2",
+								type = "string"
+							},
+							{
+								value = "untitled16-text",
+								name = "playerName1",
+								type = "string"
+							},
+							{
+								value = "untitled17-text",
+								name = "playerName2",
+								type = "string"
+							},
+							{
+								value = "untitled18-image",
+								name = "isWinImage1",
+								type = "string"
+							},
+							{
+								value = "untitled19-image",
+								name = "isWinImage2",
+								type = "string"
+							},
+							{
+								value = "untitled20-reportID",
+								name = "reportID",
+								type = "string"
+							},
+							{
+								value = "untitled14-fashionLv",
+								name = "playerFashionLv1",
+								type = "string"
+							},
+							{
+								value = "untitled15-fashionLv",
+								name = "playerFashionLv2",
+								type = "string"
+							},
+							{
+								value = "untitled14-headPicId",
+								name = "headPicId1",
+								type = "string"
+							},
+							{
+								value = "untitled15-headPicId",
+								name = "headPicId2",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 530,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "Scale9Sprite",
+								params = {
+									opacity = 128,
+									image = "c_94.png",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 265,
+										y = 65
+									},
+									size = {
+										width = 520,
+										height = 120
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									allowClick = false,
+									pos = {
+										x = 80,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									allowClick = false,
+									pos = {
+										x = 450,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 80,
+										y = 110
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 450,
+										y = 110
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Sprite",
+								params = {
+									image = "xyyz_15.png",
+									pos = {
+										x = 131,
+										y = 48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "xyyz_15.png",
+									pos = {
+										x = 399,
+										y = 48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "reportID",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onReportAction",
+									image = "c_27.png",
+									pos = {
+										x = 265,
+										y = 65
+									},
+									size = {
+										width = 120,
+										height = 60
+									},
+									titleText = TR("战斗回放")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "noDataSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 183.96,
+						y = 245.24
+					}
+				},
+				children = {
+					{
+						name = "untitled22",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 135.95,
+								y = 34.81
+							},
+							text = TR("当前轮次暂无战报数据")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTurnRank = slot1.turnRank or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.rankLabel:setString(slot1.title or TR("八强赛"))
+	slot0.getReportData(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.reportList:removeAllItems()
+	slot0.noDataSprite:setVisible(false)
+
+	if not slot0.mReportData or next(slot0.mReportData) == nil then
+		slot0.noDataSprite:setVisible(true)
+
+		return 
+	end
+
+	for slot4, slot5 in ipairs(slot0.mReportData) do
+		slot0.reportList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "reportLayout", {
+			playerModelId1 = slot5.AttackerInfo.HeadImageId,
+			playerName1 = slot5.AttackerInfo.PlayerName,
+			playerFashionLv1 = slot5.AttackerInfo.FashionLevel,
+			isWinImage1 = (slot5.IsAttackerWin and "xyyz_15.png") or "xyyz_16.png",
+			playerModelId2 = slot5.DefenderInfo.HeadImageId,
+			playerName2 = slot5.DefenderInfo.PlayerName,
+			playerFashionLv2 = slot5.DefenderInfo.FashionLevel,
+			isWinImage2 = (slot5.IsAttackerWin and "xyyz_16.png") or "xyyz_15.png",
+			reportID = slot4,
+			headPicId1 = slot5.AttackerInfo.HeadPicId,
+			headPicId2 = slot5.DefenderInfo.HeadPicId
+		}))
+	end
+
+	return 
+end
+slot0.onReportAction = function (slot0, slot1)
+	if not slot0.mReportData[slot1.reportID] or next(slot2) == nil then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetTargetBattleInfo",
+		moduleName = "Worldnumone",
+		methodData = {
+			slot2.BattleReportId
+		},
+		successCallback = function (slot0)
+			if slot0.Content == "" then
+				ui.showFlashView(TR("失败方没有布阵被直接淘汰，无战报信息"))
+
+				return 
+			end
+
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = cjson.decode(slot0.Content)
+			})
+
+			clone(LayerManager.getRestoreData("pvp.WorldBestHomeLayer")) or {}.showReportDlg = true
+
+			LayerManager.setRestoreData("pvp.WorldBestHomeLayer", clone(LayerManager.getRestoreData("pvp.WorldBestHomeLayer")) or {})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getReportData = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAllBattleInfo",
+		moduleName = "Worldnumone",
+		methodData = {
+			slot0.mTurnRank or 5
+		},
+		successCallback = function (slot0)
+			slot0.mReportData = slot0 or {}
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

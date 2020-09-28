@@ -1,0 +1,236 @@
+slot0 = class("MysteryHoleOpenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyzz_10.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "effectNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "kaimenXia",
+				cType = "Effect",
+				params = {
+					loop = false,
+					complete = "onEffectEndCallBack",
+					dataFile = "effect_ui_xiangyangzhizhan",
+					isPlayAnimation = false,
+					animation = "kaimen_xia",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "kaimenShang",
+				cType = "Effect",
+				params = {
+					loop = false,
+					complete = "onEffectEndCallBack",
+					dataFile = "effect_ui_xiangyangzhizhan",
+					isPlayAnimation = false,
+					animation = "kaimen_shang",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tipsLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 16.06,
+						y = -64.63
+					},
+					text = TR("点击打开城门")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "effectFireNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "fire",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_xiangyangzhizhan",
+					animation = "fire",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Button",
+		params = {
+			clickAction = "onOpenClickAction",
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_pure.png",
+			pos = {
+				x = 579,
+				y = 272
+			},
+			size = {
+				width = 360,
+				height = 400
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseBtnClick",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyzz_2.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 88,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled5",
+		cType = "TopResourceNode",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 615.76,
+				y = 590.23
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if display.isIpadClass then
+		slot0.effectNode:setScale(display.maxSafeScale)
+		slot0.effectFireNode:setScale(display.maxSafeScale)
+	else
+		slot0.effectNode:setScale(display.minScale)
+		slot0.effectFireNode:setScale(display.minScale)
+	end
+
+	LocalData:saveGameDataValue("MysteryHoleOpenDoorTime", Player:getCurrentTime() or 0)
+	ui.fadeInAndOut(slot0.tipsLabel)
+
+	return 
+end
+slot0.onOpenClickAction = function (slot0)
+	if slot0.openning then
+		return 
+	end
+
+	slot0.tipsLabel:setVisible(false)
+
+	slot0.openning = true
+
+	slot0.playOpenDoorEffect(slot0)
+
+	return 
+end
+slot0.playOpenDoorEffect = function (slot0, slot1)
+	slot0.kaimenShang:playAnimation("kaimen_shang")
+	slot0.kaimenXia:playAnimation("kaimen_xia")
+
+	return 
+end
+slot0.onEffectEndCallBack = function (slot0)
+	LayerManager.removeTopCleanUpLayer(false)
+	LayerManager.showModuleLayer(ModuleSub.eXiangYangFight)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,169 @@
+slot0 = class("BiwuDlgWuxueDetailLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			titleText = "",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 500,
+				height = 350
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 250,
+						y = 175
+					},
+					size = {
+						width = 450,
+						height = 220
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255,
+						y = 299
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 35.01,
+						y = 68.57
+					},
+					size = {
+						width = 430,
+						height = 210
+					}
+				},
+				children = {
+					{
+						name = "layoutAttrCell",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 430,
+								height = 30
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	for slot7, slot8 in pairs(slot3) do
+		for slot12, slot13 in pairs(WuxueModel.items) do
+			if slot13.suitId == slot2 and slot13.ifOpen then
+				slot0.mSuitData = {
+					suitId = slot2,
+					quality = slot7,
+					suitconfig = slot8,
+					colorLv = slot13.colorLv
+				}
+
+				break
+			end
+		end
+	end
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if (slot0.name ~= "nameLabel" or false) and slot0.name == "msgBox" then
+			slot1.titleText = WuxueSuitIntroRelation.items[slot0.mSuitData.suitId].suitName
+		end
+
+		return 
+	end)
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mSuitData.suitconfig) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.needPartNum < slot1.needPartNum
+	end)
+	slot0.mListView:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = TR("%s 套属性: ", slot6.needPartNum)
+
+		if slot6.actAttrStr ~= "" then
+			for slot11, slot12 in ipairs(Utility.analysisStrAttrList(slot6.actAttrStr)) do
+				slot13 = ""
+
+				if 1 < slot11 then
+					slot13 = " "
+				end
+
+				slot7 = slot7 .. ((Utility.isAttrNeedPercent(slot12.fightattr) and slot13 .. string.format("%s+%s%%", FightAttrTypeName[slot12.fightattr], slot12.value/100)) or slot13 .. string.format("%s+%s", FightAttrTypeName[slot12.fightattr], slot12.value))
+			end
+		end
+
+		if UIWrap.newControl("Label", {
+			fontSize = 18,
+			isRichText = true,
+			text = (slot6.actSkillId ~= "" and slot7 .. Resource.getSkillIntroStr(tonumber(slot6.actSkillId), 1, 1, "#252525", "#252525")) or slot7 .. TR("无"),
+			anchor = cc.p(0, 0.5),
+			color = cc.c3b(37, 37, 37),
+			size = cc.size(420, 0)
+		}).getContentSize(slot8).height + 10 < 36 then
+			slot9 = 36
+		end
+
+		slot8.setPosition(slot8, 5, slot9/2)
+
+		slot10 = slot0.createLayoutTemplateNode(slot0, "layoutAttrCell")
+
+		slot10.setContentSize(slot10, cc.size(430, slot9))
+		slot10.addChild(slot10, slot8)
+		slot0.mListView:pushBackCustomItem(slot10)
+	end
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,501 @@
+slot0 = class("BaguaSelectHeroLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 683,
+				height = 538
+			},
+			titleText = TR("选择侠客")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 340.84,
+						y = 350
+					},
+					size = {
+						width = 630,
+						height = 286
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSelectLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.72,
+						y = 460.28
+					},
+					text = TR("选择侠客：0/5")
+				},
+				children = {}
+			},
+			{
+				name = "mHintLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 630,
+						y = 460.28
+					},
+					text = TR("需要训练等级达到橙色且五星侠客")
+				},
+				children = {}
+			},
+			{
+				name = "mHeroView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateHeroItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 120,
+					pos = {
+						x = 340,
+						y = 332
+					},
+					size = {
+						width = 600,
+						height = 240
+					}
+				},
+				children = {
+					{
+						name = "HeroTemNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 100,
+								y = 100
+							},
+							size = {
+								width = 115,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "CardNode",
+								params = {
+									clickAction = "onHeroClick",
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 57.5,
+										y = 70
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									scaleX = 0.7,
+									image = "c_2.png",
+									scaleY = 0.8,
+									pos = {
+										x = 57.5,
+										y = 17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									childName = "professionSprite",
+									scale = 0.75,
+									image = "zj_72.png",
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									pos = {
+										x = 27.59,
+										y = 17.31
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "nameLabel",
+									pos = {
+										x = 64.53,
+										y = 17.02
+									},
+									text = TR("侠客名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "fuli_20.png",
+									childName = "selectSprite",
+									pos = {
+										x = 58.72,
+										y = 69.57
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mGuaSprite",
+				cType = "Sprite",
+				params = {
+					image = "zj_151.png",
+					pos = {
+						x = 141.57,
+						y = 136.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 249.38,
+						y = 175.09
+					}
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("升级条件：")
+						},
+						children = {}
+					},
+					{
+						name = "mFapProgBar",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_36.png",
+							bgImage = "jyt_35.png",
+							pos = {
+								x = 244.04,
+								y = -13.4
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mFapProgLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							pos = {
+								x = 255,
+								y = -13
+							},
+							text = TR("战力：135456/74846")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 249.38,
+						y = 128.09
+					}
+				},
+				children = {
+					{
+						name = "mOldAttrLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("升级条件：")
+						},
+						children = {}
+					},
+					{
+						name = "mNewAttrLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230,
+								y = 0
+							},
+							text = TR("升级条件：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							pos = {
+								x = 185,
+								y = -10
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					clickAction = "onOkCallback",
+					image = "c_27.png",
+					pos = {
+						x = 341.5,
+						y = 50
+					},
+					size = {
+						width = 160,
+						height = 50
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "mEmptySprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bp_25.png",
+					hide = true,
+					pos = {
+						x = 355.93,
+						y = 344.21
+					}
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.34,
+								y = 50.07
+							},
+							text = TR("暂无符合要求的侠客")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGuaInfo = slot1.guaInfo
+	slot0.mSelectHeros = clone(slot0.mGuaInfo.Hero)
+	slot0.mOtherCampHeros = slot1.otherCampHeros
+	slot0.mCallback = slot1.callback
+	slot0.mAllHeros = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mGuaSprite:setTexture(BaguaModel.items[slot0.mGuaInfo.Id].pic .. ".png")
+	slot0.mOldAttrLabel:setString(TR("当前：%s", (BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv].allAttr ~= "" and Utility.analysisStrAttrToFromat(slot1.allAttr, "%s+%s", "  ")) or TR("无属性")))
+	slot0.mNewAttrLabel:setString(TR("下一级：%s", (BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv + 1] and Utility.analysisStrAttrToFromat(BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv + 1].allAttr, TR("%s+%s"), "  ")) or TR("已满级")))
+	slot0.getAllHeroList(slot0)
+
+	if next(slot0.mAllHeros) then
+		slot0.mHeroView:setVisible(true)
+		slot0.mHeroView:setItemNum(#slot0.mAllHeros)
+	else
+		slot0.mEmptySprite:setVisible(true)
+		slot0.mHeroView:setVisible(false)
+	end
+
+	slot0.mHintLabel:setString(TR("需要训练等级达到%s且%s星侠客", HeroTrainColorlvRelation.items[BaguaConfig.items[1].inPutNeedTrainStep].stepDes, BaguaConfig.items[1].inPutNeedStars))
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.getAllHeroList = function (slot0)
+	slot0.mAllHeros = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		if not table.indexof(slot0.mOtherCampHeros, slot6) and BaguaConfig.items[1].inPutNeedStars <= HeroObj:getItem(slot6).Star and BaguaConfig.items[1].inPutNeedTrainStep <= slot7.TrainLv then
+			table.insert(slot0.mAllHeros, slot7)
+		end
+	end
+
+	return 
+end
+slot0.getGuaCurFap = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.mSelectHeros) do
+		slot1 = slot1 + HeroObj:getItem(slot6).Fap
+	end
+
+	return slot1
+end
+slot0.refreshUI = function (slot0)
+	slot0.mSelectLabel:setString(TR("选择侠客：%s/%s", #slot0.mSelectHeros, BaguaConfig.items[1].inPutHeroNum))
+	slot0.mFapProgBar:setMaxValue(BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv + 1] or BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv] or slot2.needFap - BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv].needFap)
+	slot0.mFapProgBar:setCurrValue(slot0.getGuaCurFap(slot0) - BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv].needFap)
+	slot0.mFapProgLabel:setString(TR("战力：%s/%s", Utility.numberWithUnit(slot4), Utility.numberWithUnit(BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv + 1] or BaguaLvRelation.items[slot0.mGuaInfo.Id][slot0.mGuaInfo.Lv] or slot2.needFap)))
+
+	return 
+end
+slot0.onOkCallback = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback(slot0.mSelectHeros)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onHeroClick = function (slot0, slot1)
+	if not slot1.ModelId then
+		return 
+	end
+
+	if table.indexof(slot0.mSelectHeros, slot1.ModelId) then
+		table.remove(slot0.mSelectHeros, slot2)
+	else
+		if BaguaConfig.items[1].inPutHeroNum <= #slot0.mSelectHeros then
+			ui.showFlashView(TR("选择侠客数量已达上限！"))
+
+			return 
+		end
+
+		table.insert(slot0.mSelectHeros, slot1.ModelId)
+	end
+
+	slot0.refreshUI(slot0)
+	slot0.mHeroView:reloadData()
+
+	return 
+end
+slot0.onCreateHeroItem = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "HeroTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+	slot3.card:setCardData({}, {
+		Enums.CardShowAttr.eLevel,
+		Enums.CardShowAttr.eStar,
+		Enums.CardShowAttr.eTrainLv
+	}, slot4)
+
+	slot3.card.ModelId = slot0.mAllHeros[slot2].ModelId
+	slot5, slot9 = Utility.getHeroCampProfessionImg(slot0.mAllHeros[slot2].ModelId, false)
+
+	slot3.professionSprite:setTexture(slot6)
+	slot3.nameLabel:setString(HeroModel.items[slot0.mAllHeros[slot2].ModelId].name)
+	slot3.selectSprite:setVisible((table.indexof(slot0.mSelectHeros, slot0.mAllHeros[slot2].ModelId) and true) or false)
+
+	return 
+end
+
+return slot0

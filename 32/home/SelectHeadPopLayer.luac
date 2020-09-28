@@ -1,0 +1,634 @@
+slot0 = class("SelectHeadPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 600,
+				height = 506
+			},
+			titleText = TR("头 像")
+		},
+		children = {
+			{
+				name = "untitled42",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					pos = {
+						x = 173.76,
+						y = 230
+					},
+					size = {
+						width = 280,
+						height = 380
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 3,
+					celHeight = 110,
+					pos = {
+						x = 167.54,
+						y = 230.77
+					},
+					size = {
+						width = 260,
+						height = 370
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 85.63,
+						y = 362.71
+					}
+				},
+				children = {
+					{
+						name = "untitled18",
+						cType = "PlayerHeroNode",
+						params = {
+							modelId = 19010000,
+							childName = "cardNode",
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "Sprite",
+						params = {
+							childName = "lockSprite",
+							image = "c_21.png",
+							hide = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_24.png",
+							childName = "selectSprite",
+							pos = {
+								x = -0.02,
+								y = 0.28
+							},
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "c_44.png",
+									pos = {
+										x = 45.86,
+										y = 36.93
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mChangedBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSureBtn",
+					pos = {
+						x = 441,
+						y = 130
+					},
+					titleText = TR("确认更换")
+				},
+				children = {}
+			},
+			{
+				name = "mPerviewHead",
+				cType = "PlayerHeroNode",
+				params = {
+					modelId = 19010000,
+					hide = true,
+					allowClick = false,
+					pos = {
+						x = 441,
+						y = 353
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGetWayLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					emptyInit = true,
+					align = 1,
+					valign = 0,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 446.83,
+						y = 241.21
+					},
+					size = {
+						width = 210,
+						height = 100
+					},
+					text = TR("斗武大会周一24点结算第一名")
+				},
+				children = {}
+			},
+			{
+				name = "mHintLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 441,
+						y = 353
+					},
+					text = TR("点击左侧预览")
+				},
+				children = {}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChangeBtn",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							tag = 1,
+							title = TR("头 像")
+						},
+						{
+							tag = 2,
+							title = TR("头像框")
+						}
+					},
+					pos = {
+						x = 35.57,
+						y = 424.59
+					},
+					size = {
+						width = 441.83,
+						height = 50
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled39",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 322.49,
+						y = 235.31
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mHeadCardList = {}
+	slot0.mSelectModelId = nil
+	slot0.mTag = 1
+
+	slot0.initUI(slot0)
+	slot0.getItemsData(slot0)
+	slot0.requestHeadPicInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in pairs(slot0.mTabView:getTabBtns()) do
+		if slot4 == 2 then
+			slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eHeadpic
+			}))
+		end
+	end
+
+	return 
+end
+slot0.getItemsData = function (slot0)
+	slot1 = clone(HeroObj:getSortList())
+	slot2 = PlayerAttrObj:getPlayerAttrByName("FashionActivedModelIds")
+	slot3 = {}
+
+	for slot7, slot8 in pairs(PlayerHeadpicConfig.items) do
+		table.insert(slot3, slot8.heroModelId)
+	end
+
+	for slot7, slot8 in ipairs(slot2) do
+		table.insert(slot3, slot8)
+	end
+
+	for slot7, slot8 in ipairs(slot1) do
+		table.insert(slot3, slot8)
+	end
+
+	slot0.mHeroList = slot3
+	slot0.mHeadBoxList = table.keys(HeadpicConfig.items)
+	slot4 = {}
+	slot5 = pairs
+	slot6 = slot0.mHeadPicInfo or {}
+
+	for slot8, slot9 in slot5(slot6) do
+		slot4[slot9.ModelId] = slot9
+	end
+
+	slot0.mHeadPicInfo = slot4
+	slot0.mHeadBoxList = {}
+
+	for slot9, slot10 in pairs(slot5) do
+		if (slot0.mHeadPicInfo[slot10.headPicId] and (slot11.EndTime == 0 or Player:getCurrentTime() < slot11.EndTime)) or slot10.ifExhibition == 1 then
+			table.insert(slot0.mHeadBoxList, slot10.headPicId)
+		end
+	end
+
+	table.sort(slot0.mHeadBoxList, function (slot0, slot1)
+		if (slot0.mHeadPicInfo[slot0] and (slot2.EndTime == 0 or Player:getCurrentTime() < slot2.EndTime)) ~= (slot0.mHeadPicInfo[slot1] and (slot0.mHeadPicInfo[slot1].EndTime == 0 or Player:getCurrentTime() < slot0.mHeadPicInfo[slot1].EndTime)) then
+			return slot4
+		end
+
+		return slot0 < slot1
+	end)
+	table.insert(slot0.mHeadBoxList, 1, 0)
+
+	return 
+end
+slot0.refreshRightHead = function (slot0)
+	if slot0.mSelectModelId then
+		slot0.mPerviewHead:setVisible(true)
+		slot0.mHintLabel:setVisible(false)
+		slot0.mGetWayLabel:setVisible(true)
+		slot0.mChangedBtn:setTitleText(TR("确认更换"))
+		slot0.mChangedBtn:setPosition(440, 130)
+
+		if slot0.mTag == 1 then
+			slot0.mPerviewHead:setPlayerHeader(slot0.mSelectModelId, nil, {
+				fashionLv = PlayerAttrObj:getPlayerAttrByName("FashionLevel"),
+				headPicId = PlayerAttrObj:getPlayerAttrByName("HeadPicId")
+			})
+			slot0.mGetWayLabel:setVisible(false)
+			slot0.mPerviewHead:setPosition(440, 300)
+			slot0.mChangedBtn:setPosition(440, 180)
+		elseif slot0.mTag == 2 then
+			slot0.mPerviewHead:setPlayerHeader(slot1, nil, {
+				fashionLv = PlayerAttrObj:getPlayerAttrByName("FashionLevel"),
+				headPicId = slot0.mSelectModelId
+			})
+			slot0.mPerviewHead:setPosition(440, 355)
+
+			slot2 = slot0.mHeadPicInfo[slot0.mSelectModelId]
+
+			if slot0.mSelectModelId ~= 0 and not slot2 then
+				slot0.mChangedBtn:setTitleText(TR("去获取"))
+			else
+				slot0.mChangedBtn:setTitleText(TR("确认更换"))
+			end
+
+			slot4 = (HeadpicConfig.items[slot0.mSelectModelId] and slot3.accessWay) or TR("取消头像框显示")
+
+			if slot0.mHeadPicProgInfo[tostring(slot0.mSelectModelId)] and not slot2 then
+				slot4 = slot4 .. TR("\n进度：%s/%s", slot0.mHeadPicProgInfo[tostring(slot0.mSelectModelId)], slot3.parameter)
+			end
+
+			if slot0.mTimeUpdate then
+				slot0.mGetWayLabel:stopAction(slot0.mTimeUpdate)
+
+				slot0.mTimeUpdate = nil
+			end
+
+			slot0.mGetWayLabel:setString(slot4)
+
+			if slot2 and Player:getCurrentTime() < slot2.EndTime then
+				slot0.mTimeUpdate = Utility.schedule(slot0.mGetWayLabel, function ()
+					if 0 < slot0.EndTime - Player:getCurrentTime() then
+						slot1.mGetWayLabel:setString(TR("过期倒计时：%s", MqTime.completeFormat(slot0)))
+					else
+						slot1.mGetWayLabel:setString(slot1.mGetWayLabel)
+						slot1.mGetWayLabel.setString.mGetWayLabel:stopAction(slot1.mTimeUpdate)
+
+						slot1.mGetWayLabel.setString.mGetWayLabel.stopAction.mTimeUpdate = nil
+
+						slot1.mGetWayLabel.setString.mGetWayLabel.stopAction:requestHeadPicInfo()
+					end
+
+					return 
+				end, 1)
+			end
+		end
+	else
+		slot0.mPerviewHead:setVisible(false)
+		slot0.mHintLabel:setVisible(true)
+		slot0.mGetWayLabel:setVisible(false)
+	end
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot4 = nil
+
+	if slot0.mTag == 1 then
+		slot0.createLayoutTemplateNode(slot0, "gridNode").cardNode:setPlayerHeader(slot5, nil, {
+			fashionLv = PlayerAttrObj:getPlayerAttrByName("FashionLevel")
+		})
+		slot0.createLayoutTemplateNode(slot0, "gridNode").selectSprite:setVisible(slot0.mHeroList[slot2] == slot0.mSelectModelId)
+		slot4.cardNode:setClickAction(function ()
+			slot0.mSelectModelId = slot1
+
+			slot0.mGridView:setSelect(slot2)
+			slot0.mGridView.setSelect:refreshRightHead()
+
+			return 
+		end)
+		slot4.setPosition(slot4, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+		slot1.addChild(slot1, slot4)
+	elseif slot0.mTag == 2 then
+		slot0.createLayoutTemplateNode(slot0, "gridNode").cardNode:setPlayerHeader(19010000, nil, {
+			fashionLv = PlayerAttrObj:getPlayerAttrByName("FashionLevel"),
+			headPicId = slot0.mHeadBoxList[slot2]
+		})
+		slot0.createLayoutTemplateNode(slot0, "gridNode").selectSprite:setVisible(slot0.mHeadBoxList[slot2] == slot0.mSelectModelId)
+
+		if slot5 ~= 0 then
+			slot4.lockSprite:setVisible(not (slot0.mHeadPicInfo[slot5] and (slot6.EndTime == 0 or Player:getCurrentTime() < slot6.EndTime)))
+
+			if not (slot0.mHeadPicInfo[slot5] and (slot6.EndTime == 0 or Player.getCurrentTime() < slot6.EndTime)) then
+				slot4.cardNode:setGray()
+			end
+		end
+
+		slot4.cardNode:setClickAction(function ()
+			slot0.mSelectModelId = slot1
+
+			slot0.mGridView:setSelect(slot2)
+			slot0.mGridView.setSelect:refreshRightHead()
+
+			return 
+		end)
+		slot4.setPosition(slot4, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+		slot1.addChild(slot1, slot4)
+	end
+
+	slot0.mHeadCardList[slot2] = slot4
+
+	return 
+end
+slot0.onSureBtn = function (slot0)
+	if not slot0.mSelectModelId then
+		ui.showFlashView(TR("请选择更换%s", (slot0.mTag == 1 and TR("头像")) or TR("头像框")))
+
+		return 
+	end
+
+	if slot0.mTag == 1 then
+		slot0.requestAlterPlayerHeadId(slot0)
+	elseif slot0.mTag == 2 then
+		slot1 = slot0.mHeadPicInfo[slot0.mSelectModelId]
+
+		if slot0.mSelectModelId ~= 0 and not slot1 then
+			if HeadpicTypeConfig.items[HeadpicConfig.items[slot0.mSelectModelId].type].moduleId == ModuleSub.eLeaderBoard then
+				LayerManager.showModuleLayer(ModuleSub.eCityWar)
+			elseif slot3 == ModuleSub.eMainCityWar then
+				if not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+					ui.showFlashView(TR("未加入帮派无法参与决战武林"))
+
+					return 
+				end
+
+				slot0.safeRequest(slot0, {
+					methodName = "GetLeaguetopInfo",
+					moduleName = "Leaguetop",
+					methodData = {},
+					successCallback = function (slot0)
+						if 0 <= slot0.LeaguetopInfo.StartTimeOfWar - Player:getCurrentTime() or slot0.LeaguetopInfo.GameOver then
+							if 0 < #slot0.WinnerHistoryInfo then
+								if 0 < slot0.LeaguetopInfo.CountDown - Player:getCurrentTime() then
+									LayerManager.addLayer({
+										name = "citywar.JzwlResultLayer",
+										data = {
+											response = slot0
+										}
+									})
+								else
+									ui.showFlashView(TR("决战武林已结束"))
+								end
+							else
+								LayerManager.addLayer({
+									name = "citywar.JzwlFirstPreviewLayer"
+								})
+							end
+						else
+							LayerManager.addLayer({
+								name = "citywar.JzwlMainLayer",
+								data = {
+									response = slot0
+								}
+							})
+						end
+
+						return 
+					end
+				})
+			elseif slot3 == ModuleSub.eWorldNumOne then
+				if RedDotObj:isValid(slot3, "IsOpen") or 13 <= PlayerAttrObj:getPlayerAttrByName("ServerOpenDays") then
+					slot5 = Player:getCurrentTime()
+
+					if PlayerAttrObj:getPlayerAttrByName("WorldnumoneOpenTime") == nil or slot4 <= slot5 or RedDotObj:isValid(slot3, "IsOpen") then
+						LayerManager.addLayer({
+							name = "pvp.WorldBestHomeLayer"
+						})
+					else
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "home.WorldNumOneMsgBoxLayer",
+							zOrder = Enums.ZOrderType.ePopLayer
+						})
+					end
+				else
+					ui.showFlashView(TR("该功能还未开放"))
+				end
+			elseif slot3 == ModuleSub.eBiWu or slot3 == ModuleSub.eLunDao then
+				if not Utility.moduleIsOpen(slot3, true) then
+					return 
+				end
+
+				if not RedDotObj:isValid(ModuleSub.eBiWu, "BiwuIsOpen") then
+					ui.showFlashView(TR("比武论道举办时间在每周星期六00:00—星期天24:00"))
+
+					return 
+				end
+
+				LayerManager.showModuleLayer(ModuleSub.eBiWu)
+			elseif slot3 == ModuleSub.eMissDragon then
+				if ActivityObj:getEntityId(slot3) then
+					LayerManager.showModuleLayer(slot3)
+				else
+					ui.showFlashView(TR("活动暂未开启"))
+				end
+			else
+				LayerManager.showModuleLayer(slot3)
+			end
+
+			return 
+		end
+
+		slot0.requestChangeHeadPicId(slot0)
+	end
+
+	return 
+end
+slot0.onTabChangeBtn = function (slot0, slot1)
+	if slot1 == slot0.mTag then
+		return 
+	end
+
+	slot0.mTag = slot1
+	slot0.mSelectModelId = nil
+	slot0.mHeadCardList = {}
+
+	slot0.refreshRightHead(slot0)
+
+	if slot0.mTag == 1 then
+		slot0.mGridView:setItemNum(#slot0.mHeroList)
+		slot0.mMsgBox.titleLabel:setString(TR("头 像"))
+	elseif slot0.mTag == 2 then
+		slot0.mGridView:setItemNum(#slot0.mHeadBoxList)
+		slot0.mMsgBox.titleLabel:setString(TR("头像框"))
+		slot0.mGridView:jumpToTop()
+
+		if RedDotObj:isValid(ModuleSub.eHeadpic) then
+			RedDotObj:seeRedDot("HeadPic")
+		end
+	end
+
+	return 
+end
+slot0.requestAlterPlayerHeadId = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "AlterPlayerHeadId",
+		moduleName = "Player",
+		methodData = {
+			slot0.mSelectModelId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("更换头像成功"))
+
+			slot0.mSelectModelId = nil
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestHeadPicInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "HeadPic",
+		methodData = {
+			slot0.mSelectModelId
+		},
+		successCallback = function (slot0)
+			slot0.mHeadPicInfo = slot0.HeadPic or {}
+			slot0.mHeadPicProgInfo = slot0.HeadPicProgress or {}
+
+			slot0:getItemsData()
+			slot0.mGridView:setItemNum(#slot0.mHeroList)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestChangeHeadPicId = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Combat",
+		moduleName = "HeadPic",
+		methodData = {
+			slot0.mSelectModelId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("更换头像框成功"))
+
+			slot0.mHeadPicInfo = slot0.HeadPic or {}
+
+			slot0:getItemsData()
+
+			slot0.mSelectModelId = nil
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

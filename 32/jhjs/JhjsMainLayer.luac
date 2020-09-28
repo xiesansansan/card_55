@@ -1,0 +1,661 @@
+slot0 = class("JhjsMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "sdfs",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "jhjs_19.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled31",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseLayer",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Sprite",
+						params = {
+							image = "jhjs_1.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -35,
+								y = 28
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleClick",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 270,
+						y = -5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled35",
+				cType = "Sprite",
+				params = {
+					image = "jhjs_21.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSceneSprite",
+				cType = "Sprite",
+				params = {
+					image = "jhjs_22.png",
+					hide = true,
+					pos = {
+						x = -260,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -373.55,
+						y = -127.17
+					}
+				},
+				children = {
+					{
+						name = "rewardTag",
+						cType = "Sprite",
+						params = {
+							image = "jhjs_7.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled42",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 12.31,
+										y = 32.6
+									},
+									size = {
+										width = 20,
+										height = 60
+									},
+									text = TR("奖励")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled38",
+						cType = "ListView",
+						params = {
+							childName = "rewardListView",
+							direction = false,
+							pos = {
+								x = 20.46,
+								y = -30
+							},
+							size = {
+								width = 230,
+								height = 70
+							}
+						},
+						children = {
+							{
+								name = "CardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 60,
+										height = 70
+									}
+								},
+								children = {
+									{
+										name = "untitled40",
+										cType = "CardNode",
+										params = {
+											scale = 0.7,
+											childName = "card",
+											allowClick = true,
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "rewardCardNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 140,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "CardTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 50,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mOpenLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					pos = {
+						x = -260,
+						y = -185
+					},
+					text = TR("周二、周五、周日开启")
+				},
+				children = {}
+			},
+			{
+				name = "mTypeListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					swallowTouch = false,
+					pos = {
+						x = 25,
+						y = -95
+					},
+					size = {
+						width = 415,
+						height = 260
+					}
+				},
+				children = {
+					{
+						name = "TypeLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled48-image",
+								name = "btnPic",
+								type = "string"
+							},
+							{
+								value = "untitled56-subKey",
+								name = "redDotKey",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 150,
+								height = 260
+							}
+						},
+						children = {
+							{
+								name = "untitled50",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "selectSprite",
+									hide = true,
+									image = "c_61.png",
+									pos = {
+										x = 75,
+										y = 130
+									},
+									size = {
+										width = 130,
+										height = 260
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled48",
+								cType = "Button",
+								params = {
+									image = "jhjs_24.png",
+									clickAction = "onTypeClick",
+									childName = "button",
+									pos = {
+										x = 75,
+										y = 130
+									}
+								},
+								children = {
+									{
+										name = "untitled56",
+										cType = "RedDot",
+										params = {
+											subKey = "",
+											moduleId = 4301
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mGoBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onChallengeClick",
+					pos = {
+						x = 359.63,
+						y = -128.23
+					},
+					titleText = TR("立即前往")
+				},
+				children = {}
+			},
+			{
+				name = "mTypeNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 250,
+						y = 30
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled36",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "jhjs_20.png",
+			anchor = {
+				x = 0,
+				y = 0
+			},
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mOpenSubId = slot1.openSubId
+	slot0.mCurNodeId = slot0.mOpenSubId
+	slot0.mTypeNodeList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUiData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUiData = function (slot0)
+	slot0.mNodeUIs = {
+		{
+			scenePic = "jhjs_22.png",
+			titlePic = "jhjs_24.png"
+		},
+		{
+			scenePic = "jhjs_23.png",
+			titlePic = "jhjs_25.png"
+		}
+	}
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		openSubId = slot0.mOpenSubId
+	}
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleClick = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、不同星期几分别可挑战不同的模式；"),
+			TR("2、不同模式会产出不同的资源道具；"),
+			TR("3、出战会有阵营和职业限制；"),
+			TR("4、关卡越后获得的奖励越好。")
+		}
+	})
+
+	return 
+end
+slot0.onTypeClick = function (slot0, slot1)
+	slot0.mCurNodeId = slot1.nodeId
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onChallengeClick = function (slot0, slot1)
+	if not slot0.mPassNodeList[slot0.mCurNodeId].IsOpen then
+		ui.showFlashView(TR("今日无法完成该类型"))
+
+		return 
+	end
+
+	slot0.openChallengeLayer(slot0, slot0.mCurNodeId)
+
+	return 
+end
+slot0.openChallengeLayer = function (slot0, slot1)
+	slot0.mOpenSubId = slot1
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jhjs.JhjsNodeInfoLayer",
+		data = {
+			jhjsInfo = slot0.mPassNodeList[slot1] or {},
+			callback = function (slot0)
+				slot0.mPassNodeList[slot0.NodeTypeId] = slot0
+
+				slot0:refreshUI()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refreshNodeReward = function (slot0)
+	slot0.rewardNode.rewardListView:removeAllChildren()
+	slot0.rewardCardNode:removeAllChildren()
+	slot0.rewardTag:setPosition(0, 0)
+
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot8.num = 0
+
+		slot0.createLayoutTemplateNode(slot0, "CardLayout").card:setCardData(slot8, {
+			Enums.CardShowAttr.eBorder
+		})
+		table.insert(slot3, slot0.createLayoutTemplateNode(slot0, "CardLayout"))
+	end
+
+	if 3 < #slot3 then
+		for slot7, slot8 in pairs(slot3) do
+			slot0.rewardNode.rewardListView:pushBackCustomItem(slot8)
+		end
+	else
+		slot4 = Utility.getExtendPos({
+			offset = 60,
+			num = #slot3
+		})
+
+		for slot8, slot9 in ipairs(slot3) do
+			slot9.setAnchorPoint(slot9, cc.p(0.5, 0.5))
+			slot9.setPosition(slot9, slot4[slot8])
+			slot0.rewardCardNode:addChild(slot9)
+		end
+
+		slot0.rewardTag:setPosition((slot4[1].x + slot0.rewardCardNode:getPositionX()) - 60, 0)
+	end
+
+	return 
+end
+slot0.refreshNodeRemainCount = function (slot0)
+	slot1 = JhxsNodeModel.items[slot0.mCurNodeId]
+	slot2 = (slot0.mPassNodeList[slot0.mCurNodeId] and slot0.mPassNodeList[slot0.mCurNodeId].CompleteNum) or 0
+
+	if (((slot0.mPassNodeList[slot0.mCurNodeId] and slot0.mPassNodeList[slot0.mCurNodeId].BuyNodeNum) or 0) + JhxsConfig.items[1].perNodeDareNumMax) - slot2 < 0 then
+		slot4 = 0
+	end
+
+	if slot0.mPassNodeList[slot0.mCurNodeId].IsOpen then
+		slot0.mOpenLabel:setString(TR("剩余次数:%s", slot4))
+	else
+		slot0.mOpenLabel:setString(slot1.openDes)
+	end
+
+	return 
+end
+slot0.refreshNodeList = function (slot0)
+	slot0.mTypeListView:removeAllChildren()
+	slot0.mTypeNode:removeAllChildren()
+
+	slot0.mTypeNodeList = {}
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.nodeId < slot1.nodeId
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "TypeLayout", {
+			btnPic = slot0.mNodeUIs[slot6.nodeId].titlePic,
+			redDotKey = "NodeTypeId_" .. slot6.nodeId
+		}).button.nodeId = slot6.nodeId
+
+		table.insert(slot0.mTypeNodeList, slot0.createLayoutTemplateNode(slot0, "TypeLayout", {
+			btnPic = slot0.mNodeUIs[slot6.nodeId].titlePic,
+			redDotKey = "NodeTypeId_" .. slot6.nodeId
+		}))
+
+		if not slot0.mCurNodeId and slot0.mPassNodeList[slot6.nodeId].IsOpen then
+			slot0.mCurNodeId = slot6.nodeId
+		end
+	end
+
+	if 3 < #slot0.mTypeNodeList then
+		for slot5, slot6 in pairs(slot0.mTypeNodeList) do
+			slot0.mTypeListView:pushBackCustomItem(slot6)
+		end
+	else
+		slot2 = Utility.getExtendPos({
+			offset = 150,
+			num = #slot0.mTypeNodeList
+		})
+
+		for slot6, slot7 in ipairs(slot0.mTypeNodeList) do
+			slot7.setAnchorPoint(slot7, cc.p(0.5, 0.5))
+			slot7.setPosition(slot7, slot2[slot6])
+			slot0.mTypeNode:addChild(slot7)
+		end
+	end
+
+	if not slot0.mCurNodeId then
+		slot0.mCurNodeId = slot1[1].nodeId
+	end
+
+	return 
+end
+slot0.refreshSelectType = function (slot0)
+	for slot4, slot5 in pairs(slot0.mTypeNodeList) do
+		slot5.selectSprite:setVisible(slot5.button.nodeId == slot0.mCurNodeId)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mSceneSprite:setVisible(true)
+	slot0.mSceneSprite:setTexture(slot0.mNodeUIs[slot0.mCurNodeId].scenePic)
+	slot0.refreshNodeReward(slot0)
+	slot0.refreshNodeRemainCount(slot0)
+	slot0.refreshSelectType(slot0)
+
+	return 
+end
+slot0.playAction = function (slot0)
+	slot1 = 0.2
+
+	for slot5, slot6 in ipairs(slot0.mTypeNodeList) do
+		slot6.setVisible(slot6, false)
+		Utility.performWithDelay(slot6, function ()
+			slot0:runAction(cc.Sequence:create({
+				cc.CallFunc:create(function ()
+					slot0:setVisible(true)
+					slot0.setVisible:setScale(1.5)
+
+					return 
+				end),
+				cc.EaseElasticOut:create(cc.ScaleTo:create(slot0, 1), 1)
+			}))
+
+			return 
+		end, slot1*slot5)
+	end
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "JhxsInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mPassNodeList = {}
+
+			for slot4, slot5 in pairs(slot0.NodeList) do
+				slot0.mPassNodeList[slot5.NodeTypeId] = slot5
+			end
+
+			slot0:refreshNodeList()
+			slot0:refreshUI()
+
+			if slot0.mOpenSubId then
+				slot0:openChallengeLayer(slot0.mOpenSubId)
+			end
+
+			slot0:playAction()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

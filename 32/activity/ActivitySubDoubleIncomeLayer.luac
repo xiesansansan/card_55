@@ -1,0 +1,385 @@
+slot0 = class("ActivitySubDoubleIncomeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_80.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 250.45,
+						y = -22.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "activityListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = -12.59,
+						y = -258.53
+					},
+					size = {
+						width = 524,
+						height = 472.99
+					}
+				},
+				children = {
+					{
+						name = "ActivityLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled13-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled11-text",
+								name = "remainText",
+								type = "string"
+							},
+							{
+								value = "untitled12-text",
+								name = "descText",
+								type = "string"
+							},
+							{
+								value = "untitled10-tag",
+								name = "tag",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 524,
+								height = 118
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 261.23,
+										y = 59.7
+									},
+									size = {
+										width = 524,
+										height = 118
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									image = "tb_sy_hd_9.png",
+									childName = "smallPic",
+									pos = {
+										x = 52.15,
+										y = 45.08
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "gotoBtn",
+									image = "c_27.png",
+									clickAction = "onJumpAction",
+									pos = {
+										x = 458.6,
+										y = 46.47
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 118.01,
+										y = 64.17
+									},
+									text = TR("倒计时:")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 117.81,
+										y = 61.68
+									},
+									size = {
+										width = 285.46,
+										height = 55.33
+									},
+									text = TR("描述描述描述描述描述描述描述描述")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 238,
+										r = 255,
+										b = 208
+									},
+									pos = {
+										x = 261.89,
+										y = 100.21
+									},
+									text = TR("活动名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									text = "Label",
+									hide = true,
+									childName = "timeLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 163,
+										r = 135,
+										b = 84
+									},
+									pos = {
+										x = 197.88,
+										y = 64.13
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshActivityList = function (slot0)
+	slot1 = FunctionOpenConfig.items
+	slot2 = {
+		[ModuleSub.eElite] = {
+			pic = "tb_gn_109.png",
+			intro = TR("活动期间，挑战和扫荡获得的经验和训练材料双倍")
+		},
+		[ModuleSub.eExpedition] = {
+			pic = "tb_gn_101.png",
+			intro = TR("活动期间拜庄论剑通关铜钱、宝箱奖励收益翻倍")
+		},
+		[ModuleSub.ePveMoppingUp] = {
+			pic = "tb_gn_202.png",
+			intro = TR("活动期间扫荡奖励收益翻倍")
+		},
+		[ModuleSub.eRepositoryDiamondConsume] = {
+			pic = "tb_gn_76.png",
+			nameModuleId = ModuleSub.eRepository,
+			intro = TR("活动期间战备库征收翻倍")
+		}
+	}
+
+	slot0.activityListView:removeAllChildren()
+
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot0.mModuleOrderDic) do
+		table.insert(slot3, {
+			order = slot7,
+			moduleId = slot8
+		})
+
+		if slot8 == slot0.mOpenModule then
+			slot0.mCurIndex = slot7
+		end
+	end
+
+	slot4 = {}
+	slot5 = {}
+	slot6 = {}
+
+	for slot10 = 1, 4, 1 do
+		if slot10 < slot0.mCurIndex then
+			table.insert(slot5, slot3[slot10])
+		elseif slot0.mCurIndex < slot10 then
+			table.insert(slot4, slot3[slot10])
+		else
+			table.insert(slot6, slot3[slot10])
+		end
+	end
+
+	table.sort(slot5, function (slot0, slot1)
+		if slot0.order ~= slot1.order then
+			return slot0.order < slot1.order
+		end
+
+		return 
+	end)
+	table.sort(slot4, function (slot0, slot1)
+		if slot0.order ~= slot1.order then
+			return slot0.order < slot1.order
+		end
+
+		return 
+	end)
+	table.insertto(slot4, slot5)
+	table.insertto(slot6, slot4)
+
+	slot0.inOrderList = slot6
+
+	for slot10, slot11 in ipairs(slot6) do
+		slot13 = ModuleSubConfig.items[slot11.moduleId].name
+
+		if slot2[slot11.moduleId].nameModuleId ~= nil then
+			slot13 = ModuleSubConfig.items[slot12.nameModuleId].name
+		end
+
+		slot0.activityListView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+		slot0.createLayoutTemplateNode(slot0, "ActivityLayout", {
+			name = slot13,
+			remainText = (slot0.mOpenModule ~= slot11.moduleId and TR("倒计时: 暂未开启")) or TR("倒计时: "),
+			descText = slot12.intro,
+			tag = slot10
+		}).smallPic:setTexture(slot12.pic)
+
+		if slot0.mOpenModule ~= slot11.moduleId then
+			slot14.gotoBtn:setEnabled(false)
+		else
+			slot14.timeLabel:setVisible(true)
+			Utility.schedule(slot14, function ()
+				if 0 < slot0.mModuleEndDate - Player:getCurrentTime() then
+					slot1.timeLabel:setString(MqTime.completeFormat(slot0))
+				else
+					slot1:stopAllActions()
+					slot0:requestInfo()
+				end
+
+				return 
+			end, 1)
+		end
+	end
+
+	return 
+end
+slot0.onJumpAction = function (slot0, slot1)
+	LayerManager.showModuleLayer(slot0.inOrderList[slot1.tag].moduleId)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "DoubleIncome",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSeveralDays = slot0.SeveralDays
+			slot0.mModuleEndDate = slot0.ModuleEndDate
+			slot0.mModuleOrderDic = slot0.ModuleOrderDic
+			slot0.mOpenModule = slot0.ModuleId
+
+			slot0:refreshActivityList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

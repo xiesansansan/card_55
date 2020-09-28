@@ -1,0 +1,1464 @@
+slot0 = class("SpecialCardBuyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "cz_80.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "weekCardNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled3-image",
+						name = "bgPic",
+						type = "string"
+					},
+					{
+						value = "untitled16-text",
+						name = "timeNum",
+						type = "string"
+					},
+					{
+						value = "untitled15-image",
+						name = "timebgPic",
+						type = "string"
+					},
+					{
+						value = "untitled98-subKey",
+						name = "redSubKey",
+						type = "string"
+					},
+					{
+						value = "tipLabel1-text",
+						name = "introStr",
+						type = "string"
+					},
+					{
+						value = "untitled110-image",
+						name = "tempBgPic",
+						type = "string"
+					},
+					{
+						value = "untitled118-initParams",
+						name = "totalCardInfo",
+						type = "string"
+					},
+					{
+						value = "untitled120-initParams",
+						name = "dailyCardInfo",
+						type = "string"
+					},
+					{
+						value = "untitled119-initParams",
+						name = "buyCardInfo",
+						type = "string"
+					},
+					{
+						value = "untitled114-image|untitled112-image|untitled116-image",
+						name = "tempRewardPic",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -369.81,
+						y = 17.32
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Scale9Sprite",
+						params = {
+							image = "cz_77.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							isRichText = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 91.11,
+								y = 161.47
+							},
+							size = {
+								width = 30,
+								height = 0
+							},
+							text = TR("周卡周卡")
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							image = "cz_73.png",
+							hide = true,
+							pos = {
+								x = 6.03,
+								y = -205.84
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 28.5,
+										y = 28
+									},
+									text = TR("20倍")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "boughtNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "rewardList",
+								cType = "ListView",
+								params = {
+									direction = false,
+									pos = {
+										x = -64.4,
+										y = -79.82
+									},
+									size = {
+										width = 130,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 65,
+												height = 60
+											}
+										},
+										children = {
+											{
+												name = "goodCard",
+												cType = "CardNode",
+												params = {
+													scale = 0.75,
+													allowClick = true,
+													pos = {
+														x = 32.5,
+														y = 30
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled110",
+								cType = "Sprite",
+								params = {
+									image = "cz_156.png",
+									pos = {
+										x = 0,
+										y = -4
+									}
+								},
+								children = {
+									{
+										name = "untitled111",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											pos = {
+												x = 89,
+												y = 10.5
+											},
+											text = TR("每日赠送")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "buyBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							pos = {
+								x = 5.42,
+								y = -156.41
+							},
+							titleText = TR("购买")
+						},
+						children = {
+							{
+								name = "untitled98",
+								cType = "RedDot",
+								params = {
+									subKey = "",
+									moduleId = 1302
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "tipLabel1",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							hide = true,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -88.56,
+								y = -102
+							},
+							size = {
+								width = 200,
+								height = 0
+							},
+							text = TR("帮战经验提升10%、挂机铜币提升10%")
+						},
+						children = {}
+					},
+					{
+						name = "timeBgSprite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "cz_78.png",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 112.07,
+								y = 20.95
+							},
+							size = {
+								width = 100,
+								height = 23
+							}
+						},
+						children = {}
+					},
+					{
+						name = "timeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 105.88,
+								y = 20.22
+							},
+							text = TR("持续7天")
+						},
+						children = {}
+					},
+					{
+						name = "unBuyNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled114",
+								cType = "Scale9Sprite",
+								params = {
+									image = "cz_154.png",
+									pos = {
+										x = 74.5,
+										y = -35.76
+									},
+									size = {
+										width = 66,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled115",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											pos = {
+												x = 32,
+												y = 68
+											},
+											text = TR("累计可领")
+										},
+										children = {}
+									},
+									{
+										name = "untitled118",
+										cType = "CardNode",
+										params = {
+											scale = 0.7,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 32.95,
+												y = 30.58
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled112",
+								cType = "Scale9Sprite",
+								params = {
+									image = "cz_154.png",
+									pos = {
+										x = 7.16,
+										y = -35.76
+									},
+									size = {
+										width = 66,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled113",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											pos = {
+												x = 34,
+												y = 68
+											},
+											text = TR("每日可领")
+										},
+										children = {}
+									},
+									{
+										name = "untitled120",
+										cType = "CardNode",
+										params = {
+											scale = 0.7,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 32.95,
+												y = 30.58
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled116",
+								cType = "Scale9Sprite",
+								params = {
+									image = "cz_154.png",
+									pos = {
+										x = -61.2,
+										y = -35.76
+									},
+									size = {
+										width = 66,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled117",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											pos = {
+												x = 34,
+												y = 68
+											},
+											text = TR("购买即送")
+										},
+										children = {}
+									},
+									{
+										name = "untitled119",
+										cType = "CardNode",
+										params = {
+											scale = 0.7,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 32.95,
+												y = 30.58
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled121",
+						cType = "Sprite",
+						params = {
+							image = "cz_158.png",
+							pos = {
+								x = 5.96,
+								y = -109.29
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "specialCardNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -61.28,
+						y = 8.25
+					}
+				},
+				children = {
+					{
+						name = "untitled57",
+						cType = "Scale9Sprite",
+						params = {
+							image = "cz_75.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled62",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							isRichText = true,
+							pos = {
+								x = 91.98,
+								y = 113.86
+							},
+							size = {
+								width = 30,
+								height = 0
+							},
+							text = TR("终生卡")
+						},
+						children = {}
+					},
+					{
+						name = "spCardRewardList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = -61.79,
+								y = -77.99
+							},
+							size = {
+								width = 130,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "spRewardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 65,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "untitled78",
+										cType = "CardNode",
+										params = {
+											scale = 0.75,
+											childName = "goodCard",
+											allowClick = true,
+											pos = {
+												x = 32.5,
+												y = 30
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled66",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							childName = "buyBtn",
+							pos = {
+								x = 8.08,
+								y = -152.73
+							},
+							titleText = TR("购买")
+						},
+						children = {
+							{
+								name = "untitled99",
+								cType = "RedDot",
+								params = {
+									moduleId = 1309
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "tipLabelSp1",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -88.75,
+								y = -91.07
+							},
+							size = {
+								width = 200,
+								height = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "tipLabelSp2",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							hide = true,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -88.75,
+								y = -116.4
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled79",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							valign = 1,
+							pos = {
+								x = 3.71,
+								y = -1.85
+							},
+							text = TR("每日赠送")
+						},
+						children = {}
+					},
+					{
+						name = "untitled86",
+						cType = "Sprite",
+						params = {
+							image = "cz_78.png",
+							pos = {
+								x = 70.79,
+								y = 21.53
+							}
+						},
+						children = {
+							{
+								name = "untitled87",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									pos = {
+										x = 60,
+										y = 10.5
+									},
+									text = TR("永久生效")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled90",
+						cType = "Sprite",
+						params = {
+							image = "cz_71.png",
+							hide = true,
+							pos = {
+								x = 6.03,
+								y = -205.84
+							}
+						},
+						children = {
+							{
+								name = "untitled91",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 28.5,
+										y = 28
+									},
+									text = TR("15倍")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "privilegeCardNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 339.51,
+						y = 6.2
+					}
+				},
+				children = {
+					{
+						name = "untitled33",
+						cType = "Scale9Sprite",
+						params = {
+							image = "cz_74.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							isRichText = true,
+							pos = {
+								x = 92.43,
+								y = 109.95
+							},
+							size = {
+								width = 30,
+								height = 0
+							},
+							text = TR("特权卡")
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							childName = "buyBtn",
+							pos = {
+								x = 9.24,
+								y = -153.25
+							},
+							titleText = TR("购买")
+						},
+						children = {}
+					},
+					{
+						name = "untitled73",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "tipLabel",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -77.42,
+								y = -104.07
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled88",
+						cType = "Sprite",
+						params = {
+							image = "cz_78.png",
+							pos = {
+								x = -5.07,
+								y = 160.18
+							}
+						},
+						children = {
+							{
+								name = "untitled89",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									pos = {
+										x = 60,
+										y = 10.5
+									},
+									text = TR("永久生效")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled92",
+						cType = "Sprite",
+						params = {
+							image = "cz_70.png",
+							hide = true,
+							pos = {
+								x = 6.03,
+								y = -205.84
+							}
+						},
+						children = {
+							{
+								name = "untitled93",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 28.5,
+										y = 28
+									},
+									text = TR("20倍")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "introNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled97-text",
+								name = "text",
+								type = "string"
+							},
+							{
+								value = "untitled97-size",
+								name = "size",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = -74.71,
+								y = 120.88
+							}
+						},
+						children = {
+							{
+								name = "untitled96",
+								cType = "Sprite",
+								params = {
+									image = "qxzl_11.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled97",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 10,
+										y = 1
+									},
+									size = {
+										width = 150,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mIntroListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = -80.95,
+								y = -103.34
+							},
+							size = {
+								width = 160,
+								height = 240
+							}
+						},
+						children = {
+							{
+								name = "introLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled105-text",
+										name = "text",
+										type = "string"
+									},
+									{
+										value = "untitled105-size",
+										name = "size",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 160,
+										height = 36
+									}
+								},
+								children = {
+									{
+										name = "untitled104",
+										cType = "Sprite",
+										params = {
+											image = "qxzl_11.png",
+											pos = {
+												x = 10,
+												y = 18
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled105",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 20,
+												y = 17
+											},
+											size = {
+												width = 150,
+												height = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled100",
+				cType = "Scale9Sprite",
+				params = {
+					image = "cz_33.png",
+					hide = true,
+					pos = {
+						x = 414.36,
+						y = 229.16
+					}
+				},
+				children = {
+					{
+						name = "untitled101",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 120,
+								y = 10
+							},
+							text = TR("*以下各类卡不参与任何充值活动")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mWeekCardList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetWeekCardInfo(slot0)
+	slot0.requestSpecialCardInfo(slot0)
+	slot0.refreshPrivilegeCard(slot0)
+	slot0.registerEvent(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.registerEvent = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eWeekCard, function ()
+		slot0:requestGetWeekCardInfo()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eAllLifeCard, function ()
+		ui.showFlashView(TR("激活成功"))
+		ui.showFlashView:requestSpecialCardInfo()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eSpecilPower, function ()
+		ui.showFlashView(TR("激活成功"))
+		ui.showFlashView:refreshPrivilegeCard()
+
+		return 
+	end)
+
+	return 
+end
+slot1 = {
+	cc.p(-290, 17),
+	cc.p(-60, -32),
+	cc.p(170, 17),
+	cc.p(400, -32)
+}
+slot0.refreshWeekCard = function (slot0)
+	slot1 = {
+		TR(""),
+		TR("")
+	}
+
+	for slot5, slot6 in ipairs(slot0.mWeekCardList) do
+		slot6.removeFromParent(slot6)
+
+		slot6 = nil
+	end
+
+	slot0.mWeekCardList = {}
+
+	for slot5, slot6 in ipairs(slot0.mCardInfoList) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "weekCardNode", {
+			bgPic = (slot5 == 1 and "cz_77.png") or "cz_76.png",
+			timebgPic = (slot5 == 1 and "cz_73.png") or "cz_72.png",
+			timeNum = TR("%s倍", 20),
+			redSubKey = tostring(slot6.Id),
+			introStr = slot1[slot5],
+			tempBgPic = (slot5 == 1 and "cz_156.png") or "cz_157.png",
+			tempRewardPic = (slot5 == 1 and "cz_154.png") or "cz_155.png",
+			totalCardInfo = {
+				cardInfo = {
+					modelId = 1111,
+					num = slot6.totalPriceC
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			},
+			dailyCardInfo = {
+				cardInfo = {
+					modelId = Utility.analysisStrResList(slot6.dailyReward)[1].resourceId,
+					num = Utility.analysisStrResList(slot6.dailyReward)[1].num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			},
+			buyCardInfo = {
+				cardInfo = {
+					modelId = Utility.analysisStrResList(slot6.buyReward)[1].resourceId,
+					num = Utility.analysisStrResList(slot6.buyReward)[1].num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		})
+
+		slot9.setPosition(slot9, slot0[slot5])
+		slot0.centerNode:addChild(slot9)
+		slot9.nameLabel:setString(string.format("%s", slot6.name))
+
+		for slot13, slot14 in ipairs(slot7) do
+			slot0.createLayoutTemplateNode(slot0, "rewardLayout").goodCard:setCardData({
+				resourceId = slot14.resourceId,
+				num = slot14.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot9.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+		end
+
+		if #slot7 == 1 then
+			slot9.rewardList:setPositionX(-28)
+		end
+
+		slot9.tipLabel1:setString(TR("每日赠送：%s%s", slot7[1].num, Resource.getName(slot7[1].resourceId)))
+
+		if slot6.data.ExpireTime then
+			if slot6.data.ExpireTime < Player:getCurrentTime() then
+				slot9.buyBtn:setTitleText(string.format("%s元", slot6.price))
+				slot9.buyBtn:setClickAction(function ()
+					slot0:buyWeekCard(slot0)
+
+					return 
+				end)
+				slot9.unBuyNode:setVisible(true)
+				slot9.boughtNode:setVisible(false)
+			else
+				slot9.timeBgSprite:setContentSize(cc.size(140, 23))
+				Utility.schedule(slot9, function ()
+					if 0 < slot0.data.ExpireTime - Player:getCurrentTime() then
+						slot1.timeLabel:setString(MqTime.formatAsDay(slot0))
+					else
+						slot2:requestGetWeekCardInfo()
+					end
+
+					return 
+				end, 1)
+
+				if slot6.data.CanDrawTodayReward then
+					slot9.buyBtn:setTitleText(TR("领取"))
+					slot9.buyBtn:setClickAction(function ()
+						slot0:requestReward(slot1.Id)
+
+						return 
+					end)
+				else
+					slot9.buyBtn:setEnabled(false)
+					slot9.buyBtn:setTitleText(TR("已领取"))
+				end
+
+				slot9.unBuyNode:setVisible(false)
+				slot9.boughtNode:setVisible(true)
+			end
+		else
+			slot9.buyBtn:setTitleText(string.format("%s元", slot6.price))
+			slot9.buyBtn:setClickAction(function ()
+				slot0:buyWeekCard(slot0)
+
+				return 
+			end)
+			slot9.timeLabel:setString(slot10)
+			slot9.unBuyNode:setVisible(true)
+			slot9.boughtNode:setVisible(false)
+		end
+
+		table.insert(slot0.mWeekCardList, slot9)
+	end
+
+	return 
+end
+slot0.buyWeekCard = function (slot0, slot1)
+	function slot2(slot0, slot1)
+		Utility.recharge({
+			chargeType = Enums.chargeType.eWeekCard,
+			price = slot0.data.Price,
+			productId = slot0.data.ProductId
+		}, function ()
+			return 
+		end)
+
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("是否花费%d元购买%s？", slot1.price, slot1.name),
+		okCallback = function (...)
+			slot0(slot1, index)
+
+			return 
+		end,
+		cancelCallback = function (...)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.refreshSpecialCard = function (slot0)
+	if slot0.mSpCardNode then
+		slot0.mSpCardNode:removeFromParent()
+
+		slot0.mSpCardNode = nil
+	end
+
+	slot1 = slot0.createLayoutTemplateNode(slot0, "specialCardNode")
+
+	slot1.setPosition(slot1, slot0[3])
+	slot0.centerNode:addChild(slot1)
+
+	slot0.mSpCardNode = slot1
+	slot4 = Utility.analysisStrResList(SpCardConfig.items[slot0.mSpCardChargeNum].buyReward)
+
+	slot1.tipLabelSp1:setString(TR("战备库收益增加#C04141%s%%", SpCardConfig.items[slot0.mSpCardChargeNum].repositoryAddR*100))
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot0.createLayoutTemplateNode(slot0, "spRewardLayout").goodCard:setCardData({
+			resourceId = slot9.resourceId,
+			num = slot9.num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot1.spCardRewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "spRewardLayout"))
+	end
+
+	if #slot3 == 1 then
+		slot1.spCardRewardList:setPositionX(-28)
+	end
+
+	if slot0.mIsActiveSpCard then
+		if slot0.mIsDrawSpCard then
+			slot1.buyBtn:setTitleText(TR("已领取"))
+			slot1.buyBtn:setEnabled(false)
+		else
+			slot1.buyBtn:setTitleText(TR("领取"))
+			slot1.buyBtn:setClickAction(function ()
+				slot0:requestDrawDayReward()
+
+				return 
+			end)
+		end
+
+		slot1.tipLabelSp1:setPositionY(-85)
+	else
+		slot1.buyBtn:setTitleText(string.format("%s元", slot0.mSpCardChargeNum))
+		slot1.buyBtn:setClickAction(function ()
+			slot0:buySpCard()
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.buySpCard = function (slot0)
+	slot0.requestBuySpCard(slot0)
+
+	return 
+end
+slot0.requestBuySpCard = function (slot0)
+	Utility.recharge({
+		chargeType = Enums.chargeType.eAllLifeCard,
+		price = slot0.mSpCardChargeNum,
+		productId = slot0.mSpCardProductId
+	}, function ()
+		return 
+	end)
+
+	return 
+end
+slot2 = {
+	"武林传记扫荡免费次数+1",
+	"庄园建造每天10次免费加速",
+	"庄园粮仓和金库储藏上限翻倍"
+}
+slot0.refreshPrivilegeCard = function (slot0)
+	if slot0.mPrivilegeCardNode then
+		slot0.mPrivilegeCardNode:removeFromParent()
+
+		slot0.mPrivilegeCardNode = nil
+	end
+
+	slot1 = slot0.createLayoutTemplateNode(slot0, "privilegeCardNode")
+
+	slot1.setPosition(slot1, slot0[4])
+	slot0.centerNode:addChild(slot1)
+
+	slot0.mPrivilegeCardNode = slot1
+	slot2 = PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege")
+
+	slot1.tipLabel:setString(TR("立即获得：{%s}%s", Resource.getDaibiImg(Utility.analysisStrResList(PrivilegeConfig.items[1].buySend)[1].resourceId), Utility.analysisStrResList(PrivilegeConfig.items[1].buySend)[1].num))
+
+	slot4 = PrivilegeConfig.items[1].buyCostRmb
+
+	slot1.addChild(slot1, slot5)
+
+	for slot9, slot10 in ipairs(slot1) do
+		slot5.pushBackCustomItem(slot5, slot0.createLayoutTemplateNode(slot0, "introLayout", {
+			text = slot10,
+			size = cc.size(140, 0),
+			anchor = cc.p(0.5, 1)
+		}))
+	end
+
+	if slot2 then
+		slot1.tipLabel:setVisible(false)
+		slot1.buyBtn:setTitleText(TR("已购买"))
+		slot1.buyBtn:setEnabled(false)
+	else
+		slot1.buyBtn:setTitleText(string.format("%s元", slot4))
+		slot1.buyBtn:setClickAction(function ()
+			slot0:buyPrivilegeCard()
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.buyPrivilegeCard = function (slot0)
+	slot0.requestPrivilegeId(slot0)
+
+	return 
+end
+slot0.requestGetWeekCardInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "CardInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			function slot1(slot0, slot1)
+				for slot5 = 1, table.maxn(slot0), 1 do
+					if slot0[slot5].CardId == slot1 then
+						return slot0[slot5]
+					end
+				end
+
+				return nil
+			end
+
+			slot0.mCardInfoList = {}
+
+			for slot5 = 1, CardConfig.items_count, 1 do
+				slot6 = clone(CardConfig.items[slot5])
+				slot6.data = slot1(slot0.ConfigDesc, slot6.Id)
+
+				if slot1(slot0.CardInfo, slot6.Id) then
+					table.merge(slot6.data, slot7)
+				end
+
+				slot0.mCardInfoList[slot5] = slot6
+			end
+
+			slot0:refreshWeekCard()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawDailyReward",
+		moduleName = "CardInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.mCardInfoList[].data.CanDrawTodayReward = false
+
+			slot0:refreshWeekCard()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSpecialCardInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "SpcardInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "hdxx")
+
+			slot0.mIsDrawSpCard = slot0.IsDraw
+			slot0.mIsActiveSpCard = slot0.IsActive
+			slot0.mSpCardChargeNum = slot0.ChargeNum
+			slot0.mSpCardProductId = slot0.ProductId
+
+			slot0:refreshSpecialCard()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawDayReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawDayReward",
+		moduleName = "SpcardInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mIsDrawSpCard = slot0.SpInfo.IsDraw
+			slot0.mIsActiveSpCard = slot0.SpInfo.IsActive
+			slot0.mSpCardChargeNum = slot0.SpInfo.ChargeNum
+			slot0.mSpCardProductId = slot0.SpInfo.ProductId
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreshSpecialCard()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPrivilegeId = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Privilege",
+		methodData = {},
+		successCallback = function (slot0)
+			Utility.recharge({
+				chargeType = Enums.chargeType.eSpecilPower,
+				price = slot0.ConfigDesc.BuyCostRmb,
+				productId = slot0.ConfigDesc.ProductId
+			}, function ()
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

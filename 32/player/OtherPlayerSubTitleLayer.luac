@@ -1,0 +1,267 @@
+slot0 = class("OtherPlayerSubTitleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "player/OtherPlayerInfoLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled48",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Node",
+				params = {
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 57,
+						y = 0
+					},
+					size = {
+						width = 820,
+						height = 460
+					}
+				},
+				children = {
+					{
+						name = "mTitleTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 12.68,
+								y = 68.99
+							},
+							size = {
+								width = 200,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled46",
+								cType = "Scale9Sprite",
+								params = {
+									image = "wjxx_4.png",
+									pos = {
+										x = 100,
+										y = 50
+									},
+									size = {
+										width = 186,
+										height = 84
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled47",
+								cType = "Sprite",
+								params = {
+									image = "c_pure.png",
+									childName = "titleSprite",
+									scale = 0.7,
+									pos = {
+										x = 100,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mTitleTableView",
+						cType = "TableView",
+						params = {
+							fillDownTop = false,
+							isVertical = true,
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 13.61,
+								y = 9.73
+							},
+							size = {
+								width = 800,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "mRowTemplate",
+								cType = "TemplateNode",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 5.82,
+										y = -107.39
+									},
+									size = {
+										width = 800,
+										height = 100
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.data = slot1.data or {}
+	slot0.titleNodeList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(TitleConfig.items) do
+		table.insert(slot1, slot6)
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot6.isActived = false
+
+		for slot10, slot11 in ipairs(slot0.data.TitleInfo) do
+			if slot6.titleId == slot11.TitleId then
+				slot6.isActived = true
+			end
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.isActived ~= slot1.isActived then
+			return slot0.isActived
+		end
+
+		if slot0.colorLv ~= slot1.colorLv then
+			return slot1.colorLv < slot0.colorLv
+		end
+
+		return 
+	end)
+
+	slot0.mTitleList = slot1
+
+	slot0.mTitleTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 800, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return math.ceil(#slot0.mTitleList/4)
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mRowTemplate")
+	slot3.refresh = function (slot0, slot1)
+		slot0:removeAllChildren()
+
+		for slot5 = 1, 4, 1 do
+			if not slot1.mTitleList[slot1*4 + slot5] then
+				break
+			end
+
+			slot8 = slot1:createLayoutTemplateNode("mTitleTemplate")
+
+			slot8.setPosition(slot8, cc.p((slot5 - 1)*200, 100))
+			slot0:addChild(slot8)
+
+			slot9 = false
+
+			if slot8.titleSprite then
+				slot8.titleSprite:removeFromParent()
+			end
+
+			if cc.FileUtils:getInstance():isFileExist(slot7.pic .. ".skel") then
+				slot8.addChild(slot8, UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					scale = 0.7,
+					dataFile = slot7.pic,
+					pos = cc.p(100, 20)
+				}))
+
+				slot8.titleSprite = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					scale = 0.7,
+					dataFile = slot7.pic,
+					pos = cc.p(100, 20)
+				})
+				slot9 = true
+			else
+				slot10 = cc.Sprite:create(slot7.pic .. ".png")
+
+				slot10.setScale(slot10, 0.7)
+				slot10.setPosition(slot10, cc.p(100, 50))
+				slot8.addChild(slot8, slot10)
+
+				slot8.titleSprite = slot10
+			end
+
+			if not slot7.isActived then
+				if slot9 then
+					slot8.titleSprite:setGLProgram(require("common.ShaderManager").loadShader(require("common.ShaderManager").Gray))
+				else
+					slot8.titleSprite:setGray(true)
+				end
+			end
+		end
+
+		return 
+	end
+
+	slot1.addChild(slot1, slot3)
+	slot3.refresh(slot3, slot2)
+
+	slot1.rowNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.rowNode:refresh(slot2)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,84 @@
+cc.FileUtils:getInstance():setPopupNotify(true)
+require("configcc")
+require("cocos.init")
+
+function slot0()
+	collectgarbage("setpause", 100)
+	collectgarbage("setstepmul", 5000)
+	require("game").new():run()
+
+	return 
+end
+
+slot1 = require
+slot2 = {}
+
+function require(slot0)
+	if not slot0[slot0] then
+		slot0[slot0] = true
+	end
+
+	if device.platform == "mac" and string.find(slot0, "Layer") then
+		package.loaded[slot0] = nil
+	end
+
+	return slot1(slot0)
+end
+
+cc.exports.clearLuaCache = function ()
+	for slot3, slot4 in pairs(pairs) do
+		if not ({
+			io = true,
+			package = true,
+			debug = true,
+			string = true,
+			bit = true,
+			_G = true,
+			os = true,
+			table = true,
+			math = true,
+			coroutine = true
+		})[slot3] then
+			package.loaded[slot3] = nil
+		end
+	end
+
+	slot0 = {}
+
+	return 
+end
+cc.exports.rebootLua = function ()
+	clearLuaCache()
+	clearLuaCache()
+
+	return 
+end
+slot3, slot4 = require("LuaDebugjit")("localhost", 7003)
+
+if device.platform == "mac" then
+	cc.Director:getInstance():getScheduler():scheduleScriptFunc(slot3, 0.3, false)
+end
+
+function CCLog(...)
+	IPlatform:getInstance():dump(string.format(...))
+
+	return 
+end
+
+function __G__TRACKBACK__(slot0)
+	CCLog("MQE:\n----------------------------------------\n" .. debug.traceback(slot0, 3) .. "\n" .. "----------------------------------------\n")
+
+	if device.platform == "mac" then
+		slot0()
+	end
+
+	return slot0
+end
+
+slot5, slot6 = xpcall(slot0, __G__TRACKBACK__)
+
+if not slot5 then
+	print(slot6)
+end
+
+return 

@@ -1,0 +1,752 @@
+slot0 = class("BlessedSpotLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled9",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			zOrder = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "scrollView",
+		cType = "ScrollView",
+		params = {
+			posApt = 1,
+			direction = 2,
+			swallowTouch = false,
+			isFullScale = true,
+			sizeApt = 1,
+			conSize = {
+				width = 2079,
+				height = 640
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					posApt = 1,
+					scaleApt = 2,
+					isFullScale = true,
+					image = "c_pure.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 2079,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "effectBg",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_cangshuge",
+							pos = {
+								x = 1039.5,
+								y = 320
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "heroTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled27-dataFile",
+						name = "heroEffect",
+						type = "string"
+					}
+				},
+				params = {
+					scaleApt = 2,
+					sizeApt = 1,
+					pos = {
+						x = 120,
+						y = 55.64
+					},
+					size = {
+						width = 120,
+						height = 180
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Button",
+						params = {
+							childName = "btn",
+							image = "c_pure.png",
+							clickAction = "onCheckHeroInfo",
+							pos = {
+								x = 60,
+								y = 90
+							},
+							size = {
+								width = 120,
+								height = 180
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Effect",
+						params = {
+							scale = 0.3,
+							dataFile = "effect_ui_xiulian_baojiannan",
+							pos = {
+								x = 60,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled28",
+						cType = "Sprite",
+						params = {
+							hide = true,
+							image = "fdxl_6.png",
+							childName = "markSprite",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 60,
+								y = 161.31
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 2,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "backBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					titleisRichText = "false",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "nameSprite",
+						cType = "Sprite",
+						params = {
+							image = "fdxl_15.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = -38.56,
+								y = 5.65
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "ruleBtn",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnAction",
+					pos = {
+						x = 323.23,
+						y = -24.35
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "challengeRecordBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_217.png",
+					clickAction = "onReportBtnAction",
+					pos = {
+						x = -93.35,
+						y = -95.72
+					}
+				},
+				children = {}
+			},
+			{
+				name = "InvitationBtn",
+				cType = "Button",
+				params = {
+					image = "c_13.png",
+					hide = true,
+					pos = {
+						x = -210.12,
+						y = -97.36
+					},
+					titleText = TR("好友邀请")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0.5,
+				y = 0
+			},
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled29",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onRequestRefreshUI",
+					pos = {
+						x = 84.04,
+						y = 95
+					},
+					titleText = TR("刷新")
+				},
+				children = {}
+			},
+			{
+				name = "beginBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBeginAction",
+					pos = {
+						x = -74,
+						y = 95
+					},
+					titleText = TR("开始修行")
+				},
+				children = {}
+			},
+			{
+				name = "NumLabel",
+				cType = "Label",
+				params = {
+					text = "",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 0,
+						y = 17.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled30",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 0,
+						y = 57.08
+					},
+					text = TR("11:00-15：00修炼可得双倍金币")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "topNode",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			hide = true,
+			posApt = 1,
+			anchor = {
+				x = 0.5,
+				y = 1
+			},
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = 0,
+						y = -96.44
+					},
+					size = {
+						width = 365,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "TimeLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 159.35,
+								y = 30.16
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mMyType = slot1.myType or 1
+	slot0.mType = slot0.mMyType
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.placeTag = slot1.placeTag
+	slot0.heroNodeList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	dump(MqTime.getServerLocalTime(), "时间")
+
+	slot2 = ((MqTime.getServerLocalTime().wday - 1)%2 == 0 and "effect_ui_cangshuge") or "effect_ui_gumuxiulian"
+	slot3 = ((slot1.wday - 1)%2 == 0 and "fdxl_15.png") or "fdxl_16.png"
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "effectBg" then
+			slot1.dataFile = slot0
+		elseif slot0.name == "nameSprite" then
+			slot1.image = slot1
+		end
+
+		return 
+	end)
+
+	slot0.mRefreshTime = 0
+
+	Utility.schedule(slot0, function ()
+		if slot0.mRefreshTime == 120 then
+			slot0:requestGetCarData()
+		end
+
+		slot0.mRefreshTime = slot0.mRefreshTime + 1
+
+		return 
+	end, 1)
+	slot0.scrollView:scrollToPercentHorizontal(50, 0, true)
+	slot0.requestGetCarData(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mRefreshTime = 0
+
+	slot0.NumLabel:setString(TR("修炼次数：%s/%s", DartConfig.items[1].dailyDartNum - slot0.mMyInfo.DartNum, DartConfig.items[1].dailyDartNum))
+	slot0.refershOtherPlayer(slot0)
+
+	return 
+end
+slot0.refershOtherPlayer = function (slot0)
+	slot1 = 1039.5
+	slot0.haveAddHeroNum = 1
+	slot0.posList = {}
+	slot2 = pairs
+	slot3 = slot0.heroNodeList or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		slot6.removeFromParent(slot6)
+	end
+
+	slot0.heroNodeList = nil
+	slot2 = (slot0.mMyType == 2 and 0.95) or 1
+
+	if next(slot0.posList) == nil then
+		for slot6 = 1, 15, 1 do
+			table.insert(slot0.posList, cc.p((slot1 + ((slot6%2 == 1 and -1) or 1)*math.ceil((slot6 - 1)/2)*140) - 30, (math.random(-5, 5) + 80)*slot2))
+		end
+
+		for slot6 = 36, 50, 1 do
+			table.insert(slot0.posList, cc.p(slot1 + ((slot6%2 == 1 and -1) or 1)*math.ceil((slot6 - 36)/2)*130 + 20, ((math.random(-10, 10) + 180) - slot6 - 35)*slot2))
+		end
+
+		for slot6 = 71, 90, 1 do
+			table.insert(slot0.posList, cc.p((slot1 + ((slot6%2 == 1 and -1) or 1)*math.ceil((slot6 - 71)/2)*98) - 50, ((math.random(-10, 10) + 250) - slot6 - 71)*slot2))
+		end
+
+		for slot6 = 16, 35, 1 do
+			table.insert(slot0.posList, cc.p((slot1 + ((slot6%2 == 1 and -1) or 1)*math.ceil((slot6 - 16)/2)*98) - 30, ((math.random(-5, 5) + 150) - slot6 - 15)*slot2))
+		end
+
+		for slot6 = 51, 70, 1 do
+			table.insert(slot0.posList, cc.p(slot1 + ((slot6%2 == 1 and -1) or 1)*math.ceil((slot6 - 52)/2)*100 + 20, (math.random(-10, 10) + 225 + slot6 - 51)*slot2))
+		end
+	end
+
+	slot0.randomNum = (50 < #slot0.mCarData and 90) or 50
+
+	for slot6, slot7 in ipairs(slot0.mCarData) do
+		slot0.addOneHero(slot0, slot7, slot6*0.01)
+	end
+
+	return 
+end
+slot0.addOneHero = function (slot0, slot1, slot2)
+	if slot0.heroNodeList == nil then
+		slot0.heroNodeList = {}
+	end
+
+	slot3 = cc.FileUtils:getInstance()
+
+	function slot4()
+		slot0 = math.random(slot0.randomNum)
+
+		while slot0.heroNodeList[slot0] do
+			slot0 = math.random(slot0.randomNum)
+		end
+
+		if not slot2:isFileExist(((FashionModel.items[cjson.decode(slot1.FormationInfo).ClientPlayerObj.ModelId] ~= nil and FashionModel.items[slot2].meditationEffect) or "effect_ui_xiulian_baojiannan") .. ".skel") then
+			slot3 = "effect_ui_xiulian_baojiannan"
+		end
+
+		slot4 = slot0:createLayoutTemplateNode("heroTempNode", {
+			heroEffect = slot3
+		})
+
+		slot4.setScale(slot4, slot5)
+		slot4.markSprite:setScale((((slot0.posList[slot1].y - 260)*0.4)/175 + 0.45)/1)
+		slot4.setPosition(slot4, slot0.posList[slot1])
+
+		slot4.btn.playerInfo = slot1
+
+		slot0.bgSprite:addChild(slot4, slot0.posList[slot1].y - 800)
+
+		slot0.heroNodeList[slot0] = slot4
+		slot0.haveAddHeroNum = slot0.haveAddHeroNum + 1
+
+		if PlayerAttrObj:getPlayerAttrByName("PlayerId") == slot1.PlayerId then
+			slot4.markSprite:setVisible(true)
+			slot0.scrollView:scrollToPercentHorizontal(slot0.posList[slot1].x/2079*100, 0.3, true)
+
+			if slot0.mSchelTime then
+				slot0:stopAction(slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+
+			slot0.myXiuLianTime = slot1.CrDate
+
+			slot0:updateTime()
+
+			if slot0.mSchelTime then
+				slot0.mSchelTime = nil
+			end
+
+			slot0.topNode:setVisible(true)
+
+			slot0.mSchelTime = Utility.schedule(slot0, slot0.updateTime, 1)
+		end
+
+		if slot1.isEnemy then
+			slot4.markSprite:setTexture("fdxl_5.png")
+			slot4.markSprite:setVisible(true)
+		end
+
+		return 
+	end
+
+	if slot2 then
+		Utility.performWithDelay(slot0, function ()
+			slot0()
+
+			return 
+		end, slot2)
+	else
+		slot4()
+	end
+
+	return 
+end
+slot0.updateTime = function (slot0)
+	if 0 < (slot0.myXiuLianTime + DartConfig.items[1].dartTime) - Player:getCurrentTime() then
+		slot0.TimeLabel:setString(TR("修炼倒计时:%s%s", "#dfc72a", MqTime.formatAsDay(slot2)))
+	elseif slot2 == 0 then
+		slot0.TimeLabel:setString(TR("修炼倒计时:%s00:00:00", "#dfc72a"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+
+		if slot0.mIsDart then
+			slot0.mRefreshTime = 0
+
+			slot0.requestGetCarData(slot0)
+		end
+	else
+		slot0.TimeLabel:setString(TR("修炼倒计时:%s00:00:00", "#dfc72a"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+	end
+
+	return 
+end
+slot0.onBeginAction = function (slot0)
+	slot2 = (slot0.myXiuLianTime ~= nil and (slot0.myXiuLianTime + DartConfig.items[1].dartTime) - Player:getCurrentTime()) or 0
+
+	if 0 < slot2 then
+		ui.showFlashView(TR("正在进行修炼"))
+
+		return 
+	end
+
+	if DartConfig.items[1].dailyDartNum <= slot0.mMyInfo.DartNum then
+		ui.showFlashView(TR("已达今日最大修炼次数"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "crossServerFunction.BlessedSpotChoseWayLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			MyType = slot0.mMyType,
+			MyInfo = slot0.mMyInfo,
+			callback = function ()
+				slot0:requestGetCarData()
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onReportBtnAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "crossServerFunction.BlessedSpotReportLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = {
+			TR("1、玩家每日可进行3次福地修炼；"),
+			TR("2、每天11：00-15：00点，修炼可以获得双倍金币奖励；"),
+			TR("3、每日上阵的队伍只可参与一次修炼和抢夺。"),
+			TR("4、修炼结束后会有1分钟结算时间，需要等待1分钟后才可再次修炼。")
+		}
+	})
+
+	return 
+end
+slot0.onCheckHeroInfo = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "crossServerFunction.BlessedSpotPlayerInfoLayer",
+		data = {
+			playerInfo = slot1.playerInfo,
+			robberHero = slot0.mMyInfo.RobberHero,
+			robberNum = slot0.mMyInfo.RobberNum
+		}
+	})
+
+	return 
+end
+slot0.onRequestRefreshUI = function (slot0)
+	slot0.requestGetCarData(slot0)
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestGetCarData = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCarData",
+		moduleName = "DartInfo",
+		methodData = {
+			slot0.mMyType
+		},
+		successCallback = function (slot0)
+			slot0.mMyInfo = {}
+			slot0.mMyInfo = slot0.Myinfo
+			slot0.mIsDart = slot0.Data.IsDart
+			slot0.mCarData = {}
+			slot1 = ""
+
+			if slot0.mMyInfo.EnemyIds ~= "" then
+				slot1 = string.splitBySep(slot0.mMyInfo.EnemyIds, ",")
+			end
+
+			slot2 = ""
+
+			for slot6, slot7 in pairs(slot0.Data.DivData) do
+				if PlayerAttrObj:isPlayerSelf(slot7.PlayerId) then
+					slot2 = string.splitBySep(slot7.Enemy, ",")
+
+					break
+				end
+			end
+
+			for slot6, slot7 in pairs(slot0.Data.DivData) do
+				slot7.isEnemy = false
+
+				if slot1 ~= "" then
+					for slot11, slot12 in pairs(slot1) do
+						if slot12 == slot7.PlayerId then
+							slot7.isEnemy = true
+
+							break
+						end
+					end
+				end
+
+				if slot2 ~= "" then
+					for slot11, slot12 in pairs(slot2) do
+						if slot12 == slot7.PlayerId then
+							slot7.isEnemy = true
+
+							break
+						end
+					end
+				end
+
+				if Player:getCurrentTime() - slot7.CrDate <= DartConfig.items[1].dartTime then
+					table.insert(slot0.mCarData, slot7)
+				end
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

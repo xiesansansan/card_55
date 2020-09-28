@@ -1,0 +1,521 @@
+slot0 = class("PlayerMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "layerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "treasureLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/TreasurMainLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "fashionLvUpLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/FashionLvUpMainLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "equipLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/EquipMainLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "strategyLayer",
+				cType = "FileLayer",
+				params = {
+					file = "strategy/StrategyLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "fashionLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/PlayerFashionLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "gemLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/PlayerGemLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "practiceLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/PracticeUpLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "discardLayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/DiscardHomeLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "neililayer",
+				cType = "FileLayer",
+				params = {
+					file = "player/NeiLiLevelUpLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "liantiLayer",
+				cType = "FileLayer",
+				params = {
+					onlyEditer = true,
+					file = "player/PlayerLianTiLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "bagualayer",
+				cType = "FileLayer",
+				params = {
+					onlyEditer = true,
+					file = "player/BaguaLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			},
+			{
+				name = "zuoqiLayer",
+				cType = "FileLayer",
+				params = {
+					onlyEditer = true,
+					file = "player/ZuoqiLayer.lua",
+					delayInit = true
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "closeBtn",
+		cType = "Button",
+		params = {
+			clickAction = "onExitAction",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled15",
+				cType = "Sprite",
+				params = {
+					image = "zj_1.png",
+					pos = {
+						x = -7.43,
+						y = 0.04
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "RuleBtn",
+		cType = "Button",
+		params = {
+			clickAction = "onShowModuleLayerRule",
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_3.png",
+			pos = {
+				x = 188.02,
+				y = 612.14
+			}
+		},
+		children = {}
+	},
+	{
+		name = "node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "btnListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 0,
+						y = -218
+					},
+					size = {
+						width = 120,
+						height = 450
+					}
+				},
+				children = {
+					{
+						name = "BtnLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled9-image",
+								name = "image",
+								type = "string"
+							},
+							{
+								value = "untitled9-moduleId",
+								name = "moduleId",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 86,
+								height = 84
+							}
+						},
+						children = {
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "c_6.png",
+									childName = "selectSprite",
+									pos = {
+										x = 76,
+										y = 46
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "moduleId",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "zj_2.png",
+									clickAction = "onModuleBtnAction",
+									childName = "tempBtn",
+									pos = {
+										x = 43,
+										y = 48
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "topResNode",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 0.5
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 614
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.defaultModuleId = slot1.defaultModuleId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.moduleList = {
+		{
+			grayImg = "zj_3.png",
+			image = "zj_2.png",
+			layer = "treasureLayer",
+			moduleId = ModuleSub.eTreasure
+		},
+		{
+			grayImg = "zj_5.png",
+			image = "zj_4.png",
+			layer = "fashionLvUpLayer",
+			moduleId = ModuleSub.eFashion
+		},
+		{
+			grayImg = "zj_9.png",
+			image = "zj_8.png",
+			layer = "equipLayer",
+			moduleId = ModuleSub.ePosition
+		},
+		{
+			grayImg = "zj_15.png",
+			image = "zj_14.png",
+			layer = "strategyLayer",
+			moduleId = ModuleSub.eNewZhenfa
+		},
+		{
+			grayImg = "zj_7.png",
+			image = "zj_6.png",
+			layer = "fashionLayer",
+			moduleId = ModuleSub.eSkin
+		},
+		{
+			grayImg = "zj_11.png",
+			image = "zj_10.png",
+			layer = "gemLayer",
+			moduleId = ModuleSub.eGem
+		},
+		{
+			grayImg = "zj_13.png",
+			image = "zj_12.png",
+			layer = "practiceLayer",
+			moduleId = ModuleSub.ePractice
+		},
+		{
+			grayImg = "zj_113.png",
+			image = "zj_112.png",
+			layer = "neililayer",
+			moduleId = ModuleSub.eRefiningSoul
+		},
+		{
+			grayImg = "zj_205.png",
+			image = "zj_204.png",
+			layer = "zuoqiLayer",
+			moduleId = ModuleSub.eMount
+		}
+	}
+	slot0.selectList = {}
+	slot0.RuleData = {
+		[ModuleSub.eRefiningSoul] = {
+			TR("1.丹田与全体血量相关，等级越高，全体血量加成越多。"),
+			TR("2.可通过消耗侠客碎片提升丹田等级。"),
+			TR("3.不同品质的侠客碎片获取的丹田经验也不同。"),
+			TR("4.传说侠客碎片—200经验，史诗侠客碎片—40经验，稀有侠客碎片—25经验，优秀侠客碎片—15经验，普通侠客碎片—10经验"),
+			TR("5.侠客碎片一旦消耗则不可复原，还望各位大侠慎重抉择。")
+		}
+	}
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.moduleList) do
+		if Utility.moduleIsOpen(slot6.moduleId, false) then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if RedDotObj:isValid(slot0.moduleId) ~= RedDotObj:isValid(slot1.moduleId) then
+			return slot2
+		end
+
+		if ModuleSubConfig.items[slot0.moduleId].openLv ~= ModuleSubConfig.items[slot1.moduleId].openLv then
+			return slot4 < slot5
+		end
+
+		return slot0.moduleId < slot1.moduleId
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "BtnLayout", {
+			image = slot6.image,
+			moduleId = slot6.moduleId
+		})
+
+		slot0.btnListView:pushBackCustomItem(slot7)
+		slot7.selectSprite:setVisible(false)
+
+		slot0.selectList[slot6.moduleId] = slot7
+
+		if not slot0.targetBtn and slot6.moduleId == ModuleSub.eFashion then
+			slot0.targetBtn = slot7.tempBtn
+		end
+
+		if not slot0.mTreasureBtn and slot6.moduleId == ModuleSub.eTreasure then
+			slot0.mTreasureBtn = slot7.tempBtn
+		end
+
+		slot7.tempBtn:addChild(UIWrap.newControl("RedDot", {
+			moduleId = slot6.moduleId,
+			offset = cc.p(0.8, 0.7)
+		}))
+	end
+
+	slot0.defaultModuleId = slot0.defaultModuleId or slot1[1].moduleId
+
+	slot0.showModuleLayer(slot0, slot0.defaultModuleId)
+	slot0.selectList[slot0.defaultModuleId].selectSprite:setVisible(true)
+	Utility.performWithDelay(slot0, function (...)
+		slot0:executeGuide()
+
+		return 
+	end, 0.01)
+
+	return 
+end
+slot0.onModuleBtnAction = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot0.selectList) do
+		slot6.selectSprite:setVisible(slot1.moduleId == slot5)
+	end
+
+	slot0.showModuleLayer(slot0, slot1.moduleId)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		defaultModuleId = slot0.selectModuleId
+	}
+end
+slot0.showModuleLayer = function (slot0, slot1)
+	if slot1 == ModuleSub.eMount then
+		slot0.topResNode:resetThirdBtn(3, 16050095)
+	elseif slot1 == ModuleSub.ePosition then
+		slot0.topResNode:resetThirdBtn(3, ResourceTypeSub.eSmithyCoin)
+	else
+		slot0.topResNode:resetThirdBtn(3, ResourceTypeSub.eVit)
+	end
+
+	dump(slot0.selectModuleId)
+
+	if slot1 ~= slot0.selectModuleId then
+		if slot0.RuleData[slot1] ~= nil then
+			slot0.RuleBtn:setVisible(true)
+		else
+			slot0.RuleBtn:setVisible(false)
+		end
+
+		if slot0.showLayer and not tolua.isnull(slot0.showLayer) then
+			slot0.showLayer:removeFromParent()
+
+			slot0.showLayer = nil
+		end
+
+		slot0.selectModuleId = slot1
+
+		for slot5, slot6 in pairs(slot0.moduleList) do
+			if slot6.moduleId == slot0.selectModuleId then
+				slot0.createUISubTree(slot0, slot6.layer, function (slot0, slot1)
+					if slot0.name == "fashionLvUpLayer" then
+						slot1.initParams = {
+							parent = slot0
+						}
+					end
+
+					return 
+				end)
+
+				slot0.showLayer = slot0[slot6.layer]
+
+				slot0.selectList[slot6.moduleId].tempBtn:loadTextures(slot6.image, slot6.image)
+			elseif slot0.selectList[slot6.moduleId] then
+				slot0.selectList[slot6.moduleId].tempBtn:loadTextures(slot6.grayImg, slot6.grayImg)
+			end
+		end
+	elseif slot0.selectModuleId == ModuleSub.eFashion then
+		slot0.showLayer:executeGuide()
+	elseif slot0.selectModuleId == ModuleSub.eTreasure then
+		slot0.showLayer:executeGuide()
+	end
+
+	return 
+end
+slot0.onShowModuleLayerRule = function (slot0)
+	if slot0.RuleData[slot0.selectModuleId] == nil then
+		return 
+	end
+
+	ui.showRuleMsg({
+		textList = slot1
+	})
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[201002] = {
+			clickNode = slot0.targetBtn
+		},
+		[202002] = {
+			clickNode = slot0.mTreasureBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

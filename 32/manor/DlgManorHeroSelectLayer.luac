@@ -1,0 +1,339 @@
+slot0 = class("DlgManorHeroSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 64)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBtnBackClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 760,
+				height = 535
+			},
+			titleText = TR("选择侠客")
+		},
+		children = {
+			{
+				name = "mNoTips",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 372.15,
+						y = 299.76
+					},
+					text = TR("没有可使用的侠客")
+				},
+				children = {}
+			},
+			{
+				name = "mArrowLeft",
+				cType = "Sprite",
+				params = {
+					image = "c_4.png",
+					hide = true,
+					scale = 0.8,
+					pos = {
+						x = 43.75,
+						y = 287.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mArrowRight",
+				cType = "Sprite",
+				params = {
+					hide = true,
+					scale = 0.8,
+					rotationAngle = 180,
+					image = "c_4.png",
+					pos = {
+						x = 698,
+						y = 287.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mExpListViewTest",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = false,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 53.37,
+						y = 70.75
+					},
+					size = {
+						width = 630,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "mWuxueItemTest",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 6.39,
+								y = -416.11
+							},
+							size = {
+								width = 200,
+								height = 420
+							}
+						},
+						children = {
+							{
+								name = "untitled109",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_92.png",
+									pos = {
+										x = 100,
+										y = 190
+									},
+									size = {
+										width = 180,
+										height = 420
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled110",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 379.1,
+						y = 62.91
+					},
+					text = TR("点击选择侠客")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+	slot0.mIsFrist = true
+	slot0.mHeroModelIdList = HeroObj:getSortList()
+
+	slot0.dealData(slot0)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0, true)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.mHeroInfoList = {}
+
+	for slot4, slot5 in ipairs(slot0.mHeroModelIdList) do
+		table.insert(slot0.mHeroInfoList, {
+			Id = slot5,
+			status = ManorHelper:isHeroTrainIng(slot5)
+		})
+	end
+
+	table.sort(slot0.mHeroInfoList, function (slot0, slot1)
+		if slot0.status ~= slot1.status then
+			return slot0.status < slot1.status
+		end
+
+		slot6 = HeroModel.items[slot0.Id].quality
+		slot7 = HeroModel.items[slot1.Id].quality
+
+		if HeroObj:getItem(slot0.Id).Fap ~= HeroObj:getItem(slot1.Id).Fap then
+			if 15 <= slot6 and 15 <= slot7 then
+				return slot5 < slot4
+			elseif slot6 ~= slot7 then
+				return slot7 < slot6
+			end
+
+			return slot5 < slot4
+		elseif slot6 ~= slot7 then
+			return slot7 < slot6
+		else
+			return slot1.Id < slot0.Id
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	slot0.mNoTips:setVisible(#slot0.mHeroInfoList <= 0)
+
+	if slot0.mIsFrist then
+		slot0.refreshArrow(slot0, 0)
+
+		slot0.mIsFrist = false
+	end
+
+	slot0.mExpListViewTest:reloadData()
+
+	return 
+end
+slot0.refreshArrow = function (slot0, slot1)
+	if #slot0.mHeroInfoList <= 5 then
+		slot0.mArrowLeft:setVisible(false)
+		slot0.mArrowRight:setVisible(false)
+	else
+		if slot0.mExpListViewTest:getCurrPercentage() <= 0 then
+			slot0.mArrowLeft:setVisible(false)
+		else
+			slot0.mArrowLeft:setVisible(true)
+		end
+
+		if 100 <= slot0.mExpListViewTest:getCurrPercentage() then
+			slot0.mArrowRight:setVisible(false)
+		else
+			slot0.mArrowRight:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 200, 420
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mHeroInfoList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mWuxueItemTest")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+
+	slot4 = clone(slot0.mHeroInfoList[slot2 + 1])
+	slot3.index = slot2 + 1
+
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		slot1:removeAllChildren()
+		slot0:createOneHeroNode(slot0.mHeroInfoList[slot0 + 1], )
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+	slot0.refreshArrow(slot0, slot2)
+
+	return 
+end
+slot0.createOneHeroNode = function (slot0, slot1, slot2)
+	if slot1.heroNode and not tolua.isnull(slot1.heroNode) then
+		slot1.heroNode:removeFromParent()
+
+		slot1.heroNode = nil
+	end
+
+	slot6 = require("common.BustCard"):create({
+		ModelId = slot2.Id,
+		InstanceData = HeroObj:getItem(slot3),
+		ClickAction = function (slot0)
+			if slot0.callback then
+				slot0.callback(slot0.callback)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	}).getContentSize(slot5)
+
+	if slot2.status == 0 then
+		slot5.setClickAction(slot5, function ()
+			if slot0.callback then
+				slot0.callback(slot1)
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end)
+	else
+		slot7 = (slot2.status == 1 and TR("制作中...")) or TR("训练中...")
+		slot8 = UIWrap.newControl("Scale9Sprite", {
+			image = "c_118.png",
+			pos = cc.p(slot6.width*0.5, slot6.height*0.5),
+			size = cc.size(150, 20)
+		})
+
+		slot5.addChild(slot5, slot8, 99)
+		slot8.addChild(slot8, slot9)
+		slot5.setClickAction(slot5, function ()
+			if slot0.status == 1 then
+				ui.showFlashView(TR("制作中..."))
+			elseif slot0.status == 2 then
+				ui.showFlashView(TR("训练中..."))
+			end
+
+			return 
+		end)
+	end
+
+	slot5.setPosition(slot5, 105, 210)
+	slot1.addChild(slot1, slot5, 2)
+
+	slot1.heroNode = slot5
+
+	return 
+end
+slot0.onWuxueItemChangedStatus = function (slot0, slot1)
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onWuxueLvup = function (slot0, slot1)
+	return 
+end
+
+return slot0

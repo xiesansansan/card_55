@@ -1,0 +1,625 @@
+slot0 = class("DlgLookCityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled28",
+		cType = "MsgBoxBg",
+		params = {
+			titleText = " ",
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 566,
+				height = 485
+			}
+		},
+		children = {
+			{
+				name = "titleLabel",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					outlineSize = 2,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 283,
+						y = 470
+					},
+					text = TR("门派名字")
+				},
+				children = {}
+			},
+			{
+				name = "rectBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 282.45,
+						y = 444.56
+					},
+					size = {
+						width = 506,
+						height = 365
+					}
+				},
+				children = {
+					{
+						name = "typeSprite",
+						cType = "Sprite",
+						params = {
+							image = "jh_15.png",
+							pos = {
+								x = 60,
+								y = 323
+							}
+						},
+						children = {}
+					},
+					{
+						name = "guildFlag",
+						cType = "GuildFlag",
+						params = {
+							scale = 0.45,
+							pos = {
+								x = 54.07,
+								y = 249.38
+							}
+						},
+						children = {}
+					},
+					{
+						name = "citySprite",
+						cType = "Sprite",
+						params = {
+							image = "jh_22.png",
+							pos = {
+								x = 174.44,
+								y = 298.14
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 103,
+								y = 205
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled32",
+						cType = "Label",
+						params = {
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 253,
+								y = 205
+							},
+							text = TR("特产奖励")
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 403,
+								y = 205
+							}
+						},
+						children = {}
+					},
+					{
+						name = "noReward",
+						cType = "Label",
+						params = {
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 261,
+								y = 160
+							},
+							text = TR("【暂无产出奖励】")
+						},
+						children = {}
+					},
+					{
+						name = "listview",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 261,
+								y = 154
+							},
+							size = {
+								width = 100,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "item",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 100,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "card",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 103,
+								y = 95
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled23",
+						cType = "Label",
+						params = {
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 253,
+								y = 95
+							},
+							text = TR("门派介绍")
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 403,
+								y = 95
+							}
+						},
+						children = {}
+					},
+					{
+						name = "descLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							align = 0,
+							valign = 0,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 257.02,
+								y = 76.77
+							},
+							size = {
+								width = 460,
+								height = 0
+							},
+							text = TR("   啊撒打算打算打阿打算阿萨德啊实打实大撒旦按时算大时代按时按时按时打算a")
+						},
+						children = {}
+					},
+					{
+						name = "belongLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 284,
+								y = 353.32
+							},
+							size = {
+								width = 200,
+								height = 0
+							},
+							text = TR("门派归属：比惨帮派")
+						},
+						children = {}
+					},
+					{
+						name = "statusLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 284,
+								y = 323.32
+							},
+							size = {
+								width = 220,
+								height = 0
+							},
+							text = TR("门派状态：和平（每5分钟恢复一支）")
+						},
+						children = {}
+					},
+					{
+						name = "troopsLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 284,
+								y = 277.32
+							},
+							size = {
+								width = 220,
+								height = 0
+							},
+							text = TR("驻守人数：62(每5分钟回复一支)")
+						},
+						children = {}
+					},
+					{
+						name = "levelLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 284,
+								y = 235.32
+							},
+							text = TR("防御等级：42")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tig",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 283,
+						y = 51
+					},
+					text = TR("规则")
+				},
+				children = {}
+			},
+			{
+				name = "changeHomeBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					scale = 0.9,
+					hide = true,
+					clickAction = "onChangeHomeBtn",
+					pos = {
+						x = 395,
+						y = 53
+					},
+					titleText = TR("设为总部")
+				},
+				children = {}
+			},
+			{
+				name = "giveupBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					scale = 0.9,
+					hide = true,
+					clickAction = "onGiveUpCityCallback",
+					pos = {
+						x = 195,
+						y = 54
+					},
+					titleText = TR("放 弃")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.cityId = slot1 or {}.cityId
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	slot0.requestGetCityInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot7, slot7 = Utility.getCityTypePic(CitywarCityConfig.items[slot0.cityId].cityType)
+
+	slot0.typeSprite:setTexture(slot3)
+	slot0.citySprite:setTexture(slot4)
+	slot0.titleLabel:setString(CitywarCityConfig.items[slot0.cityId].name)
+	slot0.descLabel:setString(CitywarCityConfig.items[slot0.cityId].intro)
+
+	if Utility.isEntityId(slot0.cityInfo.GuildId) then
+		slot0.belongLabel:setString(TR("门派归属：%s", slot1.GuildName))
+		slot0.guildFlag:setVisible(true)
+		slot0.guildFlag:setFlag(slot1.BannerInfo)
+		slot0.guildFlag:setString(slot1.Logo)
+	else
+		slot0.belongLabel:setString(TR("门派归属：无"))
+		slot0.guildFlag:setVisible(false)
+	end
+
+	slot0.statusLabel:setString(TR("门派状态：%s", Enums.CityStatusStr[slot1.CityStatusInfo.Status]))
+	slot0.statusLabel:setPosition(284, slot0.belongLabel:getPositionY() - 10 - slot0.belongLabel:getContentSize().height)
+	slot0.troopsLabel:setString(TR("驻守人数：%s(每%s分钟回复一支)", slot1.RemainDefenceArmyNum, math.ceil(CitywarConfig.items[1].defenseArmyRecoveryTime/60)))
+	slot0.troopsLabel:setPosition(284, slot0.statusLabel:getPositionY() - 10 - slot0.statusLabel:getContentSize().height)
+	slot0.levelLabel:setString(TR("防御等级：%s", slot1.DefenceArmyLv))
+	slot0.levelLabel:setPosition(284, slot0.troopsLabel:getPositionY() - 10 - slot0.troopsLabel:getContentSize().height)
+
+	slot7 = Utility.analysisStrResList(slot2.occupyOutPut)
+
+	if slot2.cityType == Enums.CityType.eZongMen then
+		slot7 = Utility.analysisStrResList(SectModel.items[slot2.ifBornCity].sectOutput)
+	end
+
+	slot0.noReward:setVisible(#slot7 == 0)
+	slot0.listview:setContentSize(#slot7*100, 80)
+
+	for slot11, slot12 in pairs(slot7) do
+		slot0.createLayoutTemplateNode(slot0, "item").card:setCardData({
+			num = 0,
+			modelId = slot12.resourceId
+		}, {})
+		slot0.listview:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item"))
+	end
+
+	if slot0.cityId == slot0.mMainCityId then
+		slot0.changeHomeBtn:setEnabled(false)
+	end
+
+	if slot2.cityType == Enums.CityType.eZongMen then
+		slot0.tig:setString(TR("帮派等级达到2级后才可发起宣战"))
+	else
+		slot0.tig:setString(TR("加入帮派获胜后才可以占领该门派，个人战无法占领"))
+	end
+
+	slot0.tig:setVisible(slot1.GuildId ~= PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId)
+	slot0.giveupBtn:setVisible(slot1.GuildId == slot8)
+	slot0.changeHomeBtn:setVisible(slot1.GuildId == slot8)
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onChangeHomeBtn = function (slot0)
+	if not ((PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId ~= 0 and GuildPositionRelation.items[1][slot1].ifGiveUpDemesne) or false) then
+		ui.showFlashView(TR("无权操作"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("确定将总部设置为%s？", CitywarCityConfig.items[slot0.cityId].name),
+		okCallback = function ()
+			slot0:requestUpdateMainCityId(slot0.cityId)
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetCityInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.cityId
+		},
+		successCallback = function (slot0)
+			slot0.cityInfo = slot0.CityInfo[tostring(slot0.cityId)]
+			slot0.giveUpCityNum = slot0.GiveUpCityNum
+			slot0.mMainCityId = slot0.MainCityId
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGiveUpCityCallback = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId == 0 or not GuildPositionRelation.items[slot2.PositionSeriesId][slot2.PositionId].ifGiveUpDemesne then
+		ui.showFlashView(TR("无权操作"))
+
+		return 
+	end
+
+	slot3 = slot0.cityId
+
+	if GuildConfig.items[1].dailyGiveUpDemesneTimes - slot0.giveUpCityNum == 0 then
+		ui.showFlashView(TR("今日放弃次数已用完！"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("确认放弃%s？", CitywarCityConfig.items[slot3].name),
+		okCallback = function ()
+			slot0:socketRequest({
+				methodName = "GiveUpCity",
+				moduleName = "Citywar",
+				methodData = {
+					slot0
+				},
+				successCallback = function (slot0)
+					ui.showFlashView(TR("放弃成功！"))
+					EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+					LayerManager.removeLayer(slot0)
+
+					return 
+				end
+			})
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUpdateMainCityId = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateMainCityId",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("设定总部成功"))
+			EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

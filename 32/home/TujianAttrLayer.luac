@@ -1,0 +1,559 @@
+slot0 = class("TujianAttrLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 490,
+				height = 430
+			},
+			titleText = TR("图鉴升级")
+		},
+		children = {
+			{
+				name = "cruCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 121.56,
+						y = 336.04
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nextCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 375.2,
+						y = 336.42
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nextSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_23.png",
+					pos = {
+						x = 240.83,
+						y = 332.83
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 245,
+						y = 205.18
+					},
+					size = {
+						width = 450,
+						height = 135
+					}
+				},
+				children = {
+					{
+						name = "Layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled13-text",
+								name = "curAttr",
+								type = "string"
+							},
+							{
+								value = "untitled15-text",
+								name = "nextAttr",
+								type = "string"
+							},
+							{
+								value = "untitled10-hide",
+								name = "needBg",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 450,
+								height = 45
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "bgSprite",
+									hide = false,
+									image = "c_10.png",
+									pos = {
+										x = 225,
+										y = 22.5
+									},
+									size = {
+										width = 450,
+										height = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 110,
+										y = 22.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "c_23.png",
+									pos = {
+										x = 225,
+										y = 22.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 340,
+										y = 22.5
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "layout_1",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled18-text",
+								name = "attrStr",
+								type = "string"
+							},
+							{
+								value = "untitled17-hide",
+								name = "needBg",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 450,
+								height = 45
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "bgSprite",
+									hide = false,
+									image = "c_10.png",
+									pos = {
+										x = 225,
+										y = 22.5
+									},
+									size = {
+										width = 450,
+										height = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 225,
+										y = 22.5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "lvUpNotice",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 245,
+						y = 117.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "lvUpBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onLvUp",
+					pos = {
+						x = 245,
+						y = 80.39
+					},
+					titleText = TR("升级")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 245,
+						y = 34.81
+					},
+					text = TR("属性加成对所有侠客有效")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.heroModelId = slot1.heroMode
+	slot0.campType = tostring(slot1.campType)
+	slot0.callBack = slot1.callBack
+
+	slot0.initUI(slot0)
+
+	slot0.isDebrisUp = 0
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.heroInfo = clone(HeroObj.mModelList[slot0.heroModelId])
+
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot2 = (slot0.ckeckShengPin(slot0, slot0.heroModelId) and 12) or 5
+	slot3 = 14
+	slot5 = slot0.HeroLvInfo[tostring(slot0.heroModelId)]
+	slot6 = slot0.DebrisLvInfo[tostring(slot0.heroModelId)] or 0
+	slot7 = (TujianDebrisRelation.items[HeroModel.items[slot0.heroModelId].quality] and TujianDebrisRelation.items[HeroModel.items[slot0.heroModelId].quality].numLimit) or 0
+	slot8 = slot0.heroInfo.Star
+	slot9 = slot0.heroInfo.RedStar
+	slot10 = Resource.getName(slot0.heroModelId)
+
+	if slot5 < 5 then
+		slot0.lvUpNotice:setString(TR("%s达到%d星可升级", slot10, math.max(slot5 + 1, 3)))
+	elseif 5 < slot5 and slot5 < slot2 and slot3 <= slot1 then
+		slot0.lvUpNotice:setString(TR("%s觉醒%d星可升级", slot10, slot5 - 5))
+	elseif slot5 == 5 and slot0.ckeckShengPin(slot0, slot0.heroModelId) then
+		slot0.lvUpNotice:setString(TR("侠客升品后可升级"))
+	elseif slot5 == 5 and slot1 < slot3 then
+		if slot6 < slot7 then
+			slot0.lvUpNotice:setString(TR("碎片消耗：%s%d#252525/%d  画卷等级：%d/%d", ((clone(TujianDebrisRelation.items)[slot1] or {}.debrisNum or 0) <= Resource.getCount(HeroModel.items[slot0.heroModelId].debrisId) and "#8ba857") or "#c04141", Resource.getCount(slot13), clone(TujianDebrisRelation.items)[slot1] or {}.debrisNum or 0, slot6, slot7))
+		else
+			slot0.lvUpNotice:setString(TR("已升至最高级(%d/%d)", slot6, slot7))
+		end
+	else
+		slot0.lvUpNotice:setString(TR("已升至最高级"))
+	end
+
+	slot0.lvUpBtn:setEnabled(3 <= slot8 and slot5 < slot8)
+
+	if slot0.heroInfo.Quality == 18 then
+		slot0.lvUpBtn:setEnabled(slot5 < slot9 + slot8 + 1)
+	end
+
+	if (slot5 == slot2 and slot3 <= slot1) or (slot1 < slot3 and slot7 <= slot6) then
+		slot0.nextSprite:setVisible(false)
+		slot0.nextCard:setVisible(false)
+		slot0.cruCard:setPositionX(245)
+		slot0.cruCard:setCardData({
+			resourceId = slot0.heroModelId
+		}, {})
+
+		if 6 <= slot5 then
+			slot0.cruCard:setRedHeroStar(slot5 - 6)
+		else
+			slot11 = UIWrap.newControl("StarNode", {
+				space = -10,
+				starLevel = slot5,
+				pos = cc.p(40, -1.5)
+			})
+
+			slot0.cruCard:addChild(slot11)
+			slot11.setVisible(slot11, slot5 ~= 5 and realQuality ~= 18)
+		end
+
+		slot11 = HeroObj:getItem(slot0.heroModelId).Quality
+
+		if slot5 <= 5 and 14 <= slot1 then
+			slot0.cruCard:setLiubian("effect_ui_touxiangkuang", "cheng")
+		end
+	else
+		slot0.cruCard:setCardData({
+			resourceId = slot0.heroModelId
+		})
+		slot0.nextCard:setCardData({
+			resourceId = slot0.heroModelId
+		})
+
+		if slot0.ckeckShengPin(slot0, slot0.heroModelId) and slot5 == 5 then
+			slot0.cruCard:setLiubian("effect_ui_touxiangkuang", "cheng")
+			slot0.nextCard:setLiubian("effect_ui_touxiangkuang", "hong")
+		end
+
+		if slot5 <= 5 and 14 <= slot1 then
+			slot0.cruCard:setLiubian("effect_ui_touxiangkuang", "cheng")
+		end
+
+		if slot5 <= 4 and 14 <= slot1 then
+			slot0.nextCard:setLiubian("effect_ui_touxiangkuang", "cheng")
+		end
+
+		if 6 <= slot5 then
+			slot0.cruCard:setRedHeroStar(slot5 - 6)
+		else
+			slot0.cruCard:addChild(UIWrap.newControl("StarNode", {
+				space = -10,
+				starLevel = slot5,
+				pos = cc.p(40, -1.5)
+			}))
+		end
+
+		if 5 <= slot5 then
+			slot0.nextCard:setRedHeroStar((slot5 + 1) - 6)
+		else
+			slot0.nextCard:addChild(UIWrap.newControl("StarNode", {
+				space = -10,
+				starLevel = math.max(math.min(slot5 + 1, 5), 3),
+				pos = cc.p(40, -1.5)
+			}))
+		end
+
+		if slot0.ckeckShengPin(slot0, slot0.heroModelId) and slot5 == 5 and nextStarLv then
+			nextStarLv:setVisible(false)
+		end
+	end
+
+	slot0.mListView:removeAllChildren()
+
+	slot13 = Utility.analysisStrAttrList(clone(TujianConfig.items[clone(HeroModel.items[slot0.heroModelId]).quality])[math.max(3, slot5)].totalAttrStr)
+	slot14 = Utility.analysisStrAttrList(slot12[math.max(3, (slot5 == slot2 and slot5) or slot5 + 1)].totalAttrStr)
+
+	if slot5 < 3 then
+		for slot18, slot19 in ipairs(slot13) do
+			slot19.value = 0
+		end
+	end
+
+	slot15 = clone(TujianDebrisRelation.items)[slot1]
+
+	if slot1 < slot3 and slot5 == slot2 and slot15 then
+		for slot20, slot21 in ipairs(slot16) do
+			slot22 = false
+
+			for slot26, slot27 in ipairs(slot13) do
+				if slot21.fightattr == slot27.fightattr then
+					slot27.value = slot27.value + slot21.value*slot6
+					slot22 = true
+				end
+			end
+
+			if not slot22 then
+				table.insert(slot13, {
+					fightattr = slot21.fightattr,
+					value = slot21.value*slot6
+				})
+			end
+
+			slot22 = false
+
+			for slot26, slot27 in ipairs(slot14) do
+				if slot21.fightattr == slot27.fightattr then
+					slot27.value = slot27.value + slot21.value*math.min(slot6 + 1, slot7)
+					slot22 = true
+				end
+			end
+
+			if not slot22 then
+				table.insert(slot13, {
+					fightattr = slot21.fightattr,
+					value = slot21.value*math.min(slot6 + 1, slot7)
+				})
+			end
+		end
+
+		slot0.lvUpBtn:setEnabled(slot15.debrisNum <= Resource.getCount(slot18) and slot6 < slot7)
+
+		slot0.isDebrisUp = 1
+	end
+
+	if slot5 ~= slot2 or (slot1 < slot3 and slot6 < slot7) then
+		for slot19, slot20 in ipairs(slot13) do
+			if slot14[slot19] then
+				slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "Layout", {
+					curAttr = slot0.getAttrStr(slot0, slot20),
+					nextAttr = slot0.getAttrStr(slot0, slot14[slot19]),
+					needBg = slot19%2 ~= 1
+				}))
+			end
+		end
+	else
+		slot0.mListView:removeAllChildren()
+
+		for slot19, slot20 in ipairs(slot14) do
+			slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout_1", {
+				attrStr = slot0.getAttrStr(slot0, slot20),
+				needBg = slot19%2 ~= 1
+			}))
+		end
+	end
+
+	return 
+end
+slot0.ckeckShengPin = function (slot0, slot1)
+	slot2 = false
+	slot2 = clone(TujianConfig.items[HeroModel.items[slot1].quality])[6] ~= nil and HeroQualityModel.items[slot1] ~= nil
+
+	if HeroQualityModel.items[slot1] ~= nil and slot4[12] ~= nil then
+		slot2 = true
+	end
+
+	return slot2
+end
+slot0.haveEnoughDebris = function (slot0, slot1, slot2)
+	slot8 = (TujianDebrisRelation.items[slot2] and TujianDebrisRelation.items[slot2].numLimit) or 0
+
+	return clone(TujianDebrisRelation.items)[slot2].debrisNum <= Resource.getCount(slot5) and (slot0.DebrisLvInfo[tostring(slot1)] or 0) < 10
+end
+slot0.getAttrStr = function (slot0, slot1)
+	return (Utility.isAttrNeedPercent(slot1.fightattr) and "" .. string.format(TR("%s:%s"), FightAttrTypeName[slot1.fightattr], slot1.value/100) .. "%") or "" .. string.format(TR("%s:%s"), FightAttrTypeName[slot1.fightattr], slot1.value)
+end
+slot0.onCloseAction = function (slot0)
+	if slot0.callBack then
+		slot0.callBack()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onLvUp = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Practice",
+		moduleName = "Tujian",
+		methodData = {
+			slot0.heroModelId,
+			slot0.isDebrisUp
+		},
+		successCallback = function (slot0)
+			slot0.HeroLvInfo = slot0.HeroInfo[slot0.campType]
+			slot0.DebrisLvInfo = slot0.DebrisLvInfo
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Tujian",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.HeroLvInfo = slot0.HeroInfo[slot0.campType]
+			slot0.DebrisLvInfo = slot0.DebrisLvInfo
+
+			slot0:refreshUI()
+			dump(slot0.DebrisLvInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

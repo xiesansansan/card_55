@@ -1,0 +1,190 @@
+slot0 = class("ActivityDiceFightLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "jhxb_16.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mNpcSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.6,
+					image = "lh_13201.png",
+					pos = {
+						x = 204.72,
+						y = 203.07
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNpcNameLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 380,
+						y = 270.85
+					},
+					text = TR("紫衫龙王")
+				},
+				children = {}
+			},
+			{
+				name = "mFapLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 380,
+						y = 240
+					},
+					text = TR("战力：1456万")
+				},
+				children = {}
+			},
+			{
+				name = "mRewardNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 380,
+						y = 180
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "CardNode",
+						params = {
+							scale = 0.8,
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onFight",
+					pos = {
+						x = 380,
+						y = 100
+					},
+					titleText = TR("开始挑战")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 604.93,
+						y = 284.83
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = ActivityObj:getEntityId(ModuleSub.eDice)
+	slot0.mId = slot1.Id
+	slot0.mMaxFap = slot1.maxFap
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mNpcNameLabel:setString(HeroModel.items[DiceChallengeModel.items[slot0.mId].heroModelId].name)
+	slot0.mFapLabel:setString(TR("战力：%s", Utility.numberWithUnit(slot0.mMaxFap)))
+	slot0.mNpcSprite:setTexture(HeroModel.items[DiceChallengeModel.items[slot0.mId].heroModelId].drawingPicA .. ".png")
+	slot0.mRewardNode:removeAllChildren()
+
+	slot5 = 80*#Utility.analysisStrResList(DiceChallengeModel.items[slot0.mId].outStr)
+
+	for slot9, slot10 in ipairs(slot3) do
+		slot0.mRewardNode:addChild(UIWrap.newControl("CardNode", {
+			scale = 0.8,
+			allowClick = true,
+			pos = cc.p(slot11, 0),
+			initParams = {
+				cardInfo = slot10,
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onFight = function (slot0)
+	ui.showCampReady({
+		callback = function (slot0)
+			slot0:onRequestGetFightInfo(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestGetFightInfo = function (slot0, slot1)
+	slot2 = slot0.activityId
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Dice",
+		methodData = {
+			slot0.activityId,
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					activityId = slot0
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

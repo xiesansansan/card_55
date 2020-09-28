@@ -1,0 +1,219 @@
+slot0 = class("DlgStepUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "ltbw_16.png",
+					pos = {
+						x = 30.99,
+						y = 36.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oldLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -48,
+						y = 42.05
+					}
+				},
+				children = {}
+			},
+			{
+				name = "currLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 163,
+						r = 103,
+						b = 30
+					},
+					pos = {
+						x = 32,
+						y = 42.05
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "c_23.png",
+					pos = {
+						x = -8,
+						y = 41.36
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 0,
+						y = -259.55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 0,
+						y = 8
+					},
+					text = TR("排名提升奖励")
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = -79
+					},
+					size = {
+						width = 315,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "goodLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "goodCard-initParams",
+								name = "initParams",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "goodCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 50,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurStep = slot1.curStep
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.oldLabel:setString(TR("%s", PvpStepRelation.items[slot0.mCurStep - 1].stepName))
+	slot0.currLabel:setString(TR("%s", PvpStepRelation.items[slot0.mCurStep].stepName))
+	slot0.tipLabel:setString(TR("开放%s兑换和排行", PvpStepRelation.items[slot0.mCurStep].stepName))
+
+	slot4 = #Utility.analysisStrResList(PvpStepRelation.items[slot0.mCurStep].stepReward)*105
+
+	if 4 < #Utility.analysisStrResList(PvpStepRelation.items[slot0.mCurStep].stepReward) then
+		slot4 = 420
+	end
+
+	slot0.listView:setContentSize(cc.size(slot4, 120))
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "goodLayout", {
+			initParams = {
+				cardInfo = {
+					modelId = slot9.resourceId or slot9.ResourceId,
+					num = slot9.num or slot9.Num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+
+return slot0

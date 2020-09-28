@@ -1,0 +1,784 @@
+slot0 = class("BattleChoiceCardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zd_66.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled20",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "startEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					complete = "onStartEffectFinish",
+					dataFile = "effect_ui_fanpaijiangli",
+					isPlayAnimation = true,
+					animation = "animation",
+					pos = {
+						x = 11.28,
+						y = -30.01
+					}
+				},
+				children = {}
+			},
+			{
+				name = "finishAnim",
+				cType = "Effect",
+				params = {
+					loop = true,
+					dataFile = "effect_ui_fanpaijiangli",
+					delayInit = true,
+					isPlayAnimation = true,
+					animation = "xunhuan",
+					pos = {
+						x = 10.96,
+						y = -29.87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					pos = {
+						x = -32.95,
+						y = 128.59
+					},
+					text = TR("请尽快领取所有奖励")
+				},
+				children = {}
+			},
+			{
+				name = "mCountDownLabel",
+				cType = "Label",
+				params = {
+					text = "(0s)",
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 163,
+						r = 103,
+						b = 30
+					},
+					pos = {
+						x = 76.81,
+						y = 127.91
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPriceLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					hide = true,
+					pos = {
+						x = 5.07,
+						y = -173.86
+					},
+					text = TR("免费领取2次")
+				},
+				children = {}
+			},
+			{
+				name = "mChoiceNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -568.13,
+						y = -160.69
+					},
+					size = {
+						width = 1136,
+						height = 278
+					}
+				},
+				children = {
+					{
+						name = "mCardTemplateNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "button-index",
+								name = "index",
+								type = "string"
+							},
+							{
+								value = "cardNode-initParams",
+								name = "head",
+								type = "string"
+							},
+							{
+								value = "doubleIcon-hide",
+								name = "hideDouble",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 59.93,
+								y = 0.56
+							},
+							size = {
+								width = 182,
+								height = 278
+							}
+						},
+						children = {
+							{
+								name = "button",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "integer"
+									},
+									{
+										value = false,
+										name = "selected",
+										type = "bool"
+									}
+								},
+								params = {
+									image = "zd_49.png",
+									clickAction = "cbChoiceCard",
+									pos = {
+										x = 91.83,
+										y = 138.98
+									}
+								},
+								children = {
+									{
+										name = "cardNode",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = -0.07,
+												y = 17.03
+											}
+										},
+										children = {}
+									},
+									{
+										name = "doubleIcon",
+										cType = "Sprite",
+										params = {
+											image = "sdzj_17.png",
+											hide = false,
+											pos = {
+												x = 54.86,
+												y = 100.53
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mStartChoiceNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -462.48,
+						y = -192.42
+					}
+				},
+				children = {
+					{
+						name = "mGetOncePriceLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							emptyInit = true,
+							isRichText = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 716.96,
+								y = -36.08
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "cbStartChoiceAction",
+							pos = {
+								x = 213.58,
+								y = -84.13
+							},
+							titleText = TR("开始抽奖")
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "cbClickGetAllReward",
+							pos = {
+								x = 717.72,
+								y = -82.88
+							},
+							titleText = TR("全部领取")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mEndChoiceNode",
+				cType = "Node",
+				params = {
+					delayInit = true,
+					pos = {
+						x = -462.48,
+						y = -192.42
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "cbCloseChoiceAction",
+							pos = {
+								x = 468.22,
+								y = -81.45
+							},
+							titleText = TR("结束翻牌")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChoiceGoodsStr = slot1.choiceGoodsList
+	slot0.mFinishCallback = slot1.callback
+	slot0.mFlopType = slot1.flopType
+	slot0.mStartTime = slot1.startTime
+	slot0.mCardBgList = {}
+	slot0.mTotalTime = 30
+	slot0.mChoiceCount = 0
+	slot0.mChoiceList = {}
+	slot0.mGetResourceList = {}
+
+	slot0.dealWithData(slot0)
+
+	slot0.mStatus = 0
+	slot0.mCardSize = cc.size(display.loadImage("zd_48.png"):getContentSize().width, display.loadImage("zd_48.png").getContentSize().height)
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.mGoodsList = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		table.insertto(slot0.mGoodsList, Utility.analysisStrResList(slot6))
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createChoiceCardInfo(slot0, slot0.mGoodsList)
+	slot0.countDownStart(slot0)
+
+	if LocalData:isGSTool() then
+		Utility.performWithDelay(slot0.mCountDownLabel, function ()
+			slot0:requestGetAllFreeReward()
+
+			return 
+		end, 0.2)
+	end
+
+	MqAudio.playEffect("fanpaijiangli.mp3")
+
+	return 
+end
+slot0.onStartEffectFinish = function (slot0)
+	slot0.createUISubTree(slot0, "finishAnim")
+
+	return 
+end
+slot0.createChoiceCardInfo = function (slot0, slot1)
+	slot2 = cc.size(1136, 383)
+	slot5 = {
+		cc.p(slot2.width/2 - 200*2, slot0.mCardSize.height/2),
+		cc.p(slot2.width/2 - 200*1, slot0.mCardSize.height/2),
+		cc.p(slot2.width/2 - 200*0, slot0.mCardSize.height/2),
+		cc.p(slot2.width/2 + 200*1, slot0.mCardSize.height/2),
+		cc.p(slot2.width/2 + 200*2, slot0.mCardSize.height/2)
+	}
+
+	for slot9 = 1, #slot1, 1 do
+		slot10 = slot0.createLayoutTemplateNode(slot0, "mCardTemplateNode", {
+			index = slot9,
+			head = {
+				cardInfo = {
+					modelId = slot0.mGoodsList[slot9].resourceId,
+					num = slot0.mGoodsList[slot9].num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum,
+					Enums.CardShowAttr.eName
+				}
+			},
+			hideDouble = (slot0.mFlopType ~= Enums.FlopType.eHegemony and true) or false
+		})
+
+		slot10.setIgnoreAnchorPointForPosition(slot10, false)
+		slot10.setAnchorPoint(slot10, cc.p(0.5, 0.5))
+		slot10.setPosition(slot10, slot5[slot9])
+		slot0.mChoiceNode:addChild(slot10)
+		slot10.button:setTouchEnabled(false)
+		slot10.cardNode.mShowAttrControl[Enums.CardShowAttr.eName].label:enableOutline(cc.c3b(37, 37, 37), 2)
+		table.insert(slot0.mCardBgList, slot10)
+	end
+
+	slot0.mGetOncePriceLabel:setString(string.format("{%s}%d", slot0.getPrice(slot0).priceIcon, slot0.getPrice(slot0).price))
+
+	return 
+end
+slot0.countDownStart = function (slot0)
+	slot1 = nil
+	slot1 = Utility.schedule(slot0, function ()
+		slot0.mTotalTime = slot0.mTotalTime - 1
+
+		slot0.mCountDownLabel:setString(string.format("(%ds)", math.max(slot0.mTotalTime, 0)))
+
+		if slot0.mCountDownLabel.setString.mTotalTime <= 0 then
+			slot0:stopAction(slot0)
+
+			slot1 = nil
+
+			for slot3, slot4 in pairs(slot0.mCardBgList) do
+				slot4.button:setTouchEnabled(false)
+			end
+
+			slot0.mPriceLabel:setVisible(false)
+
+			if slot0.mPriceLabel.setVisible.mChoiceCount < 2 then
+				if slot0.mStatus == 0 then
+					slot0.mStartChoiceNode:setVisible(false)
+				end
+
+				if slot0.mStatus ~= 2 then
+					slot0:requestGetAllFreeReward()
+				end
+			else
+				slot0:showRewardGot()
+				slot0.showRewardGot:showEndChoiceBtn()
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.doOneShowOrHideAction = function (slot0, slot1, slot2, slot3)
+	slot4 = true
+
+	if next(slot3 or {}) then
+		slot4 = false
+	end
+
+	slot5 = {
+		cc.OrbitCamera:create(0.4, 1, 30, (not slot4 or 0) and 180, 90, 0, 0),
+		cc.CallFunc:create(function ()
+			slot1.button:loadTextures((slot0 and "zd_48.png") or "zd_49.png", )
+
+			if (slot0 and "zd_48.png") or "zd_49.png" then
+				slot1.button:setScaleX(-1)
+				slot1.button.setScaleX.cardNode:setVisible(false)
+				slot1.button.setScaleX.cardNode.setVisible.doubleIcon:setVisible(false)
+			else
+				slot1.cardNode:setVisible(true)
+
+				if slot1.cardNode then
+					slot1.cardNode:setCardData(slot3, {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum,
+						Enums.CardShowAttr.eName
+					})
+					slot1.cardNode.setCardData.cardNode.mShowAttrControl[Enums.CardShowAttr.eName].label:enableOutline(cc.c3b(37, 37, 37), 2)
+				end
+
+				slot1.button:setTouchEnabled(false)
+
+				if slot4.mFlopType == Enums.FlopType.eHegemony then
+					slot1.doubleIcon:setVisible(true)
+				end
+			end
+
+			slot4.mFlopping = false
+
+			return 
+		end),
+		cc.OrbitCamera:create(0.4, 1, 30, (slot4 and 90) or 90, 90, 0, 0)
+	}
+
+	if slot2 == nil or slot2 == true then
+		slot1.runAction(slot1, cc.Sequence:create(slot5))
+	end
+
+	return 
+end
+slot0.shuffleAnim = function (slot0, slot1)
+	slot0.runAction(slot0, cc.Sequence:create({
+		cc.DelayTime:create(slot1 or 0),
+		cc.CallFunc:create(function ()
+			for slot4, slot5 in pairs(slot0.mCardBgList) do
+				slot0[slot4] = cc.p(slot5.getPositionX(slot5), slot5.getPositionY(slot5))
+			end
+
+			slot0.mCardBgList[1]:runAction(cc.MoveTo:create(0.1, slot0[2]))
+			slot0.mCardBgList[2]:runAction(cc.MoveTo:create(0.1, slot0[1]))
+
+			slot0.mCardBgList[2] = slot0.mCardBgList[1]
+			slot0.mCardBgList[1] = slot0.mCardBgList[2]
+			slot0.mCardBgList[2].button.index = slot0.mCardBgList[1].button.index
+			slot0.mCardBgList[1].button.index = slot0.mCardBgList[2].button.index
+
+			slot0.mCardBgList[3]:runAction(cc.Sequence:create(cc.DelayTime:create(0.1), cc.MoveTo:create(0.1, slot0[5])))
+			slot0.mCardBgList[5]:runAction(cc.Sequence:create(cc.DelayTime:create(0.1), cc.MoveTo:create(0.1, slot0[3])))
+
+			slot0.mCardBgList[5] = slot0.mCardBgList[3]
+			slot0.mCardBgList[3] = slot0.mCardBgList[5]
+			slot0.mCardBgList[5].button.index = slot0.mCardBgList[3].button.index
+			slot0.mCardBgList[3].button.index = slot0.mCardBgList[5].button.index
+
+			slot0.mCardBgList[1]:runAction(cc.Sequence:create(cc.DelayTime:create(0.2), cc.MoveTo:create(0.1, slot0[4])))
+			slot0.mCardBgList[4]:runAction(cc.Sequence:create(cc.DelayTime:create(0.2), cc.MoveTo:create(0.1, slot0[1])))
+
+			slot0.mCardBgList[4] = slot0.mCardBgList[1]
+			slot0.mCardBgList[1] = slot0.mCardBgList[4]
+			slot0.mCardBgList[4].button.index = slot0.mCardBgList[1].button.index
+			slot0.mCardBgList[1].button.index = slot0.mCardBgList[4].button.index
+
+			slot0.mCardBgList[2]:runAction(cc.Sequence:create(cc.DelayTime:create(0.3), cc.MoveTo:create(0.1, slot0[3])))
+			slot0.mCardBgList[3]:runAction(cc.Sequence:create(cc.DelayTime:create(0.3), cc.MoveTo:create(0.1, slot0[2])))
+
+			slot0.mCardBgList[3] = slot0.mCardBgList[2]
+			slot0.mCardBgList[2] = slot0.mCardBgList[3]
+			slot0.mCardBgList[3].button.index = slot0.mCardBgList[2].button.index
+			slot0.mCardBgList[2].button.index = slot0.mCardBgList[3].button.index
+
+			slot0.mCardBgList[1]:runAction(cc.Sequence:create(cc.DelayTime:create(0.4), cc.MoveTo:create(0.1, slot0[5])))
+			slot0.mCardBgList[5]:runAction(cc.Sequence:create(cc.DelayTime:create(0.4), cc.MoveTo:create(0.1, slot0[1]), cc.CallFunc:create(function ()
+				slot0.mCardBgList[5] = slot0.mCardBgList[1]
+				slot0.mCardBgList[1] = slot0.mCardBgList[5]
+				slot0.mCardBgList[5].button.index = slot0.mCardBgList[1].button.index
+				slot0.mCardBgList.mCardBgList[1].button.index = slot0.mCardBgList[5].button.index
+
+				for slot3, slot4 in pairs(slot0.mCardBgList) do
+					slot4.button:setTouchEnabled(true)
+				end
+
+				return 
+			end)))
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.fixCountDownTime = function (slot0)
+	slot0.mTotalTime = (0 < Player:getCurrentTime() - slot0.mStartTime - 30 and slot2) or 0
+
+	return 
+end
+slot0.updatePrice = function (slot0, slot1)
+	slot0.mPriceLabel:setString(TR("花费：{%s}%d抽取一次奖励", slot0.getPrice(slot0, slot1).priceIcon, slot0.getPrice(slot0, slot1).price))
+
+	if slot1 == 3 then
+		slot0.showEndChoiceBtn(slot0)
+	end
+
+	return 
+end
+slot0.getPrice = function (slot0, slot1)
+	table.insert(slot3, slot2(FlopConfig.items[1].fifthNeed))
+	table.insert(slot3, slot2(FlopConfig.items[1].fourthNeed))
+	table.insert({}, function (slot0)
+		slot1 = {}
+
+		if slot0 then
+			slot1.priceIcon = Resource.getDaibiImg(Utility.analysisStrResList(slot0)[1].resourceId)
+			slot1.price = Utility.analysisStrResList(slot0)[1].num
+		end
+
+		return slot1
+	end(FlopConfig.items[1].thirdNeed))
+
+	if slot1 and slot3[slot1] then
+		return slot3[slot1]
+	else
+		return {
+			priceIcon = slot3[1].priceIcon,
+			price = slot3[1].price + slot3[2].price + slot3[3].price
+		}
+	end
+
+	return 
+end
+slot0.showEndChoiceBtn = function (slot0)
+	if slot0.mStatus ~= 2 or slot0.mTotalTime <= 0 then
+		slot0.createUISubTree(slot0, "mEndChoiceNode")
+
+		slot0.mStatus = 2
+	end
+
+	return 
+end
+slot0.showRewardGot = function (slot0, slot1)
+	slot1 = slot1 or 0
+
+	for slot5, slot6 in pairs(slot0.mCardBgList) do
+		if slot0.mChoiceList[slot5] then
+			slot6.cardNode:runAction(cc.Sequence:create({
+				cc.DelayTime:create(slot1),
+				cc.Spawn:create({
+					cc.FadeOut:create(1.2),
+					cc.MoveBy:create(0.7, cc.p(0, 80))
+				})
+			}))
+		end
+	end
+
+	slot0.runAction(slot0, cc.Sequence:create({
+		cc.DelayTime:create(slot1 + 1.2),
+		cc.CallFunc:create(function ()
+			if slot0.mFinishCallback then
+				slot0.mFinishCallback()
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.cbChoiceCard = function (slot0, slot1)
+	if not slot0.mFlopping and not slot1.selected then
+		slot0.mFlopping = true
+		slot1.selected = true
+
+		slot0.requestGetReward(slot0, slot1)
+	end
+
+	return 
+end
+slot0.cbCloseChoiceAction = function (slot0)
+	slot0.showRewardGot(slot0)
+
+	return 
+end
+slot0.cbStartChoiceAction = function (slot0, slot1)
+	slot0.mStatus = 1
+
+	for slot5, slot6 in pairs(slot0.mCardBgList) do
+		slot0.doOneShowOrHideAction(slot0, slot6)
+	end
+
+	slot0.mPriceLabel:setString(TR("可以免费抽取%s%d%s次", "#37FF40", FlopConfig.items[1].freeNum - slot0.mChoiceCount, "#FFF8EA"))
+	slot0.mPriceLabel:setVisible(true)
+	slot0.mStartChoiceNode:setVisible(false)
+	slot0.shuffleAnim(slot0, 0.8)
+
+	return 
+end
+slot0.cbClickGetAllReward = function (slot0, slot1)
+	slot0.requestGetAllReward(slot0)
+
+	return 
+end
+slot0.requestGetAllReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAllReward",
+		moduleName = "Flop",
+		methodData = {
+			slot0.mFlopType
+		},
+		successCallback = function (slot0)
+			slot0.mStartTime = slot0.FlopInfo.Crdate
+
+			slot0:fixCountDownTime()
+
+			for slot6, slot7 in pairs(slot2) do
+				if not slot0.mGetResourceList[tonumber(slot7)] then
+					slot0.mGetResourceList[slot8] = true
+				end
+			end
+
+			for slot6 = 1, 5, 1 do
+				if not slot0.mChoiceList[slot6] then
+					slot0.mChoiceList[slot6] = true
+				end
+			end
+
+			slot0:showRewardGot()
+			slot0.mStartChoiceNode:setVisible(false)
+			slot0:showEndChoiceBtn()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetAllFreeReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAllFreeReward",
+		moduleName = "Flop",
+		methodData = {
+			slot0.mFlopType
+		},
+		successCallback = function (slot0)
+			slot0.mStartTime = slot0.FlopInfo.Crdate
+
+			slot0:fixCountDownTime()
+
+			for slot6, slot7 in pairs(slot2) do
+				if not slot0.mGetResourceList[tonumber(slot7)] then
+					slot0.mGetResourceList[slot8] = true
+					slot9 = 0
+
+					for slot13 = 1, 5, 1 do
+						if not slot0.mChoiceList[slot13] then
+							slot0.mChoiceList[slot13] = true
+
+							break
+						end
+					end
+
+					slot10 = slot0.mGoodsList[slot8]
+
+					if slot0.mStatus == 1 then
+						for slot14, slot15 in pairs(slot0.mCardBgList) do
+							slot0:doOneShowOrHideAction(slot15, slot14 == slot9, slot10)
+						end
+					end
+				end
+			end
+
+			slot0:showRewardGot(0.8)
+			slot0:showEndChoiceBtn()
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			slot0:showRewardGot(0.8)
+			slot0:showEndChoiceBtn()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "Flop",
+		methodData = {
+			slot0.mFlopType
+		},
+		successCallback = function (slot0)
+			slot1.mStartTime = slot0.FlopInfo.Crdate
+
+			slot1:fixCountDownTime()
+
+			slot1.mChoiceCount = slot1.mChoiceCount + 1
+			slot1.mGetResourceList[tonumber(string.splitBySep(slot2, ",")[slot1.mChoiceCount])] = true
+			slot1.mChoiceList[slot0.index] = true
+
+			if 0 < FlopConfig.items[1].freeNum - slot1.mChoiceCount then
+				slot1.mPriceLabel:setString(TR("可以免费抽取%s%d%s次", "#37FF40", slot5, "#FFF8EA"))
+			else
+				slot1:updatePrice(#slot1.mGoodsList - slot1.mChoiceCount)
+
+				if #slot1.mGoodsList - slot1.mChoiceCount <= 0 then
+					slot1.mPriceLabel:setVisible(false)
+				end
+			end
+
+			slot6 = slot1.mGoodsList[slot4]
+
+			for slot10, slot11 in pairs(slot1.mCardBgList) do
+				slot1:doOneShowOrHideAction(slot11, slot10 == slot1, slot6)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

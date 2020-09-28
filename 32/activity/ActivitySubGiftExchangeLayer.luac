@@ -1,0 +1,114 @@
+slot0 = class("ActivitySubGiftExchangeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_38.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "fuli_39.png",
+					pos = {
+						x = 19.41,
+						y = 68.68
+					}
+				},
+				children = {}
+			},
+			{
+				name = "giftEditBox",
+				cType = "EditBox",
+				params = {
+					image = "fuli_40.png",
+					placeHolder = TR("请输入激活码"),
+					pos = {
+						x = 19.26,
+						y = 116.22
+					},
+					size = {
+						width = 216.78,
+						height = 41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onExchangeAction",
+					pos = {
+						x = 19.06,
+						y = -133.24
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onExchangeAction = function (slot0)
+	if slot0.giftEditBox:getText() and 0 < string.len(slot1) then
+		slot0.socketRequest(slot0, {
+			methodName = "ActiveGift",
+			moduleName = "ActiveGift",
+			methodData = {
+				slot1
+			},
+			successCallback = function (slot0)
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+
+				return 
+			end
+		})
+	else
+		ui.showFlashView(TR("请输入激活码"))
+	end
+
+	return 
+end
+
+return slot0

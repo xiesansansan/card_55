@@ -1,0 +1,382 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.ResDefine")
+slot2 = require("common.SpineManager")
+slot3 = require("battle.managers.BattleManager")
+slot4 = require("battle.views.FrameAnimation")
+slot5 = require("battle.common.FxHelper")
+
+require("common.Enums")
+
+slot6 = class("HeroNode", function (slot0, slot1)
+	slot2 = cc.Node:create()
+	slot3 = cc.Sprite:create(slot0.heroShadowPic)
+
+	slot3.setScale(slot3, 0.75)
+
+	slot2.shadow = slot3
+
+	slot2.addChild(slot2, slot3, -1)
+
+	slot4 = slot1:create(slot0)
+
+	slot4.setInBattle(slot4)
+	slot4.loadAnim(slot4, "aida")
+	slot4.loadAnim(slot4, "chufa")
+	slot4.loadAnim(slot4, "pao")
+	slot4.loadAnim(slot4, "yun")
+	slot4.setScale(slot4, slot1)
+
+	slot2.anim = slot4
+
+	slot2.addChild(slot2, slot4, 0)
+
+	return slot2
+end)
+slot6.ctor = function (slot0, slot1, slot2, slot3, slot4, slot5)
+	slot0.enableNodeEvents(slot0)
+
+	slot0.actions = {}
+	slot0.buffs = {}
+	slot0.categoryPics = {}
+	slot0.tmpFlag = {}
+	slot0.spineName = slot1
+	slot0.group = slot3
+	slot0.scale = slot2
+	slot0.uid = slot4
+	slot0.parentLayer = slot5
+	slot0.SiphonHp = false
+	slot0.SiphonAng = false
+	slot0.SiphonAtk = false
+	slot0.SiphonArm = false
+	slot0.buffHp = false
+	slot0.highlightCount = 0
+	slot0.usingSkill = false
+	slot0.screenEffect = nil
+	slot0.delayMovePos = nil
+	slot0.isFreezen = false
+	slot0.shieldBuffs = {}
+	slot0.isFlipByBuff = false
+
+	slot0.setCameraCallback(slot0)
+
+	return 
+end
+slot6.setStartPosition = function (slot0, slot1)
+	slot0.startPos = slot1
+
+	return 
+end
+slot6.cameraCallback = function (slot0, slot1)
+	slot2 = slot0.parentLayer.camera
+	slot3 = slot0.parentLayer.cameraPos
+
+	slot1.onNodeEvent(slot1, "cleanup", function (slot0)
+		slot0.parentLayer:restoreCamera(0.05)
+
+		return 
+	end)
+
+	slot4 = 1
+	slot5 = false
+
+	if slot0.group == slot0.UnitGroup.DEFENDER then
+		slot5 = true
+	end
+
+	slot8 = slot1.getSpineInfo(slot0.spineName, "nuji").totalTime - 0.1 - 0.05
+	slot9 = 0
+
+	slot1.onUpdate(slot1, function (slot0)
+		slot0 = slot0 + slot0
+		slot2 = slot1:getScale()/
+		slot3 = slot1.getScale():getPosition3D()
+		slot4 = cc.vec3(slot4.x, slot4.y, slot4.z)
+
+		if slot4.x then
+			slot4.x = slot4.x - slot1.x/slot2 + slot3.x
+		else
+			slot4.x = slot4.x + slot1.x/slot2 + slot3.x
+		end
+
+		slot4.y = slot4.y + slot1.y/slot2 + slot3.y
+		slot4.z = slot2*slot4.z
+
+		if slot3.y < slot0 then
+			slot4.x = cc.pLerp(slot4, slot4, math.min((slot0 - slot6)/slot7, 1)).x
+			slot4.y = cc.pLerp(slot4, slot4, math.min((slot0 - slot6)/slot7, 1)).y
+		end
+
+		slot8:setPosition3D(slot4)
+
+		return 
+	end)
+
+	return 
+end
+slot6.setCameraCallback = function (slot0)
+	slot0.anim:setCameraCallback(handler(slot0, slot0.cameraCallback))
+
+	return 
+end
+slot6.updateAction = function (slot0, slot1)
+	for slot5 = #slot0.actions, 1, -1 do
+		slot0.actions[slot5].step(slot6, slot1)
+
+		if slot0.actions[slot5]:isDone() then
+			slot6.release(slot6)
+			table.remove(slot0.actions, slot5)
+		end
+	end
+
+	return 
+end
+slot6.setFlipState = function (slot0, slot1)
+	if slot1 == slot0.isFlipByBuff then
+		return 
+	end
+
+	slot2, slot3 = nil
+
+	if slot0.group == slot0.UnitGroup.DEFENDER then
+		slot2 = 180
+		slot3 = 0
+	else
+		slot2 = 0
+		slot3 = 180
+	end
+
+	if slot1 == true then
+		slot0.anim:setRotationSkewY(slot3)
+	else
+		slot0.anim:setRotationSkewY(slot2)
+	end
+
+	slot0.isFlipByBuff = slot1
+
+	return 
+end
+slot6.addAction = function (slot0, slot1)
+	slot1.retain(slot1)
+	slot1.startWithTarget(slot1, slot0)
+
+	slot0.actions[#slot0.actions + 1] = slot1
+
+	return 
+end
+slot6.clearAction = function (slot0)
+	for slot4, slot5 in pairs(slot0.actions) do
+		slot5.release(slot5)
+	end
+
+	slot0.actions = {}
+
+	return 
+end
+slot6.onCleanup = function (slot0)
+	slot0.clearAction(slot0)
+
+	return 
+end
+slot6.addBuff = function (slot0, slot1)
+	if slot0.buffs[slot1.buffType] == nil then
+		slot0.buffs[slot1.buffType] = {
+			num = 0,
+			uid = slot1.uid,
+			buffs = {}
+		}
+		slot2 = slot0.buffs[slot1.buffType]
+	end
+
+	slot2.num = slot2.num + 1
+	slot2.buffs[slot1.uid] = slot1
+
+	return slot2
+end
+slot6.removeBuff = function (slot0, slot1)
+	slot0.buffs[slot1.buffType].num = slot0.buffs[slot1.buffType].num - 1
+	slot0.buffs[slot1.buffType].buffs[slot1.uid] = nil
+
+	if slot0.buffs[slot1.buffType].num == 0 then
+		slot0.buffs[slot1.buffType] = nil
+	end
+
+	return slot2
+end
+slot6.getShieldValue = function (slot0, slot1)
+	slot3 = 0
+	slot4 = 0
+
+	if slot0.buffs[slot1] then
+		for slot8, slot9 in pairs(slot2.buffs) do
+			if 0 < slot9.shieldHp then
+				slot3 = slot3 + slot9.shieldHp
+				slot4 = slot4 + slot9.shieldMax
+			end
+		end
+	end
+
+	return slot3, slot4
+end
+slot6.refreshShieldBar = function (slot0, slot1)
+	if slot0.hpNode then
+		slot9, slot4 = slot0.getShieldValue(slot0, "Shield")
+
+		slot0.hpNode:setShield(slot0.getUnitByUid(slot1).attr.eHp, slot0.getUnitByUid(slot1).attr.hp, slot3)
+	end
+
+	return 
+end
+slot6.refreshHardSkin = function (slot0, slot1)
+	if slot0.hpNode then
+		slot2 = slot0.getUnitByUid(slot1)
+		slot7, slot8 = slot0.getShieldValue(slot0, "HardSkin")
+
+		slot0.hpNode:setHardSkin(slot3, slot4)
+	end
+
+	return 
+end
+slot6.showZhenfaEffect = function (slot0, slot1)
+	slot2 = slot0.createAnimation(slot1, 1)
+
+	slot2.playAnimation(slot2, "xiaofazhen")
+	slot0.addChild(slot0, slot2, -1)
+
+	if fc == nil then
+		slot2.setCameraMask(slot2, slot1.CameraFlag)
+	end
+
+	return 
+end
+slot6.getFixYScale = function (slot0)
+	return slot0.getHeroScaleByPosY(slot0.getPosition3D(slot0).y)
+end
+slot6.showModleLvEffect = function (slot0, slot1, slot2)
+	if slot0.getFashionLvUpConfig(slot1) and slot3.fightEffect and slot3.fightEffect ~= "" then
+		slot5 = slot1.createAnimation(slot3.fightEffect, 1)
+
+		slot5.playAnimation(slot5, "shang")
+		slot5.setScale(slot5, 1.5)
+		slot5.setPosition(slot5, 0, Enums.PetLvEffectConfig[slot3.fightEffect].posy)
+		slot0.addChild(slot0, slot5, 2)
+
+		slot0.juexingAnim1 = slot5
+
+		if slot2 == slot2.UnitGroup.DEFENDER then
+			slot5.setRotationSkewY(slot5, 180)
+		end
+
+		slot6 = false
+
+		for slot11, slot12 in pairs(slot7) do
+			if slot12 == "xia" then
+				slot6 = true
+
+				break
+			end
+		end
+
+		if slot6 then
+			slot8 = slot1.createAnimation(slot3.fightEffect, 1)
+
+			slot8.playAnimation(slot8, "xia")
+			slot8.setScale(slot8, 1.5)
+			slot8.setPosition(slot8, 0, slot4.posy2)
+			slot0.addChild(slot0, slot8, -2)
+
+			slot0.juexingAnim2 = slot8
+
+			if slot2 == slot2.UnitGroup.DEFENDER then
+				slot8.setRotationSkewY(slot8, 180)
+			end
+		end
+	end
+
+	return 
+end
+slot6.markTmpFlag = function (slot0, slot1, slot2)
+	if slot0.tmpFlag[slot1] then
+		return false
+	end
+
+	slot0.tmpFlag[slot1] = true
+
+	slot0.addAction(slot0, cc.Sequence:create({
+		cc.DelayTime:create(slot2),
+		cc.CallFunc:create(function ()
+			slot0.tmpFlag[slot1] = nil
+
+			return 
+		end)
+	}))
+
+	return true
+end
+slot6.showBuffCategory = function (slot0, slot1, slot2)
+	for slot6, slot7 in ipairs(slot0.categoryPics) do
+		if slot7 == slot1 then
+			return 
+		end
+	end
+
+	slot3 = 1.5
+	slot4 = 140
+	slot5 = #slot0.categoryPics*10 + 50
+	slot6, slot7 = string.find(slot1, "wxtz_")
+
+	if slot6 and 0 < slot6 then
+		slot3 = 1.3
+		slot4 = slot4 + 60
+		slot5 = slot5 + 30
+	end
+
+	if slot2 == slot0.UnitGroup.ATTACKER then
+		slot5 = -slot5
+	end
+
+	table.insert(slot0.categoryPics, slot1)
+
+	slot8 = cc.Sprite:create(slot1)
+
+	slot8.setScale(slot8, slot3)
+	slot8.setOpacity(slot8, 0)
+	slot8.setPosition(slot8, cc.p(slot5, slot4))
+	slot0.addChild(slot0, slot8, 3)
+
+	if fc == nil then
+		slot8.setCameraMask(slot8, slot0.CameraFlag)
+	end
+
+	slot8.runAction(slot8, cc.Sequence:create({
+		cc.FadeTo:create(0.1, 255),
+		cc.DelayTime:create(1.5),
+		cc.FadeTo:create(0.2, 0),
+		cc.CallFunc:create(function ()
+			slot0:removeFromParent()
+
+			for slot3 = #slot1.categoryPics, 1, -1 do
+				if slot1.categoryPics[slot3] == slot2 then
+					table.remove(slot1.categoryPics, slot3)
+				end
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot6.showBuffCategoryEffect = function (slot0, slot1)
+	slot2 = slot0.createAnimation(slot1, 1)
+
+	slot2.playAnimation(slot2, "animation", 1)
+	slot0.addChild(slot0, slot2, 3)
+
+	if fc == nil then
+		slot2.setCameraMask(slot2, slot1.CameraFlag)
+	end
+
+	return 
+end
+
+return slot6

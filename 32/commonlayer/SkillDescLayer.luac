@@ -1,0 +1,454 @@
+slot0 = class("SkillDescLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			pos = {
+				x = 320,
+				y = 568
+			}
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_181.png",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 413.16,
+						height = 505.46
+					}
+				},
+				children = {
+					{
+						name = "introSprite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_72.png",
+							pos = {
+								x = 210,
+								y = 287.52
+							},
+							size = {
+								width = 390,
+								height = 2
+							}
+						},
+						children = {
+							{
+								name = "headNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 11.28,
+										y = 105.78
+									}
+								},
+								children = {
+									{
+										name = "skillCard",
+										cType = "CardNode",
+										params = {
+											allowClick = false,
+											initParams = {
+												skillModelId = 1
+											},
+											pos = {
+												x = 43.38,
+												y = 52.72
+											}
+										},
+										children = {}
+									},
+									{
+										name = "nameLabel",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 248,
+												r = 246,
+												b = 245
+											},
+											outlineColor = {
+												g = 56,
+												r = 54,
+												b = 105
+											},
+											pos = {
+												x = 102.84,
+												y = 78.07
+											},
+											text = TR("主动·百花杀 Lv.1")
+										},
+										children = {}
+									},
+									{
+										name = "roundLabel",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 248,
+												r = 246,
+												b = 245
+											},
+											pos = {
+												x = 101.74,
+												y = 39.22
+											},
+											text = TR("冷却2回合，第1回合释放")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "introLabel",
+								cType = "Label",
+								params = {
+									align = 0,
+									valign = 0,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 191.69,
+										y = 22.54
+									},
+									size = {
+										width = 356.44,
+										height = 0
+									},
+									text = TR("对敌方速度最快的2个单位造成攻击128%%魔法伤害，30%%概率附加【石化】状态，持续2回合")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "specialSprite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_72.png",
+							pos = {
+								x = 210,
+								y = 160.88
+							},
+							size = {
+								width = 390,
+								height = 2
+							}
+						},
+						children = {
+							{
+								name = "SpecialTemplateNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "spTitleLabel-text",
+										name = "title",
+										type = "string"
+									},
+									{
+										value = "spDescLabel-text",
+										name = "desc",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 9
+									}
+								},
+								children = {
+									{
+										name = "spTitleLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 248,
+												r = 246,
+												b = 245
+											},
+											pos = {
+												x = 13.64,
+												y = 66.63
+											},
+											text = TR("【石化】")
+										},
+										children = {}
+									},
+									{
+										name = "spDescLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											color = {
+												g = 248,
+												r = 246,
+												b = 245
+											},
+											pos = {
+												x = 196.08,
+												y = 7.32
+											},
+											size = {
+												width = 366.34,
+												height = 0
+											},
+											text = TR("携带该状态的单位无法行动，物免提升10%，法免降低10%，持续2回合")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "lvLabels",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "lv3Label",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 27.41,
+										y = 25.08
+									},
+									size = {
+										width = 366,
+										height = 0
+									},
+									text = TR("伤害升级为攻击115%%，概率升级为40%%，新增对【冰冻】状态必定暴击")
+								},
+								children = {}
+							},
+							{
+								name = "lv2Label",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 27.41,
+										y = 88.47
+									},
+									size = {
+										width = 366,
+										height = 0
+									},
+									text = TR("伤害升级为攻击135%%，概率升级为45%%")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "lvMaxLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							valign = 0,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 248,
+								r = 246,
+								b = 245
+							},
+							pos = {
+								x = 211.32,
+								y = 25
+							},
+							size = {
+								width = 366.34,
+								height = 0
+							},
+							text = TR("技能已满级")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		endedEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.bgSprite) then
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	slot0.mSkillId = slot1.modelId
+	slot0.showData = slot1.showData or {}
+	slot0.mSkillConfig = SkillModel.items[slot0.mSkillId]
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.bgSprite:setContentSize(cc.size(slot0.bgSprite:getContentSize().width, 0 + slot0.createLvMax(slot0, 0) + slot0.createSpecialBuff(slot0, 0 + slot0.createLvMax(slot0, 0)) + slot0.createIntro(slot0, 0 + slot0.createLvMax(slot0, 0) + slot0.createSpecialBuff(slot0, 0 + slot0.createLvMax(slot0, 0)))))
+
+	return 
+end
+slot0.createLvMax = function (slot0, slot1)
+	slot2 = 30
+
+	if slot0.showData.notHero then
+		slot0.lvLabels:setVisible(false)
+	else
+		slot3 = slot0.showData.currLevel or 0
+		slot4 = HeroSkillIntroRelation.items[slot0.showData.skillIndex or 1]
+		slot5 = 0
+		slot6 = 0
+
+		if slot3 ~= 0 and slot0.mSkillConfig.ifMaxLv then
+			slot0.lv2Label:setVisible(false)
+			slot0.lv3Label:setString(TR("#56C121技能已满级"))
+
+			slot6 = slot0.lv3Label:getContentSize().height
+		else
+			slot0.lv3Label:setString(TR("Lv.%d(#56C121%d#F6F8F5星解锁)：#56C121%s", 3, slot4.lvTwoUpStar, string.format(slot0.mSkillConfig.lv3Intro)))
+
+			slot6 = slot0.lv3Label:getContentSize().height
+
+			if 1 < slot3 then
+				slot0.lv2Label:setVisible(false)
+			else
+				slot0.lv2Label:setString(slot7)
+				slot0.lv2Label:setPositionY(slot6 + 28)
+
+				slot5 = slot0.lv2Label:getContentSize().height
+			end
+		end
+
+		slot2 = slot2 + slot6 + slot5 + 15
+	end
+
+	return slot2
+end
+slot0.createSpecialBuff = function (slot0, slot1)
+	slot0.specialSprite:setPositionY(slot1)
+
+	if 0 < string.len(slot2) then
+		slot4 = 0
+
+		for slot8, slot9 in ipairs(slot3) do
+			slot11 = slot0.createLayoutTemplateNode(slot0, "SpecialTemplateNode", {
+				title = string.format("【%s】", SkillSpecialBuffRelation.items[tonumber(slot9)].title),
+				desc = string.format(SkillSpecialBuffRelation.items[tonumber(slot9)].content)
+			})
+
+			slot11.spTitleLabel:setPositionY(slot11.spDescLabel:getContentSize().height + 14)
+			slot11.setPositionY(slot11, slot4)
+			slot0.specialSprite:addChild(slot11)
+
+			slot4 = slot4 + slot11.spDescLabel.getContentSize().height + 45
+		end
+
+		return slot4 + 8
+	else
+		return 0
+	end
+
+	return 
+end
+slot0.createIntro = function (slot0, slot1)
+	slot0.introSprite:setPositionY(slot1)
+
+	slot2 = 10
+
+	if 0 < slot0.mSkillConfig.skillCd then
+		slot3 = TR("冷却#56C121%d#F6F8F5回合", slot0.mSkillConfig.skillCd)
+
+		if 0 < slot0.mSkillConfig.skillIndex then
+			slot3 = slot3 .. TR("，第#56C121%d#F6F8F5回合释放", slot0.mSkillConfig.skillIndex)
+		end
+
+		slot0.roundLabel:setString(slot3)
+	else
+		slot0.roundLabel:setVisible(false)
+	end
+
+	slot0.introLabel:setPositionY(slot2)
+	slot0.introLabel:setString(string.format(slot0.mSkillConfig.skillIntro))
+	slot0.headNode:setPositionY(slot2 + slot0.introLabel:getContentSize().height + 5)
+
+	slot4 = slot0.showData.currLevel or 0
+	slot5 = (slot0.mSkillConfig.triggerId == 4 and TR("主动·") .. slot0.mSkillConfig.skillName) or TR("被动·") .. slot0.mSkillConfig.skillName
+
+	if 0 < slot4 then
+		slot5 = slot5 .. string.format(" Lv.%s", slot4)
+	end
+
+	slot0.nameLabel:setString(slot5)
+	slot0.skillCard:setSkillHeader(slot0.mSkillId)
+
+	return slot2 + 120
+end
+slot0.strToColor = function (slot0)
+	slot1 = cc.c3b(255, 248, 234)
+	slot2 = string.len
+	slot3 = slot0 or ""
+
+	if 6 <= slot2(slot3) then
+		slot1.r = tonumber(string.sub(slot0, 2, 3), 16)
+		slot1.g = tonumber(string.sub(slot0, 4, 5), 16)
+		slot1.b = tonumber(string.sub(slot0, 6, 7), 16)
+	end
+
+	return slot1
+end
+
+return slot0

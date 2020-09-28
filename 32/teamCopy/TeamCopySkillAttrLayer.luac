@@ -1,0 +1,366 @@
+slot0 = class("TeamCopySkillAttrLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled7",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 520
+			},
+			titleText = TR("副本信息")
+		},
+		children = {
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 25,
+						y = 35
+					},
+					size = {
+						width = 470,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "bossLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled11-text",
+								name = "bossName",
+								type = "string"
+							},
+							{
+								value = "untitled14-size",
+								name = "bgSize",
+								type = "string"
+							},
+							{
+								value = "untitled14-pos",
+								name = "bgPosition",
+								type = "string"
+							},
+							{
+								value = "untitled15-size",
+								name = "listviewSize",
+								type = "string"
+							},
+							{
+								value = "untitled15-pos",
+								name = "listviewPosition",
+								type = "string"
+							},
+							{
+								value = "untitled11-pos",
+								name = "bossNamePosition",
+								type = "string"
+							},
+							{
+								value = "untitled27-text",
+								name = "extHint",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.63,
+								y = 238.45
+							},
+							size = {
+								width = 470,
+								height = 225
+							}
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									childName = "bossName",
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 235,
+										y = 210
+									},
+									text = TR("特殊天赋")
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "Scale9Sprite",
+										params = {
+											reverse = 1,
+											image = "c_36.png",
+											pos = {
+												x = 186.18,
+												y = 11
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_36.png",
+											pos = {
+												x = -87.69,
+												y = 11
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled14",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_24.png",
+									pos = {
+										x = 235,
+										y = 100
+									},
+									size = {
+										width = 440,
+										height = 180
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "ListView",
+								params = {
+									childName = "skillListView",
+									direction = true,
+									swallowTouch = false,
+									pos = {
+										x = 15,
+										y = 10
+									},
+									size = {
+										width = 440,
+										height = 180
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									text = "",
+									align = 0,
+									valign = 0,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 20,
+										y = 180
+									},
+									size = {
+										width = 430,
+										height = 170
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "skillLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled20-text",
+								name = "skillIntro",
+								type = "string"
+							},
+							{
+								value = "untitled25-text",
+								name = "skillName",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 5.06,
+								y = -6.71
+							},
+							size = {
+								width = 440,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 220,
+										y = 55
+									},
+									size = {
+										width = 420,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled25",
+										cType = "Label",
+										params = {
+											text = "Lv.69",
+											align = 0,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 20,
+												y = 75
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											isRichText = true,
+											text = "Label",
+											childName = "introLabel",
+											valign = 0,
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 20,
+												y = 55
+											},
+											size = {
+												width = 380,
+												height = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.npcID = slot1 or {}.npcID or 11
+	slot0.nodeId = slot1 or {}.nodeId
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	slot0.listView:removeAllChildren()
+
+	for slot5, slot6 in pairs(slot1) do
+		for slot10, slot11 in pairs(slot6) do
+			if slot11.isBoss then
+				slot17 = slot0.createLayoutTemplateNode(slot0, "bossLayout", {
+					extHint = "",
+					bossNamePosition = cc.p(470/2, (#string.splitBySep(slot11.npcSkills, ",")*110 + 45) - 20),
+					bossName = slot11.npcName,
+					bgSize = cc.size(slot14, slot13),
+					bgPosition = cc.p(470/2, (#string.splitBySep(slot11.npcSkills, ",")*110)/2 + 10),
+					listviewSize = cc.size(slot14, slot13),
+					listviewPosition = cc.p(15, 10)
+				})
+
+				slot17.setContentSize(slot17, cc.size(slot16, slot15))
+				slot0.listView:pushBackCustomItem(slot17)
+
+				for slot21, slot22 in ipairs(slot12) do
+					slot17.skillListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "skillLayout", {
+						skillIntro = Resource.getSkillIntroStr(slot23, 1, 1, "#45220d", "#258711"),
+						skillName = SkillModel.items[tonumber(slot22)].skillName
+					}))
+				end
+			end
+		end
+	end
+
+	if slot0.nodeId then
+		slot8 = slot0.createLayoutTemplateNode(slot0, "bossLayout", {
+			bossNamePosition = cc.p(470/2, (220 + 45) - 20),
+			bossName = TR("侠客简介"),
+			bgSize = cc.size(slot5, slot4),
+			bgPosition = cc.p(470/2, 220/2 + 10),
+			listviewSize = cc.size(slot5, slot4),
+			listviewPosition = cc.p(15, 10),
+			extHint = (HeroModel.items[TeamCopyNodeModel.items[slot0.nodeId].bossID] and slot3.intro) or "神秘侠客"
+		})
+
+		slot8.setContentSize(slot8, cc.size(slot7, slot6))
+		slot0.listView:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+
+return slot0

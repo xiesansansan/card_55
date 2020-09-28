@@ -1,0 +1,395 @@
+slot0 = class("LuckDialPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 530
+			}
+		},
+		children = {
+			{
+				name = "noticeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 36.75,
+						y = 474.73
+					},
+					text = TR("本次探秘次数：")
+				},
+				children = {}
+			},
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 22.55,
+						y = 36.97
+					},
+					size = {
+						width = 470,
+						height = 420
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tempNode",
+				cType = "TemplateNode",
+				params = {
+					sizeApt = 1,
+					pos = {
+						x = 29.76,
+						y = 292.79
+					},
+					size = {
+						width = 460,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_95.png",
+							pos = {
+								x = 230,
+								y = 60
+							},
+							size = {
+								width = 455,
+								height = 118
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "ListView",
+						params = {
+							childName = "listView",
+							direction = false,
+							pos = {
+								x = 17.5,
+								y = 7.12
+							},
+							size = {
+								width = 250,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "cardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 80,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											childName = "card",
+											allowClick = true,
+											pos = {
+												x = 40,
+												y = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled7",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							childName = "getBTn",
+							pos = {
+								x = 393.64,
+								y = 47
+							},
+							titleText = TR("领取")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							text = "Label",
+							childName = "needLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 20.28,
+								y = 100.13
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Sprite",
+						params = {
+							childName = "getSprite",
+							image = "c_55.png",
+							hide = true,
+							pos = {
+								x = 395.18,
+								y = 45.25
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = slot1.activityId or ActivityObj:getEntityId(ModuleSub.eTimedLuckDraw)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, function ()
+		slot0.tableView:reloadData()
+
+		return 
+	end), 2)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 460, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return table.nums(slot0.rewardInfo)
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "tempNode", {})
+	slot3.refreshNode = function (slot0, slot1)
+		slot0.needLabel:setString(TR("本期探秘%s次可获得", slot0.rewardInfo[slot1 + 1].needNum))
+		slot0.getBTn:setClickAction(function ()
+			slot0:requestTimesDraw(slot1.needNum)
+
+			return 
+		end)
+
+		if slot0.mTotalNum < slot0.rewardInfo[slot1 + 1].needNum then
+			slot0.getBTn:setTitleText(TR("未达成"))
+			slot0.getBTn:setEnabled(false)
+		else
+			slot0.getBTn:setTitleText(TR("领取"))
+			slot0.getBTn:setEnabled(true)
+		end
+
+		if slot2.hadGet then
+			slot0.getBTn:setVisible(false)
+			slot0.getSprite:setVisible(true)
+		else
+			slot0.getBTn:setVisible(true)
+			slot0.getSprite:setVisible(false)
+		end
+
+		slot0.listView:removeAllChildren()
+		slot0.listView:setContentSize(cc.size(math.min(#Utility.analysisStrResList(slot2.rewardStr)*80, 270), 80))
+
+		for slot7, slot8 in ipairs(slot3) do
+			slot0.listView:pushBackCustomItem(slot9)
+			slot0:createLayoutTemplateNode("cardLayout").card:setCardData({
+				modelId = slot8.resourceId,
+				num = slot8.num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+
+			if slot8.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot10 then
+				slot9.card:addChild(UIWrap.newControl("Label", {
+					fontSize = 15,
+					text = TR("经验+%s%%", slot10*100),
+					color = cc.c3b(55, 255, 64),
+					anchor = cc.p(1, 1),
+					outlineColor = cc.c3b(51, 42, 24),
+					pos = cc.p(85, 88)
+				}))
+			end
+		end
+
+		return 
+	end
+
+	slot3.refreshNode(slot3, slot2)
+	slot3.setPosition(slot3, cc.p(5, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.tempNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.tempNode:refreshNode(slot2)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mNumReward) do
+		slot1[slot5] = {
+			needNum = tonumber(slot5),
+			rewardStr = slot6
+		}
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, slot7)
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		if slot0.needNum ~= slot1.needNum then
+			return slot0.needNum < slot1.needNum
+		end
+
+		return 
+	end)
+
+	for slot6, slot7 in ipairs(slot0.mTimesRecord) do
+		for slot11, slot12 in ipairs(slot2) do
+			if slot12.needNum == slot7 then
+				slot12.hadGet = true
+			end
+		end
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		if slot0.hadGet and not slot1.hadGet then
+			return false
+		elseif not slot0.hadGet and slot1.hadGet then
+			return true
+		else
+			return slot0.needNum < slot1.needNum
+		end
+
+		return 
+	end)
+
+	slot0.rewardInfo = slot2
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedTreasuryInfo",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mTotalNum = slot0.TreasuryInfo.TotalNum
+
+			slot0.noticeLabel:setString(TR("本期探秘次数:#8ba857%s", slot0.mTotalNum))
+
+			slot0.mTimesRecord = slot0.TreasuryInfo.TimesRecord
+			slot0.mNumReward = slot0.TreasuryInfo.NumReward
+
+			slot0:dealData()
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestTimesDraw = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "TimesDraw",
+		moduleName = "TimedTreasuryInfo",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTimesRecord = slot0.TreasuryInfo.TimesRecord
+
+			slot0:dealData()
+			slot0.tableView:reloadData()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+
+return slot0

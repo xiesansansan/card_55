@@ -1,0 +1,411 @@
+slot0 = class("CityWarFirstPassLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 566,
+				height = 541
+			},
+			titleText = TR("首通奖励")
+		},
+		children = {
+			{
+				name = "untitled29",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 283,
+						y = 284.5
+					},
+					size = {
+						width = 506,
+						height = 430
+					}
+				},
+				children = {}
+			},
+			{
+				name = "typeSprite",
+				cType = "Sprite",
+				params = {
+					image = "jh_17.png",
+					pos = {
+						x = 114.08,
+						y = 431.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "guildSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.5,
+					image = "bp_12.png",
+					pos = {
+						x = 111.52,
+						y = 358.31
+					}
+				},
+				children = {}
+			},
+			{
+				name = "citySprite",
+				cType = "Sprite",
+				params = {
+					image = "jh_44.png",
+					pos = {
+						x = 283,
+						y = 412
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardNode",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 456.47,
+						y = 427.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					align = 1,
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 457.65,
+						y = 360.14
+					},
+					size = {
+						width = 121.26,
+						height = 64.66
+					},
+					text = TR("首次占领全体帮派成员奖励")
+				},
+				children = {}
+			},
+			{
+				name = "untitled30",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					align = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 283,
+						y = 49
+					},
+					text = TR("首次占领门派参与成员根据杀敌排名领取奖励")
+				},
+				children = {}
+			},
+			{
+				name = "bottomBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 283,
+						y = 338.5
+					},
+					size = {
+						width = 506,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 253,
+								y = 287
+							},
+							text = TR("排名奖励")
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Sprite",
+						params = {
+							scaleX = -1,
+							image = "c_36.png",
+							pos = {
+								x = 403,
+								y = 287
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 100,
+								y = 287
+							}
+						},
+						children = {}
+					},
+					{
+						name = "RewardCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled25-modelId",
+								name = "rewardModel1",
+								type = "string"
+							},
+							{
+								value = "untitled25-num",
+								name = "rewardCount1",
+								type = "string"
+							},
+							{
+								value = "untitled27-modelId",
+								name = "rewardModel2",
+								type = "string"
+							},
+							{
+								value = "untitled27-num",
+								name = "rewardCount2",
+								type = "string"
+							},
+							{
+								value = "untitled26-modelId",
+								name = "rewardModel3",
+								type = "string"
+							},
+							{
+								value = "untitled26-num",
+								name = "rewardCount3",
+								type = "string"
+							},
+							{
+								value = "untitled23-image",
+								name = "iconImage",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 15,
+								y = 195
+							},
+							size = {
+								width = 483,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Scale9Sprite",
+								params = {
+									image = "wjxx_3.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 483,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "untitled23",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											hide = false,
+											scale = 0.8,
+											pos = {
+												x = 57,
+												y = 30
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled25",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 160,
+												y = 30
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 280,
+												y = 30
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled26",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 400,
+												y = 30
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.cityId = slot1.cityId
+	slot0.cityGuildId = slot1.cityGuildId
+	slot0.bannerInfo = slot1.bannerInfo
+	slot0.logo = slot1.logo
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot2, slot3 = Utility.getCityTypePic(CitywarCityConfig.items[slot0.cityId].cityType)
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "typeSprite" then
+			slot1.image = slot0
+		elseif slot0.name == "citySprite" then
+			slot1.image = slot1
+		elseif slot0.name == "rewardNode" then
+			slot1.initParams = {
+				cardInfo = Utility.analysisStrResList(slot2)[1],
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		end
+
+		return 
+	end)
+
+	if Utility.isEntityId(slot0.cityGuildId) and slot0.bannerInfo and slot0.bannerInfo ~= "" then
+		slot0.guildSprite:setFlag(slot0.bannerInfo)
+		slot0.guildSprite:setString(slot0.logo)
+	else
+		slot0.guildSprite:setVisible(false)
+	end
+
+	if slot1.cityType ~= Enums.CityType.eZongMen then
+		slot4 = {
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		}
+		slot5 = CitywarFirstRankRelation.items[slot0.cityId]
+
+		for slot9 = 1, 4, 1 do
+			slot11 = Utility.analysisStrResList(slot10)
+			slot12 = slot0.createLayoutTemplateNode(slot0, "RewardCell", {
+				iconImage = (slot9 == 4 and "jh_51.png") or slot4[slot9],
+				rewardModel1 = slot11[1].resourceId,
+				rewardCount1 = slot11[1].num,
+				rewardModel2 = slot11[2].resourceId,
+				rewardCount2 = slot11[2].num,
+				rewardModel3 = slot11[3].resourceId,
+				rewardCount3 = slot11[3].num
+			})
+
+			slot12.setPosition(slot12, 15, slot9*60 - 275)
+			slot0.bottomBg:addChild(slot12)
+		end
+	end
+
+	return 
+end
+
+return slot0

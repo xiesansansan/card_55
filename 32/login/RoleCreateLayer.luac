@@ -1,0 +1,277 @@
+slot0 = class("RoleCreateLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled5",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "dl_13.png",
+			scaleApt = 2,
+			pos = {
+				x = 624,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "rollBtn",
+				cType = "Button",
+				params = {
+					image = "grxx_7.png",
+					clickAction = "onRollAction",
+					pos = {
+						x = 570,
+						y = 222
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rollEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					isPlayAnimation = false,
+					dataFile = "effect_ui_qumingtouzi",
+					pos = {
+						x = 570,
+						y = 222
+					}
+				},
+				children = {}
+			},
+			{
+				name = "createBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCreateCallFun",
+					pos = {
+						x = 403.31,
+						y = 138.07
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "nameEditBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 20,
+					maxLength = 12,
+					image = "c_41.png",
+					fontColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					placeHolder = TR("2~6个中文字符"),
+					pos = {
+						x = 397.25,
+						y = 220.48
+					},
+					size = {
+						width = 250,
+						height = 41
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 394.45,
+						y = 268.09
+					},
+					text = TR("请问阁下尊姓大名")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "dl_14.png",
+					pos = {
+						x = 99,
+						y = 250
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mCallBack = slot1.callBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.rollEffect:registerLuaHandler("complete", function ()
+		slot0.rollBtn:setVisible(true)
+		slot0.rollBtn.setVisible.rollEffect:setVisible(false)
+		slot0.rollBtn.setVisible.rollEffect.setVisible:onRandomName()
+
+		return 
+	end)
+
+	return 
+end
+
+function slot1(slot0)
+	slot2 = #{
+		0,
+		192,
+		224,
+		240,
+		248,
+		252
+	}
+	slot3 = 0
+	slot4 = 0
+	slot5 = 0
+	slot6 = #slot0
+	slot7 = 0
+
+	while 0 < slot6 do
+		slot5 = string.byte(slot0, -slot6)
+		slot7 = slot2
+		slot4 = 1
+
+		while slot1[slot7] do
+			if slot1[slot7] <= slot5 then
+				slot6 = slot6 - slot7
+
+				break
+			end
+
+			slot7 = slot7 - 1
+		end
+
+		slot3 = slot3 + ((slot7 == 1 and 1) or 2)
+	end
+
+	return slot3
+end
+
+slot0.onCreateCallFun = function (slot0)
+	if slot0(slot0.nameEditBox:getText()) == 0 then
+		ui.showFlashView(TR("昵称不能为空"))
+	elseif slot2 <= 12 then
+		slot0.requestNewPlayer(slot0, slot1)
+	else
+		ui.showFlashView(TR("昵称不得超过6个汉字或12个字符"))
+	end
+
+	return 
+end
+slot0.onRollAction = function (slot0)
+	slot0.rollBtn:setVisible(false)
+	slot0.rollEffect:setVisible(true)
+	slot0.rollEffect:playAnimation("animation", 1)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRandomName = function (slot0)
+	slot2 = _lastname
+
+	if not _firstname then
+		print(slot3)
+
+		slot6 = cc.FileUtils:getInstance():getStringFromFile(cc.FileUtils:getInstance():fullPathForFilename(Enums.RandomName.name2))
+
+		if #cc.FileUtils:getInstance():getStringFromFile(slot3) == 0 or #slot6 == 0 then
+			return nil
+		end
+
+		slot2 = {}
+		slot1 = {}
+
+		for slot10 in slot5.gmatch(slot5, "%S+") do
+			table.insert(slot1, slot10)
+		end
+
+		for slot10 in slot6.gmatch(slot6, "%S+") do
+			table.insert(slot2, slot10)
+		end
+
+		_lastname = slot2
+		_firstname = slot1
+	end
+
+	slot0.nameEditBox:setText(slot5)
+	Guide.manager:hitPoint(1)
+	Utility.newCpInvoke(145)
+
+	return 
+end
+slot0.enterGame = function (slot0)
+	Guide.manager:nextStep(10102)
+
+	if slot0.mCallBack then
+		slot0.mCallBack()
+	end
+
+	slot0.setVisible(slot0, false)
+
+	return 
+end
+slot0.requestNewPlayer = function (slot0, slot1)
+	Utility.newCpInvoke(150)
+
+	slot2, slot3 = Guide.manager:getGuideInfo()
+
+	slot0.socketRequest(slot0, {
+		methodName = "NewPlayer",
+		moduleName = "Player",
+		methodData = {
+			slot1
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			Guide.manager:hitPoint(2)
+			Utility.cpInvoke("CreateRole")
+			slot0:enterGame()
+
+			return 
+		end,
+		failedCallback = function (slot0)
+			if slot0 == -1114 then
+				slot0:enterGame()
+
+				return true
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

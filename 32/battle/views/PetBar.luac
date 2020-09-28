@@ -1,0 +1,65 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.ResDefine")
+slot2 = require("battle.common.UIHelper")
+slot3 = require("battle.common.FxHelper")
+slot4 = require("common.SpineManager")
+slot5 = class("PetBar", function ()
+	return cc.Node:create()
+end)
+slot5.ctor = function (slot0, slot1)
+	slot0.group = slot1.group
+	slot2 = slot0.createNameLabel(slot0, slot1.name, slot1.modelLv)
+
+	slot2.setPosition(slot2, 0, 10)
+	slot0.addChild(slot0, slot2)
+
+	if slot1.titleId and 0 < slot1.titleId and TitleConfig.items[slot1.titleId] then
+		slot4 = nil
+
+		if cc.FileUtils:getInstance():isFileExist(slot3.pic .. ".skel") then
+			slot0.createAnimation(slot3.pic, 1).playAnimation(slot4, "animation")
+			slot0.createAnimation(slot3.pic, 1):setPosition(0, 25)
+		else
+			cc.Sprite:create(slot3.pic .. ".png").setAnchorPoint(slot4, cc.p(0.5, 0))
+			cc.Sprite.create(slot3.pic .. ".png"):setPosition(0, -10)
+		end
+
+		slot4.setScale(slot4, 0.7)
+		slot0.addChild(slot0, slot4)
+	end
+
+	return 
+end
+slot5.createNameLabel = function (slot0, slot1, slot2)
+	slot3 = cc.c3b(255, 237, 76)
+
+	if slot2 then
+		slot4 = Utility.getPlayerNameColor(slot2, false, true)
+		slot3 = cc.c3b(slot4.r, slot4.g, slot4.b)
+	end
+
+	slot4 = slot0.newLabel({
+		fontSize = 22,
+		outlineSize = 2,
+		text = slot1,
+		color = slot3,
+		outlineColor = cc.c3b(89, 40, 23),
+		align = cc.TEXT_ALIGNMENT_CENTER,
+		valign = cc.VERTICAL_TEXT_ALIGNMENT_CENTER,
+		pos = cc.p(0, 0)
+	})
+
+	slot4.setAnchorPoint(slot4, cc.p(0.5, 0.5))
+
+	return slot4
+end
+slot5.updatePercent = function (slot0, slot1)
+	if slot0.petProgress then
+		slot0.petProgress:stopAllActions()
+		slot0.petProgress:runAction(cc.ProgressTo:create(0.1, slot1))
+	end
+
+	return 
+end
+
+return slot5

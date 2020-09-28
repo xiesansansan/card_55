@@ -1,0 +1,339 @@
+slot0 = class("FashionStepUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled11",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_67.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "attrNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -276.57,
+						y = 50
+					}
+				},
+				children = {
+					{
+						name = "attrLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "arrowSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							pos = {
+								x = 277.49,
+								y = -0.47
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled12",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_tupochenggong",
+					complete = "onEffFinished",
+					pos = {
+						x = 0,
+						y = -47
+					}
+				},
+				children = {}
+			},
+			{
+				name = "curLvLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = -205,
+						y = 113
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nextLvLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = 200,
+						y = 113
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 0,
+						y = -223
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "defaultLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = 0,
+						y = -90
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nextTipSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_25.png",
+					hide = true,
+					pos = {
+						x = -106.3,
+						y = -88.4
+					}
+				},
+				children = {
+					{
+						name = "newStepIntroLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 95,
+								y = 40.63
+							},
+							size = {
+								width = 300,
+								height = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "skillBorder",
+				cType = "Sprite",
+				params = {
+					image = "c_25.png",
+					hide = true,
+					pos = {
+						x = -106.3,
+						y = -88.4
+					}
+				},
+				children = {
+					{
+						name = "skillSprite",
+						cType = "Sprite",
+						params = {
+							image = "sk_100001.png",
+							pos = {
+								x = 41,
+								y = 41
+							}
+						},
+						children = {}
+					},
+					{
+						name = "skillLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 95,
+								y = 40.63
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mCurLv = slot1.curLv - 1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createAttrView(slot0)
+	slot0.setUnlockedInfos(slot0)
+	MqAudio.playEffect("shengjichenggong.mp3")
+
+	return 
+end
+slot0.createAttrView = function (slot0)
+	slot2 = slot0.getAttrString(slot0, slot0.mCurLv + 1, true)
+
+	slot0.curLvLabel:setString(TR("当前等级：%s阶", slot0.mCurLv))
+	slot0.nextLvLabel:setString(TR("进阶等级：#37ff40%s阶", slot0.mCurLv + 1))
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "attrNode")
+
+		slot0.centerNode:addChild(slot8)
+		slot8.attrLabel:setString(slot7)
+		slot8.setPosition(slot8, -276, (slot6 - 1)*-40 + 80)
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "attrNode")
+
+		slot8.arrowSprite:setVisible(false)
+		slot0.centerNode:addChild(slot8)
+		slot8.attrLabel:setString(slot7)
+		slot8.setPosition(slot8, 125, (slot6 - 1)*-40 + 80)
+	end
+
+	return 
+end
+slot0.setUnlockedInfos = function (slot0)
+	slot1 = FashionLvupConfig.items[slot0.mCurLv]
+
+	if FashionLvupConfig.items[slot0.mCurLv + 1].actSkillNum ~= 0 then
+		slot7 = SkillModel.items[FashionModel.items[PlayerAttrObj:getPlayerAttrByName("FashionModelId")][TR("skill%s", slot3)]].skillName
+		unlockSkillIcon = SkillModel.items[FashionModel.items[PlayerAttrObj.getPlayerAttrByName("FashionModelId")][TR("skill%s", slot3)]].skillPic .. ".png"
+		slot8 = false
+
+		if slot3 == 1 and FashionModel.items[slot4] then
+			slot7 = slot9.skillName
+			unlockSkillIcon = slot9.skillPic .. ".png"
+			slot8 = true
+		end
+
+		slot0.skillBorder:setVisible(true)
+		slot0.skillLabel:setString(TR("解锁新技能：#37ff40%s", slot7))
+		slot0.skillSprite:setTexture(unlockSkillIcon)
+		slot0.defaultLabel:setPositionY(-150)
+	else
+		slot0.nextTipSprite:setVisible(true)
+		slot0.newStepIntroLabel:setString(slot4)
+		slot0.nextTipSprite:setTexture(slot5 .. ".png")
+		slot0.defaultLabel:setPositionY(-150)
+	end
+
+	if slot1.colorLv ~= slot2.colorLv then
+		slot0.defaultLabel:setString(TR("恭喜主角昵称升级为 %s%s", Utility.getPlayerNameColor(slot0.mCurLv + 1, true, true), Utility.getColorName(slot2.colorLv)))
+	else
+		slot0.defaultLabel:setString(TR(""))
+	end
+
+	return 
+end
+slot0.getAttrString = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	if not FashionLvupConfig.items[slot1] then
+		for slot8 = 1, 3, 1 do
+			slot3[slot8] = TR("已经是最大等级")
+		end
+	else
+		slot5 = clone(slot4.baseAttrStr) or ""
+
+		for slot10, slot11 in ipairs(slot6) do
+			slot12 = Utility.analysisStrAttrToFromat(slot11, TR("全体%s +%d"))
+
+			if slot2 then
+				slot12 = Utility.analysisStrAttrToFromat(slot11, TR("全体%s #37ff40+%d"))
+			end
+
+			slot3[slot10] = slot12
+		end
+	end
+
+	return slot3
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onEffFinished = function (slot0)
+	slot0.centerNode:addChild(UIWrap.newControl("Effect", {
+		animation = "xunhuan",
+		dataFile = "effect_ui_tupochenggong",
+		pos = cc.p(0, -47)
+	}))
+
+	return 
+end
+
+return slot0

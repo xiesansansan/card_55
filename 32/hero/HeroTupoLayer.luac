@@ -1,0 +1,752 @@
+slot0 = class("HeroTupoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "m41Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 284,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "heroName",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "name_11101.png",
+					pos = {
+						x = -84.45,
+						y = 462.31
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onBtnRuleAction",
+					pos = {
+						x = -35,
+						y = 615
+					}
+				},
+				children = {}
+			},
+			{
+				name = "figureHero",
+				cType = "Sprite",
+				params = {
+					scale = 0.6,
+					image = "lh_12104.png",
+					pos = {
+						x = 29.4,
+						y = 326.41
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "m43Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 852,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled33",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_9.png",
+					pos = {
+						x = 0,
+						y = 300
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled31",
+				cType = "Button",
+				params = {
+					image = "xktp_3.png",
+					clickAction = "onBtnRebornAction",
+					pos = {
+						x = -280,
+						y = 115
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bgAttrNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					zOrder = 1,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 0.49,
+						y = 400.48
+					},
+					size = {
+						width = 420,
+						height = 128
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bgCtrlNode",
+				cType = "Node",
+				params = {
+					zOrder = 1,
+					pos = {
+						x = -209.63,
+						y = 46.62
+					},
+					size = {
+						width = 420,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_2.png",
+							bgImage = "jyt_1.png",
+							currValue = 0,
+							maxValue = 100,
+							childName = "progressBar",
+							pos = {
+								x = 244.9,
+								y = 62.74
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							childName = "progressLabel",
+							text = "0/100",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 237.98,
+								y = 40.75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Button",
+						params = {
+							childName = "btnTupo",
+							image = "c_27.png",
+							clickAction = "onBtnTupoAction",
+							pos = {
+								x = 210,
+								y = -1.34
+							},
+							size = {
+								width = 105,
+								height = 46
+							},
+							titleText = TR("突 破")
+						},
+						children = {}
+					},
+					{
+						name = "untitled29",
+						cType = "Label",
+						params = {
+							childName = "topLabel",
+							hide = true,
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							pos = {
+								x = 209.42,
+								y = 62.74
+							},
+							text = TR("该侠客已经突破到最高")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "CardNode",
+						params = {
+							childName = "resNode",
+							allowClick = true,
+							pos = {
+								x = 90,
+								y = 62.82
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "bgSkillNode",
+				cType = "Node",
+				params = {
+					zOrder = 1,
+					pos = {
+						x = -211.38,
+						y = 148.82
+					},
+					size = {
+						width = 420,
+						height = 250
+					}
+				},
+				children = {
+					{
+						name = "templateSkillHeader",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled22-image",
+								name = "headerImg",
+								type = "string"
+							},
+							{
+								value = "untitled21-text",
+								name = "limitText",
+								type = "string"
+							},
+							{
+								value = "untitled30-text",
+								name = "nameText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 50,
+								y = 15
+							},
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_80.png",
+									childName = "borderSprite",
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Button",
+								params = {
+									childName = "headerBtn",
+									scale = 0.9,
+									pressedAction = false,
+									image = "sk_100001.png",
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "limitLabel",
+									color = {
+										g = 44,
+										r = 234,
+										b = 0
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 50,
+										y = 50
+									},
+									text = TR("突破十层开启")
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "nameLabel",
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 50,
+										y = 7
+									},
+									text = TR("突破十层开启")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled16",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xktp_1.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							capInsets = {
+								x = 310,
+								height = 1,
+								width = 1,
+								y = 40
+							},
+							pos = {
+								x = 210.92,
+								y = 123.3
+							},
+							size = {
+								width = 410,
+								height = 130
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Sprite",
+						params = {
+							image = "xktp_2.png",
+							childName = "arrowSprite",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 100,
+								y = 128.3
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							emptyInit = true,
+							isRichText = true,
+							align = 0,
+							childName = "introLabel",
+							valign = 0,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 15.78,
+								y = 234.95
+							},
+							size = {
+								width = 380,
+								height = 0
+							},
+							text = TR("这是一段测试文字哈哈呵呵中华人民共和国合同法天安门广场上的人群很多很多这是一段测试文字哈哈呵呵中华人民共和国合同法天安门广场上的人群很多很多啊啊啊啊")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mModelId = slot1.heroModelId
+	slot0.mHeroModel = HeroModel.items[slot0.mModelId]
+	slot0.mTupoModel = HeroTupoRelation.items[slot0.mModelId]
+	slot0.mSkillModel = HeroTupoSkillRelation.items[slot0.mModelId]
+	slot0.mSkillNodes = {}
+	slot0.mTupoLv = 0
+
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "figureHero" then
+			slot1.image = Utility.getHeroStandImage(slot0.mModelId)
+		elseif slot0.name == "heroName" then
+			slot1.image = Utility.getHeroNameImage(slot0.mModelId)
+		end
+
+		return 
+	end)
+	slot0.createSkillInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.currTupoConfig = slot0.mTupoModel[slot0.mTupoLv]
+	slot0.nextTupoConfig = slot0.mTupoModel[slot0.mTupoLv + 1]
+	slot0.isLvTop = slot0.nextTupoConfig == nil
+
+	slot0.refreshAddAttr(slot0)
+	slot0.refreshResProgress(slot0)
+	slot0.refreshSkillInfo(slot0)
+
+	return 
+end
+slot0.createSkillInfo = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mSkillModel) do
+		table.insert(slot1, clone(slot6))
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.Lv < slot1.Lv
+	end)
+
+	if #slot1 < 3 then
+		table.insert(slot1, {
+			image = "txdy_9.png",
+			Lv = 999,
+			title = TR("暂未开放")
+		})
+	end
+
+	slot3 = #slot1/200
+
+	for slot7, slot8 in ipairs(slot1) do
+		slot9 = slot3*(slot7*2 - 1) + 10
+		slot10, slot11, slot12 = nil
+
+		if slot8.skillId ~= nil and 0 < slot8.skillId then
+			slot10 = SkillModel.items[slot8.skillId].skillPic .. ".png"
+			slot11 = TR("突破%s层开启", Utility.getChineseNum(slot8.Lv))
+			slot12 = SkillModel.items[slot8.skillId].skillName
+		else
+			slot10 = slot8.image
+			slot11 = ""
+			slot12 = slot8.title
+		end
+
+		slot13 = slot0.createLayoutTemplateNode(slot0, "templateSkillHeader", {
+			headerImg = slot10,
+			limitText = slot11,
+			nameText = slot12
+		})
+
+		slot13.setAnchorPoint(slot13, cc.p(0.5, 0))
+		slot13.setPosition(slot13, slot9, 15)
+		slot13.headerBtn:setClickAction(function ()
+			if slot0.currSkillLv ~= slot1.Lv then
+				slot0.currSkillLv = slot1.Lv
+
+				slot0:refreshSkillInfo()
+			end
+
+			return 
+		end)
+		slot0.bgSkillNode:addChild(slot13)
+
+		slot0.mSkillNodes[slot8.Lv] = slot13
+
+		if slot7 == 1 then
+			slot0.bgSkillNode.arrowSprite:setPositionX(slot9)
+
+			slot0.currSkillLv = slot8.Lv
+		end
+	end
+
+	slot0.refreshSkillInfo(slot0)
+
+	return 
+end
+slot0.refreshSkillInfo = function (slot0)
+	if slot0.mSkillModel[slot0.currSkillLv] ~= nil and slot1.skillId ~= nil then
+		slot0.bgSkillNode.introLabel:setString(Resource.getSkillIntroStr(slot1.skillId, 1, 1, "#FFFFFF", "#258711"))
+	else
+		slot0.bgSkillNode.introLabel:setString(TR("该技能尚未开放，敬请期待~"))
+	end
+
+	slot0.bgSkillNode.arrowSprite:setPositionX(slot0.mSkillNodes[slot0.currSkillLv]:getPositionX())
+
+	for slot5, slot6 in pairs(slot0.mSkillNodes) do
+		slot6.limitLabel:setVisible(slot0.mTupoLv < slot5)
+		ui.nodeSetGray(slot6.borderSprite, slot0.mTupoLv < slot5)
+		slot6.headerBtn:setBright(slot5 <= slot0.mTupoLv)
+	end
+
+	return 
+end
+slot0.refreshAddAttr = function (slot0)
+	slot0.bgAttrNode:removeAllChildren()
+
+	slot1 = UIWrap.newControl("Sprite", {
+		image = "c_23.png"
+	})
+
+	slot1.setPosition(slot1, cc.p(210, 50))
+	slot0.bgAttrNode:addChild(slot1)
+	slot0.bgAttrNode:addChild(slot2)
+
+	function slot3(slot0, slot1)
+		table.sort(slot2, function (slot0, slot1)
+			return slot0.fightattr < slot1.fightattr
+		end)
+
+		slot3 = {}
+
+		for slot7, slot8 in ipairs(slot2) do
+			if Utility.isAttrNeedPercent(slot8.fightattr) then
+				table.insert(slot3, string.format("%s%s +%s%%", FightAttrTypeName[slot8.fightattr], slot1, slot8.value/100))
+			else
+				table.insert(slot3, string.format("%s%s +%s", FightAttrTypeName[slot8.fightattr], slot1, slot8.value))
+			end
+		end
+
+		return slot3
+	end
+
+	function slot4(slot0, slot1)
+		slot3 = ({
+			{
+				171
+			},
+			[4] = {
+				210,
+				184,
+				158,
+				132
+			}
+		})[#slot0]
+
+		for slot7, slot8 in ipairs(slot0) do
+			slot0.bgAttrNode:addChild(UIWrap.newControl("Label", {
+				fontSize = 18,
+				isRichText = true,
+				text = slot8,
+				color = cc.c3b(37, 37, 37),
+				anchor = cc.p(0, 0.5),
+				pos = cc.p(slot1, slot3[slot7] - 120)
+			}))
+		end
+
+		return 
+	end
+
+	slot5 = {
+		TR("#C04141暂无加成")
+	}
+
+	if 0 < slot0.mTupoLv then
+		slot5 = slot3(slot0.currTupoConfig.totalAttrStr, "#252525")
+	end
+
+	slot4(slot5, 40)
+
+	slot6 = {
+		TR("#C04141已到最高")
+	}
+
+	if slot0.isLvTop == false then
+		slot6 = slot3(slot0.nextTupoConfig.totalAttrStr, "#8BA857")
+	end
+
+	slot4(slot6, 270)
+
+	return 
+end
+slot0.refreshResProgress = function (slot0)
+	for slot4, slot5 in ipairs({
+		"resNode",
+		"progressBar",
+		"progressLabel",
+		"btnTupo"
+	}) do
+		slot0.bgCtrlNode[slot5]:setVisible(not slot0.isLvTop)
+	end
+
+	slot0.bgCtrlNode.topLabel:setVisible(slot0.isLvTop)
+
+	if slot0.isLvTop == true then
+		return 
+	end
+
+	slot0.bgCtrlNode.resNode:setCardData({
+		modelId = Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].resourceId
+	}, {})
+	slot0.bgCtrlNode.progressBar:setMaxValue(Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].num)
+	slot0.bgCtrlNode.progressBar:setCurrValue(slot2)
+	slot0.bgCtrlNode.progressLabel:setString(string.format("%s/%s", Resource.getCount(Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].resourceId), Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].num))
+	slot0.bgCtrlNode.btnTupo:setEnabled(true)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBtnRuleAction = function (slot0)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = {
+			TR("1.资质18的侠客达到100级、5星且训练达到红色阶段才能开启突破；"),
+			TR("2.突破到一定层次后，可以开启新的突破技能；"),
+			TR("3.不同的侠客可能会有相同的突破技能，但是开启条件不一定相同；"),
+			TR("4.第五层突破技能为战意技，战意满后按侠客出手顺序在回合开始时释放；")
+		}
+	})
+
+	return 
+end
+slot0.onBtnTupoAction = function (slot0)
+	if slot0.isLvTop == true then
+		ui.showFlashView(TR("该侠客已经突破到最高"))
+
+		return 
+	end
+
+	if Resource.isEnough(Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].resourceId, Utility.analysisStrResList(slot0.currTupoConfig.consume)[1].num) then
+		slot0.requestHeroTupoUp(slot0)
+	end
+
+	return 
+end
+slot0.onBtnRebornAction = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eHeroTupoRebirth, true) then
+		return 
+	end
+
+	if slot0.mTupoLv == 0 then
+		ui.showFlashView(TR("当前侠客还未突破，无法重生"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.HeroTupoRebornLayer",
+		data = {
+			heroId = slot0.mModelId,
+			callback = function ()
+				slot0.mTupoLv = 0
+
+				slot0:refreshUI()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "HeroTupo",
+		methodData = {
+			slot0.mModelId
+		},
+		successCallback = function (slot0)
+			slot0.mTupoLv = slot0.Lv or 0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestHeroTupoUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "LvUp",
+		moduleName = "HeroTupo",
+		methodData = {
+			slot0.mModelId
+		},
+		successCallback = function (slot0)
+			slot0.mTupoLv = slot0.Lv or 0
+
+			slot0.bgCtrlNode.btnTupo:setEnabled(false)
+
+			clone(HeroObj:getItem(slot0.mModelId)).HeroTupoInfo = {
+				Lv = slot0.mTupoLv,
+				HeroModelId = slot0.mModelId
+			}
+
+			HeroObj:modifyItem(clone(HeroObj.getItem(slot0.mModelId)))
+			slot0:refreshUI()
+			MqAudio.playEffect("ui_rwsj.mp3")
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

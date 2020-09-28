@@ -1,0 +1,48 @@
+slot0 = class("TouchEffectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "touchEffect",
+		cType = "Effect",
+		params = {
+			loop = false,
+			isPlayAnimation = false,
+			dataFile = "effect_ui_lianjiedianji",
+			pos = {
+				x = 100,
+				y = 100
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = false,
+		beganEvent = function (slot0, slot1)
+			slot0.touchEffect:setPosition(slot2)
+			slot0.touchEffect:setVisible(true)
+			slot0.touchEffect:playAnimation("animation", 1)
+
+			return false
+		end
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.cbTouchEffectComplete = function (slot0)
+	slot0.touchEffect:setVisible(false)
+
+	return 
+end
+
+return slot0

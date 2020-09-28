@@ -1,0 +1,302 @@
+slot0 = class("HeroRoadRebornLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 575
+			},
+			titleText = TR("专精重生")
+		},
+		children = {
+			{
+				name = "remainLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 295,
+						y = 491.59
+					},
+					text = TR("重生会将名字名字名字的专精重置为0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 37.25,
+						y = 434.35
+					},
+					text = TR("重生会返还以下培养材料：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 295,
+						y = 318.77
+					},
+					size = {
+						width = 532,
+						height = 188
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 266,
+								y = 94
+							},
+							size = {
+								width = 500,
+								height = 125
+							}
+						},
+						children = {
+							{
+								name = "layout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "cardNode-initParams",
+										name = "cardInfo",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 120,
+										height = 125
+									}
+								},
+								children = {
+									{
+										name = "cardNode",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 60,
+												y = 75
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "customLabel",
+				cType = "Label",
+				params = {
+					fontSize = 19,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 295,
+						y = 156.59
+					},
+					text = TR("本次重生会消耗: {db_16050116.png}#37ff4099/99")
+				},
+				children = {}
+			},
+			{
+				name = "cancelBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onCancelBtn",
+					pos = {
+						x = 170.59,
+						y = 87.59
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "okBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onOkBtn",
+					image = "c_39.png",
+					pos = {
+						x = 412.78,
+						y = 87.59
+					},
+					size = {
+						width = 105,
+						height = 46
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.heroId = slot1.heroId
+	slot0.callback = slot1.callback
+
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot4, slot10 = Utility.getColorValue(HeroTrainColorlvRelation.items[HeroObj:getItem(slot0.heroId).TrainLv].colorLv, true)
+
+	slot0.remainLabel:setString(TR("重生会将%s%s#252525的专精重置为0", slot5, HeroModel.items[HeroObj.getItem(slot0.heroId).ModelId].name))
+
+	if HeroObj:isFreeHeroRebirth(ModuleSub.eHeroRoadRebirth, slot0.heroId) then
+		slot0.customLabel:setString(TR("#258711本次重生免费"))
+	else
+		slot6 = Utility.analysisStrResList(HeroRebirthRelation.items[ModuleSub.eHeroRoadRebirth].useStr)
+
+		slot0.customLabel:setString(TR("本次重生会消耗: {%s}%s%s/%s", Resource.getDaibiImg(slot6[1].resourceId), (slot6[1].num <= Resource.getCount(slot6[1].resourceId) and "#258711") or "#ea2c00", Resource.getCount(slot6[1].resourceId), slot6[1].num))
+	end
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.setGoodsList = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		for slot11, slot12 in ipairs(slot7) do
+			table.insert(slot2, slot12)
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot7.ResourceId,
+					num = slot7.Num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum,
+					Enums.CardShowAttr.eName
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onCancelBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onOkBtn = function (slot0)
+	if not HeroObj:isFreeHeroRebirth(ModuleSub.eHeroRoadRebirth, slot0.heroId) and not Resource.isEnough(Utility.analysisStrResList(HeroRebirthRelation.items[ModuleSub.eHeroRoadRebirth].useStr)[1].resourceId, Utility.analysisStrResList(HeroRebirthRelation.items[ModuleSub.eHeroRoadRebirth].useStr)[1].num) then
+		ui.showFlashView(TR("%s不足，无法重生", Resource.getName(slot1[1].resourceId)))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "RoadRebirth",
+		moduleName = "Hero",
+		methodData = {
+			slot0.heroId
+		},
+		successCallback = function (slot0)
+			HeroObj:modifyItem(slot0.HeroInfo)
+			ui.showFlashReward(slot0)
+
+			if slot0.callback then
+				slot0.callback()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRoadRebirthReturn",
+		moduleName = "Hero",
+		methodData = {
+			slot0.heroId
+		},
+		successCallback = function (slot0)
+			slot0:setGoodsList(slot0.BaseGetGameResourceList[1])
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

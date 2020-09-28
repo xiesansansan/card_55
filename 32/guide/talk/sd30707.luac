@@ -1,0 +1,763 @@
+return {
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		music = {
+			volume = 0.4,
+			file = "zhucheng5.mp3"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqbg_sx01.jpg",
+			tag = "mhbg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqbg_sx01.jpg",
+			tag = "mhbg02",
+			order = 9,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.1,
+			file = "jq_cz_bg.png",
+			tag = "mhbg03",
+			order = 8,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*1.15, TalkView.DEF.HEIGHT*0.6),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_sx01.jpg",
+				"1.1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line11",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"1.25",
+				"line11bg",
+				"line11zm",
+				TR("两人借着打狗棒")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line12",
+				"950",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line12bg",
+				"line12zm",
+				TR("赶走了梁老怪")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line13",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line13bg",
+				"line13zm",
+				TR("黄蓉眼珠一转")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line14",
+				"850",
+				"600",
+				"jqdh_12.png",
+				"1.1",
+				"line14bg",
+				"line14zm",
+				TR("又起了小心思")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line11zm",
+				"line11bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line12zm",
+				"line12bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line13zm",
+				"line13bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line14zm",
+				"line14bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg01",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"hr",
+				"hrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hr",
+				"hrname",
+				"sd3jq070701.mp3",
+				TR("七公，你这打狗棒好大的法力，那老怪见着可吓坏了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hqg",
+				"hqgname",
+				"sd3jq070702.mp3",
+				TR("那梁老怪以前作恶落到过我手里，自然是怕了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq070703.mp3",
+				TR("七公，我们这次借着你老人家的势吓跑了他。下次再碰见他，我们怎么办？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"hr",
+				"hrname",
+				"sd3jq070704.mp3",
+				TR("先前靖哥哥跟这老怪动手，来来去去就只一招‘亢龙有悔’威力虽大，可是也太寒碜了些。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hr",
+				"hrname",
+				"sd3jq070705.mp3",
+				TR("别人心里定然会说：‘洪帮主武功深不可测，教出来的却有限，显不出本事来。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070706.mp3",
+				TR("你这丫头，危言耸听，又出言激我，不就是要我再教你们两人功夫。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hqg",
+				"hqgname",
+				"sd3jq070707.mp3",
+				TR("只要你乖乖地多烧些好菜，七公总不会让你们吃亏。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"hr",
+				"hrname",
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line21",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"0.85",
+				"line21bg",
+				"line21zm",
+				TR("一月有余")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line22",
+				"950",
+				"600",
+				"jqdh_12.png",
+				"1.2",
+				"line22bg",
+				"line22zm",
+				TR("洪七公将降龙掌")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line23",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"0.9",
+				"line23bg",
+				"line23zm",
+				TR("自亢龙有悔")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line24",
+				"850",
+				"600",
+				"jqdh_12.png",
+				"1.05",
+				"line24bg",
+				"line24zm",
+				TR("传到见龙在田")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line25",
+				"800",
+				"600",
+				"jqdh_12.png",
+				"1.05",
+				"line25bg",
+				"line25zm",
+				TR("只余三掌未授")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line21zm",
+				"line21bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line22zm",
+				"line22bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line23zm",
+				"line23bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line24zm",
+				"line24bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line25zm",
+				"line25bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg02",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		music = {
+			volume = 0.4,
+			file = "zhucheng2.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hqg",
+				"hqgname",
+				"sd3jq070708.mp3",
+				TR("两个娃娃，咱三人已相聚了一个多月，这就该分手啦。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"hr",
+				"hrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hr",
+				"hrname",
+				"sd3jq070709.mp3",
+				TR("啊，不成，我还有很多小菜没烧给您老人家吃呢。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070710.mp3",
+				TR("天下没不散的筵席，却有吃不完的菜肴。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hqg",
+				"hqgname",
+				"sd3jq070711.mp3",
+				TR("老叫化不收徒儿，这一次教你那傻小子三十多天，再教下去，唉，可乖乖不得了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq070712.mp3",
+				TR("怎么啊？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070713.mp3",
+				TR("我的看家本领要给你们学全啦。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"hr",
+				"hrname",
+				"sd3jq070714.mp3",
+				TR("好人做到底，你把十八路掌法全传了他，岂不甚美？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070715.mp3",
+				TR("呸，你小两口子是美得不得了，我老叫化可就不美啦。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"hr",
+				"hrname",
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		load = {
+			tmpl = "bgmove",
+			params = {
+				"mhbg03",
+				"1",
+				"-1000",
+				"-500",
+				"-750",
+				"1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"gj",
+				"gjname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"gj",
+				"gjname",
+				"sd3jq070716.mp3",
+				TR("七公，七公！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hqg",
+				"hqgname",
+				"sd3jq070717.mp3",
+				TR("你这臭小子缠着我干什么？要想我再教，那是难上加难。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"gj",
+				"gjname",
+				"sd3jq070718.mp3",
+				TR("您老教了这许多，弟子已心满意足，哪敢再贪，只是未曾叩谢您老恩德。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"jq0050.mp3",
+				TR("【—旁述—】:"),
+				TR("郭靖恭恭敬敬的朝着七公行叩拜之礼。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070719.mp3",
+				TR("打住。我教你武功，那是吃了你媳妇儿的小菜，咱们可没师徒名分。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namel",
+				"gj",
+				"gjname",
+				"sd3jq070720.mp3",
+				TR("七公是高人，小子愚笨，哪敢奢想做七公弟子。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"gj",
+				"gjname",
+				"sd3jq070721.mp3",
+				TR("小子武功低微没什么可报答，只能磕几个头，叩谢你老人家费心教导。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"hqg",
+				"hqgname",
+				"sd3jq070722.mp3",
+				TR("傻小子！记着，可别说你向我磕过头，是我弟子。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"hqg",
+				"hqgname"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,734 @@
+slot0 = class("FeijiBuildCenterLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled6",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zq_18.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mHerosParent",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "PlayerTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled9-heroModelId",
+						name = "heroModelId",
+						type = "string"
+					}
+				},
+				params = {
+					scale = 0.8,
+					pos = {
+						x = -160,
+						y = -277.45
+					}
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						params = {
+							image = "zd_black.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "FigureHero",
+						params = {
+							childName = "figure",
+							heroModelId = 12011103,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Scale9Sprite",
+						params = {
+							image = "zq_21.png",
+							pos = {
+								x = 0,
+								y = 208
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "zq_22.png",
+							childName = "hpBar",
+							pos = {
+								x = 0,
+								y = 208
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Scale9Sprite",
+						params = {
+							image = "zq_20.png",
+							pos = {
+								x = 20,
+								y = 230
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "playerName",
+							pos = {
+								x = 4,
+								y = 228
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							childName = "button",
+							pos = {
+								x = 3.59,
+								y = 116.7
+							},
+							size = {
+								width = 115.61,
+								height = 239.16
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Node",
+						params = {
+							childName = "ctrlNode",
+							scale = 0,
+							zOrder = 1,
+							pos = {
+								x = 1.41,
+								y = 236.91
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Scale9Sprite",
+								params = {
+									image = "jh_45.png",
+									pos = {
+										x = 0,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Button",
+								params = {
+									image = "zq_36.png",
+									childName = "btnFight",
+									pos = {
+										x = -57.05,
+										y = 76.64
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Button",
+								params = {
+									image = "zq_37.png",
+									childName = "btnLook",
+									pos = {
+										x = 62.95,
+										y = 76.64
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "topChatLayer",
+		cType = "FileLayer",
+		params = {
+			file = "feiji/FeijiCommTopChatLayer.lua"
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCloseAction = slot1.closeAction
+	slot0.mCurPointId = FeiJiHelper.enterResInfo.PointId
+	slot0.mCurrPlayerList = FeiJiHelper:getEnterResInfo(slot0.mCurPointId)
+	slot0.myPlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	if FeiJiHelper.myTeamName == nil then
+		LayerManager.addLayer({
+			name = "home.HomeLayer",
+			data = {
+				defaultModuleId = ModuleSub.eShengyuanWars
+			}
+		})
+
+		return 
+	end
+
+	slot0.refreshPlane(slot0)
+	slot0.registerMsgCallback(slot0)
+
+	if FeiJiHelper.isHangUping then
+		Utility.performWithDelay(slot0, function ()
+			LayerManager.showModuleLayer(ModuleSub.eShengyuanOfflineMatch)
+
+			return 
+		end, 0)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "topChatLayer" then
+			slot1.initParams = {
+				closeAction = handler(slot0, slot0.onBtnCloseAction)
+			}
+		end
+
+		return 
+	end)
+	slot0.topChatLayer:initPlaneList()
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	slot1 = {}
+	slot2 = false
+	slot1 = (FeiJiHelper.myTeamName ~= FeiJiHelper.teamB or slot0.mCurrPlayerList.B) and slot0.mCurrPlayerList.A
+
+	for slot6, slot7 in pairs(slot1) do
+		if slot7 == slot0.myPlayerId then
+			slot2 = true
+
+			break
+		end
+	end
+
+	if not slot2 or FeiJiHelper.battleResultData ~= nil then
+		Utility.performWithDelay(slot0, function ()
+			if slot0.mCloseAction then
+				slot0.mCloseAction()
+			else
+				LayerManager.removeLayer(LayerManager.removeLayer)
+			end
+
+			return 
+		end, 0)
+	end
+
+	return 
+end
+slot0.registerMsgCallback = function (slot0)
+	slot1({
+		FeiJiHelper.Events.eFeiJiEnterOrQuiteRes
+	}, function (slot0, slot1)
+		if slot1.PlayerId == slot0.myPlayerId and slot1.IsEnter == false then
+			if slot0.mCloseAction then
+				slot0.mCloseAction()
+			else
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+
+		if slot1.PointId == slot0.mCurPointId then
+			slot0.mCurrPlayerList = FeiJiHelper:getEnterResInfo(FeiJiHelper.enterResInfo.PointId)
+
+			slot0:refreshPlane()
+		end
+
+		return 
+	end)
+	slot1({
+		FeiJiHelper.Events.eFeiJiFightOver
+	}, function (slot0, slot1)
+		if slot0.isSelfDead then
+			return 
+		end
+
+		slot2 = clone(slot1)
+		slot3 = slot2.targetPlayerId
+		slot4 = slot2.attackPlayerId
+
+		if slot2.isWin then
+			slot4 = slot2.targetPlayerId
+			slot3 = slot2.attackPlayerId
+		end
+
+		if slot4 == slot0.myPlayerId then
+			slot0.isSelfDead = true
+		end
+
+		function slot5()
+			if slot0.isSelfDead then
+				if slot0.mCloseAction then
+					slot0.mCloseAction()
+				else
+					LayerManager.removeLayer(LayerManager.removeLayer)
+				end
+
+				return 
+			end
+
+			slot0:resetPlayerBuff(slot1.targetPlayerId)
+			slot0.resetPlayerBuff:resetPlayerBuff(slot1.attackPlayerId)
+
+			if FeiJiHelper:getPlayerData(slot1.attackPlayerId).CurPointId == slot0.mCurPointId then
+				slot0.topChatLayer:showKillFlash(slot0.topChatLayer:findOnePlane(slot0.topChatLayer))
+			end
+
+			slot0.mCurrPlayerList = FeiJiHelper:getEnterResInfo(FeiJiHelper.enterResInfo.PointId)
+
+			slot0:refreshPlane()
+
+			return 
+		end
+
+		slot7 = slot0.topChatLayer:findOnePlane(slot2.targetPlayerId)
+
+		if slot0.topChatLayer:findOnePlane(slot2.attackPlayerId) == nil or slot7 == nil then
+			if slot0.isSelfDead then
+				if slot0.mCloseAction then
+					slot0.mCloseAction()
+				else
+					LayerManager.removeLayer(slot0)
+				end
+			end
+
+			return 
+		end
+
+		slot10 = "Effect"
+		slot11 = {
+			loop = false,
+			animation = "02",
+			isPlayAnimation = false,
+			dataFile = "effect_common_baodian",
+			pos = cc.p((0 < cc.p(slot6.getPosition(slot6)).x and 10) or 120, 80),
+			isSkewY = 0 < cc.p(slot6.getPosition(slot6)).x
+		}
+
+		slot6.addChild(slot6, UIWrap.newControl)
+
+		slot11 = "Effect"
+		slot12 = {
+			loop = false,
+			animation = "02",
+			isPlayAnimation = false,
+			dataFile = "effect_common_baodian",
+			pos = cc.p((0 < cc.p(slot7.getPosition(slot7)).x and 10) or 120, 80),
+			isSkewY = 0 < slot7.getPositionX(slot7)
+		}
+
+		slot7.addChild(slot7, UIWrap.newControl)
+
+		slot11 = slot6.figure:getAnimationTime("pugong")
+		slot12 = 0
+
+		if 0 < slot7.getPositionX(slot7) then
+			slot12 = slot7.getPositionX(slot7) - 128
+
+			if slot6.figure:getBoundingBox().width ~= 0 then
+				slot12 = slot7.getPositionX(slot7) - slot13.width
+			end
+		else
+			slot12 = slot7.getPositionX(slot7) + 128
+
+			if slot7.figure:getBoundingBox().width ~= 0 then
+				slot12 = slot7.getPositionX(slot7) + slot13.width
+			end
+		end
+
+		slot6.runAction(slot6, cc.Sequence:create({
+			cc.JumpTo:create(0.3, cc.p(slot12, slot7.getPositionY(slot7)), 20, 1),
+			cc.CallFunc:create(function ()
+				if slot0.figure then
+					slot0.figure:playAnimation("pugong", 1)
+				end
+
+				if slot1.figure then
+					slot1.figure:playAnimation("pugong", 1)
+				end
+
+				return 
+			end),
+			cc.DelayTime:create(slot11/2),
+			cc.CallFunc:create(function ()
+				if not tolua.isnull(tolua.isnull) then
+					slot0:playAnimation("02", 1)
+				end
+
+				if not tolua.isnull(slot1) then
+					slot1:playAnimation("02", 1)
+				end
+
+				return 
+			end),
+			cc.DelayTime:create(slot11/2),
+			cc.CallFunc:create(function ()
+				if not tolua.isnull(tolua.isnull) then
+					slot0:setPosition(slot0)
+				end
+
+				if not tolua.isnull(slot2) then
+					slot2:removeFromParent()
+				end
+
+				if not tolua.isnull(slot3) then
+					slot3:removeFromParent()
+				end
+
+				slot4()
+
+				return 
+			end)
+		}))
+
+		return 
+	end)
+	slot1({
+		FeiJiHelper.Events.eFeiJiFightResult
+	}, function (slot0, slot1)
+		function slot2()
+			LayerManager.addLayer({
+				name = "home.HomeLayer",
+				data = {
+					defaultModuleId = ModuleSub.eShengyuanWars
+				}
+			})
+
+			return 
+		end
+
+		slot0.topChatLayer:onGameEndAction()
+
+		slot3 = {}
+
+		if FeiJiHelper.myTeamName == FeiJiHelper.teamA then
+			list = slot1.A
+		else
+			list = slot1.B
+		end
+
+		for slot7, slot8 in pairs(list) do
+			if slot8.PlayerId == slot0.myPlayerId then
+				slot3 = string.splitBySep(slot8.GroupMember or "", ",")
+
+				break
+			end
+		end
+
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "feiji.FeiJiDlgGameEndLayer",
+			data = {
+				pageInfo = slot1,
+				callback = slot2
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end)
+	function (slot0, slot1)
+		slot0:addChild(slot2)
+		EventAuto:registerAutoEvent(UIWrap.newControl("Node", {}), slot0, slot1)
+
+		return 
+	end({
+		FeiJiHelper.Events.eFeiJiPlayerBuffChanged
+	}, function (slot0, slot1)
+		slot0:resetPlayerBuff(slot1)
+
+		return 
+	end)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	if slot0.isSelfDead then
+		if slot0.mCloseAction then
+			slot0.mCloseAction()
+		else
+			LayerManager.removeLayer(slot0)
+		end
+	else
+		FeiJiHelper:quitPoint(FeiJiHelper.enterResInfo.PointId, function ()
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.refreshPlane = function (slot0)
+	slot0.topChatLayer:cleanPlaneNoInList(slot0.mCurrPlayerList)
+
+	function slot1(slot0, slot1)
+		for slot5, slot6 in ipairs(slot0) do
+			if slot0.topChatLayer:findOnePlane(slot6) == nil then
+				slot8 = slot0:createLayoutTemplateNode("PlayerTempNode", {
+					heroModelId = FeiJiHelper:getPlayerData(slot6).LeaderModelId
+				})
+				slot8.playerId = slot6
+
+				slot0:refreshPlayerNode(slot8, FeiJiHelper.getPlayerData(slot6))
+				slot8.figure:setRotationSkewY((slot1 and 180) or 0)
+				slot8.button:setClickAction(function ()
+					slot0:showCtrlBtn()
+					slot0:closeShowCtrl(slot2.PlayerId)
+
+					return 
+				end)
+
+				slot9 = slot0.topChatLayer:addOnePlane(slot8, slot1)
+
+				slot0.mHerosParent:addChild(slot8)
+			end
+		end
+
+		return 
+	end
+
+	if FeiJiHelper.myTeamName ~= nil and FeiJiHelper.myTeamName == FeiJiHelper.teamB then
+		slot1(slot0.mCurrPlayerList.B, false)
+		slot1(slot0.mCurrPlayerList.A, true)
+	else
+		slot1(slot0.mCurrPlayerList.A, false)
+		slot1(slot0.mCurrPlayerList.B, true)
+	end
+
+	return 
+end
+slot0.refreshPlayerNode = function (slot0, slot1, slot2)
+	if not slot2 then
+		return 
+	end
+
+	slot1.playerName:setString(slot2.PlayerName or slot2.Name)
+
+	slot3 = cc.c3b(255, 255, 255)
+
+	if FeiJiHelper.myTeamName ~= slot2.TeamName then
+		slot3 = cc.c3b(192, 65, 65)
+	elseif PlayerAttrObj:getPlayerAttrByName("PlayerId") == slot2.PlayerId then
+		slot3 = cc.c3b(139, 168, 87)
+	end
+
+	slot1.playerName:setColor(slot3)
+
+	if slot1.curTitleSprite then
+		slot1.curTitleSprite:removeFromParent()
+
+		slot1.curTitleSprite = nil
+	end
+
+	if TitleConfig.items[tonumber(slot2.TitleInfo)] then
+		if cc.FileUtils:getInstance():isFileExist(slot4.pic .. ".skel") then
+			slot1.addChild(slot1, UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				dataFile = slot4.pic,
+				pos = cc.p(0, 255)
+			}))
+
+			slot1.curTitleSprite = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				dataFile = slot4.pic,
+				pos = cc.p(0, 255)
+			})
+		else
+			slot1.addChild(slot1, slot5)
+
+			slot1.curTitleSprite = cc.Sprite:create(slot4.pic .. ".png")
+
+			slot1.curTitleSprite:setPosition(0, 300)
+		end
+	end
+
+	slot1.refreshHpBar = function (slot0, slot1, slot2)
+		slot0.hpBar:setMaxValue(slot1)
+		slot0.hpBar:setCurrValue(slot2)
+
+		return 
+	end
+
+	slot1.refreshHpBar(slot1, slot2.TotalHp, slot2.Hp)
+
+	slot1.refreshBuff = function (slot0, slot1)
+		for slot5, slot6 in ipairs({
+			1,
+			3,
+			4
+		}) do
+			if slot0.figure:getChildByTag(slot6) then
+				slot0.figure:getChildByTag(slot6):removeFromParent()
+			end
+		end
+
+		if slot1 == nil or slot1.Buff == nil then
+			return 
+		end
+
+		slot2 = {
+			cc.p(-60, 170),
+			cc.p(-60, 110),
+			cc.p(-60, 50)
+		}
+		slot3 = {}
+
+		if slot1.Buff.1 and slot1.Buff.1 == -1 then
+			table.insert(slot3, 1)
+		end
+
+		if slot1.Buff.3 and 0 < slot1.Buff.3 then
+			table.insert(slot3, 3)
+		end
+
+		if slot1.Buff.4 and 0 < slot1.Buff.4 then
+			table.insert(slot3, 4)
+		end
+
+		for slot7, slot8 in ipairs(slot3) do
+			if ShengyuanwarsBuffConfig.items[slot8] ~= nil then
+				slot10 = UIWrap.newControl("Sprite", {
+					image = slot9.insidePic .. ".png",
+					pos = slot2[slot7]
+				})
+
+				slot10.setTag(slot10, slot8)
+				slot0.figure:addChild(slot10, 1)
+			end
+		end
+
+		return 
+	end
+
+	slot1.refreshBuff(slot1, slot2)
+
+	if not (FeiJiHelper.myTeamName ~= slot2.TeamName) then
+		slot1.ctrlNode.btnFight:setVisible(false)
+		slot1.ctrlNode.btnLook:setPosition(0, 76)
+	end
+
+	slot1.ctrlNode.btnLook:setClickAction(function ()
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "feiji.FeiJiPlayerDetailLayer",
+			data = {
+				playerId = slot0.playerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end)
+	slot1.ctrlNode.btnFight:setClickAction(function ()
+		FeiJiHelper:playerFight(slot0.playerId, FeiJiHelper.enterResInfo.PointId, function (slot0)
+			return 
+		end)
+
+		return 
+	end)
+
+	slot1.showCtrlBtn = function (slot0)
+		slot0.isShowCtrlBtn = not slot0.isShowCtrlBtn
+
+		slot0.ctrlNode:runAction(cc.ScaleTo:create(0.2, (slot0.isShowCtrlBtn and 1) or 0))
+
+		return 
+	end
+
+	return 
+end
+slot0.closeShowCtrl = function (slot0, slot1)
+	slot0.topChatLayer:operAllPlane(function (slot0)
+		if slot0.playerId ~= slot0 and slot0.node and slot0.node.isShowCtrlBtn then
+			slot0.node:showCtrlBtn()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.resetPlayerBuff = function (slot0, slot1)
+	if slot0.topChatLayer:findOnePlane(slot1) == nil then
+		return 
+	end
+
+	slot3 = FeiJiHelper:getPlayerData(slot1)
+
+	slot2.refreshBuff(slot2, slot3)
+	slot2.refreshHpBar(slot2, slot3.TotalHp, slot3.Hp)
+
+	return 
+end
+
+return slot0

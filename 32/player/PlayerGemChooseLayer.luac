@@ -1,0 +1,372 @@
+slot0 = class("PlayerGemChooseLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 850,
+				height = 540
+			},
+			titleText = TR("宝石选择")
+		},
+		children = {
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 425,
+						y = 265
+					},
+					size = {
+						width = 800,
+						height = 460
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGemGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGemItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 130,
+					pos = {
+						x = 425,
+						y = 266
+					},
+					size = {
+						width = 788,
+						height = 444
+					}
+				},
+				children = {}
+			},
+			{
+				name = "GemItemNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 297.05,
+						y = 348.15
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_95.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 384,
+								height = 128
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "nameLabel",
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = -180,
+								y = 38
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "isRecomLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 163,
+								r = 103,
+								b = 30
+							},
+							pos = {
+								x = 138.35,
+								y = 38
+							},
+							text = TR("推荐")
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "CardNode",
+						params = {
+							childName = "card",
+							allowClick = true,
+							pos = {
+								x = -141.43,
+								y = -11.79
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							childName = "lvLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -88,
+								y = 5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							childName = "attrLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = -88,
+								y = -20
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							childName = "ownLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = -88,
+								y = -45
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Button",
+						params = {
+							childName = "selectBtn",
+							image = "c_27.png",
+							clickAction = "onSelect",
+							pos = {
+								x = 125.41,
+								y = -11.07
+							},
+							titleText = TR("镶嵌")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "emptyHint",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bp_25.png",
+					pos = {
+						x = 459.56,
+						y = 300.2
+					}
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.5,
+								y = 51
+							},
+							text = TR("攻下宗门，加入宗门可获取宝石")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mLayerType = slot1.layerType or 1
+	slot0.mPartId = slot1.partId or 1
+	slot0.mPosId = slot1.posId or 1
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mBgSprite.titleLabel:setString((slot0.mLayerType == 1 and TR("宝石选择")) or TR("宝石合成"))
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mGemData = slot0.getGemData(slot0)
+
+	slot0.mGemGridView:setItemNum(#slot0.mGemData)
+	slot0.emptyHint:setVisible(#slot0.mGemData == 0)
+
+	return 
+end
+slot0.getGemData = function (slot0)
+	slot1 = {}
+
+	if slot0.mLayerType == 1 then
+		slot1 = table.values(GemObj:getListByPartId(slot0.mPartId))
+	elseif slot0.mLayerType == 2 then
+		for slot5, slot6 in pairs(clone(GemObj:getList())) do
+			if GemModel.items[slot5].Lv ~= 10 then
+				table.insert(slot1, slot6)
+			end
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return GemModel.items[slot1.ModelId].Lv < GemModel.items[slot0.ModelId].Lv
+	end)
+
+	if 0 < #slot1 then
+		slot0.mCurMaxLv = GemModel.items[slot1[1].ModelId].Lv
+	end
+
+	return slot1
+end
+slot0.onCreateGemItem = function (slot0, slot1, slot2, slot3)
+	slot7 = slot0.createLayoutTemplateNode(slot0, "GemItemNode")
+
+	slot7.setPosition(slot7, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot7)
+	slot7.nameLabel:setString(GemNameConfig.items[GemModel.items[slot0.mGemData[slot2].ModelId].partId].nameStr)
+	slot7.nameLabel:setColor(slot8)
+	slot7.lvLabel:setString(TR("品阶：%s", GemModel.items[slot0.mGemData[slot2].ModelId].Lv))
+	slot7.lvLabel:setColor(slot8)
+	slot7.attrLabel:setString(Utility.analysisStrAttrToFromat(GemModel.items[slot0.mGemData[slot2].ModelId].addAttrStr, "%s+%s", "  "))
+	slot7.ownLabel:setString(TR("拥有：%s", slot0.mGemData[slot2].Num))
+	slot7.isRecomLabel:setVisible(slot0.mCurMaxLv == GemModel.items[slot0.mGemData[slot2].ModelId].Lv and slot0.mLayerType == 1)
+	slot7.card:setCardData({
+		modelId = slot5.ModelId
+	}, {
+		Enums.CardShowAttr.eBorder
+	})
+	slot7.selectBtn:setTitleText(({
+		TR("镶嵌"),
+		TR("合成")
+	})[slot0.mLayerType])
+
+	if slot0.mLayerType == 1 and SlotEquipObj:getItem(slot0.mPartId).GemList or {}[tostring(slot0.mPosId)] == slot5.ModelId then
+		slot7.selectBtn:setTitleText(TR("已镶嵌"))
+		slot7.selectBtn:setEnabled(false)
+	end
+
+	slot7.selectBtn.index = slot2
+
+	return 
+end
+slot0.onSelect = function (slot0, slot1)
+	slot2 = slot0.mGemData[slot1.index]
+
+	if slot0.mLayerType == 1 then
+		if slot0.mCallback then
+			slot0.mCallback(slot2.ModelId)
+		end
+
+		LayerManager.removeLayer(slot0)
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.PlayerGemComposeLayer",
+			data = {
+				gemModelId = slot2.ModelId,
+				callback = function ()
+					slot0:refreshUI()
+
+					if slot0.refreshUI.mCallback then
+						slot0.mCallback()
+					end
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+
+return slot0

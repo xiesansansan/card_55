@@ -1,0 +1,86 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.UIHelper")
+slot2 = require("battle.managers.BattleManager")
+slot3 = require("battle.managers.StatisticsManager")
+slot4 = require("battle.managers.RecordManager")
+slot5 = class("FastBattleScene", function ()
+	slot0 = cc.Layer:create()
+
+	slot0.enableNodeEvents(slot0)
+
+	return slot0
+end)
+slot5.ctor = function (slot0, slot1)
+	slot0.originData = slot1
+	slot0.data = slot1.params
+	slot0.cb = slot1.cb
+
+	return 
+end
+slot5.onEnter = function (slot0)
+	slot0.startGame(slot0)
+
+	return 
+end
+slot5.isNoNavigate = function (slot0)
+	return true
+end
+slot5.startGame = function (slot0)
+	require("battle.managers.VerifyBattle").Init(slot0.data.fightStatus, slot0.originData, clone(slot0.getOpData(false)), slot0.data.seed)
+	slot0.onUpdate(slot0, function (slot0)
+		slot1, slot2 = slot0.DoStep()
+
+		if slot1 == true then
+			slot1:unscheduleUpdate()
+
+			if slot1.data.isPvp == true then
+				if slot1.data.isWin == true then
+					slot1:onBattleComplete(false, slot2.GameState.ATTACK_WIN)
+				else
+					slot1:onBattleComplete(false, slot2.GameState.ATTACK_LOSE)
+				end
+			elseif slot0.getResult().Result == true then
+				slot1:onBattleComplete(false, slot2.GameState.ATTACK_WIN)
+			else
+				slot1:onBattleComplete(false, slot2.GameState.ATTACK_LOSE)
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot5.onBattleComplete = function (slot0, slot1, slot2)
+	slot3 = false
+
+	if slot2 == slot0.GameState.ATTACK_WIN then
+		slot3 = true
+	end
+
+	slot5 = {
+		battleType = slot0.data.fightStatus,
+		result = slot3,
+		opData = slot1.getOpString(slot1),
+		isSkip = slot1,
+		statData = slot2.getStatisticsData(),
+		extraData = slot0.data.extraData,
+		isPvp = slot0.data.isPvp,
+		isWin = slot0.data.isWin,
+		autoStatus = true
+	}
+
+	if slot0.cb then
+		slot0.cb(slot5)
+
+		slot0.cb = nil
+	end
+
+	if slot0.IsDebug and slot0.originData ~= nil then
+		require("battle.managers.DebugManager").saveData(slot0.originData, slot5)
+	end
+
+	return 
+end
+
+return slot5

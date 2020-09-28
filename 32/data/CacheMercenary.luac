@@ -1,0 +1,66 @@
+slot0 = class("CacheMercenary", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mMercenaryInfo = {}
+	slot0.mMercenaryInfoSorted = {}
+	slot0.mUseInfo = {}
+
+	return 
+end
+slot0.getMercenaryInfoById = function (slot0, slot1)
+	return slot0.mMercenaryInfo[slot1]
+end
+slot0.getMercenaryInfoByModuleId = function (slot0, slot1)
+	slot2 = MercenaryModuleModel.items[slot1]
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot0.mMercenaryInfoSorted) do
+		if ((slot2.isFriends and slot8.MercenaryHeroInfo.MercenaryType == 1) or (slot2.isGuild and slot8.MercenaryHeroInfo.MercenaryType == 2)) and (type(slot0.mUseInfo[tostring(slot1)]) ~= "number" or slot0.mUseInfo[tostring(slot1)] < slot2.singleNum) then
+			table.insert(slot3, clone(slot8))
+		end
+	end
+
+	return slot3
+end
+slot0.getMercenaryIdByModuleId = function (slot0, slot1)
+	slot2 = {}
+
+	if not MercenaryModuleModel.items[slot1] then
+		return slot2
+	end
+
+	for slot7, slot8 in ipairs(slot0.mMercenaryInfoSorted) do
+		if ((slot3.isFriends and slot8.MercenaryHeroInfo.MercenaryType == 1) or (slot3.isGuild and slot8.MercenaryHeroInfo.MercenaryType == 2)) and (type(slot0.mUseInfo[tostring(slot1)]) ~= "number" or slot0.mUseInfo[tostring(slot1)] < slot3.singleNum) then
+			table.insert(slot2, clone(slot8.MercenaryHeroInfo.MercenaryId))
+		end
+	end
+
+	return slot2
+end
+slot0.getMercenaryInfo = function (slot0)
+	return slot0.mMercenaryInfo
+end
+slot0.getMercenaryUseInfo = function (slot0)
+	return slot0.mUseInfo
+end
+slot0.setMercenaryInfo = function (slot0, slot1)
+	slot0.mMercenaryInfo = slot1.HeroInfo
+	slot0.mUseInfo = slot1.UseCountInfo
+	slot0.mMercenaryInfoSorted = {}
+
+	for slot5, slot6 in pairs(slot0.mMercenaryInfo) do
+		table.insert(slot0.mMercenaryInfoSorted, slot6)
+	end
+
+	table.sort(slot0.mMercenaryInfoSorted, function (slot0, slot1)
+		return slot1.MercenaryHeroInfo.Fap <= slot0.MercenaryHeroInfo.Fap
+	end)
+
+	return 
+end
+
+return slot0

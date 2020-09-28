@@ -1,0 +1,248 @@
+return {
+	{
+		music = {
+			volume = 0.3,
+			file = "jq_huashanlunjian.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.1,
+			file = "jq_bg003.png",
+			tag = "bg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 0.6,
+			file = "jq_ytj001.png",
+			tag = "ytj01",
+			order = 70,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.55, TalkView.DEF.HEIGHT*0.15),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			parent = "ytj01",
+			file = "jq_ytj002.png",
+			tag = "ytj02",
+			scale = 1.25,
+			order = -5,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(626, 400)
+		}
+	},
+	{
+		delay = {
+			time = 0.5
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"yxd_lh",
+				"yxd_lhname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_ytj_01.mp3",
+				TR("这就是你师父给你留下的宝贝——传说中的倚天剑？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"zj_lh",
+				"zj_lhname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"jq_ytj_02.mp3",
+				TR("武侠中人，最重两物，一为功法，一为神兵……")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"jq_ytj_03.mp3",
+				TR("神兵之属，一曰屠龙，一曰倚天，屠龙至尊，倚天争锋……")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_ytj_04.mp3",
+				TR("噫！这么大来头啊，这要是拿去卖了得值多少钱啊？我怎么就没有这么一个疼我的师父呢？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"zj_lh",
+				"zj_lhname",
+				"jq_ytj_05.mp3",
+				TR("谁要做了你师父，估计要被你气得坟头冒烟吧！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_ytj_06.mp3",
+				TR("管他冒不冒烟呢，赶紧拔出来让本掌柜开开眼界！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namel",
+				"zj_lh",
+				"zj_lhname",
+				"jq_ytj_07.mp3",
+				TR("师父说过，实力不济者，无法拔出此剑！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"jq_ytj_08.mp3",
+				TR("我还需提升功力，才能真正驭使倚天剑。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_ytj_09.mp3",
+				TR("噢！那还等什么，为了本姑娘，你可要赶紧提升实力呀！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"yxd_lh",
+				"yxd_lhname"
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"bg",
+				"back_board"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		},
+		zj_lh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"zj_lh",
+						"effect_lihui_baojiannan",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"zj_lhname",
+						"@main"
+					}
+				}
+			}
+		},
+		yxd_lh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"yxd_lh",
+						"effect_lihui_nvzhu_yu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"yxd_lhname",
+						"夜小蝶"
+					}
+				}
+			}
+		}
+	}
+}

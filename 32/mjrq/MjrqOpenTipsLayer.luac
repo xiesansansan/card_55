@@ -1,0 +1,275 @@
+slot0 = class("MjrqOpenTipsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseLayer",
+			hideCloseButton = true,
+			image = "mjrq_5.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					pos = {
+						x = 643.03,
+						y = 430.83
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 954.6,
+						y = 553.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 516.92,
+						y = 196.99
+					},
+					size = {
+						width = 300,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "RewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "mjrq_7.png",
+					clickAction = "onEnterCallBack",
+					pos = {
+						x = 817.18,
+						y = 130.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "tb_gn_12.png",
+					clickAction = "onClickRank",
+					pos = {
+						x = 910,
+						y = 460
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "tb_gn_232.png",
+					clickAction = "onClickReward",
+					pos = {
+						x = 910,
+						y = 360
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eWorldBoss, "CityWarArmyNoticeReddot") then
+		RedDotObj:seeRedDot("CityWarArmyNoticeReddot")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if TimedPlayConfig.items[ModuleSub.eWorldBoss] then
+		for slot5, slot6 in pairs(slot1) do
+			slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "RewardLayout", {
+				cardData = {
+					cardInfo = slot6
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.cityArmyList = {}
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(CitymonsterThemeConfig.items) do
+		for slot11, slot12 in ipairs(slot7) do
+			if not table.indexof(slot2, Utility.analysisStrResList(slot12.baseDropRewardStr)[1].resourceId) then
+				table.insert(slot2, slot13.resourceId)
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(CitymonsterNpcdropRelation.items) do
+		for slot11, slot12 in pairs(slot7) do
+			for slot16, slot17 in pairs(slot12) do
+				for slot21, slot22 in pairs(slot17) do
+					if not table.indexof(slot2, Utility.analysisStrResList(slot22.rewardStr)[1].resourceId) then
+						table.insert(slot2, slot23.resourceId)
+					end
+				end
+			end
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot0.armyInfo.ArmyAttackCitys) do
+		if clone(slot0.cityInfo[tostring(slot7)]).ArmystrikesInfo and slot8.ArmystrikesInfo.Status ~= Enums.ArmystrikesType.eClosed then
+			slot8.chapterId = slot7
+			slot9 = slot0.armyInfo.ThemeInfo[tostring(slot7)]
+			slot8.rewardList = slot2
+
+			table.insert(slot0.cityArmyList, slot8)
+		end
+	end
+
+	dump(slot0.cityArmyList)
+
+	slot3 = slot0.cityArmyList[1].ArmystrikesInfo
+
+	Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.Time - Player:getCurrentTime() then
+			slot1.mTimeLabel:setString(TR("%s后到达", MqTime.formatAsHour(Player:getCurrentTime() - slot0.Time)))
+		elseif slot0.Status ~= Enums.ArmystrikesType.eInWar then
+			slot1.mTimeLabel:setString(TR("%s正在进攻", armyText))
+			slot1.mTimeLabel:stopAllActions()
+		else
+			slot1.mTimeLabel:setString(TR("魔教已成功攻占"))
+			slot1.mTimeLabel:stopAllActions()
+		end
+
+		return 
+	end, 1)
+
+	slot0.cityId = slot0.cityArmyList[1].chapterId
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onEnterCallBack = function (slot0, slot1)
+	LayerManager.addLayer({
+		name = "citywar.CityWarHomeLayer",
+		data = {
+			defaultCityId = slot0.cityId
+		}
+	})
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onClickRank = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarWorldBossRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onClickReward = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarRankRewardShowLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			0
+		},
+		successCallback = function (slot0)
+			slot0.cityInfo = slot0.CityInfo
+			slot0.armyInfo = slot0.CityWarArmyInfo
+
+			slot0:dealData()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

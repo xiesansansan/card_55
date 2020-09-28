@@ -1,0 +1,113 @@
+slot0 = class("AutoConcentrateFireLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			okCallback = "onOkBtn",
+			okText = TR("发起"),
+			pos = {
+				x = 574.6,
+				y = 306.79
+			},
+			size = {
+				width = 600,
+				height = 400
+			},
+			titleText = TR("集火")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 239.2
+					},
+					text = TR("是否对全员发起集火攻打本门派的命令？")
+				},
+				children = {}
+			},
+			{
+				name = "mCheckBox",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "onNoTipToday",
+					pos = {
+						x = 459.77,
+						y = 49.19
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 34.79,
+								y = 12.06
+							},
+							text = TR("不再显示")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mCheckBox:setSelected(MqTime.isSameDay(LocalData:getGameDataValue("AutoConcentrateFire") or 0, Player:getCurrentTime()))
+
+	return 
+end
+slot0.onOkBtn = function (slot0)
+	if slot0.callback then
+		slot0.callback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onNoTipToday = function (slot0, slot1)
+	LocalData:saveGameDataValue("AutoConcentrateFire", (slot1.isSelected(slot1) and Player:getCurrentTime()) or 0)
+
+	return 
+end
+
+return slot0

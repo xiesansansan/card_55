@@ -1,0 +1,642 @@
+slot0 = class("HerosMapLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mScrollView",
+		cType = "ScrollView",
+		params = {
+			direction = 3,
+			bounce = false,
+			posApt = 1,
+			isFullScale = true,
+			sizeApt = 1,
+			conSize = {
+				width = 2500,
+				height = 2062
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					scaleApt = 2,
+					isFullScale = true,
+					image = "wlp_1.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "relationNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled19-image",
+						name = "tempPic",
+						type = "string"
+					}
+				},
+				params = {
+					posApt = 1,
+					scaleApt = 2,
+					pos = {
+						x = 493.68,
+						y = 1739.89
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							image = "wlp_22.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "heroNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled23-subKey",
+						name = "subKey",
+						type = "string"
+					}
+				},
+				params = {
+					posApt = 1,
+					scaleApt = 2,
+					pos = {
+						x = 581,
+						y = 1811.05
+					}
+				},
+				children = {
+					{
+						name = "cardNode",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -53.97
+							}
+						},
+						children = {}
+					},
+					{
+						name = "emptySprite",
+						cType = "Sprite",
+						params = {
+							image = "wlp_34.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_58.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "RedDot",
+								params = {
+									subKey = "",
+									moduleId = 15601
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					clickAction = "onBackBtn",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "wlp_30.png",
+							pos = {
+								x = 13.58,
+								y = 3.77
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				custom = {
+					{
+						value = 3,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onRuleBtn",
+					image = "c_3.png",
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					pos = {
+						x = 240,
+						y = -25
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled13",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled14",
+				cType = "Scale9Sprite",
+				params = {
+					image = "wlp_31.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progressLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 91.16,
+						y = 23.91
+					},
+					text = TR("已解锁人物：100/100")
+				},
+				children = {}
+			},
+			{
+				name = "findBtn",
+				cType = "Button",
+				params = {
+					image = "wlp_37.png",
+					clickAction = "onFindBtn",
+					pos = {
+						x = 46.68,
+						y = 31.27
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "mScaleBtn",
+				cType = "Button",
+				params = {
+					image = "wlp_32.png",
+					clickAction = "onScaleBtn",
+					pos = {
+						x = -50,
+						y = -41
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mIsScaled = false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.getData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(HerosmapHeroModel.items) do
+		clone(slot6).hadGet = false
+
+		for slot11, slot12 in ipairs(slot0.mRewardsReceived) do
+			if slot6.Id == slot12 then
+				slot7.hadGet = true
+			end
+		end
+
+		table.insert(slot1, slot7)
+	end
+
+	slot0.mHeroList = slot1
+
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot2 = cc.p(0, 2062)
+
+	if slot0.getCanRewardId(slot0) then
+		for slot6, slot7 in pairs(HerosmapHeroModel.items) do
+			if slot1 == slot7.Id then
+				slot0.moveToTarget(slot0, Utility.analysisPoints(slot7.pointXY))
+			end
+		end
+	else
+		slot0.moveToTarget(slot0, cc.p(0, 2062))
+	end
+
+	table.sort(slot0.mHeroList, function (slot0, slot1)
+		if cc.pGetDistance(slot2, slot0) ~= cc.pGetDistance(Utility.analysisPoints(slot1.pointXY), slot0) then
+			return slot4 < slot5
+		end
+
+		return 
+	end)
+
+	slot3 = 1
+
+	Utility.schedule(slot0.mScrollView, function ()
+		for slot3 = 1, 3, 1 do
+			if not slot0.mHeroList[slot1] then
+				slot0.mScrollView:stopAllActions()
+			else
+				slot5 = Resource.getModelInfo(slot4.Id)
+				slot6 = slot0:createLayoutTemplateNode("heroNode", {
+					subKey = tostring(slot4.Id)
+				})
+				slot7 = Utility.analysisPoints(slot4.pointXY)
+
+				if display.safeArea then
+					if display.isIpadClass then
+						slot6.setPosition(slot6, slot7.x*display.ySafeScale, slot7.y*display.ySafeScale)
+						slot6.setScale(slot6, slot4.picSize*display.maxSafeScale)
+					else
+						slot6.setPosition(slot6, slot7.x*display.minSafeScale, slot7.y*display.minSafeScale)
+						slot6.setScale(slot6, slot4.picSize*display.minSafeScale)
+					end
+				else
+					slot6.setPosition(slot6, slot7)
+					slot6.setScale(slot6, slot4.picSize)
+				end
+
+				slot6.nameLabel:setString(slot5.name)
+
+				if HeroObj:isHaveModel(slot4.Id) then
+					slot6.cardNode:setCardData({
+						modelId = slot4.Id
+					})
+					slot6.cardNode.mShowAttrControl[Enums.CardShowAttr.eBorder].sprite:loadTextures(slot9, Resource.getBorderImgByColovLv(slot8))
+					slot6.cardNode:setClickAction(function ()
+						slot0:clickHero(slot1.Id, slot1.hadGet)
+
+						return 
+					end)
+					slot6.emptySprite:setVisible(false)
+					slot6.nameLabel:setVisible(true)
+				else
+					slot6.cardNode:setClickAction(function ()
+						ui.showFlashView(TR("暂未解锁侠客"))
+
+						return 
+					end)
+					slot6.cardNode:setGray(true)
+					slot6.emptySprite:setVisible(true)
+					slot6.nameLabel:setVisible(false)
+				end
+
+				slot0.mScrollView:getInnerContainer():addChild(slot6)
+			end
+
+			slot1 = slot1 + 1
+		end
+
+		return 
+	end, 0.01, false)
+	table.sort(slot0.mRelationList, function (slot0, slot1)
+		if cc.pGetDistance(slot4, slot0) ~= cc.pGetDistance(Utility.analysisPoints(HerosmapRelationModel.items[slot1].pointXY), slot0) then
+			return slot6 < slot7
+		end
+
+		return 
+	end)
+
+	slot4 = 1
+
+	Utility.schedule(slot0.leftNode, function ()
+		for slot3 = 1, 3, 1 do
+			if not slot0.mRelationList[slot1] then
+				slot0.leftNode:stopAllActions()
+			else
+				slot6 = slot0:createLayoutTemplateNode("relationNode", {
+					tempPic = HerosmapRelationModel.items[slot4].pic .. ".png"
+				})
+				slot7 = Utility.analysisPoints(HerosmapRelationModel.items[slot4].pointXY)
+
+				if display.safeArea then
+					if display.isIpadClass then
+						slot6.setPosition(slot6, slot7.x*display.ySafeScale, slot7.y*display.ySafeScale)
+					else
+						slot6.setPosition(slot6, slot7.x*display.minSafeScale, slot7.y*display.minSafeScale)
+					end
+				else
+					slot6.setPosition(slot6, slot7)
+				end
+
+				slot0.mScrollView:getInnerContainer():addChild(slot6)
+
+				slot1 = slot1 + 1
+			end
+		end
+
+		return 
+	end, 0.01, false)
+	slot0.progressLabel:setString(TR("已解锁人物：%s/%s", table.nums(slot6), HerosmapHeroModel.items_count))
+	slot0.findBtn:stopAllActions()
+
+	if slot0.getCanRewardId(slot0) then
+		for slot11, slot12 in pairs(HerosmapHeroModel.items) do
+			if slot7 == slot12.Id then
+				slot0.findBtn:runAction(cc.RepeatForever:create(cc.Sequence:create({
+					cc.MoveBy:create(0.2, cc.p(0, 10)),
+					cc.MoveBy:create(0.3, cc.p(0, -10)),
+					cc.DelayTime:create(1)
+				})))
+			end
+		end
+	end
+
+	slot0.refreshBoxState(slot0)
+
+	return 
+end
+slot0.onScaleBtn = function (slot0)
+	slot0.mIsScaled = not slot0.mIsScaled
+	slot1 = 0.5
+	slot3 = slot0.mScrollView:getInnerContainerPosition()
+	slot4 = 0
+	slot5 = 0
+	slot9 = math.max(slot7, slot8)
+	slot10 = 1
+
+	if slot0.mIsScaled then
+		slot10 = cc.clampf(slot1, slot9, 1)
+		slot4 = math.abs(slot3.x)/slot2.width
+		slot5 = math.abs(slot3.y)/slot2.height
+
+		slot0.mScaleBtn:loadTextures("wlp_33.png", "wlp_33.png")
+	else
+		slot10 = 1
+		slot4 = (math.abs(slot3.x) + slot6.width*0.5)/(slot2.width*0.5)
+		slot5 = (math.abs(slot3.y) + slot6.height*0.5)/(slot2.height*0.5)
+
+		slot0.mScaleBtn:loadTextures("wlp_32.png", "wlp_32.png")
+	end
+
+	slot0.mScrollView:getInnerContainer():setScale(slot10)
+	slot0.mScrollView:scrollToPercentBothDirection(cc.p(slot4*100, (slot5 - 1)*100), 0, true)
+
+	return 
+end
+slot0.clickHero = function (slot0, slot1, slot2)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "home.HerosMapDetalPopLayer",
+		data = {
+			heroModelId = slot1,
+			hadGet = slot2,
+			callBack = function (slot0)
+				slot0.mRewardsReceived = slot0
+
+				for slot4, slot5 in ipairs(slot0.mHeroList) do
+					if slot5.Id == slot1 then
+						slot5.hadGet = true
+					end
+				end
+
+				slot0:refreshBoxState()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRuleBtn = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.获得新的角色，可以激活该角色的个人简介"),
+			TR("2.获得相互羁绊的角色，可以激活该角色的关系谱，查看该角色和其他角色之间的羁绊关系"),
+			TR("3.获得新的角色，可以领取福利奖励")
+		}
+	})
+
+	return 
+end
+slot0.moveToTarget = function (slot0, slot1)
+	dump(slot1, "FFFFF")
+
+	slot7, slot8 = slot0.getNodePos(slot0, slot1.x, slot1.y)
+
+	slot0.mScrollView:getInnerContainer():setPosition(cc.p(slot2, slot3))
+
+	return 
+end
+slot0.getNodePos = function (slot0, slot1, slot2)
+	slot3 = slot0.mScrollView:getInnerContainer():getScale()
+	slot5 = slot0.mScrollView:getInnerContainerSize()
+
+	return cc.clampf(slot8, 0, slot6), cc.clampf(((slot2*slot3 - 320)*slot5.height)/2062, 0, slot0.mScrollView:getContentSize().height - slot5.height*slot3)
+end
+slot0.onBackBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getCanRewardId = function (slot0)
+	slot2 = nil
+
+	for slot6, slot7 in pairs(slot1) do
+		slot8 = true
+
+		for slot12, slot13 in ipairs(slot0.mRewardsReceived) do
+			if slot7.ModelId == slot13 then
+				slot8 = false
+			end
+		end
+
+		if slot8 then
+			slot2 = slot7.ModelId
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.onFindBtn = function (slot0)
+	if slot0.getCanRewardId(slot0) then
+		for slot5, slot6 in pairs(HerosmapHeroModel.items) do
+			if slot1 == slot6.Id then
+				slot0.moveToTarget(slot0, Utility.analysisPoints(slot6.pointXY))
+			end
+		end
+	end
+
+	return 
+end
+slot0.refreshBoxState = function (slot0)
+	slot0.findBtn:setVisible(false)
+
+	if slot0.getCanRewardId(slot0) then
+		slot0.findBtn:setVisible(true)
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Herosmap",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRewardsReceived = slot0.RewardsReceived
+			slot0.mRelationList = slot0.RelationList
+
+			slot0:getData()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

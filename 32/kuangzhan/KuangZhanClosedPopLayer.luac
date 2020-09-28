@@ -1,0 +1,90 @@
+slot0 = class("KuangZhanClosedPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBackBtn",
+			needTouchClose = false,
+			image = "yb_5.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "tb_gn_32.png",
+					clickAction = "onReportBtn",
+					pos = {
+						x = 539.26,
+						y = 268.08
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 550.2,
+						y = 338.7
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.tipLabel:setString(TR("每日#DFC72A%s#252525到#DFC72A%s#252525开启押镖", KuangzhanConfig.items[1].openTime, KuangzhanConfig.items[1].endTime))
+
+	return 
+end
+slot0.onReportBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "kuangzhan.KuangzhanReportLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBackBtn = function (slot0)
+	if slot0.mCallBack then
+		slot0.mCallBack()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

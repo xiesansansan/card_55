@@ -1,0 +1,222 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.AttrHelper")
+slot2 = require("battle.common.BuffHelper")
+slot3 = require("battle.common.Random")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.managers.ViewDelegate")
+slot6 = require("battle.managers.BuffManager")
+slot7 = require("battle.common.Formula")
+slot8 = require("battle.managers.StatisticsManager")
+slot9 = class("Bullet")
+slot9.ctor = function (slot0, slot1)
+	slot0.uid = 0
+	slot0.attr = {}
+	slot0.targetUids = {}
+	slot0.triggers = {}
+	slot0.owner = slot1
+	slot0.dt = 0
+	slot0.totalTime = 0
+	slot0.unitSkill = nil
+	slot0.skillDamageIdx = 0
+	slot0.isLastTrigger = false
+
+	return 
+end
+slot9.update = function (slot0, slot1)
+	if slot0.isFreezing() then
+		return 
+	end
+
+	slot0.dt = slot0.dt + slot1
+
+	for slot5 = #slot0.triggers, 1, -1 do
+		if slot0.triggers[slot5].time <= slot0.dt then
+			slot0.triggerEvent(slot0, slot6)
+			table.remove(slot0.triggers, slot5)
+		else
+			break
+		end
+	end
+
+	slot1.updateBullet(slot0.uid, slot1)
+
+	if slot0.totalTime < slot0.dt then
+		slot1.removeBullet(slot0.uid)
+
+		return true
+	end
+
+	return false
+end
+slot9.triggerEvent = function (slot0, slot1)
+	if slot1.name == "bullet_fly" then
+		slot0.bulletFly(slot0.uid, slot0.owner.uid, slot0.deathTriggerUid, slot0.targetUids, slot1)
+	elseif slot1.name == "bullet_effect" then
+		slot0.bulletEffect(slot0.uid, slot0.owner, slot1.effect, slot1.animation, slot1.scale, slot1.follow, slot0.unitSkill)
+	elseif slot1.name == "daji" then
+		slot0.isLastTrigger = slot0.unitSkill.totalCount <= slot0.skillDamageIdx and slot1.lastTrigger == true
+
+		if slot0.displayDamage(slot0, slot1.getDepartRatio(slot0.unitSkill.totalCount, slot0.skillDamageIdx)*slot1.getDepartRatio(slot0.damageCount, slot1.idx)) then
+			slot0.bulletHit(slot0.uid, slot0.targetUids, slot1.effect, slot1.animation, slot1.scale, slot1.int)
+		end
+	elseif slot1.name == "duang_start" then
+		if slot1.int then
+			slot0.startShake(slot1.int)
+		end
+	elseif slot1.name == "duang_end" then
+		slot0.stopShake()
+	else
+		slot2, slot3 = string.find(slot1.name, ".mp3")
+
+		if slot2 and 0 < slot2 then
+			slot0.skillMusicEffect(slot1.name)
+		end
+	end
+
+	return 
+end
+slot9.displayDamage = function (slot0, slot1)
+	slot2 = false
+
+	for slot6, slot7 in ipairs(slot0.targetUids) do
+		slot8 = slot0.getUnitByUid(slot7)
+		slot10 = slot0.unitSkill.dmgInfos[slot7].damage*slot1
+		slot11 = 0
+		slot12 = 0
+
+		if slot0.unitSkill.dmgInfos[slot7].hit == true then
+			if slot9.invincible then
+				slot1.invincible(slot7)
+			end
+
+			if 0 < slot10 then
+				slot11, slot12 = slot8.updateDamage(slot8, slot10, slot9.crit, slot9.block, slot0.isLastTrigger, slot9.kezhi, slot0.owner)
+
+				slot2.damageStatistics(slot0.owner, slot12)
+				slot1.showTotalDamage(slot0.owner.uid, slot10, slot0.isLastTrigger)
+			end
+
+			if slot11 == 1 then
+				slot0.unitSkill.isKill = true
+
+				if slot0.unitSkill.isExtra == false then
+					slot0.owner:updateEnergy(slot3.EnergyKill)
+				end
+			end
+
+			if slot11 ~= 2 then
+				slot2 = true
+			end
+		else
+			slot1.hitMiss(slot7)
+		end
+	end
+
+	if slot0.isLastTrigger == true then
+		if slot0.buffIds then
+			for slot6, slot7 in ipairs(slot0.targetUids) do
+				slot8 = slot0.getUnitByUid(slot7)
+
+				for slot12, slot13 in ipairs(slot0.buffIds) do
+					slot15 = slot4.getBuffAddRatio(slot14, slot0.unitSkill.level, slot0.unitSkill.star)
+
+					if slot4.readBuff(slot13).isControl then
+						slot16, slot17 = slot5.calcControlRatio(slot0.owner, slot8)
+						slot15 = (slot15 + slot16)*slot17
+					end
+
+					if slot14.IfRatioAverage then
+						slot15 = slot15/#slot0.targetUids
+					end
+
+					if slot6:random() <= slot15 then
+						slot7.addBuff(slot13, slot8, slot0.owner, slot0.unitSkill.conf.skillType, slot0.unitSkill.level, slot0.unitSkill.star, slot0.unitSkill.dmgInfos[slot7])
+					end
+				end
+			end
+		end
+
+		if slot0.unitSkill.isExtra == false then
+			slot0.unitSkill:handleNextSkills()
+			slot0.attackSkill(slot0.owner, slot0.unitSkill.conf.skillType, slot0.targetUids, slot0.unitSkill.dmgInfos)
+
+			slot3 = false
+			slot4 = false
+
+			for slot8, slot9 in ipairs(slot0.targetUids) do
+				slot10 = slot0.getUnitByUid(slot9)
+
+				if 0 < slot0.unitSkill.dmgInfos[slot9].damage*slot1 then
+					if slot11.crit == true and slot3 == false then
+						slot0.CritSkill(slot0.owner, slot0.unitSkill.conf.skillType, {
+							slot9
+						}, slot0.unitSkill.dmgInfos)
+
+						slot3 = true
+					end
+
+					if slot11.block == true and slot4 == false then
+						slot0.BeBlockSkill(slot0.owner, slot0.unitSkill.conf.skillType, {
+							slot9
+						}, slot0.unitSkill.dmgInfos)
+
+						slot4 = true
+					end
+				end
+			end
+
+			slot0.unitSkill:checkNextSkill()
+
+			for slot8, slot9 in ipairs(slot0.targetUids) do
+				slot12 = slot0.unitSkill.dmgInfos[slot9].damage*slot1
+
+				if slot0.getUnitByUid(slot9):isAlive() then
+					if 0 < slot12 and slot10.isAlive(slot10) then
+						if slot0.isBanAng(slot0.owner, slot10, slot0.unitSkill.conf.skillType) == false then
+							if slot11.crit == true then
+								slot10.updateEnergy(slot10, slot3.EnertyCritHurt)
+							else
+								slot10.updateEnergy(slot10, slot3.EnergyHurt)
+							end
+						end
+
+						if slot11.crit == true then
+							slot0.BeCritSkill(slot10, slot0.unitSkill.conf.skillType, slot0.owner, {
+								slot0.owner.uid
+							}, slot0.unitSkill.dmgInfos)
+						end
+
+						if slot11.block == true then
+							slot0.BlockSkill(slot10, slot0.unitSkill.conf.skillType, slot0.owner, {
+								slot0.owner.uid
+							}, slot0.unitSkill.dmgInfos)
+							slot1.hitBlocked(slot10.uid)
+						end
+					end
+
+					if slot11.hit == false then
+						slot0.MissSkill(slot10, slot0.unitSkill.conf.skillType, slot0.owner, {
+							slot0.owner.uid
+						}, slot0.unitSkill.dmgInfos)
+					end
+
+					slot0.BeAttackedSkill(slot10, slot0.unitSkill.conf.skillType, slot0.owner, {
+						slot0.owner.uid
+					}, slot0.unitSkill.dmgInfos)
+					slot0.unitCounterAttack(slot10, slot0.owner)
+				else
+					slot10.killInfo = {
+						uid = slot0.owner.uid,
+						dmgInfo = clone(slot11),
+						skillType = slot0.unitSkill.conf.skillType,
+						atkpos = slot0.owner.group .. slot0.owner.order
+					}
+				end
+			end
+		end
+	end
+
+	return slot2
+end
+
+return slot9

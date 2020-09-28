@@ -1,0 +1,1028 @@
+slot0 = class("BxsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "bxs_06.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled37",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bp_4.png",
+					pos = {
+						x = 581.42,
+						y = 592.31
+					},
+					size = {
+						width = 200,
+						height = 80
+					}
+				},
+				children = {
+					{
+						name = "untitled38",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 104,
+								y = 44
+							},
+							size = {
+								width = 190,
+								height = 60
+							},
+							text = TR("江湖秘闻,武林轶事无所不知,无所不晓")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "bxs_02.png",
+					childName = "bg",
+					pos = {
+						x = 241.07,
+						y = 193.93
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 89.44,
+								y = 34.29
+							},
+							size = {
+								width = 330,
+								height = 270
+							}
+						},
+						children = {
+							{
+								name = "layout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled45-text",
+										name = "des",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 330,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "untitled44",
+										cType = "Scale9Sprite",
+										params = {
+											image = "bxs_04.png",
+											pos = {
+												x = 165,
+												y = 30
+											},
+											size = {
+												width = 320,
+												height = 60
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled45",
+										cType = "Label",
+										params = {
+											text = "Label",
+											childName = "desLabel",
+											align = 0,
+											valign = 1,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 165,
+												y = 30
+											},
+											size = {
+												width = 300,
+												height = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled46",
+										cType = "Button",
+										params = {
+											image = "c_pure.png",
+											childName = "btn",
+											pos = {
+												x = 165,
+												y = 30
+											},
+											size = {
+												width = 330,
+												height = 60
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					image = "bxs_03.png",
+					pos = {
+						x = -340.92,
+						y = 264.61
+					}
+				},
+				children = {
+					{
+						name = "tabView",
+						cType = "TabView",
+						params = {
+							selectTag = 1,
+							onSelectChange = "onSwitchCallBack",
+							lightedImage = "c_pure.png",
+							direction = false,
+							normalImage = "c_pure.png",
+							btnInfos = {
+								{
+									title = "Test"
+								}
+							},
+							btnSize = {
+								width = 88,
+								height = 88
+							},
+							pos = {
+								x = 22.91,
+								y = 476.58
+							},
+							size = {
+								width = 560,
+								height = 100
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "ScrollView",
+						params = {
+							swallowTouch = false,
+							pos = {
+								x = 31,
+								y = 102.24
+							},
+							size = {
+								width = 540,
+								height = 350
+							}
+						},
+						children = {
+							{
+								name = "tableView",
+								cType = "TableView",
+								params = {
+									numOfCellsFunc = "cbnumOfCellsFunc",
+									isVertical = true,
+									cellUpdateFunc = "cbcellUpdateFunc",
+									cellSizeFunc = "cbcellSizeFunc",
+									cellFillFunc = "cbcellFillFunc",
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 540,
+										height = 350
+									}
+								},
+								children = {
+									{
+										name = "templatePublicMineCell",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0.67,
+												y = -258
+											},
+											size = {
+												width = 540,
+												height = 120
+											}
+										},
+										children = {
+											{
+												name = "untitled13",
+												cType = "PlayerHeroNode",
+												params = {
+													modelId = 19010000,
+													childName = "heroNode",
+													allowClick = true,
+													pos = {
+														x = 480,
+														y = 75.39
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled14",
+												cType = "Scale9Sprite",
+												params = {
+													reverse = 1,
+													image = "lt_4.png",
+													anchor = {
+														x = 1,
+														y = 0
+													},
+													capInsets = {
+														x = 30,
+														height = 6,
+														width = 20,
+														y = 20
+													},
+													pos = {
+														x = 64.88,
+														y = 24.07
+													},
+													size = {
+														width = 370,
+														height = 60
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled15",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													childName = "msgLabel",
+													text = "",
+													anchor = {
+														x = 0,
+														y = 1
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 71.6,
+														y = 78.81
+													},
+													size = {
+														width = 350,
+														height = 50
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled16",
+												cType = "Sprite",
+												params = {
+													reverse = 1,
+													image = "lt_2.png",
+													pos = {
+														x = 348.2,
+														y = 102.96
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled18",
+												cType = "Label",
+												params = {
+													text = "Label",
+													childName = "nameLabel",
+													isRichText = true,
+													anchor = {
+														x = 1,
+														y = 0.5
+													},
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													pos = {
+														x = 435.24,
+														y = 102.9
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled19",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													isRichText = true,
+													text = "Label",
+													childName = "timeLabel",
+													anchor = {
+														x = 1,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 219,
+														y = 102
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "systemTemplate",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = -379.18
+											},
+											size = {
+												width = 540,
+												height = 120
+											}
+										},
+										children = {
+											{
+												name = "untitled30",
+												cType = "Sprite",
+												params = {
+													image = "lt_2.png",
+													pos = {
+														x = 188.2,
+														y = 103.96
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled31",
+												cType = "Scale9Sprite",
+												params = {
+													image = "lt_10.png",
+													anchor = {
+														x = 0,
+														y = 0
+													},
+													capInsets = {
+														x = 30,
+														height = 6,
+														width = 20,
+														y = 20
+													},
+													pos = {
+														x = 99.35,
+														y = 7.46
+													},
+													size = {
+														width = 370,
+														height = 80
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled32",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													align = 0,
+													text = "",
+													childName = "msgLabel",
+													valign = 1,
+													anchor = {
+														x = 0,
+														y = 1
+													},
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													pos = {
+														x = 110.46,
+														y = 86.82
+													},
+													size = {
+														width = 355,
+														height = 80
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled33",
+												cType = "Sprite",
+												params = {
+													image = "c_16.png",
+													pos = {
+														x = 56.07,
+														y = 74.98
+													}
+												},
+												children = {
+													{
+														name = "untitled47",
+														cType = "Sprite",
+														params = {
+															image = "bxs_07.png",
+															pos = {
+																x = 40,
+																y = 40
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "untitled34",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													isRichText = true,
+													text = "Label",
+													childName = "timeLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 320,
+														y = 104.72
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled36",
+												cType = "Label",
+												params = {
+													childName = "nameLabel",
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													pos = {
+														x = 101.11,
+														y = 103.65
+													},
+													text = TR("系统消息")
+												},
+												children = {}
+											},
+											{
+												name = "untitled35",
+												cType = "Button",
+												params = {
+													childName = "button",
+													image = "c_pure.png",
+													swallowTouch = false,
+													clickAction = "onKeyWordClick",
+													pos = {
+														x = 240,
+														y = 60
+													},
+													size = {
+														width = 480,
+														height = 120
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "editBox",
+						cType = "EditBox",
+						params = {
+							image = "c_41.png",
+							multiLine = true,
+							fontColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							placeColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							placeHolder = TR("输入侠客名字可查看侠客来源"),
+							pos = {
+								x = 224,
+								y = 63
+							},
+							size = {
+								width = 360,
+								height = 30
+							}
+						},
+						children = {}
+					},
+					{
+						name = "sendBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onSendClickCallBack",
+							pos = {
+								x = 509.13,
+								y = 63.14
+							},
+							titleText = TR("发 送")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseCallBack",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "bxs_05.png",
+							pos = {
+								x = 12,
+								y = 7
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled6",
+		cType = "TopResourceNode",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 603.75,
+				y = 586.31
+			}
+		},
+		children = {}
+	},
+	{
+		name = "effect",
+		cType = "Effect",
+		params = {
+			loop = false,
+			scaleApt = 2,
+			complete = "onEffectEndedCallBack",
+			posApt = 1,
+			dataFile = "effect_ui_shanzi",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	}
+}
+MsgType = {
+	ePlayerSelf = 2,
+	eSystem = 1
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.currSelectTag = slot1.currSelectTag or 1
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(BaixiaoshengConfig.items) do
+		if slot7.pic ~= "" then
+			table.insert(slot2, {
+				title = "",
+				tag = slot7.Id,
+				normalImage = (slot7.pic ~= "" and slot7.pic .. ".png") or "c_pure.png",
+				lightedImage = (slot7.pic ~= "" and slot7.pic .. ".png") or "c_pure.png"
+			})
+		end
+	end
+
+	slot0.btnInfos = slot2
+	slot0.keyWorldMap = clone(BaixiaoshengKeywordConfig.items)
+	slot0.keyWordLabelList = {}
+	slot0.recordList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.btnInfos
+			slot1.selectTag = slot0.currSelectTag
+		end
+
+		return 
+	end)
+	slot0.leftNode:setOpacity(0)
+	slot0.leftNode:setCascadeOpacityEnabled(true)
+	slot0.rightNode:setOpacity(0)
+	slot0.rightNode:setCascadeOpacityEnabled(true)
+	slot0.listView:setVisible(false)
+	slot0.tableView:setVisible(false)
+	slot0.tabView:setVisible(false)
+	slot0.editBox:setVisible(false)
+	slot0.sendBtn:setVisible(false)
+	slot0.listView:setOpacity(0)
+
+	if display.isIpadClass then
+		slot0.effect:setScale(display.maxSafeScale)
+	else
+		slot0.effect:setScale(display.minScale)
+	end
+
+	return 
+end
+slot0.onEffectEndedCallBack = function (slot0)
+	slot0.leftNode:runAction(cc.FadeIn:create(slot1))
+	slot0.rightNode:runAction(cc.Sequence:create({
+		cc.FadeIn:create(slot1),
+		cc.CallFunc:create(function ()
+			slot0.listView:setVisible(true)
+			slot0.listView.setVisible.tableView:setVisible(true)
+			slot0.listView.setVisible.tableView.setVisible.tabView:setVisible(true)
+			slot0.listView.setVisible.tableView.setVisible.tabView.setVisible.editBox:setVisible(true)
+			slot0.listView.setVisible.tableView.setVisible.tabView.setVisible.editBox.setVisible.sendBtn:setVisible(true)
+			slot0.listView.setVisible.tableView.setVisible.tabView.setVisible.editBox.setVisible.sendBtn.setVisible:recordQuestion(MsgType.eSystem, TR("大侠，欢迎来到金庸武侠世界，我是江湖中无事不知的百事通，有什么问题都可以向我提问哦！"), Player:getCurrentTime())
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.refreshQuestionTips = function (slot0)
+	slot0.listView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(BaixiaoshengAnswerConfig.items[slot0.currSelectTag]) do
+		slot0.createLayoutTemplateNode(slot0, "layout", {
+			des = slot5.question
+		}).btn:setClickAction(function ()
+			slot0.editBox:setText(slot1.question)
+
+			slot0.editBox.setText.isPresetQuestion = true
+			slot0.editBox.setText.questionStr = true.question
+			slot0.editBox.setText.answereStr = true.question.answer
+
+			return 
+		end)
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			des = slot5.question
+		}))
+	end
+
+	return 
+end
+slot0.recordQuestion = function (slot0, slot1, slot2, slot3)
+	slot5 = {
+		type = slot1,
+		msgStr = slot2,
+		timeTick = slot3 or Player:getCurrentTime()
+	}
+
+	if slot1 == MsgType.eSystem then
+		slot5.name = TR("百事通")
+	elseif slot1 == MsgType.ePlayerSelf then
+		slot5.name = PlayerAttrObj:getPlayerAttrByName("PlayerName")
+		slot5.headImageId = PlayerAttrObj:getPlayerAttrByName("HeadImageId")
+		slot5.fashionLevel = PlayerAttrObj:getPlayerAttrByName("FashionLevel")
+		slot5.headPicId = PlayerAttrObj:getPlayerAttrByName("HeadPicId")
+	end
+
+	table.insert(slot0.recordList, slot5)
+	slot0.updateTableView(slot0)
+
+	return 
+end
+slot0.updateTableView = function (slot0)
+	slot0.tableView:reloadData()
+	slot0.tableView:jumpToBottom()
+
+	return 
+end
+slot0.onSwitchCallBack = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.tag == slot1 then
+			slot7.setScale(slot7, 1.15)
+		else
+			slot7.setScale(slot7, 1)
+		end
+	end
+
+	slot0.currSelectTag = slot1
+
+	slot0.refreshQuestionTips(slot0)
+
+	return 
+end
+slot0.cleanStr = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		slot1 = slot1.gsub(slot1, slot7[1], slot7[2])
+	end
+
+	slot3 = slot1
+
+	if string.len(string.gsub(slot1.gsub(slot1, "%s+", ""), "%s+", "")) == 0 then
+		return slot1
+	end
+
+	return slot3
+end
+slot0.onSendClickCallBack = function (slot0, slot1)
+	if slot0.isPresetQuestion then
+		slot0.recordQuestion(slot0, MsgType.ePlayerSelf, slot0.questionStr, Player:getCurrentTime())
+		slot0.recordQuestion(slot0, MsgType.eSystem, slot0.answereStr, Player:getCurrentTime())
+	else
+		if not slot0.cleanStr(slot0, slot0.editBox:getText()) or slot2 == "" then
+			ui.showFlashView(TR("请输入问题或者关键字"))
+
+			return 
+		end
+
+		slot0.recordQuestion(slot0, MsgType.ePlayerSelf, slot2, Player:getCurrentTime())
+		slot0.requestSend(slot0, slot2)
+	end
+
+	slot0.editBox:setText("")
+
+	slot0.isPresetQuestion = false
+	slot0.answereStr = ""
+	slot0.questionStr = ""
+
+	return 
+end
+slot0.onRuleCallBack = function (slot0)
+	return 
+end
+slot0.onCloseCallBack = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbcellSizeFunc = function (slot0)
+	return 540, 120
+end
+slot0.cbnumOfCellsFunc = function (slot0)
+	return #slot0.recordList
+end
+slot0.cbcellFillFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell = function (slot0)
+		slot0:removeAllChildren()
+
+		slot2 = nil
+
+		if slot0.removeAllChildren.recordList[slot0 + 1].type == MsgType.eSystem then
+			slot1:createLayoutTemplateNode("systemTemplate").nameLabel:setString(slot1.name)
+			slot1:setKeyWordStr(slot1.createLayoutTemplateNode("systemTemplate").msgLabel, slot1.msgStr)
+			slot1.createLayoutTemplateNode("systemTemplate").timeLabel:setString(MqTime.formatTimestamp(slot1.timeTick))
+		elseif slot1.type == MsgType.ePlayerSelf then
+			slot1:createLayoutTemplateNode("templatePublicMineCell").timeLabel:setString(MqTime.formatTimestamp(slot1.timeTick))
+			slot1.createLayoutTemplateNode("templatePublicMineCell").nameLabel:setString(slot1.name)
+			slot1.createLayoutTemplateNode("templatePublicMineCell").msgLabel:setString(slot1.msgStr)
+			slot1.createLayoutTemplateNode("templatePublicMineCell").msgLabel:setImageElementScale(0.3)
+			slot1.createLayoutTemplateNode("templatePublicMineCell").heroNode:setPlayerHeader(slot1.headImageId, nil, {
+				fashionLv = slot1.fashionLevel,
+				headPicId = slot1.headPicId
+			})
+			slot1.createLayoutTemplateNode("templatePublicMineCell").heroNode:setClickAction(function ()
+				return 
+			end)
+		end
+
+		slot2.setPosition(slot2, cc.p(0, 0))
+		slot0:addChild(slot2)
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbcellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.setKeyWordStr = function (slot0, slot1, slot2)
+	slot3 = slot2
+
+	for slot7, slot8 in ipairs(slot0.keyWorldMap) do
+		slot3 = string.gsub(slot3, slot8.keyWord, string.format("%s'%d'#ffffff", slot8.colorStr, slot7), 1)
+	end
+
+	for slot7, slot8 in ipairs(slot0.keyWorldMap) do
+		slot3 = string.gsub(slot3, string.format("'%d'", slot7), slot8.keyWord)
+	end
+
+	function slot4(slot0, slot1)
+		table.insert(slot0.keyWordLabelList, UIWrap.newControl("Label", {
+			fontSize = 18,
+			text = slot0,
+			color = slot1
+		}))
+
+		return UIWrap.newControl("Label", {
+			fontSize = 18,
+			text = slot0,
+			color = slot1
+		})
+	end
+
+	slot5 = slot1.analysisString(slot1, slot3)
+
+	for slot9, slot10 in ipairs(slot0.keyWorldMap) do
+		slot11 = slot10.keyWord
+
+		for slot15, slot16 in ipairs(slot5) do
+			if slot16.text and slot16.text == slot11 then
+				slot16.text = nil
+				slot16.customCb = function ()
+					return slot0(slot1, slot2:strToColor(slot3.colorStr))
+				end
+			end
+		end
+	end
+
+	slot1.setContent(slot1, slot5)
+
+	return 
+end
+slot0.onKeyWordClick = function (slot0, slot1)
+	slot2 = slot1.getTouchEndPosition(slot1)
+
+	for slot6, slot7 in pairs(slot0.keyWordLabelList) do
+		if slot7 and not tolua.isnull(slot7) and slot0.touchInNode(slot0, slot2, slot7) then
+			slot0.recordQuestion(slot0, MsgType.ePlayerSelf, slot0.cleanStr(slot0, slot7.getString(slot7)), Player:getCurrentTime())
+			slot0.requestSend(slot0, slot0.cleanStr(slot0, slot7.getString(slot7)))
+		end
+	end
+
+	return 
+end
+slot0.touchInNode = function (slot0, slot1, slot2)
+	return cc.rectContainsPoint(slot4, slot2.convertToNodeSpace(slot2, slot1)), slot2.convertToNodeSpace(slot2, slot1)
+end
+slot0.requestSend = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAnswer",
+		moduleName = "BaixiaoshengAnswer",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.lastSendTime = Player:getCurrentTime()
+
+			slot0:recordQuestion(MsgType.eSystem, slot0, Player:getCurrentTime())
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

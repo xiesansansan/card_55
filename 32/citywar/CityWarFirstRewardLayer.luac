@@ -1,0 +1,466 @@
+slot0 = class("CityWarFirstRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("首通奖励")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 425.06,
+						y = 78.1
+					},
+					size = {
+						width = 776,
+						height = 408
+					}
+				},
+				children = {
+					{
+						name = "untitled33",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 4.59,
+								y = 2.62
+							},
+							size = {
+								width = 765,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "gridView",
+								cType = "GridView",
+								params = {
+									createColCb = "onCreateGridItem",
+									itemNum = 1,
+									selectIndex = 1,
+									colCount = 4,
+									celHeight = 200,
+									pos = {
+										x = 382.5,
+										y = 200
+									},
+									size = {
+										width = 765,
+										height = 400
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mLayout",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 317.2,
+										y = 114.75
+									},
+									size = {
+										width = 164,
+										height = 204
+									}
+								},
+								children = {
+									{
+										name = "untitled32",
+										cType = "Button",
+										params = {
+											image = "c_pure.png",
+											swallowTouch = false,
+											childName = "btn",
+											pos = {
+												x = 82,
+												y = 146
+											},
+											size = {
+												width = 160,
+												height = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "Sprite",
+										params = {
+											image = "jh_20.png",
+											pos = {
+												x = 82,
+												y = 102
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled28",
+										cType = "Sprite",
+										params = {
+											image = "jh_23.png",
+											childName = "logo",
+											scale = 0.8,
+											pos = {
+												x = 82,
+												y = 149.52
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled30",
+										cType = "Sprite",
+										params = {
+											scaleX = 0.65,
+											image = "c_2.png",
+											pos = {
+												x = 88,
+												y = 104
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled31",
+										cType = "Label",
+										params = {
+											childName = "name",
+											pos = {
+												x = 79,
+												y = 104
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled29",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											childName = "reward",
+											allowClick = true,
+											pos = {
+												x = 81.86,
+												y = 49.43
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOneKeyGetReward",
+					pos = {
+						x = 423,
+						y = 51
+					},
+					titleText = TR("一键领取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.allCityInfo = slot1.cityInfo
+	slot0.callback = slot1.callback
+
+	slot0.requestCityInfo(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.cityList = {}
+	slot0.ownCityList = {}
+	slot0.oneKeyReward = {}
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.ifBornCity == 0 and slot7.cityType < 4 then
+			slot7.GuildId = Utility.EMPTY_ENTITY_ID
+
+			for slot11, slot12 in pairs(slot0.guildFirstClearInfo) do
+				if table.indexof(slot12.FirstClearInfo, slot7.chapterModelId) then
+					slot7.GuildId = slot11
+					slot7.BannerInfo = slot12.GuildInfo.BannerInfo
+					slot7.Logo = slot12.GuildInfo.Logo
+
+					break
+				end
+			end
+
+			table.insert(slot0.cityList, slot7)
+
+			if (slot0.allCityInfo[tostring(slot7.chapterModelId)] and slot0.allCityInfo[tostring(slot7.chapterModelId)].GuildId) == slot1 then
+				table.insert(slot0.ownCityList, slot7.chapterModelId)
+			end
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot0.cityList) do
+		if Utility.isCityNearOwned(slot0.ownCityList, slot7.chapterModelId) then
+			slot7.isNear = 1
+		else
+			slot7.isNear = 0
+		end
+
+		slot7.isCanDraw = 1
+
+		if table.indexof(slot0.mCanReceive, slot7.chapterModelId) then
+			slot7.isCanDraw = 2
+
+			table.insert(slot0.oneKeyReward, slot7.chapterModelId)
+		end
+
+		if table.indexof(slot0.guildFirstClearInfo[tostring(slot1)].FirstClearInfo, slot7.chapterModelId) and not table.indexof(slot0.mCanReceive, slot7.chapterModelId) then
+			slot7.isCanDraw = 0
+		end
+
+		if table.indexof(slot0.mFirstClearInfo, slot7.chapterModelId) then
+			slot7.isCanDraw = -1
+		end
+	end
+
+	slot0.sortData(slot0)
+
+	return 
+end
+slot0.sortData = function (slot0)
+	table.sort(slot0.cityList, function (slot0, slot1)
+		if slot0.isCanDraw ~= slot1.isCanDraw then
+			return slot1.isCanDraw < slot0.isCanDraw
+		end
+
+		if slot0.isNear ~= slot1.isNear then
+			return slot1.isNear < slot0.isNear
+		end
+
+		return slot0.chapterModelId < slot1.chapterModelId
+	end)
+
+	return 
+end
+slot0.dealList = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot1) do
+		if slot8.cityFirstClearReward ~= "" then
+			table.insert(slot3, slot8)
+		end
+	end
+
+	return slot3
+end
+slot0.refreshListView = function (slot0)
+	slot0.mShowList = slot0.dealList(slot0, slot0.cityList)
+
+	slot0.gridView:setItemNum(#slot0.mShowList)
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "mLayout")
+
+	slot5.setPosition(slot5, 0, 0)
+	slot1.addChild(slot1, slot5)
+
+	slot6, slot11 = Utility.getCityTypePic(slot0.mShowList[slot2].cityType)
+
+	slot5.logo:setTexture(slot7)
+	slot5.name:setString(slot0.mShowList[slot2].name)
+	slot5.name:setColor(slot8)
+	slot5.btn:setClickAction(function ()
+		if slot0.callback then
+			ui.showMessageBox({
+				text = TR("是否前往挑战该城池?"),
+				okCallback = function ()
+					slot0.callback(slot1.chapterModelId)
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end,
+				cancelCallback = function ()
+					return 
+				end
+			})
+		end
+
+		return 
+	end)
+	slot5.reward:setCardData({
+		modelId = Utility.analysisStrResList(slot0.mShowList[slot2].cityFirstClearReward)[1].resourceId,
+		num = Utility.analysisStrResList(slot0.mShowList[slot2].cityFirstClearReward)[1].num
+	}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eNum
+	})
+
+	if slot0.mShowList[slot2].GuildId and Utility.isEntityId(slot4.GuildId) then
+		slot10 = UIWrap.newControl("GuildFlag", {
+			flagInfo = slot4.BannerInfo,
+			flagLogo = slot4.Logo
+		})
+
+		slot10.setScale(slot10, 0.43)
+		slot10.setPosition(slot10, 130, 170)
+		slot5.addChild(slot5, slot10)
+	elseif slot4.isNear == 1 then
+		slot10 = UIWrap.newControl("Sprite", {
+			image = "jh_19.png"
+		})
+
+		slot10.setPosition(slot10, 32, 162)
+		slot5.addChild(slot5, slot10)
+	end
+
+	if slot4.isCanDraw == -1 and slot4.GuildId == PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId then
+		slot10 = UIWrap.newControl("Sprite", {
+			image = "fuli_20.png"
+		})
+
+		slot10.setPosition(slot10, 85, 55)
+		slot5.addChild(slot5, slot10)
+	elseif slot4.isCanDraw == 2 then
+		slot5.reward:addChild(slot10)
+		slot5.reward:setClickAction(function ()
+			slot0:requestGetReward({
+				slot1.chapterModelId
+			}, false)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.dealData(slot0)
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.onOneKeyGetReward = function (slot0)
+	if next(slot0.oneKeyReward) then
+		slot0.requestGetReward(slot0, slot0.oneKeyReward, true)
+	else
+		ui.showFlashView(TR("没有可领取的奖励"))
+	end
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestCityInfo = function (slot0)
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, slot0.refreshUI), 2)
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityFirstClearInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.guildFirstClearInfo = clone(slot0.GuildFirstClearInfo)
+			slot0.mFirstClearInfo = clone(slot0.FirstClearInfo)
+			slot0.mCanReceive = slot0.CanReceive
+
+			if not slot0.notFirst then
+				slot0.actionRefresh()
+			else
+				slot0:refreshUI()
+			end
+
+			slot0.notFirst = true
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityFirstClearReward",
+		moduleName = "Citywar",
+		methodData = {
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			if slot0 then
+				slot1.oneKeyReward = {}
+			else
+				for slot4, slot5 in ipairs(slot1.oneKeyReward) do
+					if slot5 == slot2[1] then
+						table.remove(slot1.oneKeyReward, slot4)
+
+						break
+					end
+				end
+			end
+
+			ui.showFlashReward(slot0)
+
+			for slot4, slot5 in ipairs(slot0) do
+				for slot9, slot10 in ipairs(slot1.cityList) do
+					if slot10.chapterModelId == slot5 then
+						slot10.isCanDraw = -1
+
+						break
+					end
+				end
+			end
+
+			EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+			EventAuto.postEvent:sortData()
+			EventAuto.postEvent.sortData:refreshListView()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

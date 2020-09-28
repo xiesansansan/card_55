@@ -1,0 +1,576 @@
+slot0 = {}
+
+if not cc.Director:getInstance():getOpenGLView() then
+	slot3 = 960
+	slot4 = 640
+
+	if CC_DESIGN_RESOLUTION then
+		if CC_DESIGN_RESOLUTION.width then
+			slot3 = CC_DESIGN_RESOLUTION.width
+		end
+
+		if CC_DESIGN_RESOLUTION.height then
+			slot4 = CC_DESIGN_RESOLUTION.height
+		end
+	end
+
+	slot1.setOpenGLView(slot1, cc.GLViewImpl:createWithRect("Cocos2d-Lua", cc.rect(0, 0, slot3, slot4)))
+end
+
+slot3 = slot2.getFrameSize(slot2)
+slot4 = slot1.getTextureCache(slot1)
+slot5 = cc.SpriteFrameCache:getInstance()
+slot6 = cc.AnimationCache:getInstance()
+
+function slot7(slot0)
+	slot0.width = checknumber(slot0.width)
+	slot0.height = checknumber(slot0.height)
+	slot0.autoscale = string.upper(slot0.autoscale)
+
+	assert(0 < slot0.width and 0 < slot0.height, string.format("display - invalid design resolution size %d, %d", slot0.width, slot0.height))
+
+	return 
+end
+
+function slot8(slot0, slot1)
+	if slot0.autoscale == "FILL_ALL" then
+		slot0:setDesignResolutionSize(slot1.width, slot1.height, cc.ResolutionPolicy.NO_BORDER)
+	else
+		slot2 = slot1.width/slot0.width
+		slot3 = slot1.height/slot0.height
+		slot4 = slot1.width
+		slot5 = slot1.height
+
+		if slot0.autoscale == "FIXED_WIDTH" then
+			slot0:setDesignResolutionSize(slot1.width/slot2, slot1.height/slot2, cc.ResolutionPolicy.NO_BORDER)
+		elseif slot0.autoscale == "FIXED_HEIGHT" then
+			slot0:setDesignResolutionSize(slot1.width/slot3, slot1.height/slot3, cc.ResolutionPolicy.NO_BORDER)
+		elseif slot0.autoscale == "EXACT_FIT" then
+			slot0:setDesignResolutionSize(slot0.width, slot0.height, cc.ResolutionPolicy.EXACT_FIT)
+		elseif slot0.autoscale == "NO_BORDER" then
+			slot0:setDesignResolutionSize(slot0.width, slot0.height, cc.ResolutionPolicy.NO_BORDER)
+		elseif slot0.autoscale == "SHOW_ALL" then
+			slot0:setDesignResolutionSize(slot0.width, slot0.height, cc.ResolutionPolicy.SHOW_ALL)
+		else
+			printError(string.format("display - invalid r.autoscale \"%s\"", slot0.autoscale))
+		end
+	end
+
+	return 
+end
+
+function slot9(slot0)
+	slot1 = slot0:getFrameSize()
+	slot1.sizeInPixels = {
+		width = slot1.width,
+		height = slot1.height
+	}
+	slot1.cxInPixels = slot1.sizeInPixels.width/2
+	slot1.cyInPixels = slot1.sizeInPixels.height/2
+	slot1.contentScaleFactor = slot2:getContentScaleFactor()
+	slot1.size = {
+		width = slot0.width,
+		height = slot0.height
+	}
+	slot1.width = slot1.size.width
+	slot1.height = slot1.size.height
+	slot1.cx = slot1.width/2
+	slot1.cy = slot1.height/2
+	slot1.xScale = slot1.sizeInPixels.width/slot1.width
+	slot1.yScale = slot1.sizeInPixels.height/slot1.height
+	slot1.minScale = (slot1.yScale < slot1.xScale and slot1.yScale) or slot1.xScale
+
+	printInfo(string.format("# display.sizeInPixels         = {width = %0.2f, height = %0.2f}", slot1.sizeInPixels.width, slot1.sizeInPixels.height))
+	printInfo(string.format("# display.size                 = {width = %0.2f, height = %0.2f}", slot1.size.width, slot1.size.height))
+	printInfo(string.format("# display.contentScaleFactor   = %0.2f", slot1.contentScaleFactor))
+	printInfo(string.format("# display.width                = %0.2f", slot1.width))
+	printInfo(string.format("# display.height               = %0.2f", slot1.height))
+	printInfo(string.format("# display.cx                   = %0.2f", slot1.cx))
+	printInfo(string.format("# display.cy                   = %0.2f", slot1.cy))
+	printInfo(string.format("# display.xScale               = %0.2f", slot1.xScale))
+	printInfo(string.format("# display.yScale               = %0.2f", slot1.yScale))
+	printInfo(string.format("# display.minScale             = %0.2f", slot1.minScale))
+	printInfo("#")
+
+	return 
+end
+
+slot0.setAutoScale = function (slot0)
+	if type(slot0) ~= "table" then
+		return 
+	end
+
+	slot0(slot0)
+
+	if type(slot0.callback) == "function" then
+		slot2 = pairs
+		slot3 = slot0.callback(slot0.callback) or {}
+
+		for slot5, slot6 in slot2(slot3) do
+			slot0[slot5] = slot6
+		end
+
+		slot0(slot0)
+	end
+
+	slot2(slot0, slot2)
+	printInfo(string.format("# design resolution size       = {width = %0.2f, height = %0.2f}", slot0.width, slot0.height))
+	printInfo(string.format("# design resolution autoscale  = %s", slot0.autoscale))
+	"# design resolution autoscale  = %s"(slot0)
+
+	return 
+end
+
+if type(CC_DESIGN_RESOLUTION) == "table" then
+	slot0.setAutoScale(CC_DESIGN_RESOLUTION)
+end
+
+slot0.COLOR_WHITE = cc.c3b(255, 248, 234)
+slot0.COLOR_BLACK = cc.c3b(0, 0, 0)
+slot0.COLOR_RED = cc.c3b(255, 0, 0)
+slot0.COLOR_GREEN = cc.c3b(0, 255, 0)
+slot0.COLOR_BLUE = cc.c3b(0, 0, 255)
+slot0.AUTO_SIZE = 0
+slot0.FIXED_SIZE = 1
+slot0.LEFT_TO_RIGHT = 0
+slot0.RIGHT_TO_LEFT = 1
+slot0.TOP_TO_BOTTOM = 2
+slot0.BOTTOM_TO_TOP = 3
+slot0.CENTER = cc.p(0.5, 0.5)
+slot0.LEFT_TOP = cc.p(0, 1)
+slot0.LEFT_BOTTOM = cc.p(0, 0)
+slot0.LEFT_CENTER = cc.p(0, 0.5)
+slot0.RIGHT_TOP = cc.p(1, 1)
+slot0.RIGHT_BOTTOM = cc.p(1, 0)
+slot0.RIGHT_CENTER = cc.p(1, 0.5)
+slot0.CENTER_TOP = cc.p(0.5, 1)
+slot0.CENTER_BOTTOM = cc.p(0.5, 0)
+slot0.SCENE_TRANSITIONS = {
+	CROSSFADE = {
+		cc.TransitionCrossFade
+	},
+	FADE = {
+		cc.TransitionFade,
+		cc.c3b(0, 0, 0)
+	},
+	FADEBL = {
+		cc.TransitionFadeBL
+	},
+	FADEDOWN = {
+		cc.TransitionFadeDown
+	},
+	FADETR = {
+		cc.TransitionFadeTR
+	},
+	FADEUP = {
+		cc.TransitionFadeUp
+	},
+	FLIPANGULAR = {
+		cc.TransitionFlipAngular,
+		cc.TRANSITION_ORIENTATION_LEFT_OVER
+	},
+	FLIPX = {
+		cc.TransitionFlipX,
+		cc.TRANSITION_ORIENTATION_LEFT_OVER
+	},
+	FLIPY = {
+		cc.TransitionFlipY,
+		cc.TRANSITION_ORIENTATION_UP_OVER
+	},
+	JUMPZOOM = {
+		cc.TransitionJumpZoom
+	},
+	MOVEINB = {
+		cc.TransitionMoveInB
+	},
+	MOVEINL = {
+		cc.TransitionMoveInL
+	},
+	MOVEINR = {
+		cc.TransitionMoveInR
+	},
+	MOVEINT = {
+		cc.TransitionMoveInT
+	},
+	PAGETURN = {
+		cc.TransitionPageTurn,
+		false
+	},
+	ROTOZOOM = {
+		cc.TransitionRotoZoom
+	},
+	SHRINKGROW = {
+		cc.TransitionShrinkGrow
+	},
+	SLIDEINB = {
+		cc.TransitionSlideInB
+	},
+	SLIDEINL = {
+		cc.TransitionSlideInL
+	},
+	SLIDEINR = {
+		cc.TransitionSlideInR
+	},
+	SLIDEINT = {
+		cc.TransitionSlideInT
+	},
+	SPLITCOLS = {
+		cc.TransitionSplitCols
+	},
+	SPLITROWS = {
+		cc.TransitionSplitRows
+	},
+	TURNOFFTILES = {
+		cc.TransitionTurnOffTiles
+	},
+	ZOOMFLIPANGULAR = {
+		cc.TransitionZoomFlipAngular
+	},
+	ZOOMFLIPX = {
+		cc.TransitionZoomFlipX,
+		cc.TRANSITION_ORIENTATION_LEFT_OVER
+	},
+	ZOOMFLIPY = {
+		cc.TransitionZoomFlipY,
+		cc.TRANSITION_ORIENTATION_UP_OVER
+	}
+}
+slot0.TEXTURES_PIXEL_FORMAT = {}
+slot0.DEFAULT_TTF_FONT = "Arial"
+slot0.DEFAULT_TTF_FONT_SIZE = 32
+slot10 = {}
+slot11 = cc.rect(0, 0, 0, 0)
+slot12 = 0
+slot0.newScene = function (slot0, slot1)
+	slot2 = nil
+	((slot1 or slot0) + 1.physics or cc.Scene:create()) and cc.Scene:createWithPhysics().name_ = string.format("%s:%d", slot0 or "<unknown-scene>", slot1 or slot0)
+
+	if slot1.transition then
+		slot2 = slot2.wrapSceneWithTransition(slot2, slot1.transition, slot1.time, slot1.more)
+	end
+
+	return slot2
+end
+slot0.wrapScene = function (slot0, slot1, slot2, slot3)
+	if string.upper(tostring(slot1)) == "RANDOM" then
+		slot4 = table.keys(slot0.SCENE_TRANSITIONS)[math.random(1, #table.keys(slot0.SCENE_TRANSITIONS))]
+	end
+
+	if slot0.SCENE_TRANSITIONS[slot4] then
+		slot6 = slot0.SCENE_TRANSITIONS[slot4][1]
+		slot2 = slot2 or 0.2
+
+		if (slot3 or slot5[2]) ~= nil then
+			slot0 = slot6.create(slot6, slot2, slot0, slot3)
+		else
+			slot0 = slot6.create(slot6, slot2, slot0)
+		end
+	else
+		error(string.format("display.wrapScene() - invalid transition %s", tostring(slot1)))
+	end
+
+	return slot0
+end
+slot0.runScene = function (slot0, slot1, slot2, slot3)
+	if slot0:getRunningScene() then
+		if slot1 then
+			slot0 = slot1.wrapScene(slot0, slot1, slot2, slot3)
+		end
+
+		slot0:replaceScene(slot0)
+	else
+		slot0:runWithScene(slot0)
+	end
+
+	return 
+end
+slot0.getRunningScene = function ()
+	return slot0:getRunningScene()
+end
+slot0.newNode = function ()
+	return cc.Node:create()
+end
+slot0.newLayer = function (...)
+	slot2 = nil
+
+	if #{
+		...
+	} == 0 then
+		slot2 = cc.Layer:create()
+	elseif slot1 == 1 then
+		slot2 = cc.LayerColor:create(cc.convertColor(slot0[1], "4b"))
+	elseif slot1 == 2 then
+		slot3 = cc.convertColor(slot0[1], "4b")
+
+		assert(type(slot0[2]) == "table" and (slot4.width or slot4.r), "display.newLayer() - invalid paramerter 2")
+
+		if slot4.r then
+			slot2 = cc.LayerGradient:create(slot3, cc.convertColor(slot4, "4b"))
+		else
+			slot2 = cc.LayerColor:create(slot3, slot4.width, slot4.height)
+		end
+	elseif slot1 == 3 then
+		(type(slot0[2]) ~= "table" or cc.LayerGradient:create(cc.convertColor(slot0[1], "4b"), cc.convertColor(slot4, "4b"), slot0[3])) and cc.LayerColor:create(cc.convertColor(slot0[1], "4b"), slot4, slot0[3]):registerScriptHandler(function (slot0)
+			if slot0 == "enter" and slot0.onEnter then
+				slot0:onEnter()
+
+				return 
+			end
+
+			if slot0 == "exit" and slot0.onExit then
+				slot0:onExit()
+
+				return 
+			end
+
+			if slot0 == "enterTransitionFinish" and slot0.onEnterTransitionFinish then
+				slot0:onEnterTransitionFinish()
+
+				return 
+			end
+
+			if slot0 == "cleanup" and slot0.onCleanup then
+				slot0:onCleanup()
+
+				return 
+			end
+
+			return 
+		end)
+
+		return (type(slot0[2]) ~= "table" or cc.LayerGradient.create(cc.convertColor(slot0[1], "4b"), cc.convertColor(slot4, "4b"), slot0[3])) and cc.LayerColor.create(cc.convertColor(slot0[1], "4b"), slot4, slot0[3])
+	end
+end
+slot0.newSprite = function (slot0, slot1, slot2, slot3)
+	slot4 = cc.Sprite
+	slot5 = false
+
+	if type(slot1) == "table" and not slot1.x then
+		slot3 = slot1
+		slot1, slot2 = nil
+	end
+
+	if slot3 or slot0.scale9 or slot6.capInsets then
+		slot4 = ccui.Scale9Sprite
+		slot5 = true
+		slot6.capInsets = slot6.capInsets or slot1
+		slot6.rect = slot6.rect or slot1
+	end
+
+	slot7 = nil
+
+	while true do
+		if not slot0 then
+			slot7 = slot4.create(slot4)
+
+			break
+		end
+
+		if type(slot0) == "string" then
+			if string.byte(slot0) == 35 then
+				if not slot5 then
+					slot7 = slot4.createWithSpriteFrameName(slot4, string.sub(slot0, 2))
+
+					break
+				end
+
+				slot7 = slot4.createWithSpriteFrameName(slot4, string.sub(slot0, 2), slot6.capInsets)
+
+				break
+			end
+
+			if slot2.TEXTURES_PIXEL_FORMAT[slot0] then
+				cc.Texture2D:setDefaultAlphaPixelFormat(slot2.TEXTURES_PIXEL_FORMAT[slot0])
+			end
+
+			slot7 = (slot5 or slot4.create(slot4, slot0)) and slot4.create(slot4, slot0, slot6.rect, slot6.capInsets)
+
+			if slot2.TEXTURES_PIXEL_FORMAT[slot0] then
+				cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_BGR_A8888)
+
+				break
+			end
+
+			break
+		end
+
+		if slot8 ~= "userdata" then
+			error(string.format("display.newSprite() - invalid source type \"%s\"", slot8), 0)
+
+			break
+		end
+
+		if tolua.type(slot0) == "cc.SpriteFrame" then
+			if not slot5 then
+				slot7 = slot4.createWithSpriteFrame(slot4, slot0)
+
+				break
+			end
+
+			slot7 = slot4.createWithSpriteFrame(slot4, slot0, slot6.capInsets)
+
+			break
+		end
+
+		if slot8 == "cc.Texture2D" then
+			slot7 = slot4.createWithTexture(slot4, slot0)
+
+			break
+		end
+
+		error(string.format("display.newSprite() - invalid source type \"%s\"", slot8), 0)
+
+		break
+	end
+
+	if slot7 then
+		if slot1 and slot2 then
+			slot7.setPosition(slot7, slot1, slot2)
+		end
+
+		if slot6.size then
+			slot7.setContentSize(slot7, slot6.size)
+		end
+	else
+		error(string.format("display.newSprite() - create sprite failure, source \"%s\"", tostring(slot0)), 0)
+	end
+
+	return slot7
+end
+slot0.newSpriteFrame = function (slot0, ...)
+	slot1 = nil
+
+	if type(slot0) == "string" then
+		if string.byte(slot0) == 35 then
+			slot0 = string.sub(slot0, 2)
+		end
+
+		if not slot0:getSpriteFrame(slot0) then
+			error(string.format("display.newSpriteFrame() - invalid frame name \"%s\"", tostring(slot0)), 0)
+		end
+	elseif tolua.type(slot0) == "cc.Texture2D" then
+		slot1 = cc.SpriteFrame:createWithTexture(slot0, ...)
+	else
+		error("display.newSpriteFrame() - invalid parameters", 0)
+	end
+
+	return slot1
+end
+slot0.newFrames = function (slot0, slot1, slot2, slot3)
+	slot4 = {}
+	slot5 = 1
+	slot6 = (slot1 + slot2) - 1
+
+	if slot3 then
+		slot1 = slot6
+		slot6 = slot1
+		slot5 = -1
+	end
+
+	for slot10 = slot1, slot6, slot5 do
+		if not slot0:getSpriteFrame(string.format(slot0, slot10)) then
+			error(string.format("display.newFrames() - invalid frame name %s", tostring(slot11)), 0)
+		end
+
+		slot4[#slot4 + 1] = slot12
+	end
+
+	return slot4
+end
+
+function slot13(slot0, slot1)
+	assert(0 < #slot0, "display.newAnimation() - invalid frames")
+
+	return cc.Animation:createWithSpriteFrames(slot0, slot1 or slot2/1), cc.Sprite:createWithSpriteFrame(slot0[1])
+end
+
+slot0.newAnimation = function (...)
+	if #{
+		...
+	} == 2 then
+		return slot0(slot0[1], slot0[2])
+	elseif slot1 == 4 then
+		return slot0(slot1.newFrames(slot0[1], slot0[2], slot0[3]), slot0[4])
+	elseif slot1 == 5 then
+		return slot0(slot1.newFrames(slot0[1], slot0[2], slot0[3], slot0[4]), slot0[5])
+	else
+		error("display.newAnimation() - invalid parameters")
+	end
+
+	return 
+end
+slot0.loadImage = function (slot0, slot1)
+	if not slot1 then
+		return slot0:addImage(slot0)
+	else
+		slot0:addImageAsync(slot0, slot1)
+	end
+
+	return 
+end
+slot14 = cc.FileUtils:getInstance()
+slot0.getImage = function (slot0)
+	return slot1:getTextureForKey(slot0:fullPathForFilename(slot0))
+end
+slot0.removeImage = function (slot0)
+	slot0:removeTextureForKey(slot0)
+
+	return 
+end
+slot0.loadSpriteFrames = function (slot0, slot1, slot2)
+	if slot0.TEXTURES_PIXEL_FORMAT[slot1] then
+		cc.Texture2D:setDefaultAlphaPixelFormat(slot0.TEXTURES_PIXEL_FORMAT[slot1])
+	end
+
+	if not slot2 then
+		slot1:addSpriteFrames(slot0, slot1)
+	else
+		slot1:addSpriteFramesAsync(slot0, slot1, slot2)
+	end
+
+	if slot0.TEXTURES_PIXEL_FORMAT[slot1] then
+		cc.Texture2D:setDefaultAlphaPixelFormat(cc.TEXTURE2_D_PIXEL_FORMAT_BGR_A8888)
+	end
+
+	return 
+end
+slot0.removeSpriteFrames = function (slot0, slot1)
+	slot0:removeSpriteFramesFromFile(slot0)
+
+	if slot1 then
+		slot1.removeImage(slot1)
+	end
+
+	return 
+end
+slot0.removeSpriteFrame = function (slot0)
+	slot0:removeSpriteFrameByName(slot0)
+
+	return 
+end
+slot0.setTexturePixelFormat = function (slot0, slot1)
+	slot0.TEXTURES_PIXEL_FORMAT[slot0] = slot1
+
+	return 
+end
+slot0.setAnimationCache = function (slot0, slot1)
+	slot0:addAnimation(slot1, slot0)
+
+	return 
+end
+slot0.getAnimationCache = function (slot0)
+	return slot0:getAnimation(slot0)
+end
+slot0.removeAnimationCache = function (slot0)
+	slot0:removeAnimation(slot0)
+
+	return 
+end
+slot0.removeUnusedSpriteFrames = function ()
+	slot0:removeUnusedSpriteFrames()
+	slot0:removeUnusedTextures()
+
+	return 
+end
+
+return slot0

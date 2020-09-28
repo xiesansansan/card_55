@@ -1,0 +1,841 @@
+slot0 = class("GuildBuildLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 423,
+						y = 510.77
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 144,
+								y = 18
+							},
+							text = TR("帮派建设")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "nowValue",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 48.91,
+						y = 461.04
+					},
+					text = TR("当前进度")
+				},
+				children = {}
+			},
+			{
+				name = "buildNum",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 48.91,
+						y = 432.04
+					},
+					text = TR("建设人数:4/10")
+				},
+				children = {}
+			},
+			{
+				name = "boxSp",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jyt_22.png",
+					pos = {
+						x = 500,
+						y = 450
+					},
+					size = {
+						width = 500,
+						height = 22
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_23.png",
+					pos = {
+						x = 500,
+						y = 448
+					},
+					size = {
+						width = 500,
+						height = 14
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bgInfo",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423,
+						y = 213.76
+					},
+					size = {
+						width = 790,
+						height = 360
+					}
+				},
+				children = {
+					{
+						name = "node1",
+						cType = "Sprite",
+						params = {
+							image = "bp_48.png",
+							pos = {
+								x = 140,
+								y = 185
+							}
+						},
+						children = {
+							{
+								name = "name1",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									text = "",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 128.6,
+										y = 308.57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "buildBtn1",
+								cType = "Button",
+								params = {
+									clickAction = "onBuild1Click",
+									image = "c_19.png",
+									pos = {
+										x = 128,
+										y = 44
+									},
+									titleOffset = {
+										x = 0.25,
+										y = 0.5
+									},
+									titleText = TR("建设")
+								},
+								children = {}
+							},
+							{
+								name = "resLabel1",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1112,
+									pos = {
+										x = 116,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "listview1",
+								cType = "ListView",
+								params = {
+									direction = true,
+									pos = {
+										x = 34.75,
+										y = 65.27
+									},
+									size = {
+										width = 190,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "layout1",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled32-text",
+												name = "str",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 6,
+												y = 160
+											},
+											size = {
+												width = 180,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled32",
+												cType = "Label",
+												params = {
+													text = "Label",
+													align = 1,
+													valign = 1,
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 90,
+														y = 15
+													},
+													size = {
+														width = 180,
+														height = 28
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "node2",
+						cType = "Sprite",
+						params = {
+							image = "bp_49.png",
+							pos = {
+								x = 395,
+								y = 185
+							}
+						},
+						children = {
+							{
+								name = "name2",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									text = "",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 128.6,
+										y = 308.57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "buildBtn2",
+								cType = "Button",
+								params = {
+									clickAction = "onBuild2Click",
+									image = "c_19.png",
+									pos = {
+										x = 128,
+										y = 44
+									},
+									titleOffset = {
+										x = 0.25,
+										y = 0.5
+									},
+									titleText = TR("建设")
+								},
+								children = {}
+							},
+							{
+								name = "resLabel2",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1112,
+									pos = {
+										x = 116,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "listview2",
+								cType = "ListView",
+								params = {
+									direction = true,
+									pos = {
+										x = 34.75,
+										y = 65.27
+									},
+									size = {
+										width = 190,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "layout2",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled35-text",
+												name = "str",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 6,
+												y = 160
+											},
+											size = {
+												width = 180,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled35",
+												cType = "Label",
+												params = {
+													text = "Label",
+													align = 1,
+													valign = 1,
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 90,
+														y = 15
+													},
+													size = {
+														width = 180,
+														height = 28
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "node3",
+						cType = "Sprite",
+						params = {
+							image = "bp_50.png",
+							pos = {
+								x = 650,
+								y = 185
+							}
+						},
+						children = {
+							{
+								name = "name3",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									text = "",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 128.6,
+										y = 308.57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "buildBtn3",
+								cType = "Button",
+								params = {
+									clickAction = "onBuild3Click",
+									image = "c_19.png",
+									pos = {
+										x = 128,
+										y = 44
+									},
+									titleOffset = {
+										x = 0.25,
+										y = 0.5
+									},
+									titleText = TR("建设")
+								},
+								children = {}
+							},
+							{
+								name = "resLabel3",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1112,
+									pos = {
+										x = 116,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "listview3",
+								cType = "ListView",
+								params = {
+									direction = true,
+									pos = {
+										x = 34.75,
+										y = 65.27
+									},
+									size = {
+										width = 190,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "layout3",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled38-text",
+												name = "str",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 6,
+												y = 160
+											},
+											size = {
+												width = 180,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "untitled38",
+												cType = "Label",
+												params = {
+													text = "Label",
+													align = 1,
+													valign = 1,
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 90,
+														y = 15
+													},
+													size = {
+														width = 180,
+														height = 28
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mBoxNodeList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot4 = clone(GuildSigninConfig.items)
+
+	table.insert(slot1, slot5)
+	table.insert(slot2, slot6)
+	table.insert(slot3, slot7)
+	slot0.name1:setString(TR("%s", slot4[1].name))
+	slot0.name2:setString(TR("%s", slot4[2].name))
+	slot0.name3:setString(TR("%s", slot4[3].name))
+
+	for slot11, slot12 in ipairs(Utility.analysisStrResList(slot4[1].outputResource)) do
+		table.insert(slot1, Resource.getName(slot12.resourceId) .. "+ " .. slot12.num)
+	end
+
+	for slot11, slot12 in ipairs(Utility.analysisStrResList(slot4[2].outputResource)) do
+		table.insert(slot2, Resource.getName(slot12.resourceId) .. "+ " .. slot12.num)
+	end
+
+	for slot11, slot12 in ipairs(Utility.analysisStrResList(slot4[3].outputResource)) do
+		table.insert(slot3, Resource.getName(slot12.resourceId) .. "+ " .. slot12.num)
+	end
+
+	for slot11, slot12 in pairs(slot1) do
+		slot0.listview1:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout1", {
+			str = slot12
+		}))
+	end
+
+	for slot11, slot12 in pairs(slot2) do
+		slot0.listview2:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout2", {
+			str = slot12
+		}))
+	end
+
+	for slot11, slot12 in pairs(slot3) do
+		slot0.listview3:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout3", {
+			str = slot12
+		}))
+	end
+
+	slot0.resLabel1:setType(Utility.analysisStrResList(slot4[1].useResource)[1].resourceId)
+	slot0.resLabel1:setString(Utility.analysisStrResList(slot4[1].useResource)[1].num)
+	slot0.resLabel2:setType(Utility.analysisStrResList(slot4[2].useResource)[1].resourceId)
+	slot0.resLabel2:setString(Utility.analysisStrResList(slot4[2].useResource)[1].num)
+	slot0.resLabel3:setType(Utility.analysisStrResList(slot4[3].useResource)[1].resourceId)
+	slot0.resLabel3:setString(Utility.analysisStrResList(slot4[3].useResource)[1].num)
+	slot0.creatRewardBox(slot0)
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.creatRewardBox = function (slot0)
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot1) do
+		if slot2 < slot7.signinCoin then
+			slot2 = slot7.signinCoin
+		end
+	end
+
+	for slot6, slot7 in pairs(slot1) do
+		slot8 = slot7.signinCoin/slot2*500
+
+		if slot7.signinCoin == slot2 then
+			slot8 = slot7.signinCoin/slot2*500 - 15
+		end
+
+		slot0.progBar:addChild(slot9)
+		table.insert(slot0.mBoxNodeList, slot10)
+		slot0.progBar:addChild(UIWrap.newControl("Label", {
+			fontSize = 18,
+			text = slot7.signinCoin,
+			pos = cc.p(slot8, -25),
+			color = cc.c3b(255, 255, 255),
+			outlineColor = cc.c3b(0, 0, 0)
+		}))
+	end
+
+	slot0.progBar:setMaxValue(slot2)
+
+	return 
+end
+slot0.refRewardBox = function (slot0)
+	slot0.progBar:setCurrValue(slot0.mGuildInfo.GuildBuildValue)
+
+	for slot4, slot5 in pairs(slot0.mBoxNodeList) do
+		slot5.boxBtn:stopAllActions()
+
+		if slot5.signinCoin <= slot0.mGuildInfo.GuildBuildValue then
+			if slot0.mRewardInfo[tostring(slot5.signinCoin)] then
+				slot5.boxBtn:loadTextures("jcgn_4.png")
+				slot5.boxBtn:setEnabled(false)
+			else
+				ui.setWaveAnimation(slot5.boxBtn)
+				slot5.boxBtn:setEnabled(true)
+				slot5.boxBtn:setClickAction(function ()
+					slot0:requestBoxReward(slot1.signinCoin)
+
+					return 
+				end)
+			end
+		else
+			slot5.boxBtn:setEnabled(true)
+		end
+	end
+
+	return 
+end
+slot0.onBuild1Click = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Build",
+		moduleName = "Guild",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mGuildInfo = slot0.GuildInfo
+			slot0.mPlayerGuildInfo = slot0.PlayerGuildInfo
+			slot0.mRewardInfo = slot0.PlayerGuildInfo.RewardInfo
+
+			slot0.nowValue:setString(TR("当前进度: %s", slot0.GuildInfo.GuildBuildValue))
+			slot0.buildNum:setString(TR("建设人数: %s/%s", slot0.GuildInfo.GuildBuildCount, slot0.GuildInfo.MemberCount))
+			slot0.buildBtn1:setTitleText(TR("已建设"))
+			slot0.buildBtn1:setEnabled(false)
+			slot0.buildBtn2:setEnabled(false)
+			slot0.buildBtn3:setEnabled(false)
+			slot0:refRewardBox()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onBuild2Click = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Build",
+		moduleName = "Guild",
+		methodData = {
+			2
+		},
+		successCallback = function (slot0)
+			slot0.mGuildInfo = slot0.GuildInfo
+			slot0.mPlayerGuildInfo = slot0.PlayerGuildInfo
+			slot0.mRewardInfo = slot0.PlayerGuildInfo.RewardInfo
+
+			slot0.nowValue:setString(TR("当前进度: %s", slot0.GuildInfo.GuildBuildValue))
+			slot0.buildNum:setString(TR("建设人数: %s/%s", slot0.GuildInfo.GuildBuildCount, slot0.GuildInfo.MemberCount))
+			slot0.buildBtn2:setTitleText(TR("已建设"))
+			slot0.buildBtn1:setEnabled(false)
+			slot0.buildBtn2:setEnabled(false)
+			slot0.buildBtn3:setEnabled(false)
+			slot0:refRewardBox()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onBuild3Click = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Build",
+		moduleName = "Guild",
+		methodData = {
+			3
+		},
+		successCallback = function (slot0)
+			slot0.mGuildInfo = slot0.GuildInfo
+			slot0.mPlayerGuildInfo = slot0.PlayerGuildInfo
+			slot0.mRewardInfo = slot0.PlayerGuildInfo.RewardInfo
+
+			slot0.nowValue:setString(TR("当前进度: %s", slot0.GuildInfo.GuildBuildValue))
+			slot0.buildNum:setString(TR("建设人数: %s/%s", slot0.GuildInfo.GuildBuildCount, slot0.GuildInfo.MemberCount))
+			slot0.buildBtn3:setTitleText(TR("已建设"))
+			slot0.buildBtn1:setEnabled(false)
+			slot0.buildBtn2:setEnabled(false)
+			slot0.buildBtn3:setEnabled(false)
+			slot0:refRewardBox()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildInfo",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mGuildInfo = slot0.GuildInfo
+			slot0.mPlayerGuildInfo = slot0.PlayerGuildInfo
+
+			slot0.nowValue:setString(TR("当前进度: %s", slot0.GuildInfo.GuildBuildValue))
+			slot0.buildNum:setString(TR("建设人数: %s/%s", slot0.GuildInfo.GuildBuildCount, slot0.GuildInfo.MemberCount))
+
+			slot0.mRewardInfo = slot0.PlayerGuildInfo.RewardInfo
+
+			if not slot0.mPlayerGuildInfo.IsCanBuildGuild then
+				if slot0.mPlayerGuildInfo.LastGuildBuildType == 1 then
+					slot0.buildBtn1:setTitleText(TR("已建设"))
+				elseif slot0.mPlayerGuildInfo.LastGuildBuildType == 2 then
+					slot0.buildBtn2:setTitleText(TR("已建设"))
+				elseif slot0.mPlayerGuildInfo.LastGuildBuildType == 3 then
+					slot0.buildBtn3:setTitleText(TR("已建设"))
+				end
+
+				slot0.buildBtn1:setEnabled(false)
+				slot0.buildBtn2:setEnabled(false)
+				slot0.buildBtn3:setEnabled(false)
+			else
+				slot0.buildBtn1:setEnabled(true)
+				slot0.buildBtn2:setEnabled(true)
+				slot0.buildBtn3:setEnabled(true)
+			end
+
+			slot0:refRewardBox()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBoxReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveBuildReward",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mRewardInfo = slot0.RewardInfo
+
+			slot0:refRewardBox()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,114 @@
+slot0 = class("EtlyBuyCountLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			needTouchClose = true,
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.74,
+						y = 204.09
+					},
+					size = {
+						width = 451.47,
+						height = 197.79
+					}
+				},
+				children = {
+					{
+						name = "count",
+						cType = "Label",
+						params = {
+							fontSize = 28,
+							isRichText = true,
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 225.51,
+								y = 98.71
+							},
+							text = TR("是否花费{db_1111.png}10买次数？")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 257.89,
+						y = 64.61
+					},
+					titleText = TR("确 认")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHaveByCount = slot1 and slot1.haveBuyCount
+	slot0.mCallFunc = slot1 and slot1.callFunc
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = 0
+
+	if EtlyEliteFightnumBuyConfig.items[math.min(slot0.mHaveByCount + 1, EtlyEliteFightnumBuyConfig.items_count)] then
+		slot0.count:setString(string.format("是否花费{db_1111.png}%d买次数？", string.split(EtlyEliteFightnumBuyConfig.items[math.min(slot0.mHaveByCount + 1, EtlyEliteFightnumBuyConfig.items_count)].buyNeed, ",")[3]))
+	end
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "PurchaseEliteNodeFightNum",
+		moduleName = "EtlyInfo",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			if slot0.mCallFunc then
+				slot0.mCallFunc(slot0.BaseInfo)
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

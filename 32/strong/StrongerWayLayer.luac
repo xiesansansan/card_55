@@ -1,0 +1,206 @@
+slot0 = class("StrongerWayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 599,
+				height = 385
+			},
+			titleText = TR("提升途径")
+		},
+		children = {
+			{
+				name = "desLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					align = 1,
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 299.5,
+						y = 320
+					},
+					size = {
+						width = 400,
+						height = 60
+					},
+					text = TR("提升主角声望可以大幅提升全体侠客属性，还可以解锁主角称号")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 299.5,
+						y = 154.5
+					},
+					size = {
+						width = 551,
+						height = 255
+					}
+				},
+				children = {}
+			},
+			{
+				name = "template",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 291.94,
+						y = 173.25
+					}
+				},
+				children = {
+					{
+						name = "sprite",
+						cType = "Sprite",
+						params = {
+							image = "wybq_20.png",
+							childName = "sprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Button",
+								params = {
+									childName = "btn",
+									image = "c_27.png",
+									clickAction = "onGotoBtnClick",
+									pos = {
+										x = 70,
+										y = -30
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							text = "",
+							childName = "title",
+							pos = {
+								x = 0,
+								y = 65
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.taskId = tonumber(slot1.taskId)
+	slot0.taskIdx = tonumber(slot1.taskIdx)
+	slot0.taskCfg = StrongTaskModel.items[slot0.taskId][slot0.taskIdx]
+	slot0.jumpModule = string.split(slot0.taskCfg.matchModuleIds, ",")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.desLabel:setString(slot0.taskCfg.functionText)
+
+	slot1 = {
+		cc.p(169.5, 180),
+		cc.p(299.5, 180),
+		cc.p(429.5, 180)
+	}
+	slot3 = {
+		"wybq_20.png",
+		"wybq_21.png"
+	}
+
+	if #slot0.jumpModule == 1 then
+		slot4 = slot0.createLayoutTemplateNode(slot0, "template")
+
+		slot4.setPosition(slot4, slot1[2])
+		slot4.sprite:setTexture(slot3[1])
+
+		slot4.sprite.btn.moduleId = tonumber(slot0.jumpModule[1])
+
+		slot4.title:setString(ModuleSubConfig.items[slot4.sprite.btn.moduleId].name)
+		slot0.msgBox:addChild(slot4)
+	elseif slot2 == 2 then
+		slot4 = slot0.createLayoutTemplateNode(slot0, "template")
+
+		slot4.setPosition(slot4, slot1[1])
+		slot4.sprite:setTexture(slot3[1])
+
+		slot4.sprite.btn.moduleId = tonumber(slot0.jumpModule[1])
+
+		slot4.title:setString(ModuleSubConfig.items[slot4.sprite.btn.moduleId].name)
+		slot0.msgBox:addChild(slot4)
+
+		slot5 = slot0.createLayoutTemplateNode(slot0, "template")
+
+		slot5.setPosition(slot5, slot1[3])
+		slot5.sprite:setTexture(slot3[2])
+
+		slot5.sprite.btn.moduleId = tonumber(slot0.jumpModule[2])
+
+		slot5.title:setString(ModuleSubConfig.items[slot5.sprite.btn.moduleId].name)
+		slot0.msgBox:addChild(slot5)
+	end
+
+	return 
+end
+slot0.onGotoBtnClick = function (slot0, slot1)
+	slot0.showLayer(slot0, slot1.moduleId)
+
+	return 
+end
+slot0.showLayer = function (slot0, slot1)
+	if ModuleSub.eLimitGiftTitle == slot1 and not PlayerAttrObj:getPlayerAttrByName("IsShowTitleGift") then
+		ui.showFlashView(TR("当前礼包活动未开启！"))
+
+		return 
+	elseif ModuleSub.eFashionGift == slot1 and not PlayerAttrObj:getPlayerAttrByName("IsShowFashionGift") then
+		ui.showFlashView(TR("当前礼包活动未开启！"))
+
+		return 
+	elseif ModuleSub.eLimitGiftStrategy == slot1 and not PlayerAttrObj:getPlayerAttrByName("IsShowStrategyGift") then
+		ui.showFlashView(TR("当前礼包活动未开启！"))
+
+		return 
+	end
+
+	LayerManager.showModuleLayer(slot1)
+
+	return 
+end
+
+return slot0

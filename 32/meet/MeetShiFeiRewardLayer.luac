@@ -1,0 +1,196 @@
+slot0 = class("MeetShiFeiRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled7",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 520,
+				height = 340
+			},
+			titleText = TR("明辨是非")
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 260,
+						y = 203
+					},
+					size = {
+						width = 460.85,
+						height = 183.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRightNumLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260,
+						y = 248.69
+					},
+					text = TR("答对：2/3")
+				},
+				children = {}
+			},
+			{
+				name = "mEmptyLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260,
+						y = 189.69
+					},
+					text = TR("很遗憾，请少侠再接再厉")
+				},
+				children = {}
+			},
+			{
+				name = "rewardNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 260,
+						y = 178
+					}
+				},
+				children = {
+					{
+						name = "untitled12",
+						cType = "CardNode",
+						params = {
+							hide = true,
+							allowClick = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mOkBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onOkCallback",
+					pos = {
+						x = 260,
+						y = 64
+					},
+					titleText = TR("领取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRightNum = slot1.rightNum
+	slot0.mTotalNum = slot1.totalNum
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mRightNumLabel:setString(TR("答对：%s/%s", slot0.mRightNum, slot0.mTotalNum))
+	slot0.mEmptyLabel:setVisible(slot0.mRightNum < slot0.mTotalNum)
+
+	if slot0.mTotalNum <= slot0.mRightNum then
+		slot0.createReward(slot0, "1111,0,100||1112,0,100000")
+	end
+
+	slot0.mOkBtn:loadTextures((slot0.mRightNum < slot0.mTotalNum and "c_27.png") or "c_32.png", )
+	slot0.mOkBtn:setTitleText((slot0.mRightNum < slot0.mTotalNum and TR("确定")) or TR("领取"))
+
+	return 
+end
+slot0.createReward = function (slot0, slot1)
+	slot0.rewardNode:removeAllChildren()
+	slot0.rewardNode:setVisible(true)
+
+	slot2 = slot1
+
+	if type(slot1) == "string" then
+		slot2 = Utility.analysisStrResList(slot1 or "")
+	end
+
+	slot3 = Utility.getExtendPos({
+		offset = 100,
+		num = #slot2
+	})
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.rewardNode:addChild(UIWrap.newControl("CardNode", {
+			allowClick = true,
+			pos = slot3[slot7],
+			initParams = {
+				cardInfo = slot8,
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onOkCallback = function (slot0)
+	if slot0.mRightNum < slot0.mTotalNum then
+		if slot0.mCallback then
+			slot0.mCallback()
+		end
+
+		LayerManager.removeLayer(slot0)
+	else
+		slot0.requestReward(slot0)
+	end
+
+	return 
+end
+slot0.requestReward = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

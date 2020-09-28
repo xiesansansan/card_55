@@ -1,0 +1,463 @@
+slot0 = class("StrategySelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("出战准备")
+		},
+		children = {
+			{
+				name = "untitled53",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 422.95,
+						y = 262.51
+					},
+					size = {
+						width = 796,
+						height = 458
+					}
+				},
+				children = {}
+			},
+			{
+				name = "noTip",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 425.3,
+						y = 259.31
+					},
+					text = TR("暂无阵法")
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 423.11,
+						y = 36.64
+					},
+					size = {
+						width = 780,
+						height = 450
+					}
+				},
+				children = {
+					{
+						name = "mCellNode",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled40-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled42-hide",
+								name = "selectSpriteHide",
+								type = "string"
+							},
+							{
+								value = "untitled46-text",
+								name = "attr1",
+								type = "string"
+							},
+							{
+								value = "untitled44-text",
+								name = "attr2",
+								type = "string"
+							},
+							{
+								value = "untitled52-text",
+								name = "attr3",
+								type = "string"
+							},
+							{
+								value = "untitled50-text",
+								name = "attr4",
+								type = "string"
+							},
+							{
+								value = "untitled48-text",
+								name = "attr5",
+								type = "string"
+							},
+							{
+								value = "head-image",
+								name = "headImg",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = -1
+							},
+							size = {
+								width = 280,
+								height = 450
+							}
+						},
+						children = {
+							{
+								name = "untitled55",
+								cType = "Scale9Sprite",
+								params = {
+									image = "zj_132.png",
+									pos = {
+										x = 140,
+										y = 225
+									}
+								},
+								children = {}
+							},
+							{
+								name = "head",
+								cType = "Sprite",
+								params = {
+									image = "zj_133.png",
+									pos = {
+										x = 140,
+										y = 376
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 140,
+										y = 271
+									},
+									text = TR("天星阵")
+								},
+								children = {}
+							},
+							{
+								name = "button",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									clickAction = "onSelectBtnClk",
+									pos = {
+										x = 140,
+										y = 22.27
+									},
+									titleText = TR("选 择")
+								},
+								children = {}
+							},
+							{
+								name = "untitled54",
+								cType = "BadgeText",
+								params = {
+									hide = true,
+									image = "c_76.png",
+									childName = "selectSprite",
+									anchor = {
+										x = 1,
+										y = 1
+									},
+									pos = {
+										x = 259.75,
+										y = 450.27
+									},
+									text = TR("已上阵")
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "Sprite",
+								params = {
+									image = "zj_55.png",
+									pos = {
+										x = 200.44,
+										y = 112.08
+									}
+								},
+								children = {
+									{
+										name = "untitled60",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 41.97,
+												y = 40.21
+											},
+											shadowColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											text = TR("前下")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled43",
+								cType = "Sprite",
+								params = {
+									image = "zj_55.png",
+									pos = {
+										x = 198.81,
+										y = 192.96
+									}
+								},
+								children = {
+									{
+										name = "untitled59",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 41.97,
+												y = 40.21
+											},
+											shadowColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											text = TR("前上")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled51",
+								cType = "Sprite",
+								params = {
+									image = "zj_55.png",
+									pos = {
+										x = 89,
+										y = 86.41
+									}
+								},
+								children = {
+									{
+										name = "untitled58",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 41.97,
+												y = 40.21
+											},
+											shadowColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											text = TR("后下")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled49",
+								cType = "Sprite",
+								params = {
+									image = "zj_55.png",
+									pos = {
+										x = 89,
+										y = 153.5
+									}
+								},
+								children = {
+									{
+										name = "untitled57",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 41.97,
+												y = 40.21
+											},
+											shadowColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											text = TR("后中")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled47",
+								cType = "Sprite",
+								params = {
+									image = "zj_55.png",
+									pos = {
+										x = 89,
+										y = 222.26
+									}
+								},
+								children = {
+									{
+										name = "untitled56",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 41.97,
+												y = 40.21
+											},
+											shadowColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											text = TR("后上")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModelId = slot1.modleId or nil
+	slot0.mCurSelectID = slot1.stratageID or nil
+	slot0.selectCallBack = slot1.selectCallBack
+	slot0.stratageList = slot1.stratageList
+	slot0.inTeamsList = slot1.inTeamsList
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.stratageList and next(slot0.stratageList) ~= nil then
+		slot0.mStrategyList = slot0.stratageList
+
+		slot0.createItem(slot0)
+	else
+		slot0.requestGetInfo(slot0)
+	end
+
+	return 
+end
+slot0.createItem = function (slot0)
+	if not next(slot0.mStrategyList) then
+		slot0.noTip:setVisible(true)
+	end
+
+	slot1 = {}
+
+	slot0.mListView:removeAllItems()
+
+	slot0.mShowLayoutList = {}
+
+	for slot5, slot6 in pairs(slot0.mStrategyList) do
+		slot8, slot9 = Utility.getColorValue(Resource.getColorLv(ZhenfaModel.items[slot6.ZhenfaId].Id))
+		slot0.createLayoutTemplateNode(slot0, "mCellNode", {
+			headImg = ZhenfaModel.items[slot6.ZhenfaId].smallPic .. ".png",
+			nameText = Resource.getName(ZhenfaModel.items[slot6.ZhenfaId].Id),
+			selectSpriteHide = slot0.mCurSelectID ~= ZhenfaModel.items[slot6.ZhenfaId].Id
+		}).refreshCell = function (slot0)
+			slot0.selectSpriteHide = slot0.mCurSelectID ~= slot1.Id
+
+			return 
+		end
+		slot0.createLayoutTemplateNode(slot0, "mCellNode", {
+			headImg = ZhenfaModel.items[slot6.ZhenfaId].smallPic .. ".png",
+			nameText = Resource.getName(ZhenfaModel.items[slot6.ZhenfaId].Id),
+			selectSpriteHide = slot0.mCurSelectID ~= ZhenfaModel.items[slot6.ZhenfaId].Id
+		}).button.Id = slot7.Id
+
+		if slot0.inTeamsList and next(slot0.inTeamsList) and table.indexof(slot0.inTeamsList, slot7.Id) then
+			slot10.selectSprite:setVisible(true)
+		end
+
+		table.insert(slot0.mShowLayoutList, slot10)
+		slot0.mListView:pushBackCustomItem(slot10)
+	end
+
+	return 
+end
+slot0.onSelectBtnClk = function (slot0, slot1)
+	if slot0.selectCallBack then
+		slot0.selectCallBack(slot1.Id)
+	end
+
+	slot0.mCurSelectID = slot1.Id
+
+	for slot5, slot6 in ipairs(slot0.mShowLayoutList) do
+		slot6.refreshCell(slot6)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Zhenfa",
+		methodData = {
+			slot0.mModelId or 0
+		},
+		successCallback = function (slot0)
+			dump(slot0, "DASAD")
+
+			slot0.mStrategyList = slot0.ZhenfaModelInfo
+
+			slot0:createItem()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,723 @@
+slot0 = class("CrownsDlgCampLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			needTouchClose = true,
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 970,
+				height = 500
+			},
+			titleText = TR("布 阵")
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Scale9Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 608.74,
+						y = 248.29
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 320.72,
+						y = 460
+					},
+					size = {
+						width = 580,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							swallowTouch = false,
+							pos = {
+								x = 10,
+								y = 10
+							},
+							size = {
+								width = 560,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "templateCampCell",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled6-text",
+										name = "strTitle",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 560,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_34.png",
+											childName = "bgSprite",
+											capInsets = {
+												x = 100,
+												height = 1,
+												width = 1,
+												y = 60
+											},
+											pos = {
+												x = 280,
+												y = 75
+											},
+											size = {
+												width = 560,
+												height = 148
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled6",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 30,
+												y = 126
+											},
+											text = TR("八强赛阵容")
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 1,
+												name = "headerTag",
+												type = "integer"
+											}
+										},
+										params = {
+											allowClick = true,
+											pos = {
+												x = 68,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 2,
+												name = "headerTag",
+												type = "integer"
+											}
+										},
+										params = {
+											allowClick = true,
+											pos = {
+												x = 174,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 3,
+												name = "headerTag",
+												type = "integer"
+											}
+										},
+										params = {
+											allowClick = true,
+											pos = {
+												x = 280,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 4,
+												name = "headerTag",
+												type = "integer"
+											}
+										},
+										params = {
+											allowClick = true,
+											pos = {
+												x = 386,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 5,
+												name = "headerTag",
+												type = "integer"
+											}
+										},
+										params = {
+											allowClick = true,
+											pos = {
+												x = 492,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Sprite",
+										params = {
+											image = "c_82.png",
+											scale = 0.6,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 160,
+												y = 126
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "Sprite",
+										params = {
+											image = "c_80.png",
+											scale = 0.6,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 175.63,
+												y = 124.36
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled7",
+										cType = "Label",
+										params = {
+											charCount = 12,
+											scale = 0.6,
+											fontName = "c_81.png",
+											childName = "fapLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 220,
+												y = 125
+											},
+											text = TR("1234万")
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Sprite",
+										params = {
+											childName = "endSprite",
+											image = "txdy_3.png",
+											hide = true,
+											pos = {
+												x = 280,
+												y = 65
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 783.58,
+						y = 39.54
+					},
+					size = {
+						width = 320,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "ruleListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 4.99,
+								y = 5.43
+							},
+							size = {
+								width = 300,
+								height = 365
+							}
+						},
+						children = {
+							{
+								name = "templateRuleCell",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled18-text",
+										name = "ruleText",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 300,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											text = "Label",
+											childName = "infoLabel",
+											valign = 0,
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 30
+											},
+											size = {
+												width = 300,
+												height = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled22",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 693.13,
+						y = 430.82
+					}
+				},
+				children = {
+					{
+						name = "untitled23",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 78,
+								height = 7
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							isRichText = "false",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 87.97,
+								y = -0.88
+							},
+							text = TR("布阵规则")
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 174.47,
+								y = 0
+							},
+							size = {
+								width = 78,
+								height = 8.65
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	{
+		dataName = "FormationInfo8",
+		severTag = 8,
+		strategyName = "StrategyId8",
+		tag = 1,
+		title = TR("八强赛")
+	},
+	{
+		dataName = "FormationInfo4",
+		severTag = 4,
+		strategyName = "StrategyId4",
+		tag = 2,
+		title = TR("四强赛")
+	},
+	{
+		dataName = "FormationInfo2",
+		severTag = 2,
+		strategyName = "StrategyId2",
+		tag = 3,
+		title = TR("半决赛")
+	},
+	{
+		dataName = "FormationInfo1",
+		severTag = 1,
+		strategyName = "StrategyId1",
+		tag = 4,
+		title = TR("决赛")
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mData = slot1.data
+	slot0.mCurTag = slot1.curTag or 1
+	slot0.canCampTag = slot0.getFirstTagCanCamp(slot0)
+
+	slot0.initUI(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in ipairs(slot0) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "templateCampCell", {
+			strTitle = slot5.title .. TR("阵容")
+		})
+		slot6.headerList = slot0.getCustomChildren(slot0, slot6, "headerTag")
+		slot6.dataName = slot5.dataName
+		slot6.refreshCell = function (slot0, slot1)
+			slot2, slot3, slot4 = slot0:getStarEndTimeByTag(slot0.mCurTag)
+			slot5 = true
+
+			if slot1.tag < slot0.mCurTag or slot4 <= Player:getCurrentTime() then
+				slot5 = false
+			end
+
+			slot6 = {}
+
+			if slot1 ~= "" then
+				slot6 = cjson.decode(slot1)
+			end
+
+			slot7 = 0
+
+			for slot11 = 1, 5, 1 do
+				slot7 = slot7 + (HeroObj:getItem((slot6[slot11] and slot6[slot11].ModelId) or 0) or {}.Fap or 0)
+
+				slot0.headerList[slot11]:setCardData(nil, {
+					Enums.CardShowAttr.eLevel,
+					Enums.CardShowAttr.eStar,
+					Enums.CardShowAttr.eTrainLv
+				}, HeroObj.getItem((slot6[slot11] and slot6[slot11].ModelId) or 0) or {})
+
+				if slot12 == 0 and slot5 == true and slot0.canCampTag <= slot1.tag then
+					slot14.setAddMark(slot14, false)
+				end
+
+				if slot5 and slot0.canCampTag <= slot1.tag then
+					slot14.setClickAction(slot14, function ()
+						slot0:setFormation(slot1.severTag)
+
+						return 
+					end)
+				else
+					slot14.setGray(slot14, false)
+				end
+			end
+
+			slot0.fapLabel:setString(Utility.numberWithUnit(slot7))
+			slot0.endSprite:setVisible(not slot5)
+			slot0.bgSprite:setGray(not slot5)
+
+			return 
+		end
+
+		slot0.mListView:pushBackCustomItem(slot6)
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "templateRuleCell", {
+			ruleText = slot6
+		})
+
+		slot7.setContentSize(slot7, cc.size(560, slot7.infoLabel:getContentSize().height + 10))
+		slot7.infoLabel:setPositionY((slot7.infoLabel.getContentSize().height + 10) - 5)
+		slot0.ruleListView:pushBackCustomItem(slot7)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mListView:getItems()) do
+		slot5.refreshCell(slot5, slot0.oldFormation[slot5.dataName] or "")
+	end
+
+	return 
+end
+slot0.getFirstTagCanCamp = function (slot0)
+	for slot4, slot5 in ipairs(slot0) do
+		if slot0.mCurTag <= slot5.tag then
+			slot6, slot7, slot8 = slot0.getStarEndTimeByTag(slot0, slot5.tag)
+
+			if Player:getCurrentTime() < slot8 then
+				return slot5.tag
+			end
+		end
+	end
+
+	return 5
+end
+slot0.setFormation = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+	slot4 = {}
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(slot0) do
+		slot11 = 0
+
+		if slot0.oldFormation[slot10.strategyName] then
+			slot11 = tonumber(slot0.oldFormation[slot10.strategyName])
+		end
+
+		if slot10.severTag ~= slot1 then
+			slot12 = {}
+
+			if slot0.oldFormation[slot10.dataName] ~= "" then
+				slot12 = cjson.decode(slot0.oldFormation[slot10.dataName])
+			end
+
+			for slot16, slot17 in ipairs(slot12) do
+				table.insert(slot2, slot17.ModelId)
+			end
+		end
+
+		if slot10.severTag == slot1 then
+			slot4 = clone(slot10)
+			slot12 = {}
+
+			if slot0.oldFormation[slot10.dataName] ~= "" then
+				slot12 = cjson.decode(slot0.oldFormation[slot10.dataName])
+			end
+
+			for slot16, slot17 in ipairs(slot12) do
+				table.insert(slot3, slot17.ModelId)
+			end
+
+			table.insert(slot3, slot11)
+		end
+
+		table.insert(slot5, slot11)
+	end
+
+	ui.showCampReady({
+		noNeedVit = true,
+		minCount = 5,
+		isPvp = true,
+		callModelSub = ModuleSub.eUniverseNumOne,
+		titleText = slot4.title .. TR("阵容"),
+		currSlotString = table.concat(slot3, ","),
+		alreadyGotoWorkStrategy = slot5,
+		alreadyGotoWork = slot2,
+		callback = function (slot0)
+			slot0:requestSetFormation(slot0.requestSetFormation, table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSetFormation = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateFightInfo",
+		moduleName = "Universenumone",
+		methodData = {
+			slot2,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.oldFormation = slot0.Data or {}
+
+			slot0:refreshUI()
+			ui.showFlashView(TR("布置成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetPlayerFormationInfo",
+		moduleName = "Universenumone",
+		methodData = {
+			PlayerAttrObj:getPlayerAttrByName("PlayerId")
+		},
+		successCallback = function (slot0)
+			slot0.oldFormation = slot0 or {}
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getStarEndTimeByTag = function (slot0, slot1)
+	slot3 = slot0.mData.Season or {}.BeginTime
+	slot4 = slot0.mData.Season or {}.EndTime
+	slot5 = 0
+
+	if slot1 == 1 then
+		slot5 = slot2.KnockoutBeginTime8
+		slot4 = slot2.KnockoutEndTime8
+		slot3 = slot2.PreliminariesEndTime
+	elseif slot1 == 2 then
+		slot5 = slot2.KnockoutBeginTime4
+		slot4 = slot2.KnockoutEndTime4
+		slot3 = slot2.KnockoutEndTime8
+	elseif slot1 == 3 then
+		slot5 = slot2.KnockoutBeginTime2
+		slot4 = slot2.KnockoutEndTime2
+		slot3 = slot2.KnockoutEndTime4
+	elseif slot1 == 4 then
+		slot5 = slot2.KnockoutBeginTime1
+		slot4 = slot2.KnockoutEndTime1
+		slot3 = slot2.KnockoutEndTime2
+	elseif slot1 == 5 then
+		slot5 = 0
+		slot4 = slot2.EndTime
+		slot3 = slot2.KnockoutEndTime1
+	elseif slot1 == 6 then
+		slot5 = 0
+		slot4 = slot2.PreliminariesEndTime
+		slot3 = slot2.ChoiceEndTime
+	end
+
+	return slot3, slot4, slot5
+end
+
+return slot0

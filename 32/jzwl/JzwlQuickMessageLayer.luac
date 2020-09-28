@@ -1,0 +1,288 @@
+slot0 = class("JzwlQuickMessageLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBtnCloseAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 575
+			},
+			titleText = TR("供奉进言")
+		},
+		children = {
+			{
+				name = "editBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 24,
+					maxLength = 70,
+					image = "c_41.png",
+					multiLine = true,
+					fontColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeHolder = TR("点击输入文字..."),
+					pos = {
+						x = 294.42,
+						y = 145.68
+					},
+					size = {
+						width = 517.78,
+						height = 104.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "quickListView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					swallowTouch = false,
+					pos = {
+						x = 43.91,
+						y = 205.4
+					},
+					size = {
+						width = 500,
+						height = 320
+					}
+				},
+				children = {
+					{
+						name = "tempWardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "tipStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 500,
+								height = 55
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_94.png",
+									pos = {
+										x = 250,
+										y = 27.5
+									},
+									size = {
+										width = 500,
+										height = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 20,
+										y = 27.5
+									},
+									size = {
+										width = 460,
+										height = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Button",
+								params = {
+									childName = "msgBtn",
+									image = "c_pure.png",
+									clickAction = "onClickMsgBtn",
+									pos = {
+										x = 250.72,
+										y = 27.5
+									},
+									size = {
+										width = 500,
+										height = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSendMsg",
+					pos = {
+						x = 293.72,
+						y = 60.54
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCostType = slot1.costType
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "tempWardLayout", {
+			tipStr = string.format("%s.%s", slot6.ID, slot6.des)
+		}).msgBtn.Str = slot6.des
+
+		slot0.quickListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "tempWardLayout", {
+			tipStr = string.format("%s.%s", slot6.ID, slot6.des)
+		}))
+	end
+
+	return 
+end
+slot0.onClickMsgBtn = function (slot0, slot1)
+	slot0.editBox:setText(slot1.Str)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onSendMsg = function (slot0)
+	slot1 = 70
+	slot3 = slot0
+	slot2 = slot0.cleanStr
+	slot4 = slot0.editBox:getText() or ""
+
+	if slot2(slot3, slot4):utf8len() == 0 then
+		ui.showFlashView(TR("输入内容不能为空"))
+
+		return 
+	end
+
+	if slot1 < slot3 then
+		ui.showFlashView(TR("不能超过%d个字符", slot1))
+
+		return 
+	end
+
+	if slot2.find(slot2, "%d%d%d%d%d%d") then
+		ui.showFlashView(TR("请勿发送6位以上连续数字"))
+
+		return 
+	end
+
+	slot0.sendOneText(slot0, slot2)
+
+	return 
+end
+slot0.sendOneText = function (slot0, slot1)
+	if slot1 == nil then
+		return 
+	end
+
+	if not ChatMng:isConnected() then
+		ui.showFlashView(TR("聊天服务器尚未连接"))
+
+		return 
+	end
+
+	if ChatMng:sendMessage({
+		channel = Enums.ChatChanne.eWorld,
+		text = slot1
+	}) then
+		slot0.requestGongFeng(slot0)
+	end
+
+	return 
+end
+slot0.cleanStr = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		slot1 = slot1.gsub(slot1, slot7[1], slot7[2])
+	end
+
+	return slot1
+end
+slot0.requestGongFeng = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GongFeng",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot0.mCostType,
+			1,
+			20
+		},
+		successCallback = function (slot0)
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,115 @@
+slot0 = class("TargetCompetitionScoreLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "bg",
+				cType = "Sprite",
+				params = {
+					image = "fuli_33.png",
+					pos = {
+						x = 0,
+						y = 42.43
+					}
+				},
+				children = {
+					{
+						name = "point",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 45,
+							image = "fuli_34.png",
+							scale = 1,
+							pos = {
+								x = 100,
+								y = 100
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "ring",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 1.1,
+						y = -249.31
+					},
+					text = TR("7环")
+				},
+				children = {}
+			},
+			{
+				name = "time",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 1.46,
+						y = -282.38
+					},
+					text = TR("耗时：12.5")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPos = slot1.pos
+	slot0.mRing = slot1.ring
+	slot0.mCostTime = slot1.costTime
+	slot0.callBack = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.point:setPosition(slot0.mPos)
+	slot0.ring:setString(TR("%s环", slot0.mRing))
+	slot0.time:setString(TR("耗时:%s秒", slot0.mCostTime))
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = slot0,
+		endedEvent = function ()
+			slot0.callBack()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

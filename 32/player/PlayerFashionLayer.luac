@@ -1,0 +1,990 @@
+slot0 = class("PlayerFashionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zj_131.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "myInfoNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Scale9Sprite",
+				params = {
+					image = "zj_45.png",
+					pos = {
+						x = -226.6,
+						y = -267.13
+					}
+				},
+				children = {
+					{
+						name = "mSkillLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 140,
+								y = 35
+							},
+							size = {
+								width = 400,
+								height = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mAttrLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 140,
+								y = 6
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mDebrisCard",
+						cType = "CardNode",
+						params = {
+							scale = 0.7,
+							allowClick = false,
+							pos = {
+								x = 95.88,
+								y = 52.18
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mDebrisLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "0/0",
+							color = {
+								g = 10,
+								r = 223,
+								b = 10
+							},
+							pos = {
+								x = 96.02,
+								y = 9.05
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mSkillBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onSkillShow",
+					pos = {
+						x = -10.77,
+						y = -133.48
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_9.png",
+					pos = {
+						x = 290,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						params = {
+							image = "zj_44.png",
+							pos = {
+								x = 230.75,
+								y = 476.56
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 9.15,
+										y = 2
+									},
+									text = TR("变装属性可以叠加，总加成：")
+								},
+								children = {}
+							},
+							{
+								name = "mFapLabel",
+								cType = "Label",
+								params = {
+									fontName = "xkxx_48.png",
+									text = "123456",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 283.33,
+										y = 2
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Button",
+								params = {
+									image = "tb_gn_34.png",
+									clickAction = "onPerviewSkill",
+									pos = {
+										x = -65.45,
+										y = -0.69
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateItem",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 3,
+							celHeight = 305,
+							pos = {
+								x = 230.43,
+								y = 262.31
+							},
+							size = {
+								width = 415,
+								height = 390
+							}
+						},
+						children = {
+							{
+								name = "FashionTemNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "heroSprite-image",
+										name = "fashionPic",
+										type = "string"
+									},
+									{
+										value = "untitled34-image",
+										name = "lvPic",
+										type = "string"
+									},
+									{
+										value = "untitled36-text",
+										name = "fashionName",
+										type = "string"
+									},
+									{
+										value = "untitled36-color",
+										name = "nameColor",
+										type = "string"
+									},
+									{
+										value = "untitled39-subKey",
+										name = "redDotKey",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 36.05,
+										y = 69.3
+									},
+									size = {
+										width = 140.41,
+										height = 296.41
+									}
+								},
+								children = {
+									{
+										name = "untitled37",
+										cType = "Button",
+										params = {
+											clickAction = "onClickFasion",
+											pressedAction = false,
+											swallowTouch = false,
+											image = "xkxx_45.png",
+											childName = "clickBtn",
+											scale = 0.8,
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled32",
+										cType = "ClippingNode",
+										params = {
+											alpha = 1,
+											pos = {
+												x = 5,
+												y = 5
+											},
+											size = {
+												width = 128.48,
+												height = 286.94
+											}
+										},
+										children = {
+											{
+												name = "heroSprite",
+												cType = "Sprite",
+												params = {
+													image = "bsx_10004.png",
+													pos = {
+														x = 70.34,
+														y = 116.71
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled34",
+										cType = "Sprite",
+										params = {
+											image = "zj_58.png",
+											childName = "qualitySprite",
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											pos = {
+												x = 21.52,
+												y = 286.17
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Scale9Sprite",
+										params = {
+											image = "zj_125.png",
+											pos = {
+												x = 70.52,
+												y = 30.45
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled36",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 75.29,
+												y = 19.44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "BadgeText",
+										params = {
+											childName = "useBdText",
+											image = "c_76.png",
+											anchor = {
+												x = 1,
+												y = 1
+											},
+											pos = {
+												x = 137.29,
+												y = 294.97
+											},
+											text = TR("使用中")
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Scale9Sprite",
+										params = {
+											hide = true,
+											image = "c_61.png",
+											childName = "selectSprite",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = -7,
+												y = -9
+											},
+											size = {
+												width = 155,
+												height = 315
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled39",
+										cType = "RedDot",
+										params = {
+											subKey = "",
+											moduleId = 7501,
+											offset = {
+												x = 0.9,
+												y = 0.95
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mDressUpBtn",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onDress",
+							pos = {
+								x = 230,
+								y = 35
+							},
+							titleText = TR("换装")
+						},
+						children = {
+							{
+								name = "composeRedDot",
+								cType = "RedDot",
+								params = {
+									delayInit = true
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mBuyBtn",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							hide = true,
+							clickAction = "onBuy",
+							pos = {
+								x = 230,
+								y = 35
+							},
+							titleText = TR("购买")
+						},
+						children = {
+							{
+								name = "untitled41",
+								cType = "RedDot",
+								params = {
+									moduleId = 10701
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mDefultModelId = slot1 or {}.fashionModelId or PlayerAttrObj:getPlayerAttrByName("FashionModelId")
+	slot0.mSelectIndex = 1
+
+	slot0.super.ctor(slot0)
+	slot0.dealData(slot0)
+	slot0.initUI(slot0)
+	slot0.requestFapInfo(slot0)
+
+	if Utility.moduleIsOpen(ModuleSub.eFashionGift, false) then
+		slot0.requestGiftInfo(slot0)
+		EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eSkin, function (slot0)
+			ui.showFlashView(TR("购买成功"))
+			slot0:requestGiftInfo()
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.isShowFashion = function (slot0, slot1)
+	if table.indexof(string.split(PlayerAttrObj:getPlayerAttrByName("FashionShowIdList"), ","), tostring(slot1)) then
+		return true
+	end
+
+	if table.indexof(PlayerAttrObj:getPlayerAttrByName("FashionActivedModelIds"), slot1) then
+		return true
+	end
+
+	if 0 < Resource.getCount(slot4) then
+		return true
+	end
+
+	return false
+end
+slot0.dealData = function (slot0)
+	slot0.fashionList = {}
+
+	for slot4, slot5 in pairs(clone(FashionModel.items)) do
+		if slot0.isShowFashion(slot0, slot5.modelId) then
+			clone(slot5).isActive = false
+
+			for slot10, slot11 in pairs(PlayerAttrObj:getPlayerAttrByName("FashionActivedModelIds")) do
+				if slot6.modelId == slot11 then
+					slot6.isActive = true
+
+					break
+				end
+			end
+
+			table.insert(slot0.fashionList, slot6)
+		end
+	end
+
+	table.sort(slot0.fashionList, function (slot0, slot1)
+		if slot0.modelId == 19010000 then
+			return true
+		end
+
+		if slot1.modelId == 19010000 then
+			return false
+		end
+
+		if slot0.isActive ~= slot1.isActive then
+			return slot0.isActive
+		end
+
+		if slot0.colorLv ~= slot1.colorLv then
+			return slot1.colorLv < slot0.colorLv
+		end
+
+		return slot0.modelId < slot1.modelId
+	end)
+
+	for slot4, slot5 in ipairs(slot0.fashionList) do
+		if slot0.mDefultModelId == slot5.modelId then
+			slot0.mSelectIndex = slot4
+
+			break
+		end
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	slot3 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot3 <= slot8 then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	slot0.mFashionGiftInfo = slot1[slot3] or slot1[slot2[#slot2]]
+	slot0.mGiftFashionModelId = Utility.analysisStrResList(slot0.mFashionGiftInfo.sellStr)[1].resourceId
+
+	return 
+end
+slot0.showMyInfo = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("FashionLevel")
+	slot2 = PlayerAttrObj:getPlayerAttrByName("PlayerName")
+	slot3 = PlayerAttrObj:getPlayerAttrByName("TitleId")
+
+	if slot0.mCurTitleSprite then
+		slot0.mCurTitleSprite:removeFromParent()
+
+		slot0.mCurTitleSprite = nil
+	end
+
+	if slot0.mMyFigure then
+		slot0.mMyFigure:removeFromParent()
+
+		slot0.mMyFigure = nil
+	end
+
+	slot4 = slot0.mDefultModelId or PlayerAttrObj:getPlayerAttrByName("FashionModelId")
+
+	if cc.FileUtils:getInstance():isFileExist(slot5 .. ".skel") then
+		slot0.myInfoNode:addChild(UIWrap.newControl("Effect", {
+			scale = 0.5,
+			dataFile = slot5,
+			pos = cc.p(-260, -230)
+		}), -1)
+
+		slot0.mMyFigure = UIWrap.newControl("Effect", {
+			scale = 0.5,
+			dataFile = slot5,
+			pos = cc.p(-260, -230)
+		})
+	else
+		slot0.myInfoNode:addChild(UIWrap.newControl("Sprite", {
+			scale = 0.8,
+			image = FashionModel.items[slot4].pic .. ".png",
+			pos = cc.p(-220, 10)
+		}), -1)
+
+		slot0.mMyFigure = UIWrap.newControl("Sprite", {
+			scale = 0.8,
+			image = FashionModel.items[slot4].pic .. ".png",
+			pos = cc.p(-220, 10)
+		})
+	end
+
+	slot0.myInfoNode:addChild(UIWrap.newControl("Sprite", {
+		image = "c_132.png",
+		pos = cc.p(-240, -220)
+	}), -2)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mGridView:setItemNum(#slot0.fashionList)
+	slot0.refreshFashion(slot0)
+	slot0.showMyInfo(slot0)
+
+	return 
+end
+slot0.getAttrStr = function (slot0, slot1)
+	if slot1.actAttrStr and slot1.actAttrStr ~= "" then
+		slot2 = "#319712"
+		slot3 = ""
+
+		for slot7, slot8 in ipairs(Utility.analysisStrAttrList(slot1.actAttrStr)) do
+			slot9 = "#FFF8EA"
+
+			if 1 < slot7 then
+				slot9 = "#FFF8EA "
+			end
+
+			slot3 = slot3 .. ((Utility.isAttrNeedPercent(slot8.fightattr) and slot9 .. string.format("%s%s+%s%%", FightAttrTypeName[slot8.fightattr], slot2, slot8.value/100)) or slot9 .. string.format("%s%s+%s", FightAttrTypeName[slot8.fightattr], slot2, slot8.value))
+		end
+
+		return slot3
+	else
+		return TR("无属性加成")
+	end
+
+	return 
+end
+slot0.refreshFashion = function (slot0)
+	slot3 = PlayerAttrObj:getPlayerAttrByName("FashionModelId") == slot0.fashionList[slot0.mSelectIndex].modelId
+	slot6 = not slot0.fashionList[slot0.mSelectIndex].isActive and ((not slot0.fashionList[slot0.mSelectIndex].isActive and GoodsModel.items[slot1.debrisId].outputNeedNum) or nil) <= ((not slot0.fashionList[slot0.mSelectIndex].isActive and Resource.getCount(slot1.debrisId)) or nil)
+	slot0.mDefultModelId = slot1.modelId
+
+	slot0.mDebrisCard:setCardData({
+		modelId = slot1.modelId
+	})
+	slot0.mDebrisCard:setGray()
+	slot0.mDebrisCard:setVisible(not slot0.fashionList[slot0.mSelectIndex].isActive)
+
+	if not slot2 then
+		slot0.mDebrisLabel:setString(string.format("%s/%s", slot4, slot5))
+		slot0.mDebrisLabel:setColor((slot6 and cc.c3b(55, 255, 64)) or cc.c3b(234, 44, 0))
+	end
+
+	slot0.mDebrisLabel:setVisible(not slot2)
+
+	slot7 = cc.p(140, 6)
+
+	if slot1.actSkillId ~= "" then
+		slot0.mSkillLabel:setString(SkillModel.items[tonumber(slot1.actSkillId)].skillIntro)
+	else
+		slot0.mSkillLabel:setString("")
+
+		slot7.y = 30
+	end
+
+	slot0.mSkillBtn.fashionModelId = slot1.modelId
+
+	slot0.mAttrLabel:setString(slot0.getAttrStr(slot0, slot1))
+
+	if not slot1.actAttrStr or slot1.actAttrStr == "" then
+		slot7.x = 260
+	end
+
+	slot0.mAttrLabel:setPosition(slot7)
+
+	if not slot2 then
+		slot0.mDressUpBtn:setTitleText(TR("合成"))
+		slot0.mDressUpBtn:setEnabled(slot6)
+
+		if slot1.debrisId == 0 then
+			slot0.mDressUpBtn:setTitleText(TR("未解锁"))
+		end
+	else
+		slot0.mDressUpBtn:setTitleText(TR("换装"))
+		slot0.mDressUpBtn:setEnabled(not slot3)
+	end
+
+	if slot0.composeRedDot then
+		slot0.composeRedDot:removeFromParent()
+
+		slot0.composeRedDot = nil
+	end
+
+	slot0.createUISubTree(slot0, "composeRedDot", function (slot0, slot1)
+		if slot0.name == "composeRedDot" then
+			slot1.moduleId = ModuleSub.eSkinSynthesis
+			slot1.subKey = "Skin_" .. slot0.modelId
+		end
+
+		return 
+	end)
+	slot0.refreshBuyBtn(slot0)
+	slot0.showMyInfo(slot0)
+	slot0.mGridView:setSelect(slot0.mSelectIndex)
+
+	return 
+end
+slot0.refreshBuyBtn = function (slot0)
+	if slot0.fashionList[slot0.mSelectIndex].modelId == slot0.mGiftFashionModelId and PlayerAttrObj:getPlayerAttrByName("IsShowFashionGift") then
+		slot0.mDressUpBtn:setVisible(false)
+		slot0.mBuyBtn:setVisible(true)
+
+		if not slot0.mGiftInfo then
+			slot0.requestGiftInfo(slot0)
+		end
+	else
+		slot0.mDressUpBtn:setVisible(true)
+		slot0.mBuyBtn:setVisible(false)
+	end
+
+	return 
+end
+slot0.onSkillShow = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot1.fashionModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCreateItem = function (slot0, slot1, slot2, slot3)
+	slot6 = slot0.createLayoutTemplateNode(slot0, "FashionTemNode", {
+		fashionPic = slot0.fashionList[slot2].halfBodyPic .. ".png",
+		lvPic = ({
+			nil,
+			"zj_60.png",
+			"zj_59.png",
+			"zj_58.png",
+			"zj_57.png",
+			"zj_56.png",
+			"zj_56.png"
+		})[slot0.fashionList[slot2].colorLv] or "zj_56.png",
+		fashionName = slot4.name,
+		nameColor = Utility.getColorValue(slot4.colorLv),
+		redDotKey = "Skin_" .. slot4.modelId
+	})
+
+	slot6.setPosition(slot6, 0, 0)
+	slot1.addChild(slot1, slot6)
+
+	slot6.clickBtn.index = slot2
+
+	slot6.useBdText:setVisible(slot4.modelId == PlayerAttrObj:getPlayerAttrByName("FashionModelId"))
+
+	if not slot4.isActive then
+		slot6.heroSprite:setGLProgram(require("common.ShaderManager").loadShader(require("common.ShaderManager").Gray))
+	end
+
+	if slot4.specialPic ~= "" then
+		slot6.qualitySprite:setTexture(slot4.specialPic .. ".png")
+	end
+
+	slot6.selectSprite:setVisible(slot3)
+
+	return 
+end
+slot0.onClickFasion = function (slot0, slot1)
+	if slot1.index == slot0.mSelectIndex then
+		return 
+	end
+
+	slot0.mSelectIndex = slot1.index
+
+	slot0.refreshFashion(slot0)
+
+	return 
+end
+slot0.onDress = function (slot0)
+	if not slot0.fashionList[slot0.mSelectIndex].isActive then
+		slot0.requestComposite(slot0)
+	else
+		slot0.requestDressUp(slot0)
+	end
+
+	return 
+end
+slot0.onPerviewSkill = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerFashionAttrLayer",
+		data = {
+			fashionList = slot0.fashionList
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	function slot1()
+		Utility.recharge({
+			chargeType = Enums.chargeType.eSkin,
+			price = slot0.mFashionGiftInfo.priceRMB,
+			productId = slot0.mGiftInfo.ProductId
+		})
+
+		return 
+	end
+
+	if not slot0.mGiftInfo.IsBuy then
+		if PlayerAttrObj:getPlayerAttrByName("IsShowNewFirstCharge") == 0 then
+			ui.showMessageBox({
+				titleText = TR("提示"),
+				text = TR("#258711时装礼包#45220d不能激活#dfc72a超值首充#45220d，是否确认继续购买？"),
+				msgBoxParams = {
+					cancelImage = "c_32.png",
+					okImage = "c_27.png",
+					cancelText = TR("确  定"),
+					okText = TR("超值首充")
+				},
+				okCallback = function (...)
+					LayerManager.showModuleLayer(ModuleSub.eNewFirstChager)
+
+					return 
+				end,
+				cancelCallback = function (...)
+					slot0()
+
+					return 
+				end
+			})
+		else
+			slot1()
+		end
+	elseif not slot0.mGiftInfo.IsReceive then
+		slot0.requestReward(slot0)
+	end
+
+	return 
+end
+slot0.requestFapInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFap",
+		moduleName = "Fashion",
+		successCallback = function (slot0)
+			slot1 = slot0.Fap or {}
+			slot2 = 0
+
+			for slot6, slot7 in ipairs(slot0.fashionList) do
+				if slot7.ifOpen and slot7.isActive then
+					slot2 = slot2 + (slot1[tostring(slot7.modelId)] or 0)
+				end
+			end
+
+			slot0.mFapLabel:setString(slot2)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestComposite = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GoodsUse",
+		moduleName = "Goods",
+		methodData = {
+			Utility.EMPTY_ENTITY_ID,
+			slot0.fashionList[slot0.mSelectIndex].debrisId,
+			GoodsModel.items[slot0.fashionList[slot0.mSelectIndex].debrisId].outputNeedNum
+		},
+		successCallback = function (slot0)
+			slot0.mDefultModelId = slot1.modelId
+
+			slot0:dealData()
+			slot0.mGridView:setItemNum(#slot0.fashionList)
+			slot0:refreshFashion()
+			slot0:requestFapInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDressUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ChangeModel",
+		moduleName = "Fashion",
+		methodData = {
+			slot0.fashionList[slot0.mSelectIndex].modelId
+		},
+		successCallback = function (slot0)
+			PlayerAttrObj:changeAttr({
+				FashionModelId = slot0.BaseInfo.CombatModelId
+			})
+			slot0.mGridView:setItemNum(#slot0.fashionList)
+			slot0:refreshFashion()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGiftInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "FashionGift",
+		successCallback = function (slot0)
+			if slot0.GiftInfo[1] and slot0.mFashionGiftInfo then
+				slot0.mEndTime = slot0.GiftInfo[1].EndTime
+				slot0.mGiftInfo = slot0.GiftInfo[1]
+
+				if not slot0.mGiftInfo.IsBuy then
+					slot0.mBuyBtn:setTitleText(TR("%s元购买", slot0.mFashionGiftInfo.priceRMB))
+				elseif slot0.mGiftInfo.IsBuy and not slot0.mGiftInfo.IsReceive then
+					slot0.mBuyBtn:setTitleText(TR("领 取"))
+				elseif slot0.mGiftInfo.IsReceive then
+					slot0.mBuyBtn:setTitleText(TR("已领取"))
+					slot0.mBuyBtn:setEnabled(false)
+				end
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "FashionGift",
+		methodData = {
+			slot0.mFashionGiftInfo.giftID
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("领取成功"))
+			PlayerAttrObj:changeAttr({
+				IsShowFashionGift = false
+			})
+
+			slot0.mGiftInfo = slot0.GiftInfo[1]
+
+			slot0:dealData()
+			slot0:requestFapInfo()
+			slot0.mGridView:setItemNum(#slot0.fashionList)
+			slot0:refreshFashion()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

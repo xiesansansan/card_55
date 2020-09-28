@@ -1,0 +1,159 @@
+require("battle.init")
+
+slot0 = require("battle.common.Const")
+slot1 = require("battle.managers.BattleManager")
+slot2 = require("battle.managers.StatisticsManager")
+slot3 = require("battle.managers.ReplayManager")
+slot5 = {
+	Init = function (slot0, slot1, slot2, slot3)
+		slot0.ctor(slot1, slot3)
+		slot0.initializeUnits()
+		slot0.initZhenfa()
+		slot1.new(slot2.record)
+
+		slot0.autoFight = {
+			[slot2.UnitGroup.ATTACKER] = true,
+			[slot2.UnitGroup.DEFENDER] = true
+		}
+
+		slot0.start()
+
+		slot3.opData = slot2
+
+		return 
+	end,
+	DoStep = function ()
+		slot0 = slot0.FrameTime
+		slot1 = os.time()
+		slot2 = 0
+
+		while true do
+			slot1.update(slot2.dt)
+			slot2.update(slot0)
+
+			if slot2.state == slot0.GameState.NEXT_WAVE then
+				slot2.updateNextWave()
+				slot2.start()
+			elseif slot3 == slot0.GameState.ATTACK_WIN or slot3 == slot0.GameState.ATTACK_LOSE or slot3 == slot0.GameState.COMPLETE then
+				return true, slot2
+			end
+
+			if 1 < os.time() - slot1 then
+				return false, slot2
+			end
+
+			slot2 = slot2 + 1
+		end
+
+		return false, slot2
+	end,
+	getResult = function ()
+		slot0.Result = (require("battle.common.LogicVersion").state == "battle.common.LogicVersion".GameState.ATTACK_WIN and true) or false
+		slot0.Heros = {}
+		slot0.Round = ({})["curRound"]
+		slot0.RandNum = seed
+
+		for slot4, slot5 in pairs(slot1.units) do
+			slot6 = slot5.order + (slot5.group - 1)*5
+
+			if slot5.isAlive(slot5) then
+				slot0.Heros[slot6] = {
+					modelId = slot5.heroId,
+					initHp = slot5.initHp,
+					curHp = slot5.attr.hp,
+					curAng = slot5.attr.mp,
+					totalHp = slot5.attr.eHp
+				}
+			else
+				slot0.Heros[slot6] = {
+					curAng = 0,
+					curHp = 0,
+					modelId = slot5.heroId,
+					initHp = slot5.initHp,
+					totalHp = slot5.attr.eHp
+				}
+			end
+		end
+
+		slot1 = slot3.getStatisticsData()
+
+		return slot0
+	end
+}
+
+return {
+	Init = function (slot0, slot1, slot2, slot3)
+		slot0.ctor(slot1, slot3)
+		slot0.initializeUnits()
+		slot0.initZhenfa()
+		slot1.new(slot2.record)
+
+		slot0.autoFight = {
+			[slot2.UnitGroup.ATTACKER] = true,
+			[slot2.UnitGroup.DEFENDER] = true
+		}
+
+		slot0.start()
+
+		slot3.opData = slot2
+
+		return 
+	end,
+	DoStep = function ()
+		slot0 = slot0.FrameTime
+		slot1 = os.time()
+		slot2 = 0
+
+		while true do
+			slot1.update(slot2.dt)
+			slot2.update(slot0)
+
+			if slot2.state == slot0.GameState.NEXT_WAVE then
+				slot2.updateNextWave()
+				slot2.start()
+			elseif slot3 == slot0.GameState.ATTACK_WIN or slot3 == slot0.GameState.ATTACK_LOSE or slot3 == slot0.GameState.COMPLETE then
+				return true, slot2
+			end
+
+			if 1 < os.time() - slot1 then
+				return false, slot2
+			end
+
+			slot2 = slot2 + 1
+		end
+
+		return false, slot2
+	end,
+	getResult = function ()
+		slot0.Result = (require("battle.common.LogicVersion").state == "battle.common.LogicVersion".GameState.ATTACK_WIN and true) or false
+		slot0.Heros = {}
+		slot0.Round = ({})["curRound"]
+		slot0.RandNum = seed
+
+		for slot4, slot5 in pairs(slot1.units) do
+			slot6 = slot5.order + (slot5.group - 1)*5
+
+			if slot5.isAlive(slot5) then
+				slot0.Heros[slot6] = {
+					modelId = slot5.heroId,
+					initHp = slot5.initHp,
+					curHp = slot5.attr.hp,
+					curAng = slot5.attr.mp,
+					totalHp = slot5.attr.eHp
+				}
+			else
+				slot0.Heros[slot6] = {
+					curAng = 0,
+					curHp = 0,
+					modelId = slot5.heroId,
+					initHp = slot5.initHp,
+					totalHp = slot5.attr.eHp
+				}
+			end
+		end
+
+		slot1 = slot3.getStatisticsData()
+
+		return slot0
+	end
+}

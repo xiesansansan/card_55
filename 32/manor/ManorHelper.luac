@@ -1,0 +1,417 @@
+ManorHelper = {
+	homeFreeNum = 0,
+	queueNum = 0,
+	isDouble = 0,
+	extraAdd = "",
+	updaeTime = 0,
+	vitLimitNum = 0,
+	goldLimitNum = 0,
+	haveNewLandLv = 0,
+	lv = 1,
+	canOpenList = {},
+	openInfo = {},
+	openList = {},
+	rewardInfo = {},
+	landEnumStatus = {
+		building = 1,
+		idleing = 0,
+		lvUping = 2,
+		procing = 3
+	},
+	ProcEnumStatus = {
+		storage = 1,
+		notPuduce = 0,
+		choosePudece = 3,
+		autoPuduce = 2
+	},
+	MainLandId = 1,
+	landTimeStatus = {
+		unDig = 1,
+		preView = 4,
+		notUse = 0,
+		inUse = 3,
+		unBuild = 2
+	},
+	effectType = {
+		buildIng = 2,
+		buildStart = 0,
+		buildEnd = 1
+	},
+	Events = {
+		eUnKownEvent = "eUnKownEvent",
+		eUpdateMainManorLayer = "eUpdateMainManorLayer",
+		eUpdateSubManorLayer = "eUpdateSubManorLayer",
+		eUpdatePartLands = "eUpdatePartLands",
+		eHaveFreeSpeedUp = "eHaveFreeSpeedUp",
+		ePlayEffectToLand = "ePlayEffectToLand"
+	},
+	resetData = function (slot0)
+		slot0.updaeTime = 0
+		slot0.isDouble = 0
+		slot0.extraAdd = ""
+		slot0.canOpenList = {}
+		slot0.openInfo = {}
+		slot0.queueNum = 0
+		slot0.openList = {}
+		slot0.lv = 1
+		slot0.haveNewLandLv = 0
+		slot0.homeFreeNum = 0
+		slot0.goldLimitNum = 0
+		slot0.vitLimitNum = 0
+		slot0.rewardInfo = {}
+
+		return 
+	end,
+	updateManorInfo = function (slot0, slot1, slot2)
+		if slot2 then
+			slot0.resetData(slot0)
+		end
+
+		slot0.isDouble = slot1.IsDouble
+		slot0.extraAdd = slot1.ExtraAdd
+		slot0.canOpenList = slot1.CanOpenList
+		slot0.openInfo = slot1.OpenInfo
+		slot0.queueNum = slot1.QueueNum
+		slot0.openList = slot1.OpenList
+		slot0.lv = slot1.Lv
+		slot0.homeFreeNum = slot1.HomeFreeNum
+		slot0.goldLimitNum = slot1.GoldLimitNum
+		slot0.vitLimitNum = slot1.VitLimitNum
+		slot0.rewardInfo = slot1.RewardInfo
+		slot4 = 0
+		slot5 = TerritoryMainbuildConfig.items[slot0.lv].landNum
+
+		for slot9 = slot0.lv + 1, TerritoryMainbuildConfig.items_count, 1 do
+			if slot3 < TerritoryMainbuildConfig.items[slot9].landNum then
+				slot4 = slot9
+
+				break
+			end
+		end
+
+		slot0.haveNewLandLv = slot4
+
+		slot0.testMyFunc(slot0)
+
+		return 
+	end,
+	testMyFunc = function (slot0)
+		return 
+	end
+}
+ManorHelper.getInitJumpLandId = function (slot0)
+	if next(clone(slot0.canOpenList)) == nil then
+		return ManorHelper.MainLandId
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	return slot1[1]
+end
+ManorHelper.getLandInfoByLandId = function (slot0, slot1)
+	slot2 = {
+		landModel = clone(TerritoryLandModel.items[slot1])
+	}
+	slot3 = {
+		status = ManorHelper.landTimeStatus.notUse,
+		opData = {}
+	}
+
+	if slot0.openInfo[tostring(slot1)] then
+		slot3.status = ManorHelper.landTimeStatus.inUse
+		slot3.opData = clone(slot0.openInfo[tostring(slot1)])
+	end
+
+	for slot7, slot8 in ipairs(slot0.canOpenList) do
+		if slot1 == slot8 then
+			slot3.status = ManorHelper.landTimeStatus.unDig
+
+			break
+		end
+	end
+
+	for slot7, slot8 in ipairs(slot0.openList) do
+		if slot1 == slot8 then
+			slot3.status = ManorHelper.landTimeStatus.unBuild
+
+			break
+		end
+	end
+
+	if 0 < slot0.haveNewLandLv then
+		slot5 = TerritoryMainbuildConfig.items[slot0.haveNewLandLv].landNum
+
+		if TerritoryMainbuildConfig.items[slot0.lv].landNum < tonumber(slot1) - 1 and tonumber(slot1) - 1 <= slot5 then
+			slot3.status = ManorHelper.landTimeStatus.preView
+		end
+	end
+
+	slot2.landStautus = slot3
+
+	return slot2
+end
+ManorHelper.getBulidProcStatus = function (slot0, slot1)
+	if not clone(slot0.openInfo[tostring(slot1)]) then
+		assert(false, "不正确的LandID")
+
+		return 
+	end
+
+	if TerritoryBuildModel.items[slot2.Type].outputType ~= ManorHelper.ProcEnumStatus.choosePudece then
+		assert(false, "不是主动生产的建筑")
+
+		return 
+	end
+
+	if slot2.IsRunning then
+		return 1
+	elseif 0 < slot2.HeroId or 0 < slot2.OutputId then
+		return 2
+	else
+		return 0
+	end
+
+	return 
+end
+ManorHelper.setTestData = function (slot0)
+	return 
+end
+ManorHelper.jumpToEquipMain = function (slot0)
+	slot2 = false
+	slot3 = {}
+	slot4 = false
+
+	for slot8, slot9 in ipairs(slot1) do
+		if slot0.getNextModelId(slot0, slot9.EquipModelId, slot9.PositionId) and Utility.analysisStrResList(EquipModel.items[slot10].getUseStr)[1].num <= Resource.getCount(Utility.analysisStrResList(EquipModel.items[slot10].getUseStr)[1].resourceId) then
+			slot2 = true
+
+			if slot9.EquipModelId == 0 then
+				slot4 = true
+			end
+		end
+	end
+
+	slot5 = (slot4 and TR("有可打造的装备是否前往打造？")) or TR("有可升品的装备是否前往升品？")
+
+	if slot2 then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = slot5,
+			okText = TR("前 往"),
+			okCallback = function ()
+				LayerManager.showModuleLayer(ModuleSub.ePosition)
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	end
+
+	return 
+end
+ManorHelper.getNextModelId = function (slot0, slot1, slot2)
+	slot3 = nil
+	slot3 = (slot1 ~= 0 or 0) and Resource.getModelInfo(slot1).quality
+	slot4 = {}
+	slot5 = nil
+
+	for slot9, slot10 in pairs(EquipModel.items) do
+		if slot3 < slot10.quality and slot10.getUseStr ~= "" and slot10.partId == slot2 then
+			table.insert(slot4, slot10)
+		end
+	end
+
+	slot6 = 0
+
+	for slot10, slot11 in ipairs(slot4) do
+		slot6 = math.max(slot6, slot11.quality)
+	end
+
+	slot7 = slot6
+
+	for slot11, slot12 in ipairs(slot4) do
+		slot7 = math.min(slot7, slot12.quality)
+	end
+
+	for slot11, slot12 in ipairs(slot4) do
+		if slot12.quality == slot7 then
+			slot5 = slot12.modelId
+		end
+	end
+
+	return slot5
+end
+ManorHelper.setLandInfoByLandId = function (slot0, slot1, slot2)
+	slot0.openInfo[tostring(slot1)] = slot2
+
+	return 
+end
+ManorHelper.getTestData = function (slot0)
+	return 
+end
+ManorHelper.getNextUnLockLandInfo = function (slot0)
+	slot1 = {}
+	slot3 = 1
+	slot4 = TerritoryMainbuildConfig.items[slot0.lv]
+
+	for slot8 = slot0.lv + 1, TerritoryMainbuildConfig.items_count, 1 do
+		if slot2 < TerritoryMainbuildConfig.items[slot8].landNum then
+			slot3 = slot8
+			slot4 = slot9.landNum
+
+			break
+		end
+	end
+
+	if slot2 < slot4 then
+		for slot8 = slot2, slot4, 1 do
+			table.insert(slot1, {
+				landId = slot8,
+				unLockLv = slot3
+			})
+		end
+	end
+
+	return slot1
+end
+ManorHelper.getTrainHeroByRule = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(HeroObj:getSortList()) do
+		slot8 = HeroObj:getItem(slot6)
+		slot9 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+		if ManorHelper:isHeroTrainIng(slot6) == 0 and slot8.Lv < slot9 then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		slot4 = HeroObj:getItem(slot0).Fap
+		slot5 = HeroObj:getItem(slot1).Fap
+		slot8 = HeroObj.getItem(slot0).Lv
+		slot9 = HeroObj.getItem(slot1).Lv
+
+		if HeroModel.items[slot0].quality ~= HeroModel.items[slot1].quality then
+			return slot7 < slot6
+		elseif slot8 ~= slot9 then
+			return slot8 < slot9
+		elseif slot4 ~= slot5 then
+			return slot5 < slot4
+		else
+			return slot1 < slot0
+		end
+
+		return 
+	end)
+
+	if 0 < #slot1 then
+		return slot1[1]
+	else
+		return 0
+	end
+
+	return 
+end
+ManorHelper.getIdleStatusHero = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(HeroObj:getSortList()) do
+		if ManorHelper:isHeroTrainIng(slot6) == 0 then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		slot4 = HeroObj:getItem(slot0).Fap
+		slot5 = HeroObj:getItem(slot1).Fap
+		slot6 = HeroModel.items[slot0].quality
+		slot7 = HeroModel.items[slot1].quality
+
+		if HeroObj.getItem(slot0).TrainLv ~= HeroObj.getItem(slot1).TrainLv then
+			return slot9 < slot8
+		elseif slot4 ~= slot5 then
+			if 15 <= slot6 and 15 <= slot7 then
+				return slot5 < slot4
+			elseif slot6 ~= slot7 then
+				return slot7 < slot6
+			end
+
+			return slot5 < slot4
+		elseif slot6 ~= slot7 then
+			return slot7 < slot6
+		else
+			return slot1 < slot0
+		end
+
+		return 
+	end)
+
+	if 0 < #slot1 then
+		return slot1[1]
+	else
+		return 0
+	end
+
+	return 
+end
+ManorHelper.isHeroTrainIng = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.openInfo) do
+		if slot7.HeroId == slot1 then
+			if slot7.Type == 2 then
+				slot2 = 2
+
+				break
+			end
+
+			if slot7.Type == 3 then
+				slot2 = 1
+			end
+
+			break
+		end
+	end
+
+	return slot2
+end
+ManorHelper.getBuildNumByType = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.openInfo) do
+		if slot7.Type == slot1 then
+			slot2 = slot2 + 1
+		end
+	end
+
+	return slot2
+end
+ManorHelper.getMainManorLandInfo = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(TerritoryLandModel.items) do
+		if slot6.buildModelId == 1 then
+			slot1.landInfo = clone(slot6)
+
+			break
+		end
+	end
+
+	return slot1
+end
+ManorHelper.getTotalLv = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.openInfo) do
+		slot1 = slot1 + slot6.Lv
+	end
+
+	return slot1
+end
+
+return 

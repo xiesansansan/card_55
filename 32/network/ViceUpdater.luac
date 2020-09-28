@@ -1,0 +1,73 @@
+slot0 = nil
+
+return {
+	ok = false,
+	running = false,
+	start = function (slot0)
+		if slot0.ok then
+			return 
+		end
+
+		if slot0.running and slot0.am then
+			return 
+		end
+
+		slot0.running = true
+		slot0.am = require("network.AssetsMgr").new()
+
+		slot0.am:watchViceUpdating(function ()
+			slot0.am:release()
+
+			slot0.am.release.am = nil
+			slot0.am.release.ok = true
+			slot0.am.release.running = nil
+
+			return 
+		end)
+		slot0.am:startViceUpdating(slot0)
+
+		return 
+	end,
+	stop = function ()
+		if slot0.am then
+			slot0.am:stopViceUpdating()
+
+			slot0.am.stopViceUpdating.am = nil
+		end
+
+		return 
+	end,
+	priority = function (slot0, slot1)
+		if not slot0.am then
+			slot0.start()
+		end
+
+		if slot0.ok then
+			return slot1(true)
+		end
+
+		slot0.am:priortyFile(slot0, slot1)
+
+		return 
+	end,
+	watch = function (slot0)
+		if not slot0.am then
+			slot0.start()
+		end
+
+		if slot0.ok then
+			return slot0()
+		end
+
+		slot0.am:watchViceUpdating(slot0)
+
+		return 
+	end,
+	isPackDone = function (slot0)
+		if not slot0.am then
+			slot0.am = require("network.AssetsMgr").new()
+		end
+
+		return slot0.am:IsPackDownload(slot0)
+	end
+}

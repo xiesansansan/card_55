@@ -1,0 +1,265 @@
+slot0 = class("SystemSettingLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseBtn",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("系统设置")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					pos = {
+						x = 256.91,
+						y = 181.81
+					},
+					size = {
+						width = 448,
+						height = 204
+					}
+				},
+				children = {}
+			},
+			{
+				name = "msgCheck",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					childName = "msgCheck",
+					selectImage = "c_44.png",
+					pos = {
+						x = 294.2,
+						y = 241.34
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -56.76,
+								y = 16.82
+							},
+							text = TR("消息推送")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "musicCheck",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					childName = "musicCheck",
+					selectImage = "c_44.png",
+					pos = {
+						x = 294.2,
+						y = 197.34
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -56.76,
+								y = 16.82
+							},
+							text = TR("关闭音乐")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "effCheck",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					childName = "effCheck",
+					selectImage = "c_44.png",
+					pos = {
+						x = 294.45,
+						y = 153.21
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -56.76,
+								y = 15.82
+							},
+							text = TR("关闭音效")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "emailCheck",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					childName = "emailCheck",
+					selectImage = "c_44.png",
+					pos = {
+						x = 294.79,
+						y = 110.03
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -56.76,
+								y = 16.82
+							},
+							text = TR("帮派邮件")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "sureBtn",
+				cType = "Button",
+				params = {
+					childName = "sureBtn",
+					image = "c_19.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 257.28,
+						y = 53.35
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = LocalData:getSetting()
+
+	slot0.effCheck:setSelected(not slot1.effectEnabled)
+	slot0.musicCheck:setSelected(not slot1.musicEnabled)
+	slot0.msgCheck:setSelected(not slot1.pushEnabled)
+	slot0.requestGetEmailConfig(slot0)
+
+	slot0.effCheck.mClickAction = function (slot0)
+		LocalData:setEffectEnabled(not slot0.isSelected(slot0))
+
+		return 
+	end
+	slot0.musicCheck.mClickAction = function (slot0)
+		LocalData:setMusicEnabled(not slot0.isSelected(slot0))
+
+		if not slot0.isSelected(slot0) then
+			MqAudio.playMusic()
+		else
+			MqAudio.stopMusic()
+		end
+
+		return 
+	end
+	slot0.msgCheck.mClickAction = function (slot0)
+		LocalData:setPushEnabled(not slot0.isSelected(slot0))
+
+		return 
+	end
+	slot0.emailCheck.mClickAction = function (slot0)
+		slot0:requestChangeGuildEmailConfig(slot0.isSelected(slot0))
+
+		return 
+	end
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestChangeGuildEmailConfig = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ChangeGuildEmailConfig",
+		moduleName = "PlayerEmail",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetEmailConfig = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEmailConfig",
+		moduleName = "PlayerEmail",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.emailCheck:setSelected(slot0.ReceiveGuild)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

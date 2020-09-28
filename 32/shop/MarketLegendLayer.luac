@@ -1,0 +1,512 @@
+slot0 = class("MarketLegendLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChangedAction",
+					normalImage = "sc_24.png",
+					isNeedOutline = false,
+					lightedImage = "sc_23.png",
+					direction = false,
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = -274.33,
+						y = 211.99
+					},
+					selectTitleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					size = {
+						width = 700,
+						height = 45
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 103.14,
+						y = -10.51
+					},
+					size = {
+						width = 768.07,
+						height = 411.18
+					}
+				},
+				children = {
+					{
+						name = "goodsNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled43-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled40-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled41-text",
+								name = "nameText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 139.02,
+								y = 165.57
+							}
+						},
+						children = {
+							{
+								name = "untitled67",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0.11,
+										y = 107.59
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0.37,
+										y = -5.81
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = -1,
+										y = 26.48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "nameLabel",
+									text = "Label",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = -0.42,
+										y = 92.32
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled43",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "btn",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 0.05,
+										y = -83.32
+									}
+								},
+								children = {
+									{
+										name = "untitled42",
+										cType = "ResLabel",
+										params = {
+											fontSize = 20,
+											num = 5555,
+											modelId = 1113,
+											childName = "costLabel",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -34.84,
+												y = 0.65
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled44",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "progressLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = -0.27,
+										y = -27.73
+									},
+									text = TR("数量")
+								},
+								children = {}
+							},
+							{
+								name = "untitled70",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "limitLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 2.08,
+										y = -52.04
+									},
+									text = TR("不限购")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled69",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled72",
+				cType = "Sprite",
+				params = {
+					image = "sc_17.png",
+					pos = {
+						x = 104,
+						y = 199
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTopResourceNode = slot1.topResourceNode
+	slot0.currTag = 1
+	slot0.mBuyInfo = {}
+	slot0.mDataList = {}
+	slot0.mBuyRecord = {}
+	slot0.tabConfigs = {
+		{
+			tag = 1,
+			title = TR("掌")
+		},
+		{
+			tag = 2,
+			title = TR("剑")
+		},
+		{
+			tag = 3,
+			title = TR("力")
+		},
+		{
+			tag = 4,
+			title = TR("气")
+		},
+		{
+			tag = 5,
+			title = TR("技")
+		}
+	}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "TabView" then
+			slot1.btnInfos = slot0.tabConfigs
+		end
+
+		return 
+	end)
+
+	if RedDotObj:isValid(ModuleSub.eMarketFeats) then
+		RedDotObj:seeRedDot("MarketFeats", "1103")
+	end
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mBuyInfo.SellGoodsIdStr) do
+		slot1[slot6] = slot6
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot1[slot7.ID] then
+			slot0.mDataList[slot7.pageNum] = slot0.mDataList[slot7.pageNum] or {}
+
+			table.insert(slot0.mDataList[slot7.pageNum], slot7)
+		end
+	end
+
+	return 
+end
+slot0.refreshBuyInfo = function (slot0)
+	slot0.mBuyRecord = {
+		WeeklyBuy = {}
+	}
+
+	for slot4, slot5 in pairs(slot0.mBuyInfo.ShopWeekBuyNum) do
+		slot0.mBuyRecord.WeeklyBuy[tonumber(slot4)] = tonumber(slot5)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	slot0.mGridView:setItemNum(#slot0.mDataList[slot0.currTag])
+
+	if slot1 then
+		slot0.mGridView:jumpToTop()
+	end
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if not next(slot0.mBuyInfo) then
+		return 
+	end
+
+	slot8 = slot0.createLayoutTemplateNode(slot0, "goodsNode", {
+		goodId = slot2,
+		cardInfo = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic,
+				Enums.CardShowAttr.eBorder
+			}
+		},
+		nameText = Resource.getName(Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].goodStr)[1].resourceId)
+	})
+
+	slot1.addChild(slot1, slot8)
+	slot8.setPosition(slot8, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot8.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].goodStr)[1].resourceId)))
+	slot8.btn.costLabel:setType(slot5.resourceId)
+	slot8.btn.costLabel:setString(slot5.num, (Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].buyNeedStr)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.mDataList[slot0.currTag][slot2].buyNeedStr)[1].resourceId) and cc.c3b(98, 127, 34)) or cc.c3b(211, 22, 22))
+
+	slot10 = ""
+	slot11 = ""
+	slot12 = Resource.getCount(slot4.resourceId)
+	slot13 = GoodsModel.items[slot4.resourceId] or {}
+
+	if 0 < (slot13.outputModelID or 0) then
+		if HeroObj:getItem(slot14) and next(slot15) then
+			if HeroStarRelation.items[slot14][slot15.Star + 1] == nil then
+				slot10 = TR("星级已满")
+				slot11 = slot12
+			else
+				slot10 = TR("升星")
+				slot11 = string.format("%s/%s", slot12, slot16.needDebrisNum)
+			end
+
+			slot8.progressLabel:setString(string.format("%s: %s", slot10, slot11))
+		else
+			slot8.progressLabel:setString(string.format("%s: %s", TR("合成"), string.format("%s/%s", slot12, slot13.outputNeedNum)))
+		end
+	else
+		slot8.progressLabel:setString(TR("已拥有: %s", Utility.numberWithUnit(slot12)))
+	end
+
+	if 0 < slot3.weeklyBuyNum then
+		slot8.limitLabel:setString(TR("本周次数：%s", (slot0.mBuyRecord.WeeklyBuy[slot3.ID] and math.max(slot3.weeklyBuyNum - slot0.mBuyRecord.WeeklyBuy[slot3.ID], 0)) or slot3.weeklyBuyNum))
+	end
+
+	if 0 < slot3.weeklyBuyNum and slot0.mBuyRecord.WeeklyBuy[slot3.ID] and slot3.weeklyBuyNum <= slot0.mBuyRecord.WeeklyBuy[slot3.ID] then
+		slot8.btn:setEnabled(false)
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < slot3.buyNeedLv then
+		slot8.btn:setTitleText(TR("%s级购买", slot3.buyNeedLv))
+		slot8.btn:setEnabled(false)
+	end
+
+	slot3.needResourceId = slot5.resourceId
+	slot3.needNum = slot5.num
+
+	return 
+end
+slot0.onTabChangedAction = function (slot0, slot1)
+	if not next(slot0.mDataList) then
+		return 
+	end
+
+	slot0.currTag = slot1
+
+	slot0.refreshUI(slot0, true)
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	if slot0.mDataList[slot0.currTag][slot1.goodId] == nil then
+		return 
+	end
+
+	if Resource.isEnough(slot2.needResourceId, slot2.needNum) == false then
+		return 
+	end
+
+	slot0.requestLegendRecruit(slot0, slot2.ID)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetShopInfo",
+		moduleName = "LegendRecruit",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mBuyInfo = slot0
+
+			slot0:refreshBuyInfo()
+			slot0:dealWithData()
+			slot0:refreshUI(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLegendRecruit = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Buy",
+		moduleName = "LegendRecruit",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mBuyInfo = slot0
+
+			slot0:refreshBuyInfo()
+			slot0:refreshUI(false)
+			slot0.mTopResourceNode:resetThirdBtn(3, 16050169)
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashView(TR("购买成功"))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

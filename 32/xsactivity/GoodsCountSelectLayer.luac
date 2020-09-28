@@ -1,0 +1,155 @@
+slot0 = class("GoodsCountSelectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.5,
+						y = 219
+					},
+					size = {
+						width = 457.52,
+						height = 205
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGoodsCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 257.5,
+						y = 265.16
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPriceLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.5,
+						y = 100
+					},
+					text = TR("价格")
+				},
+				children = {}
+			},
+			{
+				name = "mCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onChangeCount",
+					currSelCount = 1,
+					pos = {
+						x = 257.5,
+						y = 155
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "buyBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onOkCallback",
+					pos = {
+						x = 257.5,
+						y = 59
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.goodsInfo = slot1.goodsInfo
+	slot0.coinName = slot1.coinName
+	slot0.price = slot1.price
+	slot0.maxCount = slot1.maxCount
+	slot0.operaCallback = slot1.operaCallback
+	slot0.mCurCount = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mGoodsCard:setCardData(slot0.goodsInfo, {
+		Enums.CardShowAttr.eNum,
+		Enums.CardShowAttr.eName
+	})
+
+	if slot0.coinName and slot0.price then
+		slot0.mPriceLabel:setString(string.format("%s: %s", slot0.coinName, slot0.price*slot0.mCurCount))
+	else
+		slot0.mPriceLabel:setString("")
+	end
+
+	slot0.mCountView:setMaxCount(slot0.maxCount)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if slot0.coinName and slot0.price then
+		slot0.mPriceLabel:setString(string.format("%s: %s", slot0.coinName, slot0.price*slot0.mCurCount))
+	else
+		slot0.mPriceLabel:setString("")
+	end
+
+	return 
+end
+slot0.onChangeCount = function (slot0, slot1)
+	slot0.mCurCount = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onOkCallback = function (slot0)
+	if slot0.operaCallback then
+		slot0.operaCallback(slot0.mCurCount)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,351 @@
+slot0 = class("DlgStarLvRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 503,
+				height = 454
+			},
+			titleText = TR("星级奖励")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 252.15,
+						y = 238.27
+					},
+					size = {
+						width = 458,
+						height = 354
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 22.82,
+						y = 66.37
+					},
+					size = {
+						width = 460.14,
+						height = 343.45
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled5-text",
+								name = "titleLabel",
+								type = "string"
+							},
+							{
+								value = "untitled10-tag",
+								name = "tag",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 460.14,
+								height = 114
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 228.9,
+										y = 55.99
+									},
+									size = {
+										width = 458,
+										height = 118
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "Label",
+								params = {
+									imageScale = 0.95,
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 9.54,
+										y = 97.12
+									},
+									text = TR("本章节获得：0{c_5.png}")
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "ListView",
+								params = {
+									childName = "rewardList",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 8.79,
+										y = 5.31
+									},
+									size = {
+										width = 316.12,
+										height = 76.59
+									}
+								},
+								children = {
+									{
+										name = "rewardItem",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled9-initParams",
+												name = "head",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = -0.44,
+												y = 0.37
+											},
+											size = {
+												width = 76.88,
+												height = 76.02
+											}
+										},
+										children = {
+											{
+												name = "untitled9",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 38.06,
+														y = 37.39
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onBoxBtnClickAction",
+									hide = true,
+									image = "c_27.png",
+									childName = "getBtn",
+									pos = {
+										x = 383.75,
+										y = 44.28
+									},
+									titleText = TR("领取")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									childName = "receivedSprite",
+									image = "c_55.png",
+									hide = true,
+									pos = {
+										x = 384.15,
+										y = 42.08
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									childName = "canDrawLabel",
+									hide = true,
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 385.56,
+										y = 43.67
+									},
+									text = TR("未满足")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mScoreLabel",
+				cType = "Label",
+				params = {
+					imageScale = 0.95,
+					isRichText = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 252.83,
+						y = 44.07
+					},
+					text = TR("当前获得：0{c_5.png}")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mStarRewardList = slot1.starRewardList
+	slot0.mOwnedStarNum = slot1.ownedStarNum
+	slot0.mReceiveList = slot1.receiveList
+	slot0.mChapterId = slot1.chapterId
+	slot0.mReceiveCallBack = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mScoreLabel:setString(string.format("当前获得：%d{c_5.png}", slot0.mOwnedStarNum))
+	slot0.refreshProViews(slot0)
+
+	return 
+end
+slot0.refreshProViews = function (slot0)
+	slot0.mListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mStarRewardList) do
+		slot0.mListView:pushBackCustomItem(slot7)
+
+		for slot12, slot13 in pairs(slot8) do
+			slot7.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardItem", {
+				head = {
+					cardInfo = {
+						modelId = slot13.resourceId,
+						num = slot13.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		if table.indexof(slot0.mReceiveList, slot6.needStarNum) ~= false then
+			slot7.receivedSprite:setVisible(true)
+		elseif slot6.needStarNum <= slot0.mOwnedStarNum then
+			slot7.getBtn:setVisible(true)
+		else
+			slot7.canDrawLabel:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.onBoxBtnClickAction = function (slot0, slot1)
+	if slot0.mStarRewardList[slot1.tag].needStarNum <= slot0.mOwnedStarNum and table.indexof(slot0.mReceiveList, slot2.needStarNum) == false then
+		slot0.requestGetEliteChapterReward(slot0, slot2.needStarNum)
+	end
+
+	return 
+end
+slot0.requestGetEliteChapterReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEliteChapterReward",
+		moduleName = "Elite",
+		methodData = {
+			slot0.mChapterId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mReceiveList = {}
+
+			for slot5, slot6 in ipairs(string.splitBySep(slot1, ",")) do
+				table.insert(slot0.mReceiveList, tonumber(slot6))
+			end
+
+			if slot0.mReceiveCallBack then
+				slot0.mReceiveCallBack(slot0.mReceiveList)
+			end
+
+			slot0:refreshProViews()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

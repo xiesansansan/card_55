@@ -1,0 +1,65 @@
+slot0 = class("DlgHegemonyChangedScoreLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "xyyz_56.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 376,
+						y = 193
+					},
+					text = TR("在您离开这段时间内，您的积分变化为：")
+				},
+				children = {}
+			},
+			{
+				name = "mCurScoreLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					isRichText = true,
+					text = "1000",
+					pos = {
+						x = 376,
+						y = 120
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurScore = slot1.curScore or 0
+	slot0.mChangeScore = slot1.changeScore or 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mCurScoreLabel:setString(tostring(slot0.mCurScore) .. "  " .. ((0 < slot0.mChangeScore and "#8ba857") or "#c04141") .. ((0 < slot0.mChangeScore and "+") or "-") .. math.abs(slot0.mChangeScore))
+
+	return 
+end
+
+return slot0

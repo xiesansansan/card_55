@@ -1,0 +1,1592 @@
+slot0 = class("CityWarHelperLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionCallback",
+			closeAction = "onCloseLayerCallback",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮战挂机")
+		},
+		children = {
+			{
+				name = "untitled143",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 423.28,
+						y = 260.67
+					},
+					size = {
+						width = 800,
+						height = 460
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled126",
+				cType = "Label",
+				params = {
+					fontSize = 23,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 384,
+						y = 471
+					},
+					text = TR("选择出战队伍")
+				},
+				children = {
+					{
+						name = "teamNumLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "0/5",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 153.94,
+								y = 10.88
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled128",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -64.59,
+								y = 11
+							},
+							size = {
+								width = 105.05,
+								height = -13.86
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled129",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 249,
+								y = 11
+							},
+							size = {
+								width = 105.05,
+								height = -13.86
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled114",
+				cType = "Label",
+				params = {
+					fontSize = 23,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 164.5
+					},
+					text = TR("选择出战次数")
+				},
+				children = {
+					{
+						name = "untitled124",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -64.59,
+								y = 11
+							},
+							size = {
+								width = 105.05,
+								height = -13.86
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled123",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 204,
+								y = 11
+							},
+							size = {
+								width = 105.05,
+								height = -13.86
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "teamList",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 49.84,
+						y = 169.89
+					},
+					size = {
+						width = 740,
+						height = 260
+					}
+				},
+				children = {
+					{
+						name = "teamItem",
+						cType = "Layout",
+						custom = {
+							{
+								value = "teamIdLabel-text",
+								name = "teamIndex",
+								type = "string"
+							},
+							{
+								value = "inHookBtn-isSelect",
+								name = "isSelected",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 49.06,
+								y = 7.02
+							},
+							size = {
+								width = 180,
+								height = 260
+							}
+						},
+						children = {
+							{
+								name = "editBtn",
+								cType = "Button",
+								params = {
+									fontSize = 28,
+									clickAction = "onSetTeamsCallback",
+									titleImage = "jh_55.png",
+									pressedAction = false,
+									image = "jh_56.png",
+									titleText = "",
+									pos = {
+										x = 90,
+										y = 130
+									},
+									titleColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									}
+								},
+								children = {
+									{
+										name = "untitled148",
+										cType = "Sprite",
+										params = {
+											scale = 1.2,
+											image = "c_43.png",
+											pos = {
+												x = 56.63,
+												y = 89.58
+											}
+										},
+										children = {}
+									},
+									{
+										name = "contentPane",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_pure.png",
+											pos = {
+												x = -0.39,
+												y = -0.39
+											},
+											size = {
+												width = 178,
+												height = 248
+											}
+										},
+										children = {
+											{
+												name = "teamIdLabel",
+												cType = "Label",
+												params = {
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 64.93,
+														y = 211.56
+													},
+													text = TR("队伍1")
+												},
+												children = {}
+											},
+											{
+												name = "untitled108",
+												cType = "CardNode",
+												custom = {
+													{
+														value = 1,
+														name = "index",
+														type = "integer"
+													}
+												},
+												params = {
+													scale = 0.5,
+													allowClick = false,
+													pos = {
+														x = 116.65,
+														y = 162.82
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled107",
+												cType = "CardNode",
+												custom = {
+													{
+														value = 2,
+														name = "index",
+														type = "integer"
+													}
+												},
+												params = {
+													scale = 0.5,
+													allowClick = false,
+													pos = {
+														x = 63.8,
+														y = 162.43
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled111",
+												cType = "CardNode",
+												custom = {
+													{
+														value = 3,
+														name = "index",
+														type = "integer"
+													}
+												},
+												params = {
+													scale = 0.5,
+													allowClick = false,
+													pos = {
+														x = 136.65,
+														y = 114.82
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled110",
+												cType = "CardNode",
+												custom = {
+													{
+														value = 4,
+														name = "index",
+														type = "integer"
+													}
+												},
+												params = {
+													scale = 0.5,
+													allowClick = false,
+													pos = {
+														x = 89.65,
+														y = 114.82
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled109",
+												cType = "CardNode",
+												custom = {
+													{
+														value = 5,
+														name = "index",
+														type = "integer"
+													}
+												},
+												params = {
+													scale = 0.5,
+													allowClick = false,
+													pos = {
+														x = 42.65,
+														y = 114.82
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled147",
+												cType = "Sprite",
+												params = {
+													image = "jh_58.png",
+													pos = {
+														x = 90.62,
+														y = 70.99
+													}
+												},
+												children = {}
+											},
+											{
+												name = "fapLabel",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													text = "0",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 82.06,
+														y = 71.46
+													}
+												},
+												children = {
+													{
+														name = "untitled113",
+														cType = "Sprite",
+														params = {
+															scale = 0.8,
+															image = "c_80.png",
+															pos = {
+																x = -33,
+																y = 9
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "countLabel",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													text = "",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 24,
+														y = 40
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "selectBtn",
+										cType = "Sprite",
+										params = {
+											image = "c_44.png",
+											hide = true,
+											scale = 1.2,
+											pos = {
+												x = 67,
+												y = 99.08
+											}
+										},
+										children = {}
+									},
+									{
+										name = "lvLabel",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 1,
+												y = -3.32
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "teamState",
+								cType = "BadgeText",
+								params = {
+									fontRotation = -45,
+									image = "c_88.png",
+									anchor = {
+										x = 1,
+										y = 1
+									},
+									fontPos = {
+										x = 20,
+										y = 35
+									},
+									pos = {
+										x = 68.79,
+										y = 239.76
+									},
+									text = TR("推荐")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					delayInit = true,
+					changeCallback = "onSelectChangeCallback",
+					currSelCount = 1,
+					btnSize = {
+						width = 66,
+						height = 36
+					},
+					pos = {
+						x = 421.95,
+						y = 112.77
+					},
+					size = {
+						width = 390,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "guajiNoticeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					align = 1,
+					isRichText = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 438
+					},
+					text = TR("帮战挂机会自动帮助玩家攻打随机门派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled55",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 346.85,
+						y = 59.93
+					},
+					text = TR("预计总消耗：")
+				},
+				children = {}
+			},
+			{
+				name = "fightCostLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "{db_1114.png} 0/0",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 411.24,
+						y = 63.9
+					}
+				},
+				children = {}
+			},
+			{
+				name = "defaultBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onHighSetClick",
+					pos = {
+						x = 124.62,
+						y = 132.94
+					},
+					titleText = TR("高级设置")
+				},
+				children = {}
+			},
+			{
+				name = "untitled151",
+				cType = "Sprite",
+				params = {
+					image = "c_4.png",
+					pos = {
+						x = 45.94,
+						y = 303.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled150",
+				cType = "Sprite",
+				params = {
+					reverse = 1,
+					image = "c_4.png",
+					pos = {
+						x = 799,
+						y = 301.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gogoBtn",
+				cType = "Button",
+				params = {
+					image = "jh_57.png",
+					clickAction = "onGogogoCallback",
+					pos = {
+						x = 714.57,
+						y = 110.07
+					}
+				},
+				children = {
+					{
+						name = "untitled121",
+						cType = "Label",
+						params = {
+							hide = true,
+							childName = "actionNode",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -30.19,
+								y = -58.33
+							},
+							text = TR("挂机中")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "moveFromBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onRemoveFromCampCallback",
+					pos = {
+						x = 124.86,
+						y = 74.54
+					},
+					titleText = TR("调出大营")
+				},
+				children = {}
+			},
+			{
+				name = "untitled142",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleClick",
+					pos = {
+						x = 34.97,
+						y = 491.95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "effect1",
+				cType = "Effect",
+				custom = {
+					{
+						value = 1,
+						name = "effectTag",
+						type = "integer"
+					}
+				},
+				params = {
+					dataFile = "effect_ui_guangjizhushou_tishikuang",
+					hide = true,
+					animation = "da",
+					pos = {
+						x = 425.5,
+						y = 269.16
+					}
+				},
+				children = {}
+			},
+			{
+				name = "effect2",
+				cType = "Effect",
+				custom = {
+					{
+						value = 2,
+						name = "effectTag",
+						type = "integer"
+					}
+				},
+				params = {
+					dataFile = "effect_ui_guangjizhushou_tishikuang",
+					hide = true,
+					animation = "xiao",
+					pos = {
+						x = 496.35,
+						y = 95.37
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	defense = 2,
+	wait = 3,
+	idle = 4,
+	attack = 1,
+	dead = 5
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.refreshMapTeamQueueCb = slot1.refreshMapTeamQueueCb
+	slot0.ownCityList = slot1.ownCityInfo or {}
+
+	slot0.initUI(slot0, slot1.cityInfo)
+
+	return 
+end
+slot0.initUI = function (slot0, slot1)
+	slot0.createUITree(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(handler(slot0, slot0.initAllUIByData), 3)
+	slot0.midBtnTag = 1
+
+	slot0.getAllGuildsInfo(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.onRuleClick = function (slot0)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = {
+			TR("1、大侠可使用城战挂机功能帮助玩家进行城战。"),
+			TR("2、城战可选择挂机的队伍需要是空闲的队伍。"),
+			TR("3、最多可使用五支队伍进行城战挂机。"),
+			TR("4、城战挂机会随机帮玩家进行攻打门派。"),
+			TR("5、攻打门派可获得铜钱、主角经验以及各种其他道具。")
+		}
+	})
+
+	return 
+end
+slot0.calcVitCostAndFapByFormationStr = function (slot0, slot1)
+	slot3 = clone(HeroObj:getList())
+	slot4 = 0
+	slot5 = 0
+
+	if string.split(slot1, ",") ~= "" then
+		for slot9, slot10 in ipairs(slot2) do
+			if slot10 ~= "0" then
+				slot5 = slot5 + slot3[tonumber(slot10)].Fap
+				slot4 = slot4 + Utility.getNeedVitByFap(slot3[tonumber(slot10)].Fap)
+			end
+		end
+	end
+
+	if 0 < slot5 then
+		slot5 = slot5 + Player:getGameData("Push_SkillTotalFap")
+	end
+
+	return slot4, slot5
+end
+slot0.initAllUIByData = function (slot0)
+	for slot4 = #slot0.militaryMansion.SelectedGuilds, 1, -1 do
+		if not slot0.allGuildsInfo[slot0.militaryMansion.SelectedGuilds[slot4]] then
+			table.remove(slot0.militaryMansion.SelectedGuilds, slot4)
+		end
+	end
+
+	slot0.refreshGoGoGo(slot0, slot0.militaryMansion.OnHook)
+
+	slot0.oneTimeTeamsCost = 0
+
+	slot0.createUISubTree(slot0, "selectCountView")
+
+	slot0.selectCountView.hasInited = true
+
+	slot0.initTeams(slot0)
+	slot0.teamNumLabel:setString(TR("%s/5", slot0.calcSelectedTeamsNum(slot0)))
+
+	if slot0.militaryMansion.AttackNum == 0 and slot0.militaryMansion.OnHook == false then
+		slot0.militaryMansion.AttackNum = 1
+	end
+
+	slot0.refreshFightTimeAndCostUI(slot0)
+
+	slot0.effectList = slot0.getCustomChildren(slot0, slot0.msgBox, "effectTag")
+
+	if Guide.manager:triggerSpecialGuide(8005) then
+		slot0.executeGuide(slot0)
+	else
+		for slot4, slot5 in ipairs(slot0.effectList) do
+			slot5.removeFromParent(slot5)
+		end
+	end
+
+	return 
+end
+slot0.refreshFightTimeAndCostUI = function (slot0)
+	slot0.oneTimeTeamsCost = slot0.caclOneTimeTeamsCost(slot0)
+
+	if PlayerAttrObj:getPlayerAttrByName("Vit") < slot0.militaryMansion.AttackNum*slot0.oneTimeTeamsCost then
+		slot0.militaryMansion.AttackNum = math.min(math.floor(slot2/slot0.oneTimeTeamsCost), slot0.militaryMansion.AttackNum)
+		slot1 = slot0.militaryMansion.AttackNum*slot0.oneTimeTeamsCost
+	end
+
+	slot0.selectCountView:setCount(slot0.militaryMansion.AttackNum)
+	slot0.fightCostLabel:setString(TR("{db_1114.png} %s/%s", Utility.numberWithUnit(slot2), slot1))
+
+	slot3 = 0
+
+	for slot7, slot8 in ipairs(slot0.militaryMansion.TeamInfo) do
+		if slot8.IfGuaji then
+			slot3 = slot3 + 1
+		end
+	end
+
+	slot0.guajiNoticeLabel:setString(TR("多只队伍同时挂机可享受功勋加成，当前出战队伍#cb7d45%s/%s#252525，功勋加成#cb7d45%s%%", slot3, #CitywarQueueConfig.items, CitywarQueueConfig.items[slot3] or {
+		outPutR = 0
+	}.outPutR*100))
+
+	return 
+end
+slot0.caclOneTimeTeamsCost = function (slot0)
+	slot1 = 0
+	slot2 = 0
+	slot3 = ipairs
+	slot4 = slot0.militaryMansion.TeamInfo or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		slot9 = 0
+
+		if (slot7 and true) or false then
+			slot9 = slot0.calcVitCostAndFapByFormationStr(slot0, slot7.HeroInfo)
+		end
+
+		slot1 = slot1 + ((slot8 and slot7.IfGuaji and slot9) or 0)
+		slot2 = slot2 + ((slot8 and slot7.IfGuaji and 1) or 0)
+	end
+
+	return (slot2 ~= 0 or 0) and slot1
+end
+slot0.refreshGoGoGo = function (slot0, slot1)
+	slot0.gogoBtn.actionNode.setVisible(slot2, slot1)
+	slot0.gogoBtn.actionNode:stopAllActions()
+
+	if slot1 then
+		slot0.gogoBtn.actionNode:setColor(cc.c3b(153, 229, 61))
+
+		slot3 = {
+			TR("挂机中"),
+			TR("挂机中."),
+			TR("挂机中.."),
+			TR("挂机中...")
+		}
+		slot4 = 1
+
+		Utility.schedule(slot2, function ()
+			slot0.gogoBtn.actionNode:setString(slot1[])
+
+			if slot2 + 1 == 5 then
+				slot2 = 1
+			end
+
+			return 
+		end, 1)
+		slot0.gogoBtn:loadTextures("jh_59.png", "jh_59.png")
+
+		return 
+	end
+
+	slot0.gogoBtn.actionNode:setColor(cc.c3b(37, 37, 37))
+	slot0.gogoBtn:loadTextures("jh_57.png", "jh_57.png")
+end
+slot0.createOneTeam = function (slot0, slot1, slot2)
+	slot0.createLayoutTemplateNode(slot0, "teamItem", {
+		isSelected = false,
+		teamIndex = TR("队伍%d", slot2)
+	}).editBtn.teamId = slot2
+	slot6 = (((slot1 and true) or false) and slot1.HeroInfo and string.split(((slot1 and true) or false) and slot1.HeroInfo, ",")) or {}
+
+	slot3.editBtn.titleSprite:setVisible(not ((slot1 and true) or false))
+
+	if slot4 then
+		slot3.editBtn:setClickAction(function ()
+			slot0:onHookTeamForHook(slot0, )
+
+			return 
+		end)
+	else
+		slot8 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+		if next(CitywarQueueConfig.items[slot2] or {}) ~= nil and slot7.needPlayerLv <= slot8 then
+			slot3.editBtn:setClickAction(function ()
+				slot0:onSetTeamsCallback(slot1.editBtn)
+
+				return 
+			end)
+		else
+			slot3.editBtn:setClickAction(function ()
+				return 
+			end)
+			slot3.editBtn.titleSprite:setVisible(false)
+			slot3.lvLabel:setString(TR("%s级开启", slot7.needPlayerLv))
+		end
+	end
+
+	if slot1 then
+		if slot1.Type == 3 then
+			slot3.teamState:setText(TR("大营"))
+		elseif slot1.State == slot0.idle then
+			slot3.teamState:setText(TR("空闲"))
+		else
+			slot3.teamState:setText(TR("交战"))
+		end
+	else
+		slot3.teamState:setVisible(false)
+	end
+
+	slot7 = 0
+	slot8 = 0
+
+	if slot4 then
+		slot7, slot8 = slot0.calcVitCostAndFapByFormationStr(slot0, slot5)
+	end
+
+	slot3.selectBtn:setVisible((slot4 and slot1.IfGuaji) or false)
+	slot3.fapLabel:setVisible(slot4)
+	slot3.fapLabel:setString(Utility.numberWithUnit(slot8))
+
+	for slot12, slot13 in ipairs(slot0.getCustomChildren(slot0, slot3.contentPane, "index")) do
+		slot13.setVisible(slot13, slot4)
+
+		if tonumber(slot6[slot12] or 0) ~= 0 then
+			slot13.setCardData(slot13, nil, {
+				Enums.CardShowAttr.eBorder
+			}, HeroObj:getItem(slot14))
+		end
+	end
+
+	if slot1 and slot1.IfGuaji and slot0.militaryMansion.OnHook then
+		slot3.countLabel:setString(TR("剩余次数:%d", slot0.mAttackNum - slot1.KillTimeCurDaily))
+	end
+
+	return slot3
+end
+slot0.initTeams = function (slot0)
+	slot0.teamList:removeAllItems()
+
+	slot1 = 0
+
+	for slot5, slot6 in ipairs(slot0.militaryMansion.TeamInfo) do
+		if slot6.IfGuaji then
+			slot1 = slot1 + 1
+		end
+	end
+
+	slot0.guajiNoticeLabel:setString(TR("多只队伍同时挂机可享受功勋加成，当前出战队伍#cb7d45%s/%s#252525，功勋加成#cb7d45%s%%", slot1, #CitywarQueueConfig.items, CitywarQueueConfig.items[slot1] or {
+		outPutR = 0
+	}.outPutR*100))
+
+	slot4 = #CitywarQueueConfig.items
+	slot5 = 1
+	slot6 = slot0.militaryMansion.TeamInfo or {}
+
+	Utility.schedule(slot0.teamList, function ()
+		if slot0[slot1] then
+			slot2.teamList:pushBackCustomItem(slot2:createOneTeam(slot0[slot1], slot2))
+
+			if slot2.createOneTeam(slot0[slot1], slot2) ==  then
+				slot2.teamList:stopAllActions()
+			end
+
+			slot1 = slot1 + 1
+		else
+			slot2.teamList:pushBackCustomItem(slot2:createOneTeam(nil, slot2))
+
+			if slot2.createOneTeam(nil, slot2) ==  then
+				slot2.teamList:stopAllActions()
+			end
+
+			slot1 = slot1 + 1
+		end
+
+		return 
+	end, 0.1, false)
+
+	return 
+end
+slot0.refreshTeams = function (slot0, slot1)
+	slot3 = slot0.teamList:getItem(#slot0.militaryMansion.TeamInfo - 1)
+
+	slot3.teamIdLabel:setString(TR("队伍%d", #slot0.militaryMansion.TeamInfo + 1))
+
+	slot3.editBtn.teamId = #slot0.militaryMansion.TeamInfo + 1
+	slot3.inHookBtn.teamId = #slot0.militaryMansion.TeamInfo + 1
+
+	slot0.teamList:insertCustomItem(slot4, #slot0.militaryMansion.TeamInfo - 1)
+	slot0.teamNumLabel:setString(TR("%s/5", slot0.calcSelectedTeamsNum(slot0)))
+
+	return 
+end
+slot0.calcSelectedTeamsNum = function (slot0)
+	slot1 = 0
+	slot2 = {}
+	slot3 = ipairs
+	slot4 = slot0.militaryMansion.TeamInfo or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		if slot7.IfGuaji then
+			slot1 = slot1 + 1
+
+			table.insert(slot2, slot7.TeamId)
+		end
+	end
+
+	return slot1, slot2
+end
+slot0.onCloseLayerCallback = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRemoveFromCampCallback = function (slot0, slot1)
+	if slot0.militaryMansion.OnHook then
+		ui.showFlashView("队伍出征中，无法执行操作")
+
+		return 
+	end
+
+	if not PlayerAttrObj:getPlayerAttrByName("GuildInfo") or not Utility.isEntityId(slot2.GuildId) then
+		ui.showFlashView("暂无帮派")
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("确定将帮派大营待命中的队伍都调出来吗？"),
+		okCallback = function ()
+			slot0:socketRequest({
+				methodName = "OneKeyUnDispatch",
+				moduleName = "Guild",
+				methodData = {
+					Utility.EMPTY_ENTITY_ID
+				},
+				successCallback = function (...)
+					slot0:socketRequest({
+						methodName = "GetInfo",
+						moduleName = "MilitaryMansion",
+						successCallback = function (slot0)
+							slot0.militaryMansion = slot0.MilitaryMansion
+							slot0.mAttackNum = slot0.militaryMansion.AttackNum
+							slot1 = {}
+							slot2 = ipairs
+							slot3 = slot0.MilitaryMansion.TeamInfo or {}
+
+							for slot5, slot6 in slot2(slot3) do
+								if slot6.State ~= 2 and slot6.State ~= 3 and slot6.Type ~= 3 and slot6.Type ~= 4 then
+									table.insert(slot1, slot6)
+								end
+							end
+
+							slot0.militaryMansion.TeamInfo = slot1
+
+							slot0:initTeams()
+
+							return 
+						end
+					})
+
+					return 
+				end
+			})
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGogogoCallback = function (slot0, slot1)
+	slot2 = slot0.militaryMansion
+	slot3, slot4 = slot0.calcSelectedTeamsNum(slot0)
+
+	if not slot0.militaryMansion.OnHook then
+		if not next(slot2.SelectedCities) then
+			slot0.calcCityList(slot0)
+
+			slot3, slot4 = slot0.calcSelectedTeamsNum(slot0)
+		end
+
+		if slot3 == 0 then
+			ui.showFlashView("请先配置或勾选出战队伍")
+
+			return 
+		elseif slot2.AttackNum == 0 then
+			ui.showFlashView("请先选择出战次数")
+
+			return 
+		end
+	end
+
+	function slot5()
+		slot0:socketRequest({
+			methodName = "SetInfo",
+			moduleName = "MilitaryMansion",
+			methodData = {
+				slot1,
+				slot0.militaryMansion.AttackNum,
+				slot0.militaryMansion.SelectedGuilds,
+				slot0.militaryMansion.SelectedCities,
+				slot0.militaryMansion.AuxiliaryFunctions,
+				not slot0.militaryMansion.OnHook
+			},
+			successCallback = function (slot0)
+				slot0.militaryMansion = slot0.MilitaryMansion
+				slot0.mAttackNum = slot0.militaryMansion.AttackNum
+
+				if slot0.MilitaryMansion.OnHook then
+					ui.showFlashView(TR("开始城池挂机，侠客队伍会自动进攻门派"))
+				else
+					ui.showFlashView(TR("已停止挂机"))
+				end
+
+				slot0.militaryMansion.OnHook = slot0.MilitaryMansion.OnHook
+
+				slot0:refreshGoGoGo(slot0.militaryMansion.OnHook)
+
+				if slot0.refreshMapTeamQueueCb then
+					slot0.refreshMapTeamQueueCb()
+				end
+
+				slot0:initTeams()
+
+				return 
+			end
+		})
+
+		return 
+	end
+
+	slot6 = 0
+	slot8 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	for slot12, slot13 in ipairs(slot7) do
+		if slot13.needPlayerLv <= slot8 then
+			slot6 = slot6 + 1
+		end
+	end
+
+	slot10 = not MqTime.isSameDay(LocalData:getGameDataValue("AutoFightNotice") or 0, Player:getCurrentTime())
+
+	if 1 < slot6 and #slot4 < slot6 and not slot0.militaryMansion.OnHook and slot10 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "citywar.AutoFightNoticeLayer",
+			data = {
+				callback = function ()
+					slot0()
+
+					return 
+				end,
+				curTeamNum = #slot4,
+				maxTeamNum = slot6
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		slot5()
+	end
+
+	return 
+end
+slot0.onHookTeamForHook = function (slot0, slot1, slot2)
+	if slot0.militaryMansion.OnHook then
+		ui.showFlashView("队伍出征中，无法执行操作")
+
+		return 
+	end
+
+	if slot2 and (slot2.Type == 3 or slot2.State ~= slot0.idle) then
+		ui.showFlashView(TR("队伍出征中，无法执行操作"))
+
+		return 
+	end
+
+	if slot1.selectBtn:isVisible() then
+		slot1.selectBtn:setVisible(false)
+	else
+		if 5 <= slot0.calcSelectedTeamsNum(slot0) then
+			ui.showFlashView(TR("出战队伍上限为5支!"))
+
+			return 
+		end
+
+		slot1.selectBtn:setVisible(true)
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "BuildTeam",
+		moduleName = "Citywar",
+		methodData = {
+			{
+				slot0.militaryMansion.TeamInfo[slot1.editBtn.teamId].TeamId
+			},
+			{
+				slot0.militaryMansion.TeamInfo[slot1.editBtn.teamId].HeroInfo .. "," .. slot0.militaryMansion.TeamInfo[slot1.editBtn.teamId].StrategyId
+			},
+			not slot3
+		},
+		successCallback = function (slot0)
+			(not slot0:calcSelectedTeamsNum() and 1) or -1.IfGuaji = slot3.selectBtn:isVisible()
+
+			slot0:updataOneTeamData(slot0.updataOneTeamData, slot0.Value)
+			slot0.teamNumLabel:setString(TR("%s/5", slot1 + ((not slot0.calcSelectedTeamsNum() and 1) or -1)))
+			slot0:refreshFightTimeAndCostUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.updataOneTeamData = function (slot0, slot1, slot2)
+	slot3 = slot1.TeamId
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot8.TeamId == slot1.TeamId then
+			slot1.State = slot8.State
+			slot1.Type = slot8.Type
+		end
+	end
+
+	return 
+end
+slot0.onSetTeamsCallback = function (slot0, slot1)
+	if not (#slot0.militaryMansion.TeamInfo < slot1.teamId) then
+		return 
+	end
+
+	if slot0.militaryMansion.OnHook then
+		ui.showFlashView("队伍出征中，无法执行操作")
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeamStateInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "citywar.CitywarCampReadyLayer",
+				data = {
+					minCount = 5,
+					callModelSub = ModuleSub.eCityWar,
+					titleText = TR("编队布阵"),
+					cityWarTeamData = slot0.Value or {},
+					vitCostR = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0,
+					callback = function (slot0, slot1)
+						slot0:socketRequest({
+							methodName = "BuildTeam",
+							moduleName = "Citywar",
+							methodData = {
+								slot0,
+								slot1,
+								false
+							},
+							successCallback = function (slot0)
+								ui.showFlashView("编队成功！")
+								slot0:getInfo(true)
+
+								return 
+							end
+						})
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSelectChangeCallback = function (slot0, slot1)
+	if not slot0.selectCountView then
+		return false
+	end
+
+	if slot0.militaryMansion.OnHook then
+		ui.showFlashView("队伍出征中，无法执行操作")
+
+		return false
+	end
+
+	slot2 = false
+
+	if #slot0.militaryMansion.TeamInfo == 0 then
+		ui.showFlashView("请先编辑队伍")
+
+		return false
+	end
+
+	if 20 < slot1 then
+		slot2 = true
+		slot1 = slot3
+	end
+
+	slot4 = PlayerAttrObj:getPlayerAttrByName("Vit")
+
+	if not Resource.isEnough(ResourceTypeSub.eVit, slot1*slot0.oneTimeTeamsCost, true) then
+		ui.showFlashView("干粮不足")
+
+		return false
+	else
+		if slot2 then
+			ui.showFlashView(TR("队伍出战上限为%d次", slot3))
+		end
+
+		slot0.selectCountView.mCurrSelCount = slot1
+		slot0.militaryMansion.AttackNum = slot1
+
+		slot0.fightCostLabel:setString(TR("{db_1114.png} %s/%s", Utility.numberWithUnit(slot4), slot5))
+
+		return true
+	end
+
+	return 
+end
+slot0.onActionCallback = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.onHighSetClick = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eMilitaryMansionHighSet, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarHelperSetLayer",
+		data = {
+			militaryMansion = slot0.militaryMansion,
+			citiesId = slot0.citiesId,
+			ownCityList = slot0.ownCityList,
+			guildInfoForPopbox = slot0.guildInfoForPopbox,
+			allGuildsInfo = slot0.allGuildsInfo,
+			callBack = function (slot0, slot1, slot2)
+				slot0.militaryMansion.SelectedGuilds = slot0
+				slot0.militaryMansion.SelectedCities = slot1
+				slot0.militaryMansion.AuxiliaryFunctions = slot2
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "MilitaryMansion",
+		successCallback = function (slot0)
+			slot0.militaryMansion = slot0.MilitaryMansion
+			slot0.mAttackNum = slot0.militaryMansion.AttackNum
+			slot1 = {}
+			slot2 = ipairs
+			slot3 = slot0.MilitaryMansion.TeamInfo or {}
+
+			for slot5, slot6 in slot2(slot3) do
+				table.insert(slot1, slot6)
+			end
+
+			slot0.militaryMansion.TeamInfo = slot1
+			slot0.citiesId = slot0.CitiesId
+
+			slot0.actionRefresh()
+
+			if slot1 then
+				slot0:initAllUIByData()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getAllGuildsInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAllGuildInfos",
+		moduleName = "Guild",
+		successCallback = function (slot0)
+			slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+			slot0.guildInfoForPopbox = {}
+
+			for slot5, slot6 in ipairs(slot0.GuildInfo) do
+				if slot6.GuildId ~= slot1.GuildId and #slot6.CityInfo ~= 0 then
+					table.insert(slot0.guildInfoForPopbox, slot6)
+				end
+			end
+
+			slot0.allGuildsInfo = {}
+
+			for slot5, slot6 in ipairs(slot0.GuildInfo) do
+				if slot6.GuildId ~= slot1.GuildId then
+					slot0.allGuildsInfo[slot6.GuildId] = slot6
+				end
+			end
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.calcCityList = function (slot0)
+	slot1 = 1
+	slot2 = 2
+	slot3 = {}
+	slot4 = {}
+
+	table.sort(slot5, function (slot0, slot1)
+		if CitywarCityConfig.items[slot0].openNeedPlayerLv == CitywarCityConfig.items[slot1].openNeedPlayerLv then
+			return slot0 < slot1
+		else
+			return slot2 < slot3
+		end
+
+		return 
+	end)
+
+	for slot9, slot10 in ipairs(slot5) do
+		if PlayerAttrObj:getPlayerAttrByName("Lv") < CitywarCityConfig.items[slot10].openNeedPlayerLv then
+			break
+		end
+
+		slot12 = slot11.cityType
+
+		if not table.indexof(slot0.citiesId, slot10) and (slot0.midBtnTag == 1 or (slot0.midBtnTag == 2 and Utility.isCityNearOwned(slot0.ownCityList, slot10)) or (slot0.midBtnTag == 3 and not Utility.isCityNearOwned(slot0.ownCityList, slot10))) then
+			if slot12 == slot1 then
+				table.insert(slot3, slot10)
+			elseif slot12 == slot2 then
+				table.insert(slot4, slot10)
+			end
+		end
+	end
+
+	slot6 = {}
+	slot7 = {}
+
+	for slot11, slot12 in ipairs(slot0.militaryMansion.SelectedGuilds) do
+		slot13 = slot0.allGuildsInfo[slot12].CityInfo or {}
+
+		for slot17, slot18 in ipairs(slot13) do
+			if CitywarCityConfig.items[slot18].cityType == slot1 then
+				if table.indexof(slot3, slot18) then
+					table.insert(slot6, slot18)
+				end
+			elseif slot19 == slot2 and table.indexof(slot4, slot18) then
+				table.insert(slot7, slot18)
+			end
+		end
+	end
+
+	if 0 < #slot0.militaryMansion.SelectedGuilds then
+		slot4 = slot7
+		slot3 = slot6
+	end
+
+	for slot11, slot12 in pairs(slot3) do
+		table.insert(slot0.militaryMansion.SelectedCities, slot12)
+	end
+
+	for slot11, slot12 in pairs(slot4) do
+		table.insert(slot0.militaryMansion.SelectedCities, slot12)
+	end
+
+	return 
+end
+slot0.isShowHighLight = function (slot0, slot1)
+	if not tolua.isnull(LayerManager.guideLayer) then
+		LayerManager.guideLayer.figureNode:setVisible(false)
+	end
+
+	for slot5, slot6 in ipairs(slot0.effectList) do
+		slot6.setVisible(slot6, slot5 == slot1)
+
+		if slot1 == 0 then
+			slot6.removeFromParent(slot6)
+		end
+	end
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+	slot3 = nil
+
+	if slot2 then
+		slot0.addChild(slot0, cc.LayerColor:create(cc.c4b(0, 0, 0, 0)))
+		ui.addTouchEvent({
+			swallowTouch = true,
+			node = cc.LayerColor.create(cc.c4b(0, 0, 0, 0))
+		})
+	end
+
+	Guide.manager:exeGuideList({
+		[8005] = {
+			clickRect = cc.rect(0, 70, 1058, 640),
+			extCallback = function ()
+				slot0:isShowHighLight(2)
+
+				return 
+			end
+		},
+		[800501] = {
+			overClose = true,
+			saveStep = true,
+			clickRect = cc.rect(0, 70, 1058, 640),
+			extCallback = function ()
+				slot0:isShowHighLight(0)
+
+				if slot0 and not tolua.isnull(slot1) then
+					slot1:removeFromParent()
+				end
+
+				return 
+			end
+		}
+	})
+
+	if slot2 and slot2 == 8005 then
+		slot0.isShowHighLight(slot0, 1)
+	end
+
+	return 
+end
+
+return slot0

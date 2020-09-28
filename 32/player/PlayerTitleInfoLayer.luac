@@ -1,0 +1,275 @@
+slot0 = class("PlayerTitleInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgNode",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 510
+			}
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 262.5,
+						y = 491
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 27,
+					pos = {
+						x = 262.5,
+						y = 493
+					},
+					text = TR("称号展示预览")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "zj_27.png",
+					pos = {
+						x = 257.88,
+						y = 279.12
+					}
+				},
+				children = {}
+			},
+			{
+				name = "showBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					pos = {
+						x = 257.5,
+						y = 62
+					},
+					titleText = TR("展示")
+				},
+				children = {}
+			},
+			{
+				name = "curSprite",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 254.23,
+						y = 62.66
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Scale9Sprite",
+						params = {
+							rotationAngle = 90,
+							image = "c_56.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 45,
+								height = 120
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("当前展示")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mFigureHero",
+				cType = "FigureHero",
+				params = {
+					heroModelId = 12011103,
+					pos = {
+						x = 254.41,
+						y = 127.31
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTitleInfo = slot1.titleInfo or {}
+	slot0.mSelectedId = slot1.selectedId
+	slot0.mCurUsingId = slot1.curUsingId
+	slot0.mCallBack = slot1.callBack
+	slot0.mHideShowBtn = slot1.hideShowBtn or false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.onShowTitle(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mFigureHero" then
+			slot1.heroModelId = PlayerAttrObj:getPlayerAttrByName("FashionModelId")
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onShowTitle = function (slot0)
+	slot1 = false
+	slot2 = false
+
+	for slot6, slot7 in pairs(slot0.mTitleInfo) do
+		if slot7.TitleId == slot0.mSelectedId then
+			slot1 = true
+
+			if slot7.StatusType == 0 then
+				slot2 = true
+			end
+
+			break
+		end
+	end
+
+	slot3 = TitleConfig.items[slot0.mSelectedId]
+
+	slot0.curSprite:setVisible(slot0.mSelectedId == slot0.mCurUsingId)
+	slot0.showBtn:setVisible(slot0.mSelectedId ~= slot0.mCurUsingId)
+
+	if slot1 then
+		if slot2 then
+			slot0.showBtn:setTitleText("激 活")
+			slot0.showBtn:setClickAction(function ()
+				slot0:requestActivate(slot1.titleId)
+
+				return 
+			end)
+		else
+			slot0.showBtn:setTitleText("展 示")
+			slot0.showBtn:setClickAction(function ()
+				slot0:requestCombat(slot1.titleId)
+
+				return 
+			end)
+		end
+	else
+		slot0.showBtn:setTitleText("去获取")
+		slot0.showBtn:setClickAction(function ()
+			ui.showFlashView(TR("暂时无法获取"))
+
+			return 
+		end)
+	end
+
+	if slot0.mHideShowBtn then
+		slot0.showBtn:setVisible(false)
+	end
+
+	if cc.FileUtils:getInstance():isFileExist(slot3.pic .. ".skel") then
+		slot0.msgNode:addChild(UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = slot3.pic,
+			pos = cc.p(262, 330)
+		}))
+
+		slot0.msgNode.curTitleSprite = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = slot3.pic,
+			pos = cc.p(262, 330)
+		})
+	else
+		slot0.msgNode:addChild(slot4)
+
+		slot0.msgNode.curTitleSprite = cc.Sprite:create(slot3.pic .. ".png")
+
+		slot0.msgNode.curTitleSprite:setPosition(262, 380)
+	end
+
+	return 
+end
+slot0.requestCombat = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Combat",
+		moduleName = "Title",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTitleInfo = slot0.TitleInfo
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestActivate = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Activate",
+		moduleName = "Title",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "Activate")
+
+			slot0.mTitleInfo = slot0.TitleInfo
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

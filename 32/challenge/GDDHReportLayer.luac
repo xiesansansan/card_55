@@ -1,0 +1,562 @@
+slot0 = class("GDDHReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 516,
+				height = 514
+			},
+			titleText = TR("战报")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 257.55,
+						y = 292.87
+					},
+					size = {
+						width = 456,
+						height = 364
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onExitAction",
+					pos = {
+						x = 257.45,
+						y = 62.79
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "reportListView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 257.73,
+						y = 291.95
+					},
+					size = {
+						width = 448,
+						height = 352.58
+					}
+				},
+				children = {
+					{
+						name = "reportLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled31-tag",
+								name = "btnTag",
+								type = "string"
+							},
+							{
+								value = "untitled27-text",
+								name = "attackName",
+								type = "string"
+							},
+							{
+								value = "untitled29-text",
+								name = "attackGuild",
+								type = "string"
+							},
+							{
+								value = "untitled39-text",
+								name = "defenceName",
+								type = "string"
+							},
+							{
+								value = "untitled41-text",
+								name = "defenceGuild",
+								type = "string"
+							},
+							{
+								value = "untitled25-image",
+								name = "attackImage",
+								type = "string"
+							},
+							{
+								value = "untitled35-image",
+								name = "defenceImage",
+								type = "string"
+							},
+							{
+								value = "untitled32-tag",
+								name = "reportTag",
+								type = "string"
+							},
+							{
+								value = "untitled7-modelId",
+								name = "attackHeadImgId",
+								type = "string"
+							},
+							{
+								value = "untitled33-modelId",
+								name = "defenceHeadImgId",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0.24,
+								y = 262.52
+							},
+							size = {
+								width = 448,
+								height = 148
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_99.png",
+									pos = {
+										x = 222.84,
+										y = 75.26
+									},
+									size = {
+										width = 448,
+										height = 148
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "attackName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 85,
+										y = 128
+									},
+									text = TR("姓名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "headCard1",
+									allowClick = false,
+									pos = {
+										x = 85,
+										y = 75
+									}
+								},
+								children = {
+									{
+										name = "untitled25",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_15.png",
+											pos = {
+												x = 71.98,
+												y = 70.91
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled43",
+								cType = "Sprite",
+								params = {
+									image = "sddh_14.png",
+									pos = {
+										x = 28.87,
+										y = 75.19
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "attackGuildName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 85,
+										y = 20
+									},
+									text = TR("帮派:")
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "reportBtn",
+									image = "xyyz_39.png",
+									scale = 0.9,
+									clickAction = "onFightBackBtnAction",
+									pos = {
+										x = 388.71,
+										y = 71.28
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "defenceName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 289,
+										y = 128
+									},
+									text = TR("姓名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled33",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "headCard2",
+									allowClick = false,
+									pos = {
+										x = 288.55,
+										y = 75.45
+									}
+								},
+								children = {
+									{
+										name = "untitled35",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_16.png",
+											pos = {
+												x = 66.8,
+												y = 71.08
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled38",
+								cType = "Sprite",
+								params = {
+									image = "zd_46.png",
+									pos = {
+										x = 182.25,
+										y = 74.56
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "Sprite",
+								params = {
+									image = "sddh_15.png",
+									pos = {
+										x = 232.16,
+										y = 75.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "defenceGuildName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 34,
+										r = 69,
+										b = 13
+									},
+									pos = {
+										x = 289,
+										y = 20
+									},
+									text = TR("帮派:")
+								},
+								children = {}
+							},
+							{
+								name = "untitled44",
+								cType = "Sprite",
+								params = {
+									image = "sddh_16.png",
+									pos = {
+										x = 346.63,
+										y = 75.2
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 38,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.51,
+						y = 277.01
+					},
+					text = TR("暂无战报信息")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallBack = slot1.callback
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:createList()
+
+		return 
+	end, 2)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetWrestleRaceReviveList(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onFightBallBtnAction = function (slot0, slot1)
+	slot2 = slot0.mRaceReviveList[slot1.tag].RankPlayerId
+	slot3 = slot0.mRaceReviveList[slot1.tag].ReviveId
+
+	if slot0.mCallBack then
+		slot0.mCallBack(slot2, slot3)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onFightBackBtnAction = function (slot0, slot1)
+	slot2 = slot0.mRaceReviveList[slot1.tag].BattleReportId
+	slot3 = false
+
+	if not slot0.mRaceReviveList[slot1.tag].CombatType and not slot0.mRaceReviveList[slot1.tag].IsWin then
+		slot3 = true
+	end
+
+	slot0.requestGetReportFightInfo(slot0, slot2, slot3)
+
+	return 
+end
+slot0.createList = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("PlayerName")
+	slot2 = PlayerAttrObj:getPlayerAttrByName("FashionLevel")
+	slot3 = PlayerAttrObj:getPlayerAttrByName("Fap")
+	slot5 = (Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) and slot4.GuildName) or TR("暂无")
+	slot6 = PlayerAttrObj:getPlayerAttrByName("HeadImageId")
+
+	for slot10, slot11 in ipairs(slot0.mRaceReviveList) do
+		slot13 = (slot11.CombatType and slot1) or slot11.RankName
+		slot14 = (slot11.CombatType and slot11.RankName) or slot1
+		slot15 = (slot11.CombatType and slot5) or (Utility.isEntityId(slot11.GuildId) and slot11.GuildName) or TR("暂无")
+		slot16 = (slot11.CombatType and ((Utility.isEntityId(slot11.GuildId) and slot11.GuildName) or TR("暂无"))) or slot5
+		slot17 = (slot11.CombatType and slot6) or slot11.RankHeadImageId
+		slot18 = (slot11.CombatType and slot11.RankHeadImageId) or slot6
+		slot19, slot20 = nil
+
+		if slot11.CombatType then
+			slot19 = slot11.IsWin
+			slot20 = not slot11.IsWin
+		else
+			slot20 = slot11.IsWin
+			slot19 = not slot11.IsWin
+		end
+
+		slot0.createLayoutTemplateNode(slot0, "reportLayout", {
+			btnTag = slot10,
+			reportTag = slot10,
+			attackName = slot13,
+			defenceName = slot14,
+			attackGuild = slot15,
+			defenceGuild = slot16,
+			attackImage = (slot19 and "xyyz_15.png") or "xyyz_16.png",
+			defenceImage = (slot20 and "xyyz_15.png") or "xyyz_16.png",
+			attackHeadImgId = slot17,
+			defenceHeadImgId = slot18
+		}).headCard1:setRightTextVisible(false)
+		slot0.createLayoutTemplateNode(slot0, "reportLayout", {
+			btnTag = slot10,
+			reportTag = slot10,
+			attackName = slot13,
+			defenceName = slot14,
+			attackGuild = slot15,
+			defenceGuild = slot16,
+			attackImage = (slot19 and "xyyz_15.png") or "xyyz_16.png",
+			defenceImage = (slot20 and "xyyz_15.png") or "xyyz_16.png",
+			attackHeadImgId = slot17,
+			defenceHeadImgId = slot18
+		}).headCard2:setRightTextVisible(false)
+
+		if slot11.CombatType then
+			slot21.attackName:setColor(Utility.getPlayerNameColor(slot2, false))
+		else
+			slot21.attackName:setColor(Utility.getPlayerNameColor(slot11.FashionLevel, false))
+		end
+
+		if slot11.CombatType then
+			slot21.defenceName:setColor(Utility.getPlayerNameColor(slot11.FashionLevel, false))
+		else
+			slot21.defenceName:setColor(Utility.getPlayerNameColor(slot2, false))
+		end
+
+		slot0.reportListView:pushBackCustomItem(slot21)
+	end
+
+	slot0.tipLabel:setVisible(next(slot0.mRaceReviveList) == nil)
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetWrestleRaceReviveList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetWrestleRaceReviveList",
+		moduleName = "Gddh",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRaceReviveList = slot0
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReportFightInfo = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Player",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					isOthersBattle = slot0
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

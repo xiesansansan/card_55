@@ -1,0 +1,308 @@
+slot0 = class("MailReadLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.sizeInPixels.width/2, display.sizeInPixels.height/2),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						children = {},
+						params = {
+							color = {
+								g = 34,
+								r = 70,
+								b = 13
+							},
+							pos = {
+								x = 54.77,
+								y = 377.51
+							},
+							text = TR("发件人")
+						}
+					},
+					{
+						name = "senderEditBox",
+						cType = "EditBox",
+						children = {},
+						params = {
+							fontSize = 20,
+							enabled = false,
+							image = "yj_03.png",
+							fontColor = {
+								g = 158,
+								r = 159,
+								b = 158
+							},
+							pos = {
+								x = 314.15,
+								y = 377.39
+							},
+							size = {
+								width = 391.66,
+								height = 44
+							}
+						}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						children = {},
+						params = {
+							color = {
+								g = 34,
+								r = 70,
+								b = 13
+							},
+							pos = {
+								x = 66.05,
+								y = 320.22
+							},
+							text = TR("邮件主题")
+						}
+					},
+					{
+						name = "titleEditBox",
+						cType = "EditBox",
+						children = {},
+						params = {
+							fontSize = 20,
+							enabled = false,
+							image = "yj_03.png",
+							fontColor = {
+								g = 158,
+								r = 159,
+								b = 158
+							},
+							pos = {
+								x = 314.15,
+								y = 321.31
+							},
+							size = {
+								width = 391.66,
+								height = 44
+							}
+						}
+					},
+					{
+						name = "contentLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							valign = 0,
+							color = {
+								g = 34,
+								r = 69,
+								b = 12
+							},
+							pos = {
+								x = 260.06,
+								y = 141.47
+							},
+							size = {
+								width = 490.05,
+								height = 253.79
+							},
+							text = TR("邮件内容")
+						}
+					},
+					{
+						name = "rewardSprite",
+						cType = "Scale9Sprite",
+						children = {
+							{
+								name = "rewardListView",
+								cType = "ListView",
+								children = {
+									{
+										name = "RewardLayout",
+										cType = "Layout",
+										children = {
+											{
+												name = "untitled9",
+												cType = "CardNode",
+												children = {},
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 57.78,
+														y = 58.2
+													}
+												}
+											}
+										},
+										custom = {
+											{
+												value = "untitled9-initParams",
+												name = "reward",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 1.11,
+												y = 9.92
+											},
+											size = {
+												width = 116.91,
+												height = 116.91
+											}
+										}
+									}
+								},
+								params = {
+									direction = false,
+									pos = {
+										x = 3.5,
+										y = 10.32
+									},
+									size = {
+										width = 479.7,
+										height = 116.91
+									}
+								}
+							}
+						},
+						params = {
+							image = "c_64.png",
+							pos = {
+								x = 260.18,
+								y = 83.93
+							},
+							size = {
+								width = 488,
+								height = 146
+							}
+						}
+					}
+				},
+				params = {
+					image = "yj_04.png",
+					pos = {
+						x = 295.83,
+						y = 300.84
+					},
+					size = {
+						width = 520.18,
+						height = 411.54
+					}
+				}
+			}
+		},
+		params = {
+			image = "tc_2.png",
+			okCallback = "onDrawRewardAction",
+			okText = TR("全部领取"),
+			pos = {
+				x = 320,
+				y = 568
+			},
+			titleText = TR("邮件详情")
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mailType = slot1.mailType
+	slot0.mailDetail = slot1.mailData
+	slot0.callback = slot1.callback
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.senderEditBox:setText(slot0.mailDetail.SendPlayerName)
+	slot0.titleEditBox:setText(slot0.mailDetail.Subject)
+	slot0.contentLabel:setString("        " .. slot0.mailDetail.Content)
+	slot0.refreshOkBtnTitle(slot0)
+
+	if 0 < string.len(slot0.mailDetail.Reward) then
+		for slot5, slot6 in ipairs(slot1) do
+			slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "RewardLayout", {
+				reward = {
+					cardInfo = slot6,
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	else
+		slot0.rewardSprite:setVisible(false)
+	end
+
+	if not slot0.mailDetail.IsRead then
+		slot0.safeRequest(slot0, {
+			methodName = "ReadEmail",
+			moduleName = "PlayerEmail",
+			methodData = {
+				slot0.mailDetail.Id
+			},
+			successCallback = function (slot0)
+				slot0.callback(slot0[1])
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.refreshOkBtnTitle = function (slot0)
+	if 0 < string.len(slot0.mailDetail.Reward) then
+		slot0.bgBox.btnOk:setTitleText((slot0.mailDetail.IsReceive and TR("已领取")) or TR("全部领取"))
+	else
+		slot0.bgBox.btnOk:setTitleText(TR("确 定"))
+	end
+
+	return 
+end
+slot0.onDrawRewardAction = function (slot0)
+	if not slot0.mailDetail.IsReceive and 0 < string.len(slot0.mailDetail.Reward) then
+		slot0.safeRequest(slot0, {
+			methodName = "GetTargetEmailReward",
+			moduleName = "PlayerEmail",
+			methodData = {
+				slot0.mailType - 1,
+				slot0.mailDetail.Id
+			},
+			successCallback = function (slot0)
+				slot0.mailDetail.IsReceive = true
+				slot0.mailDetail.IsRead = true
+
+				slot0.callback(slot0.mailDetail)
+				slot0:refreshOkBtnTitle()
+				slot0.callback(slot0.mailDetail)
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+				LayerManager.removeLayer(slot0)
+				PlayerAttrObj:checkLvUp()
+
+				return 
+			end
+		})
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+
+return slot0

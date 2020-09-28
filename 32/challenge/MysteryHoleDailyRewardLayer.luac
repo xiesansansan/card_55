@@ -1,0 +1,125 @@
+slot0 = class("MysteryHoleDailyRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("每日补给")
+		},
+		children = {
+			{
+				name = "tipsLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					align = 1,
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255.68,
+						y = 233.85
+					},
+					text = TR("大侠请收下今日随机补给")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					align = 1,
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255.68,
+						y = 197.85
+					},
+					text = TR("（通关越靠后，每日奖励越好）")
+				},
+				children = {}
+			},
+			{
+				name = "drawBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onRequestDraw",
+					pos = {
+						x = 257.5,
+						y = 78
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.isCanDrawDailyReward = slot1.isCanDrawDailyReward
+	slot0.dailyNum = slot1.dailyNum
+	slot0.dailyDropTypeId = slot1.dailyDropTypeId
+	slot0.callBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.drawBtn:setEnabled(slot0.isCanDrawDailyReward)
+
+	return 
+end
+slot0.onRequestDraw = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawDailyReward",
+		moduleName = "Xiangyangfight",
+		methodData = {},
+		successCallback = function (slot0)
+			if slot0.callBack then
+				slot0.callBack(false)
+			end
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

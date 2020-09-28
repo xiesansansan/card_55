@@ -1,0 +1,150 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.FxHelper")
+slot2 = require("battle.common.AttrHelper")
+slot3 = require("battle.managers.ViewDelegate")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.models.PetSkill")
+slot6 = class("Pet")
+slot6.ctor = function (slot0, slot1)
+	assert(FashionModel.items[slot1.modelId] ~= nil, "UnitFactory:createPet invalid id:" .. slot2)
+
+	slot0.uid = 0
+	slot0.id = slot1.modelId
+	slot0.petId = slot1.modelId
+	slot0.heroId = slot1.modelId
+	slot0.modelLv = slot1.modelLv
+	slot0.titleId = slot1.titleId
+	slot0.name = slot1.name
+	slot0.group = slot0.UnitGroup.NONE
+	slot0.order = 6
+	slot0.state = slot0.UnitState.IDLE
+	slot0.attr = {}
+
+	for slot8, slot9 in pairs(slot4) do
+		slot0.attr[slot8] = slot9.a*(slot9.b + 1) + slot9.c
+	end
+
+	slot0.attr.mp = 100
+	slot0.attr.energy = 100
+	slot0.dt = 0
+	slot0.totalTime = 0
+	slot0.level = 1
+	slot0.star = 1
+	slot0.atkDecayRatio = 1
+	slot0.armDecayRatio = 1
+	slot0.spine = slot3.largePic
+	slot0.curSkill = nil
+	slot0.flashEffectTime = 2
+	slot0.isHeti = false
+	slot0.flashEffect = slot3.pic
+	slot0.flashEffect2 = slot3.skillEffect
+	slot0.skillSound = slot3.skillSound
+	slot0.skills = {}
+
+	for slot8, slot9 in pairs(slot0.SkillType) do
+		slot0.skills[slot9] = {}
+	end
+
+	return 
+end
+slot6.isAlive = function (slot0)
+	return true
+end
+slot6.updateMp = function (slot0, slot1, slot2)
+	slot0.attr.mp = slot0.attr.mp + slot1
+	slot2 = slot2 or 0
+
+	if slot0.attr.mp < 0 then
+		slot0.attr.mp = 0
+	elseif slot0.attr.energy < slot0.attr.mp then
+		slot0.attr.mp = slot0.attr.energy
+	end
+
+	slot0.updatePetEnergy(slot0.uid, slot0.attr.mp, slot0.attr.energy, slot2)
+
+	return 
+end
+slot6.isEnergyFull = function (slot0)
+	if slot0.attr.mp < slot0.attr.energy then
+		return false
+	end
+
+	return true
+end
+slot6.usePassiveSkill = function (slot0)
+	for slot4, slot5 in ipairs(slot0.skills[slot0.SkillType.PASSIVE]) do
+		slot5.start(slot5)
+	end
+
+	return 
+end
+slot6.usePowerSkill = function (slot0)
+	if slot0.attr.mp < slot0.attr.energy then
+		return false
+	end
+
+	slot0.attr.eAtk = slot0.getTeamAttrValue(slot0.group, "eAtk")
+
+	slot0.updateMp(slot0, slot0.attr.energy*-1)
+
+	if slot0.skills[slot1.SkillType.PLAYER][1] then
+		slot0.setState(slot0, slot1.UnitState.PET_APPEAR)
+
+		slot0.curSkill = slot2
+	end
+
+	return true
+end
+slot6.hasPowerSkill = function (slot0)
+	if slot0.skills[slot0.SkillType.PLAYER][1] then
+		return true
+	end
+
+	return false
+end
+slot6.useNextSkills = function (slot0)
+	for slot4, slot5 in ipairs(slot0.skills[slot0.SkillType.PLAYERNEXT]) do
+		slot5.start(slot5)
+	end
+
+	return 
+end
+slot6.setState = function (slot0, slot1)
+	if slot1 == slot0.UnitState.PET_APPEAR then
+		slot0.dt = 0
+		slot0.totalTime = 0.2
+	end
+
+	slot0.state = slot1
+
+	slot1.setPetState(slot0.uid, slot1)
+
+	return 
+end
+slot6.updateRound = function (slot0)
+	slot0.updateMp(slot0, slot0.EnergyRoundPet)
+
+	return 
+end
+slot6.update = function (slot0, slot1)
+	if slot0.isFreezing() and slot0.curSkill and slot0.curSkill.isFreezing == false then
+		return 
+	end
+
+	if slot0.state == slot1.UnitState.PET_APPEAR then
+		slot0.dt = slot0.dt + slot1
+
+		if slot0.totalTime < slot0.dt then
+			slot0.setState(slot0, slot1.UnitState.ATTACK)
+			slot0.curSkill:start()
+		end
+	elseif slot0.state == slot1.UnitState.ATTACK and slot0.curSkill:update(slot1) == true then
+		slot0.setState(slot0, slot1.UnitState.IDLE)
+	end
+
+	slot2.updateAnim(slot0.uid, slot1)
+
+	return 
+end
+
+return slot6

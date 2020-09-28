@@ -1,0 +1,526 @@
+slot0 = class("MysteryHoleChooseHeroLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 850,
+				height = 560
+			},
+			titleText = TR("备战侠客")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 190,
+						y = 495
+					}
+				},
+				children = {}
+			},
+			{
+				name = "numLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 720,
+						y = 495
+					},
+					text = TR("备战侠客（0/0）")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 425,
+						y = 290
+					},
+					size = {
+						width = 790,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 5,
+								y = 10
+							},
+							size = {
+								width = 780,
+								height = 360
+							}
+						},
+						children = {
+							{
+								name = "item",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 780,
+										height = 140
+									}
+								},
+								children = {
+									{
+										name = "cardNode",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled17-image",
+												name = "professPic",
+												type = "string"
+											},
+											{
+												value = "untitled19-text",
+												name = "name",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 50,
+												y = 75
+											}
+										},
+										children = {
+											{
+												name = "card",
+												cType = "CardNode",
+												params = {
+													scale = 1,
+													allowClick = true,
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled18",
+												cType = "Sprite",
+												params = {
+													image = "xyyz_44.png",
+													pos = {
+														x = -37,
+														y = -53
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled22",
+												cType = "Sprite",
+												params = {
+													childName = "friendTag",
+													image = "swgmd_6.png",
+													hide = true,
+													pos = {
+														x = -27.54,
+														y = 17.17
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled17",
+												cType = "Sprite",
+												params = {
+													image = "zj_73.png",
+													childName = "professionSprite",
+													scale = 0.65,
+													pos = {
+														x = -37,
+														y = -53
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled19",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													outlineSize = 1,
+													text = "Name",
+													childName = "nameLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = -20,
+														y = -52
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled20",
+												cType = "Sprite",
+												params = {
+													childName = "selectSprite",
+													zOrder = 1,
+													hide = true,
+													image = "c_44.png",
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled21",
+												cType = "Sprite",
+												params = {
+													childName = "inTeamSprite",
+													zOrder = 1,
+													hide = true,
+													image = "gcz_21.png",
+													pos = {
+														x = 0,
+														y = 0
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "sureBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSureBtnAction",
+					pos = {
+						x = 425,
+						y = 55
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.isUpWakeList = slot1.isUpWakeList or {}
+	slot2 = slot1.limitProfession or {}
+	slot3 = slot1.limitCamp or {}
+	slot0.limitNum = slot1.limitNum or 5
+	slot0.limitCamp = {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot0.limitCamp[tonumber(slot8)] = tonumber(slot8)
+	end
+
+	slot0.limitProfession = {}
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.limitProfession[tonumber(slot8)] = tonumber(slot8)
+	end
+
+	slot0.callback = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mCardList = {}
+	slot0.mSelectList = {}
+
+	for slot7, slot8 in pairs(slot0.isUpWakeList) do
+		if slot8.HeroId ~= 0 then
+			slot0.mSelectList[slot8.Formation] = slot8.HeroId
+		end
+	end
+
+	dump(slot0.mSelectList)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createHeroList(slot0)
+
+	return 
+end
+slot0.isBanHero = function (slot0, slot1)
+	if slot0.limitProfession[HeroModel.items[slot1].profession] or slot0.limitCamp[slot2.camp] then
+		return true
+	end
+
+	return false
+end
+slot0.createHeroList = function (slot0)
+	slot0.msgBox.titleLabel:setString(TR("选择侠客"))
+
+	slot1 = HeroObj:getSortList()
+	slot2 = {}
+
+	for slot7, slot8 in pairs(slot3) do
+		if not slot0.isBanHero(slot0, slot8.MercenaryHeroInfo.ModelId) then
+			table.insert(slot2, slot8.MercenaryHeroInfo.MercenaryId)
+		end
+	end
+
+	for slot7, slot8 in pairs(slot1) do
+		if not slot0.isBanHero(slot0, slot8) then
+			table.insert(slot2, slot8)
+		end
+	end
+
+	slot6 = (slot0.listView:getContentSize().width - 7*100)/(7 + 1)
+
+	for slot10 = 1, math.ceil(#slot2/7), 1 do
+		slot11 = slot0.createLayoutTemplateNode(slot0, "item")
+
+		for slot15 = 1, slot4, 1 do
+			if slot2[(slot10 - 1)*slot4 + slot15] then
+				slot17 = false
+
+				for slot21, slot22 in pairs(slot0.mSelectList) do
+					if slot22 == slot16 then
+						slot17 = true
+
+						break
+					end
+				end
+
+				slot18 = {
+					Enums.CardShowAttr.eLevel,
+					Enums.CardShowAttr.eStar,
+					Enums.CardShowAttr.eTrainLv,
+					Enums.CardShowAttr.eProgress
+				}
+				slot19, slot20, slot21, slot22 = nil
+
+				if Utility.isEntityId(slot16) then
+					slot20 = HeroModel.items[MercenaryObj:getMercenaryInfoById(slot16).MercenaryHeroInfo.ModelId]
+					slot21, slot22 = Utility.getHeroCampProfessionImg(MercenaryObj.getMercenaryInfoById(slot16).MercenaryHeroInfo.ModelId)
+				else
+					slot19 = HeroObj:getItem(slot16)
+					slot20 = HeroModel.items[slot16]
+					slot21, slot22 = Utility.getHeroCampProfessionImg(slot16)
+				end
+
+				slot0.createLayoutTemplateNode(slot0, "cardNode", {
+					professPic = slot22,
+					name = slot20.name
+				}).friendTag:setVisible(Utility.isEntityId(slot16))
+
+				slot28, slot25 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot19.TrainLv].colorLv)
+
+				slot0.createLayoutTemplateNode(slot0, "cardNode", {
+					professPic = slot22,
+					name = slot20.name
+				}).nameLabel:setColor(slot24)
+
+				if 9 < string.len(slot20.name) then
+					ui.createLabelClipRoll({
+						label = slot23.nameLabel,
+						dimensions = cc.size(60, 22),
+						anchorPoint = cc.p(0, 0.5),
+						position = cc.p(-20, -50)
+					})
+				end
+
+				slot23.card:setCardData({}, slot18, slot19)
+
+				if slot17 then
+					slot23.selectSprite:setVisible(true)
+				end
+
+				slot23.card:setClickAction(function ()
+					for slot4, slot5 in pairs(slot0.mSelectList) do
+						if slot5 == slot1 then
+							slot0 = true
+
+							break
+						end
+					end
+
+					if slot0 then
+						for slot4, slot5 in pairs(slot0.mSelectList) do
+							if slot5 == slot1 then
+								slot0.mSelectList[slot4] = 0
+
+								break
+							end
+						end
+
+						slot0:refreshUI()
+					else
+						slot1 = 0
+
+						for slot5, slot6 in pairs(slot0.mSelectList) do
+							if slot6 ~= 0 then
+								slot1 = slot1 + 1
+							end
+						end
+
+						if slot1 < slot0.limitNum then
+							for slot5 = 1, 5, 1 do
+								if not slot0.mSelectList[slot5] or slot0.mSelectList[slot5] == 0 then
+									slot0.mSelectList[slot5] = slot1
+
+									break
+								end
+							end
+
+							slot0:refreshUI()
+						else
+							ui.showFlashView(TR("只可选择%s名侠客", slot0.limitNum))
+						end
+					end
+
+					dump(slot0.mSelectList)
+
+					return 
+				end)
+
+				slot23.heroModelId = slot16
+
+				slot23.setPosition(slot23, slot15*slot6 + 50 + (slot15 - 1)*100, 75)
+				slot11.addChild(slot11, slot23)
+				table.insert(slot0.mCardList, slot23)
+			end
+		end
+
+		slot0.listView:pushBackCustomItem(slot11)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in pairs(slot0.mCardList) do
+		slot6 = false
+
+		for slot10, slot11 in pairs(slot0.mSelectList) do
+			if slot5.heroModelId == slot11 then
+				slot6 = true
+
+				break
+			end
+		end
+
+		slot5.selectSprite:setVisible(slot6)
+	end
+
+	slot1 = 0
+
+	for slot5, slot6 in pairs(slot0.mSelectList) do
+		if slot6 ~= 0 then
+			slot1 = slot1 + 1
+		end
+	end
+
+	slot0.numLabel:setString(TR("可选择：%s%s%s/%s", (slot1 == slot0.limitNum and "#258711") or "#ea2c00", slot1, "#45220d", slot0.limitNum))
+
+	return 
+end
+slot0.onSureBtnAction = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.mSelectList) do
+		if slot7 ~= 0 then
+			slot2 = slot2 + 1
+		end
+	end
+
+	if slot2 < 1 then
+		ui.showFlashView(TR("侠客人数不足"))
+	else
+		slot0.requestChooseHero(slot0)
+	end
+
+	return 
+end
+slot0.requestChooseHero = function (slot0)
+	dump(slot0.mSelectList)
+
+	slot1 = {}
+
+	for slot5 = 1, 5, 1 do
+		if not slot0.mSelectList[slot5] then
+			slot1[slot5] = 0
+		else
+			slot1[slot5] = slot0.mSelectList[slot5]
+		end
+	end
+
+	dump(table.concat(slot1, ","))
+	slot0.socketRequest(slot0, {
+		methodName = "SetFormation",
+		moduleName = "Xiangyangfight",
+		methodData = {
+			table.concat(slot1, ","),
+			false
+		},
+		successCallback = function (slot0)
+			dump(slot0, "选择侠客")
+			slot0.callback(slot0)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

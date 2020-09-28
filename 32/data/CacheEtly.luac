@@ -1,0 +1,46 @@
+slot0 = class("CacheEtly", {})
+slot0.ctor = function (slot0)
+	slot0.mEtlyInfo = nil
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mEtlyInfo = nil
+
+	return 
+end
+slot0.setData = function (slot0, slot1)
+	if 2 <= slot1.BaseInfo.CommonCurNodeId/100000 then
+		if not slot0.mEtlyInfo then
+			slot0.mEtlyInfo = {}
+		end
+
+		return false
+	end
+
+	if slot1.BaseInfo.CommonCurNodeId == 0 then
+		if not slot0.mEtlyInfo then
+			slot0.mEtlyInfo = {}
+		end
+
+		return false
+	end
+
+	if not slot0.mEtlyInfo then
+		slot0.mEtlyInfo = slot1
+
+		return false
+	elseif not next(slot0.mEtlyInfo) then
+		slot0.mEtlyInfo = slot1
+
+		return true, slot0.mEtlyInfo.BaseInfo.CommonCurNodeId
+	elseif slot0.mEtlyInfo.BaseInfo.CommonCurNodeId ~= slot1.BaseInfo.CommonCurNodeId then
+		slot0.mEtlyInfo = slot1
+
+		return true, slot0.mEtlyInfo.BaseInfo.CommonCurNodeId
+	end
+
+	return false
+end
+
+return slot0

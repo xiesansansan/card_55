@@ -1,0 +1,166 @@
+string.splitBySep = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	if not slot0 or not slot1 then
+		return slot2
+	end
+
+	while 0 < string.len(slot0) do
+		slot4, slot5 = string.find(slot0, slot1)
+
+		if not slot4 then
+			slot2[#slot2 + 1] = slot0
+
+			break
+		end
+
+		if 1 < slot4 then
+			slot2[#slot2 + 1] = string.sub(slot0, 1, slot4 - 1)
+
+			table.insert(slot3, string.sub(slot0, slot4, slot5))
+		end
+
+		slot0 = (string.len(slot0) <= slot5 and "") or string.sub(slot0, slot5 + 1, string.len(slot0))
+	end
+
+	return slot2, slot3
+end
+string.isImageFile = function (slot0)
+	if not slot0 or string.len(slot0) <= 4 then
+		return false
+	end
+
+	return string.lower(string.sub(slot0, -4)) == ".png" or slot1 == ".jpg", slot1
+end
+string.tourl = function (slot0)
+	function slot2(slot0)
+		if string.byte(slot0) and 0 < slot1 then
+			return "%" .. string.format("%02X", slot1)
+		end
+
+		return 
+	end
+
+	function urlencode(slot0)
+		return string.gsub(string.gsub(string.gsub(tostring(slot0), "\n", "\r\n"), "([^%w%.%- ])", ), " ", "+")
+	end
+
+	return urlencode(crypto.encodeBase64(slot0))
+end
+string.dynamicFormat = function (slot0, slot1)
+	table.insert(slot2, "return string.format(")
+	table.insert(slot2, "'" .. slot0 .. "'")
+
+	for slot6 = 1, #slot1, 1 do
+		slot7 = ""
+
+		table.insert(slot2, ", " .. ((type(slot1[slot6]) == "string" and "'" .. slot1[slot6] .. "'") or tostring(slot1[slot6])))
+	end
+
+	table.insert(slot2, ")")
+
+	return loadstring(slot3)()
+end
+string.isEmail = function (slot0)
+	return 0 < #slot0 and slot0.match(slot0, "^[%w+%.%-_]+@[%w+%.%-_]+%.%a%a+$")
+end
+string.isCellular = function (slot0)
+	return 0 < #slot0 and slot0.match(slot0, "^[1-9]%d%d%d%d%d%d%d%d%d%d$")
+end
+string.isValided = function (slot0)
+	return 0 < #slot0 and not slot0.match(slot0, "[ %c%%'\"]+")
+end
+string.floatToStr = function (slot0)
+	if not slot0 then
+		return ""
+	end
+
+	if math.floor(slot0 + 1e-06) + 1e-06 < slot0 or slot0 < slot2 - slot1 then
+		return string.format("%.1f", slot0)
+	else
+		return string.format("%d", slot0)
+	end
+
+	return 
+end
+string.md5Content = function (slot0)
+	return string.gsub(md5Core.sum(slot0), ".", function (slot0)
+		return string.format("%02x", string.byte(slot0))
+	end)
+end
+string.c3bToStr = function (slot0)
+	if not slot0 then
+		return ""
+	end
+
+	return string.format("#%02x%02x%02x", slot0.r or 0, slot0.g or 0, slot0.b or 0)
+end
+string.strToColor = function (slot0)
+	slot1 = cc.c3b(255, 248, 234)
+
+	if 6 <= string.len(slot0) then
+		slot1.r = tonumber(string.sub(slot0, 1, 2), 16)
+		slot1.g = tonumber(string.sub(slot0, 3, 4), 16)
+		slot1.b = tonumber(string.sub(slot0, 5, 6), 16)
+	end
+
+	return slot1
+end
+string.getFileName = function (slot0)
+	if string.match(string.split(slot0 or "", "/")[#string.split(slot0 or "", "/")], ".*%.(.*)") and 5 < string.len(slot3) then
+		return slot3
+	end
+
+	if slot2.match(slot2, ".+()%.%w+$") then
+		return slot2.sub(slot2, 1, slot4 - 1)
+	else
+		return slot2
+	end
+
+	return 
+end
+string.tryConvertLuaPath = function (slot0)
+	if cc.FileUtils:getInstance():getFileExtension(slot0) and 5 < string.len(slot1) then
+		return slot2 .. ".lua"
+	end
+
+	return slot0
+end
+string.asciilen = function (slot0)
+	slot2 = #{
+		0,
+		192,
+		224,
+		240,
+		248,
+		252
+	}
+	slot3 = 0
+	slot4 = 0
+	slot5 = 0
+	slot6 = #slot0
+	slot7 = 0
+
+	while 0 < slot6 do
+		slot5 = string.byte(slot0, -slot6)
+		slot7 = slot2
+		slot4 = 1
+
+		while slot1[slot7] do
+			if slot1[slot7] <= slot5 then
+				slot6 = slot6 - slot7
+
+				break
+			end
+
+			slot7 = slot7 - 1
+		end
+
+		slot3 = slot3 + ((slot7 == 1 and 1) or 2)
+	end
+
+	return slot3
+end
+
+return 

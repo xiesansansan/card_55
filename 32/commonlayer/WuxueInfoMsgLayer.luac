@@ -1,0 +1,240 @@
+slot0 = class("WuxueInfoMsgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBackBtnClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 575
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 295.01,
+						y = 278.35
+					},
+					size = {
+						width = 519.87,
+						height = 475.09
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCardNode",
+				cType = "CardNode",
+				params = {
+					allowClick = false,
+					pos = {
+						x = 295.24,
+						y = 445.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mIntroLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					emptyInit = true,
+					align = 1,
+					valign = 0,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 295.24,
+						y = 345.77
+					},
+					size = {
+						width = 460.33,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "centerListView",
+				cType = "ListView",
+				params = {
+					margin = 1,
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 295.3,
+						y = 105.94
+					},
+					size = {
+						width = 480.98,
+						height = 143.2
+					}
+				},
+				children = {
+					{
+						name = "centerLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 28.8,
+								y = 107.19
+							},
+							size = {
+								width = 480.98,
+								height = 30
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mResourceId = slot1.resourceId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mCardNode:setCardData({
+		modelId = slot0.mResourceId
+	}, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eStar
+	})
+	slot0.mIntroLabel:setString(Resource.getIntro(slot0.mResourceId))
+	slot0.dealSuitData(slot0)
+	slot0.refreshCenterAttr(slot0)
+
+	return 
+end
+slot0.dealSuitData = function (slot0)
+	slot1 = slot0.mResourceId
+	slot0.suit = {}
+
+	for slot5, slot6 in pairs(WuxueSuitConfig.items) do
+		for slot10, slot11 in pairs(slot6) do
+			if WuxueModel.items[slot1] then
+				if WuxueModel.items[slot1].suitId == slot5 then
+					slot0.suit = {
+						suitId = slot5,
+						quality = slot10,
+						suitconfig = slot11,
+						colorLv = WuxueModel.items[slot1].colorLv
+					}
+
+					break
+				end
+			elseif WuxueModel.items[GoodsModel.items[slot1].outputModelID].suitId == slot5 then
+				slot0.suit = {
+					suitId = slot5,
+					quality = slot10,
+					suitconfig = slot11,
+					colorLv = WuxueModel.items[GoodsModel.items[slot1].outputModelID].colorLv
+				}
+
+				break
+			end
+		end
+	end
+
+	return 
+end
+slot0.refreshCenterAttr = function (slot0)
+	slot0.centerListView:removeAllItems()
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.suit.suitconfig) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.needPartNum < slot1.needPartNum
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = TR("%s套属性: ", slot6.needPartNum)
+
+		if slot6.actAttrStr ~= "" then
+			for slot11, slot12 in ipairs(Utility.analysisStrAttrList(slot6.actAttrStr)) do
+				slot13 = ""
+
+				if 1 < slot11 then
+					slot13 = " "
+				end
+
+				slot7 = slot7 .. ((Utility.isAttrNeedPercent(slot12.fightattr) and slot13 .. string.format("%s+%s%%", FightAttrTypeName[slot12.fightattr], slot12.value/100)) or slot13 .. string.format("%s+%s", FightAttrTypeName[slot12.fightattr], slot12.value))
+			end
+		else
+			slot10 = slot0.createLayoutTemplateNode(slot0, "centerLayout")
+
+			slot10.setContentSize(slot10, cc.size(460, (UIWrap.newControl("Label", {
+				fontSize = 19,
+				isRichText = true,
+				text = (slot6.actSkillId ~= "" and slot7 .. Resource.getSkillIntroStr(tonumber(slot6.actSkillId), 1, 1, "#FFF8EA", "#FFF8EA")) or slot7 .. TR("无"),
+				anchor = cc.p(0, 0.5),
+				outlineColor = cc.c3b(37, 37, 37),
+				size = cc.size(450, 0)
+			}):getContentSize().height < 35 and slot8) or slot9.getContentSize(slot9).height))
+			slot9.setPosition(slot9, 10, ((UIWrap.newControl("Label", {
+				fontSize = 19,
+				isRichText = true,
+				text = (slot6.actSkillId ~= "" and slot7 .. Resource.getSkillIntroStr(tonumber(slot6.actSkillId), 1, 1, "#FFF8EA", "#FFF8EA")) or slot7 .. TR("无"),
+				anchor = cc.p(0, 0.5),
+				outlineColor = cc.c3b(37, 37, 37),
+				size = cc.size(450, 0)
+			}).getContentSize().height < 35 and slot8) or slot9.getContentSize(slot9).height)/2)
+			slot10.addChild(slot10, slot9)
+			slot0.centerListView:pushBackCustomItem(slot10)
+		end
+	end
+
+	return 
+end
+
+return slot0

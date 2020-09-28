@@ -1,0 +1,1462 @@
+slot0 = class("GuildCreateLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled33",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopOverAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("帮 派")
+		},
+		children = {
+			{
+				name = "tempTabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					space = 10,
+					onSelectChange = "onTabChanged",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					zOrder = 2,
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 32.48,
+						y = 442.99
+					},
+					size = {
+						width = 588.97,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "noMoreGuildTip",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					pos = {
+						x = 414.73,
+						y = 242.34
+					}
+				},
+				children = {
+					{
+						name = "untitled83",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 220.17,
+								y = 46.81
+							},
+							text = TR("暂无帮派")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "noResaultTip",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					pos = {
+						x = 414.73,
+						y = 242.34
+					}
+				},
+				children = {
+					{
+						name = "untitled37",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 217.57,
+								y = 62.76
+							},
+							text = TR("未找到对应帮派，")
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 239.3,
+								y = 37.22
+							},
+							text = TR("请输入正确的帮派名称")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "needTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 816.25,
+						y = 440.71
+					},
+					text = TR("12:55:55后可加帮派")
+				},
+				children = {}
+			},
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 423.28,
+						y = 430.5
+					},
+					size = {
+						width = 783.82,
+						height = 339.23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "guildCreateNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 103.24,
+								y = 393.51
+							},
+							text = TR("帮派名称")
+						},
+						children = {}
+					},
+					{
+						name = "nameEditBox",
+						cType = "EditBox",
+						params = {
+							image = "c_41.png",
+							placeHolder = TR("请输入帮派名字"),
+							pos = {
+								x = 273.12,
+								y = 392.43
+							},
+							size = {
+								width = 237.15,
+								height = 40.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 103.78,
+								y = 335.59
+							},
+							text = TR("旗帜样式")
+						},
+						children = {}
+					},
+					{
+						name = "flagList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 153.7,
+								y = 309.5
+							},
+							size = {
+								width = 646.65,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "flagLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "flagBtn-image",
+										name = "flagImage",
+										type = "string"
+									},
+									{
+										value = "flagBtn-flagTag",
+										name = "flagTag",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 90,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "flagBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "flagTag",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "bp_12.png",
+											clickAction = "onFlagAction",
+											scale = 0.65,
+											pos = {
+												x = 45.24,
+												y = 46.12
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 103.58,
+								y = 242.09
+							},
+							text = TR("旗帜颜色")
+						},
+						children = {}
+					},
+					{
+						name = "colorList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 155.3,
+								y = 234.9
+							},
+							size = {
+								width = 602.83,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "colorLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled19-image",
+										name = "flagColor",
+										type = "string"
+									},
+									{
+										value = "colorBtn-colorTag",
+										name = "colorTag",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 40,
+										height = 40
+									}
+								},
+								children = {
+									{
+										name = "untitled19",
+										cType = "Sprite",
+										params = {
+											image = "bp_17.png",
+											pos = {
+												x = 18.3,
+												y = 17.41
+											}
+										},
+										children = {}
+									},
+									{
+										name = "lightSprite2",
+										cType = "Sprite",
+										params = {
+											image = "bp_24.png",
+											hide = true,
+											pos = {
+												x = 18.94,
+												y = 17.3
+											}
+										},
+										children = {}
+									},
+									{
+										name = "colorBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "colorTag",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "c_58.png",
+											clickAction = "onColorAction",
+											pos = {
+												x = 20.01,
+												y = 17.7
+											},
+											size = {
+												width = 40,
+												height = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 102.43,
+								y = 175.32
+							},
+							text = TR("帮派旗号")
+						},
+						children = {}
+					},
+					{
+						name = "titleEditBox",
+						cType = "EditBox",
+						params = {
+							image = "c_41.png",
+							pos = {
+								x = 203.62,
+								y = 170.79
+							},
+							size = {
+								width = 99.11,
+								height = 40.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 339.8,
+								y = 171.49
+							},
+							text = TR("输入一个字旗号")
+						},
+						children = {}
+					},
+					{
+						name = "priceResLabel1",
+						cType = "ResLabel",
+						params = {
+							modelId = 1111,
+							hide = true,
+							num = 1000,
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 380.73,
+								y = 113.15
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled28",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onConfirmAction",
+							pos = {
+								x = 412.47,
+								y = 67.79
+							},
+							titleText = TR("确  定")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "guildSearchNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "listView",
+						cType = "ListView",
+						params = {
+							margin = 10,
+							direction = true,
+							bounce = true,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 423.24,
+								y = 423.18
+							},
+							size = {
+								width = 769.07,
+								height = 322.02
+							}
+						},
+						children = {
+							{
+								name = "listLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "name-text",
+										name = "guildName",
+										type = "string"
+									},
+									{
+										value = "untitled46-text",
+										name = "guildLeader",
+										type = "string"
+									},
+									{
+										value = "untitled44-text",
+										name = "guildLv",
+										type = "string"
+									},
+									{
+										value = "untitled48-text",
+										name = "guildMember",
+										type = "string"
+									},
+									{
+										value = "applyBtn-applyGuildId|cancelBtn-cancelGuildId",
+										name = "applyGuildId",
+										type = "string"
+									},
+									{
+										value = "applyBtn-tag|cancelBtn-tag",
+										name = "tag",
+										type = "string"
+									},
+									{
+										value = "untitled52-hide",
+										name = "isHideExempt",
+										type = "string"
+									},
+									{
+										value = "untitled85-text",
+										name = "cityNum",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 769.07,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled41",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_34.png",
+											pos = {
+												x = 384.75,
+												y = 59.12
+											},
+											size = {
+												width = 769.07,
+												height = 120
+											}
+										},
+										children = {}
+									},
+									{
+										name = "name",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 98.07,
+												y = 93.64
+											},
+											text = TR("帮派名字")
+										},
+										children = {}
+									},
+									{
+										name = "guildFlag",
+										cType = "GuildFlag",
+										params = {
+											scale = 0.8,
+											pos = {
+												x = 50.47,
+												y = 61.05
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled43",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 98.55,
+												y = 59.87
+											},
+											text = TR("等级：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled44",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 159.64,
+												y = 59.55
+											},
+											text = TR("等级")
+										},
+										children = {}
+									},
+									{
+										name = "untitled45",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 97.32,
+												y = 26.97
+											},
+											text = TR("帮主：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled46",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 159.94,
+												y = 26.2
+											},
+											text = TR("帮主")
+										},
+										children = {}
+									},
+									{
+										name = "untitled47",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 324.16,
+												y = 27.24
+											},
+											text = TR("成员：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled48",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 385.13,
+												y = 28.34
+											},
+											text = TR("成员")
+										},
+										children = {}
+									},
+									{
+										name = "untitled84",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 324.93,
+												y = 60.45
+											},
+											text = TR("城池：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled85",
+										cType = "Label",
+										params = {
+											text = "0",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 385.58,
+												y = 59.48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "applyBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "tag",
+												type = "integer"
+											},
+											{
+												value = "",
+												name = "applyGuildId",
+												type = "string"
+											}
+										},
+										params = {
+											image = "c_27.png",
+											clickAction = "onApplyAction",
+											scale = 0.9,
+											pos = {
+												x = 692.26,
+												y = 49.89
+											},
+											titleText = TR("申  请")
+										},
+										children = {}
+									},
+									{
+										name = "doSprite",
+										cType = "Sprite",
+										params = {
+											image = "bp_11.png",
+											hide = true,
+											pos = {
+												x = 525.15,
+												y = 59.03
+											}
+										},
+										children = {}
+									},
+									{
+										name = "cancelBtn",
+										cType = "Button",
+										custom = {
+											{
+												value = "",
+												name = "cancelGuildId",
+												type = "string"
+											},
+											{
+												value = 1,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "c_32.png",
+											scale = 0.9,
+											hide = true,
+											clickAction = "onCancelAction",
+											pos = {
+												x = 692.26,
+												y = 49.89
+											},
+											titleText = TR("取  消")
+										},
+										children = {}
+									},
+									{
+										name = "untitled52",
+										cType = "Sprite",
+										params = {
+											image = "bp_10.png",
+											hide = true,
+											pos = {
+												x = 691.8,
+												y = 87.93
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "swarmLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 769.07,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "untitled54",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 384.9,
+												y = 29.62
+											},
+											text = TR("没有更多帮派")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "searchNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "editBox",
+								cType = "EditBox",
+								params = {
+									fontSize = 24,
+									image = "c_41.png",
+									placeColor = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									placeHolder = TR("输入需要查找的帮派名字"),
+									pos = {
+										x = 341.54,
+										y = 57.13
+									},
+									size = {
+										width = 616,
+										height = 42
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled56",
+								cType = "Button",
+								params = {
+									image = "c_19.png",
+									clickAction = "onFindAction",
+									pos = {
+										x = 735.89,
+										y = 57.48
+									},
+									titleText = TR("查 找")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mInit = true
+	slot0.mTag = slot1.tag or 1
+	slot0.mInitList = true
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:refreshListView()
+
+		return 
+	end, 2)
+	slot0.mIsModify = slot1.isModify or false
+	slot0.mCallBack = slot1.callBack
+	slot0.mFlagTag = math.random(#Enums.GuildFlagTabel)
+	slot0.mColorTag = math.random(#Enums.GuildFlagColorPic)
+
+	if slot0.mIsModify then
+		slot0.mFlagTag = tonumber(string.splitBySep(PlayerAttrObj:getPlayerAttrByName("GuildInfo").Flag or "", ",")[1]) or 0
+		slot0.mColorTag = tonumber(string.splitBySep(PlayerAttrObj.getPlayerAttrByName("GuildInfo").Flag or "", ",")[2]) or 0
+	end
+
+	slot0.mPageIndex = 0
+	slot0.mTotalPage = 0
+	slot0.mIsLoadListView = true
+	slot0.mIsScroll = false
+
+	slot0.initUI(slot0)
+	slot0.refreshFlag(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tabBtnInfos = {
+		{
+			tag = 1,
+			title = TR("加入帮派")
+		},
+		{
+			tag = 2,
+			title = TR("创建帮派")
+		},
+		{
+			tag = 3,
+			title = TR("查找帮派")
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tempTabView" then
+			slot1.btnInfos = slot0.tabBtnInfos
+			slot1.selectTag = slot0.mTag
+		end
+
+		return 
+	end)
+	slot0.noMoreGuildTip:setCascadeOpacityEnabled(true)
+	slot0.noResaultTip:setCascadeOpacityEnabled(true)
+
+	for slot4, slot5 in ipairs(Enums.GuildFlagTabel) do
+		slot0.flagList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "flagLayout", {
+			flagImage = slot5.image,
+			flagTag = slot4
+		}))
+
+		if slot4 == slot0.mFlagTag then
+			slot6.flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+		end
+	end
+
+	for slot4, slot5 in ipairs(Enums.GuildFlagColorPic) do
+		slot0.colorList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "colorLayout", {
+			flagColor = slot5.image,
+			colorTag = slot4
+		}))
+
+		if slot4 == slot0.mColorTag then
+			slot6.lightSprite2:setVisible(true)
+		end
+	end
+
+	slot0.titleEditBox.editbox:registerScriptEditBoxHandler(function (slot0)
+		if (slot0 == "ended" or slot0 == "return") and string.isValided(slot0.titleEditBox:getText()) then
+			slot0:refreshFlag()
+		end
+
+		return 
+	end)
+
+	slot1 = (slot0.mIsModify and GuildConfig.items[1].changeNameUse) or GuildConfig.items[1].buildGuildUse
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.priceResLabel1:setVisible(true)
+		slot0.priceResLabel1:setTexture(slot8)
+		slot0.priceResLabel1:setString(slot7.num)
+	end
+
+	slot0.listView:addScrollViewEventListener(function (slot0, slot1)
+		if slot1 == 6 then
+			if slot0.mTotalPage <= slot0.mPageIndex then
+				return 
+			end
+
+			if slot0.mIsScroll == false then
+				return 
+			end
+
+			slot0.mIsScroll = false
+
+			if slot0.editBox:getText() ~= "" then
+				slot0:requestSeach()
+			else
+				slot0.mIsLoadListView = false
+
+				slot0:requestGetInfo()
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshFlag = function (slot0)
+	return 
+end
+slot0.onFlagAction = function (slot0, slot1)
+	slot0.mFlagTag = slot1.flagTag
+
+	slot0.refreshFlag(slot0)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot7.flagBtn:setColor(cc.c3b(255, 255, 255))
+
+		if slot7.flagBtn.flagTag == slot1.flagTag and 0 < slot0.mColorTag then
+			slot7.flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+		end
+	end
+
+	return 
+end
+slot0.onColorAction = function (slot0, slot1)
+	slot0.mColorTag = slot1.colorTag
+
+	slot0.refreshFlag(slot0)
+
+	slot3 = slot0.flagList:getItems()
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot8.lightSprite2:setVisible(false)
+
+		if slot8.colorBtn.colorTag == slot1.colorTag then
+			slot8.lightSprite2:setVisible(true)
+
+			if 0 < slot0.mFlagTag then
+				slot3[slot0.mFlagTag].flagBtn:setColor(Enums.GuildFlagColor[slot0.mColorTag].color)
+			end
+		end
+	end
+
+	return 
+end
+slot0.onConfirmAction = function (slot0, slot1)
+	if slot0.nameEditBox:getText() == "" then
+		ui.showFlashView(TR("请输入帮派名字！"))
+
+		return 
+	end
+
+	if not string.isValided(slot2) then
+		ui.showFlashView(TR("帮派名字不符合要求！"))
+
+		return 
+	end
+
+	if 6 < string.utf8len(slot2) then
+		ui.showFlashView(TR("帮派名字不能超过6个字"))
+
+		return 
+	end
+
+	if slot0.mFlagTag <= 0 then
+		ui.showFlashView(TR("请选择旗帜样式！"))
+
+		return 
+	end
+
+	if slot0.mColorTag <= 0 then
+		ui.showFlashView(TR("请选择旗帜颜色！"))
+
+		return 
+	end
+
+	if slot0.titleEditBox:getText() == "" then
+		ui.showFlashView(TR("请选择旗帜文字！"))
+
+		return 
+	end
+
+	if 1 < string.utf8len(slot3) then
+		ui.showFlashView(TR("旗帜文字只能是1个字"))
+
+		return 
+	end
+
+	if not string.isValided(slot3) then
+		ui.showFlashView(TR("旗帜文字不符合要求！"))
+
+		return 
+	end
+
+	slot4 = slot0.mFlagTag .. "," .. slot0.mColorTag
+
+	if not slot0.mIsModify then
+		slot0.socketRequest(slot0, {
+			methodName = "CreateGuild",
+			moduleName = "Guild",
+			methodData = {
+				slot2,
+				TR("帮主很懒什么也没留下"),
+				slot4,
+				slot3
+			},
+			successCallback = function (slot0)
+				if slot0.mCallBack then
+					slot0.mCallBack()
+				end
+
+				LayerManager.removeLayer(slot0)
+				LayerManager.addLayer({
+					name = "guild.GuildHomeLayer"
+				})
+
+				return 
+			end
+		})
+	else
+		if PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildName == slot2 and slot0.mFlagTag == tonumber(string.splitBySep(slot5.Flag, ",")[1]) and slot0.mColorTag == tonumber(string.splitBySep(slot5.Flag, ",")[2]) and PlayerAttrObj:getPlayerAttrByName("GuildInfo").Logo == slot3 then
+			ui.showFlashView(TR("修改信息未变化！"))
+
+			return 
+		end
+
+		slot0.socketRequest(slot0, {
+			methodName = "UpdateGuildBasicInfo",
+			moduleName = "Guild",
+			methodData = {
+				slot2,
+				slot4,
+				slot3
+			},
+			successCallback = function (slot0)
+				if slot0.mCallBack then
+					slot0.mCallBack()
+				end
+
+				ui.showFlashView(TR("更改信息成功"))
+				EventAuto:postEvent(EventDefine.eRefreshAllLabel)
+				LayerManager.removeLayer(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mGuildList) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "listLayout", {
+			guildName = slot5.GuildName,
+			guildLeader = slot5.LeaderName,
+			guildLv = slot5.GuildLevel,
+			guildMember = string.format("%s/%s", slot5.MemberCount, Utility.getConfigItems("GuildLvRelation")[slot5.GuildLevel].memberNum),
+			applyGuildId = slot5.GuildId,
+			isHideExempt = not slot5.IfExemptReview,
+			tag = (slot0.mPageIndex - 1)*5 + slot4,
+			cityNum = slot5.OccupiedCities
+		})
+
+		slot0.listView:pushBackCustomItem(slot6)
+		slot6.guildFlag:setFlag(slot5.BannerInfo)
+		slot6.guildFlag:setString(slot5.Logo)
+		slot6.doSprite:setVisible(slot5.IsApply)
+		slot6.cancelBtn:setVisible(slot5.IsApply)
+		slot6.applyBtn:setVisible(not slot5.IsApply)
+	end
+
+	if not slot0.mIsLoadListView then
+		ui.setListviewItemShow(slot0.listView, (slot0.mPageIndex - 1)*5 + 1)
+	end
+
+	if slot0.mTotalPage <= slot0.mPageIndex and next(slot0.mGuildList) then
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "swarmLayout", {}))
+	end
+
+	Utility.performWithDelay(slot0, function ()
+		slot0.mIsScroll = true
+
+		return 
+	end, 1)
+	slot0.needTimeLabel:stopAllActions()
+	Utility.schedule(slot0.needTimeLabel, function ()
+		if 0 < slot0.NextTime - Player:getCurrentTime() then
+			slot0.needTimeLabel:setVisible(true)
+			slot0.needTimeLabel:setString(TR("%s%s%s后可加入帮派", "#ea2c00", MqTime.formatAsDay(slot0), "#252525"))
+		else
+			slot0.needTimeLabel:stopAllActions()
+			slot0.needTimeLabel:setVisible(false)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onFindAction = function (slot0, slot1)
+	slot0.mPageIndex = 0
+	slot0.mTotalPage = 0
+	slot0.mIsLoadListView = true
+
+	slot0.listView:removeAllItems()
+
+	if slot0.editBox:getText() == "" then
+		slot0.requestGetInfo(slot0)
+	else
+		slot0.requestSeach(slot0)
+	end
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPopOverAction = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetApplyGuildInfo",
+		moduleName = "Guild",
+		methodData = {
+			slot0.mPageIndex,
+			false
+		},
+		successCallback = function (slot0)
+			slot0.mGuildList = slot0.GuildListInfo or {}
+
+			if next(slot0.mGuildList) then
+				slot0.noMoreGuildTip:setVisible(false)
+			else
+				slot0.noMoreGuildTip:setVisible(true)
+			end
+
+			slot0.mTotalPage = slot0.TotalPage or 0
+			slot0.mPageIndex = slot0.mPageIndex + 1
+			slot0.NextTime = slot0.PlayerGuildInfo.NextTime or 0
+
+			if slot0.mInitList then
+				slot0.mInitList = false
+
+				slot0.actionRefresh()
+			else
+				slot0:refreshListView()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onApplyAction = function (slot0, slot1)
+	dump(slot1.applyGuildId, "pSender.applyGuildId")
+	slot0.socketRequest(slot0, {
+		methodName = "Apply",
+		moduleName = "Guild",
+		methodData = {
+			slot1.applyGuildId
+		},
+		successCallback = function (slot0)
+			if Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+				LayerManager.removeLayer(slot0)
+				LayerManager.showModuleLayer(ModuleSub.eGuild)
+			elseif slot0.listView:getItems()[slot1.tag] then
+				slot3.doSprite:setVisible(true)
+				slot3.cancelBtn:setVisible(true)
+				slot3.applyBtn:setVisible(false)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onCancelAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GuildCancelApply",
+		moduleName = "Guild",
+		methodData = {
+			slot1.cancelGuildId
+		},
+		successCallback = function (slot0)
+			if slot0.listView:getItems()[slot1.tag] then
+				slot2.doSprite:setVisible(false)
+				slot2.cancelBtn:setVisible(false)
+				slot2.applyBtn:setVisible(true)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSeach = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Search",
+		moduleName = "Guild",
+		methodData = {
+			slot0.editBox:getText(),
+			slot0.mPageIndex
+		},
+		successCallback = function (slot0)
+			slot0.mGuildList = slot0.GuildListInfo or {}
+
+			if next(slot0.mGuildList) then
+				slot0.noResaultTip:setVisible(false)
+			else
+				slot0.noResaultTip:setVisible(true)
+			end
+
+			slot0.mTotalPage = slot0.TotalPage or 0
+			slot0.mPageIndex = slot0.mPageIndex + 1
+
+			slot0:refreshListView()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	print("=====tag====" .. slot1)
+
+	if not slot0.mInit and slot1 == slot0.mTag then
+		return 
+	end
+
+	slot0.mInit = false
+
+	for slot6, slot7 in pairs(slot2) do
+		slot7.setVisible(slot7, false)
+	end
+
+	if slot1 == 2 then
+		slot0.guildCreateNode:setVisible(true)
+		slot0.bgSprite:setContentSize(cc.size(783.82, 399.23))
+	else
+		if slot1 == 1 then
+			slot0.searchNode:setVisible(false)
+			slot0.listView:setContentSize(cc.size(769.07, 395.29))
+			slot0.bgSprite:setContentSize(cc.size(783.82, 399.23))
+
+			slot0.mPageIndex = 0
+			slot0.mTotalPage = 0
+			slot0.mIsLoadListView = true
+
+			slot0.listView:removeAllItems()
+			slot0.editBox:setText("")
+			slot0.requestGetInfo(slot0)
+		else
+			slot0.searchNode:setVisible(true)
+			slot0.listView:setContentSize(cc.size(769.07, 322.02))
+			slot0.bgSprite:setContentSize(cc.size(783.82, 339.23))
+			slot0.noMoreGuildTip:setVisible(false)
+		end
+
+		slot0.guildSearchNode:setVisible(true)
+	end
+
+	slot0.noResaultTip:setVisible(false)
+
+	slot0.mTag = slot1
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,440 @@
+slot0 = class("GuildDeclareCityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionFinish",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("宣战栏")
+		},
+		children = {
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					margin = 15,
+					direction = false,
+					pos = {
+						x = 34.43,
+						y = 85.99
+					},
+					size = {
+						width = 780,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "declareLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "bgSprite-image",
+								name = "bgPic",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 250,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "bgSprite",
+								cType = "Sprite",
+								params = {
+									image = "bp_59.png",
+									pos = {
+										x = 117,
+										y = 200
+									}
+								},
+								children = {}
+							},
+							{
+								name = "tipLabel",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									pos = {
+										x = 117.57,
+										y = 368.37
+									},
+									text = TR("可宣战")
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "lockTip",
+									image = "c_21.png",
+									hide = true,
+									pos = {
+										x = 125,
+										y = 200
+									}
+								},
+								children = {}
+							},
+							{
+								name = "schTip",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_118.png",
+									hide = true,
+									pos = {
+										x = 127.87,
+										y = 193.84
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Label",
+										params = {
+											childName = "timeLabel",
+											text = "Label",
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											pos = {
+												x = 97,
+												y = 15.5
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "goBtn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									hide = true,
+									clickAction = "onRouteCatCallback",
+									pos = {
+										x = 125,
+										y = 60
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							},
+							{
+								name = "touchBtn",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onGoCallback",
+									pos = {
+										x = 122.06,
+										y = 209.96
+									},
+									size = {
+										width = 227.5,
+										height = 337.03
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 56
+					},
+					text = TR("每日05：00重置宣战栏次数")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.maxPerNode = GuildConfig.items[1].declareWarDailyMaxNum
+	slot0.mGuildInfo = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onActionFinish = function (slot0)
+	slot0.getDeclareCityInfo(slot0)
+
+	return 
+end
+slot1 = {
+	"bp_59.png",
+	"bp_60.png",
+	"bp_61.png"
+}
+slot0.refreshUI = function (slot0)
+	slot0.mListView:removeAllItems()
+
+	slot2 = GuildLvRelation.items[slot0.mGuildInfo.GuildLevel].declareWarNum
+	slot3 = {}
+
+	for slot7 = 1, GuildLvRelation.items[slot0.mGuildInfo.GuildLevel].declareWarNum, 1 do
+		table.insert(slot3, {
+			openLv = 0
+		})
+	end
+
+	for slot7 = slot0.mGuildInfo.GuildLevel, #GuildLvRelation.items, 1 do
+		if slot2 < GuildLvRelation.items[slot7].declareWarNum then
+			table.insert(slot3, {
+				openLv = slot8.guildLv
+			})
+
+			slot2 = slot8.declareWarNum
+		end
+	end
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "declareLayout", {
+			bgPic = slot0[slot7] or slot0[3]
+		})
+
+		if slot8.openLv == 0 then
+			slot10 = Player:getCurrentTime()
+			slot11 = slot0.declareTimeInfo[slot7] or {}
+			slot12 = slot0.declareTimeInfo[slot7].DeclareTime
+
+			if slot0.declareWarInfo[declareWarNum] then
+				declaredCityId = slot0.declareWarInfo[declareWarNum].ChapterModelId
+			end
+
+			if slot12 + GuildConfig.items[1].declareWarCd < slot10 then
+				slot9.tipLabel:setColor(cc.c3b(139, 168, 87))
+				slot9.tipLabel:setString(TR("可宣战（%s/%s）", slot0.declareTimeInfo[slot7].RemainNum, slot0.maxPerNode))
+
+				if slot0.declareTimeInfo[slot7].RemainNum <= 0 then
+					slot9.touchBtn:setVisible(false)
+				end
+			elseif slot12 + CitywarConfig.items[1].warWaitTime < slot10 then
+				slot9.tipLabel:setString(TR("宣战冷却中"))
+				slot9.tipLabel:setColor(cc.c3b(192, 65, 65))
+				slot9.touchBtn:setVisible(false)
+				slot9.schTip:setVisible(true)
+				slot9.schTip.timeLabel:setString(TR("冷却中 00：00：00"))
+				Utility.schedule(slot9.schTip.timeLabel, function ()
+					slot2 = "后可再次宣战"
+
+					if 0 <= (slot0 + GuildConfig.items[1].declareWarCd) - Player:getCurrentTime() then
+						slot1:setString(TR("%s%s", MqTime.formatAsHour((slot0 + slot1) - Player:getCurrentTime()), slot2))
+					else
+						slot1:stopAllActions()
+						slot2:refreshUI()
+					end
+
+					return 
+				end, 1)
+			else
+				slot9.touchBtn:setVisible(false)
+				slot9.goBtn:setVisible(true)
+				slot9.schTip:setVisible(true)
+				slot9.tipLabel:setString(TR("已宣战"))
+				slot9.tipLabel:setColor(cc.c3b(192, 65, 65))
+				Utility.schedule(slot9.schTip.timeLabel, function ()
+					slot2 = "后开战"
+
+					if 0 <= (slot0 + CitywarConfig.items[1].warWaitTime) - Player:getCurrentTime() then
+						slot1:setString(TR("%s%s", MqTime.formatAsHour((slot0 + slot1) - Player:getCurrentTime()), slot2))
+					else
+						slot1:stopAllActions()
+						slot2:refreshUI()
+					end
+
+					return 
+				end, 1)
+			end
+		else
+			slot9.touchBtn:setVisible(false)
+			slot9.lockTip:setVisible(true)
+			slot9.tipLabel:setColor(cc.c3b(255, 255, 255))
+			slot9.tipLabel:setString(TR("帮派达到%s级后解锁", slot8.openLv))
+			slot9.bgSprite:setGray(true)
+		end
+
+		slot0.mListView:pushBackCustomItem(slot9)
+	end
+
+	return 
+end
+slot0.calcCanDeclareCityId = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	for slot5, slot6 in ipairs(slot0.myCitiesInfo) do
+		for slot11, slot12 in ipairs(slot7) do
+			if CitywarCityConfig.items[tonumber(slot12)].ifNeedDeclare then
+				slot13 = (table.indexof(slot0.myCitiesInfo, slot12) and true) or false
+				slot14 = (table.indexof(slot0.hasDeclaredCityArr, slot12) and true) or false
+
+				if not slot13 and not slot14 then
+					return slot12
+				end
+			end
+		end
+	end
+
+	table.sort(slot2)
+
+	for slot6, slot7 in ipairs(slot2) do
+		if CitywarCityConfig.items[slot7].ifNeedDeclare then
+			return slot7
+		end
+	end
+
+	return 
+end
+slot0.onCloseLayerCallback = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGoCallback = function (slot0, slot1)
+	slot2 = PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId
+
+	if not GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mGuildInfo.PositionId].ifProclaimWar then
+		ui.showFlashView("无权操作")
+
+		return 
+	end
+
+	slot6 = MqTime.getTimeTickByStr(slot5)
+
+	if MqTime.getTimeTickByStr(CitywarConfig.items[1].closeTime) < Player:getCurrentTime() or slot4 < slot6 then
+		ui.showFlashView(TR("帮战开启时间为:%s--%s", slot5, slot7))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "citywar.CityWarHomeLayer",
+		data = {
+			defaultCityId = slot0.calcCanDeclareCityId(slot0)
+		}
+	})
+
+	return 
+end
+slot0.onRouteCatCallback = function (slot0, slot1)
+	slot2 = nil
+
+	if slot1.declaredCityId and slot1.declaredCityId ~= 0 then
+		slot2 = slot1.declaredCityId
+	end
+
+	LayerManager.addLayer({
+		name = "citywar.CityWarHomeLayer",
+		data = {
+			defaultCityId = slot2
+		}
+	})
+
+	return 
+end
+slot0.getDeclareCityInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetDeclareWarInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			dump(slot0, "GuildDeclareCityLayer.GetDeclareWarInfo")
+
+			slot0.declareWarInfo = slot0.DeclareWarInfo
+			slot0.declareTimeInfo = slot0.DeclareTimeInfo
+			slot0.hasDeclaredCityArr = {}
+			slot1 = ipairs
+			slot2 = slot0.declareWarInfo or {}
+
+			for slot4, slot5 in slot1(slot2) do
+				table.insert(slot0.hasDeclaredCityArr, slot5.ChapterModelId)
+			end
+
+			slot0:requestGetCityInfo(function ()
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetCityInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCityInfo",
+		moduleName = "Citywar",
+		methodData = {
+			0
+		},
+		successCallback = function (slot0)
+			slot0:requestGoBack()
+
+			slot0.myCitiesInfo = slot0.OwnCity
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGoBack = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GoBack",
+		moduleName = "Citywar",
+		methodData = {
+			0,
+			1
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

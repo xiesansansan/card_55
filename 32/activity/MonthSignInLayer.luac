@@ -1,0 +1,579 @@
+slot0 = class("MonthSignInLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_22.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "fuli_84.png",
+					pos = {
+						x = 253.81,
+						y = -17.39
+					},
+					size = {
+						width = 560,
+						height = 560
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 135,
+					pos = {
+						x = 254.29,
+						y = -17.93
+					},
+					size = {
+						width = 537.32,
+						height = 505.64
+					}
+				},
+				children = {}
+			},
+			{
+				name = "gridNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 29.77,
+						y = 164.03
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Sprite",
+						params = {
+							image = "fuli_21.png",
+							pos = {
+								x = -0.2,
+								y = 8.09
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "CardNode",
+						params = {
+							childName = "goodCard",
+							allowClick = true,
+							pos = {
+								x = -0.09,
+								y = 17.46
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							childName = "vipDoubleSprite",
+							scale = 1.2,
+							hide = true,
+							image = "c_88.png",
+							pos = {
+								x = -12.36,
+								y = 28.55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							fontSize = 16,
+							hide = true,
+							rotationAngle = -45,
+							childName = "vipDoubleLabel",
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = -21.94,
+								y = 37.93
+							},
+							text = TR("V15三倍")
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Sprite",
+						params = {
+							image = "fuli_20.png",
+							childName = "hadGetSprite",
+							pos = {
+								x = -0.78,
+								y = 17.35
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						params = {
+							childName = "oneMoreDraw",
+							image = "fuli_19.png",
+							hide = true,
+							pos = {
+								x = -5.37,
+								y = 12.32
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "fuli_18.png",
+					pos = {
+						x = -218.13,
+						y = -208.86
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							image = "fuli_23.png",
+							pos = {
+								x = 42.97,
+								y = 60.81
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									pos = {
+										x = 14.4,
+										y = 41.65
+									},
+									size = {
+										width = 20,
+										height = 100
+									},
+									text = TR("奖励预览")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "rewardList",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = false,
+							pos = {
+								x = 67.43,
+								y = 18.05
+							},
+							size = {
+								width = 240,
+								height = 82.83
+							}
+						},
+						children = {
+							{
+								name = "topListLayout",
+								cType = "Layout",
+								params = {
+									pos = {
+										z = 0,
+										x = -0.37,
+										y = 1.03
+									},
+									size = {
+										width = 79.89,
+										height = 81.12
+									}
+								},
+								children = {
+									{
+										name = "untitled23",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											childName = "goodCard",
+											allowClick = true,
+											pos = {
+												x = 40.61,
+												y = 40.49
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "cumulativeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							emptyInit = true,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 168.65,
+								y = 117.6
+							},
+							text = TR("累计签到奖励：10/15天")
+						},
+						children = {}
+					},
+					{
+						name = "getBtn",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							clickAction = "onGetCumulative",
+							pos = {
+								x = 190.49,
+								y = 58.35
+							},
+							size = {
+								width = 261.09,
+								height = 93.76
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurrentSignIndex = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot1 = {
+	"一",
+	"双",
+	"三",
+	"四",
+	"五",
+	"六",
+	"七",
+	"八",
+	"九",
+	"十"
+}
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mSignRewardInfo then
+		return 
+	end
+
+	slot0.createLayoutTemplateNode(slot0, "gridNode").goodCard:setCardData({
+		modelId = Utility.analysisStrResList(slot0.mSignRewardInfo[slot2].ResourceList)[1].resourceId,
+		num = Utility.analysisStrResList(slot0.mSignRewardInfo[slot2].ResourceList)[1].num
+	}, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eNum
+	})
+	slot0.createLayoutTemplateNode(slot0, "gridNode").goodCard:setClickAction(function (slot0)
+		if not slot0.mDailyInfo.SignTime then
+			if slot0.mDailyInfo.SignCycle == slot1.SignCycle then
+				if slot2 ~= slot0.mDailyInfo.SignNum + 1 then
+					slot0.defaultCardClick()
+
+					return 
+				else
+					slot0:requestSignIn()
+				end
+			elseif slot2 ~= 1 then
+				slot0.defaultCardClick()
+
+				return 
+			else
+				slot0:requestSignIn()
+			end
+		else
+			if slot0.mDailyInfo.SignCycle == slot1.SignCycle and slot2 == slot0.mDailyInfo.SignNum then
+				if slot0.mDailyInfo.ChargeMoney then
+					if not slot0.mDailyInfo.MoreSignTime then
+						slot0:requestSignIn()
+
+						return 
+					end
+				else
+					ui.showMessageBox({
+						titleText = TR("提示"),
+						text = TR("%s当天充值%s任意金额%s可%s额外%s获得一次奖励", "#252525", "#C04141", "#252525", "#C04141", "#252525"),
+						okCallback = function ()
+							LayerManager.addLayer({
+								name = "recharge.RechargeHomeLayer"
+							})
+							LayerManager.removeLayer(LayerManager.removeLayer)
+
+							return 
+						end,
+						cancelCallback = function ()
+							return 
+						end
+					})
+
+					return 
+				end
+			end
+
+			slot0.defaultCardClick()
+		end
+
+		return 
+	end)
+
+	if slot0.mDailyInfo.SignTime == false then
+		if slot0.mDailyInfo.SignCycle == slot4.SignCycle then
+			if slot2 == slot0.mDailyInfo.SignNum + 1 then
+				slot7 = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "cheng",
+					dataFile = "effect_ui_touxiangkuang"
+				})
+
+				slot7.setPosition(slot7, 40.25, 39)
+				slot5.goodCard:addChild(slot7)
+			end
+		elseif slot2 == 1 then
+			slot7 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "cheng",
+				dataFile = "effect_ui_touxiangkuang"
+			})
+
+			slot7.setPosition(slot7, 40.25, 39)
+			slot5.goodCard:addChild(slot7)
+		end
+	end
+
+	if slot0.mDailyInfo.SignCycle == slot4.SignCycle then
+		if slot2 <= slot0.mDailyInfo.SignNum then
+			slot5.goodCard:setGray()
+			slot5.hadGetSprite:setVisible(true)
+
+			slot0.mCurrentSignIndex = slot2
+		else
+			slot5.hadGetSprite:setVisible(false)
+		end
+	else
+		slot5.hadGetSprite:setVisible(false)
+	end
+
+	if slot0.mDailyInfo.SignTime and slot0.mDailyInfo.SignCycle == slot4.SignCycle and slot2 == slot0.mDailyInfo.SignNum and not slot0.mDailyInfo.MoreSignTime then
+		slot5.oneMoreDraw:setVisible(true)
+		slot5.hadGetSprite:setVisible(false)
+
+		slot7 = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "cheng",
+			dataFile = "effect_ui_touxiangkuang"
+		})
+
+		slot7.setPosition(slot7, 40.25, 39)
+		slot5.goodCard:addChild(slot7)
+	end
+
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.refreshCumulative = function (slot0)
+	slot0.rewardList:removeAllChildren()
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "topListLayout").goodCard:setCardData({
+			modelId = slot6.resourceId,
+			num = slot6.num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		slot0.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "topListLayout"))
+	end
+
+	slot2 = "#258711"
+
+	if slot0.mCumulativeInfo.SignNum <= slot0.mDailyInfo.CumulativeMaxNum then
+		slot0.getBtn:setVisible(false)
+	elseif slot0.mDailyInfo.SignNum < slot0.mCumulativeInfo.SignNum then
+		slot0.getBtn:setVisible(false)
+
+		slot2 = "#ff4a46"
+	else
+		for slot7, slot8 in ipairs(slot3) do
+			slot9 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "cheng",
+				scale = 0.8,
+				dataFile = "effect_ui_touxiangkuang"
+			})
+
+			slot9.setPosition(slot9, 40.25, 39)
+			slot8.addChild(slot8, slot9)
+		end
+
+		slot0.getBtn:setVisible(true)
+
+		slot2 = "#258711"
+	end
+
+	slot0.cumulativeLabel:setString(TR("累计签到奖励：%s%s#45220d/%s天", slot2, slot0.mDailyInfo.SignNum, slot0.mCumulativeInfo.SignNum))
+
+	return 
+end
+slot0.onGetCumulative = function (slot0)
+	slot0.requestDrawCumulative(slot0)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "DailySign",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSignRewardInfo = slot0.SignRewardInfo
+			slot0.mDailyInfo = slot0.DailyInfo
+			slot0.mCumulativeInfo = slot0.CumulativeInfo
+
+			slot0.mGridView:setItemNum(#slot0.mSignRewardInfo)
+			slot0:initGridViewPos()
+			slot0:refreshCumulative()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.initGridViewPos = function (slot0)
+	if 0 < slot0.mCurrentSignIndex and 4 <= math.ceil(slot0.mCurrentSignIndex/5) then
+		slot0.mGridView:jumpToBottom()
+	end
+
+	return 
+end
+slot0.requestSignIn = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "SignIn",
+		moduleName = "DailySign",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mDailyInfo = slot0.DailyInfo
+			slot0.mCumulativeInfo = slot0.CumulativeInfo
+
+			slot0.mGridView:setItemNum(#slot0.mSignRewardInfo)
+			slot0:initGridViewPos()
+			slot0:refreshCumulative()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawCumulative = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawCumulative",
+		moduleName = "DailySign",
+		methodData = {
+			slot0.mCumulativeInfo.SignNum
+		},
+		successCallback = function (slot0)
+			slot0.mDailyInfo = slot0.DailyInfo
+			slot0.mCumulativeInfo = slot0.CumulativeInfo
+
+			slot0:refreshCumulative()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

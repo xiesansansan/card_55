@@ -1,0 +1,399 @@
+slot0 = class("ChangeNameLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled33",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("昵称")
+		},
+		children = {
+			{
+				name = "changeNameNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled34",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							pos = {
+								x = 258.67,
+								y = 190.16
+							},
+							size = {
+								width = 464,
+								height = 219
+							}
+						},
+						children = {}
+					},
+					{
+						name = "costLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 125.38,
+								y = 151.82
+							},
+							text = TR("消耗")
+						},
+						children = {}
+					},
+					{
+						name = "editName",
+						cType = "EditBox",
+						params = {
+							image = "c_41.png",
+							placeColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							placeHolder = TR("2~6个中文字符"),
+							pos = {
+								x = 227.67,
+								y = 194.97
+							},
+							size = {
+								width = 220,
+								height = 37.27
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 256.55,
+								y = 255.75
+							},
+							text = TR("请输入新的昵称")
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Button",
+						params = {
+							image = "grxx_7.png",
+							clickAction = "onRandomName",
+							pos = {
+								x = 384.03,
+								y = 194.52
+							}
+						},
+						children = {}
+					},
+					{
+						name = "haveLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 125.38,
+								y = 115
+							},
+							text = TR("拥有")
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onSurebtn",
+							pos = {
+								x = 257.29,
+								y = 53.52
+							},
+							titleText = TR("确 定")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "useDiamond",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 4.49,
+						y = 8.92
+					}
+				},
+				children = {
+					{
+						name = "untitled15",
+						cType = "Button",
+						params = {
+							image = "c_39.png",
+							childName = "sureBtn",
+							pos = {
+								x = 348.31,
+								y = 53.04
+							},
+							titleText = TR("确 定")
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							childName = "cancel",
+							pos = {
+								x = 155.04,
+								y = 53.08
+							},
+							titleText = TR("取 消")
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							align = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 256.06,
+								y = 214.1
+							},
+							size = {
+								width = 402.61,
+								height = 75.11
+							},
+							text = TR("确定要使用元宝进行更名么？")
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							pos = {
+								x = 256.13,
+								y = 184.54
+							},
+							size = {
+								width = 456.31,
+								height = 200
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = Utility.analysisStrResList(PlayerConfig.items[1].alterNameSpendGoods)
+
+	slot0.costLabel:setString(TR("消耗：{%s} %sX%s #45220d或 {%s} %sX%s", slot3, slot5(slot1[1].resourceId, slot1[1].num), slot1[1].num, slot4, slot5(1111, PlayerConfig.items[1].alterNameSpendDiamond), PlayerConfig.items[1].alterNameSpendDiamond))
+	slot0.haveLabel:setString(TR("拥有：{%s} %sX%s", Resource.getDaibiImg(slot1[1].resourceId), slot5(slot1[1].resourceId, slot1[1].num), Resource.getCount(slot1[1].resourceId)))
+
+	slot0.GoodsModelId = slot1[1].resourceId
+
+	return 
+end
+slot0.randomName = function (slot0)
+	slot2 = _lastname
+
+	if not _firstname then
+		print(slot3)
+
+		slot6 = cc.FileUtils:getInstance():getStringFromFile(cc.FileUtils:getInstance():fullPathForFilename(Enums.RandomName.name2))
+
+		if #cc.FileUtils:getInstance():getStringFromFile(slot3) == 0 or #slot6 == 0 then
+			return nil
+		end
+
+		slot2 = {}
+		slot1 = {}
+
+		for slot10 in slot5.gmatch(slot5, "%S+") do
+			table.insert(slot1, slot10)
+		end
+
+		for slot10 in slot6.gmatch(slot6, "%S+") do
+			table.insert(slot2, slot10)
+		end
+
+		_lastname = slot2
+		_firstname = slot1
+	end
+
+	return slot1[math.random(1, #slot1)] .. slot2[math.random(1, #slot2)]
+end
+
+function slot1(slot0)
+	slot2 = #{
+		0,
+		192,
+		224,
+		240,
+		248,
+		252
+	}
+	slot3 = 0
+	slot4 = 0
+	slot5 = 0
+	slot6 = #slot0
+	slot7 = 0
+
+	while 0 < slot6 do
+		slot5 = string.byte(slot0, -slot6)
+		slot7 = slot2
+		slot4 = 1
+
+		while slot1[slot7] do
+			if slot1[slot7] <= slot5 then
+				slot6 = slot6 - slot7
+
+				break
+			end
+
+			slot7 = slot7 - 1
+		end
+
+		slot3 = slot3 + ((slot7 == 1 and 1) or 2)
+	end
+
+	return slot3
+end
+
+slot0.onRandomName = function (slot0)
+	slot0.editName:setText(slot0.randomName(slot0))
+
+	return 
+end
+slot0.onSurebtn = function (slot0)
+	if slot0.editName:getText() ~= "" then
+		if slot0(slot0.editName:getText()) <= 12 then
+			if (Resource.getCount(slot0.GoodsModelId) or 0) < 1 then
+				if Resource.isEnough(1111, PlayerConfig.items[1].alterNameSpendDiamond) then
+					slot0.useDiamond:setVisible(true)
+					slot0.changeNameNode:setVisible(false)
+					slot0.useDiamond.sureBtn:setClickAction(function ()
+						slot0:requestAlterPlayerName(slot0.editName:getText(), 3)
+						slot0.requestAlterPlayerName.useDiamond:setVisible(false)
+						slot0.requestAlterPlayerName.useDiamond.setVisible.changeNameNode:setVisible(true)
+
+						return 
+					end)
+					slot0.useDiamond.cancel:setClickAction(function ()
+						slot0.useDiamond:setVisible(false)
+						slot0.useDiamond.setVisible.changeNameNode:setVisible(true)
+
+						return 
+					end)
+				end
+			else
+				slot0.requestAlterPlayerName(slot0, slot0.editName:getText(), 2)
+			end
+		else
+			ui.showFlashView(TR("昵称不得超过6个汉字或12个字符"))
+		end
+	else
+		ui.showFlashView(TR("请输入昵称"))
+	end
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestAlterPlayerName = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "AlterPlayerName",
+		moduleName = "Player",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			Utility.cpInvoke("UserNameChanged")
+			ui.showFlashView(TR("更名成功"))
+			LayerManager.removeLayer({
+				IsCreate = "0",
+				Type = "UserNameChanged",
+				Name = slot0
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

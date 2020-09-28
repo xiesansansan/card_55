@@ -1,0 +1,702 @@
+require("network.NetworkStates")
+
+slot0 = {
+	_retryTime = 5,
+	_socketTable = {},
+	_responseList = {},
+	_closeMsgReSendTick = function (slot0, slot1)
+		if slot0._socketTable[slot1] and slot0._socketTable[slot1].tick then
+			clearInterval(slot0._socketTable[slot1].tick)
+
+			slot0._socketTable[slot1].tick = nil
+		end
+
+		if slot0._socketTable[slot1] and 0 < #slot0._socketTable[slot1]._messageList and slot0._socketTable[slot1]._messageList[1].sendtick then
+			clearInterval(slot0._socketTable[slot1]._messageList[1].sendtick)
+
+			slot0._socketTable[slot1]._messageList[1].sendtick = nil
+		end
+
+		return 
+	end,
+	_connect = function (slot0, slot1)
+		if not slot0._socketTable[slot1] or (slot0._socketTable[slot1].socket == nil and slot0._socketTable[slot1].socketState ~= "reconnect") then
+			slot2 = cc.WebSocket:create(slot1)
+
+			if not slot0._socketTable[slot1] then
+				slot0._socketTable[slot1] = {
+					socketState = "wait",
+					lock = true,
+					retry = 0,
+					socket = slot2,
+					_messageList = {}
+				}
+			else
+				slot0._socketTable[slot1].socket = slot2
+				slot0._socketTable[slot1].retry = slot0._socketTable[slot1].retry + 1
+				slot0._socketTable[slot1].socketState = "wait"
+			end
+
+			if 1 < DEBUG then
+				slot3 = 0
+
+				for slot7, slot8 in pairs(slot0._socketTable) do
+					slot3 = slot3 + 1
+				end
+
+				if 5 < slot3 then
+					dump("当前启动的连接数为" .. slot3)
+				end
+			end
+
+			slot2.registerScriptHandler(slot2, function ()
+				if slot0:getReadyState() == cc.WEBSOCKET_STATE_OPEN then
+					slot1._socketTable[slot2].socketState = "connected"
+
+					"connected":startHeartbeat(slot2)
+
+					slot1._socketTable[slot2].retry = 0
+
+					if slot1._responseList[slot2] and slot1._responseList[slot2].relogin and slot1._responseList[slot2].relogin() then
+						slot1._responseList[slot2].relogin(function (slot0)
+							slot0.url = slot0
+
+							table.insert(slot1._socketTable[slot0]._messageList, 1, slot0)
+
+							table.insert._socketTable[slot0].lock = false
+
+							table.insert._socketTable[slot0]:request(slot0)
+
+							return 
+						end)
+					else
+						slot1._socketTable[slot2].lock = false
+
+						false:request(slot2)
+					end
+				end
+
+				return 
+			end, cc.WEBSOCKET_OPEN)
+			slot2.registerScriptHandler(slot2, function (slot0)
+				if slot0._responseList[function ()
+					if slot0._socketTable[slot1] then
+						slot0._socketTable[slot1].lock = false
+
+						slot0._socketTable[slot1]:_closeMsgReSendTick(slot0._socketTable[slot1])
+						table.remove(slot0._socketTable[]._messageList, 1)
+						table.remove:request(table.remove)
+					end
+
+					return 
+				end] and slot0._responseList[slot1].response then
+					slot0._responseList[slot1].response(nil, slot0, slot1)
+				else
+					slot1()
+				end
+
+				return 
+			end, cc.WEBSOCKET_MESSAGE)
+			slot2.registerScriptHandler(slot2, function (slot0)
+				dump("WebSocket.onerror:", slot0)
+				slot0:_closeMsgReSendTick(slot0._closeMsgReSendTick)
+
+				if slot0._socketTable[] then
+					slot0._socketTable[].tick = onceTimer(function ()
+						if slot0._socketTable[slot1] and slot0._socketTable[slot1].socket and slot0._socketTable[slot1].socket:getReadyState() == cc.WEBSOCKET_STATE_OPEN then
+							slot0._socketTable[slot1].lock = false
+
+							slot0._socketTable[slot1]:request(slot0._socketTable[slot1])
+						end
+
+						return 
+					end, 2)
+				end
+
+				return 
+			end, cc.WEBSOCKET_ERROR)
+			slot2.registerScriptHandler(slot2, function (slot0)
+				dump("WebSocket.onclose event:", slot0)
+				slot0:stopHeartbeat(slot0.stopHeartbeat)
+				slot0:_closeMsgReSendTick(slot0._closeMsgReSendTick)
+
+				if slot0._socketTable[] ~= nil then
+					slot0._socketTable[].socket = nil
+					slot0._socketTable[].socketState = "reconnect"
+
+					if slot0._socketTable[].retry < slot0._retryTime then
+						dump("开始重连")
+
+						if not tolua.isnull("开始重连") then
+							slot2:setString("", true)
+						end
+
+						slot0._socketTable[].tick = onceTimer(function ()
+							slot0._socketTable[slot1].socketState = "wait"
+
+							slot0._socketTable[slot1]:_connect(slot0._socketTable[slot1])
+
+							return 
+						end, 3)
+					else
+						slot0._socketTable[].retry = 0
+
+						if slot0._responseList[] and slot0._responseList[].response then
+							slot0._responseList[].response("reconnectError", nil, nil)
+						end
+					end
+				end
+
+				return 
+			end, cc.WEBSOCKET_CLOSE)
+		end
+
+		return 
+	end,
+	request = function (slot0, slot1)
+		slot2 = nil
+
+		slot0._connect(slot0, (type(slot1) ~= "table" or slot1.url) and slot1)
+
+		if type(slot1) == "table" then
+			table.insert(slot0._socketTable[slot1.url]._messageList, slot1)
+		end
+
+		if slot0._socketTable[slot2].socketState == "connected" and not slot0._socketTable[slot2].lock and 0 < #slot0._socketTable[slot2]._messageList then
+			slot0._socketTable[slot2].lock = true
+
+			if slot0._socketTable[slot2]._messageList[1]._retryTime == nil then
+				slot0._socketTable[slot2]._messageList[1]._retryTime = 0
+			else
+				slot0._socketTable[slot2]._messageList[1]._retryTime = slot0._socketTable[slot2]._messageList[1]._retryTime + 1
+			end
+
+			if slot0._socketTable[slot2]._messageList[1]._retryTime < slot0._retryTime then
+				slot0._socketTable[slot2].socket:sendString(slot0._socketTable[slot2]._messageList[1].data)
+				slot0._closeMsgReSendTick(slot0, slot2)
+
+				slot3 = slot0._socketTable[slot2]._messageList[1]._retryTime
+				slot0._socketTable[slot2]._messageList[1].sendtick = onceTimer(function ()
+					if not tolua.isnull(tolua.isnull) then
+						slot0:setString("", true)
+					end
+
+					if slot1._socketTable[slot2] and slot1._socketTable[slot2].socket and slot1._socketTable[slot2].socket:getReadyState() == cc.WEBSOCKET_STATE_OPEN then
+						slot1._socketTable[slot2].lock = false
+
+						false:request(slot2)
+					end
+
+					return 
+				end, 6)
+
+				slot0.stopHeartbeat(slot0, slot2)
+				slot0.startHeartbeat(slot0, slot2)
+			else
+				slot0._socketTable[slot2]._messageList[1]._retryTime = nil
+
+				if slot0._responseList[slot2] and slot0._responseList[slot2].response then
+					slot0._responseList[slot2].response("resendError", nil, nil)
+				end
+			end
+		end
+
+		return 
+	end,
+	startHeartbeat = function (slot0, slot1)
+		if slot0._socketTable[slot1] then
+			if slot0._socketTable[slot1].heartbeatId then
+				clearInterval(slot0._socketTable[slot1].heartbeatId)
+			end
+
+			slot0._socketTable[slot1].heartbeatId = slot0:scheduleScriptFunc(function ()
+				dump("发送心跳包" .. dump)
+
+				if slot1._socketTable[] and slot1._socketTable[].socket then
+					slot1._socketTable[].socket:sendString("")
+				end
+
+				return 
+			end, 60, false)
+		end
+
+		return 
+	end,
+	stopHeartbeat = function (slot0, slot1)
+		if slot0._socketTable[slot1] and slot0._socketTable[slot1].heartbeatId then
+			clearInterval(slot0._socketTable[slot1].heartbeatId)
+
+			slot0._socketTable[slot1].heartbeatId = nil
+		end
+
+		return 
+	end,
+	regist = function (slot0, slot1, slot2, slot3)
+		dump(slot1)
+
+		if slot0._responseList[slot1] then
+			dump("已经有注册的回调函数！", slot1)
+		else
+			slot0._responseList[slot1] = {
+				response = slot2,
+				relogin = slot3
+			}
+		end
+
+		return 
+	end,
+	isRegist = function (slot0, slot1)
+		return slot0._responseList[slot1]
+	end,
+	socketClose = function (slot0, slot1)
+		if slot0._socketTable[slot1] then
+			slot0._closeMsgReSendTick(slot0, slot1)
+			slot0.stopHeartbeat(slot0, slot1)
+
+			if slot0._socketTable[slot1].socket then
+				slot0._socketTable[slot1].socket:close()
+			end
+
+			slot0._socketTable[slot1] = nil
+		end
+
+		slot0._responseList[slot1] = nil
+
+		return 
+	end
+}
+slot1 = cc.Director:getInstance():getScheduler()
+
+function onceTimer(slot0, slot1)
+	slot2 = nil
+
+	return slot0:scheduleScriptFunc(function ()
+		slot0()
+		slot1:unscheduleScriptEntry(slot2)
+
+		return 
+	end, slot1, false)
+end
+
+function clearInterval(slot0)
+	slot0:unscheduleScriptEntry(slot0)
+
+	return 
+end
+
+slot2 = 0
+slot3 = nil
+
+function BlockSystem(slot0)
+	if ((slot0 and slot0 + 1) or slot0 - 1) ~= 0 then
+		if tolua.isnull(tolua.isnull) and display.getRunningScene() then
+			slot1 = LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.WaitingLayer",
+				zOrder = Enums.ZOrderType.eWaiting
+			})
+		end
+	else
+		if not tolua.isnull(tolua.isnull) then
+			LayerManager.removeLayer(LayerManager.removeLayer)
+		end
+
+		slot1 = nil
+	end
+
+	return 
+end
+
+function seriousErrorMessage()
+	ui.showMessageBox({
+		titleText = TR("重启"),
+		text = TR("网络发生严重错误，请尝试重启游戏。若依然存在问题，请联系客服！"),
+		msgBoxParams = {
+			needTouchClose = false,
+			hideCloseButton = true,
+			okImage = "c_11.png",
+			btnPosY = 55,
+			okText = TR("重启")
+		},
+		okCallback = function (...)
+			IPlatform:getInstance():logout()
+
+			return 
+		end,
+		zOrder = Enums.ZOrderType.eWaiting + 1
+	})
+
+	return 
+end
+
+function commonErrorMessage(slot0, slot1)
+	ui.showMessageBox({
+		titleText = TR("网络错误"),
+		text = TR("网络请求失败，请检查网络状况！"),
+		msgBoxParams = {
+			needTouchClose = false,
+			hideCloseButton = true,
+			okImage = "c_19.png",
+			cancelImage = "c_39.png",
+			btnPosY = 55,
+			cancelText = TR("重新登录"),
+			okText = TR("重  试")
+		},
+		okCallback = function (...)
+			slot0()
+
+			return 
+		end,
+		cancelCallback = function (...)
+			slot0()
+			IPlatform:getInstance():logout()
+
+			return 
+		end,
+		zOrder = Enums.ZOrderType.eWaiting + 1
+	})
+
+	return 
+end
+
+return {
+	_increaseID = 1,
+	_socketRequestList = {},
+	listenerList = {},
+	_socketGUID = function (slot0)
+		slot0._increaseID = slot0._increaseID + 1
+
+		return "" .. os.time() .. "_" .. slot0._increaseID
+	end,
+	socketRequest = function (slot0, slot1)
+		slot1.url = slot1.url or Player:getSelectServer().ServerUrl
+
+		if not slot0:isRegist(slot1.url) then
+			slot0.gameMsgCenter(slot0, slot1.url, function (slot0, slot1, slot2)
+				if slot0 then
+					if slot0 == "resendError" then
+						commonErrorMessage(function ()
+							if slot0._socketTable[slot1.url] then
+								slot0._socketTable[slot1.url].lock = false
+
+								slot0._socketTable[slot1.url]:request(slot1.url)
+							end
+
+							return 
+						end, function ()
+							if 0 < #slot0._socketRequestList and (slot0._socketRequestList[1].needWait or slot0._socketRequestList[1].needWait == nil) then
+								BlockSystem(false)
+							end
+
+							return 
+						end)
+					elseif slot0 == "reconnectError" then
+						commonErrorMessage(function ()
+							if slot0._socketTable[slot1.url] then
+								slot0._socketTable[slot1.url].lock = false
+								slot0._socketTable[slot1.url]._socketTable[false.url].socketState = "wait"
+
+								slot0._socketTable[slot1.url]._socketTable[false.url]:request(slot1.url)
+							end
+
+							return 
+						end, function ()
+							if slot0._socketTable[slot1.url] then
+								slot0._socketTable[slot1.url].lock = false
+								slot0._socketTable[slot1.url]._socketTable[false.url].socketState = "wait"
+							end
+
+							return 
+						end)
+					elseif slot0 == "XORERROR" then
+						slot0:_closeMsgReSendTick(slot1.url)
+						seriousErrorMessage()
+					end
+				else
+					slot3 = 0 < #slot2._socketRequestList and slot2._socketRequestList[1].guid == slot1.HandleCode
+
+					if slot1.Status ~= 0 and slot1.Status ~= -57 then
+						dump(slot1)
+						slot2:dealErrorCode(slot1.Status, slot1.Value, slot1.StatusMsg or TR("未知错误码"))
+					end
+
+					if slot3 or slot1.HandleCode == "" then
+						if Player then
+							if slot1.HandleCode == "" then
+								Player:updateSocketPushData(slot1)
+							else
+								HttpClient:autoModifyAvatarCache(slot1)
+							end
+
+							Player:setTimeTick(slot1.TimeTick)
+						end
+
+						if slot2.listenerList[slot1.Cmd] then
+							if 1 < DEBUG then
+								slot2.listenerList[slot1.Cmd](slot1)
+							else
+								slot4, slot5 = pcall(slot2.listenerList[slot1.Cmd], slot1)
+
+								if not slot4 then
+									debug.traceback(slot5)
+								end
+							end
+						end
+					elseif slot1.HandleCode == "reloginRequest" then
+						dump("重新登录成功！")
+
+						if Player then
+							HttpClient:autoModifyAvatarCache(slot1)
+
+							if slot1.TimeTick then
+								Player:setTimeTick(slot1.TimeTick)
+							end
+						end
+
+						slot2()
+					else
+						dump("收到重发的错误数据")
+					end
+
+					if slot3 then
+						if slot2._socketRequestList[1] then
+							if slot2._socketRequestList[1].needWait or slot2._socketRequestList[1].needWait == nil then
+								BlockSystem(false)
+							end
+						elseif slot1.Status == -9 then
+							return 
+						end
+
+						table.remove(slot2._socketRequestList, 1)
+						slot2()
+
+						if (slot2._socketRequestList[1].ignoreNode or not tolua.isnull(slot4._dependLayer)) and slot4.successCallback then
+							if 1 < DEBUG then
+								if slot1.Status == 0 then
+									slot4.successCallback(slot1.Value)
+								elseif slot4.failedCallback then
+									slot4.failedCallback(slot1)
+								end
+							else
+								slot5, slot6 = pcall(slot4.successCallback, slot1)
+
+								if not slot5 then
+									debug.traceback(slot6)
+								end
+							end
+						end
+					end
+				end
+
+				return 
+			end)
+		end
+
+		if slot1.needWait or slot1.needWait == nil then
+			BlockSystem(true)
+		end
+
+		slot1.guid = slot0._socketGUID(slot0)
+
+		table.insert(slot0._socketRequestList, slot1)
+		slot0.gameMsgSend(slot0, slot1)
+
+		return 
+	end,
+	dealErrorCode = function (slot0, slot1, slot2, slot3)
+		function slot4(slot0)
+			ui.showNetErrorBox({
+				text = TR("您的客户端需要升级，是否前往下载？"),
+				okCallback = function (...)
+					cc.Application:getInstance():openURL(cc.Application.getInstance().openURL)
+
+					return 
+				end,
+				cancelCallback = function (...)
+					IPlatform:getInstance():destroy()
+
+					return 
+				end
+			})
+
+			return 
+		end
+
+		if slot1 == -1000002 or slot1 == -46 then
+			ui.showMessageBox({
+				text = TR("你离开游戏太久，请重新登录！"),
+				okCallback = function ()
+					IPlatform:getInstance():logout()
+
+					return 
+				end,
+				msgBoxParams = {
+					needTouchClose = false,
+					hideCloseButton = true
+				}
+			})
+		elseif slot1 == -1170 then
+			ui.showMessageBox({
+				text = slot3,
+				okCallback = function ()
+					IPlatform:getInstance():logout()
+
+					return 
+				end,
+				msgBoxParams = {
+					needTouchClose = false,
+					hideCloseButton = true
+				}
+			})
+		elseif slot1 == -25003 then
+			ui.showMessageBox({
+				text = slot3,
+				okCallback = function ()
+					IPlatform:getInstance():logout()
+
+					return 
+				end,
+				msgBoxParams = {
+					needTouchClose = false,
+					hideCloseButton = true
+				}
+			})
+		elseif slot1 == -16 or slot1 == -2 then
+			if Player and Player:isLogin() then
+				IPlatform:getInstance():logout()
+			end
+
+			ui.showFlashView(TR("提示：%s", slot3))
+		elseif slot1 == -8 then
+			if type(slot2) == "table" then
+				cc.Application:getInstance():openURL(slot2.LanchUrlStr)
+				slot4(slot2.UpdateUrlStr)
+			else
+				slot4(slot2)
+			end
+		elseif slot1 == -9 then
+			Player:cleanCache()
+			Utility.showResUpdateHint(slot2)
+		elseif slot1 == -1105 then
+			Resource.isEnough(ResourceTypeSub.eDiamond, Resource.getCount(ResourceTypeSub.eDiamond) + 1)
+		else
+			ui.showFlashView(TR("提示：%s", slot3))
+
+			if Guide and Guide.manager then
+				slot5, slot6 = Guide.manager:getGuideInfo()
+
+				if slot6 and slot6 ~= 10102 then
+					Guide.manager:guideError()
+				end
+			end
+		end
+
+		return 
+	end,
+	gameMsgSend = function (slot0, slot1, slot2)
+		slot3 = json.encode({
+			IP = "",
+			HandleCode = slot1.guid,
+			ModuleName = slot1.moduleName,
+			MethodName = slot1.methodName,
+			PartnerId = IPlatform:getInstance():getConfigItem("PartnerID"),
+			ServerId = Player:getSelectServer().ServerID,
+			PlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId"),
+			Session = PlayerAttrObj:getPlayerAttrByName("Session"),
+			GameVersionId = IPlatform:getInstance():getConfigItem("Version"),
+			ResourceVersionName = LocalData:getResourceVerName(),
+			MAC = IPlatform:getInstance():getDeviceMAC(),
+			IDFA = IPlatform:getInstance():getDeviceUUID(),
+			IMEI = IPlatform:getInstance():getDeviceIMEI(),
+			SendTick = os.time(),
+			Data = slot1.methodData,
+			ExtensionString = (slot1.guideInfo and {
+				GuideInfo = slot1.guideInfo
+			}) or ""
+		})
+
+		if slot2 then
+			return {
+				url = slot1.url,
+				data = slot3
+			}
+		else
+			slot0:request({
+				url = slot1.url,
+				data = slot3
+			})
+		end
+
+		return 
+	end,
+	gameMsgCenter = function (slot0, slot1, slot2)
+		slot0:regist(slot1, function (slot0, slot1, slot2)
+			if slot0 then
+				slot0(slot0, nil, nil)
+
+				return 
+			end
+
+			if slot1 and slot1 ~= "" and slot0 then
+				slot0(nil, cjson.decode(slot1), slot2)
+			end
+
+			return 
+		end, handler(slot0, slot0.gameReloginData))
+
+		return 
+	end,
+	gameReloginData = function (slot0, slot1)
+		if slot1 then
+			slot1(slot0.gameMsgSend(slot0, {
+				methodName = "ReLogin",
+				moduleName = "Player",
+				guid = "reloginRequest",
+				ignoreNode = true,
+				methodData = {
+					PlayerAttrObj:getPlayerAttrByName("PlayerId"),
+					PlayerAttrObj:getPlayerAttrByName("Session")
+				}
+			}, true))
+		else
+			return Player and Player:isLogin()
+		end
+
+		return 
+	end,
+	registListener = function (slot0, slot1, slot2)
+		slot0.listenerList[slot1] = slot2
+
+		return 
+	end,
+	removeListener = function (slot0, slot1)
+		slot0.listenerList[slot1] = nil
+
+		return 
+	end,
+	clean = function (slot0)
+		for slot4, slot5 in pairs(slot0._socketTable) do
+			slot0:socketClose(slot4)
+		end
+
+		slot0._socketRequestList = {}
+		slot0.listenerList = {}
+		slot1 = 1
+
+		BlockSystem(false)
+
+		return 
+	end,
+	cleanRequest = function (slot0)
+		for slot4, slot5 in pairs(slot0._socketTable) do
+			slot0:socketClose(slot4)
+		end
+
+		slot0._socketRequestList = {}
+		slot1 = 1
+
+		BlockSystem(false)
+
+		return 
+	end
+}

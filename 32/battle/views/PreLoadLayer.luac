@@ -1,0 +1,349 @@
+slot0 = class("PreLoadLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "gcjz_4.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "gcjz_2.png",
+					pos = {
+						x = 0,
+						y = 35
+					}
+				},
+				children = {
+					{
+						name = "runningEffect",
+						cType = "Effect",
+						params = {
+							scale = 0.2,
+							dataFile = "effect_ui_loding_x",
+							pos = {
+								x = 0,
+								y = 22
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "pgsbgSprite1",
+				cType = "Scale9Sprite",
+				params = {
+					image = "gcjz_1.png",
+					pos = {
+						x = 0,
+						y = 35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "hintLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = 13
+					},
+					text = TR("加载中")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = require("battle.common.ResDefine")
+slot2 = require("battle.common.UIHelper")
+slot3 = require("common.SpineManager")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.managers.TeamManager")
+slot6 = require("battle.common.FxHelper")
+slot0.ctor = function (slot0, slot1)
+	slot0.fightInfo = slot1.fightInfo
+	slot0.cb = slot1.cb
+	slot0.list = slot0.getPreloadFiles(slot0)
+	slot0.firstDone = false
+	slot0.secondDone = false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.bgSprite:setTexture(({
+		"gcjz_4.png",
+		"gcjz_5.png",
+		"gcjz_6.png",
+		"gcjz_7.png",
+		"gcjz_8.png"
+	})[math.random(1, #{
+		"gcjz_4.png",
+		"gcjz_5.png",
+		"gcjz_6.png",
+		"gcjz_7.png",
+		"gcjz_8.png"
+	})])
+
+	slot3 = cc.ProgressTimer:create(cc.Sprite:create("gcjz_3.png"))
+
+	slot3.setType(slot3, cc.PROGRESS_TIMER_TYPE_BAR)
+	slot3.setMidpoint(slot3, cc.p(0, 0))
+	slot3.setBarChangeRate(slot3, cc.p(1, 0))
+	slot3.setPercentage(slot3, 0)
+	slot3.setPosition(slot3, cc.p(693, 35))
+	slot0.pgsbgSprite1:addChild(slot3)
+
+	slot0.progress = slot3
+
+	return 
+end
+slot0.addLoadList = function (slot0, slot1, slot2, slot3, slot4)
+	table.insert(slot1.first, {
+		t = "spine",
+		f = slot2
+	})
+	table.insert(slot1.first, {
+		t = "image",
+		f = slot2 .. "_chufa"
+	})
+	table.insert(slot1.first, {
+		t = "image",
+		f = slot2 .. "_daiji"
+	})
+	table.insert(slot1.first, {
+		t = "image",
+		f = slot2 .. "_pao"
+	})
+
+	if slot4 == false then
+		table.insert(slot1.first, {
+			t = "image",
+			f = slot2 .. "_aida"
+		})
+		table.insert(slot1.first, {
+			t = "image",
+			f = slot2 .. "_yun"
+		})
+	end
+
+	if slot3 ~= "" then
+		if cc.FileUtils:getInstance():isFileExist(slot3 .. ".skel") then
+			table.insert(slot1.second, {
+				t = "spine",
+				f = slot3
+			})
+		else
+			table.insert(slot1.second, {
+				t = "image",
+				f = slot3
+			})
+		end
+	end
+
+	return 
+end
+slot0.getSpineName = function (slot0)
+	if HeroModel.items[slot0] then
+		slot2 = HeroModel.items[slot0].drawingPicA
+
+		if slot0.getSpineInfo(HeroModel.items[slot0].largePic, "isDefault") then
+			slot3 = "hero_yangguo"
+		end
+
+		return slot3, slot2
+	elseif FashionModel.items[slot0] then
+		slot2 = FashionModel.items[slot0].skillEffect
+
+		if slot0.getSpineInfo(FashionModel.items[slot0].largePic, "isDefault") then
+			slot3 = "hero_baojian"
+		end
+
+		return slot3, slot2
+	end
+
+	return 
+end
+slot0.getBattleUnitFiles = function (slot0, slot1)
+	if slot0.fightInfo and 1 < #slot0.fightInfo.FightObjs then
+		for slot5, slot6 in pairs(slot0.fightInfo.FightObjs) do
+			slot7 = slot0.getDataFromServer
+			slot8 = slot0.fightInfo.FightModule
+			slot9 = slot6
+			slot10 = slot0.fightInfo.IsPvp or slot6.IsPvp
+
+			for slot11, slot12 in pairs(slot7(slot8, slot9, slot10, slot0.fightInfo.IsWin).attacker[1]) do
+				slot13, slot14 = slot0.getSpineName(slot12.id)
+
+				if slot13 then
+					slot0.addLoadList(slot0, slot1, slot13, slot14, true)
+				end
+			end
+
+			for slot11, slot12 in pairs(slot7.defender[1]) do
+				slot13, slot14 = slot0.getSpineName(slot12.id)
+
+				if slot13 then
+					slot0.addLoadList(slot0, slot1, slot13, slot14, true)
+				end
+			end
+
+			for slot11, slot12 in pairs(slot7.pet) do
+				slot13, slot14 = slot0.getSpineName(slot12.modelId)
+
+				if slot13 then
+					slot0.addLoadList(slot0, slot1, slot13, slot14, true)
+				end
+			end
+		end
+	else
+		for slot5, slot6 in pairs(slot1.attackers[1]) do
+			slot0.addLoadList(slot0, slot1, slot6.spine, slot6.flashEffect, false)
+		end
+
+		for slot5, slot6 in pairs(slot1.defenders[1]) do
+			slot0.addLoadList(slot0, slot1, slot6.spine, slot6.flashEffect, false)
+		end
+
+		for slot5, slot6 in pairs(slot1.pets) do
+			slot0.addLoadList(slot0, slot1, slot6.spine, slot6.flashEffect, true)
+		end
+	end
+
+	return 
+end
+slot0.getPreloadFiles = function (slot0)
+	slot0.getBattleUnitFiles(slot0, slot1)
+
+	for slot5, slot6 in ipairs(slot0.buffList) do
+		table.insert(slot1.second, {
+			t = "spine",
+			f = slot6
+		})
+	end
+
+	return slot1
+end
+slot0.addRes = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		slot7, slot8 = nil
+
+		if slot6.isPet == true then
+			slot7 = FashionModel.items[slot6.modelId].largePic
+			slot8 = FashionModel.items[slot6.modelId].skillEffect
+		else
+			slot7 = HeroModel.items[slot6.modelId].largePic
+			slot8 = HeroModel.items[slot6.modelId].drawingPicA
+
+			if cc.FileUtils:getInstance():isFileExist(HeroModel.items[slot6.modelId].drawingPicB .. ".skel") then
+				slot8 = slot9.drawingPicB
+			end
+		end
+
+		slot0.addLoadList(slot0, slot0.list, slot7, slot8, slot6.isPet)
+	end
+
+	return 
+end
+slot0.updateProgress = function (slot0, slot1, slot2)
+	slot0.progress:stopAllActions()
+	slot0.runningEffect:setPositionX(slot1/slot2*1040)
+	slot0.hintLabel:setString(slot6)
+	slot0.progress:setPercentage(slot1/slot2*100)
+
+	return 
+end
+slot0.startLoad = function (slot0)
+	function slot1(slot0)
+		if slot0.t == "spine" then
+			slot0.preLoad(slot0.f .. ".skel", slot0.f .. ".atlas", 1)
+		elseif slot0.t == "image" then
+			display.loadImage(slot0.f .. ".png")
+		end
+
+		return 
+	end
+
+	slot2 = 1
+	slot3 = 1
+	slot4 = #slot0.list.first + 1
+
+	slot0.onUpdate(slot0, function (slot0)
+		if slot0.list.first[] then
+			slot2(slot1)
+
+			slot1 = slot1 + 1
+		end
+
+		if slot0.list.second[slot3] then
+			slot2(slot2)
+
+			slot3 = slot2 + 1
+		end
+
+		slot0:updateProgress(slot1, slot0)
+
+		if slot1 == nil and slot0.firstDone == false then
+			slot0.firstDone = true
+
+			print("第一阶段加载完成")
+		end
+
+		if slot2 == nil and slot0.secondDone == false then
+			slot0.secondDone = true
+
+			print("第二阶段加载完成")
+		end
+
+		if slot0.secondDone == true and slot0.firstDone == true then
+			slot0.cb()
+			slot0:removeFromParent()
+		end
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

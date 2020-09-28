@@ -1,0 +1,1045 @@
+slot0 = class("CityWarNewTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("模拟战")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 422.37,
+						y = 335.58
+					},
+					size = {
+						width = 782,
+						height = 311
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 467.5
+					},
+					text = TR("模拟战任务一")
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -97.2,
+								y = 12.66
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 281,
+								y = 12.66
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 153.5
+					},
+					text = TR("任务奖励")
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -97.2,
+								y = 12.66
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 217,
+								y = 12.66
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "taskDes",
+				cType = "Label",
+				params = {
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 422.91,
+						y = 431.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "addTeam",
+				cType = "Button",
+				params = {
+					hide = true,
+					image = "c_98.png",
+					clickAction = "onAddTeam",
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 424.4,
+						y = 333.61
+					},
+					size = {
+						width = 740,
+						height = 130
+					},
+					titleText = TR("点击添加队伍")
+				},
+				children = {}
+			},
+			{
+				name = "worldMap",
+				cType = "Sprite",
+				params = {
+					image = "wulin_6.png",
+					hide = true,
+					pos = {
+						x = 422.12,
+						y = 308.23
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = 211.7,
+								y = 98.3
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									color = {
+										g = 248,
+										r = 255,
+										b = 234
+									},
+									pos = {
+										x = 75.5,
+										y = 15.99
+									},
+									text = TR("1级城池")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = 365.13,
+								y = 18.16
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									color = {
+										g = 213,
+										r = 99,
+										b = 255
+									},
+									pos = {
+										x = 75.5,
+										y = 15.99
+									},
+									text = TR("2级城池")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = 568.33,
+								y = 65.55
+							}
+						},
+						children = {
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									color = {
+										g = 110,
+										r = 255,
+										b = 249
+									},
+									pos = {
+										x = 75.5,
+										y = 15.99
+									},
+									text = TR("3级城池")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "button1",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							clickAction = "onCityClick",
+							pos = {
+								x = 207.5,
+								y = 154.93
+							},
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "button2",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							clickAction = "onCityClick",
+							pos = {
+								x = 362.68,
+								y = 58.82
+							},
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "button3",
+						cType = "Button",
+						params = {
+							image = "c_pure.png",
+							clickAction = "onCityClick",
+							pos = {
+								x = 563.32,
+								y = 125.25
+							},
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "jh_50.png",
+							childName = "dropSprite",
+							scale = 0.8,
+							pos = {
+								x = 486.16,
+								y = 174.52
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 221.29,
+						y = 31.95
+					},
+					size = {
+						width = 400,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled24-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 120,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled24",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 60,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "PassedPopTemNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 245.84,
+						y = 335.33
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Sprite",
+						params = {
+							image = "jh_45.png",
+							scale = 0.8,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled26",
+								cType = "Button",
+								params = {
+									image = "tb_gn_226.png",
+									clickAction = "onDetalBtnClickAction",
+									pos = {
+										x = 53.63,
+										y = 119.29
+									}
+								},
+								children = {}
+							},
+							{
+								name = "attackBtn",
+								cType = "Button",
+								params = {
+									image = "tb_gn_224.png",
+									clickAction = "onAttackClick",
+									pos = {
+										x = 193.04,
+										y = 120.98
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "getRewardBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onOverTask",
+					pos = {
+						x = 731.99,
+						y = 81.79
+					},
+					titleText = TR("领取")
+				},
+				children = {}
+			},
+			{
+				name = "lineNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled32",
+						cType = "Sprite",
+						params = {
+							image = "wulin_7.png",
+							pos = {
+								x = 320.27,
+								y = 296.67
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Sprite",
+						params = {
+							image = "wulin_8.png",
+							pos = {
+								x = 379.14,
+								y = 345.77
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "teamNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_98.png",
+					hide = true,
+					pos = {
+						x = 421.9,
+						y = 330.9
+					},
+					size = {
+						width = 740,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "untitled37",
+						cType = "Sprite",
+						params = {
+							image = "gcz_12.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 7.23,
+								y = 113.05
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 1,
+								name = "head",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.8,
+							allowClick = false,
+							pos = {
+								x = 96,
+								y = 44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 2,
+								name = "head",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.8,
+							allowClick = false,
+							pos = {
+								x = 176,
+								y = 44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled40",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 3,
+								name = "head",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.8,
+							allowClick = false,
+							pos = {
+								x = 256,
+								y = 44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 4,
+								name = "head",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.8,
+							allowClick = false,
+							pos = {
+								x = 336,
+								y = 44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 5,
+								name = "head",
+								type = "integer"
+							}
+						},
+						params = {
+							scale = 0.8,
+							allowClick = false,
+							pos = {
+								x = 416,
+								y = 44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled46",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							pos = {
+								x = 563.94,
+								y = 53.8
+							},
+							titleText = TR("撤 退")
+						},
+						children = {}
+					},
+					{
+						name = "untitled47",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							pos = {
+								x = 677.94,
+								y = 53.8
+							},
+							titleText = TR("编 队")
+						},
+						children = {}
+					},
+					{
+						name = "untitled48",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "vitLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 247.94,
+								y = 94.44
+							},
+							text = TR("进攻：古墓派")
+						},
+						children = {
+							{
+								name = "untitled49",
+								cType = "Sprite",
+								params = {
+									scale = 1,
+									image = "db_1114.png",
+									pos = {
+										x = -16.05,
+										y = 11.05
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled50",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "fap",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 84.81,
+								y = 93.05
+							},
+							text = TR("进攻：古墓派")
+						},
+						children = {
+							{
+								name = "untitled51",
+								cType = "Sprite",
+								params = {
+									scale = 0.8,
+									image = "c_110.png",
+									pos = {
+										x = -16.05,
+										y = 11.05
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled52",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_44.png",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 14.56,
+								y = 114.11
+							}
+						},
+						children = {
+							{
+								name = "untitled53",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "label",
+									text = "1",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 13,
+										y = 15
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onPopAction = function (slot0)
+	slot0.getNewTaskInfo(slot0)
+
+	return 
+end
+slot0.refreshNewTask = function (slot0)
+	slot0.taskDes:setString(GuildNewplayertaskConfig.items[slot0.newTaskInfo.Index].taskIntro)
+	dump(slot0.newTaskInfo.Index)
+
+	if slot0.newTaskInfo.Index == 1 then
+		slot1, slot2 = Guide.manager:getGuideInfo()
+
+		if slot2 and slot2 == 800603 then
+			slot0.addTeam:setVisible(false)
+			slot0.socketRequest(slot0, {
+				methodName = "GetTeamStateInfo",
+				moduleName = "Citywar",
+				successCallback = function (slot0)
+					slot0.teamNode:setVisible(true)
+
+					slot0.mTeamInfo = slot0.Value
+
+					for slot4, slot5 in ipairs(slot0:getCustomChildren(slot0.teamNode, "head")) do
+						slot5.setCardData(slot5, nil, {
+							Enums.CardShowAttr.eLevel,
+							Enums.CardShowAttr.eStar,
+							Enums.CardShowAttr.eTrainLv
+						}, HeroObj:getItem(slot0.mTeamInfo[1].HeroInfoList[slot4].HeroModelId))
+					end
+
+					slot6, slot5 = slot0:getFapAndVitCost(slot0.mTeamInfo[1].HeroInfoList)
+
+					slot0.teamNode.fap:setString(Utility.numberWithUnit(slot1))
+					slot0.teamNode.vitLabel:setString(slot2)
+
+					return 
+				end
+			})
+			slot0.executeGuide(slot0)
+		else
+			if Guide.manager:triggerSpecialGuide(8006) then
+				slot0.executeGuide(slot0)
+			end
+
+			slot0.addTeam:setVisible(true)
+		end
+	elseif slot0.newTaskInfo.Index == 2 then
+		slot0.worldMap:setVisible(true)
+
+		if Guide.manager:triggerSpecialGuide(8007) then
+			slot0.executeGuide(slot0)
+		end
+	elseif slot0.newTaskInfo.Index == 3 then
+		slot0.worldMap:setVisible(true)
+		slot0.lineNode:setVisible(true)
+
+		if Guide.manager:triggerSpecialGuide(8008) then
+			slot0.executeGuide(slot0)
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardInfo = {
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				},
+				cardInfo = {
+					modelId = slot6.resourceId,
+					num = slot6.num
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.getFapAndVitCost = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+	slot4 = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot2 = slot2 + (HeroObj:getItem(slot9.HeroModelId) or {}.Fap or 0)
+		slot3 = slot3 + Utility.getNeedVitByFap(HeroObj.getItem(slot9.HeroModelId) or {}.Fap or 0)
+	end
+
+	if 0 < slot2 then
+		slot2 = slot2 + Player:getGameData("Push_SkillTotalFap")
+	end
+
+	if slot4 then
+		slot3 = math.floor(slot3*(slot4 - 1))
+	end
+
+	return slot2, slot3
+end
+slot0.onCityClick = function (slot0, slot1)
+	slot0.popTemNode = slot0.createLayoutTemplateNode(slot0, "PassedPopTemNode")
+	slot7, slot3 = slot1.getPosition(slot1)
+
+	slot0.popTemNode:setPosition(cc.p(slot2, slot3 - 45))
+	slot1.getParent(slot1):addChild(slot0.popTemNode, 1)
+
+	if slot0.newTaskInfo.Index == 3 then
+		slot0.popTemNode.attackBtn:loadTextures("tb_gn_264.png", "tb_gn_264.png")
+	end
+
+	Guide.manager:exeGuideList({
+		[800701] = {
+			clickNode = slot0.popTemNode.attackBtn
+		},
+		[800801] = {
+			clickNode = slot0.popTemNode.attackBtn
+		}
+	})
+
+	return 
+end
+slot0.onAddTeam = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeamStateInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "citywar.CitywarCampReadyLayer",
+				data = {
+					minCount = 5,
+					isMoNiZhan = true,
+					callModelSub = ModuleSub.eCityWar,
+					titleText = TR("编队布阵"),
+					cityWarTeamData = slot0.Value or {},
+					minTrainLv = (slot0.IsInLeaguetop and LeaguetopConfig.items[1].fightTrainLvMin) or 0,
+					vitCostR = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0,
+					callback = function (slot0, slot1)
+						slot0:socketRequest({
+							methodName = "BuildTeam",
+							moduleName = "Citywar",
+							methodData = {
+								slot0,
+								slot1,
+								false
+							},
+							successCallback = function ()
+								ui.showFlashView("编队成功！")
+								ui.showFlashView:refreshNewTask()
+
+								return 
+							end
+						})
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onAttackClick = function (slot0)
+	LayerManager.addLayer({
+		name = "citywar.CityWarBattleLayer",
+		data = {
+			cityWarInfo = {},
+			ownCity = {},
+			cityId = (slot0.newTaskInfo.Index == 3 and 3) or 1,
+			killNum = (slot0.newTaskInfo.Index == 3 and 3) or 0
+		}
+	})
+
+	return 
+end
+slot0.getNewTaskInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "GuildNewplayertask",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "taskInfo")
+
+			slot0.newTaskInfo = slot0
+
+			slot0:refreshNewTask(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOverTask = function (slot0)
+	if not slot0.newTaskInfo.IndexOver and not slot0.newTaskInfo.IsOver then
+		slot0.socketRequest(slot0, {
+			methodName = "OverTask",
+			moduleName = "GuildNewplayertask",
+			methodData = {},
+			successCallback = function (slot0)
+				slot0.isAllOver = slot0.IsOver
+
+				slot0:receiveReward()
+
+				return 
+			end
+		})
+	elseif slot0.newTaskInfo.IndexOver and not slot0.newTaskInfo.IsOver then
+		slot0.receiveReward(slot0)
+	end
+
+	return 
+end
+slot0.receiveReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveReward",
+		moduleName = "GuildNewplayertask",
+		methodData = {},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			slot0.newTaskInfo = slot0
+			slot0.isAllOver = slot0.IsOver
+
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			EventAuto:postEvent(EventDefine.eCitywarMap)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	if slot0.popTemNode then
+		dump(slot0.popTemNode.attackBtn)
+	end
+
+	Guide.manager:exeGuideList({
+		[8006] = {
+			clickNode = slot0.addTeam
+		},
+		[800603] = {
+			overClose = true,
+			clickNode = slot0.getRewardBtn
+		},
+		[8007] = {
+			clickNode = slot0.button1
+		},
+		[800711] = {
+			overClose = true,
+			clickNode = slot0.getRewardBtn
+		},
+		[8008] = {
+			clickNode = slot0.button1
+		},
+		[800807] = {
+			clickNode = slot0.getRewardBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

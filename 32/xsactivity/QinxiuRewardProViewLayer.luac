@@ -1,0 +1,297 @@
+slot0 = class("QinxiuRewardProViewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			closeAction = "onBtnCloseAction",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 740,
+				height = 500
+			},
+			titleText = TR("奖励一览")
+		},
+		children = {
+			{
+				name = "mMainListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 370,
+						y = 445.81
+					},
+					size = {
+						width = 660,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "mGoodLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 660,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_92.png",
+									childName = "bg",
+									pos = {
+										x = 330,
+										y = 50
+									},
+									size = {
+										width = 660,
+										height = 100
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mTitleLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled14-text",
+								name = "titleStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 660,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled13",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = 152.7,
+										y = 25
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 28,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 330,
+										y = 25
+									},
+									text = TR("普通奖励一览")
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									reverse = 1,
+									image = "c_36.png",
+									pos = {
+										x = 497.52,
+										y = 25
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.parseLocalData(slot0, slot1.rewardList or {})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createRewardList(slot0)
+
+	return 
+end
+slot0.parseLocalData = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, clone(slot7))
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0.Lv < slot1.Lv
+	end)
+
+	slot3 = {}
+	slot4 = {}
+	slot0.mARewardList = {}
+	slot0.mNRewardList = {}
+
+	for slot8, slot9 in ipairs(slot2) do
+		for slot14, slot15 in ipairs(slot10) do
+			if slot3[string.split(slot15, ",")[1] .. "-" .. string.split(slot15, ",")[2]] then
+				slot3[slot17] = slot3[slot17] + tonumber(slot16[3])
+			else
+				slot3[slot17] = tonumber(slot16[3])
+			end
+		end
+
+		for slot15, slot16 in ipairs(slot11) do
+			if slot4[string.split(slot16, ",")[1] .. "-" .. string.split(slot16, ",")[2]] then
+				slot4[slot18] = slot4[slot18] + tonumber(slot17[3])
+			else
+				slot4[slot18] = tonumber(slot17[3])
+			end
+		end
+	end
+
+	for slot8, slot9 in pairs(slot3) do
+		table.insert(slot0.mNRewardList, {
+			modelId = (tonumber(string.split(slot8, "-")[2]) == 0 and tonumber(slot11[1])) or tonumber(slot11[2]),
+			resourceId = tonumber(slot11[1]),
+			num = slot9
+		})
+	end
+
+	table.sort(slot0.mNRewardList, function (slot0, slot1)
+		if Resource.getColorLv(slot0.modelId) ~= Resource.getColorLv(slot1.modelId) then
+			return slot3 < slot2
+		end
+
+		if slot0.modelId ~= slot1.modelId then
+			return slot0.modelId < slot1.modelId
+		end
+
+		return 
+	end)
+
+	for slot8, slot9 in pairs(slot4) do
+		table.insert(slot0.mARewardList, {
+			modelId = (tonumber(string.split(slot8, "-")[2]) == 0 and tonumber(slot11[1])) or tonumber(slot11[2]),
+			resourceId = tonumber(slot11[1]),
+			num = slot9
+		})
+	end
+
+	table.sort(slot0.mARewardList, function (slot0, slot1)
+		if Resource.getColorLv(slot0.modelId) ~= Resource.getColorLv(slot1.modelId) then
+			return slot3 < slot2
+		end
+
+		if slot0.modelId ~= slot1.modelId then
+			return slot0.modelId < slot1.modelId
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.createRewardList = function (slot0)
+	slot0.mMainListView:pushBackCustomItem(slot1)
+
+	slot2 = slot0.createLayoutTemplateNode(slot0, "mGoodLayout", {})
+	slot5 = cc.size(660, math.floor((#slot0.mNRewardList - 1)/6)*100 + 120)
+
+	slot2.setContentSize(slot2, slot5)
+	slot2.bg:setContentSize(slot5)
+	slot2.bg:setPosition(cc.p(slot5.width*0.5, slot5.height*0.5))
+
+	for slot9 = 1, #slot0.mNRewardList, 1 do
+		slot11 = UIWrap.newControl("CardNode", {
+			allowClick = true,
+			initParams = {
+				cardInfo = {
+					resourceId = slot0.mNRewardList[slot9].resourceId,
+					modelId = (slot0.mNRewardList[slot9].modelId == 0 and slot10.resourceId) or slot10.modelId,
+					num = slot10.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		})
+
+		slot11.setPosition(slot11, cc.p(((slot9 - 1)%6 + 1)*100 + -18, slot5.height - 60 - math.floor((slot9 - 1)/6)*100))
+		slot2.bg:addChild(slot11)
+	end
+
+	slot0.mMainListView:pushBackCustomItem(slot2)
+	slot0.mMainListView:pushBackCustomItem(slot6)
+
+	slot7 = slot0.createLayoutTemplateNode(slot0, "mGoodLayout", {})
+	slot10 = cc.size(660, math.floor((#slot0.mARewardList - 1)/6)*100 + 120)
+
+	slot7.setContentSize(slot7, slot10)
+	slot7.bg:setContentSize(slot10)
+	slot7.bg:setPosition(cc.p(slot10.width*0.5, slot10.height*0.5))
+
+	for slot14 = 1, #slot0.mARewardList, 1 do
+		slot16 = UIWrap.newControl("CardNode", {
+			allowClick = true,
+			initParams = {
+				cardInfo = {
+					resourceId = slot0.mARewardList[slot14].resourceId,
+					modelId = (slot0.mARewardList[slot14].modelId == 0 and slot15.resourceId) or slot15.modelId,
+					num = slot15.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		})
+
+		slot16.setPosition(slot16, cc.p(((slot14 - 1)%6 + 1)*100 + -18, slot10.height - 60 - math.floor((slot14 - 1)/6)*100))
+		slot7.bg:addChild(slot16)
+	end
+
+	slot0.mMainListView:pushBackCustomItem(slot7)
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

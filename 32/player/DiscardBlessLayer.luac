@@ -1,0 +1,544 @@
+slot0 = class("DiscardBlessLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 510,
+				height = 580
+			},
+			titleText = TR("归元聚气")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 307.72,
+						y = 316.77
+					},
+					size = {
+						width = 350,
+						height = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfBtnCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onBtnCellUpdateFunc",
+					cellSizeFunc = "onBtnCellSizeFunc",
+					cellFillFunc = "onBtnCellFillFunc",
+					pos = {
+						x = 21.23,
+						y = 89
+					},
+					size = {
+						width = 110,
+						height = 455
+					}
+				},
+				children = {
+					{
+						name = "btnNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -120
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Button",
+								params = {
+									image = "zj_121.png",
+									childName = "tempBtn",
+									swallowTouch = false,
+									pos = {
+										x = 55,
+										y = 71
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "nameLabel",
+									pos = {
+										x = 55.54,
+										y = 33.3
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "openLvlabel",
+									text = "Label",
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 55,
+										y = 8
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onOneKeyGetReward",
+					pos = {
+						x = 255.33,
+						y = 57.38
+					},
+					titleText = TR("一键领取")
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onTabChangedAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("时装收集")
+						},
+						{
+							title = TR("称号收集")
+						}
+					},
+					pos = {
+						x = 138.75,
+						y = 490.33
+					},
+					size = {
+						width = 250.94,
+						height = 49.06
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 136.98,
+						y = 97.06
+					},
+					size = {
+						width = 345,
+						height = 388
+					}
+				},
+				children = {
+					{
+						name = "rewardNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -107
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 176.16,
+										y = 54.4
+									},
+									size = {
+										width = 338,
+										height = 104
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									text = "Label",
+									childName = "introLabel",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 23.99,
+										y = 55.14
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "CardNode",
+								params = {
+									childName = "goodCard",
+									allowClick = true,
+									pos = {
+										x = 287.06,
+										y = 54.36
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									childName = "GotSprite",
+									image = "zj_122.png",
+									hide = true,
+									pos = {
+										x = 287.52,
+										y = 54.91
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mAttrData = slot1.attrData or {}
+	slot0.mTitleInfo = slot1.titleInfo or {}
+	slot0.mCallBack = slot1.callback
+	slot0.mOwnFashionNum = 0
+	slot0.mOwnTitleNum = 0
+	slot0.mStepId = (DiscardStepModel.items_count < DiscardModel.items[slot0.mAttrData.Lv].stepID and DiscardStepModel.items_count) or DiscardModel.items[slot0.mAttrData.Lv].stepID
+	slot0.mStepBtnList = {}
+
+	slot0.initUI(slot0)
+	slot0.calculateFashionOrTitleNum(slot0)
+	slot0.handleRewrdData(slot0)
+	slot0.btnTableView:reloadData()
+	slot0.refreshRedDot(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in ipairs(slot0.tabView:getTabBtns()) do
+		slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eDiscard,
+			subKey = (slot4 == 1 and "Fashion") or "Title"
+		}))
+	end
+
+	return 
+end
+slot0.onTabChangedAction = function (slot0, slot1)
+	slot0.handleRewrdData(slot0)
+
+	return 
+end
+slot0.calculateFashionOrTitleNum = function (slot0)
+	slot0.mOwnFashionNum = #PlayerAttrObj:getPlayerAttrByName("FashionActivedModelIds")
+
+	for slot5, slot6 in pairs(slot0.mTitleInfo) do
+		if slot6.StatusType ~= 0 and TitleConfig.items[slot6.TitleId].holdOnTime == 9999 then
+			slot0.mOwnTitleNum = slot0.mOwnTitleNum + 1
+		end
+	end
+
+	return 
+end
+slot0.onBtnCellSizeFunc = function (slot0, slot1, slot2)
+	return 110, 120
+end
+slot0.onNumOfBtnCellFunc = function (slot0, slot1)
+	return #DiscardStepModel.items
+end
+slot0.onBtnCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "btnNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.nameLabel:setString(DiscardStepModel.items[slot1 + 1].name)
+
+		if DiscardStepModel.items[slot1 + 1].needDiscardLv <= slot0.mAttrData.Lv then
+			slot0.openLvlabel:setString("")
+			slot0.tempBtn:setClickAction(function ()
+				slot0:clickTempBtn(slot1.stepID)
+
+				return 
+			end)
+		else
+			slot0.tempBtn:setClickAction(function ()
+				ui.showFlashView(TR("%s级聚气开启", slot0.needDiscardLv))
+
+				return 
+			end)
+			slot0.openLvlabel:setString(TR("%s级聚气开启", slot2.needDiscardLv))
+		end
+
+		if clone(DiscardRewardFashionRelation.items[slot2.stepID]) then
+			for slot7, slot8 in ipairs(slot3) do
+				if slot0:getRewardStatus(slot8) == 3 then
+					break
+				end
+			end
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onBtnCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.clickTempBtn = function (slot0, slot1)
+	if slot0.mAttrData.Lv < DiscardStepModel.items[slot1].needDiscardLv then
+		ui.showFlashView(TR("%s级图腾开启", slot2))
+
+		return 
+	end
+
+	slot0.mStepId = slot1
+
+	slot0.handleRewrdData(slot0)
+	slot0.refreshRedDot(slot0)
+
+	return 
+end
+slot0.refreshRedDot = function (slot0)
+	return 
+end
+slot0.handleRewrdData = function (slot0)
+	slot1 = slot0.tabView:getCurrTag()
+
+	if not clone(DiscardRewardFashionRelation.items[slot0.mStepId]) then
+		ui.showFlashView(TR("没有stepID=%s的奖励配置", slot0.mStepId))
+
+		return 
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		if slot8.typeId == slot1 then
+			slot8.status = slot0.getRewardStatus(slot0, slot8)
+
+			table.insert(slot3, clone(slot8))
+		end
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		if slot0.status ~= slot1.status then
+			return slot1.status < slot0.status
+		end
+
+		return slot0.order < slot1.order
+	end)
+
+	slot0.mRewardData = slot3
+
+	slot0.rewardTableView:reloadData()
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 340, 108
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mRewardData
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rewardNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.introLabel:setString(TR("收集 %s%s #252525/ %s %s", (slot0.mRewardData[slot1 + 1].needNums <= ((slot0.tabView:getCurrTag() == 1 and slot0.mOwnFashionNum) or slot0.mOwnTitleNum) and "#258711") or "#c04141", (slot0.tabView.getCurrTag() == 1 and slot0.mOwnFashionNum) or slot0.mOwnTitleNum, slot0.mRewardData[slot1 + 1].needNums, (slot3 == 1 and TR("件时装")) or TR("个称号")))
+		slot0.GotSprite:setVisible(slot0.mRewardData[slot1 + 1].status == 1)
+		slot0.goodCard:setCardData({
+			modelId = Utility.analysisStrResList(slot0.mRewardData[slot1 + 1].reward)[1].resourceId,
+			num = Utility.analysisStrResList(slot0.mRewardData[slot1 + 1].reward)[1].num
+		}, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		})
+		slot0.goodCard:stopAllActions()
+		slot0.goodCard:setRotation(0)
+
+		if slot2.status == 3 then
+			ui.setWaveAnimation(slot0.goodCard)
+			slot0.goodCard:setClickAction(function ()
+				slot0:onGetReward(slot0.mStepId, slot1.order)
+
+				return 
+			end)
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.getRewardStatus = function (slot0, slot1)
+	if DiscardModel.items[slot0.mAttrData.Lv or 0].stepID < slot1.stepID then
+		return 2
+	end
+
+	slot3 = pairs
+	slot4 = slot0.mAttrData.GetRewardIds or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		if tonumber(slot6) == slot1.stepID then
+			for slot11, slot12 in ipairs(slot7) do
+				if slot12 == slot1.order then
+					return 1
+				end
+			end
+
+			break
+		end
+	end
+
+	return (slot1.needNums <= ((slot1.typeId == 1 and slot0.mOwnFashionNum) or slot0.mOwnTitleNum) and 3) or 2
+end
+slot0.onGetReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "Discard",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.mAttrData = slot0.DiscardInfo or {}
+
+			slot0:handleRewrdData()
+			slot0.btnTableView:reloadData()
+			slot0:refreshRedDot()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mAttrData)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onOneKeyGetReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "OneKeyGetReward",
+		moduleName = "Discard",
+		methodData = {},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.mAttrData = slot0.DiscardInfo or {}
+
+			slot0:handleRewrdData()
+			slot0:refreshRedDot()
+			slot0.btnTableView:reloadData()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.mAttrData)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

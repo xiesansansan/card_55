@@ -1,0 +1,262 @@
+slot0 = class("WeaponSpectrumInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320.39
+			},
+			size = {
+				width = 535,
+				height = 514
+			},
+			titleText = TR("简介")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 268.61,
+						y = 296.11
+					},
+					size = {
+						width = 474,
+						height = 340
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "bqp_3.png",
+					pos = {
+						x = 269.29,
+						y = 339.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Sprite",
+				params = {
+					image = "bqp_5.png",
+					pos = {
+						x = 124.41,
+						y = 204.01
+					}
+				},
+				children = {}
+			},
+			{
+				name = "name",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 57.3,
+						y = 205.65
+					},
+					text = TR("武器名字")
+				},
+				children = {}
+			},
+			{
+				name = "des",
+				cType = "Label",
+				params = {
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 42.58,
+						y = 160.93
+					},
+					size = {
+						width = 460,
+						height = 60
+					},
+					text = TR("武器描述")
+				},
+				children = {}
+			},
+			{
+				name = "jihuoNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onActive",
+							pos = {
+								x = 271.14,
+								y = 60.86
+							},
+							titleText = TR("激活")
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 236.93,
+								y = 101.59
+							},
+							text = TR("激活可得:")
+						},
+						children = {}
+					},
+					{
+						name = "gold",
+						cType = "Label",
+						params = {
+							text = "0",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 322.93,
+								y = 101.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							pos = {
+								x = 302.35,
+								y = 102.56
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mModelId = slot1.modelId
+	slot0.mIsNeedAvtive = slot1.isActive
+	slot0.mCallBack = slot1.callBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.jihuoNode:setVisible(slot0.mIsNeedAvtive)
+	slot0.des:setString(ArmsbookModel.items[slot0.mModelId].des)
+	slot0.name:setString(ArmsbookModel.items[slot0.mModelId].name)
+	slot0.gold:setString(string.split(ArmsbookModel.items[slot0.mModelId].reward, ",")[3])
+
+	if ArmsbookModel.items[slot0.mModelId].specialGoodsPic ~= "" and cc.FileUtils:getInstance():isFileExist(slot1.specialGoodsPic .. ".skel") then
+		slot3 = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 0.6,
+			dataFile = slot1.specialGoodsPic
+		})
+
+		slot3.setPosition(slot3, cc.p(267, 350))
+		slot0.bgBox:addChild(slot3)
+	else
+		slot3 = UIWrap.newControl("Sprite", {
+			scale = 0.6,
+			image = slot1.specialGoodsPic .. ".png"
+		})
+
+		slot3.setPosition(slot3, cc.p(267, 350))
+		slot0.bgBox:addChild(slot3)
+	end
+
+	return 
+end
+slot0.onActive = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "ArmsbookInfo",
+		methodData = {
+			slot0.mModelId
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			slot0.jihuoNode:setVisible(false)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

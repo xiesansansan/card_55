@@ -1,0 +1,440 @@
+slot0 = class("SwingRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行")
+		},
+		children = {
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 32.07,
+						y = 66.04
+					},
+					size = {
+						width = 784,
+						height = 362.82
+					}
+				},
+				children = {
+					{
+						name = "item",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -4.19,
+								y = -101.42
+							},
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "db",
+									image = "c_98.png",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 392.3,
+										y = 50.49
+									},
+									size = {
+										width = 784,
+										height = 102
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "rankPic",
+									pos = {
+										x = 66.4,
+										y = 49.57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 234.08,
+										y = 49.37
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "guildName",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 444.37,
+										y = 51.22
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "fap",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 577.76,
+										y = 51
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "floor",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 709.03,
+										y = 50.31
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "CardNode",
+								params = {
+									childName = "head",
+									allowClick = false,
+									pos = {
+										x = 179.56,
+										y = 49.12
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									text = "0",
+									charCount = 10,
+									childName = "rank",
+									fontName = "c_54.png",
+									isRichText = true,
+									pos = {
+										x = 60.15,
+										y = 54.52
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "playerRank",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 136.18,
+						y = 44.57
+					},
+					text = TR("我的排名：0")
+				},
+				children = {}
+			},
+			{
+				name = "maxLevel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 514.8,
+						y = 44.12
+					},
+					text = TR("最高层数：0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled28",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 424.47,
+						y = 458.78
+					},
+					size = {
+						width = 770,
+						height = 35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 99.33,
+						y = 459.05
+					},
+					text = TR("排行")
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 234.73,
+						y = 457.9
+					},
+					text = TR("玩家")
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 476.9,
+						y = 458.14
+					},
+					text = TR("帮派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 744.91,
+						y = 458.22
+					},
+					text = TR("最高层数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled25",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 612.15,
+						y = 458.47
+					},
+					text = TR("战力")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRankList = slot1.rankList or {}
+	slot0.mPlayerRank = slot1.playerRank or "未上榜"
+	slot0.mChapterId = slot1.chapterId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+	slot0.tableView:reloadData()
+	slot0.tableView:jumpToTop()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 784, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mRankList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "item")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot4 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot1.refreshCell = function (slot0)
+		slot2 = {
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		}
+		slot3 = "c_58.png"
+
+		if slot0.mRankList[slot0 + 1].RankingId <= 3 then
+			slot3 = slot2[slot1.RankingId]
+		end
+
+		slot4 = "暂无帮派"
+
+		if Utility.isEntityId(slot1.GuildId) then
+			slot1.rankPic:setTexture(slot3)
+			slot1.name:setString(slot1.Name)
+			slot1.guildName:setString(slot1.GuildName ~= "" and slot1.GuildName)
+			slot1.rank:setString(slot1.RankingId)
+			slot1.floor:setString(TR("第%s层", Utility.getChineseNum(slot5)))
+			slot1.fap:setString(Utility.numberWithUnit(slot1.Fap))
+			slot1.head:setPlayerHeader(slot1.HeadImageId, nil, {
+				headPicId = slot1.HeadPicId
+			})
+			slot1.rank:setVisible(3 < slot1.RankingId)
+
+			return 
+		end
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.playerRank:setString(TR("我的排名：%s", slot0.mPlayerRank))
+	slot0.maxLevel:setString(TR("最高层数：第%s层", Utility.getChineseNum(slot0.mChapterId - 10)))
+
+	return 
+end
+
+return slot0

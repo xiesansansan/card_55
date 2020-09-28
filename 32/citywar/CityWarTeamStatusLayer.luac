@@ -1,0 +1,609 @@
+slot0 = class("CityWarTeamStatusLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568.39,
+				y = 320
+			},
+			titleText = TR("进攻队列")
+		},
+		children = {
+			{
+				name = "untitled43",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 421.75,
+						y = 286.88
+					},
+					size = {
+						width = 800,
+						height = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled45",
+				cType = "Sprite",
+				params = {
+					scaleX = 0.4,
+					image = "c_93.png",
+					pos = {
+						x = 107.39,
+						y = 462.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled44",
+				cType = "Sprite",
+				params = {
+					scaleX = 0.5,
+					image = "c_93.png",
+					pos = {
+						x = 492,
+						y = 462.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled46",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 190.49,
+						y = 286.31
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mFightCountLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 54.2,
+						y = 462
+					},
+					text = TR("战斗区：3/3")
+				},
+				children = {}
+			},
+			{
+				name = "mFightItemList",
+				cType = "ListView",
+				params = {
+					bounce = true,
+					direction = true,
+					pos = {
+						x = 59.44,
+						y = 90.18
+					},
+					size = {
+						width = 100,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "fightItemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled37-initParams",
+								name = "head",
+								type = "string"
+							},
+							{
+								value = "untitled39-color",
+								name = "color",
+								type = "string"
+							},
+							{
+								value = "untitled38-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled38-color",
+								name = "nameColor",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 3
+							},
+							size = {
+								width = 107.69,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled37",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									childName = "head",
+									allowClick = false,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									initParams = {},
+									pos = {
+										x = 52.92,
+										y = 25.53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									pos = {
+										x = 52.92,
+										y = 11.53
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									childName = "flag",
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 52.87,
+										y = 111.94
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					bounce = true,
+					direction = true,
+					pos = {
+						x = 215.12,
+						y = 91.49
+					},
+					size = {
+						width = 600,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "ListViewLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 261.05
+							},
+							size = {
+								width = 600,
+								height = 115
+							}
+						},
+						children = {
+							{
+								name = "waitItemLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "head-initParams",
+										name = "head",
+										type = "string"
+									},
+									{
+										value = "status-color",
+										name = "color",
+										type = "string"
+									},
+									{
+										value = "name-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "name-color",
+										name = "nameColor",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 3.82,
+										y = -43.15
+									},
+									size = {
+										width = 102.84,
+										height = 115
+									}
+								},
+								children = {
+									{
+										name = "head",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											allowClick = false,
+											anchor = {
+												x = 0.5,
+												y = 0
+											},
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 22
+											}
+										},
+										children = {}
+									},
+									{
+										name = "name",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											pos = {
+												x = 50,
+												y = 11
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "Label",
+										params = {
+											childName = "flag",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 50.26,
+												y = 106.29
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mWaitingCountLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 436.75,
+						y = 462
+					},
+					text = TR("备战区：12")
+				},
+				children = {}
+			},
+			{
+				name = "mMoreBtn",
+				cType = "Button",
+				params = {
+					image = "gcz_38.png",
+					clickAction = "onClickAllTeam",
+					hide = true,
+					pos = {
+						x = 753.21,
+						y = 74.78
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onClickClose",
+					pos = {
+						x = 423,
+						y = 55
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mCloseCallback = slot1.closeCallback
+	slot0.mIsAttack = slot1.sideTag == Enums.CityWarType.eAttack
+	slot0.mTeamInfo = slot1.teamInfo
+	slot0.mInArmystrikes = slot1.inArmystrikes
+	slot0.mChapterId = slot1.chapterId
+	slot0.mPageSize = 15
+	slot0.mPageCount = 0
+	slot0.mColCount = 5
+	slot0.mCelHeight = 115
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if not slot0.mInArmystrikes or not slot0.mIsAttack then
+		slot1 = {}
+
+		if slot0.mIsAttack then
+			for slot5, slot6 in ipairs(slot0.mTeamInfo) do
+				if Utility.isEntityId(slot6.PlayerId) and slot6.pathIndex then
+					table.insert(slot1, slot6)
+				end
+			end
+		else
+			dump(slot0.mTeamInfo)
+
+			for slot5, slot6 in ipairs(slot0.mTeamInfo) do
+				if Utility.isEntityId(slot6.PlayerId) and slot6.pathIndex then
+					table.insert(slot1, slot6)
+				end
+			end
+		end
+
+		slot0.mFightCountLabel:setString(string.format("战斗区：%s/3", #slot1))
+		slot0.addFighting(slot0, slot1)
+		slot0.mListView:setTouchEnabled(false)
+		slot0.socketRequest(slot0, {
+			methodName = "GetWaitTeamInfoByPage",
+			moduleName = "Citywar",
+			methodData = {
+				slot0.mChapterId,
+				0,
+				slot0.mIsAttack
+			},
+			successCallback = function (slot0)
+				if 0 < #slot0.TeamInfo then
+					slot0.mPageCount = 1
+
+					if #slot0.TeamInfo < slot0.mPageSize then
+						slot0.mPageCount = 0
+
+						slot0.mMoreBtn:setVisible(false)
+					else
+						slot0.mMoreBtn:setVisible(true)
+					end
+
+					slot0:pushGroupItem(clone(slot0.TeamInfo), true)
+				else
+					slot0.mPageCount = 0
+				end
+
+				slot0.mWaitingCountLabel:setString(string.format("备战区：%s", slot0.Count))
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.pushGroupItem = function (slot0, slot1, slot2)
+	slot4 = slot0.mListView:getContentSize().width/slot0.mColCount
+
+	slot0.createLayoutTemplateNode(slot0, "ListViewLayout"):setContentSize(cc.size(slot0.mListView:getContentSize().width, math.ceil(#slot1/slot0.mColCount)*slot0.mCelHeight))
+
+	if not slot2 then
+		slot0.mListView:setInnerContainerSize(cc.size(slot0.mListView:getInnerContainerSize().width, slot0.mListView:getInnerContainerSize().height + slot6))
+	end
+
+	for slot11, slot12 in pairs(slot1) do
+		slot15 = slot0.createHeroHeader(slot0, slot12)
+
+		slot15.setScale(slot15, 0.9)
+		slot15.setAnchorPoint(slot15, cc.p(0.5, 0.5))
+		slot15.setPosition(slot15, slot13, slot6 - math.floor((slot11 - 1)/slot0.mColCount)*slot0.mCelHeight - 60)
+		slot7.addChild(slot7, slot15)
+	end
+
+	slot0.mListView:pushBackCustomItem(slot7)
+
+	return 
+end
+slot0.addFighting = function (slot0, slot1)
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.pathIndex < slot1.pathIndex
+	end)
+
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot0.mFightItemList:pushBackCustomItem(slot0.createHeroHeader(slot0, slot7, true))
+	end
+
+	return 
+end
+slot0.createHeroHeader = function (slot0, slot1, slot2)
+	slot3, slot4 = nil
+
+	if slot2 then
+		slot3 = cc.c3b(234, 44, 0)
+		slot4 = TR("战斗中")
+	else
+		slot3 = cc.c3b(37, 135, 17)
+		slot4 = TR("等待中")
+	end
+
+	slot5 = nil
+
+	(not slot2 or slot0.createLayoutTemplateNode(slot0, "fightItemLayout", {
+		name = slot1.PlayerName,
+		color = slot3,
+		nameColor = Utility.getColorValue(FashionLvupConfig.items[slot1.FashionLevel or 0].colorLv),
+		statusText = slot4,
+		head = {
+			cardInfo = {
+				modelId = slot1.HeroModelId
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eBorder
+			}
+		}
+	})) and slot0.createLayoutTemplateNode(slot0, "waitItemLayout", {
+		name = slot1.PlayerName,
+		color = slot3,
+		nameColor = Utility.getColorValue(FashionLvupConfig.items[slot1.FashionLevel or 0].colorLv),
+		statusText = slot4,
+		head = {
+			cardInfo = {
+				modelId = slot1.HeroModelId
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eBorder
+			}
+		}
+	}).head:setRightTextVisible(false)
+
+	if not slot0.mIsAttack then
+		slot5.head.mHeaderSprite:setScaleX(-1)
+	end
+
+	if Utility.isEntityId(slot1.GuildId) then
+		slot5.flag:setString(TR("%s", slot1.GuildName))
+		slot5.flag:setVisible(true)
+	else
+		slot5.flag:setVisible(false)
+	end
+
+	return slot5
+end
+slot0.onClickAllTeam = function (slot0, slot1)
+	slot1.setVisible(slot1, false)
+	slot0.mListView:setTouchEnabled(true)
+	slot0.registerEvent(slot0)
+
+	return 
+end
+slot0.registerEvent = function (slot0)
+	slot0.mListView:addScrollViewEventListener(function (slot0, slot1)
+		if slot1 == ccui.ScrollviewEventType.bounceBottom and 0 < slot0.mPageCount and not slot0.mRequesting then
+			slot0:requestGetWaitTeamInfoByPage()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.requestGetWaitTeamInfoByPage = function (slot0)
+	slot0.mRequesting = true
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetWaitTeamInfoByPage",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mChapterId,
+			slot0.mPageCount,
+			slot0.mIsAttack
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			if 0 < #slot0.TeamInfo then
+				slot0.mPageCount = slot0.mPageCount + 1
+
+				slot0:pushGroupItem(clone(slot0.TeamInfo))
+				slot0.mListView:jumpToPercentVertical((slot0.mListView:getInnerContainerSize().height - slot0.mListView.getInnerContainerSize().height - slot0.mListView:getInnerContainerSize().height - slot0.mListView:getInnerContainer():getPositionY() - slot0.mCelHeight)/slot0.mListView.getInnerContainerSize().height*100)
+
+				if #slot0.TeamInfo < slot0.mPageSize then
+					slot0.mPageCount = 0
+				end
+			else
+				slot0.mPageCount = 0
+			end
+
+			slot0.mRequesting = false
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClickClose = function (slot0)
+	if slot0.mCloseCallback then
+		slot0.mCloseCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

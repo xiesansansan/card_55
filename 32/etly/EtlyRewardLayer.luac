@@ -1,0 +1,494 @@
+slot0 = class("EtlyRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled16",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("奖励")
+		},
+		children = {
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 32.28,
+						y = 55
+					},
+					size = {
+						width = 784,
+						height = 385.17
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled20-initParams",
+								name = "cardInfo",
+								type = "string"
+							},
+							{
+								value = "untitled22-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled21-num",
+								name = "huafei",
+								type = "string"
+							},
+							{
+								value = "untitled21-modelId",
+								name = "resType",
+								type = "string"
+							},
+							{
+								value = "getBtn-clickAction",
+								name = "clickAction",
+								type = "string"
+							},
+							{
+								value = "untitled28-hide",
+								name = "getIcon",
+								type = "string"
+							},
+							{
+								value = "untitled22-color",
+								name = "nameColor",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -23.13,
+								y = 315.21
+							},
+							size = {
+								width = 784,
+								height = 102
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 392.65,
+										y = 50.69
+									},
+									size = {
+										width = 784,
+										height = 102
+									}
+								},
+								children = {
+									{
+										name = "untitled20",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 330.87,
+												y = 52.23
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 100,
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 390.97,
+												y = 30.34
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled22",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 102,
+												r = 255,
+												b = 243
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 395.23,
+												y = 75.38
+											}
+										},
+										children = {}
+									},
+									{
+										name = "tishi",
+										cType = "Label",
+										params = {
+											text = "",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 32.38,
+												y = 50.95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "getBtn",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											clickAction = "",
+											pos = {
+												x = 683.16,
+												y = 49.6
+											},
+											titleText = TR("领 取")
+										},
+										children = {}
+									},
+									{
+										name = "untitled28",
+										cType = "Sprite",
+										params = {
+											image = "c_55.png",
+											hide = false,
+											pos = {
+												x = 683.25,
+												y = 49.53
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled29",
+				cType = "Label",
+				params = {
+					isRichText = false,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 34.72,
+						y = 461.99
+					},
+					text = TR("拥有：")
+				},
+				children = {}
+			},
+			{
+				name = "resSprite",
+				cType = "Sprite",
+				params = {
+					image = "db_1114.png",
+					pos = {
+						x = 108.17,
+						y = 461.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "resLabel",
+				cType = "Label",
+				params = {
+					text = "0",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 125.46,
+						y = 462.56
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCanClick = true
+	slot0.mCommonMaxNodeId = slot1 and slot1.etlyData.CommonMaxNodeId
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:refreshUI()
+
+		return 
+	end, 2)
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	slot0.getRewardInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.tableData = {}
+
+	for slot4, slot5 in ipairs(EtlyShopConfig.items) do
+		for slot9, slot10 in pairs(slot5) do
+			if slot10.sellType == 2 then
+				slot11 = false
+
+				for slot15, slot16 in pairs(slot0.rewardInfo) do
+					if slot16.Num == slot10.num and 0 < slot16.TotalBuyNum then
+						slot11 = true
+
+						break
+					end
+				end
+
+				table.insert(slot0.tableData, {
+					data = slot10,
+					haveBuy = slot11
+				})
+			end
+		end
+	end
+
+	table.sort(slot0.tableData, function (slot0, slot1)
+		if ((slot0.haveBuy ~= true or 0) and 1) == ((slot1.haveBuy ~= true or 0) and 1) then
+			return slot0.data.num < slot1.data.num
+		else
+			return slot3 < slot2
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.listView:removeAllItems()
+
+	slot1 = 1
+
+	Utility.schedule(slot0.listView, function ()
+		for slot3 = 1, 3, 1 do
+			if not slot0.tableData[slot1] then
+				slot0.mCanClick = true
+
+				slot0.listView:stopAllActions()
+			else
+				slot5 = string.split(slot4.data.shopsStr, ",")
+				slot12.nameColor, slot8 = Utility.getColorValue(Resource.getColorLv(tonumber(slot5[2])))
+
+				slot0.listView:pushBackCustomItem(slot0:createLayoutTemplateNode("rewardLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = tonumber(slot5[2]),
+							num = tonumber(slot5[3])
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					},
+					name = Resource.getName(tonumber(slot5[2])),
+					nameColor = slot7,
+					resType = tonumber(string.split(slot4.data.buyNeed, ",")[1]),
+					huafei = tonumber(string.split(slot4.data.buyNeed, ",")[3]),
+					getIcon = not slot4.haveBuy,
+					clickAction = function (...)
+						if not slot0.mCanClick then
+							return 
+						end
+
+						slot0:socketRequest({
+							methodName = "PurchaseGoods",
+							moduleName = "EtlyInfo",
+							methodData = {
+								slot1.data.num,
+								2,
+								1
+							},
+							successCallback = function (slot0)
+								slot0.mCanClick = false
+								slot1 = false
+
+								for slot5, slot6 in pairs(slot0.rewardInfo) do
+									if slot6.Num == slot0.PurchaseInfo.Num then
+										slot1 = true
+										slot0.rewardInfo[slot5] = slot0.PurchaseInfo
+
+										break
+									end
+								end
+
+								if not slot1 then
+									table.insert(slot0.rewardInfo, slot0.PurchaseInfo)
+								end
+
+								slot0:dealData()
+								slot0:refreshUI()
+								ui.showFlashReward(slot0)
+
+								return 
+							end
+						})
+
+						return 
+					end
+				}))
+
+				if slot4.haveBuy then
+					slot9.getBtn:setVisible(false)
+				end
+
+				if slot1 == 1 then
+					slot9.tishi:setPosition(35.8, 63.54)
+
+					if slot0.mCommonMaxNodeId ~= 0 then
+						slot9.addChild(slot9, UIWrap.newControl("Label", {
+							fontSize = 22,
+							text = TR("当前最高层数:%s层", EtlyNodeModel.items[slot0.mCommonMaxNodeId].showNumC),
+							anchor = cc.p(0, 0.5),
+							pos = cc.p(35.8, 35),
+							color = cc.c3b(223, 10, 10)
+						}))
+					end
+				end
+
+				if slot4.data.openNeed == 0 or slot0:normalIsCross(slot4.data.openNeed) then
+					slot9.tishi:setString(TR("通过普通关卡%s", EtlyNodeModel.items[slot4.data.openNeed].name))
+				else
+					slot9.tishi:setString(TR("通过普通关卡%s", EtlyNodeModel.items[slot4.data.openNeed].name))
+					slot9.getBtn:setEnabled(false)
+				end
+			end
+
+			slot1 = slot1 + 1
+		end
+
+		return 
+	end, 0.01, false)
+	slot0.resSprite:setTexture(Resource.getDaibiImg(ResourceTypeSub.eEtlyCoin))
+	slot0.resLabel:setString(string.format("%s", PlayerAttrObj:getPlayerAttrByName("EtlyCoin")))
+
+	return 
+end
+slot0.normalIsCross = function (slot0, slot1)
+	if not EtlyNodeModel.items[slot0.mCommonMaxNodeId] then
+		return false
+	end
+
+	if slot2.nextNodeId == 0 then
+		return true
+	end
+
+	if slot2.ifSpecialBox then
+		return slot1 <= slot2.nextNodeId - 1
+	else
+		return slot1 <= slot2.modelId
+	end
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.getRewardInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetStorePurchaseInfo",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.rewardInfo = {}
+			slot1 = pairs
+			slot2 = (slot0 and slot0.StorePurchase) or {}
+
+			for slot4, slot5 in slot1(slot2) do
+				if slot5.SellType == 2 then
+					table.insert(slot0.rewardInfo, slot5)
+				end
+			end
+
+			slot0:dealData()
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

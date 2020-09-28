@@ -1,0 +1,175 @@
+slot0 = class("SelectCountView", function ()
+	return ccui.Layout:create()
+end)
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurrSelCount = slot1.currSelCount or 1
+	slot0.mMaxCount = slot1.maxCount
+
+	if not slot0.mMaxCount or slot0.mMaxCount < 1 then
+		slot0.mMaxCount = 99999999
+	end
+
+	slot0.mViewSize = slot1.size or cc.size(300, 100)
+	slot0.changeCallback = slot1.changeCallback
+	slot0.mBtnSize = slot1.btnSize
+
+	slot0.setContentSize(slot0, slot0.mViewSize)
+	slot0.setAnchorPoint(slot0, cc.p(0.5, 0.5))
+	slot0.setIgnoreAnchorPointForPosition(slot0, false)
+
+	slot3 = UIWrap.newControl("Scale9Sprite", {
+		image = "c_41.png",
+		size = cc.size(slot0.mViewSize.width/300*80, 35)
+	})
+
+	slot3.setPosition(slot3, slot0.mViewSize.width/2, slot0.mViewSize.height/2)
+	slot0.addChild(slot0, slot3)
+
+	slot0.mSelCountLabel = UIWrap.newControl("Label", {
+		fontSize = 22,
+		text = tostring(slot0.mCurrSelCount),
+		pos = cc.p(slot0.mViewSize.width/2, slot0.mViewSize.height/2),
+		color = cc.c3b(255, 255, 255)
+	})
+
+	slot0.addChild(slot0, slot0.mSelCountLabel)
+
+	for slot9, slot10 in pairs(slot5) do
+		slot11 = UIWrap.newControl("Button", {
+			image = "c_40.png",
+			titleText = slot10.text,
+			size = slot0.mBtnSize,
+			anchor = cc.p(0.5, 0.5),
+			titleColor = cc.c3b(255, 248, 234),
+			pos = slot10.position,
+			clickAction = slot10.clickAction
+		})
+
+		slot0.addChild(slot0, slot11)
+
+		slot13 = slot11.getContentSize(slot11).width/2
+		slot14 = slot11.getContentSize(slot11).height/2*1.75
+
+		slot0.registerPressTouch(slot11, function ()
+			slot0.mCurrSelCount = slot0.mCurrSelCount + slot1.offset
+			slot0.mCurrSelCount = math.max(1, slot0.mCurrSelCount)
+			slot0.mCurrSelCount = math.min(slot0.mMaxCount, slot0.mCurrSelCount)
+
+			if slot0.mCurrSelCount == slot0.mCurrSelCount then
+				return false
+			end
+
+			slot1 = true
+
+			if slot0.changeCallback(slot0.mCurrSelCount) ~= false then
+				slot0.mSelCountLabel:setString(tostring(slot0.mCurrSelCount))
+			else
+				slot0.mCurrSelCount = slot0
+			end
+
+			return slot1
+		end)
+	end
+
+	if slot0.changeCallback then
+		slot0.changeCallback(slot0.mCurrSelCount)
+	end
+
+	return 
+end
+slot0.setMaxCount = function (slot0, slot1)
+	slot0.mMaxCount = slot1
+
+	if not slot0.mMaxCount or slot0.mMaxCount < 0 then
+		slot0.mMaxCount = 99999999
+	end
+
+	return 
+end
+slot0.setCount = function (slot0, slot1)
+	if not slot1 or slot1 < 0 then
+		return 
+	end
+
+	slot0.mCurrSelCount = slot1
+
+	slot0.mSelCountLabel:setString(tostring(slot0.mCurrSelCount))
+
+	return 
+end
+slot0.setChangeCallback = function (slot0, slot1)
+	slot0.changeCallback = slot1
+
+	return 
+end
+slot0.registerPressTouch = function (slot0, slot1)
+	slot2 = {}
+
+	function slot3()
+		slot0.isRunning = false
+
+		if slot0.delayTimer ~= nil then
+			slot1:stopAction(slot0.delayTimer)
+
+			slot1.stopAction.delayTimer = nil
+		elseif slot0.repeatTimer ~= nil then
+			slot1:stopAction(slot0.repeatTimer)
+
+			slot1.stopAction.repeatTimer = nil
+		end
+
+		return 
+	end
+
+	function slot4()
+		if not slot0() then
+			slot1()
+		end
+
+		return 
+	end
+
+	function slot5()
+		slot0.isRunning = true
+		slot0.delayTimer = Utility.performWithDelay(Utility.performWithDelay, function ()
+			slot0.delayTimer = nil
+			slot0.repeatTimer = Utility.schedule(Utility.schedule, function ()
+				slot0()
+
+				return 
+			end, 0.1)
+
+			return 
+		end, 0.6)
+
+		Utility.performWithDelay()
+
+		return 
+	end
+
+	slot6 = slot0.getBoundingBox(slot0)
+
+	slot0.addTouchEventListener(slot0, function (slot0, slot1)
+		if slot1 == ccui.TouchEventType.moved then
+			if not slot0.isRunning then
+				return 
+			end
+
+			if cc.rectContainsPoint(slot1:getParent():convertToNodeSpace(slot0.getTouchMovePosition(slot0)), ) == true then
+				return 
+			end
+		elseif slot1 == ccui.TouchEventType.began then
+			slot3()
+
+			return 
+		end
+
+		slot4()
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

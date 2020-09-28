@@ -1,0 +1,448 @@
+slot0 = class("GuildBossBoxLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "boxBg",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionFinish",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("名字")
+		},
+		children = {
+			{
+				name = "untitled15",
+				cType = "Sprite",
+				params = {
+					image = "bp_81.png",
+					pos = {
+						x = 482.37,
+						y = 263.75
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "bb_12.png",
+					pos = {
+						x = 137.2,
+						y = 262.96
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nodeListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 26.86,
+						y = 43.76
+					},
+					size = {
+						width = 100,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "nodeLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled18-text",
+								name = "nameStr",
+								type = "string"
+							},
+							{
+								value = "untitled7-currValue",
+								name = "curHp",
+								type = "string"
+							},
+							{
+								value = "untitled7-maxValue",
+								name = "maxHp",
+								type = "string"
+							},
+							{
+								value = "reddot-subKey",
+								name = "redSubKey",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "nodeHead",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 50,
+										y = 65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "selectSprite",
+								cType = "Sprite",
+								params = {
+									image = "c_61.png",
+									pos = {
+										x = 50,
+										y = 65
+									}
+								},
+								children = {}
+							},
+							{
+								name = "reddot",
+								cType = "RedDot",
+								params = {
+									subKey = "",
+									hide = true,
+									moduleId = 4611
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									scale = 0.6,
+									image = "bp_73.png",
+									pos = {
+										x = 50.41,
+										y = 16.45
+									}
+								},
+								children = {
+									{
+										name = "untitled7",
+										cType = "ProgressBar",
+										params = {
+											maxValue = 1,
+											normalImage = "bp_74.png",
+											currValue = 1,
+											pos = {
+												x = 67.5,
+												y = 5.5
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled17",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_93.png",
+									pos = {
+										x = 48.71,
+										y = 43.31
+									},
+									size = {
+										width = 80,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 40,
+												y = 15
+											},
+											text = TR("名字")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "boxGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGrid",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 130,
+					pos = {
+						x = 491.14,
+						y = 258.52
+					},
+					size = {
+						width = 650,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "BoxTemNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 76.71,
+								y = 350.89
+							}
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "Button",
+								params = {
+									childName = "boxBtn",
+									image = "tzsj_9.png",
+									swallowTouch = false,
+									clickAction = "onDrawBtn",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Scale9Sprite",
+								params = {
+									image = "tzsj_10.png",
+									childName = "nameSprite",
+									pos = {
+										x = 0,
+										y = -47
+									}
+								},
+								children = {
+									{
+										name = "untitled999",
+										cType = "Label",
+										params = {
+											childName = "playerNameLabel",
+											text = "Label",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 81.5,
+												y = 15.5
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled14",
+								cType = "CardNode",
+								params = {
+									childName = "cardNode",
+									allowClick = true,
+									pos = {
+										x = 0,
+										y = 15
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterId = slot1.chapterId
+	slot0.mCallBack = slot1.callBack
+	slot0.mNodeInfo = slot1.nodeInfo
+	slot0.mNodeList = {}
+	slot0.mSelectNode = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createBaseView = function (slot0)
+	slot0.boxBg.titleLabel:setString(GuildbossChapterModel.items[slot0.mChapterId].name)
+
+	for slot5, slot6 in ipairs(slot0.mNodeInfo) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "nodeLayout", {
+			nameStr = GuildbossNodeModel.items[slot6.NodeId].name,
+			curHp = slot6.RemainHP,
+			maxHp = slot6.TotalHP,
+			redSubKey = "ChapterId_" .. slot0.mChapterId .. "_" .. slot6.NodeId
+		})
+
+		slot8.nodeHead:setCardData({
+			modelId = GuildbossNodeModel.items[slot6.NodeId].npcModelId
+		})
+		slot8.nodeHead:setClickAction(function ()
+			if slot0.mSelectNode == slot1 then
+				return 
+			end
+
+			slot0.mSelectNode = slot1
+
+			slot0:refreshState()
+
+			return 
+		end)
+		slot8.nodeHead:setRightTextVisible(false)
+		table.insert(slot0.mNodeList, slot8)
+		slot0.nodeListView:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+slot0.onActionFinish = function (slot0)
+	slot0.createBaseView(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshState = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mNodeList) do
+		if slot0.mSelectNode == slot4 then
+			slot5.selectSprite:setVisible(true)
+		else
+			slot5.selectSprite:setVisible(false)
+		end
+	end
+
+	slot0.mCurBoxInfo = slot0.mBoxData[slot0.mSelectNode].DrawBox
+
+	slot0.boxGridView:setItemNum(#slot0.mCurBoxInfo)
+
+	return 
+end
+slot0.onCreateGrid = function (slot0, slot1, slot2, slot3)
+	slot0.createLayoutTemplateNode(slot0, "BoxTemNode").boxBtn:loadTextures((slot0.mCurBoxInfo[slot2].PlayerName == "" and "tzsj_8.png") or "tzsj_9.png", )
+	slot0.createLayoutTemplateNode(slot0, "BoxTemNode").boxBtn:setTouchEnabled(slot0.mCurBoxInfo[slot2].PlayerName == "")
+
+	if not slot5 then
+		slot7.cardNode:setCardData({
+			modelId = Utility.analysisStrResList(GuildbossNodePassrewardRelation.items[slot4.BoxId].reward)[1].resourceId,
+			num = Utility.analysisStrResList(GuildbossNodePassrewardRelation.items[slot4.BoxId].reward)[1].num
+		}, {
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eBorder
+		})
+		slot7.nameSprite.playerNameLabel:setString(slot4.PlayerName)
+
+		if slot4.PlayerName == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+			slot7.nameSprite.playerNameLabel:setColor(cc.c3b(139, 168, 87))
+		end
+	end
+
+	slot7.nameSprite:setVisible(not slot5)
+	slot7.cardNode:setVisible(not slot5)
+
+	slot7.boxBtn.boxId = slot4.Id
+
+	slot7.setPosition(slot7, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot7)
+
+	return 
+end
+slot0.onDrawBtn = function (slot0, slot1)
+	if slot0.mBoxData[slot0.mSelectNode].IsCanDrawReward then
+		slot0.requestDrawNodeBox(slot0, slot1.boxId)
+	else
+		ui.showFlashView(TR("不能领取奖励"))
+	end
+
+	return 
+end
+slot0.ifCanGetReward = function (slot0)
+	slot1 = false
+
+	for slot5, slot6 in ipairs(slot0.mBoxData) do
+		if slot6.IsCanDrawReward then
+			slot1 = true
+		end
+	end
+
+	return IsCanDrawReward
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetNodeBoxInfo",
+		moduleName = "Guildboss",
+		methodData = {
+			slot0.mChapterId
+		},
+		successCallback = function (slot0)
+			slot0.mBoxData = slot0.NodeInfo
+
+			slot0:refreshState()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawNodeBox = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawNodeBox",
+		moduleName = "Guildboss",
+		methodData = {
+			slot0.mNodeInfo[slot0.mSelectNode].NodeId,
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "requestDrawNodeBox")
+
+			slot0.mBoxData = slot0.NodeInfo
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0:ifCanGetReward(), )
+			end
+
+			ui.showFlashReward(slot0)
+			slot0:refreshState()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

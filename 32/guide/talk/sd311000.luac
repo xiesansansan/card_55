@@ -1,0 +1,1227 @@
+return {
+	{
+		music = {
+			volume = 0.5,
+			file = "jqbgm_chenzhong01.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			scale = 1,
+			file = "zj_126.png",
+			tag = "bg_parent",
+			order = -10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			parent = "bg_parent",
+			file = "cation010.jpg",
+			tag = "kcbg01",
+			scale = 1,
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 64),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 215,
+			parent = "kcbg01",
+			file = "fhy_idle02.png",
+			tag = "kcrw01",
+			scale = 0.28,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(700, 232),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation020.jpg",
+			tag = "kcbg02",
+			scale = 1.1,
+			order = 11,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation030.jpg",
+			tag = "kcbg03",
+			scale = 1.1,
+			order = 12,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg01",
+			what = {
+				spawn = {
+					{
+						bezier = {
+							time = 3.6,
+							by = cc.p(0, 512),
+							control = {
+								cc.p(0, 224),
+								cc.p(0, 384)
+							}
+						}
+					},
+					{
+						scale = {
+							time = 3.6,
+							to = 1
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg01",
+			what = {
+				spawn = {
+					{
+						bezier = {
+							time = 2.8,
+							by = cc.p(0, 240),
+							control = {
+								cc.p(0, 90),
+								cc.p(0, 180)
+							}
+						}
+					},
+					{
+						scale = {
+							time = 2.8,
+							to = 1.8
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0101.mp3",
+				TR("【你】:"),
+				TR("师妹，真经我拿到了。")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10001"
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg02",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0110.mp3",
+				TR("【绯红依】:"),
+				TR("师兄！")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10002"
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation040.jpg",
+			tag = "kcbg04",
+			scale = 1.1,
+			order = 13,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation050.jpg",
+			tag = "kcbg05",
+			scale = 1.1,
+			order = 14,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg03",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg01",
+				"kcbg02"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_01032.mp3",
+				TR("【你】:"),
+				TR("师妹，等完成师父的愿望，我们就永远在一起……")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10003"
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg03",
+			what = {
+				spawn = {
+					{
+						scale = {
+							time = 2.4,
+							to = 4
+						}
+					},
+					{
+						move = {
+							time = 2.4,
+							by = cc.p(-700, -300)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg04",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation051.jpg",
+			tag = "kcbg06",
+			scale = 1.1,
+			order = 15,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation070.jpg",
+			tag = "kcbg07",
+			scale = 1.1,
+			order = 16,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg04",
+			what = {
+				spawn = {
+					{
+						move = {
+							time = 1.2,
+							by = cc.p(0, 50)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg05",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg03",
+				"kcbg04"
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		sound = {
+			sync = false,
+			file = "jq_cisha.mp3"
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg06",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0103.mp3",
+				TR("【你】:"),
+				TR("师……妹……你！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation080.jpg",
+			tag = "kcbg08",
+			scale = 1.2,
+			order = 17,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(554.4, 320),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg08",
+			file = "cation080_4.png",
+			tag = "kcrw02",
+			scale = 1.1,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(472.5, 210),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg08",
+			file = "cation080_1.png",
+			tag = "kcrw03",
+			scale = 1,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(1080, 210),
+			rotation3D = cc.vec3(0, 0, 4)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg08",
+			file = "cation080_2.png",
+			tag = "kcrw04",
+			scale = 1,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(1050, 180),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg08",
+			file = "cation080_3.png",
+			tag = "kcrw05",
+			scale = 1,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(990, 110),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg07",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg05",
+				"kcbg06"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_01033.mp3",
+				TR("【绯红依】:"),
+				TR("师兄……这一切，都只是……为了利用你……")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10007"
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg08",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw02",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcrw03",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0104.mp3",
+				TR("【绯红依】:"),
+				TR("谢谢你，一直照顾我，疼我……和你在一起，是红依心底最欢喜的时候。")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10008"
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw03",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcrw04",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 0.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.5
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw04",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcrw05",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 0.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation100.jpg",
+			tag = "kcbg10",
+			scale = 1.2,
+			order = 20,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation111.jpg",
+			tag = "kcbg11",
+			scale = 1.2,
+			order = 21,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			scaleY = 1.22,
+			parent = "kcbg11",
+			file = "cation111_1.png",
+			tag = "kcrw11",
+			scaleX = 1.2,
+			order = 10,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0),
+			pos = cc.p(660, 0),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg11",
+			file = "cation111_2.png",
+			tag = "kcrw12",
+			scale = 1.5,
+			order = 9,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(693, 240),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg10",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg07",
+				"kcbg08"
+			}
+		}
+	},
+	{
+		delay = {
+			time = 1.5
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw11",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw12",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.5
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg11",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0106.mp3",
+				TR("【魔教教徒】:"),
+				TR("教主有令！请圣女得手后，即刻回圣宫复命。")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10010"
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation120.jpg",
+			tag = "kcbg12",
+			scale = 1.1,
+			order = 22,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "kcbg12",
+			file = "cation120_1.png",
+			tag = "kcrw13",
+			scale = 1.08,
+			order = 10,
+			type = TalkView.DEF.PIC,
+			anchor = cc.p(0.5, 0),
+			pos = cc.p(810, 0),
+			rotation3D = cc.vec3(0, 0, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation130.jpg",
+			tag = "kcbg13",
+			scale = 1.1,
+			order = 23,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg11",
+			what = {
+				spawn = {
+					{
+						scale = {
+							time = 2.4,
+							to = 4
+						}
+					},
+					{
+						move = {
+							time = 2.4,
+							by = cc.p(-300, 0)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.2
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcrw13",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg12",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg10",
+				"kcbg11"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0107.mp3",
+				TR("【绯红依】:"),
+				TR("知道了。")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10011"
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg13",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.3
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0108.mp3",
+				TR("【魔教教徒】:"),
+				TR("你们护送圣女回宫，其余人随我去搜查！")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10012"
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation140.jpg",
+			tag = "kcbg14",
+			scale = 1.1,
+			order = 24,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			parent = "bg_parent",
+			file = "cation151.jpg",
+			tag = "kcbg15",
+			scale = 4,
+			order = 25,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320),
+			anchor = cc.p(0.6277056277056277, 0.3203125),
+			rotation3D = cc.vec3(0, 0, -20)
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg14",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"kcbg12",
+				"kcbg13"
+			}
+		}
+	},
+	{
+		delay = {
+			time = 0.3
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_n",
+			params = {
+				"sd3jq_0109.mp3",
+				TR("【绯红依】:"),
+				TR("不必大费周章，他被我刺破丹田，就算不死，也形同废人，你们都随我回宫！")
+			}
+		}
+	},
+	{
+		hitPoint = {
+			pointTag = "10013"
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "kcbg15",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 1.2
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			scale = 1.5,
+			file = "jq_mengban.png",
+			tag = "mb00",
+			order = 40,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320)
+		}
+	},
+	{
+		model = {
+			opacity = 0,
+			scale = 1.5,
+			file = "jq_mengban.png",
+			tag = "mb01",
+			order = 41,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(693, 320)
+		}
+	},
+	{
+		delay = {
+			time = 0.1
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "mb00",
+			what = {
+				sequence = {
+					{
+						scale = {
+							time = 2,
+							by = 1
+						}
+					},
+					{
+						fadein = {
+							time = 6.5
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "kcbg15",
+			what = {
+				spawn = {
+					{
+						sequence = {
+							{
+								scale = {
+									time = 1,
+									to = 3.5200000000000005
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 3.04
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 2.5600000000000005
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 2.08
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 1.7600000000000002
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 1.4400000000000002
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 1.1199999999999999
+								}
+							},
+							{
+								scale = {
+									time = 1,
+									to = 0.8800000000000001
+								}
+							}
+						}
+					},
+					{
+						rotate = {
+							time = 8,
+							by = cc.vec3(0, 0, 20)
+						}
+					},
+					{
+						move = {
+							time = 8,
+							by = cc.p(0, -100)
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mb01",
+			what = {
+				spawn = {
+					{
+						fadein = {
+							time = 8
+						}
+					}
+				}
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

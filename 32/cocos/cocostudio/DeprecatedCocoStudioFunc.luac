@@ -1,0 +1,105 @@
+if ccs == nil then
+	return 
+end
+
+function slot0(slot0, slot1)
+	print("\n********** \n" .. slot0 .. " was deprecated please use " .. slot1 .. " instead.\n**********")
+
+	return 
+end
+
+GUIReader.shareReader = ({
+	shareReader = function ()
+		slot0("GUIReader:shareReader", "ccs.GUIReader:getInstance")
+
+		return ccs.GUIReader:getInstance()
+	end,
+	purgeGUIReader = function ()
+		slot0("GUIReader:purgeGUIReader", "ccs.GUIReader:destroyInstance")
+
+		return ccs.GUIReader:destroyInstance()
+	end
+})["shareReader"]
+GUIReader.purgeGUIReader = ({
+	shareReader = function ()
+		slot0("GUIReader:shareReader", "ccs.GUIReader:getInstance")
+
+		return ccs.GUIReader.getInstance()
+	end,
+	purgeGUIReader = function ()
+		slot0("GUIReader:purgeGUIReader", "ccs.GUIReader:destroyInstance")
+
+		return ccs.GUIReader.destroyInstance()
+	end
+})["purgeGUIReader"]
+SceneReader.sharedSceneReader = ({
+	sharedSceneReader = function ()
+		slot0("SceneReader:sharedSceneReader", "ccs.SceneReader:getInstance")
+
+		return ccs.SceneReader:getInstance()
+	end,
+	purgeSceneReader = function (slot0)
+		slot0("SceneReader:purgeSceneReader", "ccs.SceneReader:destroyInstance")
+
+		return slot0.destroyInstance(slot0)
+	end
+})["sharedSceneReader"]
+SceneReader.purgeSceneReader = ({
+	sharedSceneReader = function ()
+		slot0("SceneReader:sharedSceneReader", "ccs.SceneReader:getInstance")
+
+		return ccs.SceneReader.getInstance()
+	end,
+	purgeSceneReader = function (slot0)
+		slot0("SceneReader:purgeSceneReader", "ccs.SceneReader:destroyInstance")
+
+		return slot0.destroyInstance(slot0)
+	end
+})["purgeSceneReader"]
+ccs.GUIReader.purgeGUIReader = ({
+	purgeGUIReader = function ()
+		slot0("ccs.GUIReader:purgeGUIReader", "ccs.GUIReader:destroyInstance")
+
+		return ccs.GUIReader:destroyInstance()
+	end
+})["purgeGUIReader"]
+ccs.ActionManagerEx.destroyActionManager = ({
+	destroyActionManager = function ()
+		slot0("ccs.ActionManagerEx:destroyActionManager", "ccs.ActionManagerEx:destroyInstance")
+
+		return ccs.ActionManagerEx:destroyInstance()
+	end
+})["destroyActionManager"]
+ccs.SceneReader.destroySceneReader = ({
+	destroySceneReader = function (slot0)
+		slot0("ccs.SceneReader:destroySceneReader", "ccs.SceneReader:destroyInstance")
+
+		return slot0.destroyInstance(slot0)
+	end
+})["destroySceneReader"]
+CCArmatureDataManager.sharedArmatureDataManager = ({
+	sharedArmatureDataManager = function ()
+		slot0("CCArmatureDataManager:sharedArmatureDataManager", "ccs.ArmatureDataManager:getInstance")
+
+		return ccs.ArmatureDataManager:getInstance()
+	end,
+	purge = function ()
+		slot0("CCArmatureDataManager:purge", "ccs.ArmatureDataManager:destoryInstance")
+
+		return ccs.ArmatureDataManager:destoryInstance()
+	end
+})["sharedArmatureDataManager"]
+CCArmatureDataManager.purge = ({
+	sharedArmatureDataManager = function ()
+		slot0("CCArmatureDataManager:sharedArmatureDataManager", "ccs.ArmatureDataManager:getInstance")
+
+		return ccs.ArmatureDataManager.getInstance()
+	end,
+	purge = function ()
+		slot0("CCArmatureDataManager:purge", "ccs.ArmatureDataManager:destoryInstance")
+
+		return ccs.ArmatureDataManager.destoryInstance()
+	end
+})["purge"]
+
+return 

@@ -1,0 +1,194 @@
+slot0 = class("GuildBossBuyNumLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("提示")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 258.06,
+						y = 211.37
+					},
+					size = {
+						width = 451.47,
+						height = 170
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 244.05,
+						y = 107.89
+					},
+					text = TR("价格")
+				},
+				children = {}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onSelectChanged",
+					currSelCount = 1,
+					btnSize = {
+						width = 65,
+						height = 32.4
+					},
+					pos = {
+						x = 258.84,
+						y = 187.14
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onSureBtnAction",
+					pos = {
+						x = 245.23,
+						y = 66.7
+					},
+					titleText = TR("购 买")
+				},
+				children = {}
+			},
+			{
+				name = "canBuyNum",
+				cType = "Label",
+				params = {
+					isRichText = "false",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 251.25,
+						y = 267.9
+					},
+					text = TR("剩余购买次数：")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallback = slot1 or {}.callBack
+	slot0.mBoughtNum = slot1 or {}.boughtNum
+	slot0.mSelectNum = 1
+	slot0.MaxNum = VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].guildPveBuyMaxNum
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.selectCountView:setMaxCount(math.max(slot0.MaxNum - slot0.mBoughtNum, 0))
+	slot0.canBuyNum:setString(TR("剩余购买次数：%s%s", (slot0.MaxNum <= slot0.mBoughtNum and "#c04141") or "#627f22", math.max(slot0.MaxNum - slot0.mBoughtNum, 0)))
+
+	if slot0.MaxNum <= slot0.mBoughtNum then
+		slot0.selectCountView:setCount(0)
+		slot0.priceLabel:setVisible(false)
+	end
+
+	return 
+end
+slot0.onSelectChanged = function (slot0, slot1)
+	slot0.mSelectNum = slot1
+	slot2 = 0
+
+	if slot0.MaxNum > slot0.mBoughtNum or false then
+		slot3 = Utility.analysisStrResList(GuildbossBuynumRelation.items[1].useStr)[1].resourceId
+
+		for slot7 = slot0.mBoughtNum + 1, slot0.mBoughtNum + slot1, 1 do
+			slot2 = slot2 + Utility.analysisStrResList(GuildbossBuynumRelation.items[(GuildbossBuynumRelation.items_count < slot7 and GuildbossBuynumRelation.items_count) or slot7].useStr)[1].num
+		end
+
+		slot0.priceLabel:setString(TR("价格{%s}%s", Resource.getDaibiImg(slot3), slot2))
+
+		slot0.mTotalPrice = slot2
+	end
+
+	return 
+end
+slot0.onSureBtnAction = function (slot0, slot1)
+	if slot0.MaxNum <= slot0.mBoughtNum then
+		if slot0.MaxNum < EliteBuyConfig.items_count then
+			ui.showFlashView(TR("已达到购买次数上限!提升VIP等级可增加购买次数"))
+		else
+			ui.showFlashView(TR("已达到购买次数上限!"))
+		end
+
+		return 
+	end
+
+	slot0.requestBuyChallengeNum(slot0)
+
+	return 
+end
+slot0.requestBuyChallengeNum = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyChallengeNum",
+		moduleName = "Guildboss",
+		methodData = {
+			slot0.mSelectNum
+		},
+		successCallback = function (slot0)
+			slot0.mBoughtNum = slot0.ChallengeBuyNum
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.ChallengeBuyNum)
+			end
+
+			ui.showFlashView(TR("购买成功!!!"))
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,363 @@
+slot0 = class("MecenarySelectHeroLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 683,
+				height = 438
+			},
+			titleText = TR("选择侠客")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 340.84,
+						y = 248
+					},
+					size = {
+						width = 630,
+						height = 286
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSelectLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.72,
+						y = 358.28
+					},
+					text = TR("选择侠客：0/5")
+				},
+				children = {}
+			},
+			{
+				name = "mHintLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					emptyInit = true,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 630,
+						y = 358.28
+					},
+					text = TR("需要训练等级达到橙色且五星侠客")
+				},
+				children = {}
+			},
+			{
+				name = "mHeroView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateHeroItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 150,
+					pos = {
+						x = 340,
+						y = 230
+					},
+					size = {
+						width = 600,
+						height = 240
+					}
+				},
+				children = {
+					{
+						name = "HeroTemNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 100,
+								y = 100
+							},
+							size = {
+								width = 115,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "CardNode",
+								params = {
+									clickAction = "onHeroClick",
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 57.5,
+										y = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									scaleX = 0.7,
+									image = "c_2.png",
+									scaleY = 0.8,
+									pos = {
+										x = 57.5,
+										y = 57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									childName = "professionSprite",
+									scale = 0.75,
+									image = "zj_72.png",
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									pos = {
+										x = 27.59,
+										y = 57
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "nameLabel",
+									pos = {
+										x = 64.53,
+										y = 57
+									},
+									text = TR("侠客名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "fuli_20.png",
+									childName = "selectSprite",
+									pos = {
+										x = 58.72,
+										y = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "fapLabel",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 57.5,
+										y = 30
+									},
+									text = TR("战力:")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mEmptySprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bp_25.png",
+					hide = true,
+					pos = {
+						x = 355.93,
+						y = 242.21
+					}
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.34,
+								y = 50.07
+							},
+							text = TR("暂无符合要求的侠客")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					clickAction = "onOkCallback",
+					image = "c_27.png",
+					pos = {
+						x = 341.5,
+						y = 50
+					},
+					size = {
+						width = 160,
+						height = 50
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSelectHeros = {}
+	slot0.mBanHeros = slot1.banHeros or {}
+	slot0.mCallback = slot1.callback
+	slot0.mAllHeros = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getAllHeroList(slot0)
+
+	if next(slot0.mAllHeros) then
+		slot0.mHeroView:setVisible(true)
+		slot0.mHeroView:setItemNum(#slot0.mAllHeros)
+	else
+		slot0.mEmptySprite:setVisible(true)
+		slot0.mHeroView:setVisible(false)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.getAllHeroList = function (slot0)
+	slot0.mAllHeros = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		if not table.indexof(slot0.mBanHeros, slot6) then
+			table.insert(slot0.mAllHeros, HeroObj:getItem(slot6))
+		end
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mSelectLabel:setString(TR("选择侠客：%s/%s", #slot0.mSelectHeros, 1))
+
+	return 
+end
+slot0.onOkCallback = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback(slot0.mSelectHeros)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onHeroClick = function (slot0, slot1)
+	if not slot1.ModelId then
+		return 
+	end
+
+	if table.indexof(slot0.mSelectHeros, slot1.ModelId) then
+		table.remove(slot0.mSelectHeros, slot2)
+	else
+		if 1 <= #slot0.mSelectHeros then
+			ui.showFlashView(TR("选择侠客数量已达上限！"))
+
+			return 
+		end
+
+		table.insert(slot0.mSelectHeros, slot1.ModelId)
+	end
+
+	slot0.refreshUI(slot0)
+	slot0.mHeroView:reloadData()
+
+	return 
+end
+slot0.onCreateHeroItem = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "HeroTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+	slot3.card:setCardData({}, {
+		Enums.CardShowAttr.eLevel,
+		Enums.CardShowAttr.eStar,
+		Enums.CardShowAttr.eTrainLv
+	}, slot4)
+
+	slot3.card.ModelId = slot0.mAllHeros[slot2].ModelId
+	slot5, slot9 = Utility.getHeroCampProfessionImg(slot0.mAllHeros[slot2].ModelId, false)
+
+	slot3.professionSprite:setTexture(slot6)
+	slot3.nameLabel:setString(HeroModel.items[slot0.mAllHeros[slot2].ModelId].name)
+	slot3.fapLabel:setString(TR("战力:%s", Utility.numberWithUnit(slot0.mAllHeros[slot2].Fap)))
+	slot3.selectSprite:setVisible((table.indexof(slot0.mSelectHeros, slot0.mAllHeros[slot2].ModelId) and true) or false)
+
+	return 
+end
+
+return slot0

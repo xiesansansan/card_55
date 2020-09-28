@@ -1,0 +1,140 @@
+slot0 = class("CityWarEmperorReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			titleText = TR("武林战报")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_13.png",
+					clickAction = "onClose",
+					pos = {
+						x = 295,
+						y = 70
+					},
+					titleText = TR("确 认")
+				},
+				children = {}
+			},
+			{
+				name = "listViewBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_144.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 295,
+						y = 510
+					},
+					size = {
+						width = 525,
+						height = 400
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 295,
+						y = 500
+					},
+					size = {
+						width = 525,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "labelLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled6-text",
+								name = "text",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 525,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									fontSize = 19,
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 262.5,
+										y = 30
+									},
+									text = TR("#ff66f3 哈哈哈哈哈哈 #fff8ea击败了 #ff974a嚯嚯嚯嚯嚯嚯#fff8ea,获得1连胜")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.reportShowList = slot1.reportShowList
+
+	dump(slot0.reportShowList, "self.reportShowList")
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot4, slot5 in ipairs(slot0.reportShowList) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "labelLayout", {
+			text = slot5
+		}))
+	end
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

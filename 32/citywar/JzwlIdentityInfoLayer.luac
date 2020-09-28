@@ -1,0 +1,141 @@
+slot0 = class("JzwlIdentityInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png"
+		},
+		children = {
+			{
+				name = "playerNode",
+				cType = "PlayerHeroNode",
+				params = {
+					modelId = 0,
+					allowClick = false,
+					pos = {
+						x = 112.84,
+						y = 165.54
+					}
+				},
+				children = {}
+			},
+			{
+				name = "shenfen",
+				cType = "Label",
+				params = {
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 180.29,
+						y = 172.12
+					}
+				},
+				children = {}
+			},
+			{
+				name = "des",
+				cType = "Label",
+				params = {
+					text = "Label",
+					align = 0,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 179.91,
+						y = 79.17
+					},
+					size = {
+						width = 280,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "name",
+				cType = "Label",
+				params = {
+					text = "Label",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 180.75,
+						y = 229.6
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mIdentityInfo = slot1 and slot1.identityInfo
+	slot0.mIdentityId = (slot1 and slot1.identityId) or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUi(slot0)
+
+	return 
+end
+slot0.refreshUi = function (slot0)
+	slot0.shenfen:setString((NewleaguetopIdentityRelation.items[slot0.mIdentityId].type and "上流身份：" .. slot1.name) or "下流身份：" .. slot1.name)
+	slot0.des:setString("身份效果：" .. slot1.effectIntro)
+
+	if slot0.mIdentityInfo then
+		slot0.playerNode:setPlayerHeader(slot0.mIdentityInfo.HeadImageId, nil, {
+			fashionLv = slot0.mIdentityInfo.FashionId,
+			headPicId = slot0.mIdentityInfo.HeadPicId
+		})
+	end
+
+	slot0.name:setString((slot0.mIdentityInfo and slot0.mIdentityInfo.Name) or "暂无")
+	slot0.playerNode:addChild(UIWrap.newControl("Sprite", {
+		image = slot1.pic
+	}))
+
+	if slot1.type then
+		slot2.setAnchorPoint(slot2, cc.p(0.5, 0.5))
+		slot2.setPosition(slot2, cc.p(46, 92))
+	else
+		slot2.setPosition(slot2, cc.p(20, 46))
+	end
+
+	return 
+end
+
+return slot0

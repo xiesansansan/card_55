@@ -1,0 +1,478 @@
+slot0 = class("ActivityMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled5",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			zOrder = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			zOrder = 2,
+			isLiuHai = true,
+			posApt = 1,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Sprite",
+				params = {
+					image = "fuli_1.png",
+					pos = {
+						x = 69.18,
+						y = -620
+					}
+				},
+				children = {
+					{
+						name = "tempTabView",
+						cType = "TabView",
+						custom = {
+							{
+								value = 1,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							onSelectChange = "onModuleBtnAction",
+							space = 0,
+							selectTag = 1,
+							fontSize = 26,
+							lightedImage = "fuli_3.png",
+							direction = true,
+							delayInit = true,
+							normalImage = "c_pure.png",
+							selectFontSize = 28,
+							btnInfos = {
+								{
+									title = "Test"
+								}
+							},
+							btnSize = {
+								width = 140,
+								height = 69
+							},
+							pos = {
+								x = 7.67,
+								y = 61.75
+							},
+							selectTitleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							size = {
+								width = 142.94,
+								height = 488.44
+							},
+							titleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							titleOffset = {
+								x = 0.45,
+								y = 0.5
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 2,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					titleisRichText = "false",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "titleSprite",
+						cType = "Sprite",
+						params = {
+							image = "fuli_4.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = -41.7,
+								y = 5.82
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "ruleBtn",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnAction",
+					pos = {
+						x = 233.23,
+						y = -24.35
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.defaultModuleId = slot1.moduleId
+	slot0.mCurrModuleId = -1
+
+	slot0.super.ctor(slot0)
+	slot0.dealData(slot0)
+	slot0.initUI(slot0)
+	RedDotObj:saveOnceRedDot(ModuleSub.eExtraActivity, false)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot1 = {
+		{
+			image = "fuli_12.png",
+			filename = "activity.OnlineRewardLayer",
+			order = 1,
+			title = TR("在线奖励"),
+			reddotId = ModuleSub.eOnlineRewardPoint,
+			moduleId = ModuleSub.eOnlineReward
+		},
+		{
+			filename = "activity.MonthSignInLayer",
+			restore = true,
+			image = "fuli_17.png",
+			order = 2,
+			title = TR("月签到"),
+			moduleId = ModuleSub.eExtraActivitDailySign
+		},
+		{
+			image = "fuli_45.png",
+			filename = "activity.ActivitySubSevendayRewardLayer",
+			order = 3,
+			title = TR("七日登录"),
+			reddotId = ModuleSub.eLoadRewardPoint,
+			moduleId = ModuleSub.eLoadReward
+		},
+		{
+			filename = "activity.ActivitySubDoubleIncomeLayer",
+			image = "fuli_79.png",
+			order = 5,
+			title = TR("翻倍收益"),
+			moduleId = ModuleSub.eExtraActivityDoubleIncome
+		},
+		{
+			filename = "activity.ActivitySubGiftExchangeLayer",
+			image = "fuli_37.png",
+			order = 7,
+			title = TR("礼包码"),
+			moduleId = ModuleSub.eExtraActivityGiftBag
+		},
+		{
+			filename = "activity.ActivitySubRetrieveResourcesLayer",
+			image = "fuli_81.png",
+			order = 8,
+			title = TR("资源找回"),
+			moduleId = ModuleSub.eExtraActivitRetrieve
+		},
+		{
+			filename = "activity.ActivityWeChatLayer",
+			image = "fuli_24.png",
+			order = 9,
+			title = TR("微信活动"),
+			moduleId = ModuleSub.eWeChat
+		}
+	}
+
+	dump(PlayerAttrObj:getPlayerAttrByName("IsOpenLimitPlayerVit"), "IsOpenLimitPlayerVit")
+
+	if PlayerAttrObj:getPlayerAttrByName("IsOpenLimitPlayerVit") == true then
+		table.insert(slot1, {
+			filename = "activity.ActivitySubSuperDinnerLayer",
+			image = "fuli_103.png",
+			order = 4,
+			title = TR("吃鸡庆典"),
+			moduleId = ModuleSub.eExtraActivityVit
+		})
+	else
+		table.insert(slot1, {
+			filename = "activity.ActivitySubDinnerLayer",
+			image = "fuli_4.png",
+			order = 4,
+			title = TR("叫花鸡"),
+			moduleId = ModuleSub.eExtraActivityVit
+		})
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot1) do
+		if Utility.moduleIsOpen(slot7.moduleId, false) then
+			if slot7.moduleId == ModuleSub.eExtraActivityDoubleIncome then
+				if PlayerAttrObj:getPlayerAttrByName("OpenDoubleModuleId") ~= 0 then
+					table.insert(slot2, slot7)
+				end
+			elseif slot7.moduleId == ModuleSub.eLoadReward then
+				if ModuleVisibleObj:getModuleVisibleData(ModuleSub.eLoadRewardPoint).IsOpen then
+					table.insert(slot2, slot7)
+				end
+			elseif slot7.moduleId == ModuleSub.eOnlineReward then
+				if OnlineRewardObj:getRewardStatus() == Enums.OnlineRewardStatus.eGetSvrData then
+					OnlineRewardObj:requestOnlineRewardInfo(slot0, function ()
+						slot0:dealData()
+						slot0.dealData:refreshUI()
+
+						return 
+					end)
+				end
+
+				if OnlineRewardObj:getRewardStatus() == Enums.OnlineRewardStatus.eHaveInfo then
+					table.insert(slot2, slot7)
+				end
+			elseif slot7.moduleId ~= ModuleSub.eSvip or false then
+				table.insert(slot2, slot7)
+			end
+		end
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		if RedDotObj:isValid(slot0.reddotId or slot0.moduleId) ~= RedDotObj:isValid(slot1.reddotId or slot1.moduleId) then
+			return RedDotObj:isValid(slot2) == true
+		end
+
+		return slot0.order < slot1.order
+	end)
+
+	if PlayerAttrObj:getPlayerAttrByName("IsShowNewFirstCharge") ~= 0 then
+		table.insert(slot2, 1, {
+			filename = "activity.RechargeDoubleLayer",
+			moduleId = 0,
+			image = "fuli_96.png",
+			order = 0,
+			title = TR("充值返利")
+		})
+	end
+
+	if (PlayerAttrObj:getPlayerAttrByName("Svip") and PlayerAttrObj:getPlayerAttrByName("Svip").First == true) or ModuleVisibleObj:getModuleVisibleData(ModuleSub.eSvip).IsOpen then
+		table.insert(slot2, 2, {
+			filename = "activity.ActivityVIPMemberLayer",
+			image = "fuli_72.png",
+			order = 0,
+			title = TR("贵宾会员"),
+			moduleId = ModuleSub.eSvip
+		})
+	end
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot8.tag = slot7
+
+		if slot0.defaultModuleId and slot8.moduleId == slot0.defaultModuleId then
+			slot0.mTag = slot7
+		end
+	end
+
+	slot0.mDataList = slot2
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.bgSprite:runAction(cc.EaseIn:create(cc.MoveBy:create(0.5, cc.p(0, 320)), 0.7))
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if slot0.tempTabView and not tolua.isnull(slot0.tempTabView) then
+		slot0.tempTabView:removeFromParent()
+
+		slot0.tempTabView = nil
+	end
+
+	slot0.createUISubTree(slot0, "tempTabView", function (slot0, slot1)
+		if slot0.name == "tempTabView" then
+			slot1.btnInfos = slot0.mDataList
+			slot1.selectTag = slot0.mTag
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot6
+
+		if (slot0.mDataList[slot5].reddotId or slot0.mDataList[slot5].moduleId) ~= 0 then
+			slot8.addChild(slot8, UIWrap.newControl("RedDot", {
+				moduleId = slot7
+			}))
+		end
+
+		if slot7 == ModuleSub.eExtraActivitCompetition or slot7 == ModuleSub.eExtraActivityDoubleIncome then
+			slot8.addChild(slot8, UIWrap.newControl("NewDot", {
+				moduleId = slot7
+			}))
+		end
+
+		slot0.tempTabView.mScrollView:addChild(UIWrap.newControl("Sprite", {
+			image = "fuli_2.png",
+			pos = cc.p(slot6.getPositionX(slot6) - 10, slot6.getPositionY(slot6) + slot0.tempTabView.mBtnSize.height/2)
+		}), 1)
+	end
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		moduleId = slot0.mCurrModuleId
+	}
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onModuleBtnAction = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mDataList) do
+		if slot6.tag == slot1 then
+			slot0.changeModuleStoreAction(slot0, slot6.moduleId)
+		end
+	end
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = slot0.ruleList
+	})
+
+	return 
+end
+slot0.changeModuleStoreAction = function (slot0, slot1)
+	if slot0.mCurrModuleId == slot1 then
+		return 
+	end
+
+	Player:reportCallActivityCount(slot1)
+
+	if slot1 == ModuleSub.eLoadReward and not ModuleVisibleObj:getModuleVisibleData(ModuleSub.eLoadRewardPoint).IsOpen then
+		slot0.dealData(slot0)
+		slot0.refreshUI(slot0)
+
+		return 
+	end
+
+	slot2 = false
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(slot0.mDataList) do
+		if slot8.moduleId == slot1 then
+			slot3 = slot8.filename
+			slot2 = slot8.restore or slot2
+
+			slot0.titleSprite:setTexture(slot8.image)
+			slot0.ruleBtn:setPosition(slot0.titleSprite:getPositionX() + slot0.titleSprite:getContentSize().width + 10 + slot0.ruleBtn:getContentSize().width/2, slot0.ruleBtn:getPositionY())
+
+			if slot8.ruleList then
+				slot0.ruleList = slot8.ruleList
+
+				slot0.ruleBtn:setVisible(true)
+			else
+				slot0.ruleBtn:setVisible(false)
+			end
+		end
+	end
+
+	slot0.mCurrModuleId = slot1
+
+	if slot3 == nil then
+		return 
+	end
+
+	if slot1 == ModuleSub.eExtraActivitCompetition or slot1 == ModuleSub.eExtraActivityDoubleIncome then
+		ActivityObj:deleteNewActivity(slot1)
+	end
+
+	if slot0.mCurrFileLayer ~= nil then
+		slot0.mCurrFileLayer:removeFromParent()
+
+		slot0.mCurrFileLayer = nil
+	end
+
+	slot0.mCurrFileLayer = UIWrap.newControl("FileLayer", {
+		file = slot3,
+		initParams = {},
+		popRestore = slot2
+	})
+
+	slot0.addChild(slot0, slot0.mCurrFileLayer)
+
+	return 
+end
+
+return slot0

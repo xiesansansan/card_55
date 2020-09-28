@@ -1,0 +1,275 @@
+slot0 = class("FeijiBuildNormalLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mCenterLayer",
+		cType = "FileLayer",
+		params = {
+			file = "feiji/FeijiBuildCenterLayer.lua",
+			initParams = {}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_118.png",
+					pos = {
+						x = 0,
+						y = 180
+					},
+					size = {
+						width = 450,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "mRollNameLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 225,
+								y = 20
+							},
+							text = TR("秒后将会随机出现新的神符")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mGetBtn",
+				cType = "Button",
+				params = {
+					image = "zq_33.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProgBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_118.png",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 450,
+						height = 70
+					}
+				},
+				children = {
+					{
+						name = "mRemainTimeLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 243.02,
+								y = 46.17
+							},
+							text = TR("我方正在获取，剩余时间%s秒")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeProgress",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_6.png",
+							bgImage = "jyt_5.png",
+							pos = {
+								x = 256.1,
+								y = 15.88
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mBuffSprite",
+				cType = "Sprite",
+				params = {
+					image = "zq_26.png",
+					hide = true,
+					pos = {
+						x = 0,
+						y = 100
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+	slot0.registerMsgCallback(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mCenterLayer" then
+			slot1.initParams = {
+				closeAction = handler(slot0, slot0.onBtnCloseAction)
+			}
+		end
+
+		return 
+	end)
+	slot0.mBuffSprite:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.MoveBy:create(1, cc.p(0, 20)),
+		cc.MoveBy:create(1, cc.p(0, -20))
+	})))
+
+	return 
+end
+slot0.registerMsgCallback = function (slot0)
+	slot1({
+		FeiJiHelper.Events.eFeiJiResInfo
+	}, handler(slot0, slot0.refreshLayer))
+	function (slot0, slot1)
+		slot0:addChild(slot2)
+		EventAuto:registerAutoEvent(UIWrap.newControl("Node", {}), slot0, slot1)
+
+		return 
+	end({
+		FeiJiHelper.Events.eFeiJiResBuffChanged
+	}, handler(slot0, slot0.refreshLayer))
+
+	return 
+end
+slot0.onBtnCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mGetBtn:setVisible(slot0.checkGetBtnVisible(slot0))
+	slot0.setGetBtnAction(slot0)
+	slot0.beginTimeSchedule(slot0)
+
+	return 
+end
+slot0.beginTimeSchedule = function (slot0)
+	slot0.centerNode:stopAllActions()
+	slot2()
+	slot3()
+	slot1()
+
+	slot0.centerNode.scheduleUpdate = Utility.schedule(slot0.mRollNameLabel, function ()
+		slot0()
+		slot1()
+		slot2()
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.checkGetBtnVisible = function (slot0)
+	slot1 = false
+
+	if FeiJiHelper.enterResInfo.BuffNum ~= 0 or false then
+		if FeiJiHelper.enterResInfo.Status == 0 then
+			slot1 = true
+		end
+
+		if FeiJiHelper.enterResInfo.Status == 1 and FeiJiHelper:checkPlayerSide() == FeiJiHelper.enumAerocraftType.enemy then
+			slot1 = true
+		end
+	end
+
+	return slot1
+end
+slot0.setGetBtnAction = function (slot0)
+	if not slot0.mGetBtn then
+		return 
+	end
+
+	if not slot0.checkGetBtnVisible(slot0) then
+		return 
+	end
+
+	slot0.mCurrPlayerList = FeiJiHelper:getEnterResInfo(slot0.mCurPointId)
+
+	if FeiJiHelper.myTeamName and FeiJiHelper.myTeamName == FeiJiHelper.teamB then
+		if slot0.mCurrPlayerList.A and next(slot0.mCurrPlayerList.A) then
+			slot0.mGetBtn:setClickAction(function ()
+				ui.showFlashView(TR("请先打败所有敌人"))
+
+				return 
+			end)
+		else
+			slot0.mGetBtn:setClickAction(function ()
+				FeiJiHelper:occupyPoint(FeiJiHelper.enterResInfo.PointId, function ()
+					return 
+				end)
+
+				return 
+			end)
+		end
+	elseif slot0.mCurrPlayerList.B and next(slot0.mCurrPlayerList.B) then
+		slot0.mGetBtn:setClickAction(function ()
+			ui.showFlashView(TR("请先打败所有敌人"))
+
+			return 
+		end)
+	else
+		slot0.mGetBtn:setClickAction(function ()
+			FeiJiHelper:occupyPoint(FeiJiHelper.enterResInfo.PointId, function ()
+				return 
+			end)
+
+			return 
+		end)
+	end
+
+	return 
+end
+
+return slot0

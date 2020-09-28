@@ -1,0 +1,492 @@
+slot0 = class("KuangzhanShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("商店")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 423,
+						y = 275.5
+					},
+					size = {
+						width = 774,
+						height = 340
+					}
+				},
+				children = {}
+			},
+			{
+				name = "resNumLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 38.12,
+						y = 462.16
+					},
+					text = TR("拥有")
+				},
+				children = {}
+			},
+			{
+				name = "timeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 809,
+						y = 462.16
+					},
+					text = TR("倒计时")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onRefreBtn",
+					pos = {
+						x = 422.24,
+						y = 49.76
+					},
+					titleText = TR("刷新")
+				},
+				children = {}
+			},
+			{
+				name = "refreshFreeLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					emptyInit = true,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 422.99,
+						y = 85.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "refreshCostLabel",
+				cType = "ResLabel",
+				params = {
+					modelId = 1111,
+					num = 0,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 383.04,
+						y = 87.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 110,
+					pos = {
+						x = 423.26,
+						y = 275.89
+					},
+					size = {
+						width = 770,
+						height = 330
+					}
+				},
+				children = {}
+			},
+			{
+				name = "goodTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled10-initParams",
+						name = "cardInfo",
+						type = "string"
+					},
+					{
+						value = "untitled13-text",
+						name = "nameText",
+						type = "string"
+					},
+					{
+						value = "untitled15-modelId",
+						name = "costResId",
+						type = "string"
+					},
+					{
+						value = "untitled15-num",
+						name = "costNum",
+						type = "string"
+					},
+					{
+						value = "untitled14-itemId",
+						name = "goodId",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 232.92,
+						y = 384.71
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_98.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 376,
+								height = 110
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "CardNode",
+						params = {
+							allowClick = true,
+							initParams = {},
+							pos = {
+								x = -112.1,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "ResLabel",
+						params = {
+							modelId = 1111,
+							num = 0,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -60.56,
+								y = -21.07
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							childName = "nameLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -58.76,
+								y = 26.89
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "itemId",
+								type = "integer"
+							}
+						},
+						params = {
+							childName = "buyBtn",
+							image = "c_27.png",
+							clickAction = "onBuyBtn",
+							pos = {
+								x = 112.84,
+								y = -13
+							},
+							titleText = TR("购 买")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mMyInfo = slot1.myInfo
+	slot0.mRefreshCallFunc = slot1.refreshCallFunc
+	slot0.mRestype = Utility.analysisStrResList(KuangzhanShopConfig.items[1].buyNeedStr)[1].resourceId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetShopInfo(slot0)
+	slot0.upDateTime(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eKuangZhanPoint, "ShopRefreshNum") then
+		RedDotObj:seeRedDot("KuangZhan", "ShopRefreshNum")
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.resNumLabel:setString(TR("拥有：{%s}%s", Resource.getDaibiImg(slot0.mRestype), Resource.getCount(slot0.mRestype)))
+
+	slot1 = Utility.analysisStrResList(KuangzhanConfig.items[1].shopRefreshNumAddUse)
+
+	slot0.refreshCostLabel:setType(slot1[1].resourceId)
+	slot0.refreshCostLabel:setString(slot1[1].num)
+
+	slot0.mRefreshCost = slot1
+
+	slot0.refreshCostLabel:setVisible(slot0.mMyInfo.ShopRemainRefreshNum <= 0)
+	slot0.refreshFreeLabel:setVisible(0 < slot0.mMyInfo.ShopRemainRefreshNum)
+	slot0.refreshFreeLabel:setString(TR("免费刷新次数：%s", slot0.mMyInfo.ShopRemainRefreshNum))
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if next(slot0.mShopInfo[slot2]) == nil then
+		return 
+	end
+
+	slot10 = slot0.createLayoutTemplateNode(slot0, "goodTempNode", {
+		goodId = slot4.ItemId,
+		cardInfo = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = Resource.getName(Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].goodStr)[1].resourceId),
+		costResId = Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].buyNeedStr)[1].resourceId,
+		costNum = Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].buyNeedStr)[1].num
+	})
+
+	slot1.addChild(slot1, slot10)
+	slot10.setPosition(slot10, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot10.nameLabel:setColor(Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].goodStr)[1].resourceId)))
+
+	if Resource.getCount(Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].buyNeedStr)[1].resourceId) < Utility.analysisStrResList(KuangzhanShopConfig.items[slot4.Id].buyNeedStr)[1].num then
+		slot10.buyBtn:setEnabled(false)
+	end
+
+	if slot4.IsBuy then
+		slot10.buyBtn:setEnabled(false)
+		slot10.buyBtn:setTitleText(TR("已购买"))
+	end
+
+	return 
+end
+slot0.onBuyBtn = function (slot0, slot1)
+	slot0.requestShopBuy(slot0, slot1.itemId)
+
+	return 
+end
+slot0.onRefreBtn = function (slot0)
+	if 0 < slot0.mMyInfo.ShopRemainRefreshNum then
+		slot0.requestShopRefresh(slot0)
+	else
+		if not Resource.isEnough(slot0.mRefreshCost[1].resourceId, slot0.mRefreshCost[1].num) then
+			return 
+		end
+
+		slot0.requestShopRefresh(slot0)
+	end
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if Player:getCurrentTime() < slot0.mMyInfo.ShopFreeResetTime then
+		Utility.schedule(slot0, function ()
+			if 0 < slot0.mMyInfo.ShopFreeResetTime - Player:getCurrentTime() then
+				slot0.timeLabel:setString(TR("刷新恢复倒计时：%s", MqTime.completeFormat(slot0)))
+			else
+				slot0:stopAllActions()
+				slot0:requestGetInfo()
+			end
+
+			return 
+		end, 1)
+	else
+		slot0.timeLabel:setString(TR("刷新次数已满"))
+		slot0.stopAllActions(slot0)
+	end
+
+	return 
+end
+slot0.requestGetShopInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetShopInfo",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetShopInfo")
+
+			slot0.mShopInfo = slot0.ShopInfo
+
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestShopBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopBuy",
+		moduleName = "KuangzhanInfo",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "ShopBuy")
+
+			slot0.mShopInfo = slot0.ShopInfo
+
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+			slot0:refreshUI()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestShopRefresh = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopRefresh",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "ShopRefresh")
+
+			slot0.mShopInfo = slot0.ShopInfo
+			slot0.mMyInfo = slot0.Myinfo
+
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+			slot0:refreshUI()
+			slot0:upDateTime()
+
+			if slot0.mRefreshCallFunc then
+				slot0.mRefreshCallFunc(slot0.mMyInfo)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "KuangzhanInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetInfo")
+
+			slot0.mMyInfo = slot0.Myinfo
+
+			slot0:refreshUI()
+			slot0:upDateTime()
+
+			if slot0.mRefreshCallFunc then
+				slot0.mRefreshCallFunc(slot0.mMyInfo)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

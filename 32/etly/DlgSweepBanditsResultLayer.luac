@@ -1,0 +1,185 @@
+slot0 = class("DlgSweepBanditsResultLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled19",
+		cType = "MsgBoxBg",
+		params = {
+			okCallback = "onCloseCallback",
+			posApt = 1,
+			image = "tc_2.png",
+			btnPosY = 65,
+			okText = TR("确 定"),
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 550,
+				height = 480
+			},
+			titleText = TR("扫荡结果")
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 275,
+						y = 278
+					},
+					size = {
+						width = 480,
+						height = 300
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 120,
+					pos = {
+						x = 275,
+						y = 278
+					},
+					size = {
+						width = 480,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "templateGridCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled23-initParams",
+								name = "cardParams",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 120,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "CardNode",
+								params = {
+									childName = "cardNode",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 60,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mRewardList = slot1 or {}.showList
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mRewardList.BaseGetGameResourceList) do
+		for slot11, slot12 in pairs(slot7) do
+			for slot16, slot17 in pairs(slot12) do
+				if not slot2[slot17.ResourceId] then
+					slot2[slot17.ResourceId] = slot17.Num
+				else
+					slot2[slot17.ResourceId] = slot2[slot17.ResourceId] + slot17.Num
+				end
+			end
+		end
+	end
+
+	slot0.mShowList = {}
+	slot3 = 9999
+
+	function slot4(slot0, slot1)
+		for slot6 = 1, math.ceil(slot1/slot0), 1 do
+			table.insert(slot1.mShowList, {
+				resourceId = slot0,
+				num = (slot6 == slot2 and slot1%slot0) or slot0
+			})
+		end
+
+		return 
+	end
+
+	for slot8, slot9 in pairs(slot2) do
+		if slot8 ~= ResourceTypeSub.eGold and slot8 ~= ResourceTypeSub.eExp then
+			slot4(slot8, slot9)
+		else
+			table.insert(slot0.mShowList, {
+				resourceId = slot8,
+				num = slot9
+			})
+		end
+	end
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.cType == "GridView" then
+			slot1.itemNum = #slot0.mShowList
+		end
+
+		return 
+	end)
+	slot0.mGridView:reloadData()
+
+	return 
+end
+slot0.onCloseCallback = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCreateGridAction = function (slot0, slot1, slot2, slot3)
+	slot1.addChild(slot1, slot0.createLayoutTemplateNode(slot0, "templateGridCell", {
+		cardParams = {
+			cardInfo = {
+				modelId = slot0.mShowList[slot2].resourceId,
+				num = slot0.mShowList[slot2].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eName,
+				Enums.CardShowAttr.eNum
+			}
+		}
+	}))
+
+	return 
+end
+
+return slot0

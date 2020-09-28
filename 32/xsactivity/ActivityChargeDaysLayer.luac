@@ -1,0 +1,590 @@
+slot0 = class("ActivityChargeDaysLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroSprite",
+				cType = "Sprite",
+				params = {
+					scaleX = -1.6,
+					image = "lh_12301.png",
+					scaleY = 1.6,
+					pos = {
+						x = -259.83,
+						y = -223.11
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -230.62,
+						y = 191.89
+					},
+					size = {
+						width = 356,
+						height = 97
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 73
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 90.41,
+								y = 45
+							},
+							text = TR("今日已充值：")
+						},
+						children = {}
+					},
+					{
+						name = "mIsActiveLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 132.41,
+								y = 19
+							},
+							text = TR("今日已激活")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 155.46,
+								y = 73
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mRechargeNumLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							pos = {
+								x = 155.46,
+								y = 45
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 257.02,
+						y = -25.82
+					}
+				},
+				children = {
+					{
+						name = "mTabView",
+						cType = "TabView",
+						params = {
+							onSelectChange = "onSelectChange",
+							lightedImage = "c_30.png",
+							direction = false,
+							normalImage = "c_31.png",
+							btnInfos = {
+								{
+									title = "Test"
+								}
+							},
+							pos = {
+								x = 33.86,
+								y = 463.27
+							},
+							size = {
+								width = 505.8,
+								height = 57.28
+							},
+							titleOffset = {
+								x = 0.5,
+								y = 0.55
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 28.14,
+								y = 40.45
+							},
+							size = {
+								width = 519,
+								height = 420
+							}
+						},
+						children = {
+							{
+								name = "mChargeView",
+								cType = "TableView",
+								params = {
+									numOfCellsFunc = "onCellNum",
+									isVertical = true,
+									cellUpdateFunc = "onCellRefresh",
+									cellSizeFunc = "onCellSize",
+									cellFillFunc = "onCellCreate",
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 519,
+										height = 420
+									}
+								},
+								children = {
+									{
+										name = "ChargeTemNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = -150.55
+											},
+											size = {
+												width = 519,
+												height = 136
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "Scale9Sprite",
+												params = {
+													image = "c_95.png",
+													pos = {
+														x = 259.5,
+														y = 68
+													},
+													size = {
+														width = 519,
+														height = 136
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled29",
+												cType = "Label",
+												params = {
+													childName = "chargeLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 15,
+														y = 120
+													},
+													text = TR("单笔充值6元：1天")
+												},
+												children = {}
+											},
+											{
+												name = "untitled30",
+												cType = "ListView",
+												params = {
+													childName = "rewardListView",
+													direction = false,
+													swallowTouch = false,
+													pos = {
+														x = 11.29,
+														y = 8.7
+													},
+													size = {
+														width = 360,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "RewardLayout",
+														cType = "Layout",
+														custom = {
+															{
+																value = "untitled32-initParams",
+																name = "cardData",
+																type = "string"
+															}
+														},
+														params = {
+															size = {
+																width = 90,
+																height = 90
+															}
+														},
+														children = {
+															{
+																name = "untitled32",
+																cType = "CardNode",
+																params = {
+																	allowClick = true,
+																	initParams = {},
+																	pos = {
+																		x = 45,
+																		y = 45
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "untitled33",
+												cType = "Button",
+												params = {
+													childName = "getBtn",
+													image = "c_32.png",
+													clickAction = "onGetReward",
+													pos = {
+														x = 450,
+														y = 54
+													},
+													titleText = TR("领 取")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "tb_gn_75.png",
+					clickAction = "onRecharge",
+					pos = {
+						x = -69.3,
+						y = 194.19
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eChargeDays
+	slot0.mActivityType = slot1.activityType or 1
+	slot0.mCurTag = 1
+	slot0.mServerData = {}
+	slot0.mDayInfoList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0:createTabViewParams()
+		end
+
+		return 
+	end)
+
+	for slot4, slot5 in pairs(slot0.mTabView:getTabBtns()) do
+		slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+			moduleId = slot0.mModuleId,
+			subKey = "Page_" .. slot0.mActivityInfoList[slot4].ActivityId
+		}))
+	end
+
+	return 
+end
+slot0.createTabViewParams = function (slot0)
+	slot0.mActivityInfoList = ActivityObj:getActivityInfo(slot0.mModuleId) or {}
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mActivityInfoList) do
+		table.insert(slot1, {
+			title = slot6.Name,
+			tag = slot5
+		})
+	end
+
+	return slot1
+end
+slot0.createTimeUpate = function (slot0, slot1)
+	if slot0.mTimeUpdate then
+		slot0.stopAction(slot0, slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot0.mTimeUpdate = Utility.schedule(slot0, function ()
+		if 0 < slot0.mServerData[slot1].EndDate - Player.mTimeTick then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		elseif slot0.mTimeUpdate then
+			slot0:stopAction(slot0.mTimeUpdate)
+
+			slot0.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createTimeUpate(slot0, slot0.mCurTag)
+	slot0.mRechargeNumLabel:setString(TR("%s天", Utility.numberWithUnit(slot0.mServerData[slot0.mCurTag].ChargeDay)))
+
+	if slot0.mServerData[slot0.mCurTag].IsCharge then
+		slot0.mIsActiveLabel:setString(TR("今日已激活"))
+	else
+		slot0.mIsActiveLabel:setString(TR("今日未激活"))
+	end
+
+	slot0.mDayInfoList = slot0.mServerData[slot0.mCurTag].DayInfo
+
+	slot0.mChargeView:reloadData()
+
+	return 
+end
+slot0.sortList = function (slot0, slot1)
+	if slot0.mServerData[slot1] then
+		table.sort(slot0.mServerData[slot1].DayInfo, function (slot0, slot1)
+			if slot0.Status == 1 ~= slot1.Status == 1 then
+				return slot0.Status == 1
+			end
+
+			if slot0.Status ~= slot1.Status then
+				return slot0.Status < slot1.Status
+			end
+
+			return slot0.Day < slot1.Day
+		end)
+	end
+
+	return 
+end
+slot0.onSelectChange = function (slot0, slot1)
+	slot0.mCurTag = slot1
+
+	if slot0.mServerData[slot1] then
+		slot0.refreshUI(slot0, slot1)
+	else
+		slot0.requestInfo(slot0, slot1)
+	end
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 519, 136
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.mDayInfoList
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "ChargeTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.itemNode = slot3
+	slot1.refresh = function (slot0, slot1)
+		slot0.itemNode.chargeLabel:setString(TR("单笔充值%d元：%d天", slot0.mDayInfoList[slot1 + 1].ChargeNum, slot0.mDayInfoList[slot1 + 1].Day))
+		slot0.itemNode.rewardListView:removeAllChildren()
+
+		for slot8, slot9 in pairs(slot4) do
+			slot3.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("RewardLayout", {
+				cardData = {
+					cardInfo = slot9,
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot3.getBtn.index = slot1 + 1
+
+		if slot2.Status == 0 then
+			slot3.getBtn:setTitleText(TR("去充值"))
+			slot3.getBtn:loadTextures("c_27.png", "c_27.png")
+		elseif slot2.Status == 1 then
+			slot3.getBtn:setTitleText(TR("领 取"))
+			slot3.getBtn:loadTextures("c_32.png", "c_32.png")
+		elseif slot2.Status == 2 then
+			slot3.getBtn:setTitleText("")
+			slot3.getBtn:loadTextures("c_55.png", "c_55.png")
+		end
+
+		return 
+	end
+
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.onGetReward = function (slot0, slot1)
+	if slot0.mDayInfoList[slot1.index].Status == 0 then
+		LayerManager.setRestoreData("xsactivity.XSActivityMainLayer", {
+			activityType = slot0.mActivityType,
+			moduleId = ModuleSub.eChargeDays
+		})
+		LayerManager.addLayer({
+			name = "recharge.RechargeHomeLayer"
+		})
+	elseif slot2.Status == 1 then
+		slot0.requestReward(slot0, slot2)
+	elseif slot2.Status == 2 then
+		ui.showFlashView(TR("已领取奖励"))
+	end
+
+	return 
+end
+slot0.onRecharge = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.RechargeHomeLayer"
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChargeDaysInfo",
+		moduleName = "TimedInfo",
+		methodData = {
+			slot0.mActivityType
+		},
+		successCallback = function (slot0)
+			slot0.mServerData[slot0.mCurTag] = slot0[slot0.mCurTag]
+
+			slot0:sortList(slot0.mCurTag)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChargeDaysReward",
+		moduleName = "TimedInfo",
+		methodData = {
+			slot0.mActivityInfoList[slot0.mCurTag].ActivityId,
+			slot1.Day
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.Status = 2
+
+			for slot4, slot5 in pairs(slot1.mServerData[slot1.mCurTag].DayInfo) do
+				if slot5.Day == slot0.Day then
+					slot5.Status = 2
+
+					break
+				end
+			end
+
+			slot1:sortList(slot1.mCurTag)
+			slot1.sortList:refreshUI()
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,482 @@
+slot0 = class("EquipSuitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("套装查询")
+		},
+		children = {
+			{
+				name = "topSp",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 420,
+						y = 486.6
+					},
+					size = {
+						width = 780,
+						height = 240
+					}
+				},
+				children = {
+					{
+						name = "selectSprite",
+						cType = "Sprite",
+						params = {
+							scale = 1.1,
+							image = "c_61.png",
+							pos = {
+								x = 68,
+								y = 180
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled3",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 1,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 68,
+								y = 189
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 2,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 272,
+								y = 189
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 3,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 494,
+								y = 189
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 4,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 720,
+								y = 189
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 5,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 68,
+								y = 70
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 6,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 272,
+								y = 70
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 7,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 494,
+								y = 70
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "CardNode",
+						custom = {
+							{
+								value = 8,
+								name = "equipCard",
+								type = "integer"
+							}
+						},
+						params = {
+							allowClick = true,
+							pos = {
+								x = 721,
+								y = 70
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "attrLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 163,
+						r = 103,
+						b = 30
+					},
+					pos = {
+						x = 48.8,
+						y = 230.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "suitListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 428,
+						y = 201
+					},
+					size = {
+						width = 760,
+						height = 160
+					}
+				},
+				children = {
+					{
+						name = "suitLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled21-text",
+								name = "text",
+								type = "string"
+							},
+							{
+								value = "untitled21-color",
+								name = "color",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 820,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 0,
+										y = 15
+									},
+									size = {
+										width = 820,
+										height = 30
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled23",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_42.png",
+					pos = {
+						x = 453,
+						y = 0
+					},
+					size = {
+						width = 778,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Label",
+						params = {
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 361,
+								y = 1
+							},
+							text = TR("激活高品质套装时，同时会叠低品质套装效果，套装效果之间属性加成互不冲突")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.suitId = slot1.suitId or 1
+	slot0.positionId = slot1.positionId or 1
+	slot0.ownNum = 0
+
+	dump(PlayerAttrObj:getPlayerAttrByName("EquipSkillIdList"))
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.equipCardList = slot0.getCustomChildren(slot0, slot0.topSp, "equipCard")
+
+	slot0.dealData(slot0)
+	slot0.showSuit(slot0)
+
+	return 
+end
+slot0.onClickHead = function (slot0, slot1, slot2)
+	slot7, slot8 = slot0.equipCardList[slot1]:getPosition()
+
+	slot0.selectSprite:setPosition(slot3, slot4)
+	slot0.attrLabel:setString(Utility.analysisStrAttrToFromat(slot5, "#313131%s：#ff7200%s", "      "))
+
+	return 
+end
+slot0.showSuit = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.suitList) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.num < slot1.num
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = nil
+
+		if slot6.attrStr ~= "" then
+			slot7 = Utility.analysisStrAttrToFromat(slot6.attrStr, "%s：%s", "  ")
+		elseif slot6.skillId ~= "" then
+			slot7 = SkillModel.items[tonumber(slot6.skillId)].skillIntro
+		end
+
+		slot0.suitListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "suitLayout", {
+			text = TR("装备%s件：%s", slot6.num, slot7),
+			color = (slot6.isShow and cc.c3b(37, 135, 17)) or cc.c3b(49, 49, 49)
+		}))
+	end
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.slotEquipList = SlotEquipObj:getList()
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		if slot7.suitId == slot0.suitId then
+			if not slot2[slot7.order] then
+				slot2[slot7.order] = {}
+			end
+
+			table.insert(slot2[slot7.order], slot7)
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		table.sort(slot7, function (slot0, slot1)
+			return slot0.partId < slot1.partId
+		end)
+	end
+
+	for slot6, slot7 in ipairs(slot0.equipCardList) do
+		if 0 < slot0.slotEquipList[slot6].EquipModelId and 0 < slot1[slot8].suitId then
+			slot7.setCardData(slot7, {
+				modelId = slot8
+			}, {
+				Enums.CardShowAttr.eBorder
+			})
+		else
+			slot8 = slot2[1][slot6].modelId
+
+			slot7.setCardData(slot7, {
+				modelId = slot2[1][slot6].modelId
+			}, {
+				Enums.CardShowAttr.eBorder
+			})
+		end
+
+		slot7.setClickAction(slot7, function ()
+			slot0:onClickHead(slot0, )
+
+			return 
+		end)
+
+		if slot6 == slot0.positionId then
+			slot0.onClickHead(slot0, slot6, slot8)
+		end
+
+		if not EquipObj:isHaveModel(slot8) then
+			slot10 = UIWrap.newControl("BadgeText", {
+				fontSize = 16,
+				text = TR("未拥有"),
+				fontPos = cc.p(37, 36)
+			})
+
+			slot10.setAnchorPoint(slot10, cc.p(1, 1))
+			slot10.setPosition(slot10, 80, 80)
+			slot7.addChild(slot7, slot10)
+		end
+
+		slot7.addChild(slot7, UIWrap.newControl("Label", {
+			fontSize = 16,
+			text = slot1[slot8].name,
+			pos = cc.p(39, -12.9),
+			anchor = cc.p(0.5, 0.5),
+			color = Utility.getColorValue(slot1[slot8].colorLv),
+			outlineColor = cc.c3b(37, 37, 37)
+		}))
+	end
+
+	slot3 = PlayerAttrObj:getPlayerAttrByName("EquipSkillIdList")
+	slot0.suitList = {}
+
+	for slot7, slot8 in pairs(EquipSuitModel.items[slot0.suitId]) do
+		for slot12, slot13 in ipairs(slot8) do
+			if slot3 and slot3 ~= "" and table.indexof(slot3, slot13.equipMatchSkillId) then
+				slot0.suitList[slot7] = slot13
+				slot0.suitList[slot7].isShow = true
+			end
+		end
+
+		if not slot0.suitList[slot7] then
+			slot0.suitList[slot7] = slot8[1]
+		end
+	end
+
+	return 
+end
+
+return slot0

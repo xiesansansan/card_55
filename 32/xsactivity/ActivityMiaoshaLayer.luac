@@ -1,0 +1,528 @@
+slot0 = class("ActivityMiaoshaLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBoxBg",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "xs_xsms_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "kfbp_9.png",
+					pos = {
+						x = 529.74,
+						y = 415.04
+					}
+				},
+				children = {
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							emptyInit = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 137,
+								y = 10
+							},
+							text = TR("倒计时：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rechargeListView",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 546.55,
+						y = 60.48
+					},
+					size = {
+						width = 560,
+						height = 340
+					}
+				},
+				children = {
+					{
+						name = "rechargeLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled8-text",
+								name = "chargeStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 560,
+								height = 144
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "xs_xsms_3.png",
+									pos = {
+										x = 15.13,
+										y = 126.9
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "xs_xsms_2.png",
+									pos = {
+										x = 280,
+										y = 72
+									},
+									size = {
+										width = 560,
+										height = 144
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 22,
+										y = 118
+									},
+									text = TR("单笔充值：")
+								},
+								children = {}
+							},
+							{
+								name = "cardListView",
+								cType = "ListView",
+								params = {
+									margin = 5,
+									direction = false,
+									pos = {
+										x = 10,
+										y = 8
+									},
+									size = {
+										width = 380,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "cardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled11-initParams",
+												name = "cardData",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled11",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 50,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "arrowLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 35,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled13",
+												cType = "Sprite",
+												params = {
+													scaleX = -1,
+													image = "c_4.png",
+													pos = {
+														x = 17,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "getBtn",
+								cType = "Button",
+								params = {
+									childName = "",
+									image = "c_27.png",
+									clickAction = "onRewardClick",
+									pos = {
+										x = 477,
+										y = 64
+									},
+									titleText = TR("兑 换")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "vip_5.png",
+					clickAction = "onRechargeClick",
+					pos = {
+						x = 899.78,
+						y = 54.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseClick",
+					pos = {
+						x = 897.04,
+						y = 505
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					hide = true,
+					pos = {
+						x = 546.47,
+						y = 250.14
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 160.85,
+								y = 74.57
+							},
+							text = TR("暂无数据")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled18",
+				cType = "Sprite",
+				params = {
+					image = "xs_xsms_4.png",
+					pos = {
+						x = 899.18,
+						y = 289.23
+					}
+				},
+				children = {
+					{
+						name = "tipSprite",
+						cType = "Sprite",
+						params = {
+							image = "xs_xsms_5.png",
+							pos = {
+								x = 45,
+								y = 155
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	eSingle = 1,
+	eCumulation = 2
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eMiaoSha)
+	slot0.mMiaoshaConfig = {}
+	slot0.mEndTime = 0
+	slot0.mMaioshaType = nil
+	slot0.mRechargeNum = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+	RedDotObj:seeRedDot("MiaoshaReddot")
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeUpdate)
+
+		slot0.mTimeUpdate = nil
+	end
+
+	slot0.mTimeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(TR("倒计时：%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeLabel:setString(TR("倒计时：00:00:00"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeUpdate)
+
+			slot0.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshList = function (slot0)
+	slot0.rechargeListView:removeAllChildren()
+
+	if slot0.mMiaoshaConfig[slot0.mMaioshaType] and next(slot0.mMiaoshaConfig[slot0.mMaioshaType]) then
+		for slot4, slot5 in ipairs(slot0.mMiaoshaConfig[slot0.mMaioshaType]) do
+			slot6 = ""
+
+			if slot0.mMaioshaType == slot0.eSingle then
+				slot6 = TR("单笔充值：#258711%d元", slot5.ChargeMoney)
+
+				slot0.tipSprite:setTexture("xs_xsms_6.png")
+			else
+				slot6 = TR("累计充值：#258711%d元  #ffffff当前已充值#ff7200%d#ffffff元%s", slot5.ChargeMoney, slot0.mRechargeNum, (slot5.ChargeMoney < slot0.mRechargeNum and "") or TR("，再充值#ff4a46%d#ffffff元即可兑换", slot5.ChargeMoney - slot0.mRechargeNum))
+
+				slot0.tipSprite:setTexture("xs_xsms_5.png")
+			end
+
+			slot7 = slot0.createLayoutTemplateNode(slot0, "rechargeLayout", {
+				chargeStr = slot6
+			})
+
+			slot7.cardListView:setSwallowTouches(false)
+			slot7.cardListView:pushBackCustomItem(slot8)
+			slot7.cardListView:pushBackCustomItem(slot9)
+
+			for slot14, slot15 in ipairs(slot10) do
+				slot7.cardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardLayout", {
+					cardData = {
+						cardInfo = slot15,
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+
+			slot7.getBtn.Id = slot5.Id
+
+			if slot5.CanReceive == 0 then
+				slot7.getBtn:setTitleText(TR("兑 换"))
+				slot7.getBtn:setEnabled(false)
+			elseif slot5.CanReceive == 1 then
+				slot7.getBtn:setTitleText(TR("兑 换"))
+				slot7.getBtn:setEnabled(true)
+			elseif slot5.CanReceive == 2 then
+				slot7.getBtn:setTitleText(TR("已兑换"))
+				slot7.getBtn:setEnabled(false)
+			end
+
+			slot0.rechargeListView:pushBackCustomItem(slot7)
+		end
+
+		slot0.mEmptyHint:setVisible(false)
+	else
+		slot0.mEmptyHint:setVisible(true)
+	end
+
+	slot0.rechargeListView:jumpToTop()
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createTimeUpdate(slot0)
+	slot0.refreshList(slot0)
+
+	return 
+end
+slot0.onCloseClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRechargeClick = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eCharge)
+
+	return 
+end
+slot0.onRewardClick = function (slot0, slot1)
+	slot0.requestReward(slot0, slot1.Id)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedMiaosha",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mEndTime = slot0.EndDate
+			slot0.mRechargeNum = slot0.ChargeNum
+			slot0.mMaioshaType = (slot0.ConfigDesc[1] and slot0.ConfigDesc[1].PayType) or slot0.eSingle
+			slot0.mMiaoshaConfig = {}
+
+			for slot4, slot5 in pairs(slot0.ConfigDesc) do
+				slot0.mMiaoshaConfig[slot5.PayType] = slot0.mMiaoshaConfig[slot5.PayType] or {}
+
+				table.insert(slot0.mMiaoshaConfig[slot5.PayType], slot5)
+			end
+
+			for slot4, slot5 in pairs(slot0.mMiaoshaConfig) do
+				table.sort(slot5, function (slot0, slot1)
+					if slot0.CanReceive == 1 ~= slot1.CanReceive == 1 then
+						return slot0.CanReceive == 1
+					end
+
+					if slot0.CanReceive == 2 ~= slot1.CanReceive == 2 then
+						return slot0.CanReceive ~= 2
+					end
+
+					return slot0.ChargeMoney < slot1.ChargeMoney
+				end)
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "TimedMiaosha",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mEndTime = slot0.MiaoshaInfo.EndDate
+			slot0.mRechargeNum = slot0.MiaoshaInfo.ChargeNum
+			slot0.mMaioshaType = slot0.MiaoshaInfo.ConfigDesc[1].PayType
+			slot0.mMiaoshaConfig = {}
+
+			for slot4, slot5 in pairs(slot0.MiaoshaInfo.ConfigDesc) do
+				slot0.mMiaoshaConfig[slot5.PayType] = slot0.mMiaoshaConfig[slot5.PayType] or {}
+
+				table.insert(slot0.mMiaoshaConfig[slot5.PayType], slot5)
+			end
+
+			for slot4, slot5 in pairs(slot0.mMiaoshaConfig) do
+				table.sort(slot5, function (slot0, slot1)
+					if slot0.CanReceive == 1 ~= slot1.CanReceive == 1 then
+						return slot0.CanReceive == 1
+					end
+
+					if slot0.CanReceive == 2 ~= slot1.CanReceive == 2 then
+						return slot0.CanReceive ~= 2
+					end
+
+					return slot0.ChargeMoney < slot1.ChargeMoney
+				end)
+			end
+
+			ui.showFlashReward(slot0)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

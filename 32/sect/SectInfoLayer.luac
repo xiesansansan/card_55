@@ -1,0 +1,883 @@
+slot0 = class("SectInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled21",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroEffect",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -317.31,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "c_pure.png",
+					pos = {
+						x = -317.31,
+						y = -0.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Scale9Sprite",
+				params = {
+					image = "zm_4.png",
+					pos = {
+						x = -90,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "titleLabel",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							text = "Label",
+							pos = {
+								x = 69.5,
+								y = 427
+							}
+						},
+						children = {}
+					},
+					{
+						name = "introNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 100,
+								y = 400
+							}
+						},
+						children = {
+							{
+								name = "introTemplate",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled28-text",
+										name = "desStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled28",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											align = 1,
+											valign = 0,
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 20,
+												height = 336
+											},
+											text = TR("描述描述描述描述描述描述描述描述描述")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled31",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onChallengeCallBack",
+					pos = {
+						x = -320,
+						y = -240
+					},
+					titleText = TR("挑 战")
+				},
+				children = {
+					{
+						name = "untitled32",
+						cType = "RedDot",
+						params = {
+							subKey = "21602",
+							moduleId = 21601
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled33",
+				cType = "Button",
+				params = {
+					image = "zm_67.png",
+					clickAction = "onQuitCallBack",
+					pos = {
+						x = -96.28,
+						y = -259.9
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 50,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 120,
+					image = "tc_2.png",
+					pos = {
+						x = 400,
+						y = 0
+					},
+					size = {
+						width = 475,
+						height = 522
+					}
+				},
+				children = {
+					{
+						name = "sectSprite",
+						cType = "Sprite",
+						params = {
+							image = "zm_25.png",
+							pos = {
+								x = 115.14,
+								y = 427.36
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 237.12,
+								y = 451.1
+							},
+							text = TR("本门宗师")
+						},
+						children = {}
+					},
+					{
+						name = "reputationLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 237.12,
+								y = 401.1
+							},
+							text = TR("我的声望：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Button",
+						params = {
+							image = "c_3.png",
+							clickAction = "onDetailCallBack",
+							pos = {
+								x = 437.28,
+								y = 399.93
+							}
+						},
+						children = {}
+					},
+					{
+						name = "progress",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_23.png",
+							bgImage = "jyt_22.png",
+							pos = {
+								x = 237.5,
+								y = 302
+							}
+						},
+						children = {
+							{
+								name = "percentLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "0/0",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 200.5,
+										y = -12
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Sprite",
+								params = {
+									image = "zm_30.png",
+									pos = {
+										x = 54.77,
+										y = 38.99
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 237.5,
+								y = 240
+							},
+							text = TR("声望俸禄")
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = -100,
+										y = 10
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									scaleX = -1,
+									image = "c_36.png",
+									pos = {
+										x = 179,
+										y = 10
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "rewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 237.5,
+								y = 160
+							},
+							size = {
+								width = 300,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled9-initParams",
+										name = "cardInfo",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										params = {
+											childName = "card",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "emptyTipsLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 237.5,
+								y = 164
+							},
+							text = TR("声望达到【小有名气】可领取每日俸禄")
+						},
+						children = {}
+					},
+					{
+						name = "drawBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							clickAction = "onDrawCallBack",
+							pos = {
+								x = 237.5,
+								y = 80
+							},
+							titleText = TR("领取")
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "RedDot",
+								params = {
+									subKey = "21603",
+									moduleId = 21601
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "detailNode",
+						cType = "Scale9Sprite",
+						params = {
+							opacity = 120,
+							hide = true,
+							image = "sy_18.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 460.92,
+								y = 289.71
+							},
+							size = {
+								width = 400,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "detailTemplate",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 50,
+										y = 150
+									},
+									size = {
+										width = 300,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "untitled16",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -24,
+												y = 15
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "ProgressBar",
+										params = {
+											normalImage = "jyt_44.png",
+											bgImage = "jyt_43.png",
+											currValue = 100,
+											maxValue = 100,
+											childName = "progress",
+											pos = {
+												x = 162,
+												y = 15
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											childName = "tipsLabel",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 162,
+												y = 15
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot2 = PlayerAttrObj:getPlayerAttrByName("SectId")
+	slot0.mOnCLoseCallBack = slot1.onCLoseCallBack
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.super.ctor(slot0, {
+		swallow = false,
+		beganEvent = function (slot0, slot1)
+			slot0.mBeginPos = slot0.getLocation(slot0)
+
+			return true
+		end,
+		endedEvent = function (slot0, slot1)
+			if not slot0.detailNode or slot0.detailNode:isVisible() == false then
+				return 
+			end
+
+			if not cc.rectContainsPoint(cc.rect(0, 0, slot0.detailNode:getContentSize().width, slot0.detailNode.getContentSize().height), slot0.detailNode:convertToNodeSpace(slot0.getLocation(slot0))) then
+				slot0.detailNode:setVisible(false)
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.sectSprite:setTexture(slot0.mSectCfg.pic .. ".png")
+	slot0.nameLabel:setString(TR("本门宗师：%s", (slot0.data.MasterName == "" and slot0.mSectCfg.masterName) or slot1.MasterName))
+
+	slot3 = slot1.MaxPrestigeCount
+
+	slot0.reputationLabel:setString(TR("我的声望：%s", SectExplvRelation.items[slot0.mSectID][PlayerAttrObj:getPlayerAttrByName("SectPrestigeLv") or 1].name))
+
+	if SectExplvRelation.items[slot0.mSectID][(PlayerAttrObj.getPlayerAttrByName("SectPrestigeLv") or 1) + 1] then
+		slot0.progress:setMaxValue(Utility.analysisStrResList(slot5.totalExp)[1].num)
+		slot0.progress:setCurrValue(slot3)
+		slot0.percentLabel:setString(TR("%d/%d", slot3, Utility.analysisStrResList(slot5.totalExp)[1].num))
+	else
+		slot0.progress:setMaxValue(Utility.analysisStrResList(slot4.totalExp)[1].num)
+		slot0.progress:setCurrValue(slot3)
+		slot0.percentLabel:setString(TR("%d/%d", slot3, Utility.analysisStrResList(slot4.totalExp)[1].num))
+	end
+
+	slot0.rewardListView:setContentSize(cc.size(math.min(#Utility.analysisStrResList(slot4.rewardDaily)*100, 300), 100))
+
+	for slot10, slot11 in ipairs(slot6) do
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot11.resourceId,
+					num = slot11.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum,
+					Enums.CardShowAttr.eSynthetic
+				}
+			}
+		}))
+	end
+
+	slot0.drawBtn:setBright(slot1.IsCanDrawReward)
+	slot0.createDetail(slot0)
+
+	slot7 = false
+	slot8 = nil
+
+	if FashionModel.items[slot0.data.FashionModelId] then
+		slot8 = true
+
+		if not cc.FileUtils:getInstance():isFileExist(slot7 .. ".skel") then
+			slot7 = FashionModel.items[slot0.data.FashionModelId].pic
+			slot8 = false
+		end
+	else
+		slot8 = true
+
+		if not cc.FileUtils:getInstance():isFileExist(slot7 .. ".skel") then
+			slot7 = HeroModel.items[slot0.mSectCfg.initHeroMOdelId].drawingPicA
+			slot8 = false
+		end
+	end
+
+	slot0.heroSprite:setVisible(not slot8)
+
+	if slot8 then
+		slot0.heroEffect:removeAllChildren()
+		slot0.heroEffect:addChild(UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 0.5,
+			dataFile = slot7,
+			pos = cc.p(0, -255)
+		}))
+	else
+		slot0.heroSprite:setTexture(slot7 .. ".png")
+	end
+
+	slot0.refreshIntroduce(slot0, slot0.mSectCfg.des)
+
+	return 
+end
+slot0.createDetail = function (slot0)
+	slot0.detailNode:removeAllChildren()
+	slot0.detailNode:setVisible(false)
+
+	for slot4, slot5 in ipairs(SectModel.items) do
+		slot6 = nil
+
+		for slot10, slot11 in ipairs(slot0.data.SectPrestigeInfo) do
+			if slot11.SectId == slot4 then
+				slot6 = slot11
+
+				break
+			end
+		end
+
+		slot7 = slot0.createLayoutTemplateNode(slot0, "detailTemplate")
+
+		slot7.setPosition(slot7, cc.p(50, slot4*40 - 190))
+		slot7.nameLabel:setString(slot5.name)
+
+		slot8 = SectExplvRelation.items[slot6 or {
+			PrestigeLv = 1,
+			Prestige = 0,
+			SectId = slot4
+		}.SectId][slot6 or {
+			PrestigeLv = 1,
+			Prestige = 0,
+			SectId = slot4
+		}.PrestigeLv]
+
+		if SectExplvRelation.items[slot6 or {
+			PrestigeLv = 1,
+			Prestige = 0,
+			SectId = slot4
+		}.SectId][slot6 or {
+			PrestigeLv = 1,
+			Prestige = 0,
+			SectId = slot4
+		}.PrestigeLv + 1] then
+			slot7.progress:setMaxValue(Utility.analysisStrResList(slot9.totalExp)[1].num)
+			slot7.progress:setCurrValue(slot6.MaxPrestigeCount or 0)
+			slot7.tipsLabel:setString(TR("%s (%d/%d)", slot8.name, slot6.MaxPrestigeCount or 0, slot10.num))
+		else
+			slot7.progress:setMaxValue(Utility.analysisStrResList(slot8.totalExp)[1].num)
+			slot7.progress:setCurrValue(slot6.MaxPrestigeCount or 0)
+			slot7.tipsLabel:setString(TR("%s (%d/%d)", slot8.name, slot6.MaxPrestigeCount or 0, slot10.num))
+		end
+
+		slot0.detailNode:addChild(slot7)
+	end
+
+	return 
+end
+slot0.refreshIntroduce = function (slot0, slot1)
+	slot0.introNode:removeAllChildren()
+	slot0.titleLabel:setString(slot0.data.MasterName or slot0.mSectCfg.name)
+
+	slot2 = 0
+	slot3 = 18
+	slot4 = string.utf8len(slot1)
+
+	function slot5()
+		slot0 = math.min((slot0 + 1)*(), slot0 + 1)
+		slot0 = slot0 + 1
+
+		return string.utf8sub(slot3, slot0*slot1 + 1, slot0)
+	end
+
+	slot6 = cc.p(0, 0)
+	slot7 = -22
+
+	while true do
+		if slot5() == "" then
+			return 
+		end
+
+		slot9 = slot0.createLayoutTemplateNode(slot0, "introTemplate", {
+			desStr = slot8
+		})
+
+		slot9.setPosition(slot9, slot6.x + (slot2 - 1)*slot7, slot6.y)
+		slot0.introNode:addChild(slot9)
+	end
+
+	return 
+end
+slot0.onChallengeCallBack = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("SectPrestigeLv") < SectConfig.items[1].challengeNeedExpLv then
+		ui.showFlashView(TR("挑战需要声望等级【%s】以上", SectExplvRelation.items[slot0.mSectID][SectConfig.items[1].challengeNeedExpLv].name))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "sect.SectFightLayer",
+		data = {
+			sectID = slot0.mSectID,
+			data = slot0.data
+		}
+	})
+
+	return 
+end
+slot0.onDetailCallBack = function (slot0)
+	slot0.detailNode:setVisible(not slot0.detailNode:isVisible())
+
+	return 
+end
+slot0.onDrawCallBack = function (slot0)
+	if slot0.data.IsCanDrawReward then
+		slot0.requestDrawEncounter(slot0)
+	else
+		ui.showFlashView(TR("今日俸禄已领取！"))
+	end
+
+	return 
+end
+slot0.onQuitCallBack = function (slot0)
+	ui.showMessageBox({
+		titleText = TR("退出宗门"),
+		text = TR("确认是否退出#C04141[%s]#252525? \n退出后原宗门声望以及学习的绝学都会保留。", slot0.mSectCfg.name),
+		okCallback = function ()
+			slot0:requestQuit()
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "data")
+
+			slot0.data = slot0
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawEncounter = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawPrestigeReward",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data.IsCanDrawReward = false
+
+			slot0:refreshLayer()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawMasterWorship = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawMasterWorship",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.data.IsCanWorship = slot0.IsCanWorship
+
+			slot0:refreshLayer()
+			slot0:onTurnPageCallBack(slot0.mSelectTag)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestQuit = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "QuitSect",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("已退出宗门"))
+
+			if slot0.mOnCLoseCallBack then
+				slot0.mOnCLoseCallBack()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,236 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.FxHelper")
+slot2 = require("battle.models.Bullet")
+slot3 = require("battle.models.PetBullet")
+slot4 = require("battle.managers.BuffManager")
+slot5 = require("battle.managers.BattleManager")
+slot6 = class("BulletFactory")
+slot6.ctor = function (slot0)
+	slot0.uid = 1
+
+	return 
+end
+slot6.createPetSkillBullets = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	if slot1.conf.bulletEffect and slot1.conf.bulletEffect[1] ~= "" then
+		for slot7, slot8 in pairs(slot1.targetUids) do
+			slot3[#slot3 + 1] = slot0.createPetBullet(slot0, slot1, {
+				slot8
+			}, slot2)
+		end
+	else
+		slot3[#slot3 + 1] = slot0.createPetBullet(slot0, slot1, slot1.targetUids, slot2)
+	end
+
+	return slot3
+end
+slot6.createPetBullet = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.new(slot4)
+	slot5.uid = slot0.uid
+	slot0.uid = slot0.uid + 1
+	slot5.petSkill = slot1
+	slot5.skillDamageIdx = slot1.damageIdx
+	slot5.skillType = slot1.conf.skillType
+
+	if slot1.conf.buffIds then
+		slot5.buffIds = slot6.buffIds
+	end
+
+	for slot10, slot11 in pairs(slot2) do
+		slot5.targetUids[#slot5.targetUids + 1] = slot11
+	end
+
+	slot7 = 1
+
+	if slot6.releaseEffect[1] ~= "" then
+		slot5.triggers = clone(slot1.getSpineInfo(slot6.releaseEffect[1], slot6.releaseEffect[2]).events) or {}
+
+		for slot12, slot13 in pairs(slot5.triggers) do
+			if slot13.name == "daji" then
+				slot13.idx = slot7
+				slot13.effect = slot6.hitEffect[1]
+				slot13.animation = slot6.hitEffect[2]
+				slot13.scale = slot6.hitEffect[3]
+				slot7 = slot7 + 1
+			end
+		end
+
+		slot7 = slot7 - 1
+
+		table.sort(slot5.triggers, function (slot0, slot1)
+			return slot1.time < slot0.time
+		end)
+		table.insert(slot5.triggers, {
+			name = "bullet_effect",
+			time = 0,
+			effect = slot6.releaseEffect[1],
+			animation = slot6.releaseEffect[2],
+			scale = slot6.releaseEffect[3],
+			follow = slot6.releaseEffect[4]
+		})
+
+		slot5.totalTime = slot8.totalTime
+	elseif slot6.bulletEffect[1] ~= "" then
+		slot5.totalTime = slot6.bulletFlyTime
+		slot5.triggers = {
+			{
+				name = "daji",
+				idx = slot7,
+				time = slot5.totalTime,
+				int = slot3,
+				effect = slot6.hitEffect[1],
+				animation = slot6.hitEffect[2],
+				scale = slot6.hitEffect[3]
+			},
+			{
+				name = "bullet_fly",
+				time = 0,
+				duration = slot6.bulletFlyTime,
+				effect = slot6.bulletEffect[1],
+				animation = slot6.bulletEffect[2],
+				scale = slot6.bulletEffect[3],
+				bulletRoute = slot6.bulletRoute
+			}
+		}
+	else
+		slot5.triggers = {
+			{
+				name = "daji",
+				time = 0,
+				idx = slot7,
+				int = slot3,
+				effect = slot6.hitEffect[1],
+				animation = slot6.hitEffect[2]
+			}
+		}
+		slot5.totalTime = 0
+	end
+
+	for slot11, slot12 in ipairs(slot5.triggers) do
+		if slot12.name == "daji" then
+			slot12.lastTrigger = true
+
+			break
+		end
+	end
+
+	slot5.damageCount = slot7
+
+	return slot5
+end
+slot6.createSkillBullets = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	if slot1.conf.bulletEffect and slot1.conf.bulletEffect[1] ~= "" then
+		for slot7, slot8 in pairs(slot1.targetUids) do
+			slot3[#slot3 + 1] = slot0.createBullet(slot0, slot1, {
+				slot8
+			}, slot2)
+		end
+	else
+		slot3[#slot3 + 1] = slot0.createBullet(slot0, slot1, slot1.targetUids, slot2)
+	end
+
+	return slot3
+end
+slot6.createBullet = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.new(slot4)
+	slot5.uid = slot0.uid
+	slot0.uid = slot0.uid + 1
+	slot5.unitSkill = slot1
+	slot5.skillDamageIdx = slot1.damageIdx
+	slot5.skillType = slot1.conf.skillType
+	slot5.deathTriggerUid = slot1.deathTriggerUid
+
+	if slot1.conf.buffIds then
+		slot5.buffIds = slot6.buffIds
+	end
+
+	for slot10, slot11 in pairs(slot2) do
+		slot5.targetUids[#slot5.targetUids + 1] = slot11
+	end
+
+	slot7 = 1
+
+	if slot6.releaseEffect[1] ~= "" then
+		slot5.triggers = clone(slot1.getSpineInfo(slot6.releaseEffect[1], slot6.releaseEffect[2]).events) or {}
+
+		for slot12, slot13 in pairs(slot5.triggers) do
+			if slot13.name == "daji" then
+				slot13.idx = slot7
+				slot13.effect = slot6.hitEffect[1]
+				slot13.animation = slot6.hitEffect[2]
+				slot13.scale = slot6.hitEffect[3]
+				slot7 = slot7 + 1
+			end
+		end
+
+		slot7 = slot7 - 1
+
+		table.sort(slot5.triggers, function (slot0, slot1)
+			return slot1.time < slot0.time
+		end)
+		table.insert(slot5.triggers, {
+			name = "bullet_effect",
+			time = 0,
+			effect = slot6.releaseEffect[1],
+			animation = slot6.releaseEffect[2],
+			scale = slot6.releaseEffect[3],
+			follow = slot6.releaseEffect[4]
+		})
+
+		slot5.totalTime = slot8.totalTime
+	elseif slot6.bulletEffect[1] ~= "" then
+		slot6.bulletFlyTime = slot1.getBulletConfig(slot6.bulletEffect[1]).flyTime
+		slot6.bulletRoute = slot1.getBulletConfig(slot6.bulletEffect[1]).route
+		slot5.totalTime = slot6.bulletFlyTime
+		slot5.triggers = {
+			{
+				name = "daji",
+				idx = slot7,
+				time = slot5.totalTime,
+				int = slot3,
+				effect = slot6.hitEffect[1],
+				animation = slot6.hitEffect[2],
+				scale = slot6.hitEffect[3]
+			},
+			{
+				name = "bullet_fly",
+				time = 0,
+				duration = slot6.bulletFlyTime,
+				effect = slot6.bulletEffect[1],
+				animation = slot6.bulletEffect[2],
+				scale = slot6.bulletEffect[3],
+				bulletRoute = slot6.bulletRoute
+			}
+		}
+	else
+		slot5.triggers = {
+			{
+				name = "daji",
+				time = 0,
+				idx = slot7,
+				int = slot3,
+				effect = slot6.hitEffect[1],
+				animation = slot6.hitEffect[2],
+				scale = slot6.hitEffect[3]
+			}
+		}
+		slot5.totalTime = 0
+	end
+
+	for slot11, slot12 in ipairs(slot5.triggers) do
+		if slot12.name == "daji" then
+			slot12.lastTrigger = true
+
+			break
+		end
+	end
+
+	slot5.damageCount = slot7
+
+	return slot5
+end
+
+return slot6

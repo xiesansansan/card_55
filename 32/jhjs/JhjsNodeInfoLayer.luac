@@ -1,0 +1,797 @@
+slot0 = class("JhjsNodeInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("告示悬赏")
+		},
+		children = {
+			{
+				name = "mLeftSprite",
+				cType = "Sprite",
+				params = {
+					image = "jhjs_15.png",
+					pos = {
+						x = 159.29,
+						y = 260.1
+					}
+				},
+				children = {
+					{
+						name = "mDescLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							valign = 0,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 4,
+								y = 0
+							},
+							size = {
+								width = 240,
+								height = 102
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled10",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 339.62,
+						y = 379.33
+					}
+				},
+				children = {
+					{
+						name = "mNodeView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "onCellNum",
+							isVertical = false,
+							cellUpdateFunc = "onCellUpdate",
+							cellSizeFunc = "onCellSize",
+							cellFillFunc = "onCellCreate",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 450,
+								height = 100
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							image = "c_4.png",
+							pos = {
+								x = -10,
+								y = 50
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 180,
+							image = "c_4.png",
+							scale = 0.7,
+							pos = {
+								x = 460,
+								y = 50
+							}
+						},
+						children = {}
+					},
+					{
+						name = "HeadNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled31",
+								cType = "Button",
+								params = {
+									childName = "headBtn",
+									image = "jhjs_12.png",
+									swallowTouch = false,
+									clickAction = "onHead",
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "nodeName",
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "needLv",
+									text = "Label",
+									color = {
+										g = 10,
+										r = 223,
+										b = 10
+									},
+									pos = {
+										x = 50,
+										y = 27
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_26.png",
+									childName = "selectSprite",
+									pos = {
+										x = 50.43,
+										y = 50.98
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 562.82,
+						y = 246.23
+					}
+				},
+				children = {
+					{
+						name = "untitled15",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_24.png",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 484,
+								height = 230
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 0,
+								y = 90
+							},
+							text = TR("奖励")
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = -92.34,
+										y = 10
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Sprite",
+								params = {
+									rotationAngle = 180,
+									image = "c_36.png",
+									pos = {
+										x = 137.52,
+										y = 10
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mRewardListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = -201.8,
+								y = -37.73
+							},
+							size = {
+								width = 405,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 100,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled21",
+										cType = "CardNode",
+										params = {
+											childName = "card",
+											allowClick = true,
+											pos = {
+												x = 50,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mRewardNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 11
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mNeedFapLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 0,
+								y = -57.97
+							},
+							text = TR("推荐战力")
+						},
+						children = {}
+					},
+					{
+						name = "mLimitLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 0,
+								y = -87.97
+							},
+							text = TR("禁用阵营 职业")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mSweepBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onSweep",
+					pos = {
+						x = 547,
+						y = 62.29
+					},
+					titleText = TR("扫荡")
+				},
+				children = {}
+			},
+			{
+				name = "mFightBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onChallenge",
+					image = "c_27.png",
+					pos = {
+						x = 547,
+						y = 61.68
+					},
+					size = {
+						width = 144,
+						height = 47
+					},
+					titleText = TR("挑战")
+				},
+				children = {}
+			},
+			{
+				name = "mRemainLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 481,
+						y = 93.67
+					},
+					text = TR("挑战次数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled33",
+				cType = "Button",
+				params = {
+					image = "c_20.png",
+					clickAction = "onBuyCount",
+					pos = {
+						x = 643.94,
+						y = 104.07
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mJhjsInfo = slot1.jhjsInfo
+	slot0.mCallback = slot1.callback
+	slot0.mNodeModelList = {}
+	slot0.mPassIdList = {}
+	slot0.mCurIndex = nil
+	slot0.mCurNodeIdIndex = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initData = function (slot0)
+	slot0.mNodeModelList = {}
+
+	for slot4, slot5 in pairs(clone(JhxsChallengeModel.items)) do
+		if slot5.nodeId == slot0.mJhjsInfo.NodeTypeId then
+			table.insert(slot0.mNodeModelList, slot5)
+		end
+	end
+
+	table.sort(slot0.mNodeModelList, function (slot0, slot1)
+		if slot0.challengeLv ~= slot1.challengeLv then
+			return slot0.challengeLv < slot1.challengeLv
+		end
+
+		return slot0.Id < slot1.Id
+	end)
+
+	slot0.mPassIdList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mPassIdList[tonumber(slot6)] = true
+	end
+
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.mNodeModelList) do
+		if slot7.challengeLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and ((slot2 and slot0.mPassIdList[slot2]) or not slot2) then
+			slot0.mCurNodeIdIndex = slot6
+			slot2 = slot7.Id
+		end
+	end
+
+	if not slot0.mCurIndex then
+		slot0.mCurIndex = slot0.mCurNodeIdIndex
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mLeftSprite:setTexture(({
+		"jhjs_15.png",
+		"jhjs_16.png",
+		"jhjs_17.png",
+		"jhjs_18.png"
+	})[slot0.mJhjsInfo.NodeTypeId])
+	slot0.mBgSprite.titleLabel:setString(JhxsNodeModel.items[slot0.mJhjsInfo.NodeTypeId].name)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshReward = function (slot0)
+	slot0.mRewardListView:removeAllChildren()
+	slot0.mRewardNode:removeAllChildren()
+
+	slot2 = {}
+
+	for slot7, slot8 in pairs(slot3) do
+		slot0.createLayoutTemplateNode(slot0, "rewardLayout").card:setCardData(slot8, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		})
+		table.insert(slot2, slot0.createLayoutTemplateNode(slot0, "rewardLayout"))
+	end
+
+	if 4 < #slot2 then
+		for slot7, slot8 in pairs(slot2) do
+			slot0.mRewardListView:pushBackCustomItem(slot8)
+		end
+	else
+		slot4 = Utility.getExtendPos({
+			offset = 100,
+			num = #slot2
+		})
+
+		for slot8, slot9 in ipairs(slot2) do
+			slot9.setAnchorPoint(slot9, cc.p(0.5, 0.5))
+			slot9.setPosition(slot9, slot4[slot8])
+			slot0.mRewardNode:addChild(slot9)
+		end
+	end
+
+	return 
+end
+slot0.refreshNodeUI = function (slot0)
+	slot0.refreshReward(slot0)
+	slot0.mNeedFapLabel:setString(TR("推荐战力：%s", Utility.numberWithUnit(slot0.mNodeModelList[slot0.mCurIndex].fap)))
+	slot0.mLimitLabel:setString(Utility.formatFightLimitTheme(slot0.mNodeModelList[slot0.mCurIndex].prohibitCamp, slot0.mNodeModelList[slot0.mCurIndex].prohibitProfession, nil, {
+		color1 = "#313131",
+		color2 = "#313131"
+	}))
+	slot0.mDescLabel:setString(slot0.mNodeModelList[slot0.mCurIndex].nodeDes)
+
+	if (slot0.mJhjsInfo.BuyNodeNum + JhxsConfig.items[1].perNodeDareNumMax) - slot0.mJhjsInfo.CompleteNum < 0 then
+		slot2 = 0
+	end
+
+	slot0.mRemainLabel:setString(TR("挑战次数：%s", slot2))
+	slot0.mSweepBtn:setVisible((slot0.mPassIdList[slot1.Id] and true) or false)
+	slot0.mFightBtn:setVisible(not ((slot0.mPassIdList[slot1.Id] and true) or false))
+
+	return 
+end
+slot0.isNumEnough = function (slot0)
+	if 0 < (slot0.mJhjsInfo.BuyNodeNum + JhxsConfig.items[1].perNodeDareNumMax) - slot0.mJhjsInfo.CompleteNum then
+		return true
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.DlgBuyTimesLayer",
+		data = {
+			price_key = "buyNeed",
+			boughtNum = slot0.mJhjsInfo.AllBuyNum,
+			maxNum = VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].jhxsBuyNum,
+			price = JhxsBuyRelation,
+			callback = function (slot0)
+				slot0:requestBuyCount(slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return false
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshNodeUI(slot0)
+	slot0.mNodeView:reloadData()
+	slot0.mNodeView:jumpToCell(slot0.mCurIndex, true, true)
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 100, 100
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.mNodeModelList
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "HeadNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.nodeName:setString(TR("第%s关", slot1 + 1))
+
+		if PlayerAttrObj:getPlayerAttrByName("Lv") < slot0.mNodeModelList[slot1 + 1].challengeLv then
+			slot0.headBtn:loadTextures("jhjs_13.png", "jhjs_13.png")
+			slot0.needLv:setString(TR("%s级", slot2.challengeLv))
+		elseif slot0.mCurNodeIdIndex < slot1 then
+			slot0.headBtn:loadTextures("jhjs_13.png", "jhjs_13.png")
+			slot0.needLv:setString(TR("通过上一关"))
+		else
+			slot0.needLv:setString("")
+			slot0.headBtn:loadTextures("jhjs_12.png", "jhjs_12.png")
+		end
+
+		slot0.selectSprite:setVisible(slot1 == slot0.mCurIndex)
+
+		slot0.headBtn.index = slot1
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdate = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onBuyCount = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.DlgBuyTimesLayer",
+		data = {
+			price_key = "buyNeed",
+			boughtNum = slot0.mJhjsInfo.AllBuyNum,
+			maxNum = VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].jhxsBuyNum,
+			price = JhxsBuyRelation,
+			callback = function (slot0)
+				slot0:requestBuyCount(slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onHead = function (slot0, slot1)
+	slot3 = slot0.mNodeModelList[slot1.index]
+
+	if slot0.mCurIndex == slot1.index then
+		return 
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("Lv") < slot3.challengeLv then
+		ui.showFlashView(TR("需要%s级", slot3.challengeLv))
+
+		return 
+	elseif slot0.mCurNodeIdIndex < slot2 then
+		ui.showFlashView(TR("请先通过上一关"))
+
+		return 
+	end
+
+	slot0.mCurIndex = slot2
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onSweep = function (slot0, slot1)
+	if not slot0.isNumEnough(slot0) then
+		return 
+	end
+
+	if not slot0.mPassIdList[slot0.mNodeModelList[slot0.mCurIndex].Id] then
+		ui.showFlashView(TR("请先通过该关卡"))
+
+		return 
+	end
+
+	slot0.requestSweep(slot0)
+
+	return 
+end
+slot0.onChallenge = function (slot0, slot1)
+	slot2 = slot0.mNodeModelList[slot0.mCurIndex]
+
+	if not slot0.isNumEnough(slot0) then
+		return 
+	end
+
+	slot3 = {}
+
+	for slot8, slot9 in pairs(slot4) do
+		table.insert(slot3, tonumber(slot9))
+	end
+
+	slot5 = {}
+
+	for slot10, slot11 in pairs(slot6) do
+		table.insert(slot5, tonumber(slot11))
+	end
+
+	ui.showCampReady({
+		noNeedVit = true,
+		callModelSub = ModuleSub.eJhxs,
+		titleText = TR("江湖纪事布阵"),
+		ignoreCampList = slot3,
+		ignoreProfessionList = slot5,
+		mercenaryList = MercenaryObj:getMercenaryIdByModuleId(ModuleSub.eJhxs),
+		callback = function (slot0)
+			slot0:requestSetTeamInfo(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSweep = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "FightSweep",
+		moduleName = "JhxsInfo",
+		methodData = {
+			slot0.mNodeModelList[slot0.mCurIndex].Id,
+			1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+
+			slot0.mJhjsInfo = slot0.NodeInfo
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.NodeInfo)
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSetTeamInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "SetFormationInfo",
+		moduleName = "SlotFormation",
+		methodData = {
+			ModuleSub.eJhxs,
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			slot0:requestFightInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFightInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "JhxsInfo",
+		methodData = {
+			slot0.mNodeModelList[slot0.mCurIndex].Id
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					nodeId = slot0
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyCount = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyPerNodeDareNum",
+		moduleName = "JhxsInfo",
+		methodData = {
+			slot0.mJhjsInfo.NodeTypeId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mJhjsInfo = slot0.NodeInfo
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0.NodeInfo)
+			end
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

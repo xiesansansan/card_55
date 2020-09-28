@@ -1,0 +1,93 @@
+slot0 = class("CacheOnlineReward", {})
+slot0.ctor = function (slot0)
+	slot0.mOnlineRewardInfo = nil
+	slot0.isRequesting = false
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mOnlineRewardInfo = nil
+	slot0.isRequesting = false
+
+	return 
+end
+slot0.getRewardStatus = function (slot0)
+	if not slot0.mOnlineRewardInfo then
+		return Enums.OnlineRewardStatus.eGetSvrData
+	elseif next(slot0.mOnlineRewardInfo) then
+		return Enums.OnlineRewardStatus.eHaveInfo
+	else
+		return Enums.OnlineRewardStatus.eFinish
+	end
+
+	return 
+end
+slot0.getNextCooledTime = function (slot0)
+	if not slot0.mOnlineRewardInfo then
+		return 0
+	end
+
+	if not next(slot0.mOnlineRewardInfo) then
+		return 0
+	end
+
+	return slot0.mOnlineRewardInfo.CooledTime - Player:getCurrentTime()
+end
+slot0.getResourceList = function (slot0)
+	return slot0.mOnlineRewardInfo and slot0.mOnlineRewardInfo.ResourceList
+end
+slot0.allowReward = function (slot0)
+	if not slot0.mOnlineRewardInfo then
+		return false
+	end
+
+	if not next(slot0.mOnlineRewardInfo) then
+		return false
+	end
+
+	return slot0.mOnlineRewardInfo.CooledTime <= Player:getCurrentTime()
+end
+slot0.requestOnlineRewardInfo = function (slot0, slot1, slot2)
+	if not slot0.isRequesting then
+		slot1.socketRequest(slot1, {
+			methodName = "OnlineRewardInfo",
+			moduleName = "OnlineReward",
+			svrMethodData = {},
+			successCallback = function (slot0)
+				slot0.isRequesting = false
+				slot0.mOnlineRewardInfo = slot0.OnlineRewardInfo or {}
+
+				if slot1 then
+					slot1(slot2, slot0)
+				end
+
+				return 
+			end
+		})
+
+		slot0.isRequesting = true
+	end
+
+	return 
+end
+slot0.requestDrawOnlineReward = function (slot0, slot1)
+	require("network.GameSocket"):socketRequest({
+		moduleName = "OnlineReward",
+		methodName = "DrawOnlineReward",
+		ignoreNode = true,
+		svrMethodData = {},
+		successCallback = function (slot0)
+			slot0.mOnlineRewardInfo = slot0.OnlineRewardInfo or {}
+
+			if slot1 then
+				slot1(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

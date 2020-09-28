@@ -1,0 +1,482 @@
+slot0 = class("ContactsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_31.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled3",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseClick",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "hy_2.png",
+					pos = {
+						x = 17,
+						y = 5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 300
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_14.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					space = 0,
+					isNeedOutline = true,
+					fontSize = 24,
+					selectTag = 1,
+					lightedImage = "bb_4.png",
+					direction = true,
+					normalImage = "bb_4.png",
+					btnInfos = {
+						{
+							title = TR("好友")
+						}
+					},
+					btnSize = {
+						width = 125,
+						height = 80
+					},
+					pos = {
+						x = -493.52,
+						y = 28.94
+					},
+					size = {
+						width = 135,
+						height = 220
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "hy_7.png",
+					clickAction = "onGetSeverInfo",
+					pos = {
+						x = -432,
+						y = 100
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "RedDot",
+						params = {
+							moduleId = 703
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "hy_4.png",
+					clickAction = "onApplyClick",
+					pos = {
+						x = -432,
+						y = 5
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "RedDot",
+						params = {
+							moduleId = 701
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "hy_5.png",
+					clickAction = "onBlackClick",
+					pos = {
+						x = -432,
+						y = -85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "hy_6.png",
+					clickAction = "onDeleteClick",
+					pos = {
+						x = -432,
+						y = -180
+					}
+				},
+				children = {}
+			},
+			{
+				name = "childLayer",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -364.66,
+						y = -238.22
+					},
+					size = {
+						width = 820,
+						height = 480
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled12",
+		cType = "Button",
+		params = {
+			clickAction = "onShowRule",
+			posApt = 1,
+			scaleApt = 2,
+			image = "c_3.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 211.5,
+				y = 632.51
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mSelectTag = slot1.tag or 1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.tebBtnInfos = {
+		{
+			tag = 1,
+			title = "好友",
+			moduleId = ModuleSub.eFriend
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.tebBtnInfos
+		end
+
+		return 
+	end)
+	slot0.refreshUi(slot0, slot0.mSelectTag)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = UIWrap.newControl("Sprite", {
+			image = "bb_5.png"
+		})
+
+		slot7.setPosition(slot7, -10, -41)
+		slot6.addChild(slot6, slot7)
+
+		slot8 = UIWrap.newControl("Sprite", {
+			image = "yj_19.png"
+		})
+
+		slot8.setPosition(slot8, -45, 0)
+		slot6.addChild(slot6, slot8)
+
+		slot6.boxSprite = slot8
+	end
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	if slot0.mSelectTag == slot1 then
+		return 
+	end
+
+	slot0.mSelectTag = slot1
+
+	slot0.refreshUi(slot0, slot1)
+
+	return 
+end
+slot0.refreshUi = function (slot0, slot1)
+	if slot0.showLayer ~= nil then
+		slot0.showLayer:removeFromParent()
+
+		slot0.showLayer = nil
+	end
+
+	if slot1 == 1 then
+		slot0.showLayer = UIWrap.newControl("FileLayer", {
+			file = "haoyou.HySubLayer",
+			initParams = {}
+		})
+
+		slot0.childLayer:addChild(slot0.showLayer)
+	end
+
+	return 
+end
+slot0.onApplyClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "haoyou.HyApplyLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBlackClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "haoyou.HyBlackLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onDeleteClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "haoyou.HyAddLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onShowRule = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.好友之间可互相赠送侠缘，侠缘可用于侠缘招募"),
+			TR("2.赠送和领取侠缘，可提升好友之间的羁绊，提升羁绊等级"),
+			TR("3.羁绊等级越高，赠送的侠缘则越多"),
+			TR("4.侠缘每天领取、赠送次数有限"),
+			TR("5.一键送礼可一键完成领取和赠送")
+		}
+	})
+
+	return 
+end
+slot0.onCloseClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getOneKeySendList = function (slot0)
+	slot1 = {}
+	slot2 = clone(FriendshipConfig.items)[1].giveNumMax
+	slot3 = clone(FriendshipConfig.items)[1].receiveNumMax
+	slot4 = false
+
+	for slot8, slot9 in ipairs(slot0.mFriendList) do
+		if slot9.IfCanReward == true or slot9.IfCanSend == true then
+			slot4 = true
+		end
+	end
+
+	if slot4 == false then
+		ui.showFlashView(TR("无可赠送或领取的好友"))
+
+		return 
+	end
+
+	if slot0.SendNum <= 0 and slot0.RewardNum <= 0 then
+		return 
+	end
+
+	slot0.onFriendShipOneKeySend(slot0)
+
+	return 
+end
+slot0.onGetSeverInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFriendList",
+		moduleName = "Friend",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.RewardNum = slot0.RewardNum
+			slot0.SendNum = slot0.SendNum
+
+			table.sort(slot0.FriendData or {}, function (slot0, slot1)
+				if slot0.IfCanReward and not slot1.IfCanReward then
+					return true
+				elseif not slot0.IfCanReward and slot1.IfCanReward then
+					return false
+				end
+
+				if slot0.IsActive and not slot1.IsActive then
+					return true
+				elseif not slot0.IsActive and slot1.IsActive then
+					return false
+				end
+
+				if slot0.OutTime ~= slot1.OutTime then
+					return slot0.OutTime < slot1.OutTime
+				end
+
+				return 
+			end)
+
+			slot0.mFriendList = slot0.FriendData or {}
+
+			slot0:getOneKeySendList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onFriendShipOneKeySend = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "OnekeySendOrDraw",
+		moduleName = "Friend",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.RewardNum = slot0.RewardNum
+			slot0.SendNum = slot0.SendNum
+
+			table.sort(slot0.FriendData or {}, function (slot0, slot1)
+				if slot0.IfCanReward and not slot1.IfCanReward then
+					return true
+				elseif not slot0.IfCanReward and slot1.IfCanReward then
+					return false
+				end
+
+				if slot0.IsActive and not slot1.IsActive then
+					return true
+				elseif not slot0.IsActive and slot1.IsActive then
+					return false
+				end
+
+				if slot0.OutTime ~= slot1.OutTime then
+					return slot0.OutTime < slot1.OutTime
+				end
+
+				return 
+			end)
+
+			slot0.mFriendList = slot0.FriendData or {}
+
+			EventAuto:postEvent("eFriendShipOneKeySend")
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			else
+				ui.showFlashView("一键赠送成功")
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

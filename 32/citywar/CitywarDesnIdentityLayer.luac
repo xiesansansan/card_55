@@ -1,0 +1,617 @@
+slot0 = class("CitywarDesnIdentityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_3.png",
+			pos = {
+				x = 320,
+				y = 588
+			},
+			titleText = TR("身份指定")
+		},
+		children = {
+			{
+				name = "nemEditBox",
+				cType = "EditBox",
+				params = {
+					image = "lt_13.png",
+					placeColor = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					placeHolder = TR(" 玩家名字"),
+					pos = {
+						x = 241.72,
+						y = 688.91
+					},
+					size = {
+						width = 300,
+						height = 40
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "c_13.png",
+					clickAction = "onSearch",
+					pos = {
+						x = 497.91,
+						y = 690.88
+					},
+					titleText = TR("搜  索")
+				},
+				children = {}
+			},
+			{
+				name = "shenfenLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 154,
+						y = 824.46
+					},
+					text = TR("隐士")
+				},
+				children = {}
+			},
+			{
+				name = "buffLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 262.28,
+						y = 788.46
+					},
+					text = TR("城站最近拍卖会随机")
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 154.28,
+						y = 788.46
+					},
+					text = TR("身份效果：")
+				},
+				children = {}
+			},
+			{
+				name = "identityNode",
+				cType = "PlayerHeroNode",
+				params = {
+					modelId = 0,
+					allowClick = false,
+					pos = {
+						x = 90.45,
+						y = 809.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "playerName",
+				cType = "Label",
+				params = {
+					fontSize = 16,
+					text = "",
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 90.92,
+						y = 749.98
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jzwl_97.png",
+					pos = {
+						x = 322,
+						y = 727.26
+					},
+					size = {
+						width = 590,
+						height = 2
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_144.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 321.21,
+						y = 25
+					},
+					size = {
+						width = 576,
+						height = 614
+					}
+				},
+				children = {
+					{
+						name = "playerListView",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 0,
+								y = 6
+							},
+							size = {
+								width = 580,
+								height = 600
+							}
+						},
+						children = {
+							{
+								name = "playerLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "nameLabel-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "untitled6-fashionLv",
+										name = "fashionLv",
+										type = "string"
+									},
+									{
+										value = "untitled6-modelId",
+										name = "heroModelId",
+										type = "string"
+									},
+									{
+										value = "level-text",
+										name = "level",
+										type = "string"
+									},
+									{
+										value = "fapLabel-text",
+										name = "fap",
+										type = "string"
+									},
+									{
+										value = "untitled15-text",
+										name = "Vip",
+										type = "string"
+									},
+									{
+										value = "untitled11-clickAction",
+										name = "clickAction",
+										type = "string"
+									},
+									{
+										value = "bangpai-text",
+										name = "bangpai",
+										type = "string"
+									},
+									{
+										value = "untitled6-headPicId",
+										name = "headPicId",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 580,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled5",
+										cType = "Scale9Sprite",
+										params = {
+											image = "xkxx_3.png",
+											pos = {
+												x = 290,
+												y = 60
+											},
+											size = {
+												width = 570,
+												height = 112
+											}
+										},
+										children = {
+											{
+												name = "untitled6",
+												cType = "PlayerHeroNode",
+												params = {
+													headPicId = 1,
+													fashionLv = 1,
+													modelId = 19010000,
+													allowClick = false,
+													pos = {
+														x = 63.34,
+														y = 58.01
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled19",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 34,
+														r = 69,
+														b = 13
+													},
+													pos = {
+														x = 120.36,
+														y = 60
+													},
+													text = TR("等级：")
+												},
+												children = {}
+											},
+											{
+												name = "level",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													text = "1",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													outlineColor = {
+														g = 42,
+														r = 58,
+														b = 24
+													},
+													pos = {
+														x = 177.36,
+														y = 60
+													}
+												},
+												children = {}
+											},
+											{
+												name = "fapLabel",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													text = "112335",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													outlineColor = {
+														g = 42,
+														r = 58,
+														b = 24
+													},
+													pos = {
+														x = 355.36,
+														y = 30
+													}
+												},
+												children = {}
+											},
+											{
+												name = "bangpai",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													text = "1",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													outlineColor = {
+														g = 42,
+														r = 58,
+														b = 24
+													},
+													pos = {
+														x = 177.36,
+														y = 30
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled10",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 34,
+														r = 69,
+														b = 13
+													},
+													pos = {
+														x = 120.36,
+														y = 29.55
+													},
+													text = TR("帮派：")
+												},
+												children = {}
+											},
+											{
+												name = "untitled8",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 34,
+														r = 69,
+														b = 13
+													},
+													pos = {
+														x = 302.36,
+														y = 29.55
+													},
+													text = TR("战力：")
+												},
+												children = {}
+											},
+											{
+												name = "nameLabel",
+												cType = "Label",
+												params = {
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 114,
+														r = 255,
+														b = 0
+													},
+													outlineColor = {
+														g = 42,
+														r = 51,
+														b = 24
+													},
+													pos = {
+														x = 120,
+														y = 90
+													},
+													text = TR("名字")
+												},
+												children = {}
+											},
+											{
+												name = "untitled11",
+												cType = "Button",
+												params = {
+													image = "c_13.png",
+													clickAction = "onSearch",
+													pos = {
+														x = 495.37,
+														y = 60
+													},
+													titleText = TR("任  命")
+												},
+												children = {}
+											},
+											{
+												name = "untitled14",
+												cType = "Sprite",
+												params = {
+													image = "sy_54.png",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 300.99,
+														y = 88.47
+													}
+												},
+												children = {
+													{
+														name = "untitled15",
+														cType = "Label",
+														params = {
+															fontName = "c_126.png",
+															text = "20",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															pos = {
+																x = 45,
+																y = 13
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mIdentityInfo = slot1 and slot1.identityInfo
+	slot0.mCallBack = slot1 and slot1.callBack
+	slot0.mIdentityId = (slot1 and slot1.identityId) or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUi(slot0)
+
+	return 
+end
+slot0.refreshUi = function (slot0)
+	slot0.shenfenLabel:setString((NewleaguetopIdentityRelation.items[slot0.mIdentityId].type and "上流身份：" .. slot1.name) or "下流身份：" .. slot1.name)
+	slot0.buffLabel:setString(slot1.effectIntro)
+
+	if slot0.mIdentityInfo then
+		slot0.identityNode:setPlayerHeader(slot0.mIdentityInfo.HeadImageId, nil, {
+			fashionLv = slot0.mIdentityInfo.FashionId,
+			headPicId = slot0.mIdentityInfo.HeadPicId
+		})
+		slot0.playerName:setString(slot0.mIdentityInfo.Name)
+
+		if slot0.mIdentityInfo.HeadPicId and 0 < slot0.mIdentityInfo.HeadPicId then
+			slot0.playerName:setPosition(90, 737)
+		end
+	end
+
+	slot0.identityNode:addChild(UIWrap.newControl("Sprite", {
+		image = slot1.pic
+	}))
+
+	if slot1.type then
+		slot2.setAnchorPoint(slot2, cc.p(0.5, 0.5))
+		slot2.setPosition(slot2, cc.p(46, 92))
+	else
+		slot2.setPosition(slot2, cc.p(20, 46))
+	end
+
+	slot0.refreshListview(slot0)
+
+	return 
+end
+slot0.refreshListview = function (slot0, slot1)
+	slot0.playerListView:removeAllItems()
+
+	slot2 = ipairs
+	slot3 = slot1 or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		slot0.playerListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "playerLayout", {
+			name = slot6.Name,
+			fashionLv = slot6.FashionModelId,
+			heroModelId = slot6.HeadImageId,
+			headPicId = slot6.HeadPicId,
+			level = slot6.Lv,
+			bangpai = slot6.GuildName,
+			fap = Utility.numberWithUnit(slot6.FAP),
+			Vip = slot6.Vip,
+			clickAction = function (...)
+				slot0:safeRequest({
+					methodName = "SetIdentity",
+					moduleName = "Leaguetop",
+					methodData = {
+						slot1.PlayerId,
+						slot0.mIdentityId
+					},
+					successCallback = function (slot0)
+						dump(slot0)
+
+						if slot0.mCallBack then
+							slot0.mCallBack(slot0)
+						end
+
+						LayerManager.removeLayer(slot0)
+
+						return 
+					end
+				})
+
+				return 
+			end
+		}))
+	end
+
+	return 
+end
+slot0.onSearch = function (slot0)
+	if slot0.nemEditBox:getText() ~= "" then
+		slot0.safeRequest(slot0, {
+			methodName = "PlayerSearch",
+			moduleName = "Friend",
+			methodData = {
+				slot1
+			},
+			successCallback = function (slot0)
+				slot0:refreshListview(slot0)
+
+				return 
+			end
+		})
+	else
+		ui.showFlashView(TR("请输入玩家名字"))
+	end
+
+	return 
+end
+
+return slot0

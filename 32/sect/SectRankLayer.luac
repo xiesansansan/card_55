@@ -1,0 +1,521 @@
+slot0 = class("SectRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Scale9Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 883,
+				height = 522
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "taskTabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onTurnPage",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					allowChangeCallback = "onAllowTurnPage",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 30.18,
+						y = 448.78
+					},
+					size = {
+						width = 788,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 441.5,
+						y = 422
+					},
+					size = {
+						width = 813,
+						height = 35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 441.5,
+						y = 261
+					},
+					size = {
+						width = 813,
+						height = 370
+					}
+				},
+				children = {
+					{
+						name = "rankTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 6.5,
+								y = 4
+							},
+							size = {
+								width = 800,
+								height = 320
+							}
+						},
+						children = {
+							{
+								name = "taskTemplate",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = -4.24,
+										y = -83.39
+									},
+									size = {
+										width = 800,
+										height = 86
+									}
+								},
+								children = {
+									{
+										name = "bg",
+										cType = "Scale9Sprite",
+										params = {
+											image = "fuli_36.png",
+											pos = {
+												x = 400,
+												y = 43
+											},
+											size = {
+												width = 800,
+												height = 86
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Label",
+										params = {
+											text = "4",
+											isRichText = true,
+											childName = "rankLabel",
+											fontName = "c_54.png",
+											pos = {
+												x = 68,
+												y = 43
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											childName = "rankSprite",
+											pos = {
+												x = 80,
+												y = 43
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											text = "",
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 279,
+												y = 43
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Label",
+										params = {
+											childName = "scoreLabel",
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 510,
+												y = 43
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "lvLabel",
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 690,
+												y = 43
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 80,
+								y = 345.62
+							},
+							text = TR("排名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 300,
+								y = 345.62
+							},
+							text = TR("玩家")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 520,
+								y = 345.62
+							},
+							text = TR("声望")
+						},
+						children = {}
+					},
+					{
+						name = "lvLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 700,
+								y = 345.62
+							},
+							text = TR("声望级别")
+						},
+						children = {}
+					},
+					{
+						name = "myInfoSPrite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_93.png",
+							pos = {
+								x = 394,
+								y = -22
+							},
+							size = {
+								width = 774,
+								height = 32
+							}
+						},
+						children = {}
+					},
+					{
+						name = "myRankLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 200,
+								y = -22.15
+							},
+							text = TR("我的排名:")
+						},
+						children = {}
+					},
+					{
+						name = "mylvLabel",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 460,
+								y = -22.15
+							},
+							text = TR("声望: ")
+						},
+						children = {}
+					},
+					{
+						name = "emptySprite",
+						cType = "Sprite",
+						params = {
+							image = "bp_25.png",
+							pos = {
+								x = 406.5,
+								y = 185
+							}
+						},
+						children = {
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 243.31,
+										y = 53.9
+									},
+									text = TR("暂无排行信息")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.super.ctor(slot0)
+	slot0.initData(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetRankInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "taskTabView" then
+			slot1.btnInfos = slot0.btnInfos
+			slot1.selectTag = slot0.mSectID
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.initData = function (slot0)
+	slot0.btnInfos = {}
+
+	for slot4, slot5 in ipairs(SectModel.items) do
+		table.insert(slot0.btnInfos, {
+			title = slot5.name,
+			tag = slot5.Id
+		})
+	end
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	if slot0.myRankInfo[tostring(slot0.mSectID)] then
+		slot0.myRankLabel:setString(TR("我的排名:%s", (slot1.Rank == 0 and TR("未上榜")) or tostring(slot1.Rank)))
+		slot0.mylvLabel:setString(TR("声望: %s (%d)", SectExplvRelation.items[slot0.mSectID][slot1.PrestigeLv].name, slot1.MaxPrestigeCount))
+	else
+		slot0.myRankLabel:setString(TR("我的排名: 无"))
+		slot0.mylvLabel:setString(TR("声望: 0"))
+	end
+
+	return 
+end
+slot0.onAllowTurnPage = function (slot0, slot1)
+	return true
+end
+slot0.onTurnPage = function (slot0, slot1)
+	if not slot0.rankInfo or not slot0.btnInfos then
+		return 
+	end
+
+	slot0.mSectID = slot1
+	slot0.pageData = slot0.rankInfo[tostring(slot1)]
+
+	slot0.rankTableView:reloadData()
+	slot0.refreshLayer(slot0)
+	slot0.rankTableView:jumpToTop()
+	slot0.emptySprite:setVisible(slot0.cbNumOfCellsFunc(slot0) == 0)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 776, 86
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return (slot0.pageData and #slot0.pageData) or 0
+end
+slot1 = {
+	"c_51.png",
+	"c_52.png",
+	"c_53.png"
+}
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot1.removeAllChildren(slot1)
+
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTemplate")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot5 = slot0.pageData[slot2 + 1]
+
+	if slot2 + 1 <= 3 then
+		slot3.rankSprite:setTexture(slot0[slot4])
+		slot3.rankSprite:setVisible(true)
+		slot3.rankLabel:setVisible(false)
+	else
+		slot3.rankSprite:setVisible(false)
+		slot3.rankLabel:setVisible(true)
+		slot3.rankLabel:setString(slot4)
+	end
+
+	slot3.nameLabel:setString(slot5.Name)
+	slot3.lvLabel:setString(SectExplvRelation.items[slot0.mSectID][slot5.PrestigeLv].name)
+	slot3.scoreLabel:setString(slot5.MaxPrestigeCount)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot0.cbCellFillFunc(slot0, slot1, slot2)
+
+	return 
+end
+slot0.requestGetRankInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRank",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "data")
+
+			slot0.rankInfo = slot0.RankInfo
+			slot0.myRankInfo = slot0.MyRankInfo
+
+			slot0:refreshLayer()
+			slot0:onTurnPage(slot0.mSectID)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

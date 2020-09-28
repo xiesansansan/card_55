@@ -1,0 +1,58 @@
+slot0 = class("CacheModel", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mModelList = {}
+
+	return 
+end
+slot0.setList = function (slot0, slot1)
+	slot0.mModelList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mModelList[tonumber(slot5)] = slot6
+	end
+
+	return 
+end
+slot0.getList = function (slot0)
+	return slot0.mModelList
+end
+slot0.getItem = function (slot0, slot1)
+	return slot0.mModelList[slot1] or {}
+end
+slot0.modifyItem = function (slot0, slot1)
+	if not slot1.ModelId or slot1.ModelId <= 0 then
+		return 
+	end
+
+	slot0.mModelList[slot1.ModelId] = clone(slot1)
+
+	return 
+end
+slot0.modifyItemList = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		if next(slot6) then
+			slot0.modifyItem(slot0, slot6)
+		else
+			slot0.deleteItemById(slot0, tonumber(slot5))
+		end
+	end
+
+	return 
+end
+slot0.deleteItemById = function (slot0, slot1)
+	if slot0.mModelList[slot1] then
+		slot0.mModelList[slot1] = nil
+	end
+
+	return 
+end
+slot0.getItemCount = function (slot0, slot1)
+	return (slot0.mModelList[slot1] and slot0.mModelList[slot1].Num) or 0
+end
+
+return slot0

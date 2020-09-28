@@ -1,0 +1,15 @@
+slot0 = require("battle.common.BuffHelper")
+slot2 = class("BuffControl", require("battle.models.Buff"))
+slot2.add = function (slot0)
+	slot0.owner:updateControlBuff()
+
+	return slot0.super.add(slot0)
+end
+slot2.remove = function (slot0)
+	slot0.super.remove(slot0)
+	slot0.owner:updateControlBuff()
+
+	return 
+end
+
+return slot2

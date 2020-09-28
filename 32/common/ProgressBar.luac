@@ -1,0 +1,229 @@
+ProgressBarType = {
+	eHorizontal = 2,
+	eVertical = 1
+}
+slot0 = class("ProgressBar", function ()
+	return cc.Node:create()
+end)
+
+require("common.Ui")
+
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurrValue = slot1.currValue or 0
+	slot0.mMaxValue = slot1.maxValue or 100
+	slot0.mBarType = slot1.isVertical or ProgressBarType.eHorizontal
+	slot0.isRadilType = slot1.isRadilType or false
+	slot0.radilDir = slot1.radilDir or false
+
+	if slot1.size then
+		slot0.mSize = slot1.size
+	elseif slot1.bgImage and 0 < string.len(slot1.bgImage) then
+		slot0.mSize = display.loadImage(slot1.bgImage):getContentSize()
+	elseif slot1.barImage then
+		slot0.mSize = display.loadImage(slot1.barImage):getContentSize()
+	else
+		slot0.mSize = cc.size(100, 20)
+	end
+
+	slot0.setContentSize(slot0, slot0.mSize)
+	slot0.setAnchorPoint(slot0, cc.p(0.5, 0.5))
+	slot0.setIgnoreAnchorPointForPosition(slot0, false)
+
+	if slot1.bgImage and 0 < string.len(slot1.bgImage) then
+		slot0.mBgSprite = ccui.Scale9Sprite:create(slot1.bgImage)
+
+		slot0.mBgSprite:setContentSize(slot0.mSize)
+		slot0.mBgSprite:setPosition(cc.p(slot0.mSize.width/2, slot0.mSize.height/2))
+
+		if slot1.needHideBg then
+			slot0.mBgSprite:setVisible(false)
+		end
+
+		slot0.addChild(slot0, slot0.mBgSprite)
+	end
+
+	if slot1.barImage then
+		slot0.mBarSprite = cc.Sprite:create(slot1.barImage)
+		slot0.mProgressTimer = cc.ProgressTimer:create(cc.Sprite.create(slot1.barImage))
+
+		if slot0.isRadilType then
+			slot0.mProgressTimer:setType(cc.PROGRESS_TIMER_TYPE_RADIAL)
+			slot0.mProgressTimer:setReverseDirection(slot0.radilDir)
+		else
+			slot0.mProgressTimer:setType(cc.PROGRESS_TIMER_TYPE_BAR)
+
+			if slot0.mBarType == ProgressBarType.eHorizontal then
+				slot0.mProgressTimer:setMidpoint(cc.p(0, 0))
+				slot0.mProgressTimer:setBarChangeRate(cc.p(1, 0))
+			elseif slot0.mBarType == ProgressBarType.eVertical then
+				slot0.mProgressTimer:setMidpoint(cc.p(0, 0))
+				slot0.mProgressTimer:setBarChangeRate(cc.p(0, 1))
+			end
+		end
+
+		slot0.mProgressTimer:setPosition(cc.p(slot0.mSize.width/2, slot0.mSize.height/2))
+		slot0.addChild(slot0, slot0.mProgressTimer)
+
+		if slot1.size then
+			slot0.mProgressTimer:setScaleX(slot4)
+			slot0.mProgressTimer:setScaleY(slot0.mSize.height/display.loadImage(slot1.barImage):getContentSize().height)
+		end
+	end
+
+	if slot1.needLabel then
+		slot0.mPercentView = slot1.percentView
+		slot0.mProgressLabel = UIWrap.newControl("Label", {
+			text = slot0.getProgressStr(slot0),
+			fontName = slot1.font or _FONT_DEFAULT,
+			fontSize = slot1.fontSize or 20,
+			color = slot1.color or cc.c3b(255, 255, 255),
+			shadowColor = slot1.shadowColor,
+			outlineColor = slot1.outlineColor,
+			outlineSize = slot1.outlineSize,
+			align = ui.TEXT_ALIGN_CENTER,
+			valign = ui.TEXT_VALIGN_CENTER,
+			pos = cc.p(slot0.mSize.width/2, slot0.mSize.height/2)
+		})
+
+		slot0.addChild(slot0, slot0.mProgressLabel, 1)
+	end
+
+	slot0.registerScriptHandler(slot0, function (slot0)
+		if slot0 == "enter" then
+			slot0:doProgressFiniteTime(slot0.mCurrValue)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.getProgressStr = function (slot0)
+	slot1 = string.format("%d / %d", slot0.mCurrValue, slot0.mMaxValue)
+
+	if slot0.mPercentView == true then
+		slot1 = string.format("%d%%", math.ceil(slot0.mCurrValue/slot0.mMaxValue*100))
+	end
+
+	return slot1
+end
+slot0.doProgress = function (slot0, slot1, slot2, slot3)
+	slot4 = 0
+	slot5 = 0
+
+	if 0 < slot0.mMaxValue then
+		slot4 = slot0.mCurrValue/slot0.mMaxValue*100
+		slot5 = slot1/slot0.mMaxValue*100
+	end
+
+	if math.min(100, slot5) < slot4 then
+		slot4 = slot0.mProgressTimer:getPercentage()
+	end
+
+	if slot0.mAction then
+		slot0.mProgressTimer:stopAction(slot0.mAction)
+
+		if slot0.mProgressLabel then
+			slot0.mProgressLabel:setString(slot0.getProgressStr(slot0))
+		end
+	end
+
+	if slot0.mProgressTimer then
+		slot0.mAction = cc.Sequence:create(slot6)
+
+		slot0.mProgressTimer:runAction(slot0.mAction)
+	end
+
+	if slot1 < 0 then
+		slot0.mCurrValue = 0
+	else
+		slot0.mCurrValue = slot1
+	end
+
+	return 
+end
+slot0.doProgressFiniteTime = function (slot0, slot1, slot2)
+	slot3 = 0
+	slot4 = 0
+
+	if 0 < slot0.mMaxValue then
+		slot4 = slot1/slot0.mMaxValue*100
+	end
+
+	slot4 = math.min(100, slot4)
+
+	if slot0.mAction then
+		slot0.mProgressTimer:stopAction(slot0.mAction)
+
+		slot0.mAction = nil
+	end
+
+	if slot1 < 0 then
+		slot0.mCurrValue = 0
+	else
+		slot0.mCurrValue = slot1
+	end
+
+	if slot0.mProgressTimer then
+		slot0.mProgressTimer:setPercentage(slot4)
+
+		if slot0.mProgressLabel then
+			slot0.mProgressLabel:setString(slot0.getProgressStr(slot0))
+		end
+
+		if slot2 then
+			slot2()
+		end
+	end
+
+	return 
+end
+slot0.getCurrValue = function (slot0)
+	return slot0.mCurrValue
+end
+slot0.getMaxValue = function (slot0)
+	return slot0.mMaxValue
+end
+slot0.setCurrValue = function (slot0, slot1, slot2, slot3, slot4)
+	slot5 = slot2 or 0.3
+
+	if slot4 then
+		if slot0.mCurrValue < slot1 then
+			slot5 = 0
+		end
+	elseif slot1 < slot0.mCurrValue then
+		slot5 = 0
+	end
+
+	if slot5 == 0 then
+		slot0.doProgressFiniteTime(slot0, slot1, slot3)
+	else
+		slot0.doProgress(slot0, slot1, slot5, slot3)
+	end
+
+	return 
+end
+slot0.setMaxValue = function (slot0, slot1)
+	slot0.mMaxValue = slot1
+	slot2 = slot0.getProgressStr(slot0)
+
+	if not tolua.isnull(slot0.mProgressLabel) then
+		slot0.mProgressLabel:setString(slot2)
+	end
+
+	slot0.setCurrValue(slot0, slot0.mCurrValue, 0)
+
+	return 
+end
+slot0.runAction = function (slot0, slot1)
+	slot0.mProgressTimer:runAction(slot1)
+
+	return 
+end
+slot0.setMidpoint = function (slot0, slot1)
+	slot0.mProgressTimer:setMidpoint(slot1)
+
+	return 
+end
+
+return slot0

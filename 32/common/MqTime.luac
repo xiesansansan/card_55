@@ -1,0 +1,206 @@
+MqTime = {
+	toHour = function (slot0, slot1)
+		slot3 = math.floor(math.abs(slot0)%60)
+		slot4 = math.floor((math.abs(slot0)/60)%60)
+
+		if slot1 then
+			return math.floor(slot2/60/60), slot4, slot3
+		else
+			return math.floor(slot2/60/60/24), math.floor((slot2/60/60)%24), slot4, slot3
+		end
+
+		return 
+	end
+}
+MqTime.toDownFormat = function (slot0)
+	slot1, slot2, slot3, slot4 = MqTime.toHour(slot0)
+
+	if 0 < slot1 then
+		return string.format(TR("%d天前"), slot1)
+	elseif 0 < slot2 then
+		return string.format(TR("%d小时前"), slot2)
+	elseif 0 < slot3 then
+		return string.format(TR("%d分钟前"), slot3)
+	elseif 0 < slot4 then
+		return string.format(TR("%d秒前"), slot4)
+	else
+		return string.format(TR("%d秒前"), 1)
+	end
+
+	return 
+end
+MqTime.formatAsDay = function (slot0, slot1, slot2)
+	slot3 = slot1 or {}.sep or ":"
+	slot4 = ""
+	slot5, slot6, slot7, slot8 = MqTime.toHour(slot0)
+
+	if slot1.day or (0 < slot5 and not slot2) then
+		slot4 = slot4 .. slot5 .. TR("天 ")
+	end
+
+	slot6 = (9 < slot6 + ((slot2 and slot5*24) or 0) and tostring(slot6)) or "0" .. slot6
+	slot7 = (9 < slot7 and tostring(slot7)) or "0" .. slot7
+	slot8 = (9 < slot8 and tostring(slot8)) or "0" .. slot8
+
+	if slot1.hour ~= false then
+		slot4 = slot4 .. slot6 .. slot3
+	end
+
+	if slot1.min ~= false then
+		slot4 = slot4 .. slot7
+	end
+
+	if slot1.sec ~= false then
+		slot4 = slot4 .. slot3 .. slot8
+	end
+
+	return slot4
+end
+MqTime.formatAsHour = function (slot0, slot1)
+	slot2 = ""
+	slot3 = slot1 or {}.hour or ":"
+	slot4 = slot1 or {}.min or ":"
+	slot5 = slot1 or {}.sec or ""
+	slot6, slot7, slot8 = MqTime.toHour(slot0, true)
+	slot6 = (9 < slot6 and tostring(slot6)) or "0" .. slot6
+	slot7 = (9 < slot7 and tostring(slot7)) or "0" .. slot7
+	slot8 = (9 < slot8 and tostring(slot8)) or "0" .. slot8
+
+	if slot1.hour ~= false then
+		slot2 = slot2 .. slot6 .. slot3
+	end
+
+	if slot1.min ~= false then
+		slot2 = slot2 .. slot7 .. slot4
+	end
+
+	if slot1.sec ~= false then
+		slot2 = slot2 .. slot8 .. slot5
+	end
+
+	return slot2
+end
+MqTime.completeFormat = function (slot0, slot1)
+	slot2, slot3, slot4, slot5 = MqTime.toHour(slot0)
+	slot6 = (9 < slot3 and tostring(slot3)) or "0" .. slot3
+	slot7 = (9 < slot4 and tostring(slot4)) or "0" .. slot4
+	slot8 = (9 < slot5 and tostring(slot5)) or "0" .. slot5
+	slot9 = ""
+
+	if 0 < slot2 then
+		slot9 = slot2 .. "天"
+	end
+
+	slot9 = slot9 .. slot6 .. "时"
+
+	if slot1 then
+		return slot9
+	end
+
+	slot9 = slot9 .. slot7 .. "分"
+
+	if 0 < slot2 then
+		return slot9
+	elseif 0 < slot3 then
+		return slot9 .. slot8 .. "秒"
+	elseif 0 < slot4 then
+		return slot7 .. "分" .. slot8 .. "秒"
+	else
+		return "0分" .. slot8 .. "秒"
+	end
+
+	return 
+end
+MqTime.isSameDay = function (slot0, slot1)
+	slot2 = os.date("*t", slot0 or 0)
+
+	return slot2.day == os.date("*t", slot1 or 0).day and slot2.month == os.date.month and slot2.year == os.date.year
+end
+MqTime.formatTimestamp = function (slot0, slot1)
+	slot3 = os.date("*t", slot0)
+	slot4 = ""
+	slot5 = {}
+
+	if slot1 or {
+		hour = true,
+		month = true,
+		year = true,
+		min = true,
+		sec = true,
+		day = true
+	}.year == true or slot2.year == true then
+		table.insert(slot5, tostring(slot3.year))
+	end
+
+	if slot2.month == true or slot2.month == true then
+		table.insert(slot5, tostring(slot3.month))
+	end
+
+	if slot2.day == true or slot2.day == true then
+		table.insert(slot5, tostring(slot3.day))
+	end
+
+	for slot9, slot10 in ipairs(slot5) do
+		if 1 < slot9 then
+			slot4 = slot4 .. "-"
+		end
+
+		slot4 = slot4 .. slot10
+	end
+
+	if 0 < #slot5 then
+		slot4 = slot4 .. " "
+	end
+
+	slot6 = {}
+
+	if slot2.hour == true or slot2.hour == true then
+		table.insert(slot6, string.format("%02d", slot3.hour))
+	end
+
+	if slot2.min == true or slot2.min == true then
+		table.insert(slot6, string.format("%02d", slot3.min))
+	end
+
+	if slot2.sec == true or slot2.sec == true then
+		table.insert(slot6, string.format("%02d", slot3.sec))
+	end
+
+	for slot10, slot11 in ipairs(slot6) do
+		if 1 < slot10 then
+			slot4 = slot4 .. ":"
+		end
+
+		slot4 = slot4 .. slot11
+	end
+
+	return slot4
+end
+MqTime.getTimeTickByStr = function (slot0)
+	for slot5, slot6 in ipairs(slot1) do
+		slot1[slot5] = tonumber(slot1[slot5])
+	end
+
+	slot2 = os.date("*t", Player:getCurrentTime())
+
+	return os.time({
+		year = slot2.year,
+		month = slot2.month,
+		day = slot2.day,
+		hour = slot1[1],
+		min = slot1[2],
+		sec = slot1[3]
+	})
+end
+MqTime.getServerLocalTime = function (slot0)
+	return os.date("*t", (slot0 or Player:getCurrentTime()) + (tonumber(os.date("%z", 0))/100 - 8)*3600)
+end
+MqTime.isNight = function ()
+	if 19 <= os.date("*t", Player:getCurrentTime()).hour or slot1 <= 6 then
+		return true
+	end
+
+	return false
+end
+
+return 

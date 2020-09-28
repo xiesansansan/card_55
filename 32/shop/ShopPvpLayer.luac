@@ -1,0 +1,593 @@
+slot0 = class("ShopPvpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 104.69,
+						y = 17.58
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {
+					{
+						name = "mTemplateGrid",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled12-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled8-initParams",
+								name = "cardParams",
+								type = "string"
+							},
+							{
+								value = "untitled9-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled10-modelId",
+								name = "costResId",
+								type = "string"
+							},
+							{
+								value = "untitled9-color",
+								name = "nameColor",
+								type = "string"
+							},
+							{
+								value = "untitled16-hide",
+								name = "hideDiscount",
+								type = "string"
+							},
+							{
+								value = "untitled17-text",
+								name = "discount",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 360.2,
+								y = 208.19
+							}
+						},
+						children = {
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0,
+										y = 107.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0,
+										y = -7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "name",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0,
+										y = 93.33
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 0,
+										y = 25.93
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									align = 1,
+									childName = "buyCountLabel",
+									valign = 0,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 0,
+										y = -18.46
+									},
+									size = {
+										width = 148.15,
+										height = 18
+									},
+									text = TR("今日购买次数已用完")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									hide = true,
+									text = "Label",
+									childName = "progressLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 0,
+										y = -55.23
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "button",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 0,
+										y = -84.29
+									}
+								},
+								children = {
+									{
+										name = "untitled10",
+										cType = "ResLabel",
+										params = {
+											fontSize = 20,
+											modelId = 1111,
+											num = 0,
+											childName = "priceLabel",
+											outlineColor = {
+												g = 24,
+												r = 24,
+												b = 24
+											},
+											pos = {
+												x = -36,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled16",
+								cType = "Sprite",
+								params = {
+									image = "cz_81.png",
+									hide = false,
+									pos = {
+										x = -67.02,
+										y = 59.17
+									}
+								},
+								children = {
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											text = "0",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 26.34,
+												y = 66.82
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 25.47,
+												y = 37.65
+											},
+											text = TR("折")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled15",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mDataList = {}
+	slot0.mPlayerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot2 = Utility.moduleIsOpen(ModuleSub.eHegemony)
+
+	for slot6, slot7 in pairs(PvpShopConfig.items) do
+		for slot11, slot12 in pairs(slot7) do
+			if slot12.sellType == 1 and slot12.previewLvMin <= slot0.mPlayerLv and ((Utility.analysisStrResList(slot12.buyStr)[1].resourceId ~= ResourceTypeSub.eGoldKnife and Utility.analysisStrResList(slot12.buyNeed)[1].resourceId ~= ResourceTypeSub.eGoldKnife) or slot2 or false) then
+				table.insert(slot0.mDataList, slot12)
+			end
+		end
+	end
+
+	table.sort(slot0.mDataList, function (slot0, slot1)
+		return slot0.num < slot1.num
+	end)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if slot0.mDataList[slot2] == nil then
+		return 
+	end
+
+	slot11.nameColor, slot7 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot3.buyStr)[1].resourceId), true)
+	slot3.needResourceId = Utility.analysisStrResList(slot3.buyNeed)[1].resourceId
+	slot3.needNum = Utility.analysisStrResList(slot3.buyNeed)[1].num
+	slot8 = slot0.createLayoutTemplateNode(slot0, "mTemplateGrid", {
+		goodId = slot3.num,
+		cardParams = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(slot3.buyStr)[1].resourceId,
+				num = Utility.analysisStrResList(slot3.buyStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = Resource.getName(Utility.analysisStrResList(slot3.buyStr)[1].resourceId),
+		costResId = Utility.analysisStrResList(slot3.buyNeed)[1].resourceId,
+		nameColor = slot6,
+		hideDiscount = 1 <= tonumber(slot3.discount),
+		discount = (1 > tonumber(slot3.discount) or 0) and tonumber(slot3.discount)*10
+	})
+
+	slot8.setPosition(slot8, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot8)
+
+	slot8.button.GridIndex = slot2
+	slot8.refreshCell = function (slot0)
+		slot0.button.priceLabel:setString(slot0.num)
+
+		slot9, slot3, slot4 = slot1:getRemainCount(slot1.getRemainCount)
+		slot5 = TR("不限购")
+		slot6 = true
+		slot7 = nil
+
+		if slot2.buyLvMin <= slot1.mPlayerLv then
+			if 0 <= slot2 then
+				slot5 = (slot2 == 0 and TR("今日购买次数已用完")) or TR("今日还可购买%d次", slot2)
+
+				if slot2 == 0 then
+					slot0.buyCountLabel:setColor(cc.c3b(234, 44, 0))
+					slot0.buyCountLabel:setFontSize(16)
+				end
+
+				slot6 = 0 < slot2
+				slot7 = slot2
+			elseif 0 <= slot4 then
+				slot5 = (slot4 == 0 and TR("本周购买次数已用完")) or TR("本周还可购买%d次", slot4)
+
+				if slot4 == 0 then
+					slot0.buyCountLabel:setColor(cc.c3b(234, 44, 0))
+				end
+
+				slot6 = 0 < slot4
+				slot7 = slot4
+			elseif 0 <= slot3 then
+				slot5 = (slot3 == 0 and TR("购买次数已用完")) or TR("还可购买%d次", slot3)
+
+				if slot3 == 0 then
+					slot0.buyCountLabel:setColor(cc.c3b(234, 44, 0))
+				end
+
+				slot6 = 0 < slot3
+				slot7 = slot3
+			end
+
+			slot0.buyCountLabel:setString(slot5)
+		else
+			slot0.buyCountLabel:setString(TR("#252525购买等级达到:#EA2C00%d", slot2.buyLvMin))
+		end
+
+		slot0.button:setEnabled(slot6)
+
+		slot0.button.buyCount = slot7
+
+		slot0.button.priceLabel:setString(slot0.num, (slot0.num <= slot1 and cc.c3b(98, 127, 34)) or cc.c3b(211, 22, 22))
+
+		if HeroModel.items[(GoodsModel.items[slot3.resourceId] and GoodsModel.items[slot8].outputModelID) or 0] then
+			slot0.progressLabel:setVisible(true)
+
+			slot10 = ""
+			slot11 = ""
+			slot13 = GoodsObj:getItemCount(slot8)
+
+			if HeroObj:getItem(slot9) and next(slot12) then
+				if HeroStarRelation.items[slot9][slot12.Star + 1] == nil then
+					slot10 = TR("星级已满")
+					slot11 = slot13
+				else
+					slot10 = TR("升星")
+					slot11 = TR("%s/%s", slot13, slot14.needDebrisNum)
+				end
+			else
+				slot10 = TR("合成")
+				slot11 = TR("%s/%s", slot13, GoodsModel.items[slot8].outputNeedNum)
+			end
+
+			slot0.progressLabel:setString(TR("%s: %s", slot10, slot11))
+		else
+			slot0.progressLabel:setVisible(false)
+		end
+
+		return 
+	end
+
+	slot8.refreshCell(slot8)
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.mDataList) do
+		if slot7.num == slot1.goodId then
+			slot2 = clone(slot7)
+
+			break
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if Resource.isEnough(slot2.needResourceId, slot2.needNum) == false then
+		return 
+	end
+
+	if slot0.mPlayerLv < slot2.buyLvMin then
+		ui.showFlashView(TR("%d级可购买", slot2.buyLvMin))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.commBuyGoodSeclectLayer",
+		data = {
+			info = {
+				modelId = Utility.analysisStrResList(slot2.buyStr)[1].resourceId,
+				goodsNum = Utility.analysisStrResList(slot2.buyStr)[1].num,
+				sellTypeID = slot2.needResourceId,
+				sellNum = slot2.needNum,
+				maxNum = math.min(math.floor(Resource.getCount(slot2.needResourceId)/slot2.needNum), slot1.buyCount or 9999)
+			},
+			callBack = function (slot0)
+				slot0:requestBuy(slot1.sellType, slot1.num, slot0, slot2.GridIndex)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.reloadBuyInfoData = function (slot0, slot1)
+	slot0.buyInfoList = nil
+	slot2 = ipairs
+	slot3 = slot1 or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		if slot6.SellType == 1 then
+			slot0.buyInfoList = slot6.ShopInfo
+
+			break
+		end
+	end
+
+	return 
+end
+slot0.getRemainCount = function (slot0, slot1)
+	slot2 = -1
+	slot3 = -1
+	slot4 = -1
+	slot5 = {}
+	slot6 = pairs
+	slot7 = slot0.buyInfoList or {}
+
+	for slot9, slot10 in slot6(slot7) do
+		if slot10.Num == slot1.num then
+			slot5 = slot10
+
+			break
+		end
+	end
+
+	if 0 < slot1.dailyBuyNum then
+		slot2 = slot1.dailyBuyNum - (slot5.BuyNum or 0)
+	end
+
+	if 0 < slot1.lifeBuyNum then
+		slot3 = slot1.lifeBuyNum - (slot5.BuyTotalNum or 0)
+	end
+
+	if 0 < slot1.weeklyBuyNum then
+		slot4 = slot1.weeklyBuyNum - (slot5.BuyWeekNum or 0)
+	end
+
+	return slot2, slot3, slot4
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "PvpShop",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:reloadBuyInfoData(slot0.PvpShopInfo)
+			slot0.mGridView:setItemNum(#slot0.mDataList)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1, slot2, slot3, slot4)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopBuy",
+		moduleName = "PvpShop",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			slot0:reloadBuyInfoData(slot0.PvpShopInfo)
+
+			for slot4 = 1, #slot0.mDataList, 1 do
+				slot0.mGridView:refreshCell(slot4)
+			end
+
+			ui.showFlashView(TR("购买成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

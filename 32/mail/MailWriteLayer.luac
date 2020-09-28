@@ -1,0 +1,261 @@
+slot0 = class("MailWriteLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			okCallback = "onSendAction",
+			okText = TR("发送"),
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 400
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 74.16,
+						y = 314.51
+					},
+					text = TR("收件人")
+				},
+				children = {}
+			},
+			{
+				name = "nameEditBox",
+				cType = "EditBox",
+				params = {
+					image = "c_41.png",
+					enabled = false,
+					pos = {
+						x = 256.61,
+						y = 316.39
+					},
+					size = {
+						width = 250,
+						height = 44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 85.44,
+						y = 252.22
+					},
+					text = TR("邮件主题")
+				},
+				children = {}
+			},
+			{
+				name = "titleEditBox",
+				cType = "EditBox",
+				params = {
+					image = "c_41.png",
+					fontColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					placeHolder = TR("最多8个字"),
+					pos = {
+						x = 305.7,
+						y = 254.38
+					},
+					size = {
+						width = 350,
+						height = 44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "contentEditBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 22,
+					image = "c_94.png",
+					multiLine = true,
+					fontColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					placeHolder = TR("最多50个字"),
+					pos = {
+						x = 260,
+						y = 158.83
+					},
+					size = {
+						width = 440,
+						height = 140
+					}
+				},
+				children = {}
+			},
+			{
+				name = "chooseBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onChooseAction",
+					pos = {
+						x = 439.62,
+						y = 315.59
+					},
+					titleText = TR("选择")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mailType = slot1.mailType
+	slot0.mAddressee = slot1.addressee or nil
+	slot0.targetId = slot1.playerId or nil
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.mailType == Enums.MailType.eGuild or slot0.mAddressee then
+		slot0.nameEditBox:setText(TR("帮派全体成员"))
+
+		if slot0.mAddressee then
+			slot0.nameEditBox:setText(TR("%s", slot0.mAddressee))
+		end
+
+		slot0.nameEditBox.editbox:setEnabled(false)
+		slot0.chooseBtn:setVisible(false)
+	end
+
+	return 
+end
+slot0.onChooseAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "mail.MailSelectTargetLayer",
+		data = {
+			callback = function (slot0)
+				if slot0 then
+					slot0.nameEditBox:setText(slot0.name)
+
+					slot0.targetId = slot0.playerId
+				end
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onSendAction = function (slot0)
+	if slot0.mailType ~= Enums.MailType.eGuild and (not slot0.targetId or string.len(slot0.targetId) == 0) then
+		ui.showFlashView(TR("请选择发送对象"))
+
+		return 
+	end
+
+	if not slot0.titleEditBox:getText() or string.len(slot1) == 0 then
+		ui.showFlashView(TR("请输入邮件主题"))
+
+		return 
+	end
+
+	if 8 < string.utf8len(slot1) then
+		ui.showFlashView(TR("标题不能超过8个字"))
+
+		return 
+	end
+
+	if not slot0.contentEditBox:getText() or string.len(slot2) == 0 then
+		ui.showFlashView(TR("请输入邮件内容"))
+
+		return 
+	end
+
+	if 50 < string.utf8len(slot2) then
+		ui.showFlashView(TR("内容不能超过50个字"))
+
+		return 
+	end
+
+	function slot3()
+		ui.showFlashView(TR("发送邮件成功"))
+		LayerManager.removeLayer(LayerManager.removeLayer)
+
+		return 
+	end
+
+	if slot0.mailType == Enums.MailType.eGuild then
+		slot0.socketRequest(slot0, {
+			methodName = "SendSCorpsEmail",
+			moduleName = "PlayerEmail",
+			methodData = {
+				PlayerAttrObj:getPlayerAttrByName("GuildInfo") or {}.GuildId,
+				slot1,
+				slot2
+			},
+			successCallback = slot3
+		})
+	else
+		slot0.socketRequest(slot0, {
+			methodName = "SendPersonalEmail",
+			moduleName = "PlayerEmail",
+			methodData = {
+				slot0.targetId,
+				slot1,
+				slot2
+			},
+			successCallback = slot3
+		})
+	end
+
+	return 
+end
+
+return slot0

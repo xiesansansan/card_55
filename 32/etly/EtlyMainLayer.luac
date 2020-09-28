@@ -1,0 +1,1378 @@
+slot0 = class("EtlyMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite0",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "dgjz_22.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "thunderEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					complete = "onThunderEffect",
+					dataFile = "effect_ui_dugujianzhong",
+					isPlayAnimation = true,
+					animation = "lie",
+					pos = {
+						x = 918.29,
+						y = 257.97
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bgSprite1",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "dgjz_2.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mScrollView",
+		cType = "ScrollView",
+		params = {
+			sizeApt = 1,
+			direction = 2,
+			posApt = 1,
+			conSize = {
+				width = 3400,
+				height = 578.08
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "ItemLayout",
+				cType = "TemplateNode",
+				params = {
+					scaleApt = 2,
+					pos = {
+						x = 56.31,
+						y = 0.72
+					},
+					size = {
+						width = 282.9,
+						height = 539.62
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "Sprite",
+						params = {
+							image = "dgjz_16.png",
+							pos = {
+								x = 134.17,
+								y = 45.31
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled43",
+						cType = "Node",
+						params = {
+							childName = "heroNode",
+							pos = {
+								x = 139.51,
+								y = 135.6
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "Label",
+						params = {
+							text = "",
+							childName = "levelLimit",
+							pos = {
+								x = 121.22,
+								y = 92.69
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Node",
+						params = {
+							childName = "resNode",
+							pos = {
+								x = 118.88,
+								y = 39.87
+							}
+						},
+						children = {}
+					},
+					{
+						name = "ResTemp",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 100.19,
+								y = 32.1
+							}
+						},
+						children = {
+							{
+								name = "untitled40",
+								cType = "Scale9Sprite",
+								params = {
+									image = "dgjz_4.png",
+									pos = {
+										x = 15.57,
+										y = 14.24
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled31",
+								cType = "Label",
+								params = {
+									childName = "reviewLabel",
+									pos = {
+										x = 15.06,
+										y = 28.51
+									},
+									text = TR("奖励预览")
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "Node",
+								params = {
+									childName = "resNode",
+									pos = {
+										x = 5.54,
+										y = -8.42
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "notBoxFap",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled28",
+								cType = "Sprite",
+								params = {
+									scale = 0.72,
+									image = "c_82.png",
+									pos = {
+										x = 142.66,
+										y = 105.12
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Sprite",
+								params = {
+									scale = 0.72,
+									image = "c_101.png",
+									pos = {
+										x = 86.79,
+										y = 104.35
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									text = "1",
+									charCount = 12,
+									scale = 0.72,
+									fontName = "c_81.png",
+									childName = "fapLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 134.49,
+										y = 103.21
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "notBoxLevel",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "dgjz_3.png",
+									pos = {
+										x = 213.21,
+										y = 364.76
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									childName = "levelLabel",
+									pos = {
+										x = 212.11,
+										y = 376.2
+									},
+									size = {
+										width = 18,
+										height = 0
+									},
+									text = TR("第一层")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mRightBtn",
+				cType = "Button",
+				params = {
+					image = "c_4.png",
+					clickAction = "onRightBtnClickAction",
+					rotationAngle = 180,
+					pos = {
+						x = -50,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "TopResourceNode",
+				params = {
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = -499.31,
+						y = -50.16
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					clickAction = "onClose",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "dgjz_1.png",
+							pos = {
+								x = 35.96,
+								y = 5.57
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnClickAction",
+					pos = {
+						x = 275.84,
+						y = -26.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "challengeBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_18.png",
+					clickAction = "onEliteFight",
+					pos = {
+						x = 78.99,
+						y = -112.04
+					}
+				},
+				children = {
+					{
+						name = "untitled47",
+						cType = "RedDot",
+						params = {
+							subKey = "Elite",
+							moduleId = 4002
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRewardBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_19.png",
+					clickAction = "onReward",
+					pos = {
+						x = 263.44,
+						y = -112.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRankBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_12.png",
+					clickAction = "onRank",
+					pos = {
+						x = 355.04,
+						y = -112.02
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					image = "tb_gn_17.png",
+					clickAction = "onStore",
+					pos = {
+						x = 171.76,
+						y = -111.7
+					}
+				},
+				children = {
+					{
+						name = "untitled51",
+						cType = "RedDot",
+						params = {
+							moduleId = 4001
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled48",
+				cType = "Button",
+				params = {
+					image = "tb_gn_283.png",
+					clickAction = "onEtlyTaskLayer",
+					pos = {
+						x = 446.14,
+						y = -112.48
+					}
+				},
+				children = {
+					{
+						name = "untitled49",
+						cType = "RedDot",
+						params = {
+							subKey = "EtlyFristReward",
+							moduleId = 4002
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled50",
+				cType = "Button",
+				params = {
+					image = "tb_gn_14.png",
+					clickAction = "onCampReady",
+					pos = {
+						x = 355.04,
+						y = -112.02
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled22",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			hide = true,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onQuickFight",
+					pos = {
+						x = -316.22,
+						y = 51
+					},
+					titleText = TR("扫荡")
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onReset",
+					pos = {
+						x = -144.25,
+						y = 50.97
+					},
+					titleText = TR("重置")
+				},
+				children = {}
+			},
+			{
+				name = "leftResetCount",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					pos = {
+						x = -143.9,
+						y = 94.17
+					},
+					text = TR("剩余1次")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "autoHookLayer",
+		cType = "FileLayer",
+		params = {
+			file = "etly.EtlyAutoHookSubLayer",
+			delayInit = true,
+			initParams = {}
+		},
+		children = {}
+	}
+}
+slot1 = 11
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	function slot1(slot0)
+		for slot4, slot5 in pairs(EtlyNodeModel.items) do
+			if slot5.nextNodeId == slot0 then
+				return slot5.modelId
+			end
+		end
+
+		return 
+	end
+
+	slot0.allNodesArePassed = false
+	slot0.mNodeList = {}
+	slot0.curNodeID = (slot0.etlyData.CommonCurNodeId == 0 and 100001) or EtlyNodeModel.items[slot0.etlyData.CommonCurNodeId].nextNodeId
+
+	if slot0.curNodeID == 0 then
+		slot0.allNodesArePassed = true
+	end
+
+	slot3 = 0
+	slot3 = (2 <= slot0.curNodeID/100000 and 10) or (slot0.curNodeID%10 == 0 and 9) or slot0.curNodeID%10 - 1
+
+	for slot8 = 1, slot3, 1 do
+		slot2 = slot1(slot2)
+	end
+
+	slot5 = 1
+
+	for slot9 = 1, slot0, 1 do
+		if slot2 == slot0.curNodeID then
+			slot5 = 2
+		elseif slot5 == 2 then
+			slot5 = 3
+		end
+
+		table.insert(slot0.mNodeList, {
+			nodeData = EtlyNodeModel.items[slot2],
+			nodeStatus = slot5
+		})
+
+		if slot2 ~= 0 then
+			slot2 = EtlyNodeModel.items[slot2].nextNodeId
+		end
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if true then
+		slot0.mRewardBtn:setVisible(false)
+		slot0.mRankBtn:setPosition(cc.p(slot0.mRewardBtn:getPosition()))
+	end
+
+	slot2 = slot0.bgSprite0:getBoundingBox().width
+	slot3 = slot0.bgSprite1:getBoundingBox().width
+	slot4 = display.ySafeScale*3400
+	slot5 = slot0.mScrollView:getContentSize().width
+
+	slot0.mScrollView:onScroll(function (slot0)
+		if slot0.name == "CONTAINER_MOVED" then
+			slot1 = slot0.mScrollView:getInnerContainer()
+			slot2 = slot1.getPosition(slot1)
+
+			slot0.bgSprite0:setPositionX(slot3)
+			slot0.bgSprite1:setPositionX(slot4)
+
+			if slot0:convertToNodeSpace(slot6).x - slot0.mHeroList[#slot0.mHeroList].getBoundingBox(slot5).width/2 < slot0:getContentSize().width then
+				slot0.mRightBtn:setVisible(false)
+			else
+				slot0.mRightBtn:setVisible(true)
+			end
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onThunderEffect = function (slot0)
+	Utility.performWithDelay(slot0, function ()
+		slot0.thunderEffect:playAnimation("lie", 1)
+
+		return 
+	end, math.random(1, 5))
+
+	return 
+end
+slot0.refreshNPC = function (slot0, slot1, slot2)
+	slot3 = 3
+	slot4 = nil
+
+	for slot8 = 1, #slot0.mNodeList, 1 do
+		if slot0.mNodeList[slot8].nodeStatus == 2 and slot3 <= slot8 then
+			slot4 = slot8 - 2
+		end
+	end
+
+	if slot4 then
+		if slot0.mScrollView:getContentSize().width - slot0.mScrollView:getInnerContainer():getContentSize().width < -(slot0.mScrollView:getInnerContainer():getContentSize().width/slot0)*slot4 then
+			slot0.mScrollView:scrollToPercentHorizontal((slot6*slot4)/math.abs(slot5)*100, 0.01, true)
+		else
+			slot0.mScrollView:scrollToPercentHorizontal(100, 0.01, true)
+		end
+	end
+
+	slot0.mScrollView:removeAllChildren()
+
+	slot0.mHeroList = {}
+
+	for slot8, slot9 in ipairs(slot0.mNodeList) do
+		if not slot0.mNodeList[slot8].nodeData then
+			break
+		end
+
+		slot11 = slot0.mNodeList[slot8].nodeStatus
+		slot12 = slot0.createLayoutTemplateNode(slot0, "ItemLayout", {})
+
+		slot12.setAnchorPoint(slot12, 0.5, 0)
+		table.insert(slot0.mHeroList, slot12)
+		slot12.setPosition(slot12, ({
+			cc.p(slot0.mScrollView:getInnerContainer():getContentSize().width/slot0/2, 60),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*1, 0),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*2, 60),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*3, 0),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*4, 60),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*5, 0),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*6, 60),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*7, 0),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*8, 60),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*9, 0),
+			cc.p(slot0.mScrollView.getInnerContainer().getContentSize().width/slot0/2 + slot0.mScrollView.getInnerContainer().getContentSize().width/slot0*10, 60)
+		})[slot8])
+		slot0.mScrollView:addChild(slot12)
+
+		slot16, slot17 = nil
+
+		if slot10.modelId == slot0.curNodeID and not slot10.ifSpecialBox then
+			slot0.createLayoutTemplateNode(slot0, "ResTemp", {
+				reviewLabel = (slot0.allNodesArePassed and TR("恭喜通关所有关卡！")) or TR("奖励预览")
+			}).setPosition(slot17, 0, 0)
+			slot12.resNode:addChild(slot17)
+
+			for slot22, slot23 in ipairs(slot18) do
+				slot17.resNode:addChild(UIWrap.newControl("ResLabel", {
+					modelId = slot23.resourceId,
+					num = slot23.num,
+					pos = cc.p((slot22 - 1)*80 + -60, 10)
+				}))
+			end
+		end
+
+		if slot10.ifSpecialBox == true then
+			slot12.notBoxFap:setVisible(false)
+			slot12.notBoxLevel:setVisible(false)
+
+			slot18 = "dgjz_15.png"
+
+			if slot11 == 1 then
+				slot18 = "jcgn_4.png"
+			end
+
+			slot19 = UIWrap.newControl("Button", {
+				image = slot18,
+				clickAction = function ()
+					if slot0 == 2 then
+						slot1:socketRequest({
+							methodName = "FightCommonNode",
+							moduleName = "EtlyInfo",
+							methodData = {
+								{
+									true,
+									true
+								},
+								{
+									"",
+									""
+								}
+							},
+							successCallback = function (slot0)
+								slot0.etlyData = slot0.BaseInfo
+
+								ui.showFlashReward(slot0)
+								slot0:dealData()
+								slot0:refreshNPC()
+								slot0.mScrollView:scrollToLeft(1.2, false)
+
+								return 
+							end
+						})
+					elseif slot0 == 3 then
+						LayerManager.addLayer({
+							cleanUp = false,
+							name = "commonlayer.DlgRewardShowLayer",
+							data = {
+								title = TR("奖励预览"),
+								rewardStr = slot2.boxReward
+							},
+							zOrder = Enums.ZOrderType.ePopLayer
+						})
+					end
+
+					return 
+				end
+			})
+
+			slot19.setPosition(slot19, -2, 25)
+			slot12.heroNode:addChild(slot19)
+
+			if slot11 == 1 then
+				slot19.setTouchEnabled(slot19, false)
+			elseif slot11 == 2 then
+				slot20 = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					scale = 1,
+					dataFile = "effect_ui_dugujianzhongbaoxiang"
+				})
+
+				slot20.setPosition(slot20, 0, 26)
+				slot12.heroNode:addChild(slot20)
+			end
+		elseif slot11 ~= 1 then
+			slot18 = UIWrap.newControl("Sprite", {
+				image = "dgjz_23.png"
+			})
+
+			slot18.setPosition(slot18, 0, -10)
+			slot12.heroNode:addChild(slot18)
+
+			slot19 = true
+			slot20 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+			if slot11 == 2 then
+				if EtlyNodeModel.items[slot0.curNodeID + 5] and slot20 < slot22.needPlayerLv then
+					slot19 = false
+				elseif not Utility.isCompleteFormation(slot0.etlyData.FormationInfo[1].FormationInfo) or not Utility.isCompleteFormation(slot0.etlyData.FormationInfo[2].FormationInfo) then
+					slot19 = false
+				elseif not EtlyNodeModel.items[EtlyConfig.items[1].challengeNodeNum + slot10.modelId] then
+					slot19 = false
+				else
+					for slot26, slot27 in pairs(slot0.etlyData.CommonNexNodeNpc) do
+						slot28 = 0
+
+						for slot32, slot33 in pairs(slot27) do
+							slot28 = slot28 + slot33.Fap
+						end
+
+						slot29 = 0
+
+						for slot33, slot34 in pairs(string.splitBySep(slot0.etlyData.FormationInfo[tonumber(slot26)].FormationInfo, ",")) do
+							slot29 = slot29 + Utility.getHeroFap(slot34)
+						end
+
+						if 0 < slot29 then
+							slot29 = slot29 + Player:getGameData("Push_SkillTotalFap")
+						end
+
+						if slot29 < slot28*1.2 then
+							slot19 = false
+
+							break
+						end
+					end
+				end
+			end
+
+			for slot25, slot26 in pairs(slot21) do
+				UIWrap.newControl("FigureHero", {
+					scale = 1.1,
+					stepLv = 0,
+					flipX = true,
+					heroModelId = tonumber(slot26),
+					clickAction = function ()
+						if slot0 == 2 then
+							if slot2.needPlayerLv <= slot1 then
+								if slot3 then
+									slot4:jumpFight()
+								else
+									LayerManager.addLayer({
+										cleanUp = false,
+										name = "etly.DlgEtlyBattleTeamLayer",
+										data = {
+											campCallback = handler(slot4, slot4.onCampReady),
+											npcData = slot2,
+											npcHeroData = slot4.etlyData.CommonNexNodeNpc,
+											formationList = slot4:getFormation(),
+											fightCallback = handler(slot4, slot4.onFight),
+											exchangeCallback = function ()
+												slot0.etlyData.FormationInfo[2] = slot0.etlyData.FormationInfo[1]
+												slot0.etlyData.FormationInfo[1] = slot0.etlyData.FormationInfo[2]
+
+												return 
+											end
+										},
+										zOrder = Enums.ZOrderType.ePopLayer
+									})
+								end
+							else
+								ui.showFlashView(TR("等级达到%d级可挑战", slot2.needPlayerLv))
+							end
+						elseif slot0 == 3 then
+							ui.showFlashView(TR("请先通过上层关卡！"))
+						end
+
+						return 
+					end
+				}):setPosition((slot25 == 1 and -40) or 40, 0)
+				slot12.heroNode:addChild(slot27)
+			end
+
+			if slot11 == 2 and slot19 then
+				slot22 = UIWrap.newControl("Sprite", {
+					image = "sddh_2.png",
+					scaleX = 1
+				})
+
+				slot22.runAction(slot22, cc.RepeatForever:create(cc.Sequence:create({
+					cc.ScaleTo:create(0.5, 0.9),
+					cc.DelayTime:create(0.18),
+					cc.ScaleTo:create(0.5, 0.7)
+				})))
+				slot22.setPosition(slot22, 0, 80)
+				slot12.heroNode:addChild(slot22)
+			end
+		else
+			slot12.notBoxFap:setVisible(false)
+
+			if slot1 and slot2 and slot10.modelId == slot2 then
+				MqAudio.playEffect("dugujianzong.mp3")
+
+				slot18 = nil
+
+				UIWrap.newControl("Effect", {
+					loop = false,
+					animation = "jian",
+					scale = 1,
+					dataFile = "effect_ui_dugujianzhong",
+					complete = function ()
+						slot0:setTimePercent(1)
+
+						return 
+					end
+				}).setPosition(slot18, 0, 0)
+				slot12.heroNode:addChild(UIWrap.newControl("Effect", {
+					loop = false,
+					animation = "jian",
+					scale = 1,
+					dataFile = "effect_ui_dugujianzhong",
+					complete = function ()
+						slot0.setTimePercent(1)
+
+						return 
+					end
+				}))
+			else
+				slot18 = UIWrap.newControl("Effect", {
+					loop = false,
+					animation = "jian",
+					scale = 1,
+					dataFile = "effect_ui_dugujianzhong"
+				})
+
+				slot18.setTimePercent(slot18, 1)
+				slot18.setPosition(slot18, 0, 0)
+				slot12.heroNode:addChild(slot18)
+			end
+		end
+
+		slot12.notBoxLevel.levelLabel:setString(string.format("第%s层", Utility.getChineseNum(slot10.showNumC)))
+
+		if slot11 ~= 1 and slot10.ifSpecialBox == false then
+			if PlayerAttrObj:getPlayerAttrByName("Lv") < slot10.needPlayerLv then
+				slot12.levelLimit:setString(TR("%d级开启", slot10.needPlayerLv))
+			end
+
+			slot12.notBoxFap.fapLabel:setString(Utility.numberWithUnit(slot10.fapNeedShow))
+		end
+	end
+
+	slot0.mScrollView:stopAllActions()
+
+	return 
+end
+slot0.refreshMianban = function (slot0)
+	slot0.leftResetCount:setString(TR("剩余重置次数: %d", slot0.etlyData.CommonResetNum + math.max(slot0.getVipResetTotalCount(slot0) - slot0.etlyData.TodayBuyCommonResetNum, 0)))
+
+	return 
+end
+slot0.getVipResetTotalCount = function (slot0)
+	slot2 = nil
+
+	if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")] then
+		slot2 = VipConfig.items[slot1].etlyResetNum
+	end
+
+	return slot2 or VipConfig.items[VipConfig.items_count - 1].etlyResetNum
+end
+slot0.onReset = function (slot0)
+	slot1 = VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].etlyResetNum
+	slot2 = ""
+	slot3 = false
+
+	if 0 < slot0.etlyData.CommonResetNum then
+		slot2 = "是否免费重置关卡?"
+	elseif slot1 == 0 then
+		slot2 = "会员等级不足，提升会员等级可增加重置次数"
+		slot3 = true
+	elseif slot1 <= slot0.etlyData.TodayBuyCommonResetNum then
+		slot2 = "今日重置次数已经用完"
+		slot3 = true
+	elseif slot0.etlyData.TodayBuyCommonResetNum < slot1 then
+		slot2 = TR("是否花费%s元宝重置关卡?", string.split(EtlyConfig.items[1].resetNeed, ",")[3])
+	end
+
+	ui.showMessageBox({
+		titleText = "提示",
+		text = slot2,
+		msgBoxParams = {
+			needTouchClose = true
+		},
+		okCallback = (not slot3 and function ()
+			slot0:socketRequest({
+				methodName = "ResetCommonNode",
+				moduleName = "EtlyInfo",
+				methodData = {},
+				successCallback = function (slot0)
+					slot0.etlyData = slot0.BaseInfo
+
+					slot0:dealData()
+					slot0:refreshNPC()
+
+					return 
+				end
+			})
+
+			return 
+		end) or nil
+	})
+
+	return 
+end
+slot0.onQuickFight = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "SweepCommonNode",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.etlyData = slot0.BaseInfo
+
+			slot0:dealData()
+			slot0:refreshNPC()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "etly.DlgSweepBanditsResultLayer",
+				data = {
+					showList = slot0
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRuleBtnClickAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、每通关一定层数可以解锁精英挑战"),
+			TR("2、成功挑战精英挑战可以获得大量神兵相关道具"),
+			TR("3、首次通关层数挑战，可以获得对应奖励"),
+			TR("4、每日可在剑窟试炼领取挂机奖励")
+		}
+	})
+
+	return 
+end
+slot0.onEtlyTaskLayer = function (slot0)
+	table.sort(slot1, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot1) do
+		if slot7/100000 < 2 then
+			slot2[slot6] = slot2[slot6] or {}
+			slot2[slot6].passed = false
+			slot2[slot6].nodeId = slot7
+		end
+	end
+
+	slot3 = slot0.etlyData.CommonMaxNodeId
+
+	if 2 < slot0.etlyData.CommonMaxNodeId/100000 then
+		slot3 = EtlyNodeModel.items[slot0.etlyData.CommonMaxNodeId].nextNodeId - 1
+	end
+
+	if slot0.etlyData.CommonMaxNodeId ~= 0 then
+		for slot7, slot8 in ipairs(slot2) do
+			if slot8.nodeId <= slot3 then
+				slot8.passed = true
+			end
+		end
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "etly.DlgEtlyTaskLayer",
+		data = {
+			rewardList = slot0.etlyData.FristRewardStr,
+			nodeIdList = slot2,
+			callback = function (slot0)
+				slot0.etlyData.FristRewardStr = slot0
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRightBtnClickAction = function (slot0)
+	slot0.mScrollView:scrollToRight(1.2, false)
+	slot0.mRightBtn:setVisible(false)
+
+	return 
+end
+slot0.onEliteFight = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "etly.EtlyChallengeLayer",
+		popRestore = true,
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			etlyData = slot0.etlyData,
+			callFunc = function (slot0)
+				slot0.etlyData = slot0
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onStore = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eEtlyShop)
+
+	return 
+end
+slot0.onReward = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "etly.EtlyRewardLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			etlyData = slot0.etlyData
+		}
+	})
+
+	return 
+end
+slot0.onRank = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "etly.EtlyRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getFormation = function (slot0, slot1)
+	slot2 = {}
+
+	if not slot1 then
+		for slot6, slot7 in ipairs(slot0.etlyData.FormationInfo) do
+			slot2[slot6] = {
+				FormationInfo = slot7.FormationInfo .. "," .. tostring(slot7.StrategyId)
+			}
+		end
+	else
+		for slot6, slot7 in ipairs(slot0.etlyData.FormationInfo) do
+			slot2[slot6] = slot7.FormationInfo .. "," .. tostring(slot7.StrategyId)
+		end
+	end
+
+	return slot2
+end
+slot0.onCampReady = function (slot0)
+	slot2 = nil
+	slot2 = LayerManager.addLayer({
+		cleanUp = false,
+		name = "feiji.FeiJiCampReadyLayer",
+		data = {
+			minCount = 5,
+			noNeedVit = true,
+			fromEtly = true,
+			teamTotalNum = 2,
+			teamData = slot0.getFormation(slot0),
+			callModelSub = ModuleSub.eEtly,
+			titleText = TR("布  阵"),
+			callback = function (slot0)
+				for slot5, slot6 in ipairs(slot1) do
+					slot1[slot5] = slot1[slot5] .. ",0"
+				end
+
+				if 2 <= slot0.curNodeID/100000 then
+					ui.showFlashView(TR("奖励节点不可挑战"))
+					LayerManager.removeLayer(slot1)
+				else
+					slot0:onFight(slot1)
+				end
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onFight = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCommonNodeFightInfo",
+		moduleName = "EtlyInfo",
+		methodData = {
+			slot1 or slot0.getFormation(slot0, true)
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo[1],
+				extraData = {
+					curFightId = 1,
+					allFightData = slot0.FightInfo,
+					battleResult = {}
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetBaseInfo",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.etlyData = slot0.BaseInfo
+			slot5, slot6 = EtlyObj:setData(slot0)
+
+			slot0:dealData()
+			slot0:refreshNPC(slot1, slot2)
+			slot0:createUISubTree("autoHookLayer", function (slot0, slot1)
+				if slot0.name == "autoHookLayer" then
+					slot1.initParams = {
+						isActivity = 0 < slot0.etlyData.CommonMaxNodeId,
+						freeTime = slot0.etlyData.FreeGetTimeOutNum,
+						callback = function (slot0)
+							slot0.etlyData.FreeGetTimeOutNum = slot0
+
+							return 
+						end
+					}
+				end
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.refreshBreakNode = function (slot0)
+	if slot0.etlyData == nil or slot0.etlyData.BreakNodeId == nil or slot0.etlyData.BreakNodeId == 0 then
+		return 
+	end
+
+	if EtlyNodeModel.items[slot0.etlyData.BreakNodeId] == nil then
+		return 
+	end
+
+	ui.showMessageBox({
+		msgBoxParams = {
+			hideCloseButton = true,
+			needTouchClose = false
+		},
+		titleText = TR("提示"),
+		text = TR("根据您的战力系统会自动战斗至#258711%s", slot1.name),
+		okCallback = function (slot0)
+			slot0:requestBreakCommonNode()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBreakCommonNode = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BreakCommonNode",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.etlyData = slot0.BaseInfo
+			slot5, slot6 = EtlyObj:setData(slot0)
+
+			slot0:dealData()
+			slot0:refreshNPC(slot1, slot2)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.jumpFight = function (slot0)
+	if not slot0.mJumping then
+		slot0.mJumping = true
+
+		slot0.socketRequest(slot0, {
+			methodName = "BreakCurrCommonNode",
+			moduleName = "EtlyInfo",
+			methodData = {},
+			successCallback = function (slot0)
+				slot0.etlyData = slot0.BaseInfo
+				slot5, slot6 = EtlyObj:setData(slot0)
+
+				slot0:dealData()
+				slot0:refreshNPC(slot1, slot2)
+				slot0.autoHookLayer:getHookInfo()
+				Utility.performWithDelay(slot0, function ()
+					ui.showFlashView(TR("您的战力已超过推荐战力20%，直接获胜。"))
+
+					return 
+				end, 0.2)
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+
+				if slot0.mJumping then
+					slot0.mJumping = false
+				end
+
+				return 
+			end,
+			failedCallback = function ()
+				if slot0.mJumping then
+					slot0.mJumping = false
+				end
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+
+return slot0

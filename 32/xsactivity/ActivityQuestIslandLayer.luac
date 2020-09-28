@@ -1,0 +1,1351 @@
+slot0 = class("ActivityQuestIslandLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mTopBg",
+				cType = "Sprite",
+				params = {
+					image = "sbg_1.png",
+					pos = {
+						x = -166.33,
+						y = 1.25
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "sbg_2.png",
+							pos = {
+								x = 245.73,
+								y = 443.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xshd_3.png",
+							pos = {
+								x = 245.32,
+								y = -25.02
+							},
+							size = {
+								width = 350,
+								height = 28
+							}
+						},
+						children = {}
+					},
+					{
+						name = "remainCountLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 3,
+								y = -62
+							},
+							text = TR("剩余次数")
+						},
+						children = {}
+					},
+					{
+						name = "rechargeNumLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 220.14,
+								y = -26.68
+							},
+							text = TR("再充值xxxx元，获得一次寻宝机会")
+						},
+						children = {}
+					},
+					{
+						name = "remainTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 3,
+								y = -89
+							},
+							text = TR("倒计时")
+						},
+						children = {}
+					},
+					{
+						name = "mHeroNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 31.74,
+								y = 306.69
+							},
+							size = {
+								width = 74,
+								height = 94
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "sbg_4.png",
+									pos = {
+										x = 36.32,
+										y = 47.17
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled13",
+						cType = "Button",
+						params = {
+							image = "tb_gn_75.png",
+							clickAction = "onBtnRechargeAction",
+							pos = {
+								x = 442.01,
+								y = -57.94
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled49",
+						cType = "Button",
+						params = {
+							image = "c_3.png",
+							clickAction = "onBtnRuleAction",
+							pos = {
+								x = 130.57,
+								y = 504.89
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 321.58,
+						y = -16.39
+					},
+					size = {
+						width = 490,
+						height = 540
+					}
+				},
+				children = {
+					{
+						name = "sRewardBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "sbg_5.png",
+							pos = {
+								x = 245.14,
+								y = 462
+							},
+							size = {
+								width = 438,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "Sprite",
+								params = {
+									image = "sbg_6.png",
+									pos = {
+										x = 24.27,
+										y = 45.11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									pos = {
+										x = 57.21,
+										y = 4.37
+									},
+									size = {
+										width = 260,
+										height = 78
+									}
+								},
+								children = {
+									{
+										name = "mTemplateRewardCell",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 80,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "untitled22",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													childName = "cardNode",
+													allowClick = true,
+													pos = {
+														x = 40,
+														y = 40
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled23",
+												cType = "Sprite",
+												params = {
+													childName = "selectSprite",
+													image = "c_44.png",
+													hide = true,
+													pos = {
+														x = 41.67,
+														y = 40.12
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled24",
+												cType = "Sprite",
+												params = {
+													childName = "ownedSprite",
+													scale = 0.8,
+													hide = true,
+													image = "c_55.png",
+													pos = {
+														x = 40.72,
+														y = 38.66
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled25",
+								cType = "Scale9Sprite",
+								params = {
+									image = "sbg_10.png",
+									pos = {
+										x = 375.74,
+										y = 45
+									},
+									size = {
+										width = 105,
+										height = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									childName = "label",
+									valign = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 375.67,
+										y = 44.49
+									},
+									size = {
+										width = 105,
+										height = 70
+									},
+									text = TR("选择1个奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled53",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_guangjizhushou_tishikuang",
+									hide = true,
+									scaleY = 0.6,
+									scaleX = 0.75,
+									childName = "liubianEffect",
+									animation = "xiao",
+									pos = {
+										x = 219,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "aRewardBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "sbg_5.png",
+							pos = {
+								x = 245.14,
+								y = 362
+							},
+							size = {
+								width = 438,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled28",
+								cType = "Sprite",
+								params = {
+									image = "sbg_7.png",
+									pos = {
+										x = 24.27,
+										y = 45.11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									pos = {
+										x = 57.21,
+										y = 5.37
+									},
+									size = {
+										width = 260,
+										height = 78
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "Scale9Sprite",
+								params = {
+									image = "sbg_10.png",
+									pos = {
+										x = 375.74,
+										y = 45
+									},
+									size = {
+										width = 105,
+										height = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled35",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									childName = "label",
+									valign = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 375.67,
+										y = 44.49
+									},
+									size = {
+										width = 105,
+										height = 75
+									},
+									text = TR("选择1个奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled52",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_guangjizhushou_tishikuang",
+									hide = true,
+									scaleY = 0.6,
+									scaleX = 0.75,
+									childName = "liubianEffect",
+									animation = "xiao",
+									pos = {
+										x = 219,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "bRewardBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "sbg_5.png",
+							pos = {
+								x = 245.14,
+								y = 262
+							},
+							size = {
+								width = 438,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled37",
+								cType = "Sprite",
+								params = {
+									image = "sbg_8.png",
+									pos = {
+										x = 24.27,
+										y = 45.11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									pos = {
+										x = 57.21,
+										y = 6.37
+									},
+									size = {
+										width = 260,
+										height = 78
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Scale9Sprite",
+								params = {
+									image = "sbg_10.png",
+									pos = {
+										x = 375.74,
+										y = 45
+									},
+									size = {
+										width = 105,
+										height = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									childName = "label",
+									valign = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 375.67,
+										y = 44.49
+									},
+									size = {
+										width = 105,
+										height = 70
+									},
+									text = TR("选择1个奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled51",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_guangjizhushou_tishikuang",
+									hide = true,
+									scaleY = 0.6,
+									scaleX = 0.75,
+									childName = "liubianEffect",
+									animation = "xiao",
+									pos = {
+										x = 219,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "cRewardBg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "sbg_5.png",
+							pos = {
+								x = 245.14,
+								y = 162
+							},
+							size = {
+								width = 438,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled42",
+								cType = "Sprite",
+								params = {
+									image = "sbg_9.png",
+									pos = {
+										x = 24.27,
+										y = 45.11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled43",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									pos = {
+										x = 57.21,
+										y = 4.37
+									},
+									size = {
+										width = 260,
+										height = 78
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled44",
+								cType = "Scale9Sprite",
+								params = {
+									image = "sbg_10.png",
+									pos = {
+										x = 375.74,
+										y = 45
+									},
+									size = {
+										width = 105,
+										height = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 1,
+									childName = "label",
+									valign = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 375.67,
+										y = 44.49
+									},
+									size = {
+										width = 105,
+										height = 70
+									},
+									text = TR("选择1个奖励")
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_guangjizhushou_tishikuang",
+									hide = true,
+									scaleY = 0.6,
+									scaleX = 0.75,
+									childName = "liubianEffect",
+									animation = "xiao",
+									pos = {
+										x = 219,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled46",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_24.png",
+							pos = {
+								x = 245.8,
+								y = 307.91
+							},
+							size = {
+								width = 450,
+								height = 420
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled48",
+						cType = "Sprite",
+						params = {
+							image = "sbg_11.png",
+							pos = {
+								x = 73.3,
+								y = 61.22
+							}
+						},
+						children = {
+							{
+								name = "questStateLabel",
+								cType = "Label",
+								params = {
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 37.67,
+										y = 17.68
+									},
+									text = TR("第一轮")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "btnQuest",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onBtnQuestAction",
+							pos = {
+								x = 175.54,
+								y = 62.99
+							},
+							titleText = TR("寻宝")
+						},
+						children = {}
+					},
+					{
+						name = "btnReward",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onBtnRewardAction",
+							pos = {
+								x = 285.54,
+								y = 62.99
+							},
+							titleText = TR("领取奖励")
+						},
+						children = {}
+					},
+					{
+						name = "myScoreLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 341.22,
+								y = 73.97
+							},
+							text = TR("当前积分")
+						},
+						children = {}
+					},
+					{
+						name = "allScoreLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 341.22,
+								y = 50.97
+							},
+							text = TR("累计积分")
+						},
+						children = {}
+					},
+					{
+						name = "mTotalRewardHintLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							pos = {
+								x = 246.03,
+								y = 0.4
+							},
+							text = TR("现在可领取累计积分奖励")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot2 = {
+	cc.p(64, 355),
+	cc.p(137, 355),
+	cc.p(210, 355),
+	cc.p(283, 355),
+	cc.p(356, 355),
+	cc.p(429, 355),
+	cc.p(64, 258),
+	cc.p(137, 258),
+	cc.p(210, 258),
+	cc.p(283, 258),
+	cc.p(356, 258),
+	cc.p(429, 258),
+	cc.p(64, 159),
+	cc.p(137, 159),
+	cc.p(210, 159),
+	cc.p(283, 159),
+	cc.p(356, 159),
+	cc.p(429, 159),
+	cc.p(64, 64),
+	cc.p(137, 64),
+	cc.p(210, 64),
+	cc.p(283, 64),
+	cc.p(356, 64),
+	cc.p(429, 64)
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mTotalRewardHintLabel:runAction(cc.RepeatForever:create(cc.Sequence:create({
+		cc.ScaleTo:create(1, 1.2),
+		cc.ScaleTo:create(1, 1)
+	})))
+	slot0.createMap(slot0)
+	slot0.refreshMap(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshMap(slot0)
+	slot0.refreshReward(slot0)
+	slot0.remainTimeLabel:stopAllActions()
+	Utility.schedule(slot0.remainTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.remainTimeLabel:setString(TR("倒计时%s%s", "#FFE748", MqTime.completeFormat(slot0)))
+		else
+			slot0.remainTimeLabel:stopAllActions()
+			ui.showFlashView(TR("当前活动已结束"))
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 0.5)
+	slot0.btnQuest:setEnabled(slot0.mBaseInfo.TurnNum < slot0.mNeedNumReward and not ((slot0.mCurTotalRewardInfo and true) or false))
+	slot0.btnReward:setEnabled(slot0.mNeedNumReward <= slot0.mBaseInfo.TurnNum or (slot0.mCurTotalRewardInfo and true) or false)
+
+	if slot0.mBaseInfo.TurnNum == slot0.mNeedNumReward then
+		slot0.questStateLabel:setString(TR("结算中"))
+	elseif slot0.mBaseInfo.TurnNum + 1 == slot0.mNeedNumReward then
+		slot0.questStateLabel:setString(TR("第二轮"))
+	else
+		slot0.questStateLabel:setString(TR("第一轮"))
+	end
+
+	slot0.myScoreLabel:setString(TR("当前积分:%s", slot0.mCurScore))
+	slot0.allScoreLabel:setString(TR("累计积分:%s%s#45220D/%s", (slot0.mBaseInfo.TotalScore < slot0.mNextTotalRewardInfo.Score and "#ea2c00") or "#258711", slot0.mBaseInfo.TotalScore, slot0.mNextTotalRewardInfo.Score))
+	slot0.remainCountLabel:setString(TR("剩余次数:#37FF40%s", slot0.mBaseInfo.ChargeNum + slot0.mBaseInfo.FreeNum))
+	slot0.rechargeNumLabel:setString((slot0.mNeedCharge ~= 0 and TR("再充值#37FF40%s元#FFF8EA可获得一次寻宝次数", slot0.mNeedCharge)) or "")
+
+	if slot1 and slot0.mBaseInfo.TurnNum < slot0.mNeedNumReward then
+		ui.showFlashView(TR("累计积分达到%s，现在可领取累计积分奖励", slot0.mCurTotalRewardInfo.Score))
+	end
+
+	return 
+end
+slot0.createMap = function (slot0)
+	slot0.mMapNodeList = {}
+
+	for slot4, slot5 in ipairs(slot0) do
+		slot0.mTopBg:addChild(UIWrap.newControl("Sprite", {
+			image = string.format("c_pure.png", slot4),
+			pos = slot5
+		}))
+
+		slot0.mMapNodeList[slot4] = {
+			bgSprite = UIWrap.newControl("Sprite", {
+				image = string.format("c_pure.png", slot4),
+				pos = slot5
+			})
+		}
+	end
+
+	slot1 = {
+		{
+			animation = "tt",
+			effect = "effect_ui_shenbingu_s"
+		},
+		{
+			animation = "a2",
+			effect = "effect_ui_shenbingu_a"
+		},
+		{
+			animation = "tt",
+			effect = "effect_ui_shenbingu_b"
+		},
+		{
+			animation = "c2",
+			effect = "effect_ui_shenbingu_c"
+		}
+	}
+
+	slot0.mHeroNode:setAnchorPoint(cc.p(0.45, 0.45))
+	slot0.mHeroNode:setPosition(slot0[1])
+
+	slot0.mHeroNode.moveTo = function (slot0, slot1)
+		slot1.btnQuest:setEnabled(false)
+		slot0.runAction(slot0, cc.Sequence:create(cc.MoveTo:create(1.5, slot2), cc.CallFunc:create(function (slot0)
+			slot0.btnQuest:setEnabled(true)
+			ui.showFlashView(TR("获得积分%s", slot0.mGoodsConfig[slot0.mCurPieceId].GetScore))
+			slot0:refreshUI()
+
+			return 
+		end)))
+
+		return 
+	end
+
+	return 
+end
+slot0.refreshMap = function (slot0)
+	for slot4, slot5 in ipairs(slot0) do
+		slot6 = slot0.mMapNodeList[slot4]
+
+		if slot0.mReceivePieceIdList and slot0.mReceivePieceIdList[slot4] then
+			slot6.bgSprite:setGLProgram(slot1.loadShader(slot1.Gray))
+		else
+			slot6.bgSprite:setGLProgram(slot1.loadShader(slot1.Normal))
+		end
+
+		if slot6.weaponSprite ~= nil then
+			slot6.weaponSprite:removeFromParent()
+
+			slot6.weaponSprite = nil
+		end
+
+		if (not slot0.mReceivePieceIdList or not slot0.mReceivePieceIdList[slot4]) and slot0.mGoodsConfig then
+			slot6.weaponSprite = UIWrap.newControl("Sprite", {
+				scale = 0.75,
+				image = slot0.mGoodsConfig[slot4].Pic,
+				pos = slot5
+			})
+
+			slot6.weaponSprite:addChild(slot8, 1)
+			slot6.weaponSprite:addChild(slot9, 1)
+			slot0.mTopBg:addChild(slot6.weaponSprite, 1)
+		end
+	end
+
+	return 
+end
+slot0.refreshReward = function (slot0)
+	slot0.mSelectList = {}
+	slot0.mSelectSpriteList = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot6.listView:removeAllItems()
+	end
+
+	slot2 = 0
+	slot0.mGearsRewardNodeList = {}
+	slot3 = pairs
+	slot4 = slot0.mGearsRewardConfig or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		slot8 = slot1[slot6]
+
+		for slot12, slot13 in ipairs(slot0.mGearsRewardConfig[slot6]) do
+			slot15 = slot0.createLayoutTemplateNode(slot0, "mTemplateRewardCell")
+
+			slot15.cardNode:setCardData({
+				modelId = Utility.analysisStrResList(slot13.Reward)[1].resourceId,
+				num = Utility.analysisStrResList(slot13.Reward)[1].num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot15.cardNode:setClickAction(function ()
+				if slot0.mReceiveRewardIdList[slot1.OrderId] then
+					return 
+				end
+
+				slot2 = 0
+
+				if slot0.mNeedNumReward <= slot0.mBaseInfo.TurnNum then
+					if slot3 == slot0.mCurRewardGearId then
+						slot2 = slot0.mCurRewardGearInfo.RewardNum
+					else
+						return slot4.cardNode.defaultCardClick()
+					end
+				elseif slot0.mCurTotalRewardInfo then
+					if slot3 == slot0.mCurTotalRewardInfo.RewardLevel then
+						slot2 = slot0.mCurTotalRewardInfo.RewardNum
+					else
+						return slot4.cardNode.defaultCardClick()
+					end
+				else
+					return slot4.cardNode.defaultCardClick()
+				end
+
+				if table.indexof(slot0.mSelectList, slot1.OrderId) then
+					return slot4.cardNode.defaultCardClick()
+				else
+					if slot2 <= #slot0.mSelectList then
+						slot0.mGearsRewardNodeList[slot0.mSelectList[1]].selectSprite:setVisible(false)
+						table.remove(slot0.mSelectList, 1)
+					end
+
+					table.insert(slot0.mSelectList, slot1.OrderId)
+					slot4.selectSprite:setVisible(true)
+				end
+
+				return 
+			end)
+			slot8.listView:pushBackCustomItem(slot15)
+
+			slot0.mSelectSpriteList[slot13.OrderId] = slot15.selectSprite
+
+			if slot0.mReceiveRewardIdList[slot13.OrderId] then
+				slot15.cardNode:setGray(false)
+				slot15.ownedSprite:setVisible(true)
+			end
+
+			slot0.mGearsRewardNodeList[slot13.OrderId] = slot15
+		end
+
+		slot9 = {}
+
+		for slot13, slot14 in pairs(slot0.mGearsScoreConfig) do
+			if slot14.RewardLevel == slot6 then
+				table.insert(slot9, (slot14.MinScore == slot14.MaxScore and TR("%s分", slot14.MaxScore)) or TR("%s分 ~ %s分", slot14.MinScore, slot14.MaxScore))
+				table.insert(slot9, TR("选择%s个奖励", slot14.RewardNum))
+			end
+		end
+
+		slot8.label:setString(table.concat(slot9, "\n"))
+		slot8.liubianEffect:setVisible(false)
+
+		if slot0.mNeedNumReward <= slot0.mBaseInfo.TurnNum then
+			if slot6 == slot0.mCurRewardGearId then
+				slot8.liubianEffect:setVisible(true)
+			end
+		elseif slot0.mCurTotalRewardInfo and slot6 == slot0.mCurTotalRewardInfo.RewardLevel then
+			slot8.liubianEffect:setVisible(true)
+		end
+	end
+
+	return 
+end
+slot0.onBtnRuleAction = function (slot0)
+	slot1 = {
+		TR("1.每轮寻宝神兵阁开启时赠送一次寻宝机会，点击寻宝选项，会随机寻宝神兵阁的其中一片区域。"),
+		TR("2.每次寻宝一片区域后都可以获得宝物，宝物将转化为积分，每寻宝两次结算一次积分，两次的积分总和可在提示的对应积分奖池中选择奖励，领取后道具将置灰，当前轮次不能再领取。"),
+		TR("3.每次抽取的积分将计入总积分，总积分每满一定积分可在甲奖励中任选一件。。"),
+		TR("4.充值满6,30,50,80,100,200,300,500,600,700,800,900,1000,1200,1300,1400,1600,1700,1900,2200,2500,2700,3000元都可获得一次寻宝次数。"),
+		TR("5.每轮寻宝累计寻宝次数最高24次，抽取完24次后刷新。"),
+		TR("6.神兵阁中被寻宝后的区域将置灰，在寻宝完所有区域前不会再次寻宝，寻宝完所有区域后，奖池中的道具将会刷新，地图也会刷新"),
+		TR("7.每天0点都会重置一轮新的寻宝神兵阁，每轮赠送一次寻宝次数，重置时将清空尚未使用的寻宝机会和尚未领取的奖励。"),
+		TR("8.地图上的宝物寻得概率和价值积分如下所示:")
+	}
+
+	for slot5, slot6 in pairs(slot0.mGoodsConfig) do
+		table.insert(slot1, TR("{%s} : 寻得概率%d%%，价值积分%s点", slot6.Pic, slot6.OddsTips, slot6.GetScore))
+	end
+
+	ui.showRuleMsg({
+		textList = slot1
+	})
+
+	return 
+end
+slot0.onBtnRechargeAction = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.RechargeHomeLayer"
+	})
+
+	return 
+end
+slot0.onBtnQuestAction = function (slot0)
+	if slot0.mBaseInfo.FreeNum + slot0.mBaseInfo.ChargeNum <= 0 then
+		ui.showFlashView(TR("寻宝次数不足"))
+
+		return 
+	end
+
+	slot0.requestExtract(slot0)
+
+	return 
+end
+slot0.onBtnRewardAction = function (slot0)
+	if slot0.mNeedNumReward <= slot0.mBaseInfo.TurnNum then
+		if #slot0.mSelectList < slot0.mCurRewardGearInfo.RewardNum then
+			ui.showFlashView(TR("您还需要再选择%s个奖励", slot0.mCurRewardGearInfo.RewardNum - #slot0.mSelectList))
+
+			return 
+		end
+
+		slot0.requestDrawSettlementReward(slot0)
+	elseif slot0.mCurTotalRewardInfo then
+		if #slot0.mSelectList < slot0.mCurTotalRewardInfo.RewardNum then
+			ui.showFlashView(TR("您还需要再选择%s个奖励", slot0.mCurTotalRewardInfo.RewardNum - #slot0.mSelectList))
+
+			return 
+		end
+
+		slot0.requestDrawTotalScoreReward(slot0)
+	end
+
+	return 
+end
+slot0.initData = function (slot0, slot1)
+	slot0.mEndTime = slot1.EndTime
+	slot0.mNeedNumReward = slot1.SettlementNum
+	slot0.mGoodsConfig = {}
+
+	for slot5, slot6 in pairs(slot1.GodsoldierGoodsConfig) do
+		slot0.mGoodsConfig[slot6.OrderId] = slot6
+	end
+
+	slot0.mGearsRewardConfig = {}
+
+	for slot5, slot6 in pairs(slot1.GodsoldierRewardConfig) do
+		slot0.mGearsRewardConfig[slot6.Level] = slot0.mGearsRewardConfig[slot6.Level] or {}
+
+		table.insert(slot0.mGearsRewardConfig[slot6.Level], slot6)
+	end
+
+	slot0.mGearsScoreConfig = slot1.GodsoldierScoreRewardConfig
+	slot0.mGearsTotalScoreConfig = slot1.GodsoldierTotalScoreRewardConfig
+
+	table.sort(slot0.mGearsTotalScoreConfig, function (slot0, slot1)
+		return slot0.Score < slot1.Score
+	end)
+
+	slot0.mChargeConfig = slot1.GodsoldierChargeConfig
+
+	table.sort(slot0.mChargeConfig, function (slot0, slot1)
+		return slot0.ChargeNum < slot1.ChargeNum
+	end)
+	slot0.refreshBaseData(slot0, slot1.GodsoldierInfo)
+
+	return 
+end
+slot0.refreshBaseData = function (slot0, slot1)
+	slot0.mBaseInfo = slot1
+	slot0.mReceivePieceIdList = {}
+
+	for slot6, slot7 in pairs(slot2) do
+		slot0.mReceivePieceIdList[tonumber(slot7)] = true
+	end
+
+	slot0.mCurPieceId = 1
+
+	if slot2 and next(slot2) then
+		slot0.mCurPieceId = tonumber(slot2[#slot2])
+	end
+
+	slot0.mCurScore = 0
+
+	for slot7, slot8 in pairs(slot3) do
+		slot0.mCurScore = slot0.mCurScore + slot8.value
+	end
+
+	slot0.mCurRewardGearId = 0
+	slot0.mCurRewardGearInfo = nil
+
+	for slot7, slot8 in pairs(slot0.mGearsScoreConfig) do
+		if slot8.MinScore <= slot0.mCurScore and slot0.mCurScore <= slot8.MaxScore then
+			slot0.mCurRewardGearId = slot8.RewardLevel
+			slot0.mCurRewardGearInfo = slot8
+
+			break
+		end
+	end
+
+	slot0.mReceiveTotalRewardList = {}
+
+	for slot8, slot9 in pairs(slot4) do
+		slot0.mReceiveTotalRewardList[tonumber(slot9)] = true
+	end
+
+	slot0.mCurTotalRewardInfo = nil
+
+	for slot8, slot9 in ipairs(slot0.mGearsTotalScoreConfig) do
+		if slot9.Score <= slot0.mBaseInfo.TotalScore and not slot0.mReceiveTotalRewardList[slot9.Score] then
+			slot0.mCurTotalRewardInfo = slot9
+
+			break
+		end
+	end
+
+	slot0.mNextTotalRewardInfo = nil
+
+	for slot8, slot9 in ipairs(slot0.mGearsTotalScoreConfig) do
+		if not slot0.mReceiveTotalRewardList[slot9.Score] then
+			slot0.mNextTotalRewardInfo = slot9
+
+			break
+		end
+	end
+
+	if not slot0.mNextTotalRewardInfo then
+		slot0.mNextTotalRewardInfo = slot0.mGearsTotalScoreConfig[#slot0.mGearsTotalScoreConfig]
+	end
+
+	slot0.mNeedCharge = 0
+
+	for slot8, slot9 in ipairs(slot0.mChargeConfig) do
+		if slot0.mBaseInfo.ChargeMoney < slot9.ChargeNum then
+			slot0.mNeedCharge = slot9.ChargeNum - slot0.mBaseInfo.ChargeMoney
+
+			break
+		end
+	end
+
+	slot0.mReceiveRewardIdList = {}
+
+	for slot9, slot10 in pairs(slot5) do
+		slot0.mReceiveRewardIdList[tonumber(slot10)] = true
+	end
+
+	for slot9, slot10 in pairs(slot0.mGearsRewardConfig) do
+		table.sort(slot10, function (slot0, slot1)
+			if slot0.mReceiveRewardIdList[slot0.OrderId] ~= slot0.mReceiveRewardIdList[slot1.OrderId] then
+				return not slot0.mReceiveRewardIdList[slot0.OrderId]
+			end
+
+			return slot0.OrderId < slot1.OrderId
+		end)
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedGodsoldier",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:initData(slot0)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExtract = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Extract",
+		moduleName = "TimedGodsoldier",
+		methodData = {
+			Extract
+		},
+		successCallback = function (slot0)
+			slot0:refreshBaseData(slot0.GodsoldierInfo)
+			slot0.mHeroNode:moveTo(slot0.mCurPieceId)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawSettlementReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawSettlementReward",
+		moduleName = "TimedGodsoldier",
+		methodData = {
+			slot0.mCurRewardGearId,
+			slot0.mSelectList
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0:refreshBaseData(slot0.GodsoldierInfo)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawTotalScoreReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawTotalScoreReward",
+		moduleName = "TimedGodsoldier",
+		methodData = {
+			slot0.mCurTotalRewardInfo.Score,
+			slot0.mSelectList
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0:refreshBaseData(slot0.GodsoldierInfo)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

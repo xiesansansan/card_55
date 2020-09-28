@@ -1,0 +1,500 @@
+return {
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jq_shouweiguangmingding.mp3"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqmh_0012.png",
+			tag = "mhbg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.1,
+			file = "jqbg_wfyewan01.png",
+			tag = "mhbg02",
+			order = 9,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.1,
+			file = "jqbg_wfdatang01.png",
+			tag = "mhbg03",
+			order = 8,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_wfyewan01.png",
+				"1.1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line11",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"1.05",
+				"line11bg",
+				"line11zm",
+				TR("黄蓉拜托你们")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line12",
+				"950",
+				"600",
+				"jqdh_12.png",
+				"0.95",
+				"line12bg",
+				"line12zm",
+				TR("潜入赵王府")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line13",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"1.05",
+				"line13bg",
+				"line13zm",
+				TR("帮忙盯住院府")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line14",
+				"850",
+				"600",
+				"jqdh_12.png",
+				"1.15",
+				"line14bg",
+				"line14zm",
+				TR("她二人则去盗药")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line11zm",
+				"line11bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line12zm",
+				"line12bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line13zm",
+				"line13bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm_fadeout",
+			params = {
+				"line14zm",
+				"line14bg"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg01",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"yxd",
+				"yxdname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"yxd",
+				"yxdname",
+				"sd3jq_0618.mp3",
+				TR("这小妮子可真会指使人，竟然让我们帮她夜闯王府。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"zj",
+				"zjname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"zj",
+				"zjname",
+				"sd3jq_0619.mp3",
+				TR("好了，别发牢骚了，她只是拜托我们望风而已。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"zj",
+				"zjname",
+				"sd3jq_0620.mp3",
+				TR("而且这赵王府的主人也是我们的老熟人了。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"yxd",
+				"yxdname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out23",
+			params = {
+				"zj",
+				"zjname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg02",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0621.mp3",
+				TR("灵智上人是得道高僧，梁老先生是一派的宗师，得诸位相助，此事必能马到功成！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"lzsr",
+				"lzsrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"lzsr",
+				"lzsrname",
+				"sd3jq_0622.mp3",
+				TR("王爷有事差遣，咱们自当效劳！不知王爷所谓大事？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out2",
+			params = {
+				"lzsr",
+				"lzsrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "ltom",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namem",
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0623.mp3",
+				TR("诸位都知道岳飞是我金国的大敌，他曾留下一部兵书，叫做武穆遗书。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0624.mp3",
+				TR("本王费尽心思得了半卷遗书，可惜上面记载的都是攻伐之阵，真正的兵法密要，却是在另外半卷之上。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"wyhl",
+				"wyhlname",
+				"sd3jq_0625.mp3",
+				TR("而那半卷，正是我想劳烦诸位……")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mtol",
+			params = {
+				"wyhl",
+				"wyhlname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"wfxr",
+				"wfxrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"wfxr",
+				"wfxrname",
+				"sd3jq_0626.mp3",
+				TR("王爷，府里闹贼了，有人在梁先生的厢房里偷东西！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"wfxr",
+				"wfxrname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"lzw",
+				"lzwname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"lzw",
+				"lzwname",
+				"sd3jq_0627.mp3",
+				TR("什么？那里可是有……不行！王爷，小人先去看看！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"lzw",
+				"lzwname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_m",
+			params = {
+				"oyk",
+				"oykname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"oyk",
+				"oykname",
+				"sd3jq_0628.mp3",
+				TR("梁先生如此急切，屋里恐怕放了不得了宝物，我们也去帮帮他。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out22",
+			params = {
+				"oyk",
+				"oykname"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		}
+	}
+}

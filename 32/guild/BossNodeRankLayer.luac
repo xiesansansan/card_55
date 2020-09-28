@@ -1,0 +1,334 @@
+slot0 = class("BossNodeRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionFinished",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("战绩")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423,
+						y = 258.5
+					},
+					size = {
+						width = 788,
+						height = 458
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 34.72,
+						y = 45.27
+					},
+					size = {
+						width = 780,
+						height = 430
+					}
+				},
+				children = {
+					{
+						name = "rankNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -114
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 388.72,
+										y = 55
+									},
+									size = {
+										width = 780,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rankBgSprite",
+								cType = "Sprite",
+								params = {
+									image = "c_58.png",
+									pos = {
+										x = 56.31,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rankLabel",
+								cType = "Label",
+								params = {
+									text = "19",
+									isRichText = false,
+									fontName = "c_54.png",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 65.95,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "playerHead",
+								cType = "CardNode",
+								params = {
+									clickAction = "onClickHead",
+									allowClick = false,
+									pos = {
+										x = 168.84,
+										y = 55
+									}
+								},
+								children = {}
+							},
+							{
+								name = "nameLabel",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 218.75,
+										y = 77.47
+									},
+									text = TR("六个字的名字")
+								},
+								children = {}
+							},
+							{
+								name = "fapLabel",
+								cType = "Label",
+								params = {
+									childName = "fapLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 218.11,
+										y = 32.52
+									},
+									text = TR("六个字的名字")
+								},
+								children = {}
+							},
+							{
+								name = "hurtLabel",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 578.88,
+										y = 53.86
+									},
+									text = TR("99999万")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "emptyTip",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					pos = {
+						x = 423.24,
+						y = 273.3
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 30,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 230.46,
+								y = 51.59
+							},
+							text = TR("暂时无人挑战")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mNodeId = slot1.nodeId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onActionFinished = function (slot0)
+	slot0.requestGetRank(slot0)
+
+	return 
+end
+slot1 = {
+	"c_51.png",
+	"c_52.png",
+	"c_53.png"
+}
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 780, 114
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mRankList
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rankNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.rankBgSprite:setTexture(slot1[slot0.mRankList[slot1 + 1].Rank] or "c_58.png")
+		slot0.rankLabel:setVisible(3 < slot2.Rank)
+		slot0.rankLabel:setString(slot2.Rank)
+		slot0.playerHead:setPlayerHeader(slot2.HeadImageId, nil, {
+			headPicId = slot2.HeadPicId
+		})
+		slot0.nameLabel:setString(slot2.Name)
+		slot0.fapLabel:setString(TR("战力：%s", Utility.numberWithUnit(slot2.TotalFap)))
+		slot0.hurtLabel:setString(TR("伤害：%s", Utility.numberWithUnit(slot2.TotalHurt)))
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onClickHead = function (slot0, slot1)
+	if slot1.playerInfo.IsRobot then
+		ui.showFlashView(TR("机器人无法查看信息"))
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.OtherPlayerInfoLayer",
+			data = {
+				playerId = slot1.playerInfo.PlayerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.requestGetRank = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRank",
+		moduleName = "Guildboss",
+		methodData = {
+			slot0.mNodeId
+		},
+		successCallback = function (slot0)
+			slot0.mRankList = slot0.RankInfo
+
+			if slot0.mRankList and next(slot0.mRankList) ~= nil then
+				table.sort(slot0.mRankList, function (slot0, slot1)
+					if slot0.Rank ~= slot1.Rank then
+						return slot0.Rank < slot1.Rank
+					end
+
+					return 
+				end)
+			end
+
+			slot0.mTableView:reloadData()
+			slot0.emptyTip:setVisible(#slot0.mRankList <= 0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

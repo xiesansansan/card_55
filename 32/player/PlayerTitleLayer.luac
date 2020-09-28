@@ -1,0 +1,1209 @@
+slot0 = class("PlayerTitleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionEnd",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 900,
+				height = 520
+			}
+		},
+		children = {
+			{
+				name = "untitled41",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 470,
+						y = 506
+					}
+				},
+				children = {
+					{
+						name = "untitled42",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							pos = {
+								x = 144,
+								y = 17.5
+							},
+							text = TR("更换称号")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onChangePage",
+					isNeedOutline = false,
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					btnSize = {
+						width = 95,
+						height = 35
+					},
+					pos = {
+						x = 50,
+						y = 436.48
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 450,
+						height = 45
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "zj_26.png",
+					clickAction = "onShowAttr",
+					pos = {
+						x = 538.75,
+						y = 453.21
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled40",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 335.41,
+						y = 234.07
+					},
+					size = {
+						width = 560,
+						height = 380
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 60.69,
+						y = 68.67
+					},
+					size = {
+						width = 550,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "tempCellLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 550,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "tempItemNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 270,
+										height = 135
+									}
+								},
+								children = {
+									{
+										name = "untitled21",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_99.png",
+											zOrder = -10,
+											childName = "tempBg",
+											pos = {
+												x = 136.84,
+												y = 70.44
+											},
+											size = {
+												width = 270,
+												height = 135
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled23",
+										cType = "Sprite",
+										params = {
+											image = "zj_23.png",
+											childName = "timeNode",
+											pos = {
+												x = 136.91,
+												y = 33.67
+											}
+										},
+										children = {
+											{
+												name = "untitled24",
+												cType = "Label",
+												params = {
+													text = "Label",
+													childName = "timeLabel",
+													pos = {
+														x = 109.71,
+														y = 15
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled27",
+										cType = "Label",
+										params = {
+											text = "Label",
+											isRichText = true,
+											childName = "composeLabel",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = 41.41,
+												y = 8.46
+											}
+										},
+										children = {
+											{
+												name = "untitled28",
+												cType = "Sprite",
+												params = {
+													scale = 0.8,
+													image = "c_37.png",
+													pos = {
+														x = -20,
+														y = 10
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled25",
+										cType = "Sprite",
+										params = {
+											image = "zj_24.png",
+											childName = "isUsingNode",
+											pos = {
+												x = 48.52,
+												y = 97.07
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Sprite",
+										params = {
+											image = "c_76.png",
+											childName = "isNeedActive",
+											pos = {
+												x = 240.17,
+												y = 104.21
+											}
+										},
+										children = {
+											{
+												name = "untitled39",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													rotationAngle = 45,
+													pos = {
+														x = 36.84,
+														y = 35.89
+													},
+													text = TR("可激活")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled29",
+										cType = "Scale9Sprite",
+										params = {
+											childName = "selectedSprite",
+											hide = true,
+											image = "c_61.png",
+											pos = {
+												x = 136.84,
+												y = 70.44
+											},
+											size = {
+												width = 282,
+												height = 145
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Button",
+										params = {
+											image = "c_pure.png",
+											swallowTouch = false,
+											childName = "selectBtn",
+											pos = {
+												x = 137.2,
+												y = 71
+											},
+											size = {
+												width = 269.81,
+												height = 135.9
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "c_77.png",
+					pos = {
+						x = 327,
+						y = 56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_42.png",
+					pos = {
+						x = 757.18,
+						y = 448.7
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "zj_18.png",
+							pos = {
+								x = 35,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "zj_18.png",
+							pos = {
+								x = 184,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 110,
+								y = 17
+							},
+							text = TR("出处")
+						},
+						children = {}
+					},
+					{
+						name = "getWayLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							valign = 0,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 113.37,
+								y = -78.49
+							},
+							size = {
+								width = 220,
+								height = 120
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_42.png",
+					pos = {
+						x = 757.18,
+						y = 268
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "zj_18.png",
+							pos = {
+								x = 35,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							image = "zj_18.png",
+							pos = {
+								x = 184,
+								y = 17
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 110,
+								y = 17
+							},
+							text = TR("属性")
+						},
+						children = {}
+					},
+					{
+						name = "introLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							valign = 0,
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 113.37,
+								y = -81.49
+							},
+							size = {
+								width = 220,
+								height = 140
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "perViewBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onShowTitle",
+					image = "c_19.png",
+					pos = {
+						x = 691.19,
+						y = 73
+					},
+					size = {
+						width = 100,
+						height = 38
+					},
+					titleText = TR("预览")
+				},
+				children = {}
+			},
+			{
+				name = "showBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					pos = {
+						x = 820.76,
+						y = 73
+					},
+					size = {
+						width = 100,
+						height = 38
+					},
+					titleText = TR("展示")
+				},
+				children = {}
+			},
+			{
+				name = "cancleShowBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					hide = true,
+					pos = {
+						x = 820.76,
+						y = 73
+					},
+					size = {
+						width = 100,
+						height = 38
+					},
+					titleText = TR("取消展示")
+				},
+				children = {}
+			},
+			{
+				name = "nonSprite",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 305.33,
+						y = 247.38
+					},
+					text = TR("暂无称号")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	eLegend = 4,
+	eOwn = 1,
+	eRare = 2,
+	eEpic = 3
+}
+slot2 = require("common.ShaderManager")
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallback = slot1.callback
+	slot0.mCurUsingId = PlayerAttrObj:getPlayerAttrByName("TitleId")
+	slot0.mSelectedId = nil
+	slot0.mCurTag = slot0.eOwn
+	slot0.mJzwlTitleInfo = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.onActionEnd = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = {
+				{
+					title = TR("我的称号"),
+					tag = slot0.eOwn
+				},
+				{
+					title = TR("稀有称号"),
+					tag = slot0.eRare
+				},
+				{
+					title = TR("史诗称号"),
+					tag = slot0.eEpic
+				},
+				{
+					title = TR("传说称号"),
+					tag = slot0.eLegend
+				}
+			}
+		end
+
+		return 
+	end)
+
+	for slot4, slot5 in pairs(slot0.mTabView:getTabBtns()) do
+		if slot4 == slot0.eOwn then
+			slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eTitlePoint
+			}))
+		else
+			slot5.addChild(slot5, UIWrap.newControl("RedDot", {
+				moduleId = ModuleSub.eBagTitleDebris,
+				subKey = "Title_" .. slot4 - 1
+			}))
+		end
+	end
+
+	return 
+end
+slot0.getProgNum = function (slot0, slot1)
+	if not NewleaguetopTitleOpenRelation.items[slot1] then
+		return 
+	end
+
+	slot2, slot3 = nil
+	slot4 = NewleaguetopTitleOpenRelation.items[slot1]
+
+	for slot8, slot9 in ipairs(slot0.mTitleList) do
+		for slot13, slot14 in ipairs(slot9) do
+			if slot14.titleId == slot1 then
+				slot2 = slot14.progNum
+			end
+		end
+	end
+
+	for slot8, slot9 in pairs(slot4) do
+		if type(slot9) == "number" and 0 < slot9 and slot8 ~= "titleId" then
+			slot3 = slot9
+		end
+	end
+
+	return slot2, slot3
+end
+slot0.refreshSelect = function (slot0)
+	if not TitleConfig.items[slot0.mSelectedId] then
+		slot0.getWayLabel:setString("")
+		slot0.introLabel:setString("")
+		slot0.showBtn:setEnabled(false)
+		slot0.perViewBtn:setEnabled(false)
+		slot0.nonSprite:setVisible(true)
+
+		return 
+	end
+
+	slot0.nonSprite:setVisible(false)
+	slot0.showBtn:setEnabled(true)
+	slot0.perViewBtn:setEnabled(true)
+
+	for slot5, slot6 in pairs(slot0.mTitleNodeList) do
+		slot6.selectedSprite:setVisible(slot0.mSelectedId == slot5)
+	end
+
+	slot2 = false
+	slot3 = false
+	slot4 = false
+
+	for slot8, slot9 in ipairs(slot0.mTitleInfo) do
+		if slot1.titleId == slot9.TitleId then
+			slot2 = true
+
+			if slot9.StatusType == 0 then
+				slot3 = true
+			end
+		end
+	end
+
+	slot5 = slot1.conditionIntro
+	slot6, slot7 = slot0.getProgNum(slot0, slot0.mSelectedId)
+
+	if slot6 and not slot2 then
+		slot5 = string.format("%s%s", slot5, string.format("(#258711%s#45220d/%s)", slot6, slot7))
+	end
+
+	slot0.getWayLabel:setString(slot5)
+
+	if slot1.addOutPutR ~= 0 then
+		slot0.introLabel:setString(string.format(slot1.addIntro, slot1.addOutPutR*100 .. "%"))
+	else
+		slot0.introLabel:setString(slot1.addIntro)
+	end
+
+	if not slot2 and slot1.composeNeed ~= "" then
+		slot4 = Utility.analysisStrResList(slot1.composeNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(slot1.composeNeed)[1].resourceId)
+	end
+
+	if slot0.mSelectedId == slot0.mCurUsingId then
+		slot0.showBtn:setVisible(false)
+		slot0.cancleShowBtn:setVisible(true)
+		slot0.cancleShowBtn:setClickAction(function ()
+			slot0:requestCombat(slot1.titleId)
+
+			return 
+		end)
+	else
+		slot0.showBtn:setVisible(true)
+		slot0.showBtn:setEnabled(true)
+		slot0.cancleShowBtn:setVisible(false)
+
+		if slot2 then
+			if slot3 then
+				slot0.showBtn:setTitleText(TR("激 活"))
+				slot0.showBtn:setClickAction(function ()
+					slot0:requestActivate(slot1.titleId)
+
+					return 
+				end)
+			else
+				slot0.showBtn:setTitleText(TR("展 示"))
+				slot0.showBtn:setClickAction(function ()
+					slot0:requestCombat(slot1.titleId)
+
+					return 
+				end)
+			end
+		elseif slot4 then
+			slot0.showBtn:setTitleText(TR("合 成"))
+			slot0.showBtn:setClickAction(function ()
+				dump("合成称号~~~")
+				dump:requestGoodsUse(slot1.titleId, slot1.composeNeed)
+
+				return 
+			end)
+		else
+			slot0.showBtn:setEnabled(false)
+		end
+	end
+
+	if slot0.showBtn.redDot then
+		slot0.showBtn.redDot:removeFromParent()
+
+		slot0.showBtn.redDot = nil
+	end
+
+	slot8 = ModuleSub.eTitlePoint
+
+	if slot0.mCurTag ~= slot0.eOwn then
+		slot8 = ModuleSub.eBagTitleDebris
+	end
+
+	slot0.showBtn:addChild(UIWrap.newControl("RedDot", {
+		moduleId = slot8,
+		subKey = tostring(slot1.titleId)
+	}))
+
+	slot0.showBtn.redDot = UIWrap.newControl("RedDot", {
+		moduleId = slot8,
+		subKey = tostring(slot1.titleId)
+	})
+
+	return 
+end
+slot0.onShowTitle = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerTitleInfoLayer",
+		data = {
+			titleInfo = slot0.mTitleInfo,
+			selectedId = slot0.mSelectedId,
+			curUsingId = slot0.mCurUsingId,
+			callBack = function (slot0)
+				slot0.mTitleInfo = slot0.TitleInfo
+				slot0.mCurUsingId = PlayerAttrObj:getPlayerAttrByName("TitleId")
+
+				slot0:onChangePage(slot0.mCurTag)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onShowAttr = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.PlayerTitleAttrLayer",
+		data = {
+			titleInfo = slot0.mTitleInfo
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getTabData = function (slot0, slot1)
+	slot2 = {}
+
+	if slot1 == slot0.eOwn then
+		for slot6, slot7 in ipairs(slot0.mTitleInfo) do
+			table.insert(slot2, TitleConfig.items[slot7.TitleId])
+		end
+
+		table.sort(slot2, function (slot0, slot1)
+			if slot0.titleLv ~= slot1.titleLv then
+				return slot1.titleLv < slot0.titleLv
+			end
+
+			return slot0.titleId < slot1.titleId
+		end)
+	elseif slot1 == slot0.eRare then
+		for slot6, slot7 in pairs(TitleConfig.items) do
+			if slot7.titleLv == 1 then
+				table.insert(slot2, slot7)
+			end
+		end
+
+		table.sort(slot2, function (slot0, slot1)
+			return slot0.titleId < slot1.titleId
+		end)
+	elseif slot1 == slot0.eEpic then
+		for slot6, slot7 in pairs(TitleConfig.items) do
+			if slot7.titleLv == 2 then
+				table.insert(slot2, slot7)
+			end
+		end
+
+		table.sort(slot2, function (slot0, slot1)
+			return slot0.titleId < slot1.titleId
+		end)
+	elseif slot1 == slot0.eLegend then
+		for slot6, slot7 in pairs(TitleConfig.items) do
+			if slot7.titleLv == 3 then
+				table.insert(slot2, slot7)
+			end
+		end
+
+		table.sort(slot2, function (slot0, slot1)
+			return slot0.titleId < slot1.titleId
+		end)
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		for slot11, slot12 in pairs(NewleaguetopTitleOpenRelation.items) do
+			if slot12.titleId == slot7.titleId then
+				slot7.progNum = 0
+			end
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		for slot11, slot12 in ipairs(slot0.mJzwlTitleInfo) do
+			if slot12.TitleId == slot7.titleId then
+				slot7.progNum = slot12.Num
+			end
+		end
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot0.isShow(slot0, slot8.titleId) then
+			table.insert(slot3, slot8)
+		end
+	end
+
+	return slot3
+end
+slot0.isShow = function (slot0, slot1)
+	if TitleConfig.items[slot1].ifOpen then
+		return true
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot7 == slot1 then
+			return true
+		end
+	end
+
+	if Utility.analysisStrResList(TitleConfig.items[slot1].composeNeed)[1] and 0 < Resource.getCount(slot3.resourceId) then
+		return true
+	end
+
+	return false
+end
+slot0.refreshUI = function (slot0)
+	slot0.refreshSelect(slot0)
+
+	if slot0.mTitleInfo == nil then
+		return 
+	end
+
+	slot0.handleData(slot0, slot0.getTabData(slot0, slot0.mCurTag))
+
+	return 
+end
+slot0.handleData = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		for slot11, slot12 in ipairs(slot0.mTitleInfo) do
+			if slot12.TitleId == slot7.titleId then
+				slot7.had = true
+				slot7.endTime = slot12.EndDate
+				slot7.statusType = slot12.StatusType
+
+				break
+			end
+		end
+	end
+
+	slot3 = false
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot8.titleId == slot0.mCurUsingId then
+			slot3 = true
+
+			break
+		end
+	end
+
+	slot4 = {}
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(slot2) do
+		table.insert(slot5, slot10)
+
+		if slot9%2 == 0 then
+			table.insert(slot4, slot5)
+
+			slot5 = {}
+		end
+	end
+
+	if next(slot5) ~= nil then
+		table.insert(slot4, slot5)
+	end
+
+	slot0.mTitleList = slot4
+
+	if not slot0.mSelectedId and next(slot0.mTitleList) ~= nil then
+		slot0.mSelectedId = (slot3 and slot0.mCurUsingId) or slot0.mTitleList[1][1].titleId
+	end
+
+	slot0.createTitlesView(slot0)
+
+	return 
+end
+slot0.createTitlesView = function (slot0)
+	slot0.titleListView:removeAllChildren()
+
+	slot0.mTitleNodeList = {}
+
+	for slot4, slot5 in ipairs(slot0.mTitleList) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "tempCellLayout")
+
+		for slot10, slot11 in ipairs(slot5) do
+			slot12 = slot0.createLayoutTemplateNode(slot0, "tempItemNode")
+
+			slot12.setPosition(slot12, (slot10 - 1)*275, 0)
+			slot6.addChild(slot6, slot12)
+			slot12.selectedSprite:setVisible(false)
+			slot12.isUsingNode:setVisible(slot11.titleId == slot0.mCurUsingId)
+			slot12.isNeedActive:setVisible(slot11.statusType == 0)
+
+			slot13 = false
+
+			if cc.FileUtils:getInstance():isFileExist(slot11.pic .. ".skel") then
+				slot12.addChild(slot12, UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					dataFile = slot11.pic,
+					pos = cc.p(141, 30)
+				}), -1)
+
+				slot12.titleSprite = UIWrap.newControl("Effect", {
+					loop = true,
+					animation = "animation",
+					dataFile = slot11.pic,
+					pos = cc.p(141, 30)
+				})
+				slot13 = true
+			else
+				slot14 = cc.Sprite:create(slot11.pic .. ".png")
+
+				slot14.setAnchorPoint(slot14, cc.p(0.5, 0))
+				slot12.addChild(slot12, slot14, -1)
+
+				slot12.titleSprite = slot14
+
+				slot12.titleSprite:setPosition(141, -20)
+			end
+
+			slot12.selectBtn:setClickAction(function ()
+				if slot0.mSelectedId == slot1.titleId then
+					return 
+				end
+
+				slot0.mSelectedId = slot1.titleId
+
+				slot0:refreshSelect()
+
+				return 
+			end)
+
+			slot0.mTitleNodeList[slot11.titleId] = slot12
+
+			slot12.timeNode:setVisible(false)
+
+			if slot11.endTime and slot11.endTime < 32503651200.0 then
+				slot12.timeNode:setVisible(true)
+				Utility.schedule(slot12, function ()
+					if 0 < slot0.endTime - Player:getCurrentTime() then
+						slot1.timeNode.timeLabel:setString(MqTime.completeFormat(slot0))
+					else
+						slot1:stopAllActions()
+					end
+
+					return 
+				end, 1)
+			end
+
+			if not slot11.had then
+				if 0 < slot11.holdOnTime and slot11.holdOnTime ~= 9999 then
+					slot12.timeNode:setVisible(true)
+					slot12.timeNode.timeLabel:setString(TR("有效时间%s天", slot11.holdOnTime))
+				end
+
+				if slot13 then
+					slot12.titleSprite:setGLProgram(slot0.loadShader(slot0.Gray))
+				else
+					slot12.titleSprite:setGray(true)
+				end
+			end
+
+			if slot11.statusType == 0 then
+				if slot13 then
+					slot12.titleSprite:setGLProgram(slot0.loadShader(slot0.Gray))
+				else
+					slot12.titleSprite:setGray(true)
+				end
+			end
+
+			slot14 = false
+
+			slot12.composeLabel:setVisible(not slot11.had and slot11.composeNeed ~= "")
+
+			if not slot11.had and slot11.composeNeed ~= "" then
+				slot12.composeLabel:setString(string.format(" %s%s#45220d/%s", (Utility.analysisStrResList(slot11.composeNeed)[1].num <= Resource.getCount(Utility.analysisStrResList(slot11.composeNeed)[1].resourceId) and "#258711") or "#ea2c00", slot16, slot15[1].num))
+			end
+
+			slot15 = ModuleSub.eTitlePoint
+
+			if slot0.mCurTag ~= slot1.eOwn then
+				slot15 = ModuleSub.eBagTitleDebris
+			end
+
+			slot12.addChild(slot12, UIWrap.newControl("RedDot", {
+				moduleId = slot15,
+				subKey = tostring(slot11.titleId),
+				offset = cc.p(0.95, 0.9)
+			}), 2)
+		end
+
+		slot0.titleListView:pushBackCustomItem(slot6)
+	end
+
+	slot0.refreshSelect(slot0)
+
+	return 
+end
+slot0.onChangePage = function (slot0, slot1)
+	slot0.mCurTag = slot1
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Title",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mTitleInfo = slot0.TitleInfo
+
+			if Utility.moduleIsOpen(ModuleSub.eLeaguetopFinal, false) then
+				slot0:requestJzwlTirleInfo()
+			else
+				slot0:refreshUI()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestJzwlTirleInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetLeaguetopTitleInfo",
+		moduleName = "Leaguetopfinal",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mJzwlTitleInfo = slot0.TitleInfo
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestCombat = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Combat",
+		moduleName = "Title",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTitleInfo = slot0.TitleInfo
+			slot0.mCurUsingId = PlayerAttrObj:getPlayerAttrByName("TitleId")
+
+			slot0:refreshUI()
+
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestActivate = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Activate",
+		moduleName = "Title",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mTitleInfo = slot0.TitleInfo
+			slot0.mCurUsingId = PlayerAttrObj:getPlayerAttrByName("TitleId")
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGoodsUse = function (slot0, slot1, slot2)
+	slot3 = Utility.analysisStrResList(slot2)
+	slot5 = {}
+
+	for slot9, slot10 in pairs(slot4) do
+		if slot10.ModelId == slot3[1].resourceId then
+			slot5 = clone(slot10)
+
+			break
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GoodsUse",
+		moduleName = "Goods",
+		methodData = {
+			slot5.EntityId,
+			slot5.ModelId,
+			slot3[1].num
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("合成成功"))
+			slot0:requestGetInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[800301] = {
+			clickNode = slot0.showBtn
+		},
+		[800302] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.showBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

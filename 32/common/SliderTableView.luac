@@ -1,0 +1,244 @@
+slot0 = class("SliderTableView", function (slot0)
+	return UIWrap.newControl("ClippingNode", {
+		pos = cc.p(0, 0),
+		size = slot0.viewSize or cc.size(640, 500)
+	})
+end)
+slot1 = 1
+slot0.ctor = function (slot0, slot1)
+	slot0.itemCountOfSlider = slot1.itemCountOfSlider
+	slot0.sliderItemAtIndex = slot1.sliderItemAtIndex
+	slot0.selectItemChanged = slot1.selectItemChanged
+	slot0.onItemClicked = slot1.onItemClicked
+	slot0.onTouchBegin = slot1.onTouchBegin
+	slot0.onTouchMove = slot1.onTouchMove
+	slot0.onTouchEnd = slot1.onTouchEnd
+	slot0.onActionOver = slot1.onActionOver
+	slot0.mTouchEnabled = (slot1.touchEnabled == nil and true) or slot1.touchEnabled
+	slot0.mItemCount = 0
+	slot0.mViewSize = slot0.getContentSize(slot0)
+	slot0.mIsVertical = slot1.isVertical or false
+	slot0.mSelectIndex = (slot1.selectIndex and 1 <= slot1.selectIndex and slot1.selectIndex) or 1
+	slot0.mItemNodeList = {}
+
+	slot0.setAnchorPoint(slot0, cc.p(0.5, 0.5))
+	slot0.setIgnoreAnchorPointForPosition(slot0, false)
+	slot0._setTouchListener(slot0)
+	slot0.onNodeEvent(slot0, "enterTransitionFinish", function ()
+		slot0:reloadData()
+
+		if slot0.reloadData.selectItemChanged then
+			slot0.selectItemChanged(slot0.mSelectIndex)
+		end
+
+		return 
+	end)
+	slot0.onNodeEvent(slot0, "exit", handler(slot0, slot0._closeDelaySchedule))
+
+	return 
+end
+slot0._closeDelaySchedule = function (slot0)
+	if slot0.createScheduleId then
+		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(slot0.createScheduleId)
+
+		slot0.createScheduleId = nil
+	end
+
+	return 
+end
+slot0._refreshItemCount = function (slot0)
+	if slot0.itemCountOfSlider then
+		slot0.mItemCount = slot0.itemCountOfSlider()
+	else
+		slot0.mItemCount = 0
+	end
+
+	return 
+end
+slot0._createItemNode = function (slot0, slot1, slot2)
+	if not slot0.mItemNodeList[slot1] then
+		if slot0.sliderItemAtIndex then
+			slot3 = slot0.sliderItemAtIndex(slot1, slot1 == slot0.mSelectIndex)
+		end
+
+		slot0.addChild(slot0, slot3 or display.newNode())
+
+		slot3 or display.newNode().orignPos = cc.p(slot3 or display.newNode():getPosition())
+		slot0.mItemNodeList[slot1] = slot3 or display.newNode()
+	end
+
+	slot5 = cc.pAdd(slot3.orignPos, cc.pMul((mIsVertical and cc.p(0, slot0.mViewSize.height)) or cc.p(slot0.mViewSize.width, 0), slot1 - slot0.mSelectIndex))
+
+	if not slot2 then
+		slot3.setPosition(slot3, slot5)
+	end
+
+	slot3.showPos = slot5
+
+	return slot3
+end
+slot0._setNodeAction = function (slot0, slot1, slot2, slot3, slot4)
+	slot6 = cc.p(slot1.getPosition(slot1))
+
+	slot1.stopAllActions(slot1)
+	slot1.runAction(slot1, cc.Sequence:create({
+		cc.CallFunc:create(function ()
+			slot0.AcitonIng = true
+
+			return 
+		end),
+		cc.MoveTo:create(0.5, slot5),
+		cc.CallFunc:create(function ()
+			slot0.AcitonIng = false
+
+			if false then
+				slot2:removeFromParent()
+			end
+
+			if slot3 and slot0.onActionOver then
+				slot0.onActionOver(slot0.onActionOver, slot0.mSelectIndex)
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0._setPreViewItem = function (slot0, slot1, slot2)
+	function slot3(slot0)
+		slot1 = {
+			slot0
+		}
+		slot3 = slot0 + 1
+
+		if 1 <= slot0 - 1 then
+			table.insert(slot1, slot2)
+		end
+
+		if slot3 <= slot0.mItemCount then
+			table.insert(slot1, slot3)
+		end
+
+		return slot1
+	end
+
+	if slot0.mItemCount < 1 then
+		return 
+	end
+
+	slot2 = slot2 ~= false
+	slot4 = MqMath.clamp(slot1 - slot0.mSelectIndex, -1, 1)
+	slot6 = slot3(slot0.mSelectIndex)
+
+	for slot10, slot11 in ipairs(slot5) do
+		if slot0.mItemNodeList[slot11] and not table.indexof(slot6, slot11) then
+			if slot11 == slot1 and slot2 then
+				slot0._setNodeAction(slot0, slot0.mItemNodeList[slot11], slot4, true)
+			else
+				slot0.mItemNodeList[slot11]:removeFromParent()
+			end
+
+			slot0.mItemNodeList[slot11] = nil
+		end
+	end
+
+	if 1 < #slot6 then
+		slot0._closeDelaySchedule(slot0)
+
+		slot7 = 2
+		slot0.createScheduleId = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function (...)
+			slot2 = slot3:_createItemNode(slot0[slot1], slot2 and slot3.mItemNodeList[slot0[slot1]] and table.indexof(slot0[slot1], slot4))
+
+			if slot1 then
+				slot3:_setNodeAction(slot2, 0, false)
+			end
+
+			if #slot0 < slot1 + 1 then
+				slot3:_closeDelaySchedule()
+			end
+
+			return 
+		end, 0, false)
+	end
+
+	slot7 = slot0.mItemNodeList[slot0.mSelectIndex]
+	slot8 = slot0._createItemNode(slot0, slot0.mSelectIndex, slot2)
+
+	if slot2 then
+		if slot0.mSelectIndex == slot1 then
+			slot0._setNodeAction(slot0, slot8, 0, false, true)
+		else
+			if not slot7 then
+				slot8.setPosition(slot8, cc.pAdd(slot8.showPos, cc.p(-slot4*slot0.mViewSize.width, 0)))
+			end
+
+			slot0._setNodeAction(slot0, slot8, 0, false, true)
+		end
+	end
+
+	return 
+end
+slot0._setTouchListener = function (slot0)
+	slot0.mBeginTouchPos = nil
+	slot4 = cc.EventListenerTouchOneByOne:create()
+
+	slot4.setSwallowTouches(slot4, false)
+	slot4.registerScriptHandler(slot4, slot1, cc.Handler.EVENT_TOUCH_BEGAN)
+	slot4.registerScriptHandler(slot4, slot2, cc.Handler.EVENT_TOUCH_MOVED)
+	slot4.registerScriptHandler(slot4, slot3, cc.Handler.EVENT_TOUCH_ENDED)
+	slot0.getEventDispatcher(slot0):addEventListenerWithSceneGraphPriority(slot4, slot0)
+
+	return 
+end
+slot0.reloadData = function (slot0)
+	slot0._refreshItemCount(slot0)
+	slot0.removeAllChildren(slot0)
+
+	slot0.mItemNodeList = {}
+
+	slot0._setPreViewItem(slot0, slot0.mSelectIndex)
+
+	return 
+end
+slot0.refreshSelectItem = function (slot0)
+	if slot0.mItemNodeList[slot0.mSelectIndex] then
+		slot1 = slot0.mItemNodeList[slot0.mSelectIndex].showPos
+
+		slot0.mItemNodeList[slot0.mSelectIndex]:removeFromParent()
+
+		slot0.mItemNodeList[slot0.mSelectIndex] = nil
+
+		slot0._createItemNode(slot0, slot0.mSelectIndex)
+	end
+
+	return 
+end
+slot0.getSelectItemIndex = function (slot0)
+	return slot0.mSelectIndex
+end
+slot0.setSelectItemIndex = function (slot0, slot1, slot2, slot3)
+	if not slot1 or slot1 == slot0.mSelectIndex then
+		return 
+	end
+
+	slot0.mSelectIndex = slot1
+
+	slot0._setPreViewItem(slot0, slot0.mSelectIndex, slot2)
+
+	if slot0.selectItemChanged and slot3 ~= false then
+		slot0.selectItemChanged(slot1)
+	end
+
+	return 
+end
+slot0.getSelectItemNode = function (slot0)
+	return slot0.mItemNodeList[slot0.mSelectIndex]
+end
+slot0.setTouchEnabled = function (slot0, slot1)
+	slot0.mTouchEnabled = slot1
+
+	return 
+end
+
+return slot0

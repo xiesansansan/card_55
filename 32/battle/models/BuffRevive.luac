@@ -1,0 +1,56 @@
+slot0 = require("battle.managers.BattleManager")
+slot2 = require("battle.common.BuffHelper")
+slot3 = require("battle.common.Random")
+slot4 = class("BuffRevive", require("battle.models.Buff"))
+slot4.ctor = function (slot0, slot1, slot2, slot3, slot4, slot5)
+	slot0.super.ctor(slot0, slot1, slot2, slot3, slot4, slot5)
+
+	slot0.totalReviveTimes = slot0.evalTimes
+	slot0.reviveStatus = {}
+
+	return 
+end
+slot4.initReviveStatus = function (slot0, slot1)
+	slot0.reviveStatus[slot1.group .. slot1.order] = -1
+
+	return 
+end
+slot4.setReviveStatus = function (slot0, slot1, slot2)
+	slot0.reviveStatus[slot1.group .. slot1.order] = slot2
+
+	return 
+end
+slot4.getReviveStatus = function (slot0, slot1)
+	return slot0.reviveStatus[slot1.group .. slot1.order]
+end
+slot4.preRevive = function (slot0)
+	slot1 = false
+
+	if 0 < slot0.totalReviveTimes then
+		slot0.totalReviveTimes = slot0.totalReviveTimes - 1
+		slot1 = true
+	end
+
+	return slot1
+end
+slot4.execute = function (slot0, slot1)
+	slot0.super.execute(slot0)
+
+	if slot0.buffRandomSkill then
+		slot2.triggerSkills(slot0.owner, {
+			slot0.buffRandomSkill[slot1:random(1, #slot0.buffRandomSkill)]
+		}, slot0.level)
+	end
+
+	slot2 = nil
+
+	if tonumber(slot3.readBuff(slot0.id).hurtAttrParameter) == 998 then
+		slot2 = math.max((slot0.owner.attr.eHp - slot0.owner.attr.hp)*slot0.damageRatioValue[1], slot0.owner.attr.eHp*slot0.damageRatioValue[1]*0.1)
+	end
+
+	slot2.addRebornUnit(slot1, slot0.damageRatioValue[1], slot2)
+
+	return 
+end
+
+return slot4

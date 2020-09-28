@@ -1,0 +1,1160 @@
+slot0 = class("HegemonyMainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyyz_3.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					clickAction = "onExitLayer",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_1.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -35,
+								y = 30
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleAction",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 275,
+						y = -5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mLeftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 10,
+			isLiuHai = true,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 29.94,
+						y = 232.22
+					},
+					text = TR("赛季倒计时")
+				},
+				children = {}
+			},
+			{
+				name = "untitled63",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xyyz_54.png",
+					pos = {
+						x = 190.42,
+						y = -22.84
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled89",
+				cType = "Button",
+				params = {
+					image = "c_50.png",
+					scale = 0.8,
+					hide = true,
+					clickAction = "onPvpTopAction",
+					pos = {
+						x = 215.3,
+						y = 193.82
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled90",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					hide = true,
+					pos = {
+						x = 103.76,
+						y = 195.79
+					},
+					text = TR("前128名参加天下第一")
+				},
+				children = {}
+			},
+			{
+				name = "mRankTabView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onRankViewNum",
+					isVertical = true,
+					cellUpdateFunc = "onRankViewRefresh",
+					cellSizeFunc = "onRankViewSize",
+					cellFillFunc = "onRankViewItem",
+					pos = {
+						x = 0,
+						y = -206.34
+					},
+					size = {
+						width = 300,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "RankTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -60
+							},
+							size = {
+								width = 300,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "untitled75",
+								cType = "Scale9Sprite",
+								params = {
+									image = "tzsj_6.png",
+									childName = "bgSprite",
+									pos = {
+										x = 130,
+										y = 30
+									},
+									size = {
+										width = 300,
+										height = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled95",
+								cType = "CardNode",
+								params = {
+									scale = 0.6,
+									clickAction = "onClickPlayer",
+									childName = "head",
+									allowClick = true,
+									pos = {
+										x = 82.95,
+										y = 30
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled76",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "rankSprite",
+									scale = 0.4,
+									pos = {
+										x = 25,
+										y = 30
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled77",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "rankLabel",
+									text = "4",
+									pos = {
+										x = 25,
+										y = 30
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled78",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "nameLabel",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 115,
+										y = 40
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled80",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "scoreLabel",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 115,
+										y = 21
+									},
+									text = TR("积分：100")
+								},
+								children = {}
+							},
+							{
+								name = "untitled96",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "guildLabel",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 115,
+										y = 2
+									},
+									text = TR("帮派：暂无")
+								},
+								children = {}
+							},
+							{
+								name = "untitled97",
+								cType = "Sprite",
+								params = {
+									image = "wsjj_32.png",
+									childName = "duanSprite",
+									scale = 0.4,
+									pos = {
+										x = 260,
+										y = 30
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 119.06,
+						y = 31.68
+					},
+					text = TR("暂无排行")
+				},
+				children = {}
+			},
+			{
+				name = "mMyRankNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -262
+					}
+				},
+				children = {
+					{
+						name = "untitled83",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 44,
+								y = 39.5
+							},
+							text = TR("我的排名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled92",
+						cType = "CardNode",
+						params = {
+							scale = 0.6,
+							clickAction = "onClickPlayer",
+							childName = "head",
+							allowClick = true,
+							pos = {
+								x = 112.17,
+								y = 24.8
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled91",
+						cType = "Sprite",
+						params = {
+							childName = "rankSprite",
+							scale = 0.4,
+							hide = true,
+							image = "c_51.png",
+							pos = {
+								x = 45,
+								y = 13
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled86",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							childName = "rankLabel",
+							pos = {
+								x = 43,
+								y = 15
+							},
+							text = TR("暂无")
+						},
+						children = {}
+					},
+					{
+						name = "untitled88",
+						cType = "Label",
+						params = {
+							fontSize = 16,
+							childName = "scoreLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 143.43,
+								y = 16.07
+							},
+							text = TR("暂无")
+						},
+						children = {}
+					},
+					{
+						name = "untitled94",
+						cType = "Sprite",
+						params = {
+							image = "wsjj_32.png",
+							childName = "duanSprite",
+							scale = 0.4,
+							pos = {
+								x = 260,
+								y = 25.27
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mCenterNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "ownPlayerNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -113.76,
+						y = -264.43
+					}
+				},
+				children = {
+					{
+						name = "PlayerInfoNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -100,
+								y = 375
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "xyyz_9.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "wsjj_32.png",
+									childName = "lvSprite",
+									scale = 0.8,
+									pos = {
+										x = 0,
+										y = 77
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled61",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "scoreLabel",
+									pos = {
+										x = 1,
+										y = 17
+									},
+									text = TR("500分")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									valign = 0,
+									pos = {
+										x = 2,
+										y = -62
+									},
+									size = {
+										width = 30,
+										height = 130
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "otherPlayerNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 312.61,
+						y = -264.15
+					}
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						params = {
+							scale = 0.9,
+							image = "xyyz_2.png",
+							pos = {
+								x = 23.86,
+								y = 191.14
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mBgEffect",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_xiangyangyezhan",
+					animation = "yuye",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mMatchBtn",
+				cType = "Button",
+				params = {
+					image = "xyyz_4.png",
+					clickAction = "onMatch",
+					pos = {
+						x = 69.34,
+						y = -17.57
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled21",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled22",
+				cType = "Button",
+				params = {
+					image = "tb_gn_19.png",
+					clickAction = "onRewardAction",
+					pos = {
+						x = -165.82,
+						y = -100.06
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "RedDot",
+						params = {
+							subKey = "Reward",
+							moduleId = 6907
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					image = "tb_gn_14.png",
+					clickAction = "onCampAction",
+					pos = {
+						x = -265.82,
+						y = -100.06
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "tb_gn_32.png",
+					clickAction = "onReportAction",
+					pos = {
+						x = -65.82,
+						y = -100.06
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled98",
+				cType = "Button",
+				params = {
+					image = "tb_gn_35.png",
+					clickAction = "onStore",
+					pos = {
+						x = -365,
+						y = -100
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled7",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mShieldNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mIsOpenReport = slot1.isOpenReport
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eHegemony) then
+		RedDotObj:seeRedDot("HegemonyReddot")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		isOpenReport = slot0.mIsOpenReport
+	}
+end
+slot0.refreshUI = function (slot0)
+	slot0.ownPlayerNode:removeAllChildren()
+
+	slot2 = UIWrap.newControl("Effect", {
+		scale = 0.3,
+		dataFile = FashionModel.items[PlayerAttrObj:getPlayerAttrByName("FashionModelId") or 19010000].skillEffect,
+		pos = cc.p(0, 205)
+	})
+
+	slot0.ownPlayerNode:addChild(slot2)
+	slot2.setCascadeOpacityEnabled(slot2, true)
+	slot2.setOpacity(slot2, 0)
+	slot2.runAction(slot2, cc.FadeIn:create(1))
+
+	if not slot0.mOwnInfoNode then
+		slot0.mOwnInfoNode = slot0.createLayoutTemplateNode(slot0, "PlayerInfoNode")
+
+		slot0.ownPlayerNode:addChild(slot0.mOwnInfoNode)
+		slot0.mOwnInfoNode:setPosition(-100, 375)
+	end
+
+	slot0.mOwnInfoNode.lvSprite:setTexture(HegemonyRankDuanConfig.items[slot0.mCrossData.HegemonyRank.Step].duanBigPic .. ".png")
+	slot0.mOwnInfoNode.scoreLabel:setString(TR("%s分", slot0.mCrossData.HegemonyRank.Score))
+	slot0.mOwnInfoNode.nameLabel:setString(PlayerAttrObj:getPlayerAttrByName("PlayerName"))
+	slot0.createSeasonTimeUpdate(slot0)
+
+	return 
+end
+slot0.createSeasonTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(TR("赛季倒计时：#ffe748%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeLabel:setString(TR("赛季已结束"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.playerMatchAction = function (slot0, slot1)
+	slot0.mShieldNode:addChild(slot2)
+	ui.addTouchEvent({
+		swallowTouch = true,
+		node = UIWrap.newControl("Layer", {
+			pos = cc.p(568, 320)
+		})
+	})
+	slot0.otherPlayerNode:removeAllChildren()
+	slot0.otherPlayerNode:addChild(slot3, 1)
+	Utility.performWithDelay(slot0.otherPlayerNode, function ()
+		if slot0.mMatchInfo.TargetHegemonyRank.FashionModelId and 0 < slot0.mMatchInfo.TargetHegemonyRank.FashionModelId then
+			slot0 = slot0.mMatchInfo.TargetHegemonyRank.FashionModelId
+		end
+
+		slot1 = HeroModel.items[slot0] and HeroModel.items[slot0].drawingPicA
+		slot1 = slot1 or (FashionModel.items[slot0] and FashionModel.items[slot0].pic) or "zjlh_01"
+
+		slot0.otherPlayerNode:addChild(slot2)
+
+		slot3 = slot0:createLayoutTemplateNode("PlayerInfoNode")
+
+		slot0.otherPlayerNode:addChild(slot3)
+		slot3.setPosition(slot3, 100, 300)
+		slot3.lvSprite:setTexture(HegemonyRankDuanConfig.items[slot0.mMatchInfo.TargetHegemonyRank.Step].duanBigPic .. ".png")
+		slot3.scoreLabel:setString(TR("%s分", slot0.mMatchInfo.TargetHegemonyRank.Score))
+		slot3.nameLabel:setString(slot0.mMatchInfo.TargetHegemonyRank.Name or slot0.mMatchInfo.TargetHegemonyRank.PlayerName)
+		slot0.mMatchBtn:loadTextures("xyyz_5.png", "xyyz_5.png")
+		Utility.performWithDelay(slot0, function ()
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end, 1.5)
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.isCeaseFireNow = function (slot0)
+	slot3, slot4 = slot1(HegemonyConfig.items[1].startTime)
+	slot5, slot6 = slot1(HegemonyConfig.items[1].endTime)
+	slot7 = MqTime.getServerLocalTime()
+
+	if slot7.hour*10000 + slot7.min*100 + slot7.sec < slot3 or slot5 < slot8 then
+		ui.showFlashView(TR("休战中，每日%s到%s之间可挑战", slot4, slot6))
+
+		return true
+	else
+		return false
+	end
+
+	return 
+end
+slot0.showScoreChange = function (slot0)
+	if slot0.mCrossData.HegemonyRank.Score - slot0.mCrossData.HegemonyRank.PrevLookScore == 0 then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hegemony.DlgHegemonyChangedScoreLayer",
+		data = {
+			curScore = slot0.mCrossData.HegemonyRank.Score,
+			changeScore = slot1
+		},
+		zOrder = Enums.ZOrderType.eMessageBox
+	})
+
+	return 
+end
+slot0.refreshRank = function (slot0)
+	slot0.mEmptyHint:setVisible(#(slot0.mRankData.RankList or {}) <= 0)
+	slot0.mRankTabView:reloadData()
+
+	if slot0.mRankData.MyRank and 0 < slot0.mRankData.MyRank then
+		if ({
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		})[slot0.mRankData.MyRank] then
+			slot0.mMyRankNode.rankSprite:setVisible(true)
+			slot0.mMyRankNode.rankSprite:setTexture(slot2[slot0.mRankData.MyRank])
+			slot0.mMyRankNode.rankLabel:setVisible(false)
+		else
+			slot0.mMyRankNode.rankSprite:setVisible(false)
+			slot0.mMyRankNode.rankLabel:setVisible(true)
+			slot0.mMyRankNode.rankLabel:setString(slot0.mRankData.MyRank)
+		end
+
+		slot0.mMyRankNode.scoreLabel:setString(TR("分数：%s", slot0.mRankData.Score))
+		slot0.mMyRankNode.duanSprite:setTexture(HegemonyRankDuanConfig.items[slot0.mRankData.Step].duanBigPic .. ".png")
+	end
+
+	slot0.mMyRankNode.head.playerInfo = {
+		playerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+	}
+
+	slot0.mMyRankNode.head:setCardData({
+		resourceId = PlayerAttrObj:getPlayerAttrByName("HeadImageId")
+	})
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCampAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hegemony.HegemonyDlgCampLayer",
+		data = {
+			callback = function ()
+				slot0:requestRank()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onStore = function (slot0)
+	LayerManager.addLayer({
+		name = "shop.ShopLayer",
+		data = {
+			moduleId = ModuleSub.ePvpShop
+		}
+	})
+
+	return 
+end
+slot0.onPvpTopAction = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("WorldnumoneOpenTime") then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "pvp.DlgWorldBestStartTipsLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end
+
+	LayerManager.showModuleLayer(ModuleSub.eWorldNumOne)
+
+	return 
+end
+slot0.onReportAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hegemony.HegemonyReportLayer",
+		popRestore = true,
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			reportIndex = (slot0.mIsOpenReport and 1) or nil
+		}
+	})
+
+	return 
+end
+slot0.onRewardAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hegemony.HegemonyRewardRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			hegemonyInfo = slot0.mHegemonyInfo,
+			hegemonyStepInfo = slot0.mCrossData.HegemonyRank,
+			rankData = slot0.mRankData,
+			callback = function (slot0)
+				slot0.mHegemonyInfo = slot0
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onRankAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hegemony.HegemonyRewardRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			subType = 3,
+			hegemonyInfo = slot0.mHegemonyInfo,
+			hegemonyStepInfo = slot0.mCrossData.HegemonyRank,
+			rankData = slot0.mRankData,
+			callback = function (slot0)
+				slot0.mHegemonyInfo = slot0
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1，玩家需要出战15个人，组成3个队伍匹配其他玩家进行战斗"),
+			TR("2，对战分为总共3场战斗，3战2胜。"),
+			TR("3，玩家初始默认为少侠段位，胜利会增加段位分数，当段位分数达到升段时，则可以进行提升段位，挑战失败也会扣除段位分数"),
+			TR("4，巅峰对决为跨服玩法，将会遇到各种强力对手"),
+			TR("5，遇到实力强劲的对手，采用田忌赛马的战术是你获得胜利的关键"),
+			TR("6，周天晚上11:30~12:00点结算段位和排名奖励。奖励结算之后赛季和段位重置，周一开始下个赛季的挑战。"),
+			TR("7，每个赛季各种奖励非常丰富，记得多参与，拿满奖励哦~")
+		}
+	})
+
+	return 
+end
+slot0.onMatch = function (slot0)
+	slot0.requestMatching(slot0)
+
+	return 
+end
+slot0.onClickPlayer = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = slot1.playerInfo,
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onRankViewSize = function (slot0)
+	return 300, 60
+end
+slot0.onRankViewNum = function (slot0)
+	return #(slot0.mRankData.RankList or {})
+end
+slot0.onRankViewItem = function (slot0, slot1, slot2)
+	slot1.refresh = function (slot0, slot1)
+		slot3 = slot0.mRankData.RankList[slot1 + 1]
+		slot4 = {
+			"c_51.png",
+			"c_52.png",
+			"c_53.png"
+		}
+
+		slot0.removeAllChildren(slot0)
+		slot0:createLayoutTemplateNode("RankTempNode").bgSprite:setVisible((slot1 + 1)%2 == 0)
+
+		if slot4[slot1] then
+			slot5.rankSprite:setVisible(true)
+			slot5.rankSprite:setTexture(slot4[slot1])
+			slot5.rankLabel:setVisible(false)
+		else
+			slot5.rankSprite:setVisible(false)
+			slot5.rankLabel:setVisible(true)
+			slot5.rankLabel:setString(slot1)
+		end
+
+		slot5.nameLabel:setString(slot3.Name)
+		slot5.head:setCardData({
+			resourceId = slot3.HeadImageId
+		})
+		slot5.scoreLabel:setString(TR("分数：%s", slot3.Score))
+		slot5.guildLabel:setString(TR("帮派：%s", (slot3.GuildName ~= "" and slot3.GuildName) or TR("暂无")))
+		slot5.duanSprite:setTexture(HegemonyRankDuanConfig.items[slot3.Step].duanBigPic .. ".png")
+
+		slot5.head.playerInfo = {
+			playerId = slot3.PlayerId,
+			serverId = slot3.ServerId,
+			partnerId = slot3.PartnerId
+		}
+
+		slot5.setPosition(slot5, 0, 0)
+		slot0.addChild(slot0, slot5)
+
+		return 
+	end
+
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.onRankViewRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Hegemony",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mEndTime = slot0.HegemonyInfo.EndTime
+			slot0.mHegemonyInfo = slot0.HegemonyInfo
+			slot0.mCrossData = clone(slot0.CrossData)
+
+			Player:saveGameData("HegemonyMyTeamInfo", slot0.mCrossData.OwnSlotFormationInfo)
+			slot0:refreshUI()
+			Utility.performWithDelay(slot0, function ()
+				slot0:requestRank()
+
+				return 
+			end, 0)
+
+			if slot0.mIsOpenReport then
+				Utility.performWithDelay(slot0, function ()
+					slot0:onReportAction()
+
+					slot0.onReportAction.mIsOpenReport = false
+
+					return 
+				end, 0.1)
+			end
+
+			slot0:showScoreChange()
+
+			if slot0.CrossData.TargetId and slot0.CrossData.TargetId ~= "" then
+				LayerManager.addLayer({
+					name = "hegemony.HegemonyMatchLayer",
+					data = clone(slot0.CrossData)
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRank = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRank",
+		moduleName = "Hegemony",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mRankData = slot0.CrossData
+
+			slot0:refreshRank()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestMatching = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Matching",
+		moduleName = "Hegemony",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mMatchInfo = slot0.CrossData
+
+			slot0:playerMatchAction(function ()
+				LayerManager.addLayer({
+					name = "hegemony.HegemonyMatchLayer",
+					data = clone(slot0.CrossData)
+				})
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

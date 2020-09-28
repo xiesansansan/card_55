@@ -1,0 +1,549 @@
+slot0 = class("RecruitShowHeroLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "touchNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0.5,
+				y = 0.5
+			},
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 600,
+				height = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "skipBtn",
+		cType = "Button",
+		params = {
+			clickAction = "onSkipBtn",
+			scaleApt = 2,
+			posApt = 1,
+			image = "c_pure.png",
+			pos = {
+				x = 1070,
+				y = 582
+			},
+			size = {
+				width = 100,
+				height = 100
+			}
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					fontSize = 36,
+					pos = {
+						x = 2.91,
+						y = 1.92
+					},
+					text = TR("跳过")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mParent",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mShuiEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_jinli",
+					scale = 0.5,
+					autoDelete = false,
+					animation = "shuimodi",
+					pos = {
+						x = -23.15,
+						y = 24.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mYuEffect",
+				cType = "Effect",
+				params = {
+					loop = false,
+					scale = 0.5,
+					skin = "bai",
+					autoDelete = false,
+					dataFile = "effect_jinli",
+					pos = {
+						x = -23.52,
+						y = 24.19
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.9,
+					image = "lh_11201.png",
+					pos = {
+						x = 22.69,
+						y = 35.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mQualitySprite",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_16.png",
+					pos = {
+						x = -187.31,
+						y = 84.17
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProfessionSprite",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_75.png",
+					pos = {
+						x = -177.52,
+						y = 199.59
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_2.png",
+					scale = 1.6,
+					pos = {
+						x = 182.99,
+						y = 142.99
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mNameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					text = "Label",
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 184.34,
+						y = 155.94
+					},
+					size = {
+						width = 30,
+						height = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mIntroNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -50,
+						y = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHintLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					hide = true,
+					emptyInit = true,
+					pos = {
+						x = 4.65,
+						y = -240
+					},
+					text = TR("已有该侠客，自动分解为#37ff40100#fff8ea碎片")
+				},
+				children = {}
+			},
+			{
+				name = "mFapNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 22.6,
+						y = -220.85
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							scaleX = 1.5,
+							image = "c_82.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Sprite",
+						params = {
+							image = "c_68.png",
+							pos = {
+								x = -108.14,
+								y = -0.64
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mFapLabel",
+						cType = "Label",
+						params = {
+							text = "1345",
+							charCount = 12,
+							fontName = "c_81.png",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = -39.43,
+								y = -19.78
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mUpSprite",
+						cType = "Sprite",
+						params = {
+							rotationAngle = -90,
+							image = "c_23.png",
+							pos = {
+								x = 100.62,
+								y = -3.21
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mCloseBtn",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 262.51,
+						y = 220.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mAgainNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = -255
+					}
+				},
+				children = {
+					{
+						name = "mUseLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mAgainBtn",
+						cType = "Button",
+						params = {
+							image = "c_19.png",
+							clickAction = "onAgain",
+							pos = {
+								x = 0,
+								y = -40
+							},
+							titleText = TR("再来一次")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroModelId = slot1.heroModelId
+	slot0.mIsConvert = slot1.IsConvert or false
+	slot0.mShowFap = slot1.showFap or false
+	slot0.mCallback = slot1.callback
+	slot0.recruitCallBack = slot1.recruitCallBack
+	slot0.recruitItem = slot1.recruitItem
+	slot0.showSkip = slot1.showSkip or false
+	slot0.mIsShowAll = slot1.mIsShowAll or false
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	MqAudio.playEffect((14 <= HeroModel.items[slot0.mHeroModelId].quality and "zhaomuzika.mp3") or "zhaomu-chuxianzhengjiang.mp3")
+	slot0.executeGuide(slot0)
+
+	slot3 = cc.EventListenerTouchOneByOne:create()
+
+	slot3.setSwallowTouches(slot3, true)
+	slot3.registerScriptHandler(slot3, function (slot0, slot1)
+		slot0.touchNode.mBeginPos = slot0.getLocation(slot0)
+
+		return true
+	end, cc.Handler.EVENT_TOUCH_BEGAN)
+	slot3.registerScriptHandler(slot3, function (slot0, slot1)
+		if not ui.touchInNode(slot0, slot0.touchNode) and ui.isTouchNodeClicked(slot0.touchNode.mBeginPos, slot0.getLocation(slot0)) then
+			slot0:onExitLayer()
+		end
+
+		return 
+	end, cc.Handler.EVENT_TOUCH_ENDED)
+	slot0.touchNode:getEventDispatcher():addEventListenerWithSceneGraphPriority(slot3, slot0.touchNode)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		slot0.skipBtn:setVisible(false)
+	end
+
+	slot0.skipBtn:setVisible(slot0.showSkip)
+	slot0.mYuEffect:setSkin(({
+		"bai",
+		"lv",
+		"lan",
+		"zi",
+		"cheng",
+		"hong",
+		"jin"
+	})[Resource.getQualityColorLv(HeroModel.items[slot0.mHeroModelId].quality)])
+	slot0.mHeroSprite:setTexture(HeroModel.items[slot0.mHeroModelId].drawingPicA .. ".png")
+	slot0.mHeroSprite:setOpacity(0)
+	Utility.performWithDelay(slot0, function ()
+		slot0.mHeroSprite:runAction(cc.FadeIn:create(1))
+		slot0.mHeroSprite.runAction:playHeroAudio(slot0.mHeroModelId)
+
+		return 
+	end, 1)
+	slot0.mNameLabel:setString(HeroModel.items[slot0.mHeroModelId].name)
+	slot0.mNameLabel:setColor(slot6)
+
+	slot11, slot8 = Utility.getCampProfessionRoadImage(slot3)
+
+	slot0.mQualitySprite:setTexture(slot7)
+	slot0.mProfessionSprite:setTexture(({
+		[ProfessionType.eDao] = "xkxx_91.png",
+		[ProfessionType.eJian] = "xkxx_90.png",
+		[ProfessionType.eLi] = "xkxx_92.png",
+		[ProfessionType.eQi] = "xkxx_93.png",
+		[ProfessionType.eJi] = "xkxx_94.png"
+	})[HeroModel.items[slot0.mHeroModelId].profession])
+
+	if slot0.mIsConvert and slot3.ifHaveChangeDebris ~= "" then
+		slot0.mHintLabel:setVisible(true)
+		slot0.mHintLabel:setString(TR("已有该侠客，自动分解为#37ff40%s#fff8ea碎片", Utility.analysisStrResList(slot3.ifHaveChangeDebris)[1].num))
+	elseif slot0.mShowFap and Player:getGameData("RecruitFap") and 0 < slot10 then
+		slot0.mFapNode:setVisible(true)
+		slot0.mFapLabel:setString(slot10)
+		slot0.mUpSprite:setPositionX(slot0.mFapLabel:getContentSize().width - 20)
+	end
+
+	slot0.createHeroIntro(slot0, slot3.intro)
+
+	slot10, slot11 = Guide.manager:getGuideInfo()
+
+	slot0.mAgainNode:setVisible((slot0.recruitCallBack and not slot11 and true) or false)
+
+	if slot0.recruitItem then
+		slot0.mUseLabel:setString(TR("{%s}%s/%s", Resource.getDaibiImg(slot13.resourceId), string.format("%s%s%s", (Utility.analysisStrResList(slot0.recruitItem.recruitUse)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.recruitItem.recruitUse)[1].resourceId) and "#37ff40") or "#ea2c00", Utility.numberWithUnit(slot14), "#fff8ea"), Utility.numberWithUnit(slot13.num)))
+	end
+
+	return 
+end
+slot0.playHeroAudio = function (slot0, slot1)
+	slot5 = string.split(HeroModel.items[slot1].staySound, ",")[math.random(1, #string.split(HeroModel.items[slot1].staySound, ","))] .. ".mp3"
+
+	if slot0.mCurAudio then
+		MqAudio.stopEffect(slot0.mCurAudio)
+	end
+
+	slot0.mCurAudio = MqAudio.playEffect(slot5)
+
+	return 
+end
+slot0.createHeroIntro = function (slot0, slot1)
+	slot0.mIntroNode:removeAllChildren()
+
+	slot2 = 0
+	slot3 = 16
+	slot4 = string.utf8len(slot1)
+
+	function slot5()
+		slot0 = math.min((slot0 + 1)*(), slot0 + 1)
+		slot0 = slot0 + 1
+
+		return string.utf8sub(slot3, slot0*slot1 + 1, slot0)
+	end
+
+	slot6 = cc.p(400, 0)
+	slot7 = -30
+
+	while true do
+		if slot5() == "" then
+			return 
+		end
+
+		slot0.mIntroNode:addChild(UIWrap.newControl("Label", {
+			fontSize = 20,
+			text = slot8,
+			size = cc.size(1, string.utf8len(slot8)*25),
+			pos = cc.p(slot6.x + (slot2 - 1)*slot7, slot6.y)
+		}))
+	end
+
+	return 
+end
+slot0.onSkipBtn = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback(true)
+	end
+
+	EventAuto:postEvent(EventDefine.eHeroCompoundOver)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 == 20307 then
+		LayerManager.removeTopCleanUpLayer()
+
+		return 
+	elseif slot2 == 102 then
+		Guide.manager:getCurLayerObject():executeGuide()
+		Guide.manager:setCurLayerObject()
+	end
+
+	if slot0.mCallback then
+		slot0.mCallback(slot0.mIsShowAll)
+	end
+
+	EventAuto:postEvent(EventDefine.eHeroCompoundOver)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onLook = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.HeroDetialViewLayer",
+		data = {
+			heroModelId = slot0.mHeroModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer + 2
+	})
+
+	return 
+end
+slot0.onAgain = function (slot0)
+	if slot0.recruitCallBack then
+		slot0.recruitCallBack()
+	end
+
+	slot0.onExitLayer(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if slot0.mCurAudio then
+		MqAudio.stopEffect(slot0.mCurAudio)
+	end
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	Guide.manager:exeGuideList({
+		[20306] = {
+			clickNode = slot0.mCloseBtn
+		},
+		[10306] = {
+			clickNode = slot0.mCloseBtn
+		},
+		[10111] = {
+			clickNode = slot0.mCloseBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

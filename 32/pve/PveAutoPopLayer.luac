@@ -1,0 +1,109 @@
+slot0 = class("PveAutoPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			image = "fb_34.png",
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "gotoBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onGotoPve",
+					pos = {
+						x = 363.15,
+						y = 92.85
+					},
+					titleText = TR("点击前往")
+				},
+				children = {}
+			},
+			{
+				name = "untitled1",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 408.62,
+						y = 261.57
+					},
+					text = TR("系统将自动挑战未通关的节点")
+				},
+				children = {
+					{
+						name = "untitled2",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 138.12,
+								y = -80.35
+							},
+							size = {
+								width = 210,
+								height = 60
+							},
+							text = TR("等级达到 49 级或会员 1 永久开启")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if Guide.manager:triggerSpecialGuide(8002) then
+		slot0.executeGuide(slot0)
+	end
+
+	return 
+end
+slot0.onGotoPve = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.ePve)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[8002] = {
+			clickNode = slot0.gotoBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,191 @@
+slot0 = class("FashionSkillShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 170)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "adapterNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "effect",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_siwang",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = require("common.SpineManager")
+slot0.ctor = function (slot0, slot1)
+	slot0.autoClose = false
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mShowModelId = slot1.fashionModelId or 19010000
+	slot0.mFinishedCallback = slot1.finishedCallback
+	slot0.mModel = FashionModel.items
+
+	if Resource.getMainType(slot0.mShowModelId) == ResourceType.eFashion then
+		slot0.mModel = FashionModel.items
+	elseif Resource.getMainType(slot0.mShowModelId) == ResourceType.eHero then
+		slot0.mModel = HeroModel.items
+	end
+
+	slot0.initUI(slot0)
+
+	if slot0.autoClose then
+		Utility.schedule(slot0, function ()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end, 0.01, false)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "effect" then
+			slot1.dataFile = slot0.mModel[slot0.mShowModelId].largePic
+		end
+
+		return 
+	end)
+
+	slot1 = {}
+	slot2 = require("battle.common.FxHelper")
+	slot3 = require("battle.common.SpineConf")
+
+	for slot7, slot8 in pairs(slot0.mModel) do
+		if slot8.modelId == slot0.mShowModelId then
+			if slot3[slot8.largePic] then
+				slot1[slot8.modelId] = slot2.getHeroNujiAnims(slot8.largePic)
+
+				break
+			end
+
+			ui.showFlashView(TR("缺少动画配置"))
+
+			break
+		end
+	end
+
+	if slot1[slot0.mShowModelId] == nil then
+		slot0.autoClose = true
+	else
+		slot5 = 8
+
+		slot0.effect:playAnimation(slot4[1], 1)
+		slot0.effect:registerLuaHandler("complete", function (slot0)
+			if slot0.animation == slot0[#slot0] then
+				LayerManager.removeLayer(slot1.mFinishedCallback)
+
+				if slot1.mFinishedCallback then
+					slot1()
+				end
+			end
+
+			return 
+		end)
+
+		for slot9, slot10 in ipairs(slot4) do
+			if slot9 ~= 1 then
+				slot0.effect:appendAnimation(slot10, 1)
+			end
+		end
+
+		skillType = "skill"
+
+		if slot2.getSkillConf(slot0.mModel[slot0.mShowModelId].largePic, skillType).chargeEffect[1] and slot7 ~= "" then
+			slot8 = slot0.createAnimation(slot7, 1)
+
+			slot0.adapterNode:addChild(slot8)
+			slot8.playAnimation(slot8, slot6.chargeEffect[2], 1)
+			slot8.setPosition(slot8, slot0.effect:getPositionX(), slot0.effect:getPositionY())
+		end
+
+		if slot6.diEffect and slot6.diEffect[1] and slot8 ~= "" then
+			slot9 = slot0.createAnimation(slot8, 1)
+
+			slot0.adapterNode:addChild(slot9, -1)
+			slot9.setScale(slot9, slot6.diEffect[3])
+			slot9.playAnimation(slot9, slot6.diEffect[2], 1)
+			slot9.setPosition(slot9, slot0.effect:getPositionX(), slot0.effect:getPositionY())
+		end
+
+		if slot6.skyEffect and slot6.skyEffect[1] and slot8 ~= "" then
+			slot9 = slot0.createAnimation(slot8, 1)
+
+			slot0.adapterNode:addChild(slot9, 1)
+			slot9.setScale(slot9, slot6.skyEffect[3])
+			slot9.playAnimation(slot9, slot6.skyEffect[2], 1)
+			slot9.setPosition(slot9, slot0.effect:getPositionX(), slot0.effect:getPositionY())
+		end
+
+		if slot6.groundEffect and slot6.groundEffect[1] and slot8 ~= "" then
+			slot9 = slot0.createAnimation(slot8, 1)
+
+			slot9.setPosition(slot9, 0, 0)
+			slot0.adapterNode:addChild(slot9, -2)
+			slot9.setScale(slot9, slot6.groundEffect[3])
+			slot9.playAnimation(slot9, slot6.groundEffect[2], 1)
+			slot9.setPosition(slot9, slot0.effect:getPositionX(), slot0.effect:getPositionY())
+		end
+
+		slot0.dt = 0
+
+		function slot8(slot0)
+			slot1, slot2 = string.find(slot0.name, ".mp3")
+
+			if slot1 and 0 < slot1 then
+				MqAudio.playEffect(slot0.name)
+			end
+
+			return 
+		end
+
+		slot0.triggers = clone(slot2.getSpineInfo(slot0.mModel[slot0.mShowModelId].largePic, "nuji").events) or {}
+
+		table.sort(slot0.triggers, function (slot0, slot1)
+			return slot1.time < slot0.time
+		end)
+		slot0.onUpdate(slot0, function (slot0)
+			slot0.dt = slot0.dt + slot0
+
+			for slot4 = #slot0.triggers, 1, -1 do
+				if slot0.triggers[slot4].time <= slot0.dt then
+					slot1(slot5)
+					table.remove(slot0.triggers, slot4)
+				else
+					break
+				end
+			end
+
+			return 
+		end)
+	end
+
+	return 
+end
+
+return slot0

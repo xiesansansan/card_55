@@ -1,0 +1,838 @@
+slot0 = class("JzwlFightStatusLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mSideImg",
+		cType = "Sprite",
+		params = {
+			image = "czhan_20.png",
+			pos = {
+				x = 320,
+				y = 999
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bgSprite",
+		cType = "Scale9Sprite",
+		params = {
+			image = "czhan_21.png",
+			pos = {
+				x = 320,
+				y = 515
+			},
+			size = {
+				width = 640,
+				height = 760
+			}
+		},
+		children = {
+			{
+				name = "mFightCountLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					pos = {
+						x = 257.56,
+						y = 722.69
+					},
+					text = TR("战斗区：3/3")
+				},
+				children = {}
+			},
+			{
+				name = "fightingNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled38-text",
+						name = "name",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 60,
+						y = 515
+					}
+				},
+				children = {
+					{
+						name = "untitled37",
+						cType = "CardNode",
+						params = {
+							scale = 0.9,
+							childName = "head",
+							allowClick = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							initParams = {},
+							pos = {
+								x = 52.92,
+								y = 30.53
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 52.92,
+								y = 125.53
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 44,
+								r = 234,
+								b = 0
+							},
+							pos = {
+								x = 52.92,
+								y = 2.53
+							},
+							text = TR("战斗中")
+						},
+						children = {}
+					},
+					{
+						name = "untitled40",
+						cType = "GuildFlag",
+						params = {
+							fontSize = 60,
+							childName = "flag",
+							scale = 0.35,
+							pos = {
+								x = 53.82,
+								y = 156.08
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mListViewR",
+		cType = "ListView",
+		params = {
+			bounce = true,
+			direction = true,
+			pos = {
+				x = 465.54,
+				y = 140
+			},
+			size = {
+				width = 120,
+				height = 450.88
+			}
+		},
+		children = {
+			{
+				name = "tempLayoutR",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled59-text",
+						name = "name",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -6.44,
+						y = 262.16
+					},
+					size = {
+						width = 120,
+						height = 189
+					}
+				},
+				children = {
+					{
+						name = "untitled58",
+						cType = "CardNode",
+						params = {
+							scale = 0.9,
+							childName = "head",
+							allowClick = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							initParams = {},
+							pos = {
+								x = 60,
+								y = 30
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled59",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 60,
+								y = 125
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled60",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 135,
+								r = 37,
+								b = 17
+							},
+							pos = {
+								x = 60,
+								y = 2
+							},
+							text = TR("等待中")
+						},
+						children = {}
+					},
+					{
+						name = "untitled61",
+						cType = "GuildFlag",
+						params = {
+							fontSize = 60,
+							childName = "flag",
+							scale = 0.35,
+							pos = {
+								x = 60,
+								y = 155.55
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mListViewM",
+		cType = "ListView",
+		params = {
+			bounce = true,
+			direction = true,
+			pos = {
+				x = 260,
+				y = 140
+			},
+			size = {
+				width = 120,
+				height = 450.88
+			}
+		},
+		children = {
+			{
+				name = "tempLayoutM",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled66-text",
+						name = "name",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -6.44,
+						y = 262.16
+					},
+					size = {
+						width = 120,
+						height = 189
+					}
+				},
+				children = {
+					{
+						name = "untitled65",
+						cType = "CardNode",
+						params = {
+							scale = 0.9,
+							childName = "head",
+							allowClick = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							initParams = {},
+							pos = {
+								x = 60,
+								y = 30
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled66",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 60,
+								y = 125
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled67",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 135,
+								r = 37,
+								b = 17
+							},
+							pos = {
+								x = 60,
+								y = 2
+							},
+							text = TR("等待中")
+						},
+						children = {}
+					},
+					{
+						name = "untitled68",
+						cType = "GuildFlag",
+						params = {
+							fontSize = 60,
+							childName = "flag",
+							scale = 0.35,
+							pos = {
+								x = 60,
+								y = 155.55
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mListViewL",
+		cType = "ListView",
+		params = {
+			bounce = true,
+			direction = true,
+			pos = {
+				x = 54,
+				y = 140
+			},
+			size = {
+				width = 120,
+				height = 450.88
+			}
+		},
+		children = {
+			{
+				name = "tempLayoutL",
+				cType = "Layout",
+				custom = {
+					{
+						value = "name-text",
+						name = "name",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -6.44,
+						y = 262.16
+					},
+					size = {
+						width = 120,
+						height = 189
+					}
+				},
+				children = {
+					{
+						name = "head",
+						cType = "CardNode",
+						params = {
+							scale = 0.9,
+							allowClick = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							initParams = {},
+							pos = {
+								x = 60,
+								y = 30
+							}
+						},
+						children = {}
+					},
+					{
+						name = "name",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 248,
+								r = 255,
+								b = 234
+							},
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 60,
+								y = 125
+							},
+							text = TR("名字")
+						},
+						children = {}
+					},
+					{
+						name = "status",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							color = {
+								g = 135,
+								r = 37,
+								b = 17
+							},
+							pos = {
+								x = 60,
+								y = 2
+							},
+							text = TR("等待中")
+						},
+						children = {}
+					},
+					{
+						name = "flag",
+						cType = "GuildFlag",
+						params = {
+							fontSize = 60,
+							scale = 0.35,
+							pos = {
+								x = 60,
+								y = 155.55
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled47",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_88.png",
+			pos = {
+				x = 321.25,
+				y = 638.28
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mWaitingCountLabel",
+		cType = "Label",
+		params = {
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			color = {
+				g = 135,
+				r = 37,
+				b = 17
+			},
+			pos = {
+				x = 269.49,
+				y = 605.77
+			},
+			text = TR("备战区：12")
+		},
+		children = {}
+	},
+	{
+		name = "untitled21",
+		cType = "Button",
+		params = {
+			image = "c_13.png",
+			clickAction = "onClickClose",
+			pos = {
+				x = 321.32,
+				y = 56.38
+			},
+			titleText = TR("返 回")
+		},
+		children = {}
+	},
+	{
+		name = "untitled45",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_87.png",
+			pos = {
+				x = 114.09,
+				y = 924.64
+			}
+		},
+		children = {
+			{
+				name = "untitled46",
+				cType = "Label",
+				params = {
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 54.93,
+						y = 19.99
+					},
+					text = TR("上路")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled43",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_87.png",
+			pos = {
+				x = 320.11,
+				y = 925.36
+			}
+		},
+		children = {
+			{
+				name = "untitled44",
+				cType = "Label",
+				params = {
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 54.93,
+						y = 19.99
+					},
+					text = TR("中路")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled41",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_87.png",
+			pos = {
+				x = 531.02,
+				y = 924
+			}
+		},
+		children = {
+			{
+				name = "untitled42",
+				cType = "Label",
+				params = {
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 54.93,
+						y = 19.99
+					},
+					text = TR("下路")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCloseCallback = slot1.closeCallback
+	slot0.mIsAttack = slot1.isAttack
+	slot0.mTeamInfo = slot1.teamInfo
+	slot0.mGuildId = slot1.guildId
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mSideImg:setTexture((slot0.mIsAttack == 1 and "czhan_19.png") or "czhan_20.png")
+
+	return 
+end
+slot0.onClickClose = function (slot0)
+	if slot0.mCloseCallback then
+		slot0.mCloseCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.createWaitingView = function (slot0)
+	slot1 = {}
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot0.mReadyList) do
+		if slot8.Path == 1 then
+			table.insert(slot1, slot8)
+		elseif slot8.Path == 2 then
+			table.insert(slot2, slot8)
+		elseif slot8.Path == 3 then
+			table.insert(slot3, slot8)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.ExpeditionsTime ~= slot1.ExpeditionsTime then
+			return slot0.ExpeditionsTime < slot1.ExpeditionsTime
+		end
+
+		return 
+	end)
+	table.sort(slot2, function (slot0, slot1)
+		if slot0.ExpeditionsTime ~= slot1.ExpeditionsTime then
+			return slot0.ExpeditionsTime < slot1.ExpeditionsTime
+		end
+
+		return 
+	end)
+	table.sort(slot3, function (slot0, slot1)
+		if slot0.ExpeditionsTime ~= slot1.ExpeditionsTime then
+			return slot0.ExpeditionsTime < slot1.ExpeditionsTime
+		end
+
+		return 
+	end)
+
+	slot4 = 0
+	slot5 = 0
+
+	for slot9, slot10 in ipairs(slot1) do
+		if slot9 == 1 then
+			slot11 = slot0.createLayoutTemplateNode(slot0, "fightingNode", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot11.setPosition(slot11, (slot9 - 1)*205 + 60, 515)
+			slot0.bgSprite:addChild(slot11)
+
+			slot4 = slot4 + 1
+		else
+			slot11 = slot0.createLayoutTemplateNode(slot0, "tempLayoutL", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot0.mListViewL:pushBackCustomItem(slot11)
+
+			slot5 = slot5 + 1
+		end
+	end
+
+	for slot9, slot10 in ipairs(slot2) do
+		if slot9 == 1 then
+			slot11 = slot0.createLayoutTemplateNode(slot0, "fightingNode", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot11.setPosition(slot11, 265, 515)
+			slot0.bgSprite:addChild(slot11)
+
+			slot4 = slot4 + 1
+		else
+			slot11 = slot0.createLayoutTemplateNode(slot0, "tempLayoutM", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot0.mListViewM:pushBackCustomItem(slot11)
+
+			slot5 = slot5 + 1
+		end
+	end
+
+	for slot9, slot10 in ipairs(slot3) do
+		if slot9 == 1 then
+			slot11 = slot0.createLayoutTemplateNode(slot0, "fightingNode", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot11.setPosition(slot11, 470, 515)
+			slot0.bgSprite:addChild(slot11)
+
+			slot4 = slot4 + 1
+		else
+			slot11 = slot0.createLayoutTemplateNode(slot0, "tempLayoutR", {
+				name = slot10.PlayerName
+			})
+
+			slot11.head:setCardData({
+				resourceId = slot10.HeroModelId
+			})
+			slot11.flag:setFlag(slot10.BannerInfo)
+			slot11.flag:setString(slot10.Logo)
+			slot0.mListViewR:pushBackCustomItem(slot11)
+
+			slot5 = slot5 + 1
+		end
+	end
+
+	slot0.mFightCountLabel:setString(TR("战斗区：%s/3", slot4))
+	slot0.mWaitingCountLabel:setString(TR("备战区：%s", slot5))
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.safeRequest(slot0, {
+		methodName = "GetGuildTeamInfo",
+		moduleName = "Leaguetop",
+		methodData = {
+			slot0.mGuildId,
+			slot0.mIsAttack
+		},
+		successCallback = function (slot0)
+			slot0.mReadyList = slot0.TeamInfo
+
+			slot0:createWaitingView()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

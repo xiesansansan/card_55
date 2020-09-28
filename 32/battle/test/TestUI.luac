@@ -1,0 +1,88 @@
+slot0 = require("battle.common.UIHelper")
+slot1 = class("TestUILayer", cc.Layer)
+slot1.ctor = function (slot0)
+	slot0.setName(slot0, "TestUILayer")
+	cc.Director:getInstance():setDisplayStats(true)
+
+	slot1 = cc.Sprite:create("zdcj_01.jpg")
+
+	slot1.setScale(slot1, display.minScale)
+	slot1.setPosition(slot1, slot0.autoPos(320, 568))
+	slot0.enableNodeEvents(slot0)
+
+	return 
+end
+slot1.onEnter = function (slot0)
+	slot0.addTestBtn(slot0)
+
+	slot1 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot1.setPosition(slot1, slot0.autoPos(500, 600))
+	slot1.setTitleText(slot1, "Reload")
+	slot1.setScale(slot1, display.minScale)
+	slot1.setTitleFontSize(slot1, 25)
+	slot1.setScale(slot1, display.minScale)
+	slot1.setPressedActionEnabled(slot1, true)
+	slot1.addClickEventListener(slot1, function (slot0)
+		slot0:removeFromParent()
+		cc.Director:getInstance():purgeCachedData()
+		rebootLua()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot1)
+
+	return 
+end
+slot1.addBtn = function (slot0, slot1, slot2, slot3)
+	slot4 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot4.setPosition(slot4, slot2)
+	slot4.setTitleText(slot4, slot1)
+	slot4.setScale(slot4, display.minScale)
+	slot4.setTitleFontSize(slot4, 25)
+	slot4.setScale(slot4, display.minScale)
+	slot4.setPressedActionEnabled(slot4, true)
+	slot4.addClickEventListener(slot4, function (slot0)
+		slot0()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot4)
+
+	return 
+end
+slot1.addTestBtn = function (slot0)
+	slot2 = cc.Sprite:create("zd_42.png")
+
+	slot2.setPosition(slot2, slot0.autoPos(300, 420))
+	slot0.addChild(slot0, slot2)
+
+	slot3 = require("battle.views.ShieldBar"):create({
+		curHp = 500,
+		barWidth = 73,
+		maxHp = 1000,
+		shieldHp = 500
+	})
+
+	slot3.setPosition(slot3, slot0.autoPos(300, 400))
+	slot0.addChild(slot0, slot3)
+	slot0.addBtn(slot0, "addPer", slot0.autoPos(500, 400), function ()
+		slot0 = slot0 + 100
+
+		slot1:refresh(slot1.refresh)
+
+		return 
+	end)
+	slot0.addBtn(slot0, "addPer", slot0.autoPos(500, 300), function ()
+		slot0 = slot0 - 100
+
+		slot1:refresh(slot1.refresh)
+
+		return 
+	end)
+
+	return 
+end
+
+return slot1

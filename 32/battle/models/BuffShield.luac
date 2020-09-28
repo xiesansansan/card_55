@@ -1,0 +1,42 @@
+slot1 = require("battle.common.BuffHelper")
+slot2 = class("BuffShield", require("battle.models.Buff"))
+slot2.ctor = function (slot0, slot1, slot2, slot3, slot4, slot5, slot6)
+	slot0.super.ctor(slot0, slot1, slot2, slot3, slot4, slot5)
+
+	slot0.isShield = true
+	slot0.shieldHp = slot6*slot0.damageRatioValue[1] + slot0.damageRatioValue[2]
+	slot0.shieldMax = slot0.shieldHp
+
+	if slot0.buffType == "HardSkin" then
+		slot7 = slot1.parseSpecialParam(slot0.buffParameter)
+		slot0.hardSkinParam = {
+			math.min(slot7[1] + slot7[2]*slot4 + slot7[3]*slot5, slot7[4] + slot7[5]*slot4 + slot7[6]*slot5),
+			slot7[4] + slot7[5]*slot4 + slot7[6]*slot5
+		}
+	end
+
+	return 
+end
+slot2.execute = function (slot0, slot1)
+	slot0.super.execute(slot0)
+
+	if 0 < slot0.shieldHp and 0 < slot0.round then
+		slot0.shieldHp = slot0.shieldHp + slot1
+	end
+
+	return slot0.shieldHp
+end
+slot2.getDesc = function (slot0)
+	return slot1 .. " : " .. string.format("%.2f", slot0.shieldHp)
+end
+slot2.copy = function (slot0, slot1)
+	slot0.super.copy(slot0, slot1)
+
+	slot0.isShield = slot1.isShield
+	slot0.shieldHp = slot1.shieldHp
+	slot0.shieldMax = slot1.shieldMax
+
+	return 
+end
+
+return slot2

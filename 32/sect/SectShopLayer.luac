@@ -1,0 +1,629 @@
+slot0 = class("SectShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 890,
+						height = 540
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "zm_71.png",
+							pos = {
+								x = 205,
+								y = 271
+							}
+						},
+						children = {
+							{
+								name = "tokenEffectNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 174,
+										y = 235.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Sprite",
+								params = {
+									image = "xkzw_4.png",
+									pos = {
+										x = 174,
+										y = 429
+									}
+								},
+								children = {
+									{
+										name = "goodsNameLabel",
+										cType = "Label",
+										params = {
+											fontSize = 26,
+											childName = "goodsNameLabel",
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 124.5,
+												y = 18
+											},
+											text = TR("碧玉打狗棒")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled27",
+								cType = "Button",
+								params = {
+									image = "zm_70.png",
+									clickAction = "onTokenViewCallBack",
+									pos = {
+										x = 40.96,
+										y = 416.53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "infoBtn",
+								cType = "Button",
+								params = {
+									image = "c_3.png",
+									clickAction = "onTokenDetailCallBack",
+									pos = {
+										x = 304.47,
+										y = 415.84
+									}
+								},
+								children = {}
+							},
+							{
+								name = "drawBtn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									clickAction = "onBuyToken",
+									pos = {
+										x = 174,
+										y = 37
+									},
+									titleText = TR("领 取")
+								},
+								children = {}
+							},
+							{
+								name = "activeResLabel",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1111,
+									pos = {
+										x = 126.33,
+										y = 80.4
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "gridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateGridItem",
+							itemNum = 0,
+							selectIndex = 1,
+							colCount = 3,
+							celHeight = 227,
+							pos = {
+								x = 623.3,
+								y = 265.21
+							},
+							size = {
+								width = 480,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "gridTemplate",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled14-id",
+										name = "id",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 164,
+										height = 227
+									}
+								},
+								children = {
+									{
+										name = "untitled34",
+										cType = "Sprite",
+										params = {
+											image = "zm_72.png",
+											pos = {
+												x = 82,
+												y = 113.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "nameLabel",
+											isRichText = true,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 81,
+												y = 205
+											},
+											text = TR("丐帮功法*卷一")
+										},
+										children = {}
+									},
+									{
+										name = "untitled36",
+										cType = "Button",
+										params = {
+											childName = "border",
+											swallowTouch = false,
+											pressedAction = false,
+											image = "c_13.png",
+											pos = {
+												x = 80,
+												y = 147.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled37",
+										cType = "Sprite",
+										params = {
+											image = "c_pure.png",
+											childName = "goodsSprite",
+											pos = {
+												x = 80,
+												y = 147.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "conditionLabel",
+											text = "Label",
+											isRichText = true,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 80,
+												y = 97
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											childName = "costResLabel",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 47.29,
+												y = 74.44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "id",
+												type = "integer"
+											}
+										},
+										params = {
+											childName = "btn",
+											image = "c_27.png",
+											clickAction = "onBuyCallBack",
+											pos = {
+												x = 80,
+												y = 39
+											},
+											titleText = TR("学 习")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled22",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 382.55,
+								y = 487.23
+							},
+							text = TR("可用声望:")
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Sprite",
+						params = {
+							image = "c_77.png",
+							pos = {
+								x = 624.25,
+								y = 38.28
+							}
+						},
+						children = {}
+					},
+					{
+						name = "ownLabel",
+						cType = "ResLabel",
+						params = {
+							modelId = 1130,
+							num = 0,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 481.12,
+								y = 498.23
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 94.56,
+								y = 30.59
+							},
+							text = TR("学习完所有绝学可获取宝物")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+	slot0.mLv = PlayerAttrObj:getPlayerAttrByName("SectPrestigeLv") or 1
+
+	slot0.super.ctor(slot0, {
+		swallow = false,
+		beganEvent = function (slot0, slot1)
+			return true
+		end,
+		endedEvent = function (slot0, slot1)
+			if slot0.tokenInfoLayer then
+				LayerManager.removeLayer(slot0.tokenInfoLayer)
+
+				slot0.tokenInfoLayer = nil
+			end
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+	slot0.requestShopInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot0.shopData = SectMoveModel.items[slot0.mSectID]
+
+	for slot6, slot7 in pairs(slot0.shopInfoList) do
+		if slot7.SectId == slot0.mSectID then
+			slot2 = slot7
+
+			break
+		end
+	end
+
+	slot0.shopInfo = slot2
+
+	return 
+end
+slot0.juexueBuyed = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.shopInfo.MoveIds) do
+		if slot6 == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.tokenBuyed = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.shopInfo.TokenIds) do
+		if slot6 == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot5 = slot0.juexueBuyed(slot0, slot2)
+
+	slot1.addChild(slot1, slot6)
+
+	slot7 = Utility.analysisStrResList(slot0.shopData[slot2].use)[1]
+
+	slot0.createLayoutTemplateNode(slot0, "gridTemplate", {
+		id = slot0.shopData[slot2].moveID
+	}).nameLabel:setString(TR("%s%s", "", slot0.shopData[slot2].name))
+
+	slot9 = slot0.shopData[slot2].colorLv or 1
+
+	slot6.border:loadTextures(Resource.getBorderImgByColovLv, )
+	slot6.border:setClickAction(function ()
+		slot1 = ""
+
+		for slot5, slot6 in ipairs(slot0) do
+			slot7 = ""
+
+			if 1 < slot5 then
+				slot7 = " "
+			end
+
+			slot1 = slot1 .. ((Utility.isAttrNeedPercent(slot6.fightattr) and slot7 .. string.format("#C04141%s+%s%%", FightAttrTypeName[slot6.fightattr], slot6.value/100)) or slot7 .. string.format("#C04141%s+%s", FightAttrTypeName[slot6.fightattr], slot6.value))
+		end
+
+		slot2 = nil
+		slot2 = ui.showMessageBox({
+			titleText = TR(slot0.name),
+			text = TR("学习后可获得以下属性:\n%s", slot1),
+			okCallback = function (slot0)
+				LayerManager.removeLayer(slot0)
+
+				return 
+			end
+		})
+
+		return 
+	end)
+	slot6.goodsSprite:setTexture(slot4.pic .. ".png")
+	slot6.conditionLabel:setString(TR("%s%s#252525可学习", (slot4.sectExpLv <= slot0.mLv and "#8ba857") or "#C04141", SectExplvRelation.items[slot0.mSectID][slot4.sectExpLv].name))
+
+	slot11 = slot4.sectExpLv <= slot0.mLv
+
+	if slot5 then
+		slot6.btn:setBright(false)
+		slot6.btn:setEnabled(false)
+		slot6.btn:setTitleText(TR("已学习"))
+	elseif slot11 then
+		slot6.btn:setBright(true)
+		slot6.btn:setEnabled(true)
+		slot6.btn:setTitleText(TR("学习"))
+	else
+		slot6.btn:setBright(false)
+		slot6.btn:setEnabled(false)
+		slot6.btn:setTitleText(TR("学习"))
+	end
+
+	slot6.costResLabel:setType(slot7.resourceId)
+	slot6.costResLabel:setString(slot7.num)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.handleData(slot0)
+	slot0.gridView:setItemNum(#slot0.shopData)
+	slot0.ownLabel:setType(slot0.mSectID + 1130)
+	slot0.ownLabel:setString(Resource.getCount(slot0.mSectID + 1130))
+	slot0.tokenEffectNode:removeAllChildren()
+	slot0.tokenEffectNode:addChild(slot2)
+	slot0.activeResLabel:setType(slot0.mSectID + 1130)
+	slot0.activeResLabel:setString(Utility.analysisStrResList(SectTokenModel.items[slot0.mSectID][1].tokenReceiveUse)[1].num)
+	slot0.goodsNameLabel:setString(SectTokenModel.items[slot0.mSectID][1].tokenName)
+	slot0.drawBtn:setEnabled(not slot0.tokenBuyed(slot0, 1))
+	slot0.drawBtn:setTitleText((slot0.tokenBuyed(slot0, 1) and TR("已获取")) or TR("获 取"))
+
+	return 
+end
+slot0.onBuyCallBack = function (slot0, slot1)
+	id = slot1.id
+
+	slot0.requestShopBuy(slot0, id)
+
+	return 
+end
+slot0.onTokenViewCallBack = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "sect.SectTokenViewLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			data = slot0.shopInfoList
+		}
+	})
+
+	return 
+end
+slot0.onTokenDetailCallBack = function (slot0, slot1)
+	if slot0.tokenInfoLayer then
+		LayerManager.removeLayer(slot0.tokenInfoLayer)
+
+		slot0.tokenInfoLayer = nil
+
+		return 
+	end
+
+	slot0.tokenInfoLayer = LayerManager.addLayer({
+		cleanUp = false,
+		name = "sect.SectTokenLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			sectID = slot0.mSectID
+		}
+	})
+
+	slot0.tokenInfoLayer.bg:setPosition(slot0.tokenInfoLayer:convertToNodeSpace(slot3))
+
+	return 
+end
+slot0.onBuyToken = function (slot0)
+	slot0.requestBuyToken(slot0, 1)
+
+	return 
+end
+slot0.requestShopInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetJuexue",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.shopInfoList = slot0.SectPrestigeInfo
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestShopBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "StudyJuexue",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.shopInfoList = slot0.SectPrestigeInfo
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyToken = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawedToken",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.shopInfoList = slot0.SectPrestigeInfo
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

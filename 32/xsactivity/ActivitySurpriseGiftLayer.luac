@@ -1,0 +1,435 @@
+slot0 = class("ActivitySurpriseGiftLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "jxlh_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 716.31,
+						y = 512.23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				params = {
+					image = "jxlh_2.png",
+					pos = {
+						x = 455.98,
+						y = 440.66
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Sprite",
+				params = {
+					image = "cz_89.png",
+					pos = {
+						x = 604.5,
+						y = 196.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Sprite",
+				params = {
+					image = "kfbp_9.png",
+					pos = {
+						x = 439.11,
+						y = 382.85
+					}
+				},
+				children = {
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 137,
+								y = 10
+							},
+							text = TR("剩余时间：")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					swallowTouch = false,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 232.83,
+						y = 301.73
+					},
+					size = {
+						width = 440,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled15-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 110,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 55,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mOriginLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 311,
+						y = 223.42
+					},
+					text = TR("原价：100元")
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "jxlh_3.png",
+					pos = {
+						x = 391.8,
+						y = 223.24
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mBuyBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onBuyCallback",
+					pos = {
+						x = 440.06,
+						y = 114.66
+					},
+					titleText = TR("购 买")
+				},
+				children = {}
+			},
+			{
+				name = "mLimitNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					color = {
+						g = 221,
+						r = 226,
+						b = 221
+					},
+					pos = {
+						x = 442.04,
+						y = 59.8
+					},
+					text = TR("今日限购次数：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 241,
+						y = 177
+					},
+					text = TR("现价只需：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 486.96,
+						y = 178
+					},
+					text = TR("元！")
+				},
+				children = {}
+			},
+			{
+				name = "mNowLabel",
+				cType = "Label",
+				params = {
+					fontName = "jxlh_4.png",
+					text = "123",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 380.24,
+						y = 158.2
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = slot1.actvityId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestInfo(slot0)
+	RedDotObj:seeRedDot("SurpriseGiftDefault", slot0.mActivityId)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eSurpriseGift, function (slot0)
+		ui.showFlashView(TR("购买成功"))
+		slot0:requestInfo()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mActivityData.EndDate - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(TR("倒计时：#C04141%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeLabel:setString(TR("倒计时：#C0414100:00:00"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshRewardList = function (slot0)
+	slot0.mRewardListView:removeAllChildren()
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardData = {
+				cardInfo = slot6,
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum,
+					Enums.CardShowAttr.eName
+				}
+			}
+		}))
+	end
+
+	slot0.onPlayerAction(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createTimeUpdate(slot0)
+	slot0.refreshRewardList(slot0)
+	slot0.mOriginLabel:setString(TR("原价：%s元", slot0.mActivityData.InitPrice))
+	slot0.mNowLabel:setString(slot0.mActivityData.Price)
+
+	if slot0.mActivityData.DayGetCount < slot0.mActivityData.DayBuyCount then
+		slot0.mBuyBtn:setTitleText(TR("领 取"))
+	else
+		slot0.mBuyBtn:setTitleText(TR("购 买"))
+	end
+
+	slot0.mLimitNumLabel:setString(TR("今日限购#dfc72a%s#d2dddd次", slot0.mActivityData.DayLimCount - slot0.mActivityData.DayBuyCount))
+
+	return 
+end
+slot0.onPlayerAction = function (slot0)
+	slot2 = 0.4
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot7.card:setScale(0)
+		slot7.card:runAction(cc.Spawn:create({
+			cc.RotateBy:create(slot2, 360),
+			cc.ScaleTo:create(slot2, 1)
+		}))
+	end
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBuyCallback = function (slot0)
+	if slot0.mActivityData.DayGetCount < slot0.mActivityData.DayBuyCount then
+		slot0.requestReward(slot0)
+	else
+		if slot0.mActivityData.DayLimCount - slot0.mActivityData.DayBuyCount <= 0 then
+			ui.showFlashView(TR("今日限购次数已用完"))
+
+			return 
+		end
+
+		Utility.recharge({
+			chargeType = 14,
+			price = slot0.mActivityData.Price,
+			productId = slot0.mActivityData.PartnerId,
+			index = slot0.mActivityId
+		}, function ()
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedSurpriseGift",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "TimedSurpriseGift",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0
+
+			ui.showFlashReward(slot0)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

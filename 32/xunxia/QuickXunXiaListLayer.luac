@@ -1,0 +1,874 @@
+slot0 = class("QuickXunXiaListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 850,
+				height = 560
+			},
+			titleText = TR("快捷寻侠")
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTableClick",
+					isNeedOutline = false,
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("全部")
+						},
+						{
+							title = TR("射雕")
+						},
+						{
+							title = TR("神雕")
+						},
+						{
+							title = TR("倚天")
+						}
+					},
+					btnSize = {
+						width = 100,
+						height = 40
+					},
+					pos = {
+						x = 25.83,
+						y = 446.34
+					},
+					selectTitleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					size = {
+						width = 500,
+						height = 50
+					},
+					titleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 27.49,
+						y = 37.29
+					},
+					size = {
+						width = 795,
+						height = 405
+					}
+				},
+				children = {
+					{
+						name = "mTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -110
+							},
+							size = {
+								width = 795,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 398,
+										y = 55
+									},
+									size = {
+										width = 795,
+										height = 106
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									isRichText = true,
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 64,
+										r = 66,
+										b = 84
+									},
+									pos = {
+										x = 115,
+										y = 80
+									},
+									text = TR("道具名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									childName = "ownNum",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 115,
+										y = 50
+									},
+									text = TR("拥有：11111")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									childName = "foundNum",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 115,
+										y = 25
+									},
+									text = TR("今日寻侠次数:11/333")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "zizhi",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 320.86,
+										y = 80
+									},
+									text = TR("资质:11")
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 60.52,
+										y = 54.72
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									childName = "des",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									color = {
+										g = 10,
+										r = 223,
+										b = 10
+									},
+									pos = {
+										x = 628,
+										y = 52
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "Node",
+								params = {
+									childName = "btnNode",
+									pos = {
+										x = 628,
+										y = 52
+									}
+								},
+								children = {
+									{
+										name = "untitled33",
+										cType = "Sprite",
+										params = {
+											image = "rwlz_1.png",
+											pos = {
+												x = -142,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Sprite",
+										params = {
+											image = "rwlz_14.png",
+											pos = {
+												x = 19,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled37",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											fontSize = 30,
+											image = "c_19.png",
+											scale = 0.7,
+											pos = {
+												x = -63,
+												y = 20
+											},
+											titleText = TR("寻侠1次")
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Button",
+										custom = {
+											{
+												value = 2,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											fontSize = 30,
+											image = "c_39.png",
+											scale = 0.7,
+											pos = {
+												x = -63,
+												y = -20
+											},
+											titleText = TR("寻侠10次")
+										},
+										children = {}
+									},
+									{
+										name = "untitled39",
+										cType = "Button",
+										custom = {
+											{
+												value = 3,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											fontSize = 30,
+											image = "c_19.png",
+											scale = 0.7,
+											pos = {
+												x = 97,
+												y = 20
+											},
+											titleText = TR("切磋1次")
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Button",
+										custom = {
+											{
+												value = 4,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											fontSize = 30,
+											image = "c_39.png",
+											scale = 0.7,
+											pos = {
+												x = 97,
+												y = -20
+											},
+											titleText = TR("切磋10次")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "ownNum",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 612,
+						y = 490
+					},
+					text = TR("拥有数量")
+				},
+				children = {}
+			},
+			{
+				name = "qiecuoNum",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 612,
+						y = 463
+					},
+					text = TR("切磋次数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled44",
+				cType = "Button",
+				params = {
+					image = "c_20.png",
+					clickAction = "onSellClick",
+					pos = {
+						x = 792.41,
+						y = 463
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mAllChapterInfo = slot1.allChapterInfo
+	slot0.mQiecuoCount = slot1.qiecuoCount
+	slot0.mFightBuyNum = slot1.fightBuyNum
+	slot0.mUnLockHeroList = {}
+	slot0.mHeroList = {}
+
+	slot0.dealUnLockHero(slot0)
+	slot0.dataConfig(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	EventAuto:registerAutoEvent(slot0, "eXUNXIABUYCOUNTEVENT", function (slot0, slot1)
+		slot0.mQiecuoCount = slot1.QunxiaInfo.FightNum
+		slot0.mFightBuyNum = slot1.QunxiaInfo.FightBuyNum
+
+		slot0:refreeCount()
+
+		return 
+	end)
+	slot0.refreeCount(slot0)
+
+	return 
+end
+slot0.refreeCount = function (slot0)
+	slot0.qiecuoNum:setString(TR("切磋次数: %s%s", "#67a31e", (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount))
+	slot0.ownNum:setString(TR("拥有数量:{%s}%s%s", Resource.getDaibiImg(slot3), "#df0a0a", Resource.getCount(slot3)))
+
+	return 
+end
+slot0.onSellClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xunxia.XunXiaBuyCountLayer",
+		data = {
+			fightBuyNum = slot0.mFightBuyNum
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.dealUnLockHero = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mAllChapterInfo) do
+		for slot10, slot11 in pairs(slot6.QunxiaNodeInfo) do
+			if slot11.NormalPass then
+				slot1[slot10] = clone(slot11)
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if QunxiaNodeModel.items[tonumber(slot7)].matchHeroModelId ~= 0 then
+			slot0.mUnLockHeroList[slot8.matchHeroModelId] = true
+		end
+	end
+
+	return 
+end
+slot0.dataConfig = function (slot0)
+	for slot4, slot5 in pairs(QunxiaNodeModel.items) do
+		if HeroModel.items[slot5.matchHeroModelId] then
+			slot0.mHeroList[1] = slot0.mHeroList[1] or {}
+			slot0.mHeroList[1][slot5.matchHeroModelId] = true
+			slot0.mHeroList[slot6.camp + 1] = slot0.mHeroList[slot6.camp + 1] or {}
+			slot0.mHeroList[slot6.camp + 1][slot5.matchHeroModelId] = true
+		end
+	end
+
+	for slot4, slot5 in pairs(slot0.mHeroList) do
+		table.sort(table.keys(slot5), function (slot0, slot1)
+			if slot0.mUnLockHeroList[slot0] ~= slot0.mUnLockHeroList[slot1] then
+				return slot0.mUnLockHeroList[slot0]
+			end
+
+			return HeroModel.items[slot1].quality < HeroModel.items[slot0].quality
+		end)
+
+		slot0.mHeroList[slot4] = table.keys(slot5)
+	end
+
+	slot0.dataTableConfig(slot0)
+
+	return 
+end
+slot0.dataTableConfig = function (slot0)
+	slot0.QunxiaTableList = {}
+
+	for slot4, slot5 in pairs(QunxiaNodeModel.items) do
+		slot0.QunxiaTableList[slot5.nodeId] = slot5
+		slot0.QunxiaTableList[slot5.nodeId].Draw = false
+		slot0.QunxiaTableList[slot5.nodeId].VisitNum = 0
+		slot0.QunxiaTableList[slot5.nodeId].NormalPass = false
+	end
+
+	for slot4, slot5 in pairs(slot0.mAllChapterInfo) do
+		for slot9, slot10 in pairs(slot5.QunxiaNodeInfo) do
+			slot0.QunxiaTableList[slot10.NodeId].Draw = slot10.Draw
+			slot0.QunxiaTableList[slot10.NodeId].VisitNum = slot10.VisitNum
+			slot0.QunxiaTableList[slot10.NodeId].NormalPass = slot10.NormalPass
+		end
+	end
+
+	return 
+end
+slot0.onTableClick = function (slot0, slot1)
+	if not slot0.mHeroList then
+		return 
+	end
+
+	if slot1 == 1 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 2 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 3 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	elseif slot1 == 4 then
+		slot0.QunxiaInfo = slot0.mHeroList[slot1]
+	end
+
+	slot0.mTableView:reloadData()
+	slot0.mTableView:jumpToTop()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 795, 110
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.QunxiaInfo
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "mTemplate")
+	slot3.refreshCell = function (slot0, slot1)
+		slot3 = clone(HeroObj:getItem(slot2))
+
+		slot0.name:setString(HeroModel.items[slot0.QunxiaInfo[slot1 + 1]].name)
+		slot0.zizhi:setString(TR("资质:%s", HeroModel.items[slot0.QunxiaInfo[slot1 + 1]].quality))
+
+		slot5, slot6 = slot0:foundCount(slot2)
+
+		slot0.foundNum:setString(TR("今日寻侠次数:%s%s/%s", "#67a31e", slot6 - slot5, slot6))
+		slot0.card:setCardData({
+			modelId = HeroModel.items[slot0.QunxiaInfo[slot1 + 1]].modelId
+		})
+
+		slot7, slot11 = slot0:ifXunXia(slot2)
+
+		slot0.des:setString(slot8)
+
+		if slot7 then
+			slot0.btnNode:setVisible(true)
+		else
+			slot0.btnNode:setVisible(false)
+		end
+
+		slot9 = slot4.initStar
+		slot10 = Resource.getCount(slot4.debrisId)
+		slot11 = GoodsModel.items[slot4.debrisId].outputNeedNum
+
+		if HeroObj:isHaveModel(slot2) then
+			if table.maxn(HeroStarRelation.items[slot2]) <= slot9 then
+				slot0.ownNum:setString(TR("碎片：%s%s", "#67a31e", slot10))
+			else
+				slot0.ownNum:setString(TR("升星：%s%s/%s", "#67a31e", slot10, slot11))
+			end
+		else
+			slot0.ownNum:setString(TR("合成：%s%s/%s", "#67a31e", slot10, slot11))
+		end
+
+		for slot16, slot17 in ipairs(slot12) do
+			if slot17.tag == 1 then
+				slot17.setClickAction(slot17, function ()
+					slot0:onXunXiaOneClick(slot0)
+
+					return 
+				end)
+			elseif slot17.tag == 2 then
+				slot17.setClickAction(slot17, function ()
+					slot0:onXunXiaTenClick(slot0)
+
+					return 
+				end)
+			elseif slot17.tag == 3 then
+				slot17.setClickAction(slot17, function ()
+					slot0:onQieCuoOneClick(slot0)
+
+					return 
+				end)
+			elseif slot17.tag == 4 then
+				slot17.setClickAction(slot17, function ()
+					slot0:onQieCuoTenClick(slot0)
+
+					return 
+				end)
+			end
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.onXunXiaOneClick = function (slot0, slot1)
+	if Resource.getCount(slot2) < 1 then
+		ui.showFlashView(TR("%s不足!", Resource.getName(slot2)))
+
+		return 
+	end
+
+	slot4, slot5 = slot0.foundCount(slot0, slot1)
+
+	if slot5 - slot4 <= 0 then
+		ui.showFlashView(TR("今日寻侠次数不足!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoVisit",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "========AutoVisit=======")
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.DlgRewardShowLayer",
+				data = {
+					rewardStr = slot0.BaseGetGameResourceList[1].Goods,
+					okTitle = TR("领取"),
+					okCallback = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			slot0.mAllChapterInfo = slot0.QunxiaAllChapterInfo.QunxiaChapterInfo
+
+			slot0:dataTableConfig()
+			EventAuto:postEvent("eXUNXIACOUNTEVENT", slot0.QunxiaAllChapterInfo.QunxiaChapterInfo)
+			slot0.mTableView:reloadData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onXunXiaTenClick = function (slot0, slot1)
+	if Resource.getCount(slot2) < 10 then
+		ui.showFlashView(TR("%s不足!", Resource.getName(slot2)))
+
+		return 
+	end
+
+	slot4, slot5 = slot0.foundCount(slot0, slot1)
+
+	if slot5 - slot4 < 10 then
+		ui.showFlashView(TR("今日寻侠次数不足!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoVisit",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot1,
+			10
+		},
+		successCallback = function (slot0)
+			dump(slot0, "========Visit10=======")
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.DlgRewardShowLayer",
+				data = {
+					rewardStr = slot0.BaseGetGameResourceList[1].Goods,
+					okTitle = TR("领取"),
+					okCallback = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			slot0.mAllChapterInfo = slot0.QunxiaAllChapterInfo.QunxiaChapterInfo
+
+			slot0:dataTableConfig()
+			EventAuto:postEvent("eXUNXIACOUNTEVENT", slot0.QunxiaAllChapterInfo.QunxiaChapterInfo)
+			slot0.mTableView:reloadData()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onQieCuoOneClick = function (slot0, slot1)
+	if (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount < 1 then
+		ui.showFlashView(TR("切磋次数不足!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoCompare",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "========Compare1=======")
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.DlgRewardShowLayer",
+				data = {
+					rewardStr = slot0.BaseGetGameResourceList[1].Goods,
+					okTitle = TR("领取"),
+					okCallback = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+			EventAuto:postEvent("eXUNXIABUYCOUNTEVENT", slot0)
+
+			slot0.mQiecuoCount = slot0.QunxiaInfo.FightNum
+			slot0.mFightBuyNum = slot0.QunxiaInfo.FightBuyNum
+
+			slot0:refreeCount()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onQieCuoTenClick = function (slot0, slot1)
+	if (VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].freeFightHeroNum + slot0.mFightBuyNum) - slot0.mQiecuoCount < 10 then
+		ui.showFlashView(TR("切磋次数不足!"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AutoCompare",
+		moduleName = "QunxiaChapter",
+		methodData = {
+			slot1,
+			10
+		},
+		successCallback = function (slot0)
+			dump(slot0, "========Compare10=======")
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.DlgRewardShowLayer",
+				data = {
+					rewardStr = slot0.BaseGetGameResourceList[1].Goods,
+					okTitle = TR("领取"),
+					okCallback = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+			EventAuto:postEvent("eXUNXIABUYCOUNTEVENT", slot0)
+
+			slot0.mQiecuoCount = slot0.QunxiaInfo.FightNum
+			slot0.mFightBuyNum = slot0.QunxiaInfo.FightBuyNum
+
+			slot0:refreeCount()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.foundCount = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot0.QunxiaTableList) do
+		if slot8.matchHeroModelId == slot1 and slot8.NormalPass then
+			slot2 = slot2 + slot8.VisitNum
+			slot3 = slot3 + QunxiaConfig.items[1].nodeVisitNum
+		end
+	end
+
+	return slot2, slot3
+end
+slot0.ifXunXia = function (slot0, slot1)
+	slot2 = false
+	slot3 = TR("首通后可寻侠、切磋")
+
+	for slot7, slot8 in pairs(slot0.QunxiaTableList) do
+		if slot8.matchHeroModelId == slot1 and slot8.NormalPass then
+			slot2 = slot8.NormalPass
+			slot3 = TR("")
+		end
+	end
+
+	return slot2, slot3
+end
+
+return slot0

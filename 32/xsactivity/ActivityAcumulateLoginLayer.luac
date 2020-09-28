@@ -1,0 +1,483 @@
+slot0 = class("ActivityAcumulateLoginLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				params = {
+					scaleX = -1.6,
+					image = "lh_12301.png",
+					scaleY = 1.6,
+					pos = {
+						x = -260.97,
+						y = -221.29
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -219.62,
+						y = 183.89
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 48
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 20
+							},
+							text = TR("当前已登录：")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 155.46,
+								y = 48
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mDayLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 168,
+								r = 139,
+								b = 87
+							},
+							pos = {
+								x = 155.46,
+								y = 20
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 257.02,
+						y = -25.82
+					}
+				},
+				children = {
+					{
+						name = "untitled20",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 28.82,
+								y = 40.18
+							},
+							size = {
+								width = 519,
+								height = 470
+							}
+						},
+						children = {
+							{
+								name = "mTableView",
+								cType = "TableView",
+								params = {
+									numOfCellsFunc = "onCellNum",
+									isVertical = true,
+									cellUpdateFunc = "onCellRefresh",
+									cellSizeFunc = "onCellSize",
+									cellFillFunc = "onCellCreate",
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 519,
+										height = 470
+									}
+								},
+								children = {
+									{
+										name = "LoginTemNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = -150.55
+											},
+											size = {
+												width = 519,
+												height = 136
+											}
+										},
+										children = {
+											{
+												name = "untitled12",
+												cType = "Scale9Sprite",
+												params = {
+													image = "c_95.png",
+													pos = {
+														x = 259.5,
+														y = 68
+													},
+													size = {
+														width = 519,
+														height = 136
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled13",
+												cType = "Label",
+												params = {
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 20,
+														y = 120
+													},
+													text = TR("累计登录：")
+												},
+												children = {}
+											},
+											{
+												name = "untitled14",
+												cType = "Label",
+												params = {
+													isRichText = true,
+													childName = "dayLabel",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 125,
+														y = 120
+													},
+													text = TR("天")
+												},
+												children = {}
+											},
+											{
+												name = "untitled15",
+												cType = "ListView",
+												params = {
+													childName = "rewardListView",
+													direction = false,
+													swallowTouch = false,
+													pos = {
+														x = 11.29,
+														y = 8.7
+													},
+													size = {
+														width = 360,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "RewardLayout",
+														cType = "Layout",
+														custom = {
+															{
+																value = "untitled17-initParams",
+																name = "cardData",
+																type = "string"
+															}
+														},
+														params = {
+															size = {
+																width = 90,
+																height = 90
+															}
+														},
+														children = {
+															{
+																name = "untitled17",
+																cType = "CardNode",
+																params = {
+																	allowClick = true,
+																	initParams = {},
+																	pos = {
+																		x = 45,
+																		y = 45
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "untitled18",
+												cType = "Button",
+												params = {
+													childName = "getBtn",
+													image = "c_32.png",
+													clickAction = "onGetReward",
+													pos = {
+														x = 450,
+														y = 54
+													},
+													titleText = TR("领 取")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedAcumulateLogin
+	slot0.mActivityType = slot1.activityType
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString(TR("活动已结束"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mTableView:reloadData()
+	slot0.createTimeUpdate(slot0)
+	slot0.mDayLabel:setString(TR("%s天", slot0.mDays))
+
+	return 
+end
+slot0.dealData = function (slot0, slot1)
+	if slot1 then
+		for slot5, slot6 in ipairs(slot0.mDrawInfo) do
+			if slot6.Day == slot1 then
+				slot6.Status = 2
+			end
+		end
+	end
+
+	table.sort(slot0.mDrawInfo, function (slot0, slot1)
+		if slot0.Status == 2 and slot1.Status ~= 2 then
+			return false
+		end
+
+		if slot0.Status ~= 2 and slot1.Status == 2 then
+			return true
+		end
+
+		if slot0.Status ~= slot1.Status then
+			return slot1.Status < slot0.Status
+		end
+
+		if slot0.Day ~= slot1.Day then
+			return slot0.Day < slot1.Day
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onGetReward = function (slot0, slot1)
+	slot0.requestDrawReward(slot0, slot1.Day)
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 519, 136
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.mDrawInfo
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "LoginTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.itemNode = slot3
+	slot1.refresh = function (slot0, slot1)
+		slot0.itemNode.dayLabel:setString(TR("%s%s/%s #ffffff天", (slot0.mDrawInfo[slot1 + 1].Day <= slot0.mDays and "#8ba857") or "#c04141", slot0.mDays, slot3.Day))
+		slot0.itemNode.rewardListView:removeAllChildren()
+
+		for slot8, slot9 in pairs(slot3.ResourceList) do
+			slot2.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("RewardLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot9.ResourceId,
+						num = slot9.Num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot2.getBtn:setEnabled(slot3.Status == 1)
+		slot2.getBtn:setTitleText((slot3.Status == 2 and TR("已领取")) or TR("领 取"))
+
+		slot2.getBtn.Day = slot3.Day
+
+		return 
+	end
+
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot1, slot2)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetAcumulateDaysRewardInfo",
+		moduleName = "TimedInfo",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.mEndTime = slot0.EndTime
+			slot0.mDays = slot0.Days
+			slot0.mDrawInfo = slot0.DrawInfo
+
+			slot0:dealData()
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawAcumulateDaysReward",
+		moduleName = "TimedInfo",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:dealData(slot0.dealData)
+			slot0:refreshLayer()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

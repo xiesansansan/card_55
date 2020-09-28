@@ -1,0 +1,423 @@
+slot0 = class("DlgWorldBestRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 640,
+				height = 500
+			},
+			titleText = TR("奖励")
+		},
+		children = {
+			{
+				name = "untitled36",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onClickTabAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("排名奖励")
+						},
+						{
+							title = TR("膜拜奖励")
+						}
+					},
+					pos = {
+						x = 38.76,
+						y = 425.75
+					},
+					size = {
+						width = 298.96,
+						height = 43.2
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 319.71,
+						y = 42.82
+					},
+					size = {
+						width = 560,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "listLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled35-image",
+								name = "rankImage",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 560,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_100.png",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 280,
+										y = 65
+									},
+									size = {
+										width = 560,
+										height = 120
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "ListView",
+								params = {
+									childName = "rewardList",
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 146.61,
+										y = 65
+									},
+									size = {
+										width = 400,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled17-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 120
+											}
+										},
+										children = {
+											{
+												name = "untitled17",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 50,
+														y = 60
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "headPicLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 100,
+												height = 120
+											}
+										},
+										children = {
+											{
+												name = "untitled21",
+												cType = "Sprite",
+												params = {
+													image = "txk_071.png",
+													pos = {
+														x = 50,
+														y = 60
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled35",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									hide = false,
+									pos = {
+										x = 76.61,
+										y = 61.75
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mGrideView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 110,
+					pos = {
+						x = 322.04,
+						y = 232.82
+					},
+					size = {
+						width = 560,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "GridCell",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 100,
+								y = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled39",
+								cType = "CardNode",
+								params = {
+									childName = "goodCard",
+									allowClick = true,
+									pos = {
+										x = -0.6,
+										y = 2.76
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mNumOneTip",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					hide = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 601.74,
+						y = 433.82
+					},
+					text = TR("膜拜后随机获得一种奖励")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mData = clone(WorldnumoneRewardBoxRelation.items)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(WorldnumoneRewardRankRelation.items) do
+		table.insert(slot1, slot6[1].worldLvMin)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0 < slot1
+	end)
+
+	slot2 = PlayerAttrObj:getPlayerAttrByName("WorldLv")
+	slot0.mWorldLvMin = slot1[#slot1]
+
+	for slot6, slot7 in ipairs(slot1) do
+		if slot2 < slot7 then
+			slot0.mWorldLvMin = (slot1[slot6 - 1] and slot1[slot6 - 1]) or 1
+
+			break
+		end
+	end
+
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.onClickTabAction = function (slot0, slot1)
+	if slot1 == 1 then
+		slot0.listView:setVisible(true)
+		slot0.mGrideView:setVisible(false)
+		slot0.mNumOneTip:setVisible(false)
+	else
+		slot0.listView:setVisible(false)
+		slot0.mGrideView:setVisible(true)
+		slot0.mNumOneTip:setVisible(true)
+		slot0.mGrideView:setItemNum(#slot0.mData)
+	end
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mData then
+		return 
+	end
+
+	slot5 = slot0.createLayoutTemplateNode(slot0, "GridCell")
+
+	slot5.goodCard:setCardData({
+		modelId = Utility.analysisStrResList(slot0.mData[slot2].reward)[1].resourceId,
+		num = Utility.analysisStrResList(slot0.mData[slot2].reward)[1].num
+	}, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eNum
+	})
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot5)
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	slot0.listView:removeAllItems()
+
+	if not WorldnumoneRewardRankRelation.items[slot0.mWorldLvMin] then
+		return 
+	end
+
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		table.insert(slot2, clone(slot7))
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot0.rankLv < slot1.rankLv
+	end)
+
+	slot3 = {
+		"c_51.png",
+		"c_52.png",
+		nil,
+		"txdy_34.png",
+		nil,
+		nil,
+		nil,
+		"txdy_35.png",
+		nil,
+		nil,
+		nil,
+		nil,
+		nil,
+		nil,
+		nil,
+		"txdy_36.png"
+	}
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "listLayout", {
+			rankImage = slot3[slot8.rankLv]
+		}))
+
+		slot10 = Utility.analysisStrResList
+		slot11 = slot8.reward or ""
+
+		for slot14, slot15 in ipairs(slot10) do
+			slot9.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot15.resourceId,
+						num = slot15.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		if slot7 == 1 then
+			slot9.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "headPicLayout"))
+		end
+	end
+
+	return 
+end
+
+return slot0

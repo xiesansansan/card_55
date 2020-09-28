@@ -1,0 +1,168 @@
+slot0 = require("battle.common.Const")
+slot2 = {
+	new = function ()
+		slot0._records = {}
+
+		return 
+	end,
+	getStateChangeTime = function (slot0)
+		slot1 = 0
+
+		for slot6 = #slot0._records, 1, -1 do
+			if slot0 - slot0._records[slot6].opTime < 3 then
+				if slot7.opType == slot1.OpType.OpState then
+					slot1 = slot1 + 1
+				end
+			else
+				break
+			end
+		end
+
+		return slot1
+	end,
+	addRecord = function (slot0, slot1, slot2)
+		table.insert(slot0._records, {
+			processTime = 0,
+			opTime = slot0,
+			opType = slot1,
+			opData = slot2
+		})
+
+		return #slot0._records
+	end,
+	changeState = function (slot0, slot1)
+		if 10 < slot0.getStateChangeTime(slot0) then
+			return false
+		end
+
+		slot0.addRecord(slot0, slot1.OpType.OpState, slot1)
+
+		return true
+	end,
+	skill = function (slot0, slot1)
+		return slot0.addRecord(slot0, slot1.OpType.OpSkill, slot1)
+	end,
+	skillRelease = function (slot0, slot1, slot2)
+		if slot0._records[slot0] then
+			if slot3.opData == slot1 then
+				slot3.processTime = slot2
+			else
+				error("wrong unit order")
+			end
+		else
+			error("wrong release idx")
+		end
+
+		return 
+	end,
+	getOpString = function (slot0)
+		slot1 = {
+			logicVersion = require("battle.common.LogicVersion"),
+			configVersion = SystemVersionNumber.items[1].systemNum,
+			record = slot0._records
+		}
+
+		if slot0 == true then
+			slot1.record = {}
+		end
+
+		return cjson.encode(slot1)
+	end,
+	getOpData = function (slot0)
+		slot1 = {
+			logicVersion = require("battle.common.LogicVersion"),
+			configVersion = SystemVersionNumber.items[1].systemNum,
+			record = slot0._records
+		}
+
+		if slot0 == true then
+			slot1.record = {}
+		end
+
+		return slot1
+	end
+}
+
+return {
+	new = function ()
+		slot0._records = {}
+
+		return 
+	end,
+	getStateChangeTime = function (slot0)
+		slot1 = 0
+
+		for slot6 = #slot0._records, 1, -1 do
+			if slot0 - slot0._records[slot6].opTime < 3 then
+				if slot7.opType == slot1.OpType.OpState then
+					slot1 = slot1 + 1
+				end
+			else
+				break
+			end
+		end
+
+		return slot1
+	end,
+	addRecord = function (slot0, slot1, slot2)
+		table.insert(slot0._records, {
+			processTime = 0,
+			opTime = slot0,
+			opType = slot1,
+			opData = slot2
+		})
+
+		return #slot0._records
+	end,
+	changeState = function (slot0, slot1)
+		if 10 < slot0.getStateChangeTime(slot0) then
+			return false
+		end
+
+		slot0.addRecord(slot0, slot1.OpType.OpState, slot1)
+
+		return true
+	end,
+	skill = function (slot0, slot1)
+		return slot0.addRecord(slot0, slot1.OpType.OpSkill, slot1)
+	end,
+	skillRelease = function (slot0, slot1, slot2)
+		if slot0._records[slot0] then
+			if slot3.opData == slot1 then
+				slot3.processTime = slot2
+			else
+				error("wrong unit order")
+			end
+		else
+			error("wrong release idx")
+		end
+
+		return 
+	end,
+	getOpString = function (slot0)
+		slot1 = {
+			logicVersion = require("battle.common.LogicVersion"),
+			configVersion = SystemVersionNumber.items[1].systemNum,
+			record = slot0._records
+		}
+
+		if slot0 == true then
+			slot1.record = {}
+		end
+
+		return cjson.encode(slot1)
+	end,
+	getOpData = function (slot0)
+		slot1 = {
+			logicVersion = require("battle.common.LogicVersion"),
+			configVersion = SystemVersionNumber.items[1].systemNum,
+			record = slot0._records
+		}
+
+		if slot0 == true then
+			slot1.record = {}
+		end
+
+		return slot1
+	end
+}

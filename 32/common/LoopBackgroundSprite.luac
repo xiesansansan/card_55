@@ -1,0 +1,133 @@
+return function (slot0)
+	slot0 or {}.scale = slot0 or {}.scale or 1
+	slot0 or {}.imgScale = slot0 or {}.imgScale or 1
+	slot0 or {}.direction = slot0 or {}.direction or 1
+	slot1 = UIWrap.newControl("ClippingNode", {
+		size = slot0.size,
+		anchor = slot0.anchor,
+		scale = slot0.scale,
+		pos = slot0.pos,
+		image = slot0.clippingImg,
+		alpha = slot0.alpha or 1
+	})
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot0.images) do
+		slot8 = display.loadImage(slot7)
+		slot2[slot6 - 1] = {
+			texture = slot8,
+			img = slot7,
+			sz = (slot0.direction == 1 and slot8.getContentSize(slot8).width*slot0.imgScale) or slot8.getContentSize(slot8).height*slot0.imgScale
+		}
+	end
+
+	slot3 = {}
+	slot4 = {}
+	slot5 = cc.p(0, 0)
+
+	if slot0.clippingImg then
+		slot5 = cc.p(-display.loadImage(slot0.clippingImg):getContentSize().width/2, -display.loadImage(slot0.clippingImg).getContentSize().height/2)
+	end
+
+	function slot7(slot0)
+		for slot4, slot5 in ipairs(slot0) do
+			if slot5 == slot0 then
+				table.remove(slot0, slot4)
+
+				break
+			end
+		end
+
+		slot0.setVisible(slot0, false)
+		table.insert(table.insert, slot0)
+
+		return 
+	end
+
+	slot8 = slot6(0)
+	slot9 = 0
+	slot10 = 0
+	slot11 = slot0.speed
+
+	function slot12(slot0, slot1, slot2)
+		slot3 = slot0*slot0
+		slot4 = 0
+
+		for slot8, slot9 in ipairs(slot1) do
+			slot2(slot9, slot1(slot9) - slot3)
+
+			if slot0 < 0 then
+				if slot2 < slot10 then
+					slot3(slot9)
+				end
+			elseif slot10 + slot4[slot9.idx].sz < slot5 then
+				slot3(slot9)
+			end
+
+			while true do
+				slot11 = slot1[#slot1]
+
+				if slot0 < 0 then
+					if slot5 < slot1(slot11) then
+						slot2(slot6((slot11.idx + 1)%#slot7.images), slot1(slot11) - slot4[slot6((slot11.idx + 1)%#slot7.images).idx].sz)
+					else
+						break
+					end
+				elseif slot1(slot11) + slot4[slot11.idx].sz < slot2 then
+					slot2(slot6((slot11.idx + 1)%#slot7.images), slot12)
+				else
+					break
+				end
+			end
+		end
+
+		return 
+	end
+
+	function slot13(slot0)
+		return function (slot0)
+			if not slot0.recordPos then
+				slot0.recordPos = slot0[slot0](slot0)
+			end
+
+			return slot0.recordPos
+		end
+	end
+
+	function slot14(slot0)
+		return function (slot0, slot1)
+			slot0.recordPos = slot1
+
+			slot0[slot0](slot0, slot1)
+
+			return 
+		end
+	end
+
+	slot1.addChild(slot1, cc.Node:create())
+
+	slot1._enableRoll = true
+	slot1.setEnableRoll = function (slot0, slot1)
+		slot0._enableRoll = (slot1 and true) or false
+
+		return 
+	end
+
+	if slot0.direction == 1 then
+		slot9 = slot5.x
+		slot10 = slot0.size.width + slot5.x
+	elseif slot0.direction == 2 then
+		slot9 = slot5.y
+		slot10 = slot0.size.height + slot5.y
+	end
+
+	slot15.onUpdate(slot15, function (slot0)
+		if slot0._enableRoll then
+			slot1(slot0, slot2("getPositionX"), slot2("getPositionX")("setPositionX"))
+		end
+
+		return 
+	end)
+
+	return slot1
+end

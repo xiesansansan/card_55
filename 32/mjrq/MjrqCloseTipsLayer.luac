@@ -1,0 +1,170 @@
+slot0 = class("MjrqCloseTipsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseLayer",
+			hideCloseButton = true,
+			image = "mjrq_6.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 890.02,
+						y = 537.84
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 497.87,
+						y = 231.06
+					},
+					size = {
+						width = 300,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "RewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled10-image",
+								name = "boxImg",
+								type = "string"
+							},
+							{
+								value = "untitled11-image",
+								name = "goodsImg",
+								type = "string"
+							},
+							{
+								value = "untitled12-text",
+								name = "name",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 110
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "c_11.png",
+									childName = "box",
+									pos = {
+										x = 45,
+										y = 66
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_11.png",
+									childName = "goods",
+									pos = {
+										x = 45,
+										y = 66
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "nameLabel",
+									text = "Label",
+									color = {
+										g = 125,
+										r = 203,
+										b = 69
+									},
+									pos = {
+										x = 45,
+										y = 11
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				params = {
+					image = "mjrq_7.png",
+					clickAction = "onEnterCallBack",
+					pos = {
+						x = 817.18,
+						y = 130.39
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "RewardLayout", slot6))
+	end
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onEnterCallBack = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+	LayerManager.removeTopCleanUpLayer(true)
+	LayerManager.showModuleLayer(ModuleSub.eAuction)
+
+	return 
+end
+
+return slot0

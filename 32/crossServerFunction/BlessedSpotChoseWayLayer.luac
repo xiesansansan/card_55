@@ -1,0 +1,720 @@
+slot0 = class("BlessedSpotChoseWayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 565,
+				height = 497
+			}
+		},
+		children = {
+			{
+				name = "untitled23",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onCampBtnAction",
+					pos = {
+						x = 284,
+						y = 71.97
+					},
+					titleText = TR("修炼")
+				},
+				children = {}
+			},
+			{
+				name = "untitled77",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 284,
+						y = 35
+					},
+					text = TR("修炼完成后奖励通过邮件发放")
+				},
+				children = {}
+			},
+			{
+				name = "typeListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 25,
+						y = 293.69
+					},
+					size = {
+						width = 510,
+						height = 180
+					}
+				},
+				children = {
+					{
+						name = "typeLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled76-dataFile",
+								name = "effectName",
+								type = "string"
+							},
+							{
+								value = "untitled28-text",
+								name = "TypeName",
+								type = "string"
+							},
+							{
+								value = "untitled75-image",
+								name = "imageName",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 170,
+								height = 180
+							}
+						},
+						children = {
+							{
+								name = "untitled75",
+								cType = "Sprite",
+								params = {
+									image = "fdxl_12.png",
+									childName = "imageHero",
+									pos = {
+										x = 85,
+										y = 90
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled76",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_chunyang",
+									hide = true,
+									scale = 0.42,
+									childName = "effectHero",
+									animation = "4",
+									pos = {
+										x = 86.88,
+										y = 73.96
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Sprite",
+								params = {
+									image = "fdxl_7.png",
+									childName = "nameBg",
+									pos = {
+										x = 85,
+										y = 24.16
+									}
+								},
+								children = {
+									{
+										name = "untitled28",
+										cType = "Label",
+										params = {
+											childName = "typeName",
+											pos = {
+												x = 70,
+												y = 15.79
+											},
+											text = TR("纯阳修炼")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled67",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "number"
+									}
+								},
+								params = {
+									childName = "btn",
+									image = "c_pure.png",
+									clickAction = "onChoseAction",
+									pos = {
+										x = 85,
+										y = 90
+									},
+									size = {
+										width = 170,
+										height = 180
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled27",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 281.68,
+						y = 255
+					},
+					size = {
+						width = 520,
+						height = 60
+					}
+				},
+				children = {}
+			},
+			{
+				name = "wayListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 25,
+						y = 227
+					},
+					size = {
+						width = 510,
+						height = 60
+					}
+				},
+				children = {
+					{
+						name = "xiulianLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled29-text",
+								name = "wayName",
+								type = "string"
+							},
+							{
+								value = "untitled50-text",
+								name = "costRes",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 34.5,
+								y = -4.27
+							},
+							size = {
+								width = 170,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 124.28,
+										y = 45.04
+									},
+									text = TR("普通修炼")
+								},
+								children = {}
+							},
+							{
+								name = "untitled50",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									childName = "costLabel",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 80.28,
+										y = 17.04
+									},
+									text = TR("普通修炼")
+								},
+								children = {}
+							},
+							{
+								name = "untitled70",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									childName = "btn",
+									pos = {
+										x = 85,
+										y = 30
+									},
+									size = {
+										width = 170,
+										height = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled73",
+								cType = "Sprite",
+								params = {
+									image = "c_43.png",
+									pos = {
+										x = 147.51,
+										y = 41.69
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled74",
+								cType = "Sprite",
+								params = {
+									image = "c_44.png",
+									childName = "selectSpr",
+									pos = {
+										x = 149.68,
+										y = 43.2
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled37",
+				cType = "Sprite",
+				params = {
+					image = "fdxl_8.png",
+					pos = {
+						x = 282.5,
+						y = 206.42
+					}
+				},
+				children = {
+					{
+						name = "untitled38",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 70,
+								y = 15.79
+							},
+							text = TR("奖 励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mListview",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 282.5,
+						y = 89
+					},
+					size = {
+						width = 240,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "cardItem",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 80,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled44",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 40,
+										y = 59
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "friendCard",
+				cType = "CardNode",
+				params = {
+					hide = true,
+					allowClick = true,
+					pos = {
+						x = 348.57,
+						y = 135.89
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled45",
+				cType = "Label",
+				params = {
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 396.97,
+						y = 158.41
+					},
+					text = TR("邀请好友护卫")
+				},
+				children = {}
+			},
+			{
+				name = "untitled46",
+				cType = "Label",
+				params = {
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 396.97,
+						y = 109.65
+					},
+					text = TR("护卫次数：")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.callback = slot1.callback
+	slot0.mMyType = slot1.MyType
+	slot0.mMyInfo = slot1.MyInfo
+	slot0.haveInvite = false
+	slot0.mSelectTypeIndex = 0
+	slot0.mSelectWayIndex = 0
+	slot0.mTeamStr = ""
+	slot0.mHelperId = "00000000-0000-0000-0000-000000000000"
+	slot0.typeBtnList = {}
+	slot0.wayBtnList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	ui.addTouchEvent({
+		node = slot0.placeSpr_1,
+		endedEvent = function (slot0, slot1)
+			if not ui.touchInNode(slot0, slot0.msgBox) then
+				slot0:socketRequest({
+					methodName = "Cancel",
+					moduleName = "DartInfo",
+					methodData = {},
+					successCallback = function (slot0)
+						LayerManager.removeLayer(slot0)
+
+						return 
+					end
+				})
+			end
+
+			return true
+		end
+	})
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.carList = slot0.dealConfigData(slot0)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "typeLayout", {
+			effectName = slot7.effectName,
+			imageName = slot7.imageName,
+			btnIndex = slot6,
+			TypeName = slot7.typeName
+		})
+
+		slot8.btn:setClickAction(function ()
+			slot0:onChoseAction(slot0)
+
+			return 
+		end)
+		table.insert(slot0.typeBtnList, slot8)
+		slot0.typeListView:pushBackCustomItem(slot8)
+	end
+
+	slot0.onChoseAction(slot0, 1)
+
+	return 
+end
+slot0.onTypeChose = function (slot0, slot1)
+	return 
+end
+slot0.dealConfigData = function (slot0)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		if slot2[slot7.carType] == nil then
+			slot2[slot7.carType] = {}
+
+			table.insert(slot2[slot7.carType], slot7)
+		else
+			table.insert(slot2[slot7.carType], slot7)
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		table.sort(slot7, function (slot0, slot1)
+			return slot0.Id < slot1.Id
+		end)
+	end
+
+	return slot2
+end
+slot0.onChoseAction = function (slot0, slot1)
+	if slot0.mSelectTypeIndex == slot1 then
+		return 
+	end
+
+	slot0.mTeamStr = ""
+	slot0.mSelectTypeIndex = slot1
+	slot0.mSelectWayIndex = 0
+
+	for slot5, slot6 in ipairs(slot0.typeBtnList) do
+		ui.nodeSetGray(slot6, slot5 ~= slot1)
+		slot6.nameBg.typeName:setTextColor((slot5 == slot1 and cc.c3b(192, 65, 65)) or cc.c3b(255, 255, 255))
+		slot6.imageHero:setVisible(slot5 ~= slot1)
+		slot6.effectHero:setVisible(slot5 == slot1)
+	end
+
+	slot0.wayListView:removeAllChildren()
+
+	slot0.wayBtnList = {}
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = "免费"
+
+		if slot7.needDiamond ~= "" then
+			slot8 = TR("{%s}%s", Resource.getDaibiImg(Utility.analysisStrResList(slot7.needDiamond)[1].resourceId), Utility.analysisStrResList(slot7.needDiamond)[1].num)
+		end
+
+		slot9 = slot0.createLayoutTemplateNode(slot0, "xiulianLayout", {
+			wayName = slot7.name,
+			costRes = slot8
+		})
+
+		slot9.btn:setClickAction(function ()
+			slot0:onRefershReward(slot0)
+
+			return 
+		end)
+		table.insert(slot0.wayBtnList, slot9)
+
+		slot0.wayBtnList[slot6] = slot9
+
+		slot0.wayListView:pushBackCustomItem(slot9)
+	end
+
+	slot0.onRefershReward(slot0, 1)
+
+	return 
+end
+slot0.onRefershReward = function (slot0, slot1)
+	if slot0.mSelectWayIndex == slot1 then
+		return 
+	end
+
+	slot0.mListview:removeAllChildren()
+
+	slot0.mSelectWayIndex = slot1
+
+	for slot5, slot6 in ipairs(slot0.wayBtnList) do
+		slot6.selectSpr:setVisible(slot5 == slot1)
+	end
+
+	slot3 = slot0.carList[slot0.mSelectTypeIndex][slot0.mSelectWayIndex].reward
+
+	if slot0.carList[slot0.mSelectTypeIndex][slot0.mSelectWayIndex].specialReward ~= "" then
+		slot3 = string.format("%s||%s", slot3, slot2.specialReward) or slot3
+	end
+
+	if slot0.haveInvite and slot2.specialReward ~= "" then
+		slot0.mListview:setContentSize(cc.size(math.min(300, #Utility.analysisStrResList(string.format("%s||%s", slot3, slot2.specialReward) or slot3)*100), 100))
+	end
+
+	for slot8, slot9 in ipairs(slot4) do
+		slot0.createLayoutTemplateNode(slot0, "cardItem").card:setCardData({
+			resourceId = slot9.resourceId,
+			num = slot9.num
+		}, {
+			Enums.CardShowAttr.eName,
+			Enums.CardShowAttr.eNum
+		})
+		slot0.mListview:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardItem"))
+	end
+
+	return 
+end
+slot0.onCampBtnAction = function (slot0)
+	slot2 = 0
+
+	if slot0.carList[slot0.mSelectTypeIndex][slot0.mSelectWayIndex].genderLimit == "1" then
+		slot2 = 2
+	elseif slot1.genderLimit == "2" then
+		slot2 = 1
+	end
+
+	slot3 = {}
+	slot4 = {}
+
+	for slot8, slot9 in pairs(slot0.mMyInfo.DartHero) do
+		if Resource.getSubType(slot9) == ResourceTypeSub.eHero then
+			table.insert(slot3, slot9)
+		elseif Resource.getSubType(slot9) == ResourceTypeSub.eStrategy then
+			table.insert(slot4, slot9)
+		end
+	end
+
+	ui.showCampReady({
+		minCount = 5,
+		noNeedVit = true,
+		callModelSub = ModuleSub.eDart,
+		ignoreSexId = slot2,
+		alreadyGotoWork = slot3,
+		alreadyGotoWorkStrategy = slot4,
+		callback = function (slot0)
+			slot0.mTeamStr = ""
+			slot0.mTeamStr = table.concat(slot0, ",")
+
+			slot0:onRequestDart()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Cancel",
+		moduleName = "DartInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequestDart = function (slot0)
+	if slot0.mTeamStr == "" then
+		ui.showFlashView(TR("请先布阵"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Dart",
+		moduleName = "DartInfo",
+		methodData = {
+			slot0.mMyType,
+			slot0.carList[slot0.mSelectTypeIndex][slot0.mSelectWayIndex].Id,
+			1,
+			slot0.mTeamStr,
+			slot0.mHelperId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("开始修炼!"))
+
+			if slot0.callback then
+				slot0.callback()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

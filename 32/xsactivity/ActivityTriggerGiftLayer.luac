@@ -1,0 +1,755 @@
+slot0 = class("ActivityTriggerGiftLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onRequesetGetInfo",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "xscflb_3.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled52",
+				cType = "Sprite",
+				params = {
+					image = "xscflb_7.png",
+					pos = {
+						x = 378.78,
+						y = 546.64
+					}
+				},
+				children = {
+					{
+						name = "describeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							align = 0,
+							valign = 1,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 162.75,
+								y = 61.11
+							},
+							size = {
+								width = 200,
+								height = 90
+							},
+							text = TR("江湖特惠,习上乘绝世武功!超值礼包限时上架,助力少侠闯荡江湖!")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 665.61,
+						y = 544.05
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled39",
+				cType = "Sprite",
+				params = {
+					image = "xscflb_5.png",
+					pos = {
+						x = 402.56,
+						y = 365.62
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled40",
+				cType = "Sprite",
+				params = {
+					image = "xscflb_2.png",
+					pos = {
+						x = 387.08,
+						y = 378.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "discountLabel",
+				cType = "Label",
+				params = {
+					text = "700:",
+					charCount = 11,
+					emptyInit = true,
+					fontName = "xscflb_6.png",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 400.94,
+						y = 369.79
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 410.04,
+						y = 190.53
+					},
+					text = TR("活动倒计时")
+				},
+				children = {}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					text = "00:00:00",
+					color = {
+						g = 199,
+						r = 223,
+						b = 42
+					},
+					outlineColor = {
+						g = 42,
+						r = 58,
+						b = 24
+					},
+					pos = {
+						x = 413.04,
+						y = 156.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 410.12,
+						y = 263.91
+					},
+					size = {
+						width = 350,
+						height = 83.61
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled46-initParams",
+								name = "head",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.82,
+								y = -0.39
+							},
+							size = {
+								width = 84,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled46",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 41.24,
+										y = 60
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled47",
+				cType = "Button",
+				params = {
+					image = "xscflb_1.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 564.19,
+						y = 117.95
+					}
+				},
+				children = {
+					{
+						name = "costLabel",
+						cType = "ResLabel",
+						params = {
+							num = 0,
+							modelId = 1111,
+							hide = true,
+							pos = {
+								x = -58.65,
+								y = -28.7
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "limitNumLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 410.82,
+						y = 62.77
+					},
+					text = TR("限购1/1")
+				},
+				children = {}
+			},
+			{
+				name = "levelParentNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -163.08,
+						y = -1.84
+					}
+				},
+				children = {
+					{
+						name = "chargeLevelTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 720,
+								y = 400
+							},
+							size = {
+								width = 80,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "Button",
+								params = {
+									childName = "levelBtn",
+									image = "xscflb_4.png",
+									pressedAction = true,
+									clickAction = "onBuy",
+									pos = {
+										x = 40,
+										y = 40
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled51",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "priceLabel",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 39,
+										y = 47
+									},
+									text = TR("999元")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	cc.p(740, 400),
+	cc.p(778, 329),
+	cc.p(787, 247),
+	cc.p(767, 165)
+}
+slot0.ctor = function (slot0, slot1)
+	dump(slot1)
+
+	slot0.currSelectChargeLevel = 1
+	slot0.chargeLevelList = {}
+	slot0.triggerType = slot1.TriggerType or 1
+	slot0.triggerId = slot1.TriggerId or 1
+	slot0.mEndTime = slot1.TriggerGiftEndTime or 0
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eTriggerGift, function (slot0)
+		slot0:onSuccessCallBack()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createTimeUpdate(slot0)
+
+	return 
+end
+slot0.createChargeLevelBtn = function (slot0)
+	slot0.levelParentNode:removeAllChildren()
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mGiftInfo) do
+		if slot6.TriggerType == slot0.triggerType and slot6.TriggerId == slot0.triggerId then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.ChargeMoney < slot1.ChargeMoney
+	end)
+
+	function slot2(slot0, slot1, slot2)
+		slot3 = slot0:createLayoutTemplateNode("chargeLevelTemplate")
+		slot4 = slot2 and slot2 ~= ""
+
+		if slot4 then
+			slot3.priceLabel:setString(TR("元宝购买"))
+		else
+			slot3.priceLabel:setString(TR("%d元", slot1))
+		end
+
+		slot3.level = slot0
+		slot3.setSelect = function (slot0)
+			slot0.currSelectChargeLevel = slot0
+
+			for slot4, slot5 in ipairs(slot0.levelParentNode:getChildren()) do
+				slot5.levelBtn:setBright(slot5.level == slot1)
+				slot5.levelBtn:setScale((slot5.level == slot1 and 1.2) or 1)
+			end
+
+			slot0:refreshInfoByLevel(slot0.refreshInfoByLevel)
+			slot0.costLabel:setVisible(slot0.costLabel)
+
+			if slot0.costLabel then
+				slot0.costLabel:setType(Utility.analysisStrResList(slot3)[1].resourceId)
+				slot0.costLabel:setString(slot2, (Utility.analysisStrResList(slot3)[1].num <= Resource.getCount(Utility.analysisStrResList(slot3)[1].resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65), slot1.num)
+			end
+
+			return 
+		end
+
+		slot3.levelBtn:setClickAction(function ()
+			slot0:setSelect()
+
+			return 
+		end)
+
+		return slot3
+	end
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot8 = slot2(slot6, slot7.ChargeMoney, slot7.NeedResource)
+
+		slot8.setPosition(slot8, slot0[slot6])
+		slot0.levelParentNode:addChild(slot8)
+	end
+
+	slot0.chargeLevelList = slot1
+
+	for slot6, slot7 in ipairs(slot0.chargeLevelList) do
+		if slot7.BuyNum < slot7.LimitNum then
+			slot0.currSelectChargeLevel = slot6
+
+			if slot0.getCustomChildren(slot0, slot0.levelParentNode, "level", slot0.currSelectChargeLevel) and slot8[1] then
+				slot8[1]:setSelect()
+			end
+
+			break
+		end
+	end
+
+	return 
+end
+slot0.refreshInfoByLevel = function (slot0, slot1)
+	if slot0.chargeLevelList[slot1].PrizePoolConfigDic and next(slot2.PrizePoolConfigDic) ~= nil then
+		slot4 = {}
+
+		for slot8, slot9 in pairs(slot2.PrizePoolConfigDic) do
+			table.insert(slot4, {
+				keyIndex = tonumber(slot8),
+				poolInfo = clone(slot9)
+			})
+		end
+
+		table.sort(slot4, function (slot0, slot1)
+			return slot0.keyIndex < slot1.keyIndex
+		end)
+		slot0.listView:removeAllChildren()
+
+		for slot8, slot9 in ipairs(slot4) do
+			if slot0.getSelectedRewardStr(slot0, {
+				poolInfo = slot2.PrizePoolRecord,
+				poolIndex = slot9.keyIndex,
+				poolConfigInfo = slot9.poolInfo
+			}) == "" then
+				slot11 = slot0.createLayoutTemplateNode(slot0, "layout", {})
+
+				slot11.card:setCardData(nil, {
+					Enums.CardShowAttr.eAddMark
+				})
+				slot11.card:setAddMark(true, "c_136.png")
+
+				slot11.card.Info = {
+					level = slot1,
+					poolIndex = slot9.keyIndex
+				}
+
+				slot11.card:setClickAction(function ()
+					slot0:onClickSelectGoodsBtn(slot1.card)
+
+					return 
+				end)
+				slot0.listView:pushBackCustomItem(slot11)
+			else
+				slot12 = slot0.createLayoutTemplateNode(slot0, "layout", {
+					head = {
+						cardInfo = Utility.analysisStrResList(slot10)[1],
+						showAttrs = {
+							Enums.CardShowAttr.eName,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				})
+				slot12.card.Info = {
+					level = slot1,
+					poolIndex = slot9.keyIndex
+				}
+
+				slot12.card:setClickAction(function ()
+					slot0:onClickSelectGoodsBtn(slot1.card)
+
+					return 
+				end)
+				slot0.listView:pushBackCustomItem(slot12)
+			end
+		end
+
+		slot0.listView:setContentSize(cc.size(((4 <= #slot4 and 4) or slot5)*84, 100))
+	else
+		slot0.listView:removeAllChildren()
+		slot0.listView:setContentSize(cc.size(((4 <= #Utility.analysisStrResList(slot4) and 4) or slot6)*84, 100))
+
+		for slot10, slot11 in pairs(slot5) do
+			slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+				head = {
+					cardInfo = {
+						modelId = slot11.resourceId,
+						num = slot11.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum,
+						Enums.CardShowAttr.eName
+					}
+				}
+			}))
+		end
+	end
+
+	if slot2.Describe and slot2.Describe ~= "" and slot2.Describe ~= "0" then
+		slot0.describeLabel:setString(slot2.Describe)
+	end
+
+	slot0.discountLabel:setString(string.format("%d:", slot2.Discount*100))
+	slot0.limitNumLabel:setString(string.format("限购:%d/%d", slot2.BuyNum, slot2.LimitNum))
+
+	return 
+end
+slot0.getSelectedRewardStr = function (slot0, slot1)
+	slot3 = slot1.poolIndex
+	slot4 = slot1.poolConfigInfo
+	slot5 = ""
+	slot6 = 0
+
+	for slot10, slot11 in pairs(slot2) do
+		if tonumber(slot10) == tonumber(slot3) then
+			slot5 = slot4[slot11].Reward
+
+			break
+		end
+	end
+
+	return slot5, slot6
+end
+slot0.onClickSelectGoodsBtn = function (slot0, slot1)
+	slot5, slot6 = slot0.getSelectedRewardStr(slot0, {
+		poolInfo = slot0.chargeLevelList[slot1.Info.level].PrizePoolRecord,
+		poolIndex = slot1.Info.poolIndex,
+		poolConfigInfo = clone(slot0.chargeLevelList[slot1.Info.level].PrizePoolConfigDic[tostring(slot1.Info.poolIndex)])
+	})
+	slot7 = 0
+
+	for slot11, slot12 in pairs(slot0.chargeLevelList[slot1.Info.level].PrizePoolRecord) do
+		if tonumber(slot11) ~= slot2.poolIndex then
+			slot7 = slot7 + 1
+		end
+	end
+
+	slot8 = 0
+
+	for slot12, slot13 in pairs(slot3.PrizePoolConfigDic) do
+		slot8 = slot8 + 1
+	end
+
+	slot9 = false
+
+	if slot8 <= slot7 + 1 then
+		slot9 = true
+	end
+
+	dump({
+		slot7,
+		slot8
+	}, "hello")
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "recharge.ReahargeGoodsSeclectLayer",
+		data = {
+			callback = function (slot0)
+				slot0.chargeLevelList[slot1.level].PrizePoolRecord[tostring(slot1.poolIndex)] = slot0
+
+				if tostring(slot1.poolIndex) then
+					slot0:saveSelectGoodsData(slot1.level)
+				else
+					slot0:refreshInfoByLevel(slot1.level)
+				end
+
+				return 
+			end,
+			selectId = slot6,
+			selectConfig = slot4,
+			isLastOne = slot9
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.saveSelectGoodsData = function (slot0, slot1)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		table.insert(slot3, clone({
+			poolId = slot7,
+			rewardId = slot8
+		}))
+	end
+
+	slot4 = ""
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot10 = ","
+
+		if slot8 == #slot3 then
+			slot10 = ""
+		end
+
+		slot4 = slot4 .. slot9.poolId .. "|" .. slot9.rewardId .. slot10
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "SelectPrizePool",
+		moduleName = "TriggerGiftInfo",
+		methodData = {
+			slot0.triggerType,
+			slot0.triggerId,
+			slot0.chargeLevelList[slot0.currSelectChargeLevel].RewardId,
+			slot4
+		},
+		successCallback = function (slot0)
+			slot0:refreshInfoByLevel(slot0.refreshInfoByLevel)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString("00:00:00")
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	if not slot0.chargeLevelList[slot0.currSelectChargeLevel] then
+		ui.showFlashView(TR("无法购买"))
+
+		return 
+	end
+
+	if slot1.LimitNum <= slot1.BuyNum then
+		ui.showFlashView(TR("购买次数已达限制"))
+
+		return 
+	end
+
+	function slot2()
+		Utility.recharge({
+			chargeType = Enums.chargeType.eTriggerGift,
+			price = slot0.ChargeMoney,
+			productId = slot0.ProductId,
+			index = slot0.TriggerType*1000000 + slot0.TriggerId*1000 + slot0.RewardId
+		})
+
+		return 
+	end
+
+	if slot1.NeedResource and slot1.NeedResource ~= "" then
+		slot0.requestBuyDiamond(slot0, slot1.RewardId)
+	else
+		slot2()
+	end
+
+	return 
+end
+slot0.onSuccessCallBack = function (slot0)
+	ui.showFlashView(TR("购买成功"))
+
+	slot0.chargeLevelList[slot0.currSelectChargeLevel].BuyNum = slot0.chargeLevelList[slot0.currSelectChargeLevel].BuyNum + 1
+
+	for slot5, slot6 in ipairs(slot0.chargeLevelList) do
+		if slot6.BuyNum < slot6.LimitNum then
+			slot0.onRequesetGetInfo(slot0)
+
+			return 
+		end
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestBuyDiamond = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ExchangeGift",
+		moduleName = "TriggerGiftInfo",
+		methodData = {
+			slot0.triggerType,
+			slot0.triggerId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			slot0:onSuccessCallBack()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequesetGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TriggerGiftInfo",
+		methodData = {
+			slot0.triggerType,
+			slot0.triggerId
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			slot0.mGiftInfo = slot0.TriggerGiftInfo
+
+			if slot0.mGiftInfo and 0 < #slot0.mGiftInfo then
+				slot0:createChargeLevelBtn()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

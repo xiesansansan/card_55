@@ -1,0 +1,41 @@
+slot0 = class("NewIdList", {})
+slot0.ctor = function (slot0)
+	slot0.mNewIdList = {}
+
+	return 
+end
+slot0.insertNewId = function (slot0, slot1)
+	if not Utility.isEntityId(slot1) then
+		return 
+	end
+
+	table.insert(slot0.mNewIdList, slot1)
+
+	return 
+end
+slot0.clearNewId = function (slot0, slot1)
+	if slot1 then
+		for slot5, slot6 in pairs(slot0.mNewIdList) do
+			if slot6 == slot1 then
+				table.remove(slot0.mNewIdList, slot5)
+
+				break
+			end
+		end
+	else
+		slot0.mNewIdList = {}
+	end
+
+	return 
+end
+slot0.IdIsNew = function (slot0, slot1)
+	return table.keyof(slot0.mNewIdList, slot1 or "")
+end
+slot0.newIdListIsEmpty = function (slot0)
+	return #slot0.mNewIdList == 0
+end
+slot0.getNewIdList = function (slot0)
+	return slot0.mNewIdList
+end
+
+return slot0

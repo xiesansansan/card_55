@@ -1,0 +1,172 @@
+slot0 = class("SellGoodsPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("出售")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 257.5,
+						y = 218
+					},
+					size = {
+						width = 450,
+						height = 185
+					}
+				},
+				children = {}
+			},
+			{
+				name = "goodCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 256.74,
+						y = 253.35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "selectView",
+				cType = "SelectCountView",
+				params = {
+					currSelCount = 1,
+					pos = {
+						x = 257.5,
+						y = 160
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceLabel",
+				cType = "Label",
+				params = {
+					isRichText = "false",
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.5,
+						y = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onSellBtn",
+					titleisRichText = "false",
+					pos = {
+						x = 371,
+						y = 61.16
+					},
+					titleText = TR("出 售")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onAllBtn",
+					titleisRichText = "false",
+					pos = {
+						x = 141,
+						y = 61.16
+					},
+					titleText = TR("选择全部")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mInfo = slot1.info
+	slot0.mCallBack = slot1.callBack
+
+	slot0.initUI(slot0)
+	slot0.refreshInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshInfo = function (slot0)
+	slot0.selectNum = 1
+
+	slot0.goodCard:setCardData({
+		modelId = slot0.mInfo.ModelId,
+		num = slot0.mInfo.Num
+	}, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eNum
+	})
+	slot0.selectView:setMaxCount(slot0.mInfo.Num)
+	slot0.selectView:setChangeCallback(function (slot0)
+		slot0.priceLabel:setString(TR("售价：{%s}%s", slot0.priceLabel.setString, slot0*slot2.sellNum))
+
+		slot0.selectNum = slot0
+
+		return 
+	end)
+	slot0.priceLabel:setString(TR("售价：{%s}%s", Resource.getDaibiImg(Resource.getModelInfo(slot0.mInfo.ModelId).sellTypeID), Resource.getModelInfo(slot0.mInfo.ModelId).sellNum))
+
+	return 
+end
+slot0.onSellBtn = function (slot0)
+	if slot0.mCallBack then
+		slot0.mCallBack(slot0.selectNum)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onAllBtn = function (slot0)
+	slot0.selectNum = slot0.mInfo.Num
+
+	slot0.selectView:setCount(slot0.selectNum)
+	slot0.priceLabel:setString(TR("售价：{%s}%s", Resource.getDaibiImg(Resource.getModelInfo(slot0.mInfo.ModelId).sellTypeID), slot0.selectNum*Resource.getModelInfo(slot0.mInfo.ModelId).sellNum))
+
+	return 
+end
+
+return slot0

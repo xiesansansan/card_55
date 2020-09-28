@@ -1,0 +1,645 @@
+slot0 = class("FeiJiAdvancedLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "zqsd_4.png",
+					pos = {
+						x = -217.47,
+						y = -58.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 274.94,
+						y = -47
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -225.59,
+						y = 223.95
+					}
+				},
+				children = {
+					{
+						name = "mCountDownLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 36,
+								y = 57
+							},
+							text = TR("倒计时")
+						},
+						children = {}
+					},
+					{
+						name = "mScoreLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 36,
+								y = 34
+							},
+							text = TR("当前积分")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 36,
+								y = 11
+							},
+							text = TR("每充值 1 元获得 1 积分")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 4.01,
+						y = -256.3
+					},
+					size = {
+						width = 540,
+						height = 460
+					}
+				},
+				children = {
+					{
+						name = "ItemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled10-image",
+								name = "costSprite",
+								type = "string"
+							},
+							{
+								value = "untitled23-image",
+								name = "outputSprite",
+								type = "string"
+							},
+							{
+								value = "untitled11-hide",
+								name = "hideBaseOwn",
+								type = "string"
+							},
+							{
+								value = "untitled24-hide",
+								name = "hideTargetOwn",
+								type = "string"
+							},
+							{
+								value = "untitled16-text",
+								name = "baseNameText",
+								type = "string"
+							},
+							{
+								value = "untitled27-text",
+								name = "targetNameText",
+								type = "string"
+							},
+							{
+								value = "untitled18-text",
+								name = "scoreText",
+								type = "string"
+							},
+							{
+								value = "untitled28-hide",
+								name = "hideDiscount",
+								type = "string"
+							},
+							{
+								value = "untitled19-text",
+								name = "orignScoreText",
+								type = "string"
+							},
+							{
+								value = "untitled20-text",
+								name = "deleteLine",
+								type = "string"
+							},
+							{
+								value = "untitled29-text",
+								name = "discountNum",
+								type = "string"
+							},
+							{
+								value = "untitled14-image",
+								name = "bg1",
+								type = "string"
+							},
+							{
+								value = "untitled22-image",
+								name = "bg2",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 540,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 270,
+										y = 75
+									},
+									size = {
+										width = 540,
+										height = 145
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Sprite",
+								params = {
+									image = "zq_1.png",
+									pos = {
+										x = 100,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "zqtx_caoji.png",
+									pos = {
+										x = 100,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "zq_43.png",
+									hide = false,
+									pos = {
+										x = 50,
+										y = 108
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "zq_7.png",
+									pos = {
+										x = 100.13,
+										y = 38.67
+									}
+								},
+								children = {
+									{
+										name = "untitled16",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											pos = {
+												x = 72.36,
+												y = 13.08
+											},
+											text = TR("坐骑名字")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "c_23.png",
+									pos = {
+										x = 209,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									text = "+500",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 462.6,
+										y = 111.37
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									text = "+500",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 462.6,
+										y = 87.37
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									text = "-----",
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 462.6,
+										y = 87.37
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Button",
+								params = {
+									childName = "stepUpBtn",
+									image = "c_32.png",
+									clickAction = "onClickStepUpCb",
+									pos = {
+										x = 464.95,
+										y = 51.81
+									},
+									titleText = TR("进阶")
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Sprite",
+								params = {
+									image = "zq_1.png",
+									pos = {
+										x = 320,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled23",
+								cType = "Sprite",
+								params = {
+									image = "zqtx_caoji.png",
+									pos = {
+										x = 320,
+										y = 75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "Sprite",
+								params = {
+									image = "zq_43.png",
+									hide = false,
+									pos = {
+										x = 272,
+										y = 108
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Sprite",
+								params = {
+									image = "zq_7.png",
+									pos = {
+										x = 320.13,
+										y = 38.67
+									}
+								},
+								children = {
+									{
+										name = "untitled27",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											pos = {
+												x = 72.36,
+												y = 13.08
+											},
+											text = TR("坐骑名字")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled28",
+								cType = "Sprite",
+								params = {
+									image = "zqsd_3.png",
+									hide = false,
+									pos = {
+										x = 386.95,
+										y = 100.15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									text = "8",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 384.39,
+										y = 107.23
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Label",
+								params = {
+									childName = "jinjie",
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 464.91,
+										y = 50.69
+									},
+									text = TR("已进阶")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	require("feiji.FeiJiHelper")
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	FeiJiHelper:getMountList(handler(slot0, slot0.requestGetInfo))
+
+	return 
+end
+slot0.refreshTopUI = function (slot0)
+	slot0.mScoreLabel:setString(TR("拥有积分：%s%s", "#258711", slot0.mActivityData.Score))
+
+	if 0 < slot0.mActivityData.EndDate - Player:getCurrentTime() then
+		if slot0.mCountDownSche then
+			slot0.mCountDownLabel:stopAllActions()
+
+			slot0.mCountDownSche = nil
+		end
+
+		slot0.mCountDownSche = Utility.schedule(slot0.mCountDownLabel, function ()
+			slot0:updateCountDown()
+
+			return 
+		end, 1)
+	else
+		slot0.mCountDownLabel:setString(TR("活动已结束"))
+	end
+
+	return 
+end
+slot0.refreshList = function (slot0)
+	slot1 = clone(MountModel.items)
+	slot2 = {
+		"zq_1.png",
+		"zq_2.png",
+		"zq_3.png",
+		"zq_4.png",
+		"zq_5.png",
+		"zq_6.png"
+	}
+
+	slot0.mListView:removeAllItems()
+
+	for slot6, slot7 in pairs(slot0.mExchangeInfo) do
+		slot15, slot16 = Utility.getColorValue(slot1[slot7.BaseMountModelId].colorLv)
+		slot17, slot18 = Utility.getColorValue(slot1[slot7.TargetMountModelId].colorLv)
+		slot19 = slot0.createLayoutTemplateNode(slot0, "ItemLayout", {
+			costSprite = slot1[slot7.BaseMountModelId].headImage .. ".png",
+			outputSprite = slot1[slot7.TargetMountModelId].headImage .. ".png",
+			hideBaseOwn = slot7.IsHaveBaseMount ~= 1,
+			hideTargetOwn = slot7.IsHaveTargetMount ~= 1,
+			baseNameText = string.format("%s%s", slot16, slot1[slot8].name),
+			targetNameText = string.format("%s%s", slot18, slot1[slot9].name),
+			scoreText = TR("+%d积分", slot7.Price*slot7.Discount),
+			orignScoreText = (slot7.Discount < 1 and TR("+%d积分", slot7.Price)) or "",
+			deleteLine = (slot7.Discount < 1 and "—————") or "",
+			discountNum = (slot7.Discount < 1 and slot7.Discount*10) or "",
+			hideDiscount = slot7.Discount == 1,
+			bg1 = slot2[slot1[slot8].colorLv],
+			bg2 = slot2[slot1[slot9].colorLv]
+		})
+		slot19.stepUpBtn.exchangeId = slot7.ExchangeId
+		slot19.stepUpBtn.targetModelId = slot9
+		slot19.stepUpBtn.baseModelId = slot8
+		slot19.stepUpBtn.price = slot7.Price
+		slot19.stepUpBtn.discount = slot7.Discount
+
+		slot19.stepUpBtn:setBright(slot7.Price*slot7.Discount <= slot0.mActivityData.Score and slot12 == 1)
+		slot19.stepUpBtn:setVisible(slot7.IsHaveTargetMount ~= 1)
+		slot19.jinjie:setVisible(slot7.IsHaveTargetMount == 1)
+		slot0.mListView:pushBackCustomItem(slot19)
+	end
+
+	return 
+end
+slot0.updateCountDown = function (slot0)
+	if slot0.mActivityData.EndDate - Player:getCurrentTime() <= 0 then
+		slot0.mCountDownLabel:setString(TR("活动已结束"))
+		slot0.mCountDownLabel:stopAllActions()
+
+		slot0.mCountDownSche = nil
+	else
+		slot0.mCountDownLabel:setString(TR("活动倒计时：%s%s", "#258711", MqTime.formatAsDay(slot1)))
+	end
+
+	return 
+end
+slot0.onClickStepUpCb = function (slot0, slot1)
+	if not FeiJiHelper:isHaveOneMount(slot1.baseModelId) then
+		ui.showFlashView(TR("没有兑换所需坐骑！"))
+
+		return 
+	end
+
+	if slot0.mActivityData.Score < slot1.price*slot1.discount then
+		ui.showFlashView(TR("积分不足"))
+
+		return 
+	end
+
+	slot0.requestExchange(slot0, slot1)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedMountExchange",
+		methodData = {
+			ActivityObj:getEntityId(ModuleSub.eTimedMountExchange)
+		},
+		successCallback = function (slot0)
+			dump(slot0, "初始化数据：")
+
+			slot0.mActivityData = slot0.ActivityInfo or {}
+			slot0.mExchangeInfo = slot0.MountExchangeInfo or {}
+
+			slot0:refreshTopUI()
+			slot0:refreshList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExchange = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Exchange",
+		moduleName = "TimedMountExchange",
+		methodData = {
+			ActivityObj:getEntityId(ModuleSub.eTimedMountExchange),
+			slot1.exchangeId
+		},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0.ActivityInfo or {}
+			slot0.mExchangeInfo = slot0.MountExchangeInfo or {}
+
+			FeiJiHelper:addOneMountItem({
+				MountModelId = slot0.targetModelId
+			})
+			FeiJiHelper:changeMyMount(slot0.targetModelId, function ()
+				return 
+			end)
+			slot0:refreshTopUI()
+			slot0:refreshList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

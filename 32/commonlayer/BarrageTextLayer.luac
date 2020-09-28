@@ -1,0 +1,321 @@
+slot0 = class("BarrageTextLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgShowNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 0
+			},
+			pos = {
+				x = 1136,
+				y = 0
+			},
+			size = {
+				width = 1386,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "testLayer",
+				cType = "Layer",
+				params = {
+					color = {
+						g = 0,
+						a = 100,
+						r = 255,
+						b = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1386,
+						height = 640
+					}
+				},
+				children = {}
+			},
+			{
+				name = "templateBarrageLabel",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled8-text",
+						name = "strText",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 0,
+						y = 600
+					},
+					size = {
+						width = 1386,
+						height = 46
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "ClippingNode",
+						params = {
+							alpha = 1,
+							childName = "clipNode",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 1386,
+								height = 46
+							}
+						},
+						children = {
+							{
+								name = "untitled2",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "bgSprite",
+									image = "c_pure.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 5
+									},
+									size = {
+										width = 300,
+										height = 36
+									}
+								},
+								children = {
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "label",
+											text = "Label",
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 10,
+												y = 18
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftBoundry",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.yPosBegin = (slot1 and slot1.yPosBegin) or 0
+	slot0.yPosEnd = (slot1 and slot1.yPosEnd) or 640
+	slot0.mSpeed = (slot1 and slot1.speed) or 1
+	slot0.labelShowList = {}
+	slot0.yPosValidList = {}
+
+	slot0.initParams(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "bgShowNode" then
+			slot1.size = cc.size(1386, slot0.yPosEnd - slot0.yPosBegin)
+			slot1.pos = cc.p(1136, slot0.yPosBegin)
+		end
+
+		if slot0.name == "testLayer" then
+			slot1.size = cc.size(1386, slot0.yPosEnd - slot0.yPosBegin)
+			slot1.hide = true
+		end
+
+		return 
+	end)
+
+	slot0.viewWidth = slot0.bgShowNode:getContentSize().width
+	slot0.leftBoundryX = slot0.bgShowNode:convertToNodeSpace(slot2).x
+
+	Utility.schedule(slot0, function ()
+		for slot3 = #slot0.labelShowList, 1, -1 do
+			if slot0.labelShowList[slot3].isRunning == false then
+				if slot0:findRandomPosY() ~= nil then
+					slot4.setPositionY(slot4, slot5)
+
+					slot4.isRunning = true
+					slot4.isIdlePosY = false
+
+					slot0:setPosYState(slot5, false)
+				end
+			elseif slot4.clipNode.bgSprite:getPositionX() - slot4.speed <= slot0.leftBoundryX and slot4.pauseTime <= 100 then
+				slot4.pauseTime = slot4.pauseTime + 1
+			else
+				slot4.clipNode.bgSprite:setPositionX(slot6)
+
+				slot7 = slot6 + slot4.labelWidth + 50 + slot0.mSpeed*100
+
+				if slot4.isIdlePosY == false and slot7 < slot0.viewWidth then
+					slot4.isIdlePosY = true
+
+					slot0:setPosYState(slot4.getPositionY(slot4), true)
+				end
+
+				if slot7 < 0 then
+					slot4.removeFromParent(slot4)
+					table.remove(slot0.labelShowList, slot3)
+				end
+			end
+		end
+
+		return 
+	end, 0.015)
+
+	return 
+end
+slot0.initParams = function (slot0)
+	if slot0.yPosBegin < 0 then
+		slot0.yPosBegin = 0
+	end
+
+	if 640 < slot0.yPosEnd then
+		slot0.yPosEnd = 640
+	end
+
+	if slot0.yPosEnd < slot0.yPosBegin then
+		slot0.yPosBegin = slot0.yPosEnd
+	end
+
+	slot1 = 0
+
+	while true do
+		if slot0.yPosEnd - slot0.yPosBegin <= slot1*46 then
+			break
+		end
+
+		table.insert(slot0.yPosValidList, {
+			isIdle = true,
+			yPos = slot2
+		})
+
+		slot1 = slot1 + 1
+	end
+
+	return 
+end
+slot0.initTextList = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.showOneText(slot0, slot6)
+	end
+
+	return 
+end
+slot0.saveTextList = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.labelShowList) do
+		if 0 < slot6.clipNode.bgSprite:getPositionX() then
+			table.insert(slot1, slot6.textStr)
+		end
+	end
+
+	return slot1
+end
+slot0.showOneText = function (slot0, slot1)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "templateBarrageLabel", {
+		strText = slot1.gsub(slot1, ".png}", "} ")
+	})
+
+	slot3.clipNode.bgSprite:setContentSize(cc.size(slot3.clipNode.bgSprite.label:getContentSize().width + 20, 36))
+	slot3.clipNode.bgSprite:setPosition(slot0.viewWidth, 0)
+	slot3.setPosition(slot3, 0, 0)
+
+	slot3.labelWidth = slot3.clipNode.bgSprite.label.getContentSize().width
+	slot3.isRunning = false
+	slot3.isIdlePosY = true
+	slot3.speed = slot0.mSpeed
+	slot3.pauseTime = 0
+	slot3.textStr = slot1.gsub(slot1, ".png}", "} ")
+
+	slot0.bgShowNode:addChild(slot3)
+	table.insert(slot0.labelShowList, slot3)
+
+	return 
+end
+slot0.findRandomPosY = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.yPosValidList) do
+		if slot6.isIdle == true then
+			table.insert(slot1, slot6.yPos)
+		end
+	end
+
+	if #slot1 == 0 then
+		return nil
+	end
+
+	if slot2 == 1 then
+		return slot1[1]
+	end
+
+	return slot1[math.random(1, slot2)]
+end
+slot0.setPosYState = function (slot0, slot1, slot2)
+	for slot6, slot7 in ipairs(slot0.yPosValidList) do
+		if slot7.yPos == slot1 then
+			slot7.isIdle = slot2
+
+			break
+		end
+	end
+
+	return 
+end
+
+return slot0

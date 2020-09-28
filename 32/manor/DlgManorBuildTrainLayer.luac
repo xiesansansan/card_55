@@ -1,0 +1,976 @@
+slot0 = class("DlgManorBuildTrainLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBoxBg",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 740,
+				height = 520
+			},
+			titleText = TR("训  练")
+		},
+		children = {
+			{
+				name = "untitled74",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 51,
+					image = "c_93.png",
+					pos = {
+						x = 487.88,
+						y = 451.84
+					}
+				},
+				children = {
+					{
+						name = "untitled75",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 199.97,
+								y = 17.14
+							},
+							text = TR("选择一名侠客进行训练，增加侠客经验值")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTrainTips",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 369.39,
+						y = 410.56
+					},
+					text = TR("今日已训练：1/2")
+				},
+				children = {}
+			},
+			{
+				name = "untitled72",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 486.58,
+						y = 236.44
+					},
+					size = {
+						width = 420,
+						height = 140
+					}
+				},
+				children = {
+					{
+						name = "mTextTipsNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled102",
+								cType = "Label",
+								params = {
+									childName = "label2",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 46.34,
+										y = 64.06
+									},
+									text = TR("训练时间：00时13分00秒")
+								},
+								children = {}
+							},
+							{
+								name = "untitled103",
+								cType = "Label",
+								params = {
+									childName = "label1",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 46.34,
+										y = 105
+									},
+									text = TR("本次训练可获得：9891经验")
+								},
+								children = {}
+							},
+							{
+								name = "untitled104",
+								cType = "Label",
+								params = {
+									childName = "label3",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 46.34,
+										y = 29.03
+									},
+									text = TR("训练结果预览： 25级")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mOverTips",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 52.46,
+								y = 70.13
+							},
+							text = TR("获得经验")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mbox1",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "cbClickCheckboxCallBack",
+					pos = {
+						x = 357.26,
+						y = 197.37
+					}
+				},
+				children = {
+					{
+						name = "untitled83",
+						cType = "Node",
+						params = {
+							childName = "node",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled84",
+								cType = "Node",
+								params = {
+									childName = "costNode",
+									pos = {
+										x = 40,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled85",
+										cType = "Sprite",
+										params = {
+											image = "db_1111.png",
+											childName = "sprite",
+											pos = {
+												x = 14.29,
+												y = 14.27
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled86",
+										cType = "Label",
+										params = {
+											text = "10",
+											childName = "label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 36.81,
+												y = 14.27
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled87",
+								cType = "Label",
+								params = {
+									childName = "tipslabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 114.58,
+										y = 14.9
+									},
+									text = TR("增加30%产量")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mbox2",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "cbClickCheckboxCallBack",
+					pos = {
+						x = 357.26,
+						y = 146.9
+					}
+				},
+				children = {
+					{
+						name = "untitled105",
+						cType = "Node",
+						params = {
+							childName = "node",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled106",
+								cType = "Node",
+								params = {
+									childName = "costNode",
+									pos = {
+										x = 40,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled107",
+										cType = "Sprite",
+										params = {
+											image = "db_1111.png",
+											childName = "sprite",
+											pos = {
+												x = 14.29,
+												y = 14.27
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled108",
+										cType = "Label",
+										params = {
+											text = "10",
+											childName = "label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 36.81,
+												y = 14.27
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled109",
+								cType = "Label",
+								params = {
+									childName = "tipslabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 114.58,
+										y = 14.9
+									},
+									text = TR("增加30%产量")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mOpBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onClickTrain",
+					pos = {
+						x = 489.06,
+						y = 73.51
+					},
+					titleText = TR("开始训练")
+				},
+				children = {}
+			},
+			{
+				name = "untitled92",
+				cType = "Scale9Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 251.79,
+						y = 269.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroBtn",
+				cType = "Button",
+				params = {
+					pressedAction = false,
+					clickAction = "onClickChangeHero",
+					image = "zy_27.png",
+					pos = {
+						x = 138,
+						y = 281
+					}
+				},
+				children = {
+					{
+						name = "untitled111",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							pos = {
+								x = 0,
+								y = 8
+							},
+							text = TR("空 闲")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mChangeHeroBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onClickChangeHero",
+					pos = {
+						x = 138.21,
+						y = 59.8
+					},
+					titleText = TR("更换侠客")
+				},
+				children = {}
+			},
+			{
+				name = "mTimeBg",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 51,
+					image = "c_93.png",
+					hide = true,
+					pos = {
+						x = 487.88,
+						y = 175.56
+					}
+				},
+				children = {
+					{
+						name = "untitled113",
+						cType = "Label",
+						params = {
+							childName = "label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 199.97,
+								y = 17.14
+							},
+							text = TR("训练倒计时")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mNoUseTips",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 65,
+						r = 192,
+						b = 65
+					},
+					pos = {
+						x = 490.67,
+						y = 38.09
+					},
+					text = TR("今日次数已用尽")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mLandId = slot1.landId
+	slot0.mLandInfo = ManorHelper:getLandInfoByLandId(slot0.mLandId).landStautus.opData
+	slot0.mHeroId = slot0.mLandInfo.HeroId
+
+	if slot0.mHeroId == 0 then
+		slot0.mHeroId = ManorHelper:getTrainHeroByRule()
+	end
+
+	slot0.mBuildType = slot0.mLandInfo.Type
+	slot0.mDiamondR = 0
+	slot0.mSelectDiamond = 0
+	slot0.mPlayerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	slot0.initUI(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		return 
+	end)
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(TerritoryPayputoutConfig.items) do
+		table.insert(slot1, clone(slot6))
+	end
+
+	for slot5, slot6 in ipairs({
+		slot0.mbox1,
+		slot0.mbox2
+	}) do
+		slot6.diamondR = slot1[slot5].playgroundPayOutputR
+		slot6.diamond = slot1[slot5].payDiamondNum
+
+		slot6.node.costNode.label:setString(tostring(slot1[slot5].payDiamondNum))
+		slot6.node.tipslabel:setString(TR("增加%d%%经验", slot1[slot5].playgroundPayOutputR*100))
+	end
+
+	return 
+end
+slot0.createOneHeroNode = function (slot0, slot1)
+	if slot0.mHeroNode and not tolua.isnull(slot0.mHeroNode) then
+		slot0.mHeroNode:removeFromParent()
+
+		slot0.mHeroNode = nil
+	end
+
+	slot3 = require("common.BustCard"):create({
+		ModelId = slot1,
+		InstanceData = HeroObj:getItem(slot1),
+		ClickAction = function (slot0)
+			return 
+		end
+	})
+
+	slot3.setPosition(slot3, 138, 281)
+
+	slot0.mHeroNode = slot3
+
+	slot0.mMsgBoxBg:addChild(slot3, 2)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mLandInfo = ManorHelper:getLandInfoByLandId(slot0.mLandId).landStautus.opData
+	slot3 = math.floor(TerritoryBuildlvConfig.items[slot0.mLandInfo.Type][slot0.mLandInfo.Lv].playgroundExpOutStr*TerritoryBuildlvConfig.items[slot0.mLandInfo.Type][slot0.mLandInfo.Lv].playgroundGetTime)
+	slot0.mEndTime = nil
+
+	if ManorHelper:getBulidProcStatus(slot0.mLandId) == 0 then
+		slot0.mChangeHeroBtn:setVisible(true)
+		slot0.mHeroBtn:setEnabled(true)
+		slot0.mTextTipsNode:setVisible(true)
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mbox1:setVisible(true)
+		slot0.mbox2:setVisible(true)
+		slot0.mTimeBg:setVisible(false)
+		slot0.mOverTips:setVisible(false)
+		slot0.mOpBtn:setTitleText(TR("开始训练"))
+		slot0.mOpBtn:setPositionY(75)
+		slot0.mOpBtn:setClickAction(function ()
+			slot0:onClickTrain()
+
+			return 
+		end)
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].playgroundNumDaily <= slot0.mLandInfo.DailyNum then
+			slot0.mOpBtn:setBright(false)
+			slot0.mOpBtn:setClickAction(function ()
+				ui.showFlashView(TR("提升VIP等级可以增加训练次数"))
+
+				return 
+			end)
+
+			slot5 = "#EC2A00"
+
+			slot0.mNoUseTips:setVisible(true)
+		end
+
+		slot0.mTrainTips:setString(TR("今日已训练：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+
+		slot6 = math.floor(slot3*(slot0.mDiamondR + 1))
+
+		if 0 < slot0.mDiamondR then
+			slot0.mTextTipsNode.label1:setString(TR("本次训练可获得：%d+%d经验", slot3, slot6 - slot3))
+		else
+			slot0.mTextTipsNode.label1:setString(TR("本次训练可获得：%d经验", slot3))
+		end
+
+		slot0.mTextTipsNode.label2:setString(TR("训练时间：%s", MqTime.completeFormat(slot2.playgroundGetTime)))
+
+		if 0 < slot0.mHeroId then
+			slot0.mFullExp = 0
+			slot10 = ""
+
+			if math.min(slot0.mPlayerLv, HeroLvRelation.items[HeroLvRelation.items_count].Lv) <= Utility.calcLvOfExp(HeroObj:getItem(slot0.mHeroId).Exp + slot6) then
+				slot8 = slot9
+				slot0.mFullExp = (slot7.Exp + slot6) - HeroLvRelation.items[slot9].expTotal
+				slot10 = TR("(溢出)")
+			end
+
+			slot0.mTextTipsNode.label3:setString(TR("训练结果：%d级 -> %d级%s", slot7.Lv, slot8, slot10))
+		else
+			slot0.mTextTipsNode.label3:setString(TR("训练结果： 未知"))
+		end
+	elseif slot1 == 1 then
+		slot0.mChangeHeroBtn:setVisible(false)
+		slot0.mHeroBtn:setEnabled(false)
+		slot0.mTextTipsNode:setVisible(false)
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mbox1:setVisible(false)
+		slot0.mbox2:setVisible(false)
+		slot0.mTimeBg:setVisible(true)
+		slot0.mOverTips:setVisible(true)
+		slot0.mOpBtn:setTitleText(TR("加 速"))
+		slot0.mOpBtn:setPositionY(81)
+		slot0.mOpBtn:setClickAction(function ()
+			slot0:onClickSpeedUp()
+
+			return 
+		end)
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].playgroundNumDaily <= slot0.mLandInfo.DailyNum then
+			slot5 = "#EC2A00"
+		end
+
+		slot0.mTrainTips:setString(TR("今日已训练：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+
+		if 0 < slot0.mLandInfo.AddNum then
+			slot3 = math.floor(slot3*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].playgroundPayOutputR + 1))
+		end
+
+		slot0.mTotalExp = slot3
+		slot0.mTotalTime = slot2.playgroundGetTime
+		slot0.mEndTime = slot0.mLandInfo.RewardTime
+
+		slot0.setTimer(slot0)
+	elseif slot1 == 2 then
+		slot0.mChangeHeroBtn:setVisible(false)
+		slot0.mHeroBtn:setEnabled(false)
+		slot0.mTextTipsNode:setVisible(false)
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mbox1:setVisible(false)
+		slot0.mbox2:setVisible(false)
+		slot0.mTimeBg:setVisible(true)
+		slot0.mTimeBg.label:setString(TR("训练结束"))
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].playgroundNumDaily <= slot0.mLandInfo.DailyNum then
+			slot5 = "#EC2A00"
+		end
+
+		slot0.mTrainTips:setString(TR("今日已训练：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+		slot0.mOpBtn:setTitleText(TR("领取经验"))
+		slot0.mOpBtn:setPositionY(81)
+		slot0.mOpBtn:setClickAction(function ()
+			if slot0.mIsEffectTime then
+				return 
+			end
+
+			slot0:onGetRewardClickAciton()
+
+			return 
+		end)
+
+		if 0 < slot0.mLandInfo.AddNum then
+			slot3 = math.floor(slot3*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].playgroundPayOutputR + 1))
+		end
+
+		slot0.mOverTips:setString(TR("获得经验 %d", slot3))
+	end
+
+	return 
+end
+slot0.showHeroGetExpEffect = function (slot0, slot1, slot2)
+	slot0.mIsEffectTime = true
+
+	MqAudio.playEffect("xiakeshengji.mp3")
+	slot1.addChild(slot1, UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "animation",
+		autoDelete = true,
+		dataFile = "effect_ui_zhuangyuanxunlian",
+		pos = cc.p(slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5 - 22),
+		complete = function ()
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end
+	}), 3)
+
+	return 
+end
+slot0.setTimer = function (slot0)
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), 1)
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if not slot0.mEndTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+
+		return 
+	end
+
+	if 0 < slot0.mEndTime - Player:getCurrentTime() then
+		slot0.mTimeBg.label:setString(TR("训练倒计时:%s", MqTime.completeFormat(slot2)))
+		slot0.mOverTips:setString(TR("获得经验 %d/%d", math.floor(((slot2*1)/slot0.mTotalTime - 1)*slot0.mTotalExp), slot0.mTotalExp))
+	else
+		slot0.mTimeBg.label:setString(TR("00:00:00"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+			slot0.mEndTime = nil
+		end
+	end
+
+	return 
+end
+slot0.onClickTrain = function (slot0, slot1)
+	if slot0.mHeroId <= 0 then
+		ui.showFlashView("请选择要训练的侠客")
+
+		return 
+	end
+
+	if 0 < slot0.mFullExp then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("训练该侠客将会溢出经验%d，是否继续？", slot0.mFullExp),
+			okCallback = function ()
+				slot0:requestTrainHero()
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	else
+		slot0.requestTrainHero(slot0)
+	end
+
+	return 
+end
+slot0.cbClickCheckboxCallBack = function (slot0, slot1)
+	if slot1.isSelected(slot1) then
+		slot0.mDiamondR = slot1.diamondR
+		slot0.mSelectDiamond = slot1.diamond
+	else
+		slot0.mDiamondR = 0
+		slot0.mSelectDiamond = 0
+	end
+
+	for slot5, slot6 in ipairs({
+		slot0.mbox1,
+		slot0.mbox2
+	}) do
+		if slot1 ~= slot6 or not slot1.isSelected(slot1) then
+			slot6.setSelected(slot6, false)
+		end
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onClickChangeHero = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "manor.DlgManorHeroSelectLayer",
+		data = {
+			callback = function (slot0)
+				slot0.mHeroId = slot0
+
+				slot0:refreshUI()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onClickSpeedUp = function (slot0)
+	if math.ceil((slot0.mLandInfo.RewardTime - Player:getCurrentTime())/TerritoryConfig.items[1].basePaySpeedUp) <= 0 then
+		ui.showFlashView(TR("已经可以免费了"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("是否消耗%s%s%s加速训练?", (Resource.isEnough(ResourceTypeSub.eDiamond, slot2, false) and "#8BA857") or "#C04141", "{" .. Resource.getDaibiImg(ResourceTypeSub.eDiamond) .. "}" .. slot2, "#252525"),
+		okCallback = function ()
+			slot0:requestSpeedUp()
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetRewardClickAciton = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Haverst",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot0.mHeroId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("收获经验成功"))
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.HeroInfo then
+				HeroObj:modifyItem(slot0.HeroInfo)
+			end
+
+			ManorHelper:updateManorInfo(slot0.TerritoryInfo, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+
+			slot0.mHeroId = slot0.mLandInfo.HeroId
+
+			slot0:refreshUI()
+			slot0:showHeroGetExpEffect(slot0.mHeroNode, function ()
+				slot0.mIsEffectTime = false
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestTrainHero = function (slot0)
+	dump("122222")
+	slot0.socketRequest(slot0, {
+		methodName = "Produce",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			0,
+			slot0.mHeroId,
+			slot0.mSelectDiamond
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("开始训练"))
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+			slot0:refreshUI()
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSpeedUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ProduceSpeedUp",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("加速成功"))
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+			slot0:refreshUI()
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

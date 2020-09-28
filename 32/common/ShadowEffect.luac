@@ -1,0 +1,81 @@
+slot0 = require("common.SpineManager")
+slot1 = class("ShadowEffect", function ()
+	slot0 = cc.Node:create()
+
+	slot0.enableNodeEvents(slot0)
+
+	return slot0
+end)
+slot1.ctor = function (slot0, slot1)
+	slot0.targetNode = slot1.target
+	slot0.interval = slot1.interval
+	slot0.moveNode = slot1.moveNode
+	slot0.flip = slot1.flip
+	slot6 = slot0.createAnimation(slot4, 1, true)
+
+	slot6.setScale(slot6, slot5)
+	cc.Node:create().addChild(slot7, slot6)
+
+	slot8 = slot1.target.getBoundingBox(slot2)
+	slot0.targetSize = slot8
+
+	slot6.setPosition(slot6, cc.p(slot8.width/2, 0))
+
+	slot9 = cc.RenderTexture:create(slot8.width, slot8.height, cc.TEXTURE2_D_PIXEL_FORMAT_RGB_A8888)
+
+	slot9.retain(slot9)
+
+	slot0.rt = slot9
+
+	function ()
+		slot0:beginWithClear(0, 120, 0, 0, 0, 0)
+		slot0:visit()
+		slot0.visit:endToLua()
+
+		return 
+	end()
+
+	return 
+end
+slot1.startEffect = function (slot0)
+	slot0.stopAllActions(slot0)
+	slot0.runAction(slot0, cc.RepeatForever:create(cc.Sequence:create({
+		cc.CallFunc:create(function ()
+			slot0 = cc.Sprite:createWithTexture(slot0.rt:getSprite():getTexture())
+			slot6, slot2 = slot0.moveNode:getPosition()
+
+			slot0.setPosition(slot0, cc.p(slot1, slot2 + slot0.targetSize.height/2))
+			slot0.setOpacity(slot0, 120)
+			slot0.setScaleY(slot0, -1)
+
+			if slot0.flip then
+				slot0.setScaleX(slot0, -1)
+			end
+
+			slot0.runAction(slot0, cc.Sequence:create({
+				cc.FadeTo:create(1, 0),
+				cc.RemoveSelf:create()
+			}))
+			slot0:addChild(slot0)
+
+			return 
+		end),
+		cc.DelayTime:create(slot0.interval)
+	})))
+
+	return 
+end
+slot1.stopEffect = function (slot0)
+	slot0.stopAllActions(slot0)
+
+	return 
+end
+slot1.onExit = function (slot0)
+	slot0.stopEffect(slot0)
+	slot0.rt:release()
+	print("ShadowEffect:onExit")
+
+	return 
+end
+
+return slot1

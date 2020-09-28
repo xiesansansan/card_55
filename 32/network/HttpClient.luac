@@ -1,0 +1,321 @@
+require("network.NetworkStates")
+require("bit")
+
+slot0 = require("battle.common.Base64")
+slot1 = "shenmo_" .. "moqikaka" .. "_shenmo"
+HttpClient = {
+	requestQueue = {},
+	avatarCache = {}
+}
+HttpClient.dealErrorCode = function (slot0, slot1, slot2, slot3)
+	require("network.NetworkStates")
+
+	HttpClient.requestQueue = {}
+
+	function slot4(slot0)
+		ui.showNetErrorBox({
+			text = TR("您的客户端需要升级，是否前往下载？"),
+			okCallback = function (...)
+				cc.Application:getInstance():openURL(cc.Application.getInstance().openURL)
+
+				return 
+			end,
+			cancelCallback = function (...)
+				IPlatform:getInstance():destroy()
+
+				return 
+			end
+		})
+
+		return 
+	end
+
+	if slot1 == -1101 or slot1 == -1102 or slot1 == -46 or slot1 == -2 or slot1 == -3 then
+		if slot1 == -2 and not Player:isLogin() then
+			ui.showNetErrorBox({
+				text = slot3
+			})
+		else
+			ui.showNetErrorBox({
+				text = slot3,
+				okCallback = function (...)
+					IPlatform:getInstance():logout()
+
+					return 
+				end
+			})
+		end
+	elseif slot1 == -8 then
+		if type(slot2) == "table" then
+			cc.Application:getInstance():openURL(slot2.LanchUrlStr)
+			slot4(slot2.UpdateUrlStr)
+		else
+			slot4(slot2)
+		end
+	elseif slot1 == -9 then
+		Player:cleanCache()
+		LayerManager.addLayer({
+			name = "login.StartGameLayer",
+			data = {}
+		})
+	elseif slot1 == -1105 then
+		Resource.isEnough(ResourceTypeSub.eDiamond, Resource.getCount(ResourceTypeSub.eDiamond) + 1)
+	else
+		ui.showFlashView(TR("提示:%s", slot3))
+
+		if Guide and Guide.manager then
+			slot5, slot6 = Guide.manager:getGuideInfo()
+
+			if slot6 and slot6 ~= 102 then
+				Guide.manager:guideError()
+			end
+		end
+	end
+
+	return 
+end
+
+function slot2(slot0)
+	slot1 = Player:getUserLoginInfo()
+	slot2 = IPlatform:getInstance()
+	slot3 = Player:getSelectServer()
+	slot4 = {
+		Session = "",
+		PlayerId = ""
+	}
+
+	if slot0.moduleName ~= "Player" or slot0.methodName ~= "Login" then
+		slot4.PlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+		slot4.Session = PlayerAttrObj:getPlayerAttrByName("Session")
+	end
+
+	slot4.PartnerId = (slot1 and slot1.PartnerId) or slot2.getConfigItem(slot2, "PartnerID")
+	slot4.ServerId = slot3.ServerID
+	slot4.GameVersionId = slot2.getConfigItem(slot2, "Version")
+	slot4.ResourceVersionName = LocalData:getResourceVerName()
+	slot4.MAC = slot2.getDeviceMAC(slot2)
+	slot4.IDFA = slot2.getDeviceUUID(slot2)
+	slot4.ModuleName = slot0.moduleName
+	slot4.MethodName = slot0.methodName
+	slot4.Data = slot0.methodData
+	slot4.SendTick = Player:getCurrentTime()
+	slot4.ExtensionString = (slot0.guideInfo and {
+		GuideInfo = slot0.guideInfo
+	}) or ""
+
+	return slot3.ServerUrl .. "/client.aspx" .. "?" .. math.random(99, 9999), json.encode(slot4)
+end
+
+function slot3(slot0)
+	slot1 = IPlatform:getInstance():getConfigItem("ManageCenter")
+	slot2 = {}
+	slot3 = pairs
+	slot4 = slot0.methodData or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		table.insert(slot2, string.format("%s=%s", slot6, tostring(slot7)))
+	end
+
+	return slot1, table.concat(slot2, "&")
+end
+
+function slot4(slot0)
+	slot1 = {
+		"appid=99"
+	}
+	slot2 = pairs
+	slot3 = slot0.methodData or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		table.insert(slot1, string.format("%s=%s", slot5, slot6))
+	end
+
+	return string.format("http://passport.moqikaka.com/sdk/%s?%s&sign=%s", slot0.moduleName, table.concat(slot1, "&"), string.md5Content(string.gsub(HttpClient:specialXorEncode(slot2), "\r\n", "")))
+end
+
+HttpClient.modifyAvatarCache = function (slot0)
+	if next(slot0.avatarCache) then
+		slot0.autoModifyAvatarCache(slot0, slot0.avatarCache)
+
+		slot0.avatarCache = {}
+	end
+
+	return 
+end
+HttpClient.request = function (slot0, slot1)
+	slot1.svrType = slot1.svrType or Enums.HttpSvrType.eGame
+
+	if 0 < #slot0.requestQueue then
+		table.insert(slot0.requestQueue, slot1)
+
+		return 
+	end
+
+	slot2, slot3 = nil
+	slot4 = "POST"
+	slot5 = cc.XMLHTTPREQUEST_RESPONSE_BLOB
+	slot6 = true
+	slot7 = true
+
+	if slot1.svrType == Enums.HttpSvrType.eGame then
+		slot2, slot3 = slot0(slot1)
+		slot7 = false
+
+		Player:updateAvatarTick()
+	elseif slot1.svrType == Enums.HttpSvrType.eManageCenter then
+		slot2, slot3 = slot1(slot1)
+		slot5 = cc.XMLHTTPREQUEST_RESPONSE_STRING
+		slot7 = false
+	elseif slot1.svrType == Enums.HttpSvrType.eAccount then
+		slot2 = slot2(slot1)
+		slot5 = cc.XMLHTTPREQUEST_RESPONSE_STRING
+		slot4 = "GET"
+		slot6 = false
+	end
+
+	if slot1.svrType == Enums.HttpSvrType.eGame and not Player:isLogin() and slot1.moduleName ~= "Player" and slot1.moduleName ~= "Login" then
+		return 
+	end
+
+	if slot1.needWait ~= false and not slot0.waitingLayer then
+		slot0.waitingLayer = LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.WaitingLayer",
+			zOrder = Enums.ZOrderType.eWaiting
+		})
+	end
+
+	slot8 = cc.XMLHttpRequest:new()
+	slot8.responseType = slot5
+	slot8.timeout = 20
+	slot8.useDecrypt = slot7
+
+	slot8.open(slot8, slot4, slot2)
+	slot8.setUnzip(slot8, slot6)
+	slot8.registerScriptHandler(slot8, function (slot0)
+		if #slot0.requestQueue == 0 and slot0.waitingLayer then
+			LayerManager.removeLayer(slot0.waitingLayer)
+
+			slot0.waitingLayer = nil
+		end
+
+		if slot0 == "SUCCESS" and slot1.status == 200 then
+			if slot1.useDecrypt == true then
+				slot1 = slot0:specialXorDecode(slot1)
+			end
+
+			print("Response:" .. slot1)
+
+			slot4 = slot2.Value or slot2.Result or slot2.Data
+			slot5 = slot2.StatusMsg or NetworkStates.account[cjson.decode(slot1).State or slot2.Status or slot2.Code] or NetworkStates.server[cjson.decode(slot1).State or slot2.Status or slot2.Code] or TR("提示：未知错误码")
+			slot6 = (slot2.svrType == Enums.HttpSvrType.eAccount and (cjson.decode(slot1).State or slot2.Status or slot2.Code) == 1) or (cjson.decode(slot1).State or slot2.Status or slot2.Code) == 0
+
+			if slot2.TimeTick then
+				Player:updateTimeTick(slot2.TimeTick)
+			end
+
+			slot7 = true
+
+			if slot2.responseNode then
+				slot7 = not tolua.isnull(slot2.responseNode)
+			end
+
+			if slot6 then
+				if slot2.autoCache ~= false then
+					slot0:autoModifyAvatarCache(slot2)
+				else
+					slot0.avatarCache = slot2
+				end
+
+				if slot7 and slot2.successCallback then
+					slot2.successCallback(slot4)
+				end
+
+				if Player:isLogin() then
+					require("network.ChatMng")
+					ChatMng:checkNetwork()
+				end
+			elseif slot7 and (not slot2.failedCallback or slot2.failedCallback(slot3, slot4) ~= true) and (not slot2.isCheckUpdata or false) then
+				slot0:dealErrorCode(slot3, slot4, slot5)
+				print("Response failed:" .. slot1)
+			end
+		else
+			ui.showFlashView(TR("请检查当前网络连接是否成功"))
+
+			if slot2.timeoutCallback then
+				slot2.timeoutCallback()
+			end
+		end
+
+		slot1:unregisterScriptHandler()
+
+		if 0 < #slot0.requestQueue then
+			table.remove(slot0.requestQueue, 1)
+
+			if slot0.requestQueue[1] then
+				slot0:request(slot1)
+			end
+		end
+
+		return 
+	end)
+	slot8.send(slot8, slot3)
+	print("Request url: " .. slot2)
+
+	if slot3 then
+		dump(slot3, "Request data:")
+	end
+
+	return 
+end
+HttpClient.autoModifyAvatarCache = function (slot0, slot1)
+	if slot1.Avatar then
+		Player:updateAvatar(slot1.Avatar)
+	end
+
+	if slot1.ExtValue then
+		for slot5, slot6 in pairs(slot1.ExtValue) do
+			Player:updateSocketPushData(slot6)
+		end
+	end
+
+	slot2 = slot1.Value and slot1.Value.BaseGetGameResourceList
+	slot3 = slot1.Value and slot1.Value.ChoiceGetGameResource
+	slot4 = slot1.Value and slot1.Value.ExtraGetGameResource
+
+	if slot2 or slot3 or slot4 then
+		Player:addDropToResData({
+			BaseGetResource = slot2,
+			ChiceResource = slot3,
+			ExtraGetResource = slot4
+		})
+	end
+
+	return 
+end
+HttpClient.specialXorDecode = function (slot0, slot1)
+	slot2 = ""
+	slot3 = string.len(slot0)
+	slot5 = 1
+	slot6 = 1
+
+	return slot1.Decode(slot1):gsub(".", function (slot0)
+		slot2 = string.byte(slot0) + 1
+
+		return string.char((string.byte <= bit.bxor(string.byte(slot0), string.byte(slot0, bit.bxor)) and 1) or slot1 + 1)
+	end)
+end
+HttpClient.specialXorEncode = function (slot0, slot1)
+	slot2 = ""
+	slot3 = string.len(slot0)
+	slot4 = 1
+	slot5 = 1
+
+	return slot1.Encode(slot1.gsub(slot1, ".", function (slot0)
+		slot2 = string.byte(slot0) + 1
+
+		return string.char((string.byte <= bit.bxor(string.byte(slot0), string.byte(slot0, bit.bxor)) and 1) or slot1 + 1)
+	end))
+end
+
+return 

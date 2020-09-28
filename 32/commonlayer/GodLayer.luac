@@ -1,0 +1,1785 @@
+slot0 = class("GodLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled47",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 670.52,
+				y = 561.13
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_4.png",
+					clickAction = "onExitAction",
+					pos = {
+						x = 431.82,
+						y = 54.75
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled41",
+				cType = "Button",
+				params = {
+					clickAction = "onGetHerosAction",
+					image = "c_27.png",
+					pos = {
+						x = 350.21,
+						y = -40.37
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("送侠客")
+				},
+				children = {}
+			},
+			{
+				name = "untitled40",
+				cType = "Button",
+				params = {
+					clickAction = "onGetAllAction",
+					image = "c_27.png",
+					pos = {
+						x = 80.13,
+						y = -40.35
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("送关怀")
+				},
+				children = {}
+			},
+			{
+				name = "untitled46",
+				cType = "Button",
+				params = {
+					clickAction = "onDeleteAllAction",
+					image = "c_27.png",
+					pos = {
+						x = 215.91,
+						y = -41.32
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("清空道具")
+				},
+				children = {}
+			},
+			{
+				name = "untitled73",
+				cType = "Button",
+				params = {
+					clickAction = "onShowDebug",
+					image = "c_27.png",
+					titleText = "Debug",
+					pos = {
+						x = 125.81,
+						y = -102.91
+					},
+					size = {
+						width = 125,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "timeLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					pos = {
+						x = 285.23,
+						y = -120.14
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled80",
+				cType = "Button",
+				params = {
+					clickAction = "onExitAction",
+					image = "c_27.png",
+					pos = {
+						x = 124.41,
+						y = -181.49
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("关闭")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "nodeListView",
+		cType = "ListView",
+		params = {
+			margin = 5,
+			direction = true,
+			bounce = true,
+			posApt = 1,
+			sizeApt = 3,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = -0.59,
+				y = 634
+			},
+			size = {
+				width = 700,
+				height = 320
+			}
+		},
+		children = {
+			{
+				name = "recoureLayout",
+				cType = "Layout",
+				custom = {
+					{
+						value = "idEditBox-placeHolder",
+						name = "placeStr",
+						type = "string"
+					},
+					{
+						value = "getBtn-clickAction",
+						name = "clickCallback",
+						type = "string"
+					},
+					{
+						value = "numEditBox-hide",
+						name = "needNumber",
+						type = "string"
+					}
+				},
+				params = {
+					sizeApt = 2,
+					pos = {
+						x = 0.17,
+						y = 855.92
+					},
+					size = {
+						width = 640,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_27.png",
+							sizeApt = 2,
+							posApt = 2,
+							pos = {
+								x = 320,
+								y = 45.49
+							},
+							size = {
+								width = 630,
+								height = 85
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled49",
+						cType = "Node",
+						params = {
+							scaleApt = 2,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "idEditBox",
+								cType = "EditBox",
+								params = {
+									fontSize = 24,
+									image = "c_2.png",
+									placeColor = {
+										g = 248,
+										r = 246,
+										b = 245
+									},
+									placeHolder = TR("人物模型ID"),
+									pos = {
+										x = 154.28,
+										y = 45.49
+									},
+									size = {
+										width = 250,
+										height = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "getBtn",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onExitAction",
+									image = "c_27.png",
+									pos = {
+										x = 554.51,
+										y = 45.49
+									},
+									size = {
+										width = 125,
+										height = 50
+									},
+									titleText = TR("获 取")
+								},
+								children = {}
+							},
+							{
+								name = "numEditBox",
+								cType = "EditBox",
+								params = {
+									fontSize = 24,
+									hide = false,
+									image = "c_2.png",
+									placeColor = {
+										g = 248,
+										r = 246,
+										b = 245
+									},
+									placeHolder = TR("数量"),
+									pos = {
+										x = 381.56,
+										y = 45.49
+									},
+									size = {
+										width = 180,
+										height = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled51",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 14.43,
+				y = 145.09
+			}
+		},
+		children = {
+			{
+				name = "untitled78",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onBattleDemoClicked",
+					image = "c_27.png",
+					pos = {
+						x = 91.07,
+						y = 125.33
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("战斗入口")
+				},
+				children = {}
+			},
+			{
+				name = "untitled52",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onFunBtnAction",
+					image = "c_27.png",
+					pos = {
+						x = 679.36,
+						y = 125.56
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("阵容")
+				},
+				children = {}
+			},
+			{
+				name = "untitled53",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onFunBtnAction",
+					image = "c_27.png",
+					pos = {
+						x = 682.16,
+						y = 48.85
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("招募")
+				},
+				children = {}
+			},
+			{
+				name = "untitled54",
+				cType = "Button",
+				custom = {
+					{
+						value = 3,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onFunBtnAction",
+					image = "c_27.png",
+					pos = {
+						x = 824.31,
+						y = 124.36
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("活动")
+				},
+				children = {}
+			},
+			{
+				name = "untitled56",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onHGHBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 239.8,
+						y = 125.3
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("何光辉")
+				},
+				children = {}
+			},
+			{
+				name = "untitled57",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onSXTBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 387.72,
+						y = 125.3
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("帅希涛")
+				},
+				children = {}
+			},
+			{
+				name = "untitled58",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onXYHBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 533.2,
+						y = 125.3
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("熊雨豪")
+				},
+				children = {}
+			},
+			{
+				name = "untitled59",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onPYQBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 91.81,
+						y = 49.11
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("裴要强")
+				},
+				children = {}
+			},
+			{
+				name = "untitled60",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onCZBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 240.24,
+						y = 48.49
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("陈中")
+				},
+				children = {}
+			},
+			{
+				name = "untitled61",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onLJZBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 387.12,
+						y = 48.99
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("冷佳智")
+				},
+				children = {}
+			},
+			{
+				name = "untitled62",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onXPBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 533.2,
+						y = 48.15
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("熊鹏")
+				},
+				children = {}
+			},
+			{
+				name = "untitled63",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onYKBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 240.18,
+						y = -29.2
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("杨科")
+				},
+				children = {}
+			},
+			{
+				name = "untitled66",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onWZBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 91.55,
+						y = -29.46
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("王智")
+				},
+				children = {}
+			},
+			{
+				name = "untitled67",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onTaskBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 385.13,
+						y = -29.01
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("邹华杰")
+				},
+				children = {}
+			},
+			{
+				name = "untitled68",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onZBBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 534.63,
+						y = -27.45
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("赵斌")
+				},
+				children = {}
+			},
+			{
+				name = "untitled70",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onCHQBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 91.23,
+						y = -98.47
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("寻侠谱开启")
+				},
+				children = {}
+			},
+			{
+				name = "untitled71",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onWkClicked",
+					image = "c_27.png",
+					pos = {
+						x = 241.79,
+						y = -98.37
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("吴昆")
+				},
+				children = {}
+			},
+			{
+				name = "untitled72",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onYhsClicked",
+					image = "c_27.png",
+					pos = {
+						x = 386.8,
+						y = -101.16
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("杨宏生")
+				},
+				children = {}
+			},
+			{
+				name = "untitled75",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onYSLClicked",
+					image = "c_27.png",
+					pos = {
+						x = 532.8,
+						y = -101.16
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("姚盛亮")
+				},
+				children = {}
+			},
+			{
+				name = "untitled74",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onHtwaveClicked",
+					image = "c_27.png",
+					pos = {
+						x = 686.19,
+						y = -99.33
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("黄涛")
+				},
+				children = {}
+			},
+			{
+				name = "untitled76",
+				cType = "Button",
+				params = {
+					clickAction = "onWQZBtnClicked",
+					image = "c_27.png",
+					pos = {
+						x = 683.66,
+						y = -26.9
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("王庆帜")
+				},
+				children = {}
+			},
+			{
+				name = "untitled77",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onBZLJClicked",
+					image = "c_27.png",
+					pos = {
+						x = 826.13,
+						y = 49.41
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("拜庄论剑")
+				},
+				children = {}
+			},
+			{
+				name = "untitled79",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "integer"
+					}
+				},
+				params = {
+					clickAction = "onZBBtnClicked_111",
+					image = "c_27.png",
+					pos = {
+						x = 826.13,
+						y = -26.9
+					},
+					size = {
+						width = 125,
+						height = 50
+					},
+					titleText = TR("庄 园")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = os.date("*t", Player:getCurrentTime())
+	slot2 = {
+		"日",
+		"一",
+		"二",
+		"三",
+		"四",
+		"五",
+		"六"
+	}
+
+	Utility.schedule(slot0.timeLabel, function ()
+		slot0 = os.date("*t", Player:getCurrentTime())
+
+		slot0.timeLabel:setString(TR("%s年%s月%s日,周%s %02d:%02d:%02d", slot0.year, slot0.month, slot0.day, slot1[slot0.wday], slot0.hour, slot0.min, slot0.sec))
+
+		return 
+	end, 1)
+	slot0.addResourceConfig(slot0)
+
+	return 
+end
+slot0.addResourceConfig = function (slot0)
+	slot0.mGetGoodsInfo = {
+		{
+			editHint = "元宝",
+			onBtnClick = function (slot0)
+				slot0:requestAddGameRecoure(ResourceTypeSub.eDiamond, ResourceTypeSub.eDiamond, tonumber(slot0.idEditBox:getText()))
+
+				return 
+			end
+		},
+		{
+			editHint = "铜钱",
+			onBtnClick = function (slot0)
+				slot0:requestAddGameRecoure(ResourceTypeSub.eGold, ResourceTypeSub.eGold, tonumber(slot0.idEditBox:getText()))
+
+				return 
+			end
+		},
+		{
+			editHint = "道具之外其他模型ID",
+			onBtnClick = function (slot0)
+				slot0:requestAddGameRecoure(Resource.getSubType(tonumber(slot0.idEditBox:getText()) or 0), tonumber(slot0.idEditBox.getText()) or 0, 1)
+
+				return 
+			end
+		},
+		{
+			editHint = "道具",
+			needNumber = true,
+			onBtnClick = function (slot0)
+				slot0:requestAddGameRecoure(GoodsModel.items[tonumber(slot0.idEditBox:getText()) or 0] or GoodsVoucherModel.items[tonumber(slot0.idEditBox.getText()) or 0].typeID, tonumber(slot0.idEditBox.getText()) or 0, tonumber(slot0.numEditBox:getText()) or 0)
+
+				return 
+			end
+		},
+		{
+			editHint = "11xx的其他属性",
+			needNumber = true,
+			onBtnClick = function (slot0)
+				slot0:requestAddGameRecoure(tonumber(slot0.idEditBox:getText()) or 0, , tonumber(slot0.numEditBox:getText()) or 0)
+
+				return 
+			end
+		},
+		{
+			editHint = "直接升到的等级",
+			onBtnClick = function (slot0)
+				slot0:requestLvChange(tonumber(slot0.idEditBox:getText()), 0)
+
+				return 
+			end
+		},
+		{
+			editHint = "差5点经验到达的等级",
+			onBtnClick = function (slot0)
+				slot0:requestLvChange(tonumber(slot0.idEditBox:getText()), 5)
+
+				return 
+			end
+		},
+		{
+			editHint = "发送系统消息",
+			needNumber = true,
+			onBtnClick = function (slot0)
+				slot0:addSystemMessage(slot0.idEditBox:getText() or "", tonumber(slot0.numEditBox:getText()) or 0)
+
+				return 
+			end
+		},
+		{
+			editHint = "修改官职（官职Id）",
+			onBtnClick = function (slot0)
+				slot0:socketRequest({
+					methodName = "SetGuildPosition",
+					moduleName = "Guild",
+					methodData = {
+						tonumber(slot0.idEditBox:getText())
+					},
+					successCallback = function (slot0)
+						ui.showFlashView(TR("修改成功"))
+
+						return 
+					end
+				})
+
+				return 
+			end
+		},
+		{
+			editHint = "生成奇遇（奇遇Id）",
+			onBtnClick = function (slot0)
+				MeetObj:newMeet(tonumber(slot0.idEditBox:getText()))
+
+				return 
+			end
+		}
+	}
+
+	for slot4, slot5 in ipairs(slot0.mGetGoodsInfo) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "recoureLayout", {
+			placeStr = slot5.editHint,
+			clickCallback = slot5.onBtnClick,
+			needNumber = not slot5.needNumber and true
+		})
+
+		slot0.nodeListView:pushBackCustomItem(slot6)
+
+		slot6.getBtn.idEditBox = slot6.idEditBox
+
+		if slot5.needNumber then
+			slot6.getBtn.numEditBox = slot6.numEditBox
+		end
+	end
+
+	return 
+end
+slot0.requestAddGameRecoure = function (slot0, slot1, slot2, slot3)
+	if slot1 == 0 and slot2 == 0 then
+		ui.showFlashView(TR("模型ID无效"))
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "AddGameRecoure",
+		moduleName = "Player",
+		methodData = {
+			string.format("%d,%d,%d", slot1 or 0, slot2 or 0, slot3 or 1)
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("添加成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLvChange = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "ModifyPlayerLv",
+		moduleName = "Player",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("修改成功"))
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.addSystemMessage = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "TestSendMessage",
+		moduleName = "Player",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("推送成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetAllAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GiveGift",
+		moduleName = "Player",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("收到服务器关怀!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetHerosAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GiveGift2",
+		moduleName = "Player",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("收到所有侠客!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onDeleteAllAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DeleteAllGoods",
+		moduleName = "Goods",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("成功清除功能道具和材料!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUpdateTaskForTest = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		moduleName = "Maintask",
+		methodName = slot1,
+		methodData = slot2,
+		successCallback = function (slot0)
+			ui.showFlashView(TR("OK!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUpdateEtlyForTest = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		moduleName = "EtlyInfo",
+		methodName = slot1,
+		methodData = slot2,
+		successCallback = function (slot0)
+			ui.showFlashView(TR("OK!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.addTestConfig = function (slot0)
+	slot1 = {
+		{
+			name = "Ellipse3D",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "test.TestEllipseLayer3DLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "ClippingNode",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestClippingNodeLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "SliderTableView",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestSliderTableViewLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "Effect",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestEffectLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "TabView",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestTabLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "ListView/delayInit",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestFriendLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "测试Demo",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "test.TestDemoLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "卡牌涌出特效",
+			callFunc = function (...)
+				slot0 = {}
+
+				for slot4 = 1, 10, 1 do
+					slot5 = UIWrap.newControl("CardNode", {
+						allowClick = false,
+						initParams = {
+							cardInfo = {
+								num = 50,
+								modelId = 1112
+							},
+							showAttrs = {
+								Enums.CardShowAttr.eBorder,
+								Enums.CardShowAttr.eNum
+							}
+						}
+					})
+
+					slot5.setScale(slot5, 0.7)
+					table.insert(slot0, slot5)
+				end
+
+				Utility.playCardJumpAction({
+					nodeList = slot0,
+					parent = slot0,
+					pos = cc.p(320, 300)
+				})
+
+				return 
+			end
+		},
+		{
+			name = "冰火岛临时入口",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "bhd.BhdEntryLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "挑战四绝",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "tzsj.TzsjBossLayer"
+				})
+
+				return 
+			end
+		},
+		{
+			name = "破魔之战",
+			callFunc = function (...)
+				LayerManager.addLayer({
+					name = "xsactivity.ActivityTimedBossMainLayer"
+				})
+
+				return 
+			end
+		}
+	}
+	slot2 = 1
+
+	repeat
+		slot0.testListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "testLayout", {
+			name1 = slot1[slot2] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.name,
+			name2 = slot1[slot2 + 1] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.name,
+			name3 = slot1[slot2 + 2] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.name,
+			action1 = slot1[slot2] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.callFunc,
+			action2 = slot1[slot2 + 1] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.callFunc,
+			action3 = slot1[slot2 + 2] or {
+				name = "nothing",
+				callFunc = function ()
+					return 
+				end
+			}.callFunc
+		}))
+	until #slot1 < slot2 + 3
+
+	return 
+end
+slot0.onExitAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onShowDebug = function (slot0, slot1)
+	cc.Director:getInstance():setDisplayStats(true)
+
+	return 
+end
+slot0.writeData = function (slot0, slot1, slot2, slot3)
+	if type(slot2) == type(0) then
+		slot1.write(slot1, tostring(slot2))
+	elseif type(slot2) == type("0") then
+		slot1.write(slot1, "\"" .. slot2 .. "\"")
+	elseif type(slot2) == type(false) then
+		slot1.write(slot1, tostring(slot2))
+	elseif type(slot2) == type({
+		0
+	}) then
+		slot1.write(slot1, "{\n")
+
+		slot4 = slot3 or ""
+		slot3 = slot3 .. "\t"
+
+		for slot8, slot9 in pairs(slot2) do
+			slot1.write(slot1, slot3 .. "[")
+			slot0.writeData(slot0, slot1, slot8, slot3)
+			slot1.write(slot1, "]" .. " = ")
+			slot0.writeData(slot0, slot1, slot9, slot3)
+			slot1.write(slot1, ",\n")
+		end
+
+		slot1.write(slot1, slot4 .. "}")
+	end
+
+	return 
+end
+slot0.writeFile = function (slot0, slot1)
+	if slot0.fileNameEditBox:getText() == "" then
+		return 
+	end
+
+	slot4 = io.open(slot3, "w")
+
+	slot4.write(slot4, "SkillData = ")
+	slot0.writeData(slot0, slot4, slot1 or {})
+
+	return 
+end
+slot0.onFunBtnAction = function (slot0, slot1)
+	if slot1.tag == 1 then
+		LayerManager.addLayer({
+			name = "formation.FormationHomeLayer"
+		})
+	elseif slot1.tag == 2 then
+		LayerManager.addLayer({
+			name = "recruit.RecruitMainLayer"
+		})
+	elseif slot1.tag == 3 then
+		LayerManager.addLayer({
+			name = "activity.ActivityMainLayer"
+		})
+	end
+
+	return 
+end
+slot0.onDXJBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "camp.CampLayer",
+		data = {
+			ensureClose = false,
+			needSave = true,
+			tabModelId = {
+				{
+					title = "队伍1",
+					tag = ModuleSub.eGuaJi
+				},
+				{
+					title = "队伍2",
+					tag = ModuleSub.ePvp
+				}
+			}
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBattleDemoClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "battle.test.TestLayer"
+	})
+
+	return 
+end
+slot0.onHGHBtnClicked = function (slot0)
+	for slot5, slot6 in ipairs(slot1) do
+		if slot6.ModelId == 12011401 then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "hero.HeroDiscussLayer",
+				data = {
+					heroData = slot6
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			break
+		end
+	end
+
+	return 
+end
+slot0.onSXTBtnClicked = function (slot0)
+	return 
+end
+slot0.onXYHBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "expedition.ExpeditionNewMainLayer"
+	})
+
+	return 
+end
+slot0.onPYQBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "ladder.LadderHomeLayer",
+		data = {}
+	})
+
+	return 
+end
+slot0.onCZBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "specialActivity.ActivityLoginGiftLayer",
+		data = {}
+	})
+
+	return 
+end
+slot0.onLJZBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "xsactivity.ActivityStarUpTaskLayer",
+		data = {}
+	})
+
+	return 
+end
+slot0.onXPBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "shop.ShopHomeLayer"
+	})
+
+	return 
+end
+slot0.onWQZBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.DlgJzwlRankLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onWZBtnClicked = function (slot0)
+	dump(ActivityObj:getActivityList(1), "ActivityObj:getActivityList(1)")
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "artifact.ArtifactUnLockEffPopLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onYKBtnClicked = function (slot0)
+	function slot1(slot0)
+		if not slot0.live2dAni then
+			return 
+		end
+
+		if not slot0.live2dAni.filename then
+			return 
+		end
+
+		if not slot0.name then
+			return 
+		end
+
+		if not cc.FileUtils:getInstance():isFileExist("live2d/" .. slot0.live2dAni.filename .. "/motions/" .. slot0.name .. ".motion3.json") then
+			return 
+		end
+
+		Live2dAnimation.runAnimation({
+			live2dAni = slot0.live2dAni,
+			endListener = function ()
+				if slot0.needBackHuxi ~= false then
+					slot1({
+						loop = true,
+						name = "huxi",
+						live2dAni = slot0.live2dAni
+					})
+				end
+
+				if slot0.endListener then
+					slot0.endListener()
+				end
+
+				return 
+			end,
+			loop = slot0.loop,
+			path = slot1
+		})
+
+		return 
+	end
+
+	function (slot0)
+		require("common.Live2dAnimation")
+
+		slot1 = tonumber(slot0.heroModelId)
+		slot2 = tostring(slot0.heroModelId)
+
+		if slot0.skin then
+			slot2 = slot2 .. "_" .. slot0.skin
+		end
+
+		if not cc.FileUtils:getInstance():isFileExist("live2d/" .. "chenyushu" .. "/" .. "chengyushu_kbn1.model3.json") then
+			return 
+		end
+
+		function slot4(slot0)
+			if not slot0 then
+				return 
+			end
+
+			slot0.filename = slot0
+			slot1 = {
+				"gaoxing",
+				"kunao",
+				"lianhong",
+				"nanguo",
+				"shengqi",
+				"xihuan",
+				"xinfen",
+				"zhipingmu"
+			}
+
+			slot0.setHitCallback(slot0, function (slot0, slot1)
+				dump(slot1, "area")
+
+				if #slot0 == 0 or slot1.isPlaying then
+					return 
+				end
+
+				slot1.isPlaying = true
+
+				slot0[math.random(1, #slot0)]({
+					live2dAni = slot1,
+					name = slot0[math.random(1, #slot0)],
+					endListener = function ()
+						slot0.isPlaying = false
+
+						return 
+					end
+				})
+
+				return 
+			end)
+
+			if 0 < #{
+				"gaoxing",
+				"kunao",
+				"lianhong",
+				"nanguo",
+				"shengqi",
+				"xihuan",
+				"xinfen",
+				"zhipingmu"
+			} and not slot0.isPlaying then
+				Utility.schedule(slot0, function ()
+					math.random(1, #slot0).isPlaying = true
+
+					true({
+						live2dAni = slot1,
+						name = slot0[math.random(1, #slot0)],
+						endListener = function ()
+							slot0.isPlaying = false
+
+							return 
+						end
+					})
+
+					return 
+				end, 15)
+			end
+
+			if cc.FileUtils:getInstance():isFileExist("live2d/" .. slot0 .. "/motions/huxi.motion3.json") then
+				Live2dAnimation.runAnimation({
+					loop = true,
+					live2dAni = slot0,
+					path = slot3
+				})
+			end
+
+			return 
+		end
+
+		if not slot0.asyncfunc then
+			slot4(Live2dAnimation.create({
+				file = slot3,
+				parent = slot0.parent,
+				position = slot0.position,
+				scale = slot0.scale,
+				zorder = slot0.zorder
+			}))
+
+			return Live2dAnimation.create({
+				file = slot3,
+				parent = slot0.parent,
+				position = slot0.position,
+				scale = slot0.scale,
+				zorder = slot0.zorder
+			})
+		else
+			Live2dAnimation.create({
+				file = slot3,
+				parent = slot0.parent,
+				position = slot0.position,
+				scale = slot0.scale,
+				zorder = slot0.zorder,
+				asyncfunc = function (slot0)
+					slot0(slot0)
+					slot0.asyncfunc(slot0)
+
+					return 
+				end
+			})
+		end
+
+		return 
+	end({
+		scale = 0.23,
+		heroModelId = "chenyushu",
+		canplay = true,
+		parent = slot0,
+		position = cc.p(350, 390),
+		asyncfunc = function (slot0)
+			slot0.l2dNode = slot0
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onTaskBtnClicked = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlHallOfFameLayer",
+		data = params
+	})
+
+	return 
+end
+slot0.onZBBtnClicked = function (slot0)
+	return 
+end
+slot0.onZBBtnClicked_111 = function (slot0)
+	LayerManager.addLayer({
+		name = "manor.ManorMainLayer",
+		data = {}
+	})
+
+	return 
+end
+slot0.onCHQBtnClicked = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "PassAllAvailableNode",
+		moduleName = "QunxiaChapter",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("寻侠谱一键首通成功!"))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onWkClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "teamCopy.TeamCopyMainLayer"
+	})
+
+	return 
+end
+slot0.onBZLJClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "expedition.ExpeditionMainLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onYSLClicked = function (slot0)
+	if Player:getGameData("showEveningBossSellReward") ~= true then
+		Player:saveGameData("showEveningBossSellReward", true)
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "eveningboss.EveningBossSellRewardLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onYhsClicked = function (slot0)
+	LayerManager.addLayer({
+		name = "aircraft.AircraftStartLayer"
+	})
+
+	return 
+end
+slot0.onNewMeetClicked = function (slot0)
+	MeetObj:newMeet(1)
+
+	return 
+end
+slot0.onHtwaveClicked = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = true,
+		name = "meet.WeaponSpectrumLayer"
+	})
+
+	return 
+end
+slot0.writeFile_Zb = function (slot0, slot1)
+	slot3 = io.open(slot2, "w")
+
+	slot3.write(slot3, "路径下缺失文件:")
+	slot0.writeData(slot0, slot3, slot1 or {})
+
+	return 
+end
+
+return slot0

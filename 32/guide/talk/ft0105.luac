@@ -1,0 +1,129 @@
+return {
+	initData = {
+		skip = true,
+		script2 = "sd3111052",
+		script1 = "sd3111051",
+		hitPoint = 0,
+		bg = "effect_zhandou_menggucaoyuan"
+	},
+	steps = {
+		{
+			cmd = "music",
+			params = {
+				loop = true,
+				file = "jq_xiakeshilian.mp3"
+			}
+		},
+		{
+			cmd = "addUnit",
+			params = {
+				isLocal = false,
+				pet = {
+					{
+						skillLv = 60,
+						name = "@main",
+						titleId = 0,
+						group = 1,
+						modelId = 19010000,
+						level = 60
+					}
+				},
+				attacker = {
+					{
+						normalSkill = true,
+						name = "马钰",
+						step = 0,
+						skillLv = 25,
+						level = 20,
+						energy = 50,
+						modelId = 12011205,
+						star = 1,
+						order = 1
+					},
+					{
+						normalSkill = true,
+						name = "韩小莹",
+						step = 0,
+						skillLv = 15,
+						level = 15,
+						energy = 20,
+						modelId = 12011303,
+						star = 1,
+						order = 4
+					},
+					{
+						normalSkill = true,
+						name = "柯镇恶",
+						step = 0,
+						skillLv = 15,
+						level = 15,
+						energy = 20,
+						modelId = 12011304,
+						star = 1,
+						order = 3
+					}
+				},
+				defender = {
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "铁尸徒从",
+						level = 20,
+						skillLv = 1,
+						energy = 20,
+						modelId = 12011501,
+						star = 1,
+						order = 3
+					},
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "梅超风",
+						level = 25,
+						skillLv = 20,
+						energy = 50,
+						modelId = 12011203,
+						star = 1,
+						order = 1
+					},
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "铁尸徒从",
+						level = 10,
+						skillLv = 1,
+						energy = 20,
+						modelId = 12013305,
+						star = 1,
+						order = 4
+					}
+				}
+			}
+		},
+		{
+			cmd = "setPetEnergy",
+			params = {
+				group = 1,
+				value = -60
+			}
+		},
+		{
+			cmd = "delay",
+			params = {
+				delayTime = 0.5
+			}
+		},
+		{
+			cmd = "auto",
+			params = {
+				turn = -1
+			}
+		},
+		{
+			cmd = "endGame"
+		}
+	}
+}

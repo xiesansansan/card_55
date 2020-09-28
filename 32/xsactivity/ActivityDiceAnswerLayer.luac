@@ -1,0 +1,193 @@
+slot0 = class("ActivityDiceAnswerLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "jhxb_17.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 281.5,
+						y = 273
+					},
+					text = TR("答 题")
+				},
+				children = {}
+			},
+			{
+				name = "mQuestionLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 56.25,
+						y = 175.65
+					},
+					size = {
+						width = 460,
+						height = 60
+					},
+					text = TR("九花玉露丸是谁独创的灵药？")
+				},
+				children = {}
+			},
+			{
+				name = "AnswerTempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled7-text",
+						name = "descStr",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 75,
+						y = 130
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Checkbox",
+						params = {
+							selectImage = "c_44.png",
+							callback = "onSelectAnswer",
+							normalImage = "c_43.png",
+							childName = "selectBox",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							childName = "answerLabel",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 21.59,
+								y = -11.9
+							},
+							text = TR("王重阳")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	"answer",
+	"wrong1",
+	"wrong2",
+	"wrong3"
+}
+slot2 = {
+	cc.p(75, 130),
+	cc.p(320, 130),
+	cc.p(75, 70),
+	cc.p(320, 70)
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = ActivityObj:getEntityId(ModuleSub.eDice)
+	slot0.mQusetionId = slot1.Id
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mQuestionLabel:setString(DiceQaModel.items[slot0.mQusetionId].question)
+
+	slot0[math.random(1, #slot0)] = slot0[1]
+	slot0[1] = slot0[math.random(1, #slot0)]
+	slot3 = 1
+
+	for slot7, slot8 in ipairs(slot0) do
+		if slot1[slot8] ~= "" then
+			slot0.createLayoutTemplateNode(slot0, "AnswerTempNode", {
+				descStr = slot9
+			}).selectBox.isRight = slot8 == "answer"
+
+			slot0.mBgSprite:addChild(slot10)
+			slot10.setPosition(slot10, slot1[slot3])
+
+			slot3 = slot3 + 1
+		end
+	end
+
+	return 
+end
+slot0.onSelectAnswer = function (slot0, slot1)
+	slot0.requestAnswer(slot0, (slot1.isRight and 1) or 0)
+
+	return 
+end
+slot0.requestAnswer = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Answer",
+		moduleName = "Dice",
+		methodData = {
+			slot0.activityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			ui.showFlashView((slot0 == 1 and TR("回答正确")) or TR("回答错误"), cc.p(0, 150))
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

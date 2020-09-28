@@ -1,0 +1,639 @@
+slot0 = class("MergeSeverActivityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "hfqd_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mSubParent",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled17",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "xshd_42.png",
+					hide = true,
+					pos = {
+						x = 75.85,
+						y = -290
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "fuli_1.png",
+					pos = {
+						x = 69.68,
+						y = -16
+					}
+				},
+				children = {
+					{
+						name = "mLeftListView",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 3.54,
+								y = 25.95
+							},
+							size = {
+								width = 140,
+								height = 550
+							}
+						},
+						children = {
+							{
+								name = "ActivityLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled7-tag",
+										name = "moduleId",
+										type = "string"
+									},
+									{
+										value = "activityNameLabel-text",
+										name = "text",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 8.77,
+										y = 45.27
+									},
+									size = {
+										width = 140,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "selectedSprite",
+										cType = "Sprite",
+										params = {
+											image = "fuli_3.png",
+											pos = {
+												x = 70,
+												y = 40
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled7",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "tag",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "c_pure.png",
+											clickAction = "onModuleBtnAction",
+											pos = {
+												x = 70,
+												y = 40
+											},
+											size = {
+												width = 140,
+												height = 80
+											}
+										},
+										children = {}
+									},
+									{
+										name = "activityNameLabel",
+										cType = "Label",
+										params = {
+											fontSize = 26,
+											pos = {
+												x = 63,
+												y = 40
+											},
+											text = TR("天天好礼")
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											image = "fuli_2.png",
+											pos = {
+												x = 70,
+												y = 2
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled15",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled16",
+				cType = "TopResourceNode",
+				params = {
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled18",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "ruleBtn",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtn",
+					pos = {
+						x = 280.05,
+						y = -30
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "titleSprite",
+						cType = "Sprite",
+						params = {
+							image = "hfqd_10.png",
+							pos = {
+								x = 47,
+								y = 4
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.defaultModuleId = slot1.moduleId
+	slot0.type = slot1.eType
+
+	slot0.super.ctor(slot0)
+
+	slot0.subConfig = slot1.subConfig or {}
+	slot0.mSubNodeList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.mergeSubConfig = {
+		{
+			titlePic = "hfqd_15.png",
+			filename = "xsactivity.CelebrationSubStoreLayer",
+			moduleId = ModuleSub.eMergedShop,
+			redDotId = ModuleSub.eMergedShop,
+			name = TR("庆典商城")
+		},
+		{
+			titlePic = "hfqd_10.png",
+			filename = "achievement.CelebrationSubContributionLayer",
+			moduleId = ModuleSub.eMergedRank,
+			redDotId = ModuleSub.eMergedOffer,
+			name = TR("合服庆典")
+		},
+		{
+			titlePic = "hfqd_13.png",
+			filename = "xsactivity.MergeGiftActivityLayer",
+			moduleId = ModuleSub.eMergedGift,
+			redDotId = ModuleSub.eMergedGift,
+			name = TR("合服礼包")
+		}
+	}
+	slot0.classOverSubConfig = {
+		{
+			titlePic = "hfqd_15.png",
+			filename = "xsactivity.CelebrationSubStoreLayer",
+			moduleId = ModuleSub.eClassOverShop,
+			redDotId = ModuleSub.eClassOverShop,
+			name = TR("庆典商城")
+		},
+		{
+			titlePic = "hfqd_10.png",
+			filename = "achievement.CelebrationSubContributionLayer",
+			moduleId = ModuleSub.eClassOverRank,
+			redDotId = ModuleSub.eClassOverOffer,
+			name = TR("跨服庆典")
+		},
+		{
+			titlePic = "hfqd_13.png",
+			filename = "xsactivity.MergeGiftActivityLayer",
+			moduleId = ModuleSub.eClassOverGift,
+			redDotId = ModuleSub.eClassOverGift,
+			name = TR("跨服礼包")
+		}
+	}
+	slot0.vegetablesClassOverSubConfig = {
+		{
+			titlePic = "dugujz_22.png",
+			filename = "activity.VegetablesHomeLayer",
+			moduleId = ModuleSub.eClassOverVegetables,
+			redDotId = ModuleSub.eClassOverVegetables,
+			name = TR("剑魔遗冢")
+		},
+		{
+			titlePic = "dugujz_20.png",
+			filename = "achievement.CelebrationSubContributionLayer",
+			moduleId = ModuleSub.eClassOverRank,
+			redDotId = ModuleSub.eClassOverOffer,
+			name = TR("剑冢宝藏")
+		},
+		{
+			titlePic = "dugujz_21.png",
+			filename = "xsactivity.MergeGiftActivityLayer",
+			moduleId = ModuleSub.eClassOverGift,
+			redDotId = ModuleSub.eClassOverGift,
+			name = TR("剑冢礼包")
+		}
+	}
+	slot0.vegetablesMergedSubConfig = {
+		{
+			titlePic = "dugujz_22.png",
+			filename = "activity.VegetablesHomeLayer",
+			moduleId = ModuleSub.eMergedVegetables,
+			redDotId = ModuleSub.eMergedVegetables,
+			name = TR("剑魔遗冢")
+		},
+		{
+			titlePic = "dugujz_20.png",
+			filename = "achievement.CelebrationSubContributionLayer",
+			moduleId = ModuleSub.eMergedRank,
+			redDotId = ModuleSub.eMergedOffer,
+			name = TR("剑冢宝藏")
+		},
+		{
+			titlePic = "dugujz_21.png",
+			filename = "xsactivity.MergeGiftActivityLayer",
+			moduleId = ModuleSub.eMergedGift,
+			redDotId = ModuleSub.eMergedGift,
+			name = TR("剑冢礼包")
+		}
+	}
+
+	if slot0.type == 1 then
+		if Utility.isMergedActivityVegetable() then
+			slot0.subConfig = slot0.vegetablesMergedSubConfig
+		else
+			slot0.subConfig = slot0.mergeSubConfig
+		end
+	elseif slot0.type == 2 then
+		if Utility.isClassOverActivityVegetable() then
+			slot0.subConfig = slot0.vegetablesClassOverSubConfig
+		else
+			slot0.subConfig = slot0.classOverSubConfig
+		end
+	end
+
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.subConfig) do
+		if slot0.isActivityModuleOpen(slot0, slot6.moduleId) then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "ActivityLayout", {
+			moduleId = slot6.moduleId,
+			text = slot6.name
+		})
+
+		ui.createLabelClipRoll({
+			label = slot7.activityNameLabel,
+			dimensions = cc.size(slot7.getContentSize(slot7).width - 10, slot7.getContentSize(slot7).height),
+			anchorPoint = cc.p(0.5, 0),
+			position = cc.p(slot7.getContentSize(slot7).width/2, 0)
+		})
+
+		slot0.mSubNodeList[slot6.moduleId] = slot7
+
+		slot0.mLeftListView:pushBackCustomItem(slot7)
+		slot7.addChild(slot7, UIWrap.newControl("RedDot", {
+			moduleId = slot6.redDotId or slot6.moduleId
+		}))
+	end
+
+	slot2 = 1
+
+	for slot6, slot7 in ipairs(slot1) do
+		if slot0.defaultModuleId == slot7.moduleId then
+			slot2 = slot6
+		end
+	end
+
+	slot0.changeModuleStoreAction(slot0, slot0.defaultModuleId or (slot1[1] and slot1[1].moduleId) or nil)
+	ui.setListviewItemShow(slot0.mLeftListView, slot2)
+
+	return 
+end
+slot0.isActivityModuleOpen = function (slot0, slot1)
+	slot2 = {}
+
+	if slot0.type == 1 then
+		slot2 = Player:getGameData("MergedActivityOpenInfo")
+	elseif slot0.type == 2 then
+		slot2 = Player:getGameData("NormalCrossActivityOpenInfo")
+	end
+
+	if slot1 == ModuleSub.eMergedRank then
+		slot3 = false
+
+		for slot7, slot8 in ipairs({
+			ModuleSub.eMergedPvpRank,
+			ModuleSub.eMergedKillRank,
+			ModuleSub.eMergedHeroFapRank,
+			ModuleSub.eMergedTotalFapRank,
+			ModuleSub.eMergedChargeRank,
+			ModuleSub.eMergedOfferRank
+		}) do
+			if slot2[tostring(slot8)] or {}.EndDate ~= nil then
+				slot3 = true
+
+				break
+			end
+		end
+
+		return slot3
+	elseif slot1 == ModuleSub.eClassOverRank then
+		slot3 = false
+
+		for slot7, slot8 in ipairs({
+			ModuleSub.eClassOverPvpRank,
+			ModuleSub.eClassOverKillRank,
+			ModuleSub.eClassOverHeroFapRank,
+			ModuleSub.eClassOverTotalFapRank,
+			ModuleSub.eClassOverChargeRank,
+			ModuleSub.eClassOverOfferRank
+		}) do
+			if slot2[tostring(slot8)] or {}.EndDate ~= nil then
+				slot3 = true
+
+				break
+			end
+		end
+
+		return slot3
+	elseif slot2[tostring(slot1)] or {}.EndDate ~= nil then
+		return true
+	else
+		return false
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onModuleBtnAction = function (slot0, slot1)
+	dump(slot1.tag)
+	slot0.changeModuleStoreAction(slot0, slot1.tag)
+
+	return 
+end
+slot0.changeModuleStoreAction = function (slot0, slot1)
+	if slot0.mCurrModuleId == slot1 or slot1 == nil then
+		return 
+	end
+
+	for slot5, slot6 in pairs(slot0.mSubNodeList) do
+		slot6.selectedSprite:setVisible(slot5 == slot1)
+	end
+
+	slot0.mCurrModuleId = slot1
+
+	print("self.mCurrModuleId = " .. slot0.mCurrModuleId)
+
+	slot2 = nil
+	slot3 = ""
+
+	for slot7, slot8 in ipairs(slot0.subConfig) do
+		if slot8.moduleId == slot1 then
+			slot2 = slot8.filename
+			slot3 = slot8.titlePic
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if slot0.mCurrFileLayer ~= nil then
+		slot0.mCurrFileLayer:removeFromParent()
+
+		slot0.mCurrFileLayer = nil
+	end
+
+	slot0.mCurrFileLayer = UIWrap.newControl("FileLayer", {
+		file = slot2,
+		initParams = {
+			moduleId = slot1,
+			activityType = slot0.mActivityType,
+			eType = slot0.type
+		}
+	})
+
+	slot0.mSubParent:addChild(slot0.mCurrFileLayer)
+	slot0.titleSprite:setTexture(slot3)
+	slot0.ruleBtn:setVisible(slot0.mCurrModuleId ~= ModuleSub.eMergedShop)
+	slot0.ruleBtn:setVisible(slot0.mCurrModuleId ~= ModuleSub.eClassOverShop)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		eType = slot0.type,
+		subConfig = slot0.subConfig,
+		moduleId = slot0.mCurrModuleId
+	}
+end
+slot1 = {
+	[ModuleSub.eClassOverVegetables] = {
+		TR("1.可以使用矿石修复剑冢中的残剑，花费一定时间修复以后会获得成品剑且有概率获得额外的道具。"),
+		TR("2.每日可以帮好友雇佣铁匠，铁匠可以减少好友剑冢全部位置20分钟修复时间。"),
+		TR("3.每日可以帮20位好友雇佣一次铁匠，自己的剑冢可以有20位好友帮忙雇佣铁匠。"),
+		TR("4.使用神匠招募令可以招募神匠为你修复残剑，神匠可以减少相应剑冢位置2小时修复时间。"),
+		TR("5.修复需要矿石，矿石可参与活动获得，或者在商店购买。"),
+		TR("6.点击加速招募神匠加速相应位置，点击气泡修复和收取。")
+	},
+	[ModuleSub.eMergedVegetables] = {
+		TR("1.可以使用矿石修复剑冢中的残剑，花费一定时间修复以后会获得成品剑且有概率获得额外的道具。"),
+		TR("2.每日可以帮好友雇佣铁匠，铁匠可以减少好友剑冢全部位置20分钟修复时间。"),
+		TR("3.每日可以帮20位好友雇佣一次铁匠，自己的剑冢可以有20位好友帮忙雇佣铁匠。"),
+		TR("4.使用神匠招募令可以招募神匠为你修复残剑，神匠可以减少相应剑冢位置2小时修复时间。"),
+		TR("5.修复需要矿石，矿石可参与活动获得，或者在商店购买。"),
+		TR("6.点击加速招募神匠加速相应位置，点击气泡修复和收取。")
+	},
+	[ModuleSub.eMergedRank] = {
+		TR("1.合服期间参与相应玩法可获得合服活动道具，捐献合服道具可获得个人贡献值。"),
+		TR("2.个人贡献达到一定时，可领取贡献奖励，个人贡献根据排名可获得排行奖励。"),
+		TR("3.每充值一元可获得1点个人贡献。")
+	},
+	[ModuleSub.eMergedGift] = {
+		TR("1.礼包为单独购买的商品，不与充值活动叠加"),
+		TR("2.买对应的礼包，只能领取对应礼包的奖励"),
+		TR("3.单个礼包可重复购买"),
+		TR("4.购买后需手动领取奖励")
+	},
+	[ModuleSub.eClassOverRank] = {
+		TR("1.跨服活动期间参与相应玩法可获得跨服活动道具，捐献跨服活动道具可获得个人贡献值。"),
+		TR("2.个人贡献达到一定时，可领取贡献奖励，个人贡献根据排名可获得排行奖励。"),
+		TR("3.每充值一元可获得1点个人贡献。")
+	},
+	[ModuleSub.eClassOverGift] = {
+		TR("1.礼包为单独购买的商品，不与充值活动叠加"),
+		TR("2.买对应的礼包，只能领取对应礼包的奖励"),
+		TR("3.单个礼包可重复购买"),
+		TR("4.购买后需手动领取奖励")
+	}
+}
+slot0.onRuleBtn = function (slot0)
+	if Utility.isMergedActivityVegetable() then
+		slot0[ModuleSub.eMergedGift] = {
+			TR("1.礼包为单独购买的商品，不与充值活动叠加"),
+			TR("2.买对应的礼包，只能领取对应礼包的奖励"),
+			TR("3.单个礼包可重复购买"),
+			TR("4.购买后需手动领取奖励")
+		}
+		slot0[ModuleSub.eMergedRank] = {
+			TR("1.活动期间参与剑魔遗冢可获得活动道具，捐献活动道具可获得剑意。"),
+			TR("2.剑意达到一定时，可领取累计奖励，根据剑意排名可获得排行奖励。"),
+			TR("3.每充值一元可获得1点剑意。")
+		}
+	end
+
+	if Utility.isClassOverActivityVegetable() then
+		slot0[ModuleSub.eClassOverGift] = {
+			TR("1.礼包为单独购买的商品，不与充值活动叠加"),
+			TR("2.买对应的礼包，只能领取对应礼包的奖励"),
+			TR("3.单个礼包可重复购买"),
+			TR("4.购买后需手动领取奖励")
+		}
+		slot0[ModuleSub.eClassOverRank] = {
+			TR("1.活动期间参与剑魔遗冢可获得活动道具，捐献活动道具可获得剑意。"),
+			TR("2.剑意达到一定时，可领取累计奖励，根据剑意排名可获得排行奖励。"),
+			TR("3.每充值一元可获得1点剑意。")
+		}
+	end
+
+	ui.showRuleMsg({
+		textList = slot0[slot0.mCurrModuleId]
+	})
+
+	return 
+end
+
+return slot0

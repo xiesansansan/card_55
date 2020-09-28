@@ -1,0 +1,446 @@
+slot0 = class("GuildRankLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 423,
+						y = 511.5
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							pos = {
+								x = 147,
+								y = 18
+							},
+							text = TR("排行榜")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423,
+						y = 464
+					},
+					size = {
+						width = 780,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 65,
+								y = 20
+							},
+							text = TR("排名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 251,
+								y = 20
+							},
+							text = TR("帮派")
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 470,
+								y = 20
+							},
+							text = TR("帮主")
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 621,
+								y = 20
+							},
+							text = TR("所占门派")
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 729,
+								y = 20
+							},
+							text = TR("成员")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 33,
+						y = 34.42
+					},
+					size = {
+						width = 780,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -100
+							},
+							size = {
+								width = 780,
+								height = 106
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_106.png",
+									pos = {
+										x = 390,
+										y = 53
+									},
+									size = {
+										width = 780,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Sprite",
+								params = {
+									image = "c_58.png",
+									childName = "rankImag",
+									pos = {
+										x = 60,
+										y = 53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Label",
+								params = {
+									text = "4",
+									isRichText = true,
+									childName = "rank",
+									fontName = "c_54.png",
+									pos = {
+										x = 60,
+										y = 53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "guildName",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 245,
+										y = 80
+									},
+									text = TR("帮派名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "guildLv",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 245,
+										y = 32
+									},
+									text = TR("等级：4级")
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "guildHeroName",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 473,
+										y = 53
+									},
+									text = TR("帮主名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "guildOwnNum",
+									text = "6",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 623,
+										y = 53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									childName = "guildNum",
+									text = "25/35",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 731,
+										y = 53
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "GuildFlag",
+								params = {
+									childName = "guildFlag",
+									scale = 0.7,
+									pos = {
+										x = 192,
+										y = 53
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getSeverInfo(slot0)
+
+	return 
+end
+slot0.refreeUi = function (slot0)
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 780, 106
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mRankData
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		if slot0.mRankData[slot1 + 1].RankingId == 1 then
+			slot0.rank:setVisible(false)
+			slot0.rankImag:setVisible(true)
+			slot0.rankImag:setTexture("c_51.png")
+		elseif slot2.RankingId == 2 then
+			slot0.rank:setVisible(false)
+			slot0.rankImag:setVisible(true)
+			slot0.rankImag:setTexture("c_52.png")
+		elseif slot2.RankingId == 3 then
+			slot0.rank:setVisible(false)
+			slot0.rankImag:setVisible(true)
+			slot0.rankImag:setTexture("c_53.png")
+		else
+			slot0.rank:setVisible(true)
+			slot0.rankImag:setVisible(false)
+			slot0.rank:setString(slot2.RankingId)
+		end
+
+		slot0.guildFlag:setString(slot2.Logo)
+		slot0.guildFlag:setFlag(slot2.BannerInfo)
+		slot0.guildName:setString(TR("%s", slot2.GuildName))
+		slot0.guildLv:setString(TR("等级:%s", slot2.GuildLevel))
+		slot0.guildHeroName:setString(TR("%s", slot2.Name))
+		slot0.guildOwnNum:setString(TR("%s", slot2.OccupiedCities))
+		slot0.guildNum:setString(TR("%s", slot2.MembersCount))
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.getSeverInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "RankingList",
+		methodData = {
+			3
+		},
+		successCallback = function (slot0)
+			slot0.mRankData = slot0.RankInfo.RankingList or {}
+
+			if next(slot0.mRankData) then
+				table.sort(slot0.mRankData, function (slot0, slot1)
+					return slot0.RankingId < slot1.RankingId
+				end)
+			end
+
+			slot0:refreeUi()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

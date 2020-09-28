@@ -1,0 +1,347 @@
+slot0 = class("NpcInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bg",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "zd_76.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = 0,
+				y = 292
+			}
+		},
+		children = {
+			{
+				name = "lihuiSprite",
+				cType = "Sprite",
+				params = {
+					scale = 1.3,
+					image = "lh_13307.png",
+					pos = {
+						x = 185.04,
+						y = 148.45
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleSprite",
+				cType = "Sprite",
+				params = {
+					image = "zd_73.png",
+					pos = {
+						x = 600.64,
+						y = 413.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "jobSprite",
+				cType = "Sprite",
+				params = {
+					image = "zj_72.png",
+					pos = {
+						x = 472.75,
+						y = 287.76
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					pos = {
+						x = 570.67,
+						y = 287.1
+					},
+					text = TR("侠客名字")
+				},
+				children = {}
+			},
+			{
+				name = "jdSprite",
+				cType = "Sprite",
+				params = {
+					image = "zd_77.png",
+					pos = {
+						x = 486.26,
+						y = 238.23
+					}
+				},
+				children = {}
+			},
+			{
+				name = "jdSprite2",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					pos = {
+						x = 488.08,
+						y = 238.17
+					},
+					text = TR("定位")
+				},
+				children = {}
+			},
+			{
+				name = "jdLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					align = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 533.66,
+						y = 236.13
+					},
+					text = TR("前排爆发 前排爆发 前排爆发")
+				},
+				children = {}
+			},
+			{
+				name = "skillNameLabel",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 591.47,
+						y = 178.59
+					},
+					text = TR("技能名字")
+				},
+				children = {}
+			},
+			{
+				name = "skillSprite",
+				cType = "Sprite",
+				params = {
+					image = "sk_133042.png",
+					pos = {
+						x = 494.3,
+						y = 148.7
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillDescLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					align = 0,
+					isRichText = true,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 548.36,
+						y = 109.25
+					},
+					size = {
+						width = 320,
+						height = 0
+					},
+					text = TR("技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.updateContent(slot0, slot1)
+
+	if slot1.cb and type(slot1.cb) == "function" then
+		slot0.cb = slot1.cb
+	end
+
+	return 
+end
+slot0.updateContent = function (slot0, slot1)
+	if not cc.FileUtils:getInstance():isFileExist(HeroModel.items[slot1.nodeInfo.npcModelId].drawingPicA .. ".png") then
+		slot4 = "lh_11204.png"
+	end
+
+	display.loadImage(slot4, function ()
+		if not tolua:isnull(slot0.lihuiSprite) then
+			slot0.lihuiSprite:setTexture(slot0.lihuiSprite)
+		end
+
+		return 
+	end)
+	display.loadImage(({
+		[13.0] = "zd_75.png",
+		[15.0] = "zd_115.png",
+		[16.0] = "zd_114.png",
+		[14.0] = "zd_116.png"
+	})[slot3.quality] or "zd_75.png", function ()
+		if not tolua:isnull(slot0.titleSprite) then
+			slot0.titleSprite:setTexture(slot0.titleSprite)
+		end
+
+		return 
+	end)
+
+	slot7, slot10 = Utility.getHeroCampProfessionImg(slot2.npcModelId)
+
+	display.loadImage(slot8, function ()
+		if not tolua:isnull(slot0.jobSprite) then
+			slot0.jobSprite:setTexture(slot0.jobSprite)
+		end
+
+		return 
+	end)
+	slot0.nameLabel:setString(slot3.name)
+	slot0.jdLabel:setString(slot3.keyWord)
+
+	if SkillModel.items[slot3.skillAttackId] then
+		if not cc.FileUtils:getInstance():isFileExist(slot9.skillPic .. ".png") then
+			slot10 = "sk_133044.png"
+		end
+
+		display.loadImage(slot10, function ()
+			if not tolua:isnull(slot0.skillSprite) then
+				slot0.skillSprite:setTexture(slot0.skillSprite)
+			end
+
+			return 
+		end)
+		slot0.skillNameLabel:setString(slot9.skillName)
+		slot0.skillDescLabel:removeFromParent()
+
+		slot13 = UIWrap.newControl("Label", {
+			fontSize = 20,
+			align = 0,
+			isRichText = true,
+			valign = 0,
+			text = Resource.getSkillIntroStr(slot3.skillAttackId, 1, 1, "#FFFFFF", "#FFFFFF"),
+			anchor = cc.p(0, 0.5),
+			color = cc.c3b(255, 255, 255),
+			size = cc.size(420, 0)
+		})
+
+		slot13.setPosition(slot13, cc.p(slot0.skillDescLabel:getPosition3D().x, slot0.skillDescLabel.getPosition3D().y))
+
+		slot0.skillDescLabel = slot13
+
+		slot0.bg:addChild(slot13)
+	end
+
+	slot0.startAnimation(slot0)
+
+	return 
+end
+slot0.startAnimation = function (slot0)
+	slot1 = false
+	slot1 = true
+	slot2 = slot0.bg:getPosition3D()
+
+	slot0.bg:setPosition(cc.p(slot2.x - 200, slot2.y))
+	slot0.bg:runAction(cc.Spawn:create({
+		cc.EaseSineOut:create(cc.MoveTo:create(0.2, slot2)),
+		cc.FadeTo:create(0.2, 255)
+	}))
+
+	slot3 = slot0.lihuiSprite:getPosition3D()
+
+	slot0.lihuiSprite:setPosition(cc.p(slot3.x - 400, slot3.y))
+	slot0.lihuiSprite:runAction(cc.Spawn:create({
+		cc.EaseSineOut:create(cc.MoveTo:create(0.2, slot3)),
+		cc.FadeTo:create(0.2, 255)
+	}))
+
+	for slot8, slot9 in ipairs(slot4) do
+		for slot13, slot14 in ipairs(slot9) do
+			slot14.setOpacity(slot14, 0)
+
+			slot14.oriPos = slot14.getPosition3D(slot14)
+
+			if slot1 == true then
+				slot14.setPosition(slot14, cc.p(slot15.x, slot15.y - 200))
+			end
+		end
+	end
+
+	slot0.skillDescLabel:setOpacity(255)
+
+	for slot8, slot9 in ipairs(slot4) do
+		for slot13, slot14 in ipairs(slot9) do
+			slot15 = slot14.oriPos
+
+			if slot1 == true then
+				slot14.runAction(slot14, cc.Sequence:create({
+					cc.DelayTime:create(slot8*0.05 + 0.1),
+					cc.Spawn:create({
+						cc.EaseSineOut:create(cc.MoveTo:create(0.2, slot15)),
+						cc.FadeTo:create(0.2, 255)
+					})
+				}))
+			else
+				slot14.runAction(slot14, cc.Spawn:create({
+					cc.EaseSineOut:create(cc.MoveTo:create(0.2, slot15)),
+					cc.FadeTo:create(0.2, 255)
+				}))
+			end
+		end
+	end
+
+	slot0.runAction(slot0, cc.Sequence:create(cc.DelayTime:create(3.5), cc.CallFunc:create(function ()
+		if slot0.cb then
+			slot0.cb()
+		end
+
+		slot0:removeFromParent()
+
+		return 
+	end)))
+	slot0.runAction(slot0, cc.Sequence:create(cc.DelayTime:create(0.2), cc.CallFunc:create(function ()
+		ui.addTouchEvent({
+			swallowTouch = true,
+			node = slot0,
+			beganEvent = function (slot0, slot1)
+				if slot0.cb then
+					slot0.cb()
+				end
+
+				slot0:removeFromParent()
+
+				return 
+			end
+		})
+
+		return 
+	end)))
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+
+return slot0

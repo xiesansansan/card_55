@@ -1,0 +1,233 @@
+slot0 = class("KuangzhanAllNodeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("镖局总览")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423.86,
+						y = 257.99
+					},
+					size = {
+						width = 788,
+						height = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 6,
+					celHeight = 160,
+					pos = {
+						x = 422.82,
+						y = 258.4
+					},
+					size = {
+						width = 780,
+						height = 440
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tempGridNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled8-tag",
+						name = "tag",
+						type = "string"
+					},
+					{
+						value = "untitled7-text",
+						name = "nameStr",
+						type = "string"
+					},
+					{
+						value = "untitled6-text",
+						name = "occNumStr",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 93.62,
+						y = 403.69
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Sprite",
+						params = {
+							image = "yb_28.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = -2.46,
+								y = 48.75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled6",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							isRichText = true,
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -2.46,
+								y = -55.25
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onJump",
+							image = "c_58.png",
+							swallowTouch = false,
+							pos = {
+								x = -1.5,
+								y = -9.45
+							},
+							size = {
+								width = 96.85,
+								height = 118.03
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mLayerData = slot1.layerData
+
+	dump(slot0.mLayerData, "????")
+
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.handleData(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(KuangzhanModel.items) do
+		slot7 = {
+			layerId = slot5,
+			occNum = 0
+		}
+
+		if slot0.mLayerData[slot5] then
+			slot7.occNum = slot8.TotalNum
+		end
+
+		table.insert(slot1, slot7)
+	end
+
+	dump(slot1)
+
+	slot0.mLayerDataList = slot1
+
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mGridView:setItemNum(#slot0.mLayerDataList)
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	slot7 = slot0.createLayoutTemplateNode(slot0, "tempGridNode", {
+		tag = slot4.layerId,
+		nameStr = KuangzhanModel.items[slot0.mLayerDataList[slot2].layerId][1].biaojuName,
+		occNumStr = TR("占领%s(%s/5)", (5 <= slot0.mLayerDataList[slot2].occNum and "#C04141") or "#8BA857", slot4.occNum)
+	})
+
+	slot7.setPosition(slot7, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot7)
+
+	return 
+end
+slot0.onJump = function (slot0, slot1)
+	LayerManager.addLayer({
+		name = "kuangzhan.KuangzhanNodeLayer",
+		data = {
+			layerId = slot1.tag
+		}
+	})
+
+	return 
+end
+
+return slot0

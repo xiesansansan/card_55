@@ -1,0 +1,1140 @@
+slot0 = class("ServerListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "fwq_15.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 350
+			}
+		},
+		children = {
+			{
+				name = "untitled91",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 452.92,
+						y = 410.38
+					},
+					text = TR("最近登录")
+				},
+				children = {}
+			},
+			{
+				name = "untitled73",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 454.28,
+						y = 277
+					},
+					text = TR("服务器列表")
+				},
+				children = {}
+			},
+			{
+				name = "historyListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 463.71,
+						y = 343.43
+					},
+					size = {
+						width = 600,
+						height = 110
+					}
+				},
+				children = {
+					{
+						name = "historyLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled38-text",
+								name = "severName1",
+								type = "string"
+							},
+							{
+								value = "untitled106-text",
+								name = "severName2",
+								type = "string"
+							},
+							{
+								value = "untitled76-image",
+								name = "stateImage1",
+								type = "string"
+							},
+							{
+								value = "untitled105-image",
+								name = "stateImage2",
+								type = "string"
+							},
+							{
+								value = "untitled104-hide",
+								name = "isVisible2",
+								type = "string"
+							},
+							{
+								value = "untitled33-clickAction",
+								name = "clickAction1",
+								type = "string"
+							},
+							{
+								value = "untitled104-clickAction",
+								name = "clickAction2",
+								type = "string"
+							},
+							{
+								value = "untitled89-image",
+								name = "stateImage3",
+								type = "string"
+							},
+							{
+								value = "untitled88-hide",
+								name = "isVisible3",
+								type = "string"
+							},
+							{
+								value = "untitled88-clickAction",
+								name = "clickAction3",
+								type = "string"
+							},
+							{
+								value = "untitled90-text",
+								name = "severName3",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 600,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled33",
+								cType = "Button",
+								custom = {
+									{
+										value = true,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 100,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled76",
+										cType = "Sprite",
+										params = {
+											image = "dl_8.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled104",
+								cType = "Button",
+								custom = {
+									{
+										value = true,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									hide = false,
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 300,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled105",
+										cType = "Sprite",
+										params = {
+											image = "dl_8.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled106",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled88",
+								cType = "Button",
+								custom = {
+									{
+										value = true,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									hide = false,
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 500,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled89",
+										cType = "Sprite",
+										params = {
+											image = "dl_8.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled90",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "severListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 464.77,
+						y = 170.26
+					},
+					size = {
+						width = 600,
+						height = 180
+					}
+				},
+				children = {
+					{
+						name = "severLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled41-text",
+								name = "severName1",
+								type = "string"
+							},
+							{
+								value = "untitled108-text",
+								name = "severName2",
+								type = "string"
+							},
+							{
+								value = "untitled78-image",
+								name = "stateImage1",
+								type = "string"
+							},
+							{
+								value = "untitled109-image",
+								name = "stateImage2",
+								type = "string"
+							},
+							{
+								value = "untitled107-hide",
+								name = "isVisible2",
+								type = "string"
+							},
+							{
+								value = "untitled35-clickAction",
+								name = "clickAction1",
+								type = "string"
+							},
+							{
+								value = "untitled107-clickAction",
+								name = "clickAction2",
+								type = "string"
+							},
+							{
+								value = "untitled96-image",
+								name = "stateImage3",
+								type = "string"
+							},
+							{
+								value = "untitled94-clickAction",
+								name = "clickAction3",
+								type = "string"
+							},
+							{
+								value = "untitled94-hide",
+								name = "isVisible3",
+								type = "string"
+							},
+							{
+								value = "untitled95-text",
+								name = "severName3",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 600,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled35",
+								cType = "Button",
+								custom = {
+									{
+										value = false,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 100,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled41",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled78",
+										cType = "Sprite",
+										params = {
+											image = "dl_5.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled107",
+								cType = "Button",
+								custom = {
+									{
+										value = false,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									hide = false,
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 300,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled108",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled109",
+										cType = "Sprite",
+										params = {
+											image = "dl_5.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled94",
+								cType = "Button",
+								custom = {
+									{
+										value = false,
+										name = "isHistory",
+										type = "bool"
+									},
+									{
+										value = 1,
+										name = "severIndex",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "fwq_10.png",
+									hide = false,
+									clickAction = "onChooseBtnAction",
+									pos = {
+										x = 500,
+										y = 25
+									},
+									size = {
+										width = 180,
+										height = 35
+									}
+								},
+								children = {
+									{
+										name = "untitled95",
+										cType = "Label",
+										params = {
+											text = "Label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -41,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled96",
+										cType = "Sprite",
+										params = {
+											image = "dl_5.png",
+											pos = {
+												x = -69,
+												y = 0.48
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "ServerGroupNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "serverBtn-titleText",
+						name = "serverName",
+						type = "string"
+					},
+					{
+						value = "serverBtn-clickAction",
+						name = "clickAction",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 231.18,
+						y = -24.59
+					}
+				},
+				children = {
+					{
+						name = "serverBtn",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "severTag",
+								type = "integer"
+							}
+						},
+						params = {
+							fontSize = 20,
+							clickAction = "onClose",
+							image = "fwq_13.png",
+							pos = {
+								x = 0,
+								y = -1
+							},
+							titleText = TR("一大区")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled28",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "dl_5.png",
+					pos = {
+						x = 274.84,
+						y = 45.96
+					}
+				},
+				children = {
+					{
+						name = "untitled80",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 51.58,
+								y = 15.5
+							},
+							text = TR("新服")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled29",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "dl_8.png",
+					pos = {
+						x = 387.97,
+						y = 45.96
+					}
+				},
+				children = {
+					{
+						name = "untitled81",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 51.58,
+								y = 15.5
+							},
+							text = TR("维护")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled31",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "dl_7.png",
+					pos = {
+						x = 490.48,
+						y = 45.96
+					}
+				},
+				children = {
+					{
+						name = "untitled82",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 50.58,
+								y = 15.5
+							},
+							text = TR("正常")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled32",
+				cType = "Sprite",
+				params = {
+					scale = 0.8,
+					image = "dl_6.png",
+					pos = {
+						x = 595.65,
+						y = 45.96
+					}
+				},
+				children = {
+					{
+						name = "untitled83",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 49.58,
+								y = 15.5
+							},
+							text = TR("火爆")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled99",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onClose",
+					pos = {
+						x = 807,
+						y = 453.41
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mServerInfo = clone(slot1.srvInfo)
+	slot0.mAreaTag = slot0.mServerInfo.CurrentAreaId
+	slot0.mTabTag = slot0.mServerInfo.CurrentLabelId
+	slot0.mSelectCallback = slot1.callback
+
+	slot0.initUI(slot0)
+	slot0.addArea(slot0)
+	slot0.addTabView(slot0)
+	slot0.addSeverListView(slot0)
+	slot0.addHistoryListView(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.addHistoryListView = function (slot0)
+	slot0.historyListView:removeAllItems()
+
+	for slot5 = 1, math.ceil(table.maxn(slot0.mServerInfo.ServerHistory)/3), 1 do
+		slot7 = slot0.mServerInfo.ServerHistory[slot5*3 - 1]
+		slot8 = slot0.mServerInfo.ServerHistory[slot5*3]
+		slot9 = ""
+		slot10 = ""
+		slot11 = ""
+		slot12 = "dl_5.png"
+		slot13 = "dl_5.png"
+		slot14 = "dl_5.png"
+
+		if slot0.mServerInfo.ServerHistory[slot5*3 - 2] then
+			slot12 = slot0.getImageByHeat(slot0, slot6)
+			slot9 = slot6.ServerName
+		end
+
+		if slot7 then
+			slot13 = slot0.getImageByHeat(slot0, slot7)
+			slot10 = slot7.ServerName
+		end
+
+		if slot8 then
+			slot14 = slot0.getImageByHeat(slot0, slot8)
+			slot11 = slot8.ServerName
+		end
+
+		slot0.historyListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "historyLayout", {
+			severName1 = slot9,
+			severName2 = slot10,
+			severName3 = slot11,
+			isVisible2 = slot7 == nil,
+			isVisible3 = slot8 == nil,
+			stateImage1 = slot12,
+			stateImage2 = slot13,
+			stateImage3 = slot14,
+			clickAction1 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end,
+			clickAction2 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end,
+			clickAction3 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end
+		}))
+	end
+
+	return 
+end
+slot0.addArea = function (slot0)
+	slot0.groupBtnList = {}
+
+	for slot4, slot5 in ipairs(slot0.mServerInfo.Area) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "ServerGroupNode", {
+			serverName = slot5.Name,
+			serverTag = slot5.AreaID,
+			clickAction = function ()
+				if slot0.mAreaTag == slot1.AreaID then
+					return 
+				end
+
+				slot0.mAreaTag = slot1.AreaID
+
+				slot0:refreshGroupBtnImage()
+				slot0.refreshGroupBtnImage:requestServerList(slot0.mAreaTag, nil, function (slot0)
+					slot0.mServerInfo = slot0
+					slot0.mAreaTag = slot0.mServerInfo.CurrentAreaId
+					slot0.mTabTag = slot0.mServerInfo.CurrentLabelId
+
+					slot0:addTabView()
+					slot0:addSeverListView()
+					slot0:addHistoryListView()
+
+					return 
+				end)
+
+				return 
+			end
+		})
+
+		slot6.setPosition(slot6, cc.p(slot4*100 + 150, -20))
+		slot0.bgSprite:addChild(slot6)
+		table.insert(slot0.groupBtnList, {
+			btn = slot6.serverBtn,
+			tag = slot5.AreaID
+		})
+	end
+
+	slot0.refreshGroupBtnImage(slot0)
+
+	return 
+end
+slot0.refreshGroupBtnImage = function (slot0)
+	for slot4, slot5 in ipairs(slot0.groupBtnList) do
+		if slot5.tag == slot0.mAreaTag then
+			slot5.btn:loadTextures("fwq_13.png", "fwq_13.png")
+		else
+			slot5.btn:loadTextures("fwq_14.png", "fwq_14.png")
+		end
+	end
+
+	return 
+end
+slot0.addSeverListView = function (slot0)
+	slot0.severListView:removeAllItems()
+
+	for slot6 = 1, math.ceil(table.maxn(slot1)/3), 1 do
+		slot8 = slot1[slot6*3 - 1]
+		slot9 = slot1[slot6*3]
+		slot10 = ""
+		slot11 = ""
+		slot12 = ""
+		slot13 = "dl_5.png"
+		slot14 = "dl_2.png"
+		slot15 = "dl_2.png"
+
+		if slot1[slot6*3 - 2] then
+			slot13 = slot0.getImageByHeat(slot0, slot7)
+			slot10 = slot7.ServerName
+		end
+
+		if slot8 then
+			slot14 = slot0.getImageByHeat(slot0, slot8)
+			slot11 = slot8.ServerName
+		end
+
+		if slot9 then
+			slot15 = slot0.getImageByHeat(slot0, slot9)
+			slot12 = slot9.ServerName
+		end
+
+		slot0.severListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "severLayout", {
+			severName1 = slot10,
+			severName2 = slot11,
+			severName3 = slot12,
+			isVisible2 = slot8 == nil,
+			isVisible3 = slot9 == nil,
+			stateImage1 = slot13,
+			stateImage2 = slot14,
+			stateImage3 = slot15,
+			clickAction1 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end,
+			clickAction2 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end,
+			clickAction3 = function ()
+				slot0:onChooseBtnAction(slot0)
+
+				return 
+			end
+		}))
+	end
+
+	slot0.severListView:jumpToTop()
+
+	return 
+end
+slot0.addTabView = function (slot0)
+	if slot0.mTabView then
+		slot0.mTabView:removeFromParent()
+	end
+
+	slot1 = {}
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mServerInfo.Area) do
+		if slot7.AreaID == slot0.mAreaTag then
+			slot2 = slot7
+
+			break
+		end
+	end
+
+	for slot6, slot7 in ipairs(slot2.Label) do
+		table.insert(slot1, {
+			title = slot7.Name,
+			tag = slot7.LabelID
+		})
+	end
+
+	slot0.mTabView = UIWrap.newControl("TabView", {
+		space = 20,
+		lightedImage = "fwq_11.png",
+		direction = true,
+		normalImage = "fwq_16.png",
+		pos = cc.p(20, 50),
+		size = cc.size(140, 370),
+		btnSize = cc.size(140, 43),
+		titleOffset = cc.p(0.5, 0.5),
+		selectTag = slot0.mServerInfo.CurrentLabelId,
+		btnInfos = slot1,
+		titleColor = cc.c3b(255, 255, 255),
+		selectTitleColor = cc.c3b(255, 255, 255),
+		onSelectChange = function (slot0)
+			if slot0.mTabTag == slot0 then
+				return 
+			end
+
+			slot0.mTabTag = slot0
+
+			slot0:requestServerList(slot0.mAreaTag, slot0.mTabTag, function (slot0)
+				slot0.mServerInfo = slot0
+				slot0.mAreaTag = slot0.mServerInfo.CurrentAreaId
+				slot0.mTabTag = slot0.mServerInfo.CurrentLabelId
+
+				slot0:addSeverListView()
+				slot0:addHistoryListView()
+
+				return 
+			end)
+
+			return 
+		end
+	})
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot9 = UIWrap.newControl("Sprite", {
+			image = "fwq_12.png"
+		})
+
+		slot9.setPosition(slot9, -10, -25)
+		slot8.addChild(slot8, slot9)
+	end
+
+	slot0.bgSprite:addChild(slot0.mTabView)
+
+	return 
+end
+slot0.onChooseBtnAction = function (slot0, slot1)
+	if slot1.ServerState ~= 1 then
+		if not slot1.MaintainMessage or slot2 == "" then
+			slot2 = TR("服务器正在维护, 请稍候再试！")
+		end
+
+		ui.showFlashView(slot2)
+
+		return 
+	end
+
+	if slot0.mSelectCallback then
+		slot0.mSelectCallback(slot1)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onClickCloseButton = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.getImageByHeat = function (slot0, slot1)
+	slot2 = "dl_6.png"
+
+	if slot1.ServerState == 2 then
+		slot2 = "dl_8.png"
+	elseif slot1.ServerHeat == 2 or slot1.ServerHeat == 3 then
+		slot2 = "dl_5.png"
+	elseif slot1.ServerHeat == 4 then
+		slot2 = "dl_7.png"
+	end
+
+	return slot2
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestServerList = function (slot0, slot1, slot2, slot3)
+	slot0.safeRequest(slot0, {
+		moduleName = "login",
+		svrType = Enums.HttpSvrType.eManageCenter,
+		methodData = {
+			gameID = 0,
+			PartnerID = slot7.PartnerId,
+			GameVersionID = IPlatform:getInstance().getConfigItem(slot4, "Version"),
+			RandNum = MqMath.random(),
+			EncryptedString = string.md5Content(slot9),
+			ResourceVersionName = LocalData:getResourceVerName(),
+			UserID = slot7.UserID,
+			LoginInfo = (Player:getUserLoginInfo().UserID and "") or cjson.encode(slot7) or "",
+			AreaId = slot1,
+			LabelId = slot2,
+			NewVersion = true
+		},
+		successCallback = function (slot0)
+			slot0(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

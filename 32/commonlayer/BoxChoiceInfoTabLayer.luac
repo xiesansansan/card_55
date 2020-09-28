@@ -1,0 +1,242 @@
+slot0 = class("BoxChoiceInfoTabLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("物品预览")
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 257.32,
+						y = 166.99
+					},
+					size = {
+						width = 450,
+						height = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "goodsListView",
+				cType = "ListView",
+				params = {
+					margin = 30,
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 256.98,
+						y = 143.13
+					},
+					size = {
+						width = 440,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "goodLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = 0.72,
+								y = 37.3
+							},
+							size = {
+								width = 100,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "goodCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 50,
+										y = 60
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "NoticeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 261.2,
+						y = 227.4
+					},
+					text = TR("使用后可从下列物品中任选其一")
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabChanged",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 33.09,
+						y = 271.1
+					},
+					size = {
+						width = 407.08,
+						height = 48.74
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModelId = slot1.modelId
+	slot0.mSelectCamp = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {
+		{
+			tag = 1,
+			title = TR("射雕")
+		},
+		{
+			tag = 2,
+			title = TR("神雕")
+		},
+		{
+			tag = 3,
+			title = TR("倚天")
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.mSelectCamp = slot1
+
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.handldData = function (slot0)
+	slot1 = {}
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(GoodsOutputRelation.items[slot0.mModelId]) do
+		if slot7.outputTypeID == ResourceTypeSub.eHero then
+			if Resource.getModelInfo(slot7.outputModelID).camp == slot0.mSelectCamp then
+				table.insert(slot2, slot7)
+			end
+		elseif slot7.outputTypeID == ResourceTypeSub.eHeroDebris and Resource.getModelInfo(slot8).camp == slot0.mSelectCamp then
+			table.insert(slot2, slot7)
+		end
+	end
+
+	return slot2
+end
+slot0.refreshLayer = function (slot0)
+	slot0.goodsListView:removeAllChildren()
+
+	slot1 = slot0.handldData(slot0)
+	slot2 = #slot1*100 + (#slot1 - 1)*30
+
+	if 4 <= #slot1 then
+		slot2 = 420
+	end
+
+	slot0.goodsListView:setContentSize(cc.size(slot2, 160))
+
+	for slot6, slot7 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "goodLayout").goodCard:setCardData({
+			modelId = slot7.outputModelID,
+			num = slot7.outputNum
+		}, {
+			Enums.CardShowAttr.eName,
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eSynthetic
+		})
+
+		if slot7.outputTypeID == ResourceTypeSub.eHero then
+			slot10 = slot0.createQualityPic(slot0, slot9)
+
+			slot10.setPosition(slot10, 0, 40)
+			slot8.goodCard:addChild(slot10)
+		elseif slot7.outputTypeID == ResourceTypeSub.eHeroDebris then
+			slot11 = slot0.createQualityPic(slot0, slot10)
+
+			slot11.setPosition(slot11, 75, 40)
+			slot8.goodCard:addChild(slot11)
+		end
+
+		slot0.goodsListView:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+slot0.createQualityPic = function (slot0, slot1)
+	return UIWrap.newControl("Sprite", {
+		scale = 0.6,
+		image = Utility.getQualityImage(slot1.quality),
+		pos = cc.p(0, 0)
+	})
+end
+
+return slot0

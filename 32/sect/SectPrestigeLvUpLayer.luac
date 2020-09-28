@@ -1,0 +1,78 @@
+slot0 = class("SectPrestigeLvUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 480,
+				height = 260
+			},
+			titleText = TR("提示")
+		},
+		children = {
+			{
+				name = "tipsLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 240,
+						y = 150
+					},
+					text = TR("恭喜大侠X声望级别升级为Y")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 240,
+						y = 60
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.tipsLabel:setString(TR("恭喜大侠在%s的声望级别达到%s", SectModel.items[PlayerAttrObj:getPlayerAttrByName("SectId")].name, SectExplvRelation.items[slot1][PlayerAttrObj:getPlayerAttrByName("SectPrestigeLv") or 1].name))
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

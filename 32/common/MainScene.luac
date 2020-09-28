@@ -1,0 +1,56 @@
+slot0 = class("MainScene", function ()
+	return display.newScene("MainScene")
+end)
+slot0.ctor = function (slot0)
+	slot0.touchLayer = require("commonlayer.TouchEffectLayer").new()
+
+	slot0.addChild(slot0, slot0.touchLayer, Enums.ZOrderType.eAdapter)
+
+	return 
+end
+slot0.enterGame = function (slot0)
+	slot0.addChild(slot0, slot1, Enums.ZOrderType.eAdapter)
+
+	slot0.touchIdleTime = 0
+
+	slot0.onUpdate(slot0, function (slot0)
+		LayerManager.nextCurrentMusic()
+
+		slot0.touchIdleTime = slot0.touchIdleTime + slot0
+
+		if 3 < slot0.touchIdleTime then
+			if PlayerAttrObj:getPlayerAttrByName("Lv") and slot1 < 20 then
+				slot2, slot3 = Guide.manager:getGuideInfo()
+				slot4 = LayerManager.getTopCleanUpLayerName()
+
+				if not slot3 and slot4 and (slot4 == "login.StartGameLayer" or slot4 == "home.HomeLayer") then
+					EventAuto:postEvent(EventDefine.eHomeIdleTouchBegin)
+				end
+			end
+
+			slot0.touchIdleTime = 0
+		end
+
+		return 
+	end)
+	slot0.addChild(slot0, slot2, Enums.ZOrderType.eNavigate)
+	ui.addTouchEvent({
+		swallowTouch = false,
+		node = UIWrap.newControl("Layer", {
+			scale = display.minScale,
+			size = display.size,
+			pos = cc.p(display.cxInPixels, display.cyInPixels)
+		}),
+		beganEvent = function (...)
+			EventAuto:postEvent(EventDefine.eHomeIdleTouchEnd)
+
+			EventAuto.postEvent.touchIdleTime = 0
+
+			return false
+		end
+	})
+
+	return 
+end
+
+return slot0

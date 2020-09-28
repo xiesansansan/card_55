@@ -1,0 +1,157 @@
+slot0 = class("VideoPlayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "parent",
+		cType = "Layer",
+		params = {
+			sizeApt = 1,
+			color = {
+				g = 0,
+				a = 255,
+				r = 0,
+				b = 0
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "jumpBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onJump",
+					scaleApt = 2,
+					image = "jqdh_7.png",
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					pos = {
+						x = 1100,
+						y = 54
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.callBack = slot1.callback
+	slot0.notRemoveSelf = slot1.notRemoveSelf
+	slot0.mVideoName = slot1.videoName or "cg2.mp4"
+
+	LayerManager.closeGuideLayer()
+
+	if LocalData:getMusicEnabled() then
+		MqAudio.pauseMusic()
+	end
+
+	if device.platform == "mac" then
+		slot0.jumpBtn:loadTextures("jqdh_7.png", "jqdh_7.png")
+	else
+		slot0.jumpBtn:setVisible(false)
+
+		slot2 = ccexp.VideoPlayer:create()
+		slot3 = cc.size(display.safeArea.width, display.safeArea.height)
+
+		slot2.setPosition(slot2, slot3.width/2, slot3.height/2)
+		slot2.setAnchorPoint(slot2, cc.p(0.5, 0.5))
+		slot2.setUserInputEnabled(slot2, false)
+		slot2.setStyle(slot2, 1)
+		slot2.setKeepAspectRatioEnabled(slot2, true)
+		slot2.setContentSize(slot2, cc.size(slot3.width, slot3.height))
+		slot0.parent:addChild(slot2)
+
+		VideoPlayer_Temp = slot2
+
+		slot2.addEventListener(slot2, function (slot0, slot1)
+			if tolua.isnull(slot0) then
+				VideoPlayer_Temp = nil
+
+				return 
+			end
+
+			if slot1 == 3 then
+				if not VideoPlayer_Temp then
+					return 
+				end
+
+				slot0:stop()
+				slot0:setVisible(false)
+
+				VideoPlayer_Temp = nil
+
+				Utility.performWithDelay(slot1, function ()
+					slot0 = slot0.callback
+
+					if not slot1.notRemoveSelf then
+						LayerManager.removeLayer(LayerManager.removeLayer)
+					end
+
+					if slot0 then
+						slot0()
+					end
+
+					return 
+				end, 0)
+			end
+
+			return 
+		end)
+		slot2.setFileName(slot2, slot0.mVideoName)
+		slot2.play(slot2)
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onJump = function (slot0)
+	if VideoPlayer_Temp ~= nil then
+		VideoPlayer_Temp:stop()
+		VideoPlayer_Temp:setVisible(false)
+		slot0.stopAllActions(slot0)
+		Utility.performWithDelay(slot0, function ()
+			if not slot0.notRemoveSelf then
+				LayerManager.removeLayer(slot0)
+			end
+
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end, 0)
+	else
+		slot1 = slot0.callBack
+
+		if not slot0.notRemoveSelf then
+			LayerManager.removeLayer(slot0)
+		end
+
+		if slot1 then
+			slot1()
+		end
+	end
+
+	return 
+end
+
+return slot0

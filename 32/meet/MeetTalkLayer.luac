@@ -1,0 +1,559 @@
+slot0 = class("MeetTalkLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "center",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "npcNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						params = {
+							image = "lh_10000.png",
+							pos = {
+								x = -340,
+								y = -70
+							}
+						},
+						children = {}
+					},
+					{
+						name = "NpcNameTemp",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled25-text",
+								name = "npcName",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = -340,
+								y = -45
+							}
+						},
+						children = {
+							{
+								name = "untitled24",
+								cType = "Sprite",
+								params = {
+									image = "jqdh_10.png",
+									childName = "nameBg",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Label",
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									},
+									text = TR("江湖百科")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "talkBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jqdh_11.png",
+					pos = {
+						x = 0,
+						y = -169
+					},
+					size = {
+						width = 1021.19,
+						height = 240
+					}
+				},
+				children = {
+					{
+						name = "descLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							isRichText = true,
+							valign = 0,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 91.01,
+								y = 193
+							},
+							size = {
+								width = 809.57,
+								height = 0
+							},
+							text = TR("题描述问题描述问题描述问题描述问题描述问题题描述问题描述问题题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述问题描述")
+						},
+						children = {}
+					},
+					{
+						name = "anwerNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 510.6,
+								y = 139.1
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "Button",
+								params = {
+									image = "jhqy_6.png",
+									hide = true,
+									pos = {
+										x = 200,
+										y = -93.77
+									},
+									titleText = TR("选择1")
+								},
+								children = {}
+							},
+							{
+								name = "untitled19",
+								cType = "Button",
+								params = {
+									image = "jhqy_6.png",
+									hide = true,
+									pos = {
+										x = -200,
+										y = -93.77
+									},
+									titleText = TR("选择1")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "rewardNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = 510.6,
+								y = 111
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "CardNode",
+								params = {
+									scale = 0.8,
+									allowClick = true,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "numQALabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							text = "3/3",
+							pos = {
+								x = 510.6,
+								y = 45
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled18",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onClose",
+					pos = {
+						x = 431.21,
+						y = -91.29
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	MeetObj:setStageData()
+	slot0.meetTalk(slot0)
+
+	return 
+end
+slot0.createNpc = function (slot0, slot1, slot2)
+	slot0.npcNode:removeAllChildren()
+
+	slot4 = string.split(slot2, ",")
+
+	if string.split(slot1, ",")[1] then
+		slot0.npcNode:addChild(UIWrap.newControl("Sprite", {
+			pos = cc.p(-340, -70),
+			image = slot3[1]
+		}))
+	end
+
+	if slot3[2] then
+		slot0.npcNode:addChild(UIWrap.newControl("Sprite", {
+			pos = cc.p(340, -70),
+			image = slot3[2]
+		}))
+	end
+
+	if slot4[1] then
+		slot5 = slot0.createLayoutTemplateNode(slot0, "NpcNameTemp", {
+			npcName = slot4[1]
+		})
+
+		slot5.setPosition(slot5, cc.p(-340, -45))
+		slot0.npcNode:addChild(slot5)
+	end
+
+	if slot4[2] then
+		slot5 = slot0.createLayoutTemplateNode(slot0, "NpcNameTemp", {
+			npcName = slot4[2]
+		})
+
+		slot5.setPosition(slot5, cc.p(340, -45))
+		slot5.nameBg:setRotation(180)
+		slot0.npcNode:addChild(slot5)
+	end
+
+	return 
+end
+slot0.createQaDesc = function (slot0, slot1, slot2)
+	slot0.descLabel:setString(slot1)
+
+	if 30 < slot0.descLabel:getContentSize().height then
+		slot0.descLabel:setHorizontalAlignment(cc.TEXT_ALIGNMENT_LEFT)
+	else
+		slot0.descLabel:setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER)
+	end
+
+	slot0.anwerNode:removeAllChildren()
+
+	slot4 = ({
+		{
+			cc.p(200, -90)
+		},
+		{
+			cc.p(-200, -90),
+			cc.p(200, -90)
+		},
+		{
+			cc.p(-250, -90),
+			cc.p(0, -90),
+			cc.p(250, -90)
+		},
+		{
+			cc.p(-375, -90),
+			cc.p(-135, -90),
+			cc.p(105, -90),
+			cc.p(345, -90)
+		}
+	})[#slot2]
+
+	for slot8, slot9 in ipairs(slot2) do
+		if 280 < slot0.getStrSize(slot0, slot9.titleText).width then
+			slot9.size = cc.size(slot10.width + 20, 38)
+		end
+
+		slot9.pos = slot4[slot8]
+
+		slot0.anwerNode:addChild(UIWrap.newControl("Button", slot9))
+	end
+
+	return 
+end
+slot0.getStrSize = function (slot0, slot1)
+	return UIWrap.newControl("Label", {
+		text = slot1
+	}):getContentSize()
+end
+slot0.createReward = function (slot0, slot1)
+	slot0.rewardNode:removeAllChildren()
+	slot0.rewardNode:setVisible(true)
+
+	slot2 = slot1
+
+	if type(slot1) == "string" then
+		slot2 = Utility.analysisStrResList(slot1 or "")
+	end
+
+	slot3 = Utility.getExtendPos({
+		offset = 80,
+		num = #slot2
+	})
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot0.rewardNode:addChild(UIWrap.newControl("CardNode", {
+			scale = 0.8,
+			allowClick = true,
+			pos = slot3[slot7],
+			initParams = {
+				cardInfo = slot8,
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.refreshQaNum = function (slot0, slot1, slot2)
+	if slot1 and slot2 then
+		slot0.numQALabel:setString(string.format("%s/%s", slot1, slot2))
+	else
+		slot0.numQALabel:setString("")
+	end
+
+	return 
+end
+slot0.meetTalk = function (slot0)
+	MeetObj:setSpecialStatus()
+
+	if not MeetObj:getMeetTalk() then
+		Utility.performWithDelay(slot0, function ()
+			slot0:onClose()
+
+			return 
+		end, 0)
+
+		return 
+	end
+
+	slot0.dealTalk(slot0, slot1)
+
+	return 
+end
+slot0.dealTalk = function (slot0, slot1)
+	if MeetObj:getMeetId() == MeetObj.MeetType.eYangShan and MeetObj:getTalkStatus() == MeetObj.TalkStatus.eStart then
+		MeetObj:startMeet(function ()
+			slot0 = MeetObj:getMeetData()
+			slot0.question = string.format(slot0.question, Utility.analysisStrResList(slot0.Consume)[1].num, Resource.getName(Utility.analysisStrResList(slot0.Consume)[1].resourceId))
+
+			slot1:createTalk(slot0)
+
+			return 
+		end)
+	elseif MeetObj:getMeetId() == MeetObj.MeetType.eBaiKe and MeetObj:getTalkStatus() == MeetObj.TalkStatus.eStart then
+		slot1.question = string.format(slot1.question, MeetingConfig.items[1].baiKeNumsDaily)
+
+		slot0.createTalk(slot0, slot1)
+	else
+		slot0.createTalk(slot0, slot1)
+	end
+
+	return 
+end
+slot0.createTalk = function (slot0, slot1)
+	if not slot1 then
+		return 
+	end
+
+	slot2 = {}
+
+	if slot1.answers then
+		slot3 = MeetObj:getMeetId()
+		slot4 = MeetObj:getTalkStatus()
+
+		for slot8, slot9 in ipairs(slot1.answers) do
+			table.insert(slot2, {
+				image = "jhqy_6.png",
+				titleText = slot9.text,
+				clickAction = function ()
+					slot0:answerCb(slot0, , slot3.opera)
+
+					return 
+				end
+			})
+		end
+	end
+
+	slot0.npcNode:setVisible(true)
+	slot0.createNpc(slot0, unpack(slot1.npc))
+	slot0.createQaDesc(slot0, slot1.question, slot2)
+
+	if MeetObj:getTalkStatus() == MeetObj.TalkStatus.eStart and 0 < MeetObj:getMeetBoxNum() and (MeetObj:getMeetId() == MeetObj.MeetType.eYangShan or MeetObj:getMeetId() == MeetObj.MeetType.eBaiKe) then
+		slot0.center:addChild(UIWrap.newControl("Effect", {
+			loop = false,
+			dataFile = "effect_ui_shenmibaoxiang",
+			pos = cc.p(0, 0)
+		}))
+		MqAudio.playEffect("shenmibaoxiao.mp3")
+	end
+
+	return 
+end
+slot0.answerCb = function (slot0, slot1, slot2, slot3)
+	if slot3 == MeetObj.OperateType.eEnter and slot1 == MeetObj.MeetType.eBaiKe then
+		MeetObj:startMeet(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "meet.MeetBaikeQaLayer",
+				data = {
+					callback = function ()
+						slot0:meetTalk()
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+	elseif slot3 == MeetObj.OperateType.eFight and slot1 == MeetObj.MeetType.eYangShan then
+		ui.showCampReady({
+			noNeedVit = true,
+			callModelSub = ModuleSub.eMeeting,
+			titleText = TR("惩恶扬善布阵"),
+			callback = function (slot0)
+				slot0:requestFight(slot0)
+
+				return 
+			end
+		})
+	elseif slot3 == MeetObj.OperateType.eJiaoqian and slot1 == MeetObj.MeetType.eYangShan then
+		slot0.requestGetReward(slot0, MeetObj.MeetType.eYangShan, 0, 0, function ()
+			MeetObj:setTalkStatus(MeetObj.TalkStatus.eJiaoqiao)
+			MeetObj.setTalkStatus:meetTalk()
+
+			return 
+		end)
+	elseif slot3 == MeetObj.OperateType.eEnter and slot1 == MeetObj.MeetType.eDiaoYu then
+		MeetObj:startMeet(function ()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+			LayerManager.addLayer({
+				name = "meet.FishingHomeLayer"
+			})
+
+			return 
+		end)
+	elseif slot3 == MeetObj.OperateType.eEnter and slot1 == MeetObj.MeetType.eMeiShi then
+		MeetObj:startMeet(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "meet.MeetFineFoodLayer",
+				data = {
+					callback = function ()
+						slot0:meetTalk()
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+	elseif slot3 == MeetObj.OperateType.eClose then
+		slot0.onClose(slot0)
+	end
+
+	return 
+end
+slot0.onClose = function (slot0)
+	MeetObj:resetMeetStatus()
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestFight = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightInfo",
+		moduleName = "Meeting",
+		methodData = {
+			table.concat(slot1, ",")
+		},
+		successCallback = function (slot0)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1, slot2, slot3, slot4)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "Meeting",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		successCallback = function (slot0)
+			MeetObj:updateMeet(slot0.Meeting)
+
+			if slot0 then
+				slot0(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

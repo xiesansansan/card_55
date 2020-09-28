@@ -1,0 +1,510 @@
+slot0 = class("CacheMeet", {})
+slot0.MeetType = {
+	eMeiShi = 4,
+	eYangShan = 2,
+	eDiaoYu = 3,
+	eBaiKe = 1
+}
+slot0.TalkStatus = {
+	eLose = 3,
+	eStart = 1,
+	eWin = 2,
+	eSecStart = 5,
+	eJiaoqiao = 4
+}
+slot0.OperateType = {
+	eClose = 2,
+	eEnter = 1,
+	eFight = 3,
+	eJiaoqian = 4
+}
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mMeetData = {}
+	slot0.mOldMeetData = {}
+	slot0.mTalkStatus = slot0.TalkStatus.eStart
+
+	slot0.closeSchedule(slot0)
+
+	return 
+end
+slot0.updateMeet = function (slot0, slot1)
+	slot0.mMeetData = slot1
+
+	slot0.createStartUpdate(slot0)
+	EventAuto:postEvent(EventDefine.eRefreshMeet)
+
+	return 
+end
+slot0.getMeetId = function (slot0)
+	if not slot0.mMeetData or not next(slot0.mMeetData) then
+		return 0
+	end
+
+	if slot0.mMeetData.CurrentMeeting == 0 then
+		return 0
+	end
+
+	if Player:getCurrentTime() < slot0.mMeetData.HappenTime and slot0.mMeetData.Finish == 0 then
+		return 0
+	end
+
+	if slot0.mMeetData.EndTime < Player:getCurrentTime() and slot0.mMeetData.Finish == 0 then
+		return 0
+	end
+
+	return slot0.mMeetData.CurrentMeeting
+end
+slot0.getMeetData = function (slot0)
+	return slot0.mMeetData
+end
+slot0.getMeetNpc = function (slot0)
+	slot1 = {
+		[slot0.MeetType.eBaiKe] = "nan8",
+		[slot0.MeetType.eYangShan] = "nan4",
+		[slot0.MeetType.eDiaoYu] = "yuweng",
+		[slot0.MeetType.eMeiShi] = "nan12"
+	}
+
+	if slot0.getMeetId(slot0) and slot2 ~= 0 then
+		return slot1[slot2]
+	else
+		return nil
+	end
+
+	return 
+end
+slot0.getMeetPos = function (slot0)
+	slot1 = {
+		[slot0.MeetType.eBaiKe] = cc.p(800, 30),
+		[slot0.MeetType.eYangShan] = cc.p(900, 100),
+		[slot0.MeetType.eDiaoYu] = cc.p(2199, 320),
+		[slot0.MeetType.eMeiShi] = cc.p(0, 130)
+	}
+
+	if slot0.getMeetId(slot0) and slot2 ~= 0 then
+		return slot1[slot2]
+	else
+		return nil
+	end
+
+	return 
+end
+slot0.getMeetBoxNum = function (slot0)
+	return slot0.mOldMeetData.Special or slot0.mMeetData.Special or 0
+end
+slot0.getMeetRightNum = function (slot0)
+	return slot0.mMeetData.RightCount or 0
+end
+slot0.getTalkStatus = function (slot0)
+	return slot0.mTalkStatus
+end
+slot0.setTalkStatus = function (slot0, slot1)
+	if slot1 then
+		slot0.mTalkStatus = slot1
+	end
+
+	return 
+end
+slot0.setSpecialStatus = function (slot0)
+	if slot0.mMeetData.CurrentMeeting == slot0.MeetType.eYangShan and 0 < slot0.getMeetBoxNum(slot0) and slot0.mTalkStatus == slot0.TalkStatus.eStart and slot0.mMeetData.Finish <= -2 then
+		slot0.setTalkStatus(slot0, slot0.TalkStatus.eSecStart)
+	end
+
+	return 
+end
+slot0.getTalkId = function (slot0)
+	return slot0.mOldMeetData.CurrentMeeting or slot0.getMeetId(slot0)
+end
+slot0.setStageData = function (slot0)
+	if not next(slot0.mOldMeetData) then
+		slot0.mOldMeetData = clone(slot0.mMeetData)
+	end
+
+	return 
+end
+slot0.resetMeetStatus = function (slot0)
+	slot0.mOldMeetData = {}
+	slot0.mTalkStatus = slot0.TalkStatus.eStart
+
+	return 
+end
+slot0.getMeetNpcClickParams = function (slot0, slot1)
+	return ({
+		nan8 = {
+			image = "c_pure.png",
+			size = cc.size(80, 180),
+			pos = cc.p(0, 80)
+		},
+		nan4 = {
+			image = "c_pure.png",
+			size = cc.size(100, 220),
+			pos = cc.p(0, 100)
+		},
+		yuweng = {
+			image = "c_pure.png",
+			size = cc.size(80, 120),
+			pos = cc.p(980, -170)
+		},
+		nan12 = {
+			image = "c_pure.png",
+			size = cc.size(80, 80),
+			pos = cc.p(0, 40)
+		}
+	})[slot1]
+end
+slot0.getMeetTalk = function (slot0)
+	if not slot0.getTalkId(slot0) or slot1 <= 0 then
+		return 
+	end
+
+	slot2 = slot0.getTalkStatus(slot0)
+
+	if 0 < slot0.getMeetBoxNum(slot0) and slot0.BoxMeetTalk(slot0, slot1, slot2) then
+		return slot3
+	end
+
+	if slot0.NormalMeetTalk(slot0, slot1, slot2) then
+		return slot3
+	end
+
+	return nil
+end
+slot0.NormalMeetTalk = function (slot0, slot1, slot2)
+	if ({
+		[slot0.MeetType.eBaiKe] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("天下风云出我辈，少侠愿意回答我%s个问题？答对有奖。你若是没有胆量，不接也罢。"),
+				answers = {
+					{
+						text = TR("好的，我答"),
+						opera = slot0.OperateType.eEnter
+					},
+					{
+						text = TR("算了，容我三思"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_02.png",
+					TR("江湖百科")
+				}
+			},
+			[slot0.TalkStatus.eWin] = {
+				question = TR("后生可畏啊，没想到你如此饱学多才，将来前途无量。"),
+				npc = {
+					"jhqy_rw_02.png",
+					TR("江湖百科")
+				}
+			},
+			[slot0.TalkStatus.eLose] = {
+				question = TR("不错，虽然比我差了一点，也足以自傲。"),
+				npc = {
+					"jhqy_rw_02.png",
+					TR("江湖百科")
+				}
+			}
+		},
+		[slot0.MeetType.eYangShan] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("妈的，走路不长眼睛，敢撞你大爷！今天不交出%s%s，你小子别想离开！"),
+				answers = {
+					{
+						text = TR("谁怕谁！"),
+						opera = slot0.OperateType.eFight
+					},
+					{
+						text = TR("认怂给钱"),
+						opera = slot0.OperateType.eJiaoqian
+					}
+				},
+				npc = {
+					"jhqy_rw_06.png",
+					TR("青皮流氓")
+				}
+			},
+			[slot0.TalkStatus.eWin] = {
+				question = TR("大爷，我错了！您就当小的是个屁给放了吧。求大爷高抬贵手。"),
+				answers = {
+					{
+						text = TR("在我面前嚣张？下次别让我再看到你。"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_06t.png",
+					TR("青皮流氓")
+				}
+			},
+			[slot0.TalkStatus.eLose] = {
+				question = TR("哈哈哈哈，就你这三脚猫的功夫也敢出来丢人现眼！从大爷裆下钻过去，大爷就放了你！哈哈哈哈"),
+				npc = {
+					"jhqy_rw_06.png",
+					TR("青皮流氓")
+				}
+			},
+			[slot0.TalkStatus.eJiaoqiao] = {
+				question = TR("臭小子，算你识相。下次见到大爷乖乖给钱，否则见你一次打一次！叫你不带帽子！哈哈哈哈~~~"),
+				npc = {
+					"jhqy_rw_06.png",
+					TR("青皮流氓")
+				}
+			}
+		},
+		[slot0.MeetType.eDiaoYu] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("张员外今天大办宴席，找我要鱼。可怜我昨日打了一宿鱼也不够。少侠可否帮我再弄几条鱼回来。小老儿我感激不尽。"),
+				answers = {
+					{
+						text = TR("我来帮你吧"),
+						opera = slot0.OperateType.eEnter
+					},
+					{
+						text = TR("我还有事，告辞"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_01.png",
+					TR("老渔翁")
+				}
+			},
+			[slot0.TalkStatus.eWin] = {
+				question = TR("太感谢你了年轻人，有这些鱼，张员外一定会心情大好的，这些是你应得的奖励！"),
+				npc = {
+					"jhqy_rw_01.png",
+					TR("老渔翁")
+				}
+			},
+			[slot0.TalkStatus.eLose] = {
+				question = TR("太感谢你了年轻人，虽然数量不多，想来也够张员外使用了，这些元宝是你的奖励！"),
+				npc = {
+					"jhqy_rw_01.png",
+					TR("老渔翁")
+				}
+			}
+		},
+		[slot0.MeetType.eMeiShi] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("我可是当年江南第一大胃王，可敢跟我比试比试。"),
+				answers = {
+					{
+						text = TR("答应"),
+						opera = slot0.OperateType.eEnter
+					},
+					{
+						text = TR("拒绝"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_05.png",
+					TR("老乞丐")
+				}
+			},
+			[slot0.TalkStatus.eWin] = {
+				question = TR("哼，要是老头子我像你这年纪，定不会输给你这小子。"),
+				npc = {
+					"jhqy_rw_05.png",
+					TR("老乞丐")
+				}
+			},
+			[slot0.TalkStatus.eLose] = {
+				question = TR("年轻人你还是太嫩了点。"),
+				npc = {
+					"jhqy_rw_05.png",
+					TR("老乞丐")
+				}
+			}
+		}
+	})[slot1] then
+		return slot3[slot1][slot2]
+	end
+
+	return nil
+end
+slot0.BoxMeetTalk = function (slot0, slot1, slot2)
+	if ({
+		[slot0.MeetType.eBaiKe] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("天下风云出我辈，少侠愿意回答我%s个问题？答对有奖。你若是没有胆量，不接也罢。#dfc72a（全部答对可获得神秘宝箱）"),
+				answers = {
+					{
+						text = TR("好的，我答"),
+						opera = slot0.OperateType.eEnter
+					},
+					{
+						text = TR("算了，容我三思"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_02.png",
+					TR("江湖百科")
+				}
+			}
+		},
+		[slot0.MeetType.eYangShan] = {
+			[slot0.TalkStatus.eStart] = {
+				question = TR("小子，你手里那件兵器瞅着挺锋利啊？给爷拿来，爷劝你识相，否则爷让你知道什么叫做后悔来到这世上！#dfc72a（击败可获得神秘宝箱）"),
+				answers = {
+					{
+						text = TR("别废话"),
+						opera = slot0.OperateType.eFight
+					},
+					{
+						text = TR("哟~大爷，您拿着"),
+						opera = slot0.OperateType.eJiaoqian
+					}
+				},
+				npc = {
+					"jhqy_rw_18.png",
+					TR("江洋大盗")
+				}
+			},
+			[slot0.TalkStatus.eWin] = {
+				question = TR("哼！你这小子，要不是今天路滑，老子才不会输给你~"),
+				answers = {
+					{
+						text = TR("在我面前嚣张？下次别让我再看到你。"),
+						opera = slot0.OperateType.eClose
+					}
+				},
+				npc = {
+					"jhqy_rw_18.png",
+					TR("江洋大盗")
+				}
+			},
+			[slot0.TalkStatus.eLose] = {
+				question = TR("哈哈哈哈，不错不错，还有吗？都给爷带过来！"),
+				answers = {
+					{
+						text = TR("你等着，别走"),
+						opera = slot0.OperateType.eClose
+					},
+					{
+						text = TR("告辞"),
+						opera = slot0.OperateType.eJiaoqian
+					}
+				},
+				npc = {
+					"jhqy_rw_18.png",
+					TR("江洋大盗")
+				}
+			},
+			[slot0.TalkStatus.eJiaoqiao] = {
+				question = TR("臭小子，算你识相。这几件兵器，爷就替你保存了，快滚！"),
+				npc = {
+					"jhqy_rw_18.png",
+					TR("江洋大盗")
+				}
+			},
+			[slot0.TalkStatus.eSecStart] = {
+				question = TR("哟~你小子还真来啊，来吧，老子今天要打得你走不了路！"),
+				answers = {
+					{
+						text = TR("接招"),
+						opera = slot0.OperateType.eFight
+					},
+					{
+						text = TR("大爷~您认错人了"),
+						opera = slot0.OperateType.eJiaoqian
+					}
+				},
+				npc = {
+					"jhqy_rw_18.png",
+					TR("江洋大盗")
+				}
+			}
+		}
+	})[slot1] then
+		return slot3[slot1][slot2]
+	end
+
+	return nil
+end
+slot0.createStartUpdate = function (slot0)
+	slot0.closeSchedule(slot0)
+
+	if Player:getCurrentTime() < slot0.mMeetData.HappenTime and slot0.mMeetData.Finish == 0 then
+		slot0.mSchedule = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function ()
+			if slot0.mMeetData.HappenTime < Player:getCurrentTime() then
+				slot0:createStartUpdate()
+				EventAuto:postEvent(EventDefine.eRefreshMeet)
+			end
+
+			return 
+		end, 1, false)
+	elseif Player:getCurrentTime() < slot0.mMeetData.EndTime and slot0.mMeetData.Finish == 0 then
+		slot0.mSchedule = cc.Director:getInstance():getScheduler():scheduleScriptFunc(function ()
+			if slot0.mMeetData.EndTime < Player:getCurrentTime() then
+				slot0:closeSchedule()
+				EventAuto:postEvent(EventDefine.eRefreshMeet)
+			end
+
+			return 
+		end, 1, false)
+	end
+
+	return 
+end
+slot0.closeSchedule = function (slot0)
+	if slot0.mSchedule and tolua.isnull(slot0.mSchedule) then
+		cc.Director:getInstance():getScheduler():unscheduleScriptEntry(slot0.mSchedule)
+	end
+
+	slot0.mSchedule = nil
+
+	return 
+end
+slot0.startMeet = function (slot0, slot1)
+	if 0 < slot0.getMeetId(slot0) then
+		require("network.GameSocket"):socketRequest({
+			methodName = "Meeting",
+			moduleName = "Meeting",
+			ignoreNode = true,
+			methodData = {
+				slot2
+			},
+			successCallback = function (slot0)
+				slot0.mMeetData = slot0.Meeting
+
+				if slot0 then
+					slot1(slot0)
+				end
+
+				return 
+			end
+		})
+	else
+		ui.showFlashView(TR("奇遇已消失！"))
+	end
+
+	return 
+end
+slot0.newMeet = function (slot0, slot1)
+	require("network.GameSocket"):socketRequest({
+		methodName = "NewMeeting",
+		moduleName = "Meeting",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mMeetData = slot0.Meeting
+
+			EventAuto:postEvent(EventDefine.eRefreshMeet)
+			ui.showFlashView(TR("生成奇遇成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

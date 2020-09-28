@@ -1,0 +1,342 @@
+slot0 = class("RecruitShowRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionEnd",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "tz_9.png",
+			notNeedTouchListener = true,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 795,
+				height = 380
+			}
+		},
+		children = {
+			{
+				name = "mRewardView",
+				cType = "ScrollView",
+				params = {
+					swallowTouch = false,
+					pos = {
+						x = 53.13,
+						y = 16.82
+					},
+					size = {
+						width = 687.23,
+						height = 330
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mAgainBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onAgain",
+					pos = {
+						x = 200,
+						y = -77
+					},
+					titleText = TR("再来一次")
+				},
+				children = {}
+			},
+			{
+				name = "mCloseBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseLayer",
+					image = "c_27.png",
+					pos = {
+						x = 590.62,
+						y = -77
+					},
+					size = {
+						width = 147,
+						height = 47
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "extraLabel",
+				cType = "Label",
+				params = {
+					fontSize = 27,
+					isRichText = true,
+					pos = {
+						x = 397.68,
+						y = -14.45
+					},
+					text = TR("额外获得{db_1111.png}99")
+				},
+				children = {}
+			},
+			{
+				name = "mUseLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = 197.79,
+						y = -32.95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTitleEffect",
+				cType = "Effect",
+				params = {
+					hide = true,
+					dataFile = "effect_ui_gongxihuode",
+					pos = {
+						x = 413.09,
+						y = 209.95
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.listInfo = slot1.listInfo
+	slot0.extraReward = slot1.extraReward or {}
+	slot0.recruitItem = slot1.recruitItem
+	slot0.recruitCallBack = slot1.recruitCallBack
+	slot0.mCloseCb = slot1.closeCb
+	slot0.mUse1 = slot1.use1
+	slot0.mUse2 = slot1.use2
+	slot0.mIsShowAll = false
+
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		beganEvent = function (slot0, slot1)
+			if not slot0.mIsShowAll then
+				slot0.mIsShowAll = true
+			end
+
+			return true
+		end
+	})
+	slot0.initUI(slot0)
+	MqAudio.playEffect("tongyong_tanchuan.mp3")
+
+	return 
+end
+slot0.onActionEnd = function (slot0)
+	slot0.mTitleEffect:setVisible(true)
+	slot0.mTitleEffect:playAnimation("animation", 1)
+	slot0.mTitleEffect:appendAnimation("xunhuan")
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	function slot1(slot0, slot1)
+		if Resource.getCount(Utility.analysisStrResList(slot0)[1].resourceId) < Utility.analysisStrResList(slot0)[1].num then
+			return slot1
+		end
+
+		return slot0
+	end
+
+	slot0.createCardList(slot0)
+
+	slot2 = ""
+
+	if slot0.recruitItem then
+		slot2 = slot0.recruitItem.recruitUse
+	elseif slot0.mUse1 and slot0.mUse2 then
+		slot2 = slot1(slot0.mUse1, slot0.mUse2)
+	end
+
+	slot0.mUseLabel:setString(TR("{%s}%s/%s", Resource.getDaibiImg(slot3.resourceId), string.format("%s%s%s", (Utility.analysisStrResList(slot2)[1].num <= Resource.getCount(Utility.analysisStrResList(slot2)[1].resourceId) and "#37ff40") or "#ea2c00", Utility.numberWithUnit(slot4), "#fff8ea"), Utility.numberWithUnit(slot3.num)))
+
+	if next(slot0.extraReward) then
+		slot0.extraLabel:setString(TR("额外获得{%s}%s", Resource.getDaibiImg(slot0.extraReward[1].ResourceId), Utility.numberWithUnit(slot0.extraReward[1].Num)))
+	else
+		slot0.extraLabel:setString("")
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	slot0.playAction(slot0)
+
+	return 
+end
+slot0.createCardList = function (slot0)
+	slot0.mRewardView:removeAllChildren()
+
+	slot0.mCardList = {}
+	slot2 = 130
+
+	slot0.mRewardView:setInnerContainerSize(cc.size(687, math.max(slot4, 330)))
+
+	if 1 < #slot0.listInfo/5 then
+		for slot10, slot11 in ipairs(slot0.listInfo) do
+			slot0.createCard(slot0, slot11, cc.p(((slot10 - 1)%slot1 + 0.5)*slot2, slot5 - (math.floor((slot10 - 1)/slot1) + 0.5)*slot3))
+		end
+	else
+		slot7 = (slot6 - #slot0.listInfo*slot2)*0.5
+
+		for slot11, slot12 in ipairs(slot0.listInfo) do
+			slot0.createCard(slot0, slot12, cc.p(slot7 + (slot11 - 0.5)*slot2, slot5*0.5 + 30))
+		end
+	end
+
+	return 
+end
+slot0.createCard = function (slot0, slot1, slot2)
+	if Resource.getSubType(slot1.ResourceId) == ResourceTypeSub.eHero then
+		if HeroModel.items[slot1.ResourceId].ifHaveChangeDebris and slot1.IsConvert == true then
+			slot1.Num = Utility.analysisStrResList(slot3.ifHaveChangeDebris)[1].num
+			slot1.ResourceId = Utility.analysisStrResList(slot3.ifHaveChangeDebris)[1].resourceId
+		end
+
+		slot1.heroModelId = slot3.modelId
+	end
+
+	slot3 = UIWrap.newControl("CardNode", {
+		allowClick = true,
+		pos = slot2
+	})
+
+	slot3.setCardData(slot3, slot1, {
+		Enums.CardShowAttr.eName,
+		Enums.CardShowAttr.eNum
+	})
+	slot0.mRewardView:addChild(slot3)
+
+	slot4 = Resource.getColorLv(slot1.ResourceId)
+	slot5 = Resource.getSubType
+	slot6 = slot1.ResourceId or 0
+
+	if slot5(slot6) == ResourceTypeSub.eHero then
+		slot3.getAttrCtrl(slot3, Enums.CardShowAttr.eBorder).sprite:loadTextures(Resource.getBorderImgByColovLv(slot4), )
+	end
+
+	slot3.getAttrCtrl(slot3, Enums.CardShowAttr.eName).label:setColor(slot5)
+	table.insert(slot0.mCardList, slot3)
+
+	return 
+end
+slot0.playAction = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mCardList) do
+		slot5.setVisible(slot5, false)
+	end
+
+	slot0.mAgainBtn:setVisible(false)
+	slot0.mCloseBtn:setVisible(false)
+	slot0.extraLabel:setVisible(false)
+	slot0.mUseLabel:setVisible(false)
+	slot0.showOneCard(slot0, 1, function ()
+		slot0.mAgainBtn:setVisible(true)
+		slot0.mAgainBtn.setVisible.mCloseBtn:setVisible(true)
+		slot0.mAgainBtn.setVisible.mCloseBtn.setVisible.extraLabel:setVisible(true)
+		slot0.mAgainBtn.setVisible.mCloseBtn.setVisible.extraLabel.setVisible.mUseLabel:setVisible(true)
+
+		return 
+	end)
+
+	return 
+end
+slot0.showOneCard = function (slot0, slot1, slot2)
+	slot4 = slot0.mCardList[slot1]
+
+	if not slot0.listInfo[slot1] or not slot4 then
+		slot2()
+
+		return 
+	end
+
+	slot4.setVisible(slot4, true)
+
+	if not slot0.mIsShowAll then
+		slot0.moveScrollView(slot0, slot0.mRewardView, cc.p(slot4.getPosition(slot4)))
+	end
+
+	function slot5()
+		if slot0.mIsShowAll then
+			slot0:showOneCard(slot1 + 1, )
+		else
+			Utility.performWithDelay(slot3, function ()
+				slot0:showOneCard(slot1 + 1, )
+
+				return 
+			end, 0.3)
+		end
+
+		return 
+	end
+
+	if slot3.heroModelId then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "recruit.RecruitShowHeroLayer",
+			data = {
+				showFap = true,
+				heroModelId = slot3.heroModelId,
+				IsConvert = slot3.IsConvert,
+				callback = function ()
+					slot0()
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		slot5()
+	end
+
+	return 
+end
+slot0.moveScrollView = function (slot0, slot1, slot2)
+	slot3 = slot1.getInnerContainer(slot1)
+	slot6 = slot3.getPositionX(slot3)
+
+	if slot1.getContentSize(slot1).height < slot3.getContentSize(slot3).height - slot2.y then
+		slot3.runAction(slot3, cc.MoveTo:create(0.25, cc.p(slot6, -slot2.y + 75)))
+	end
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	if slot0.mCloseCb then
+		slot0.mCloseCb()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onAgain = function (slot0)
+	if slot0.recruitCallBack then
+		slot0.recruitCallBack()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

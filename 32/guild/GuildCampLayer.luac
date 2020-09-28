@@ -1,0 +1,614 @@
+slot0 = class("GuildCampLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionClick",
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 423,
+						y = 511
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							pos = {
+								x = 148,
+								y = 18
+							},
+							text = TR("帮派大营")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "teamNum",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 40,
+						y = 452
+					},
+					text = TR("当前部队:1")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 800,
+						y = 452
+					},
+					text = TR("每日首次派遣可获得奖励")
+				},
+				children = {}
+			},
+			{
+				name = "dispatchBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onDispatchCallback",
+					pos = {
+						x = 423,
+						y = 59.14
+					},
+					titleText = TR("派 遣")
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "RedDot",
+						params = {
+							subKey = "Dispatch",
+							moduleId = 4605
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled8",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 423,
+						y = 267
+					},
+					size = {
+						width = 780,
+						height = 330
+					}
+				},
+				children = {}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 33,
+						y = 100.34
+					},
+					size = {
+						width = 780,
+						height = 330
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled18-orderId",
+								name = "orderId",
+								type = "string"
+							},
+							{
+								value = "untitled18-armyId",
+								name = "armyId",
+								type = "string"
+							},
+							{
+								value = "untitled18-formationStr",
+								name = "formationStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = -120
+							},
+							size = {
+								width = 780,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 390,
+										y = 60
+									},
+									size = {
+										width = 775,
+										height = 118
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "ListView",
+								params = {
+									childName = "formationList",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 9.56,
+										y = 1.07
+									},
+									size = {
+										width = 550,
+										height = 88
+									}
+								},
+								children = {
+									{
+										name = "oneHeroItem",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled15-initParams",
+												name = "initParams",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 88,
+												height = 88
+											}
+										},
+										children = {
+											{
+												name = "untitled15",
+												cType = "CardNode",
+												params = {
+													scale = 0.9,
+													childName = "cardNode",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 44,
+														y = 44
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 18,
+										y = 100
+									},
+									text = TR("玩家")
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "fap",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 182,
+										y = 100
+									},
+									text = TR("战力")
+								},
+								children = {}
+							},
+							{
+								name = "untitled18",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "orderId",
+										type = "integer"
+									},
+									{
+										value = "\"520\"",
+										name = "armyId",
+										type = "string"
+									},
+									{
+										value = "\"HelloWorld\"",
+										name = "formationStr",
+										type = "string"
+									}
+								},
+								params = {
+									clickAction = "onRecallCallback",
+									hide = false,
+									image = "c_27.png",
+									childName = "cheHuiBtn",
+									pos = {
+										x = 694.38,
+										y = 46
+									},
+									titleText = TR("撤回")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tig",
+				cType = "Sprite",
+				params = {
+					image = "bp_25.png",
+					pos = {
+						x = 423,
+						y = 280
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 231.12,
+								y = 50.67
+							},
+							size = {
+								width = 320,
+								height = 100
+							},
+							text = TR("点击\"派遣\"按钮，托管出战队伍，帮派官员可进行调遣使用")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onPopActionClick = function (slot0)
+	slot0.getCampInfo(slot0)
+
+	return 
+end
+slot0.sortData = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+	if slot0.campInfo and next(slot0.campInfo) then
+		table.sort(slot0.campInfo, function (slot0, slot1)
+			if ((slot0.PlayerId == slot0 and 1) or 0) ~= ((slot1.PlayerId == slot0 and 1) or 0) then
+				return slot3 < slot2
+			end
+
+			return slot1.Fap < slot0.Fap
+		end)
+	end
+
+	return 
+end
+slot0.createCampList = function (slot0)
+	slot0.tig:setVisible(#slot0.campInfo == 0)
+	slot0.sortData(slot0)
+	slot0.teamNum:setString(TR("当前部队:%s支", (slot0.campInfo and #slot0.campInfo) or 0))
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 780, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.campInfo
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.name:setString(TR("%s", slot0.campInfo[slot1 + 1].Name))
+		slot0.fap:setString(TR("战力:%s", Utility.numberWithUnit(slot0.campInfo[slot1 + 1].Fap)))
+
+		if slot0.campInfo[slot1 + 1].FashionLevel then
+			slot0.name:setColor(Utility.getPlayerNameColor(slot2.FashionLevel))
+		end
+
+		slot0.cheHuiBtn.orderId = slot1 + 1
+		slot0.cheHuiBtn.armyId = slot2.ArmyId
+		slot0.cheHuiBtn.formationStr = slot2.Formation
+
+		slot0.cheHuiBtn:setVisible(slot2.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId"))
+		slot0.formationList:removeAllItems()
+
+		for slot7, slot8 in ipairs(slot2.HeroInfoList) do
+			slot0:createLayoutTemplateNode("oneHeroItem", {
+				initParams = {
+					instanceData = slot8,
+					showAttrs = {
+						Enums.CardShowAttr.eLevel,
+						Enums.CardShowAttr.eStar,
+						Enums.CardShowAttr.eTrainLv
+					}
+				}
+			}).cardNode:setRightTextVisible(false)
+			slot0.formationList:pushBackCustomItem(slot0.createLayoutTemplateNode("oneHeroItem", {
+				initParams = {
+					instanceData = slot8,
+					showAttrs = {
+						Enums.CardShowAttr.eLevel,
+						Enums.CardShowAttr.eStar,
+						Enums.CardShowAttr.eTrainLv
+					}
+				}
+			}))
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRecallCallback = function (slot0, slot1)
+	slot0.recallTeam(slot0, slot1.armyId)
+
+	return 
+end
+slot0.onPopHerosViewCallback = function (slot0, slot1)
+	slot1.changeDir = not slot1.changeDir
+
+	slot1.setScale(slot1, (slot1.changeDir and -1.1) or 1.1)
+	slot1.getParent(slot1):getParent().heroInfoNode:setPositionY((slot1.changeDir and 280) or 110)
+	slot1.setScale.popFormationBox:setVisible(slot1.changeDir)
+	slot1.setScale.popFormationBox:setPositionY((slot1.changeDir and 170) or 110)
+	slot1.setScale:setContentSize(cc.size(580, (slot1.changeDir and 280) or 110))
+	slot0.teamList:requestDoLayout()
+
+	return 
+end
+slot0.onDispatchCallback = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.CityWarFightListLayer",
+		data = {
+			callback = function (slot0)
+				slot0:dispatchTeam(slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.dispatchTeam = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Dispatch",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.campInfo = slot0.GuildCampInfo
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:createCampList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.recallTeam = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "UnDispatch",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.campInfo = slot0.GuildCampInfo
+
+			ui.showFlashView("撤回成功！")
+			slot0:createCampList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getCampInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetGuildCampInfo",
+		moduleName = "Guild",
+		successCallback = function (slot0)
+			slot0.campInfo = slot0.GuildCampInfo
+
+			slot0:createCampList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetCitywarTeamInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCitywarTeamInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			ui.showCampReady({
+				minCount = 5,
+				callModelSub = ModuleSub.eGuild,
+				titleText = TR("驻扎布阵"),
+				alreadyGotoWork = slot0:dealWithCampReadyData({}),
+				vitCostR = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0,
+				callback = function (slot0)
+					slot0:dispatchTeam(table.concat(slot0, ","))
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.dealWithCampReadyData = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot1) do
+		for slot11, slot12 in pairs(slot7.ChapterTeamInfo) do
+			for slot16, slot17 in pairs(slot12.HeroInfo) do
+				slot2[slot17.ModelId] = true
+			end
+		end
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		table.insert(slot3, slot7)
+	end
+
+	return slot3
+end
+
+return slot0

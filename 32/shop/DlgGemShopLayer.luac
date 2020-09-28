@@ -1,0 +1,333 @@
+slot0 = class("DlgGemShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGridItem",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 104.69,
+						y = 17.58
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {
+					{
+						name = "gridNode",
+						cType = "TemplateNode",
+						params = {
+							sizeApt = 3,
+							pos = {
+								x = 94.08,
+								y = 304.9
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0.48,
+										y = 106.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0,
+										y = -7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "goodCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = -1.18,
+										y = 23
+									}
+								},
+								children = {}
+							},
+							{
+								name = "name",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									text = "Label",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = -0.08,
+										y = 92.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "resLabel",
+								cType = "ResLabel",
+								params = {
+									modelId = 1111,
+									num = 0,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -31.05,
+										y = -57.49
+									}
+								},
+								children = {}
+							},
+							{
+								name = "remainLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -1.01,
+										y = -29.58
+									}
+								},
+								children = {}
+							},
+							{
+								name = "buyButton",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "cellTag",
+										type = "integer"
+									},
+									{
+										value = 1,
+										name = "belongto",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_32.png",
+									clickAction = "onBuyAction",
+									scale = 0.8,
+									pos = {
+										x = -0.22,
+										y = -88.32
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mDataInfo = {}
+	slot0.goodDataList = {}
+
+	for slot4, slot5 in pairs(GemShopConfig.items) do
+		table.insert(slot0.goodDataList, slot5)
+	end
+
+	table.sort(slot0.goodDataList, function (slot0, slot1)
+		return slot0.sellNum < slot1.sellNum
+	end)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mGridView:setItemNum(#slot0.goodDataList)
+	slot0.mGridView:reloadData()
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if next(slot0.goodDataList) then
+		slot6 = Utility.analysisStrResList(slot0.goodDataList[slot2].buyNeed)[1]
+		slot12, slot8 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId), true)
+		slot9 = slot0.createLayoutTemplateNode(slot0, "gridNode")
+
+		slot9.goodCard:setCardData({
+			modelId = Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId,
+			num = Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].num
+		}, {
+			Enums.CardShowAttr.eBorder,
+			Enums.CardShowAttr.eNum
+		})
+		slot9.name:setString(TR("%s", Resource.getName(Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId)))
+		slot9.name:setColor(slot7)
+
+		slot9.buyButton.cellTag = slot2
+		slot9.buyButton.belongto = GemModel.items[Utility.analysisStrResList(slot0.goodDataList[slot2].sellStr)[1].resourceId].partId
+		slot10 = slot0.getLifeRemain(slot0, slot4)
+		slot12 = TR("不限购")
+		slot13 = true
+
+		if 0 <= slot0.getDailyRemain(slot0, slot4) then
+			slot12 = (slot11 == 0 and "#EA2C00" .. TR("今日次数已用完")) or TR("今日可购%d次", slot11)
+			slot13 = 0 < slot11
+		elseif 0 <= slot10 then
+			slot9.remainLabel:setString((slot10 == 0 and "#EA2C00" .. TR("次数已用完")) or TR("可购%d次", slot10))
+			slot9.buyButton:setEnabled(0 < slot10)
+			slot9.resLabel:setString(slot6.num, (slot6.num <= Resource.getCount(slot6.resourceId) and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+			slot9.setPosition(slot9, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+			slot1.addChild(slot1, slot9)
+		end
+	end
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	if slot0.goodDataList[slot1.cellTag] == nil then
+		return 
+	end
+
+	if Resource.isEnough(Utility.analysisStrResList(slot2.buyNeed)[1].resourceId, Utility.analysisStrResList(slot2.buyNeed)[1].num) == false then
+		return 
+	end
+
+	slot0.requestBuyGood(slot0, slot2, 1, slot1.belongto)
+
+	return 
+end
+slot0.getLifeRemain = function (slot0, slot1)
+	if slot1.lifeBuyNum == -1 then
+		return -1
+	end
+
+	return slot1.lifeBuyNum - (slot0.mDataInfo.LifeBuyInfo or {}[tostring(slot1.sellNum)] or 0)
+end
+slot0.getDailyRemain = function (slot0, slot1)
+	if slot1.dailyBuyNum == -1 then
+		return -1
+	end
+
+	return slot1.dailyBuyNum - (slot0.mDataInfo.DailyBuyInfo or {}[tostring(slot1.sellNum)] or 0)
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GemShopInfo",
+		moduleName = "GemShop",
+		methodData = {
+			strFormation
+		},
+		successCallback = function (slot0)
+			slot0.mDataInfo = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyGood = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "GemShopBuy",
+		moduleName = "GemShop",
+		methodData = {
+			slot1.sellNum,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mDataInfo = slot0
+
+			slot0:refreshUI()
+			ui.showFlashReward({
+				rewardStr = slot1.sellStr
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

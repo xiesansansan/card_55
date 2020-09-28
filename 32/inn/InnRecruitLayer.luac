@@ -1,0 +1,1210 @@
+slot0 = class("InnRecruitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "jxz_4.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled38",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_juxianzhuang",
+					pos = {
+						x = 706.73,
+						y = 276.72
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_1.png",
+					clickAction = "onReturnCallback",
+					pos = {
+						x = 124.61,
+						y = -29.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleOpenCallback",
+					pos = {
+						x = 267.79,
+						y = -26.22
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Sprite",
+				params = {
+					image = "jxz_5.png",
+					pos = {
+						x = 175.72,
+						y = -25.31
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled9",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jxz_3.png",
+					pos = {
+						x = -132.17,
+						y = 33.98
+					}
+				},
+				children = {}
+			},
+			{
+				name = "recruitNumLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -9.37,
+						y = 48.12
+					},
+					text = TR("今日剩余次数")
+				},
+				children = {}
+			},
+			{
+				name = "freeTimeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -9.37,
+						y = 19.12
+					},
+					text = TR("今日剩余次数")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bgSpr",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled13",
+				cType = "Button",
+				custom = {
+					{
+						value = "recruit",
+						name = "btnType",
+						type = "string"
+					}
+				},
+				params = {
+					image = "c_27.png",
+					clickAction = "onRecruitCallback",
+					pos = {
+						x = -185,
+						y = -270
+					},
+					titleText = TR("上茶")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Button",
+				custom = {
+					{
+						value = "refresh",
+						name = "btnType",
+						type = "string"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onRefreshCallback",
+					pos = {
+						x = 185,
+						y = -270
+					},
+					titleText = TR("送客")
+				},
+				children = {}
+			},
+			{
+				name = "recruitCostLabel",
+				cType = "Label",
+				params = {
+					text = "{db_50010.png} 380",
+					isRichText = true,
+					pos = {
+						x = -185,
+						y = -230
+					}
+				},
+				children = {}
+			},
+			{
+				name = "refreshCostLabel",
+				cType = "Label",
+				params = {
+					text = "{db_50010.png} 380",
+					isRichText = true,
+					pos = {
+						x = 185,
+						y = -230
+					}
+				},
+				children = {}
+			},
+			{
+				name = "heroInfoNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled31-text",
+						name = "quality",
+						type = "string"
+					},
+					{
+						value = "untitled29-text",
+						name = "name",
+						type = "string"
+					},
+					{
+						value = "untitled20-exStarLevel",
+						name = "totalStarNum",
+						type = "string"
+					},
+					{
+						value = "untitled20-starLevel",
+						name = "hasStarNum",
+						type = "string"
+					},
+					{
+						value = "untitled25-maxValue",
+						name = "debrisMaxNum",
+						type = "string"
+					},
+					{
+						value = "untitled25-currValue",
+						name = "debrisCurNum",
+						type = "string"
+					},
+					{
+						value = "untitled26-text",
+						name = "debrisText",
+						type = "string"
+					},
+					{
+						value = "untitled27-image",
+						name = "lockImage",
+						type = "string"
+					},
+					{
+						value = "untitled27-lockStatus",
+						name = "lockStatus",
+						type = "string"
+					},
+					{
+						value = "untitled27-orderId",
+						name = "btnId",
+						type = "string"
+					},
+					{
+						value = "useTypeLabel-text",
+						name = "useType",
+						type = "string"
+					},
+					{
+						value = "raceSp-image",
+						name = "raceImage",
+						type = "string"
+					},
+					{
+						value = "professSp-image",
+						name = "professImage",
+						type = "string"
+					},
+					{
+						value = "untitled34-image",
+						name = "heroImage",
+						type = "string"
+					},
+					{
+						value = "untitled41-heroModelId",
+						name = "heroModelId",
+						type = "string"
+					},
+					{
+						value = "untitled42-hide",
+						name = "isOwn",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -320,
+						y = 28
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							image = "jxz_2.png",
+							pos = {
+								x = 0,
+								y = -163.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Sprite",
+						params = {
+							childName = "hero",
+							scale = 0.48,
+							hide = true,
+							image = "lh_11107.png",
+							pos = {
+								x = 0,
+								y = -11.08
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "StarNode",
+						params = {
+							childName = "starLvNode",
+							starLevel = 3,
+							exStarLevel = 5,
+							starImg = "c_5.png",
+							pos = {
+								x = 0,
+								y = -155
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							image = "jyt_13.png",
+							pos = {
+								x = 0,
+								y = -169
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "Sprite",
+								params = {
+									image = "c_37.png",
+									pos = {
+										x = -17.91,
+										y = 5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "useTypeLabel",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 138,
+										y = 5
+									},
+									text = TR("合成")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "ProgressBar",
+						params = {
+							maxValue = 1,
+							currValue = 1,
+							normalImage = "jyt_14.png",
+							childName = "debrisNumBar",
+							pos = {
+								x = 0,
+								y = -169
+							}
+						},
+						children = {
+							{
+								name = "untitled33",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									childName = "proLabel",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 69.7,
+										y = -11.22
+									},
+									text = TR("进度1/3")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled27",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "orderId",
+								type = "integer"
+							},
+							{
+								value = false,
+								name = "lockStatus",
+								type = "bool"
+							}
+						},
+						params = {
+							childName = "lockBtn",
+							image = "c_27.png",
+							clickAction = "onLockCallback",
+							pos = {
+								x = 0,
+								y = -217.44
+							},
+							size = {
+								width = 80,
+								height = 35
+							},
+							titleText = TR("留步")
+						},
+						children = {
+							{
+								name = "untitled36",
+								cType = "Sprite",
+								params = {
+									image = "c_21.png",
+									childName = "lockBg",
+									pos = {
+										x = -60.21,
+										y = -0.06
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled28",
+						cType = "Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = 0,
+								y = 176.89
+							}
+						},
+						children = {
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									pos = {
+										x = 65.06,
+										y = 16.2
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "Sprite",
+								params = {
+									image = "jxz_1.png",
+									hide = true,
+									pos = {
+										x = 58.36,
+										y = 39.77
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled31",
+								cType = "Label",
+								params = {
+									text = "30",
+									charCount = 10,
+									hide = true,
+									scale = 0.85,
+									fontName = "xkxx_48.png",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 81.17,
+										y = 38.41
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "raceSp",
+						cType = "Sprite",
+						params = {
+							scale = 0.7,
+							image = "xkxx_16.png",
+							pos = {
+								x = -109.51,
+								y = 85.12
+							}
+						},
+						children = {
+							{
+								name = "professSp",
+								cType = "Sprite",
+								params = {
+									scale = 0.6,
+									image = "c_3.png",
+									pos = {
+										x = 29.11,
+										y = 208.21
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled41",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "heroModelId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_pure.png",
+							clickAction = "onClickHeroInfo",
+							pos = {
+								x = -14.76,
+								y = -16.81
+							},
+							size = {
+								width = 218.83,
+								height = 254.01
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							hide = false,
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 76.65,
+								y = 119.54
+							},
+							size = {
+								width = 20,
+								height = 0
+							},
+							text = TR("未拥有")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled37",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -565.26,
+						y = 253.36
+					},
+					text = TR("已拥有的侠客或者有侠客碎片会出现在聚贤庄")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled39",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled40",
+				cType = "TopResourceNode",
+				params = {
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = 0,
+						y = -1
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = "c_27.png"
+slot2 = "c_27.png"
+slot3 = 400
+slot4 = {
+	cc.p(-320, 10),
+	cc.p(0, 10),
+	cc.p(320, 10)
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.heroInfoNodes = {}
+
+	slot0.getInnInfo(slot0)
+
+	return 
+end
+slot0.refreshBottomOperaUI = function (slot0)
+	Utility.schedule(slot0.freeTimeLabel, function ()
+		if 0 <= slot0.innInfo.RefreshTime - Player:getCurrentTime() then
+			slot0.freeTimeLabel:setString(TR("%s%s%s后免费上茶", "#ffe748", MqTime.formatAsHour(slot0), "#ffffff"))
+		else
+			slot0.freeTimeLabel:stopAllActions()
+
+			for slot4, slot5 in ipairs(slot0.heroInfoNodes) do
+				slot5.getParent(slot5):removeFromParent()
+
+				slot5 = nil
+			end
+
+			slot0.heroInfoNodes = {}
+
+			print("刷新倒计时结束，刷新队伍！")
+			slot0:getInnInfo()
+		end
+
+		return 
+	end, 1)
+	slot0.modifyRecruitNum(slot0, slot0.innInfo.LimitNum)
+	slot0.modifyMiddleCostLabel(slot0, #slot0.innInfo.LockStr)
+	slot0.refreshRecruitCost(slot0)
+
+	return 
+end
+slot0.refreshRecruitCost = function (slot0)
+	if 0 < slot0.innInfo.FreeNum then
+		slot0.recruitCostLabel:setString("#00ff00免费")
+	else
+		slot0.recruitCostLabel:setVisible((InnConfig.items[1].maxRecruitNum + 1) - slot0.innInfo.LimitNum <= InnConfig.items[1].maxRecruitNum)
+
+		if InnRecruitNeedConfig.items_count < slot1 then
+			return 
+		end
+
+		slot0.recruitCostLabel:setString(TR("%s{%s} %s", (Resource.isEnough(Utility.analysisStrResList(slot2)[1].resourceId, Utility.analysisStrResList(slot2)[1].num, false) and "#00ff00") or "#ff0000", Resource.getDaibiImg(slot3.resourceId), slot3.num))
+	end
+
+	return 
+end
+slot0.resouceIsEnought = function (slot0, slot1)
+	if slot1 == "recruit" then
+		return Resource.isEnough(Utility.analysisStrResList(slot3)[1].resourceId, Utility.analysisStrResList(slot3)[1].num, true)
+	elseif slot1 == "refresh" then
+		return Resource.isEnough(slot0.refreshCostLabel.resourceId, slot0.refreshCostLabel.needNum, true)
+	end
+
+	return 
+end
+slot0.dealReward = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		slot7 = UIWrap.newControl("CardNode", {
+			scale = 0,
+			allowClick = false,
+			pos = cc.p(0, 129),
+			initParams = {
+				showAttrs = {
+					Enums.CardShowAttr.eName,
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				},
+				instanceData = slot6[1]
+			}
+		})
+
+		slot0.heroInfoNodes[tonumber(slot5)]:addChild(slot7)
+		slot7.runAction(slot7, cc.Sequence:create({
+			cc.ScaleTo:create(0.5, 1),
+			cc.FadeOut:create(1.3),
+			cc.CallFunc:create(function ()
+				slot0:stopAllActions()
+				slot0.stopAllActions:removeFromParent()
+
+				return 
+			end)
+		}))
+	end
+
+	return 
+end
+slot0.initOneHeroInfoNode = function (slot0, slot1, slot2)
+	slot4 = GoodsObj:getItemCount(HeroModel.items[slot1.modelId].debrisId)
+	slot5 = GoodsModel.items[HeroModel.items[slot1.modelId].debrisId].outputNeedNum
+	slot7 = (next(slot0.innInfo.LockStr) and table.indexof(slot0.innInfo.LockStr, slot2) and true) or false
+	slot9 = {
+		TR("合成"),
+		TR("升星"),
+		TR("满星")
+	}
+	slot10 = (((next(HeroObj:getItem(slot1.modelId) or {}) and true) or false) and 2) or 1
+	slot11 = 0
+	slot12 = ""
+	slot13 = slot3.name
+
+	if next(slot6) then
+		trainLv = slot6.TrainLv
+		slot11 = slot6.Lv
+
+		if 0 < slot6.TrainLv then
+			slot14, slot15 = Utility.getColorValue(HeroTrainColorlvRelation.items[slot6.TrainLv].colorLv)
+			slot16 = ""
+
+			if 0 < HeroTrainColorlvRelation.items[slot6.TrainLv].intro then
+				slot16 = TR("+%s", HeroTrainColorlvRelation.items[slot6.TrainLv].intro)
+			end
+
+			slot13 = TR("%s%s%s", slot15, slot3.name, slot16)
+		end
+
+		if slot6.Star == table.maxn(HeroStarRelation.items[slot1.modelId]) then
+			slot10 = 3
+		else
+			slot5 = slot14[slot6.Star + 1].needDebrisNum
+		end
+	end
+
+	slot19.raceImage, slot19.professImage = Utility.getCampProfessionRoadImage(slot3, slot6.HeroRoadInfo)
+
+	slot0.createLayoutTemplateNode(slot0, "heroInfoNode", {
+		totalStarNum = 0,
+		quality = TR("%s", slot3.quality),
+		name = slot13,
+		hasStarNum = slot3.initStar,
+		debrisMaxNum = (slot10 == 3 and slot4) or slot5,
+		debrisCurNum = slot4,
+		debrisText = (slot10 == 3 and TR("%s", slot4)) or TR("%s/%s", slot4, slot5),
+		lockImage = (slot7 and slot0) or slot1,
+		lockStatus = slot7,
+		btnId = slot2,
+		useType = slot9[slot10],
+		raceImage = slot14,
+		professImage = slot15,
+		heroImage = TR("%s.png", HeroModel.items[slot1.modelId].drawingPicA),
+		heroModelId = slot1.modelId,
+		isOwn = slot8
+	}).debrisNumBar:setCurrValue(slot4, 0)
+
+	slot0.createLayoutTemplateNode(slot0, "heroInfoNode", {
+		totalStarNum = 0,
+		quality = TR("%s", slot3.quality),
+		name = slot13,
+		hasStarNum = slot3.initStar,
+		debrisMaxNum = (slot10 == 3 and slot4) or slot5,
+		debrisCurNum = slot4,
+		debrisText = (slot10 == 3 and TR("%s", slot4)) or TR("%s/%s", slot4, slot5),
+		lockImage = (slot7 and slot0) or slot1,
+		lockStatus = slot7,
+		btnId = slot2,
+		useType = slot9[slot10],
+		raceImage = slot14,
+		professImage = slot15,
+		heroImage = TR("%s.png", HeroModel.items[slot1.modelId].drawingPicA),
+		heroModelId = slot1.modelId,
+		isOwn = slot8
+	}).lockBtn.lockStatus = slot7
+
+	if slot7 then
+		slot16.lockBtn.lockBg:setTexture("c_21.png")
+	else
+		slot16.lockBtn.lockBg:setTexture("xkwx_22.png")
+	end
+
+	if slot3.drawingPicB ~= "" then
+		if cc.FileUtils:getInstance():isFileExist(slot3.drawingPicB .. ".skel") then
+			slot17 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				scale = 0.31,
+				dataFile = slot3.drawingPicB
+			})
+
+			slot17.setPosition(slot17, cc.p(0, -155))
+			slot16.addChild(slot16, slot17, -1)
+		else
+			slot16.hero:setVisible(true)
+		end
+	else
+		slot16.hero:setVisible(true)
+	end
+
+	if slot8 then
+		slot16.starLvNode:setVisible(false)
+		slot16.addChild(slot16, ui.showHeroStarShow(HeroObj:getItem(slot1.modelId).Star, HeroObj.getItem(slot1.modelId).StepLv, cc.p(0, -160), false))
+	end
+
+	return slot16
+end
+slot0.modifyMiddleCostLabel = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege") and PlayerAttrObj:getPlayerAttrByName("PrivilegeCardInfo").InnDailyFreeRefreshNum < PrivilegeConfig.items[1].innDailyFreeRefreshNum then
+		slot0.refreshCostLabel:setString(TR("#00ff00免费%s次", PrivilegeConfig.items[1].innDailyFreeRefreshNum - slot3))
+
+		slot0.refreshCostLabel.resourceId = Utility.analysisStrResList(InnConfig.items[1].refreshNeed)[1].resourceId
+		slot0.refreshCostLabel.needNum = 0
+		slot0.refreshCostLabel.lockedNum = slot1
+
+		return 
+	end
+
+	slot3 = InnConfig.items[1].refreshNeed
+
+	if slot1 == 1 then
+		slot3 = InnConfig.items[1].lockOneRefreshNeed
+	elseif slot1 == 2 then
+		slot3 = InnConfig.items[1].lockTwoRefreshNeed
+	end
+
+	slot0.refreshCostLabel:setString(TR("%s{%s} %s", (Resource.isEnough(Utility.analysisStrResList(slot3)[1].resourceId, Utility.analysisStrResList(slot3)[1].num, false) and "#00ff00") or "#ff0000", Resource.getDaibiImg(slot4.resourceId), slot4.num))
+
+	slot0.refreshCostLabel.resourceId = slot4.resourceId
+	slot0.refreshCostLabel.needNum = slot4.num
+	slot0.refreshCostLabel.lockedNum = slot1
+
+	return 
+end
+slot0.modifyDebirsBar = function (slot0)
+	function slot1(slot0, slot1, slot2)
+		if not slot0 or tolua.isnull(slot0) then
+			print("bar节点已不存在，出问题了！")
+
+			return 
+		end
+
+		slot0.setCurrValue(slot0, slot1, slot2)
+		slot0.proLabel:setString(TR("%s/%s", slot1, slot0.mMaxValue))
+
+		return 
+	end
+
+	for slot5, slot6 in ipairs(slot0.heroInfoNodes) do
+		slot1(slot6.debrisNumBar, GoodsObj:getItemCount(HeroModel.items[slot0.innInfo.RecruitInfo[tostring(slot5)]].debrisId), 0.3)
+	end
+
+	return 
+end
+slot0.modifyRecruitNum = function (slot0, slot1)
+	slot0.recruitNumLabel:setString(TR("今日剩余上茶次数：%s%s", (slot1 == 0 and "#ff0000") or "#00ff00", slot1))
+
+	return 
+end
+slot0.getInnInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "InnRecruitInfo",
+		successCallback = function (slot0)
+			slot0.innInfo = slot0
+			slot0.heroInfoNodes = {}
+
+			for slot4, slot5 in pairs(slot0.RecruitInfo) do
+				slot6 = slot0:initOneHeroInfoNode({
+					modelId = slot5
+				}, slot4)
+
+				slot6.setPosition(slot6, slot1[tonumber(slot4)])
+				slot0.bgSpr:addChild(slot6)
+
+				slot0.heroInfoNodes[tonumber(slot4)] = slot6
+			end
+
+			slot0:refreshBottomOperaUI()
+			slot0:modifyDebirsBar()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRuleOpenCallback = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.点击送客可立即更换当前3名侠客"),
+			TR("2.点击留步按钮可以锁定侠客，被锁定的侠客在点击送客时不会被更换，但会消耗额外的刷新费用"),
+			TR("3.玩家已拥有的侠客或者有侠客碎片会出现在聚贤庄里"),
+			TR("4.点击上茶，会随机获得当前出现侠客的碎片")
+		}
+	})
+
+	return 
+end
+slot0.onReturnCallback = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRefreshPreviewCall = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "inn.InnHeroPreviewLayer"
+	})
+
+	return 
+end
+slot0.onClickHeroInfo = function (slot0, slot1)
+	if not ((next(HeroObj:getItem(slot1.heroModelId) or {}) and true) or false) then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "hero.HeroDetialViewLayer",
+			data = {
+				heroModelId = slot1.heroModelId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		LayerManager.addLayer({
+			cleanUp = true,
+			name = "hero.HeroMainLayer",
+			data = {
+				defModelId = slot1.heroModelId
+			}
+		})
+	end
+
+	return 
+end
+slot0.onRefreshCallback = function (slot0, slot1)
+	if not Utility.moduleIsOpen(ModuleSub.eInnRecruitRefresh, true) then
+		return 
+	end
+
+	if not slot0.resouceIsEnought(slot0, slot1.btnType) then
+		return 
+	end
+
+	Utility.performWithDelay(slot0, function (...)
+		slot0:requestRefresh()
+
+		return 
+	end, 1.5)
+
+	slot2 = UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "qieping",
+		dataFile = "effect_ui_juxianzhuang",
+		pos = cc.p(display.safeArea.width/2, display.safeArea.height/2 - display.ySafeScale*30)
+	})
+
+	if display.isIpadClass then
+		slot2.setScale(slot2, display.maxSafeScale)
+	else
+		slot2.setScale(slot2, display.minScale)
+	end
+
+	slot0.addChild(slot0, slot2)
+
+	return 
+end
+slot0.requestRefresh = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Refresh",
+		moduleName = "InnRecruitInfo",
+		methodData = {
+			slot0.innInfo.LockStr
+		},
+		successCallback = function (slot0)
+			slot0.innInfo = slot0
+
+			for slot4, slot5 in pairs(slot0.RecruitInfo) do
+				if not ((table.indexof(slot0.innInfo.LockStr, tonumber(slot4)) and true) or false) then
+					slot0.heroInfoNodes[slot4]:removeFromParent()
+
+					slot7 = slot0:initOneHeroInfoNode({
+						modelId = slot5
+					}, slot4)
+
+					slot7.setPosition(slot7, slot1[slot4])
+					slot0.bgSpr:addChild(slot7)
+
+					slot0.heroInfoNodes[slot4] = slot7
+				end
+			end
+
+			slot0:modifyMiddleCostLabel(#slot0.innInfo.LockStr)
+			slot0:modifyDebirsBar()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRecruitCallback = function (slot0, slot1)
+	if slot0.innInfo.FreeNum == 0 then
+		if slot0.innInfo.LimitNum == 0 then
+			ui.showFlashView("今日剩余宴请次数为0")
+
+			return 
+		end
+
+		if not slot0.resouceIsEnought(slot0, slot1.btnType) then
+			return 
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Recruit",
+		moduleName = "InnRecruitInfo",
+		methodData = {
+			0 < slot0.innInfo.FreeNum
+		},
+		successCallback = function (slot0)
+			slot0.innInfo = slot0
+
+			slot0:dealReward(slot0.ResourceList)
+			slot0:modifyDebirsBar()
+			slot0:modifyRecruitNum(slot0.innInfo.LimitNum)
+			slot0:refreshRecruitCost()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onLockCallback = function (slot0, slot1)
+	slot2 = slot0.refreshCostLabel.lockedNum
+	slot3 = nil
+
+	if slot1.lockStatus then
+		slot3 = -1
+
+		table.removebyvalue(slot0.innInfo.LockStr, slot1.orderId)
+	else
+		if slot2 == 2 then
+			ui.showFlashView("最多可以锁定2位侠客！")
+
+			return 
+		end
+
+		slot3 = 1
+
+		table.insert(slot0.innInfo.LockStr, slot1.orderId)
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Lock",
+		moduleName = "InnRecruitInfo",
+		methodData = {
+			slot0.innInfo.LockStr
+		},
+		successCallback = function (slot0)
+			dump(slot0, "Lock.Value")
+
+			slot0.innInfo = slot0
+			slot1 = slot0 + slot0
+			slot3.lockStatus = not slot3.lockStatus
+
+			if slot3.lockStatus then
+				slot3.lockBg:setTexture("c_21.png")
+			else
+				slot3.lockBg:setTexture("xkwx_22.png")
+			end
+
+			slot0:modifyMiddleCostLabel(slot0.modifyMiddleCostLabel)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

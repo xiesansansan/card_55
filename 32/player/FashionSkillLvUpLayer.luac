@@ -1,0 +1,445 @@
+slot0 = class("FashionSkillLvUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 548,
+				height = 500
+			},
+			titleText = TR("技能升级")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					pos = {
+						x = 121.54,
+						y = 434.07
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 180,
+					image = "c_36.png",
+					pos = {
+						x = 429.45,
+						y = 433.09
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 275,
+						y = 433
+					},
+					text = TR("技能名字名字")
+				},
+				children = {}
+			},
+			{
+				name = "grayBgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 275.12,
+						y = 278.2
+					},
+					size = {
+						width = 447,
+						height = 280
+					}
+				},
+				children = {}
+			},
+			{
+				name = "upBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onUpClickAction",
+					pos = {
+						x = 275.63,
+						y = 65.7
+					},
+					titleText = TR("升级")
+				},
+				children = {}
+			},
+			{
+				name = "resLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					text = "Label",
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 274.74,
+						y = 113.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_34.png",
+					pos = {
+						x = 274.44,
+						y = 352.03
+					},
+					size = {
+						width = 436,
+						height = 106
+					}
+				},
+				children = {
+					{
+						name = "skillIntroLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 90,
+								y = 53
+							},
+							size = {
+								width = 330,
+								height = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "nextSkillBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_34.png",
+					pos = {
+						x = 274.44,
+						y = 205.03
+					},
+					size = {
+						width = 436,
+						height = 106
+					}
+				},
+				children = {
+					{
+						name = "nextSkillIntroLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							text = "Label",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 90,
+								y = 53
+							},
+							size = {
+								width = 330,
+								height = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "arrowSprite",
+				cType = "Sprite",
+				params = {
+					rotationAngle = 180,
+					image = "c_38.png",
+					pos = {
+						x = 275,
+						y = 277
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled27-text",
+						name = "headLv",
+						type = "string"
+					},
+					{
+						value = "untitled31-image",
+						name = "headImage",
+						type = "string"
+					}
+				},
+				params = {
+					scale = 0.9,
+					pos = {
+						x = 95.42,
+						y = 81.45
+					}
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						params = {
+							image = "c_25.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Sprite",
+						params = {
+							image = "sk_100001.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "c_79.png",
+							pos = {
+								x = 0,
+								y = -41
+							}
+						},
+						children = {
+							{
+								name = "untitled27",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									text = "Lv.69",
+									outlineColor = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 30,
+										y = 10
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "warinLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 274,
+						y = 63
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.inPreviewStatus = slot1.inPreviewStatus
+	slot0.layerTitle = slot1.layerTitle
+	slot0.mSkillModelId = slot1.skillModelId or 100002
+	slot0.mSkillLv = slot1.skillLv or 1
+	slot0.mCallBack = slot1.callBack
+	slot0.mIsActive = slot1.isActive
+	slot0.mNeedLv = slot1.needLv or 1
+	slot0.mCombatModelId = slot1.combatModelId or 0
+	slot0.mSkillIndex = slot1.skillIndex or 0
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		return 
+	end)
+
+	if not slot0.mIsActive then
+		slot0.bgBox:setContentSize(cc.size(548, 350))
+
+		for slot5, slot6 in ipairs(slot1) do
+			slot6.setPositionY(slot6, slot6.getPositionY(slot6) - 150)
+		end
+
+		slot0.grayBgSprite:setContentSize(cc.size(447, 140))
+		slot0.grayBgSprite:setPositionY(190)
+		slot0.warinLabel:setPositionY(80)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot2 = FashionSkillConfig.items[slot0.mSkillIndex][slot0.mSkillLv] or {}.lvUpNeed
+
+	slot0.nameLabel:setString(slot3)
+	slot0.skillIntroLabel:setString(slot5)
+
+	slot6 = slot0.createLayoutTemplateNode(slot0, "skillNode", {
+		headImage = SkillModel.items[slot0.mSkillModelId].skillPic .. ".png",
+		headLv = slot0.mSkillLv
+	})
+
+	slot6.setPosition(slot6, 45, 55)
+	slot0.skillBg:addChild(slot6)
+
+	if not slot0.mIsActive then
+		slot0.arrowSprite:setVisible(false)
+		slot0.resLabel:setVisible(false)
+		slot0.upBtn:setVisible(false)
+		slot0.nextSkillBg:setVisible(false)
+		slot0.warinLabel:setVisible(true)
+		slot0.warinLabel:setString(TR("九阴修炼至%s阶解锁", slot0.mNeedLv))
+
+		return 
+	end
+
+	if slot2 == "" then
+		slot0.warinLabel:setVisible(true)
+		slot0.warinLabel:setString(TR("已经达到最大等级"))
+		slot0.arrowSprite:setVisible(false)
+		slot0.resLabel:setVisible(false)
+		slot0.upBtn:setVisible(false)
+		slot0.nextSkillBg:setVisible(false)
+
+		return 
+	end
+
+	slot0.nextSkillIntroLabel:setString(slot7)
+
+	slot8 = slot0.createLayoutTemplateNode(slot0, "skillNode", {
+		headImage = slot4,
+		headLv = (slot2 == "" and slot0.mSkillLv) or slot0.mSkillLv + 1
+	})
+
+	slot8.setPosition(slot8, 45, 55)
+	slot0.nextSkillBg:addChild(slot8)
+
+	slot9 = ""
+
+	for slot14, slot15 in ipairs(slot10) do
+		slot9 = slot9 .. string.format("{%s}%s / %s   ", Resource.getDaibiImg(slot15.resourceId), string.format("%s%s%s", (slot15.num <= Resource.getCount(slot15.resourceId) and "#313131") or "#ff4a46", Utility.numberWithUnit(slot16), "#313131"), slot15.num)
+	end
+
+	slot0.resLabel:setString(TR("升级花费:%s", slot9))
+
+	return 
+end
+slot0.onUpClickAction = function (slot0, slot1)
+	slot2 = FashionSkillConfig.items[slot0.mSkillIndex][slot0.mSkillLv] or {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		if not Resource.isEnough(slot8.resourceId, slot8.num, true) then
+			return 
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "SkillLevelUp",
+		moduleName = "Fashion",
+		methodData = {
+			slot0.mSkillIndex
+		},
+		successCallback = function (slot0)
+			slot0.mSkillLv = slot0.SkillList.Level or 1
+
+			slot0:refreshUI()
+
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			ui.showFlashView(TR("恭喜升级成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

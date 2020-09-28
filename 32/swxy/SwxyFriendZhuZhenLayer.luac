@@ -1,0 +1,896 @@
+slot0 = class("SwxyFriendZhuZhenLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 580,
+				height = 500
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 305.57,
+						y = 487.73
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 144.5,
+								y = 16.38
+							},
+							text = TR("好友助阵")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "myTabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onSelectAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("支援我的")
+						},
+						{
+							title = TR("我的支援")
+						}
+					},
+					btnSize = {
+						width = 135,
+						height = 40
+					},
+					pos = {
+						x = 27.91,
+						y = 419.68
+					},
+					size = {
+						width = 300,
+						height = 40
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 289.31,
+						y = 232.22
+					},
+					size = {
+						width = 530,
+						height = 370
+					}
+				},
+				children = {}
+			},
+			{
+				name = "node1",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 411.87,
+						y = 234.29
+					}
+				},
+				children = {
+					{
+						name = "untitled43",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -124,
+								y = -199.52
+							},
+							text = TR("超出最强侠客战力150%的支援侠客不可选择")
+						},
+						children = {}
+					},
+					{
+						name = "list1",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = -383.96,
+								y = -186.88
+							},
+							size = {
+								width = 525,
+								height = 365
+							}
+						},
+						children = {
+							{
+								name = "rankLayout1",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled17-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "untitled18-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "untitled19-text",
+										name = "fap",
+										type = "string"
+									},
+									{
+										value = "untitled20-text",
+										name = "friend",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 520,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled16",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_106.png",
+											pos = {
+												x = 260,
+												y = 50
+											},
+											size = {
+												width = 520,
+												height = 95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 65,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 140,
+												y = 75
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled19",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 140,
+												y = 50
+											},
+											text = TR("战力")
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 140,
+												y = 25
+											},
+											text = TR("来自")
+										},
+										children = {}
+									},
+									{
+										name = "untitled21",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											childName = "btn",
+											pos = {
+												x = 448,
+												y = 50
+											},
+											titleText = TR("选择")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "haoyouTips",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -106,
+								y = 17.48
+							},
+							text = TR("暂无好友助阵武将!")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "node2",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 411.87,
+						y = 234.29
+					}
+				},
+				children = {
+					{
+						name = "untitled44",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -125,
+								y = -199.52
+							},
+							text = TR("每日派出支援侠客可随机获得一份奖励")
+						},
+						children = {}
+					},
+					{
+						name = "list2",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = -384.96,
+								y = -183.88
+							},
+							size = {
+								width = 525,
+								height = 205
+							}
+						},
+						children = {
+							{
+								name = "rankLayout2",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled26-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "untitled27-text",
+										name = "name",
+										type = "string"
+									},
+									{
+										value = "untitled28-text",
+										name = "fap",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 520,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled25",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_106.png",
+											pos = {
+												x = 260,
+												y = 50
+											},
+											size = {
+												width = 520,
+												height = 95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled26",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 65,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 140,
+												y = 62
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled28",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 140,
+												y = 37
+											},
+											text = TR("战力")
+										},
+										children = {}
+									},
+									{
+										name = "untitled30",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											childName = "btn",
+											pos = {
+												x = 437,
+												y = 50
+											},
+											titleText = TR("选择")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled31",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -267.11,
+								y = 34
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled32",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 17,
+								y = 34
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -124.3,
+								y = 34
+							},
+							text = TR("可选侠客")
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -266.11,
+								y = 164
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 18,
+								y = 164
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled36",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -123.3,
+								y = 164
+							},
+							text = TR("当前已选")
+						},
+						children = {}
+					},
+					{
+						name = "bg",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_106.png",
+							pos = {
+								x = -125.25,
+								y = 100.36
+							},
+							size = {
+								width = 525,
+								height = 95
+							}
+						},
+						children = {
+							{
+								name = "myCardInfo",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 65,
+										y = 47
+									}
+								},
+								children = {}
+							},
+							{
+								name = "myName",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 135,
+										y = 59
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "myFap",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 135,
+										y = 34
+									},
+									text = TR("战力")
+								},
+								children = {}
+							},
+							{
+								name = "tips",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 168,
+										r = 139,
+										b = 87
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 493,
+										y = 46
+									},
+									text = TR("已派遣支援好友")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "des",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -124.02,
+								y = 98.18
+							},
+							text = TR("暂未派遣助阵侠客，每日只可派遣一位助阵侠客")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.curIdx = 1
+	slot0.mNode1Data = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestNode1Info(slot0)
+	slot0.requestNode2Info(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	for slot5, slot6 in ipairs(slot1) do
+		if slot5 == 2 then
+			slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+				subKey = "SupportNum",
+				moduleId = ModuleSub.eBoundary
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onSelectAction = function (slot0, slot1)
+	slot0.curIdx = slot1
+
+	slot0.node1:setVisible(slot0.curIdx == 1)
+	slot0.node2:setVisible(slot0.curIdx == 2)
+
+	if slot0.curIdx == 1 then
+		slot0.refreeNode1(slot0)
+	elseif slot0.curIdx == 2 then
+		slot0.refreeNode2(slot0)
+	end
+
+	return 
+end
+slot0.refreeNode1 = function (slot0)
+	slot0.list1:removeAllItems()
+
+	if #slot0.mNode1Data <= 0 then
+		return 
+	end
+
+	for slot4, slot5 in ipairs(slot0.mNode1Data) do
+		slot0.list1:pushBackCustomItem(slot6)
+		slot0.createLayoutTemplateNode(slot0, "rankLayout1", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot5.ModelId
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder
+				}
+			},
+			fap = TR("战力:%s", Utility.numberWithUnit(slot5.Fap)),
+			name = HeroModel.items[slot5.ModelId].name,
+			friend = TR("来自好友 %s", slot5.FriendPlayer)
+		}).btn:setClickAction(function ()
+			if slot0.Status then
+				slot1:cancelMyUseHero(slot0.FriendId, slot0.ModelId)
+			else
+				slot1:setMyUseHero(slot0.FriendId, slot0.ModelId)
+			end
+
+			return 
+		end)
+		slot6.btn:setTitleText((not slot5.Status and TR("选择")) or TR("取消选择"))
+	end
+
+	return 
+end
+slot0.refreeNode2 = function (slot0)
+	slot0.list2:removeAllItems()
+
+	for slot4, slot5 in ipairs(slot0.mNode2Data) do
+		slot0.list2:pushBackCustomItem(slot6)
+		slot0.createLayoutTemplateNode(slot0, "rankLayout2", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot5.HeroId
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder
+				}
+			},
+			fap = TR("战力:%s", Utility.numberWithUnit(slot5.Fap)),
+			name = HeroModel.items[slot5.HeroId].name
+		}).btn:setClickAction(function ()
+			slot0:setMyZhuZhenHero(slot1.HeroId)
+
+			return 
+		end)
+	end
+
+	slot0.des:setVisible(#slot0.mNode2DataOld <= 0)
+	slot0.bg:setVisible(0 < #slot0.mNode2DataOld)
+
+	if 0 < #slot0.mNode2DataOld then
+		slot0.myCardInfo:setCardData({
+			modelId = slot0.mNode2DataOld[1].HeroId
+		}, {
+			Enums.CardShowAttr.eBorder
+		})
+		slot0.myName:setString(TR("%s", HeroModel.items[slot0.mNode2DataOld[1].HeroId].name))
+		slot0.myFap:setString(TR("战力:%s", Utility.numberWithUnit(slot0.mNode2DataOld[1].Fap)))
+	end
+
+	return 
+end
+slot0.requestNode1Info = function (slot0, ...)
+	slot0.socketRequest(slot0, {
+		methodName = "GetMyFriendHero",
+		moduleName = "Boundary",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "=====mNode1Data===")
+
+			slot0.mNode1Data = slot0.FirendHeroList
+
+			slot0.haoyouTips:setVisible(#slot0.mNode1Data <= 0)
+			slot0:refreeNode1()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestNode2Info = function (slot0, ...)
+	slot0.socketRequest(slot0, {
+		methodName = "GetMySupportHero",
+		moduleName = "Boundary",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mNode2DataOld = slot0.CurrentSupportHero
+			slot0.mNode2Data = slot0.CanSupportHeroList
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.setMyZhuZhenHero = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "SetMySupportHero",
+		moduleName = "Boundary",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mNode2DataOld = slot0.CurrentSupportHero
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0:refreeNode2()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.setMyUseHero = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "SetMyFriendHero",
+		moduleName = "Boundary",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			dump(slot0, "=====setMyUseHero===")
+
+			slot0.mNode1Data = slot0.FirendHeroList
+
+			slot0:refreeNode1()
+			EventAuto:postEvent("eSWXYZHUZHENEVENT", {
+				exHeroId = slot0.mNode1Data[1],
+				exPlayerId = slot1
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.cancelMyUseHero = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "CancelSetMyFriendHero",
+		moduleName = "Boundary",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			dump(slot0, "=====setMyUseHero===")
+
+			slot0.mNode1Data = slot0.FirendHeroList
+
+			slot0:refreeNode1()
+			EventAuto:postEvent("eCANCLESWXYZHUZHENEVENT")
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

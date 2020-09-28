@@ -1,0 +1,782 @@
+slot0 = class("GuildJobInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 500,
+				height = 400
+			},
+			titleText = TR("官职信息")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 247.89,
+						y = 241.06
+					},
+					size = {
+						width = 433.77,
+						height = 240
+					}
+				},
+				children = {}
+			},
+			{
+				name = "needOutTime",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					hide = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					pos = {
+						x = 248.8,
+						y = 104.25
+					},
+					text = TR("需要帮主离线72小时后方可挑战【当已离线】")
+				},
+				children = {}
+			},
+			{
+				name = "operaBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onOperatBtn",
+					pos = {
+						x = 248,
+						y = 78
+					},
+					titleText = TR("撤销官职")
+				},
+				children = {}
+			},
+			{
+				name = "pkBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onClickPkBtn",
+					pos = {
+						x = 248,
+						y = 78
+					},
+					titleText = TR("挑 战")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.25,
+						y = 337.47
+					},
+					text = TR("官    职：")
+				},
+				children = {}
+			},
+			{
+				name = "posLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 165,
+						y = 337.47
+					},
+					text = TR("官职")
+				},
+				children = {}
+			},
+			{
+				name = "playerNameLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 165,
+						y = 305.47
+					},
+					text = TR("现任")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.25,
+						y = 305.47
+					},
+					text = TR("现任官员：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.25,
+						y = 274.47
+					},
+					text = TR("战    力：")
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 165,
+						y = 274.47
+					},
+					text = TR("战力")
+				},
+				children = {}
+			},
+			{
+				name = "contributionLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 165,
+						y = 245
+					},
+					text = TR("贡献")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.25,
+						y = 245
+					},
+					text = TR("帮派贡献：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 47.25,
+						y = 216
+					},
+					text = TR("官职加成：")
+				},
+				children = {}
+			},
+			{
+				name = "timeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 249.2,
+						y = 42.69
+					},
+					text = TR("冷却倒计时")
+				},
+				children = {}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 95,
+						r = 95,
+						b = 95
+					},
+					pos = {
+						x = 249.23,
+						y = 77.54
+					},
+					text = TR("当前官职体系尚未解锁")
+				},
+				children = {}
+			},
+			{
+				name = "ownFeats",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 30,
+						y = 42
+					},
+					text = TR("当前贡献:")
+				},
+				children = {}
+			},
+			{
+				name = "vipLabel",
+				cType = "Label",
+				params = {
+					text = "/1",
+					charCount = 11,
+					isRichText = true,
+					startChar = 47,
+					fontName = "c_102.png",
+					pos = {
+						x = 356.1,
+						y = 305.58
+					}
+				},
+				children = {}
+			},
+			{
+				name = "addFrendBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onAddFriendBtn",
+					pos = {
+						x = 248,
+						y = 78
+					},
+					titleText = TR("添加好友")
+				},
+				children = {}
+			},
+			{
+				name = "addListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 151.05,
+						y = 134.73
+					},
+					size = {
+						width = 310,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "addLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled20-text",
+								name = "tempStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 310,
+								height = 25
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 16,
+										y = 12.5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPosId = slot1.posId
+	slot0.mPositionInfo = slot1.positionInfo or {}
+	slot0.mCallBack = slot1.callBack
+	slot0.mSeriesId = slot1.seriesId
+	slot0.mGuildInfo = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+	slot0.mMyFeats = PlayerAttrObj:getPlayerAttrByName("TotalFeats")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.posLabel:setString(GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId].positionName)
+
+	slot2 = {}
+
+	if Utility.analysisStrResList(GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId].dailyReward) and next(slot3) ~= nil then
+		for slot7, slot8 in ipairs(slot3) do
+			table.insert(slot2, TR("每日奖励%s %s", Resource.getName(slot8.resourceId), slot8.num))
+		end
+	end
+
+	if GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId] then
+		table.insert(slot2, TR("庄园铜币产出+%s%%", slot4.territoryGoldUp*100))
+		table.insert(slot2, TR("庄园粮草产出+%s%%", slot4.territoryVitUp*100))
+
+		if slot4.ifFire then
+			table.insert(slot2, TR("拥有集火武林门派特权"))
+		end
+	end
+
+	if 0 < slot1.cityWarRebornTimes then
+		table.insert(slot2, TR("帮战复活次数 +%s", slot1.cityWarRebornTimes))
+	end
+
+	for slot8, slot9 in ipairs(slot2) do
+		slot0.addListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "addLayout", {
+			tempStr = slot9
+		}))
+	end
+
+	slot0.ownFeats:setString(TR("当前贡献：%s", slot0.mMyFeats))
+	slot0.ownFeats:setVisible(slot1.positionType == 1)
+
+	if slot0.mGuildInfo.Type == 1 then
+		slot0.pkBtn:setVisible(true)
+		slot0.operaBtn:setVisible(false)
+	else
+		slot0.pkBtn:setVisible(false)
+
+		if slot0.mPosId == 1 then
+			slot0.operaBtn:setVisible(false)
+		end
+
+		slot0.timeLabel:setVisible(false)
+	end
+
+	if next(slot0.mPositionInfo) == nil then
+		slot0.playerNameLabel:setString(TR("空闲中"))
+		slot0.vipLabel:setVisible(false)
+		slot0.fapLabel:setString(TR("无"))
+		slot0.contributionLabel:setString(TR("无"))
+		slot0.operaBtn:setTitleText(TR("任命官职"))
+		slot0.timeLabel:setVisible(false)
+	else
+		slot0.operaBtn:setTitleText(TR("撤销官职"))
+		slot0.playerNameLabel:setString(slot0.mPositionInfo.Name)
+		slot0.vipLabel:setString(string.format("/%s", slot0.mPositionInfo.Vip))
+		slot0.fapLabel:setString(Utility.numberWithUnit(slot0.mPositionInfo.Fap))
+		slot0.contributionLabel:setString(slot0.mPositionInfo.FeatsTotal)
+		slot0.operaBtn:setPositionX(145)
+		slot0.pkBtn:setPositionX(145)
+		slot0.vipLabel:setPosition(slot0.playerNameLabel:getContentSize().width + 185, 305)
+
+		if slot0.mGuildInfo.Type == 1 then
+			slot6 = slot0.mPositionInfo.PKTime + GuildConfig.items[1].positionChangeCd
+
+			Utility.schedule(slot0.timeLabel, function ()
+				if 0 < slot0 - Player:getCurrentTime() then
+					slot1.pkBtn:setEnabled(false)
+					slot1.pkBtn.setEnabled.timeLabel:setString(TR("倒计时：%s%s", "#ea2c00", MqTime.formatAsDay(slot0)))
+				else
+					slot1.timeLabel:stopAllActions()
+					slot1.timeLabel.stopAllActions.timeLabel:setVisible(false)
+				end
+
+				return 
+			end, 1)
+
+			if PlayerAttrObj:isPlayerSelf(slot0.mPositionInfo.PlayerId) then
+				slot0.pkBtn:setVisible(false)
+				slot0.timeLabel:setVisible(false)
+			else
+				slot0.pkBtn:setVisible(true)
+
+				if slot0.mPositionInfo.PositionId == 1 and math.abs(slot0.mPositionInfo.OutTime) <= 172800 then
+					slot0.pkBtn:setEnabled(false)
+				end
+			end
+		end
+	end
+
+	if slot0.mGuildInfo.PositionId ~= 0 then
+		slot6 = GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId].positionLv
+
+		if GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mGuildInfo.PositionId].positionLv <= 2 and slot5 < slot6 then
+			slot0.operaBtn:setVisible(true)
+		else
+			slot0.operaBtn:setVisible(false)
+		end
+	else
+		slot0.operaBtn:setVisible(false)
+	end
+
+	if slot0.mGuildInfo.PositionSeriesId < slot0.mSeriesId then
+		slot0.tipLabel:setVisible(true)
+		slot0.pkBtn:setVisible(false)
+		slot0.operaBtn:setVisible(false)
+	end
+
+	slot5 = slot0.operaBtn:isVisible() or slot0.pkBtn:isVisible()
+
+	slot0.addFrendBtn:setVisible(not (slot0.mPositionInfo.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId")) and Utility.isEntityId(slot0.mPositionInfo.PlayerId))
+
+	if slot5 and not slot7 and slot8 then
+		slot0.pkBtn:setPositionX(148)
+		slot0.operaBtn:setPositionX(148)
+		slot0.addFrendBtn:setPositionX(348)
+	else
+		slot0.pkBtn:setPositionX(248)
+		slot0.operaBtn:setPositionX(248)
+		slot0.addFrendBtn:setPositionX(248)
+	end
+
+	return 
+end
+slot0.onClickPkBtn = function (slot0)
+	slot1 = GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId]
+
+	if slot0.mPosId == 1 then
+		if slot0.mMyFeats <= slot0.mPositionInfo.FeatsTotal then
+			ui.showFlashView(TR("贡献值低于对方，无法竞选！"))
+		else
+			ui.showCampReady({
+				noNeedVit = true,
+				callback = function (slot0)
+					slot0:requestPkPosition(table.concat(slot0, ","))
+
+					return 
+				end
+			})
+		end
+
+		return 
+	end
+
+	slot2 = GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mGuildInfo.PositionId]
+
+	if next(slot0.mPositionInfo) == nil then
+		if slot0.mGuildInfo.PositionId ~= 0 and slot2.positionLv < slot1.positionLv then
+			ui.showMessageBox({
+				text = TR("您当前的职位高于此职位，是否确认挑战?"),
+				okCallback = function ()
+					slot0:requestPkPosition()
+
+					return 
+				end,
+				cancelCallback = function ()
+					return 
+				end
+			})
+		else
+			slot0.requestPkPosition(slot0)
+		end
+	elseif slot0.mGuildInfo.PositionId ~= 0 and slot2.positionLv < slot1.positionLv then
+		ui.showMessageBox({
+			text = TR("您当前的职位高于此职位，是否确认挑战?"),
+			okCallback = function ()
+				if slot0.positionType == 1 then
+					if slot1.mMyFeats <= slot1.mPositionInfo.FeatsTotal then
+						ui.showFlashView(TR("贡献值低于对方，无法竞选！"))
+
+						return 
+					end
+
+					slot1:requestPkPosition()
+				else
+					ui.showCampReady({
+						noNeedVit = true,
+						callback = function (slot0)
+							slot0:requestPkPosition(table.concat(slot0, ","))
+
+							return 
+						end
+					})
+				end
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	elseif slot1.positionType == 1 then
+		if slot0.mMyFeats <= slot0.mPositionInfo.FeatsTotal then
+			ui.showFlashView(TR("贡献值低于对方，无法竞选！"))
+
+			return 
+		end
+
+		slot0.requestPkPosition(slot0)
+	else
+		ui.showCampReady({
+			noNeedVit = true,
+			callback = function (slot0)
+				slot0:requestPkPosition(table.concat(slot0, ","))
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onAddFriendBtn = function (slot0)
+	if FriendObj:playerIsFriend(slot0.mPositionInfo.PlayerId) then
+		ui.showFlashView(TR("已添加该好友"))
+
+		return 
+	else
+		FriendObj:requestFriendApply(slot1)
+	end
+
+	return 
+end
+slot0.onOperatBtn = function (slot0)
+	slot2 = GuildPositionRelation.items[slot0.mSeriesId][slot0.mPosId].positionLv
+
+	if 2 < GuildPositionRelation.items[slot0.mGuildInfo.PositionSeriesId][slot0.mGuildInfo.PositionId].positionLv then
+		ui.showFlashView("无权操作")
+
+		return 
+	end
+
+	if slot2 <= slot1 then
+		ui.showFlashView("您的帮派职位权限不足，无法进行该操作")
+
+		return 
+	end
+
+	if next(slot0.mPositionInfo) ~= nil then
+		slot0.requestPostChange(slot0)
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "guild.GuildSetJobLayer",
+			data = {
+				targetPosId = slot0.mPosId,
+				callBack = function ()
+					if slot0.mCallBack then
+						slot0.mCallBack()
+					end
+
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.requestPkPosition = function (slot0, slot1)
+	dump(slot0.mPosId, "??????")
+	slot0.socketRequest(slot0, {
+		methodName = "PkPosition",
+		moduleName = "Guild",
+		methodData = {
+			slot0.mPosId,
+			slot1 or ""
+		},
+		successCallback = function (slot0)
+			dump(slot0, "pk竞争职位")
+
+			if slot0 and slot0.FightInfo then
+				require("common.BattleEntry"):StartBattle({
+					fightInfo = slot0.FightInfo,
+					extraData = {}
+				})
+			else
+				if slot0 and slot0.IsWin == false then
+					ui.showFlashView(TR("挑战失败"))
+
+					return 
+				end
+
+				ui.showFlashView(TR("挑战成功"))
+
+				if slot0.mCallBack then
+					slot0.mCallBack()
+				end
+
+				LayerManager.removeLayer(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPostChange = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "PostChange",
+		moduleName = "Guild",
+		methodData = {
+			slot0.mPositionInfo.PlayerId,
+			0
+		},
+		successCallback = function (slot0)
+			if slot0.mPosId == 2 or slot0.mPosId == 3 then
+				ChatMng:sendMessage({
+					channel = Enums.ChatChanne.eGuild,
+					text = TR("%s副帮主职位被撤销，大家快来竞争吧", slot0.mPositionInfo.Name)
+				})
+			end
+
+			if slot0.mCallBack then
+				slot0.mCallBack()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

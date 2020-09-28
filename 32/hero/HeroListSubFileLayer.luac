@@ -1,0 +1,475 @@
+slot0 = class("HeroListSubFileLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mParentNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 4,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_50.png",
+					pos = {
+						x = 0,
+						y = 62
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProgressBarBg",
+				cType = "Sprite",
+				params = {
+					image = "jyt_11.png",
+					pos = {
+						x = -20,
+						y = 43
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled15",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_49.png",
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					pos = {
+						x = -140.44,
+						y = 87.77
+					}
+				},
+				children = {
+					{
+						name = "mFapLabel",
+						cType = "Label",
+						params = {
+							text = "10000000",
+							charCount = 12,
+							scale = 0.7,
+							align = 0,
+							fontName = "c_81.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 99.93,
+								y = 4.67
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mLvLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -308.91,
+						y = 71.56
+					},
+					text = TR("100级")
+				},
+				children = {}
+			},
+			{
+				name = "mFlashLabel",
+				cType = "Label",
+				params = {
+					fontSize = 27,
+					text = "",
+					color = {
+						g = 242,
+						r = 60,
+						b = 64
+					},
+					pos = {
+						x = 0,
+						y = 329.86
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mIconSprite",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_53.png",
+					pos = {
+						x = -370,
+						y = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "cbClickOpenHeroFapLayer",
+					pos = {
+						x = -345.69,
+						y = 59.15
+					},
+					size = {
+						width = 120,
+						height = 105
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mButton",
+				cType = "Button",
+				params = {
+					image = "xkxx_52.png",
+					clickAudio = "\"\"",
+					pos = {
+						x = 352,
+						y = 55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "illBtn",
+				cType = "Button",
+				params = {
+					image = "tj_17.png",
+					clickAction = "onGoToTujian",
+					pos = {
+						x = 495,
+						y = 58.22
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "RedDot",
+						params = {
+							moduleId = 2616
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	dump(slot1)
+
+	slot0.mType = slot1.type
+	slot0.mInitData = slot1.data
+	slot0.guideCallBack = slot1.callBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.mType == 1 then
+		slot0.requestGetInfo(slot0)
+	elseif slot0.mType == 2 then
+		slot0.mLvLabel:setString(TR("%s级", slot0.mInitData.cur))
+		slot0.refreshFap(slot0, slot0.mInitData)
+	end
+
+	EventAuto:registerAutoEvent(slot0.mLvLabel, EventDefine.eTotalFapLevelUp, function (slot0, slot1)
+		if not slot1.cur then
+			slot1.cur = slot0.mCurrentLv
+		else
+			slot0.mCurrentLv = slot1.cur
+			slot0.mCurrentFap = slot1.fap
+		end
+
+		slot0:refreshFap(slot1)
+
+		if slot1.pre then
+			slot0:updateLvLabelWithAnimation(slot1)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshFap = function (slot0, slot1)
+	if slot1.fap ~= PlayerAttrObj:getPlayerAttrByName("TotalFap") then
+		slot1.fap = slot2
+	end
+
+	slot0.mFapLabel:setString(slot1.fap)
+
+	slot3 = 0
+
+	for slot7, slot8 in ipairs(TotalfapConfig.items) do
+		if slot1.fap < slot8.needTotalFap then
+			slot3 = slot8.Lv - 1
+
+			break
+		elseif slot1.fap == slot8.needTotalFap then
+			slot3 = slot8.Lv
+
+			break
+		elseif TotalfapConfig.items[slot7 + 1] then
+			if slot1.fap < TotalfapConfig.items[slot7 + 1].needTotalFap then
+				slot3 = slot8.Lv
+
+				break
+			end
+		else
+			slot3 = slot8.Lv
+
+			break
+		end
+	end
+
+	slot4 = 0
+	slot5 = 0
+
+	if slot1.cur == 0 then
+		slot4 = TotalfapConfig.items[1].needTotalFap
+		slot5 = slot1.fap
+	elseif slot1.cur == TotalfapConfig.items_count then
+		slot4 = 1
+		slot5 = 1
+	else
+		slot4 = TotalfapConfig.items[slot1.cur + 1].needTotalFap - TotalfapConfig.items[slot1.cur].needTotalFap
+		slot5 = slot1.fap - TotalfapConfig.items[slot1.cur].needTotalFap
+	end
+
+	if slot0.mProgressBarBg and not tolua.isnull(slot0.mProgressBarBg) then
+		slot0.mProgressBarBg:removeFromParent()
+
+		slot0.mProgressBarBg = nil
+	end
+
+	if not slot0.mProgressBarBg then
+		slot0.mProgressBarBg = UIWrap.newControl("Sprite", {
+			image = "jyt_11.png",
+			pos = cc.p(-20, 43)
+		})
+
+		slot0.mParentNode:addChild(slot0.mProgressBarBg)
+
+		slot7 = UIWrap.newControl("ProgressBar", {
+			normalImage = "jyt_12.png",
+			pos = cc.p(display.loadImage("jyt_12.png"):getContentSize().width/2, display.loadImage("jyt_12.png").getContentSize().height/2)
+		})
+
+		slot0.mProgressBarBg:addChild(slot7)
+		slot7.setMaxValue(slot7, slot4)
+		slot7.setCurrValue(slot7, slot5)
+		slot0.mProgressBarBg:addChild(UIWrap.newControl("Label", {
+			fontSize = 20,
+			text = string.format("%d/%d", slot5, slot4),
+			pos = cc.p(349, 16),
+			color = cc.c3b(255, 248, 234),
+			outlineColor = cc.c3b(51, 42, 24),
+			anchor = cc.p(1, 0.5)
+		}))
+	end
+
+	if slot0.mButton and not tolua.isnull(slot0.mButton) then
+		slot0.mButton:removeFromParent()
+
+		slot0.mButton = nil
+	end
+
+	slot0.mButton = UIWrap.newControl("Button", {
+		image = "xkxx_52.png",
+		pos = cc.p(352, 55),
+		clickAction = function ()
+			function slot0()
+				if slot0.mType == 1 then
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "hero.DlgHeroFapLayer",
+						data = {
+							curLv = slot1.cur,
+							curFap = slot1.fap,
+							guideCallBack = function ()
+								if slot0.guideCallBack then
+									slot0.guideCallBack()
+								end
+
+								return 
+							end
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				end
+
+				return 
+			end
+
+			if slot1.cur < slot2 then
+				slot0:requestLevelUp(slot1.cur, function ()
+					slot0()
+
+					return 
+				end)
+			else
+				slot0()
+
+				if slot0.mType == 2 then
+					ui.showFlashView(TR("不可升级"))
+				end
+			end
+
+			return 
+		end
+	})
+
+	slot0.mParentNode:addChild(slot0.mButton)
+
+	if slot0.mIconSprite and not tolua.isnull(slot0.mIconSprite) then
+		slot0.mIconSprite:removeFromParent()
+
+		slot0.mIconSprite = nil
+	end
+
+	slot0.mIconSprite = UIWrap.newControl("Sprite", {
+		image = "xkxx_53.png",
+		pos = cc.p(-370, 50)
+	})
+
+	slot0.mParentNode:addChild(slot0.mIconSprite)
+
+	slot0.level = slot3
+	slot0.cur = slot1.cur
+
+	slot0.mButton:addChild(UIWrap.newControl("RedDot", {
+		moduleId = ModuleSub.eTotalFap
+	}))
+
+	return 
+end
+slot0.updateLvLabelWithAnimation = function (slot0, slot1)
+	slot2 = slot1.cur
+
+	if not slot1.pre or not slot2 then
+		return 
+	end
+
+	if slot0.scheduleHandle then
+		slot0.stopAction(slot0, slot0.scheduleHandle)
+
+		slot0.scheduleHandle = nil
+	end
+
+	slot5 = 1
+	slot0.scheduleHandle = Utility.schedule(slot0, function (slot0)
+		if 20 < slot0 + 1 then
+			slot1.mLvLabel:setString(string.format("%d级", slot1.mLvLabel))
+			slot1.mLvLabel.setString:stopAction(slot1.scheduleHandle)
+
+			slot1.mLvLabel.setString.stopAction.scheduleHandle = nil
+		else
+			slot1.mLvLabel:setString(string.format("%d级", slot3 + ((slot2 - slot3)*slot0)/20))
+		end
+
+		return 
+	end, 0.5/20)
+
+	slot0.mFlashLabel:setString(string.format("+%d", slot2 - slot3))
+	slot0.mFlashLabel:runAction(cc.Sequence:create(cc.DelayTime:create(0.05), cc.MoveBy:create(0.5, cc.p(0, 60)), cc.FadeOut:create(0.1)))
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TotalfapInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mCurrentLv = slot0.Level
+			slot0.mCurrentFap = slot0.TotalFap
+
+			slot0.mLvLabel:setString(TR("%s级", slot0.Level))
+			slot0:refreshFap({
+				cur = slot0.Level,
+				fap = slot0.TotalFap
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLevelUp = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "LevelUp",
+		moduleName = "TotalfapInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			MqAudio.playEffect("wumuyishu.mp3")
+
+			if slot0 then
+				slot0()
+			end
+
+			slot1.mCurrentLv = slot0.Level
+			slot1.mCurrentFap = slot0.TotalFap
+
+			EventAuto:postEvent(EventDefine.eTotalFapLevelUp, {
+				pre = slot2,
+				cur = slot0.Level,
+				fap = slot0.TotalFap
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.cbClickOpenHeroFapLayer = function (slot0)
+	if slot0.mType == 1 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "hero.DlgHeroFapLayer",
+			data = {
+				curLv = slot0.mCurrentLv,
+				curFap = slot0.mCurrentFap
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onGoToTujian = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eTujian)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,1086 @@
+slot0 = class("DiscardHomeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkzw_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "zj_118.png",
+					pos = {
+						x = -178.33,
+						y = -1.98
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Label",
+				params = {
+					pos = {
+						x = -204.49,
+						y = -155.26
+					},
+					text = TR("未激活的称号、时装、阵法不可献祭")
+				},
+				children = {}
+			},
+			{
+				name = "expLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					emptyInit = true,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = -204.49,
+						y = -217.26
+					},
+					text = TR("归元鼎经验")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "zj_120.png",
+					pos = {
+						x = -185.22,
+						y = 222.83
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 111.57,
+								y = 18.95
+							},
+							text = TR("归元鼎等级：")
+						},
+						children = {}
+					},
+					{
+						name = "curLvLabel",
+						cType = "Label",
+						params = {
+							text = "100",
+							emptyInit = true,
+							fontName = "xkxx_48.png",
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 166.76,
+								y = 17.9
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_9.png",
+					pos = {
+						x = 296.9,
+						y = -0.19
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 231.75,
+								y = 474.83
+							},
+							text = TR("最终效果加成")
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "c_36.png",
+									pos = {
+										x = -85,
+										y = 11
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									reverse = 1,
+									image = "c_36.png",
+									pos = {
+										x = 214,
+										y = 11
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled16",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					pos = {
+						x = 297.13,
+						y = -97.99
+					},
+					size = {
+						width = 422,
+						height = 192
+					}
+				},
+				children = {
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onGridAction",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 4,
+							celHeight = 110,
+							pos = {
+								x = 210,
+								y = 96
+							},
+							size = {
+								width = 400,
+								height = 180
+							}
+						},
+						children = {}
+					},
+					{
+						name = "gridNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "cardNode-clickAction",
+								name = "clickAction",
+								type = "string"
+							}
+						},
+						params = {
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 86.67,
+								y = 113.63
+							}
+						},
+						children = {
+							{
+								name = "cardNode",
+								cType = "CardNode",
+								params = {
+									clickAction = "onGridAction",
+									allowClick = true,
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "selectSprite",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_41.png",
+									hide = true,
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 80,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "Sprite",
+										params = {
+											image = "c_44.png",
+											pos = {
+												x = 40,
+												y = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "attrNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled31-text",
+						name = "curLvStr",
+						type = "string"
+					},
+					{
+						value = "untitled33-text",
+						name = "fashStr",
+						type = "string"
+					},
+					{
+						value = "untitled32-text",
+						name = "titleStr",
+						type = "string"
+					},
+					{
+						value = "untitled36-text",
+						name = "attr1",
+						type = "string"
+					},
+					{
+						value = "untitled35-text",
+						name = "attr2",
+						type = "string"
+					},
+					{
+						value = "untitled30-text",
+						name = "attr3",
+						type = "string"
+					},
+					{
+						value = "untitled41-hide|untitled42-hide|untitled40-hide|untitled39-hide|untitled38-hide",
+						name = "ishideArrow",
+						type = "string"
+					},
+					{
+						value = "untitled33-color|untitled32-color|untitled36-color|untitled35-color|untitled30-color",
+						name = "color",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 102.02,
+						y = 169.36
+					}
+				},
+				children = {
+					{
+						name = "untitled31",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							childName = "nameLabel",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 81.77,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -39
+							},
+							text = TR("加成")
+						},
+						children = {}
+					},
+					{
+						name = "untitled32",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -69
+							},
+							text = TR("加成")
+						},
+						children = {}
+					},
+					{
+						name = "untitled36",
+						cType = "Label",
+						params = {
+							childName = "attr1",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -98
+							},
+							text = TR("加成")
+						},
+						children = {}
+					},
+					{
+						name = "untitled35",
+						cType = "Label",
+						params = {
+							childName = "attr2",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -126
+							},
+							text = TR("加成")
+						},
+						children = {}
+					},
+					{
+						name = "untitled30",
+						cType = "Label",
+						params = {
+							childName = "attr3",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -153
+							},
+							text = TR("加成")
+						},
+						children = {}
+					},
+					{
+						name = "untitled42",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							hide = false,
+							pos = {
+								x = 242.92,
+								y = -39.04
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled41",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							hide = false,
+							pos = {
+								x = 242.92,
+								y = -68.04
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled40",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							hide = false,
+							pos = {
+								x = 242.92,
+								y = -99.04
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							hide = false,
+							pos = {
+								x = 242.92,
+								y = -129.04
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							hide = false,
+							pos = {
+								x = 242.92,
+								y = -157.04
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled24",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onDonaBtnAction",
+					pos = {
+						x = 180.77,
+						y = -229.44
+					},
+					titleText = TR("献 祭")
+				},
+				children = {}
+			},
+			{
+				name = "selectAllBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onAllSelectAction",
+					pos = {
+						x = 410,
+						y = -229.44
+					},
+					titleText = TR("全 选")
+				},
+				children = {}
+			},
+			{
+				name = "cancelBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					hide = true,
+					clickAction = "onCancelAction",
+					pos = {
+						x = 410,
+						y = -229.44
+					},
+					titleText = TR("取 消")
+				},
+				children = {}
+			},
+			{
+				name = "noGoodsLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 65,
+						r = 192,
+						b = 65
+					},
+					pos = {
+						x = 295.62,
+						y = -97.26
+					},
+					text = TR("没有可献祭的碎片")
+				},
+				children = {}
+			},
+			{
+				name = "addExpLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					text = "Label",
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					pos = {
+						x = -196.68,
+						y = 2.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "maxLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					pos = {
+						x = 425.49,
+						y = 83.4
+					},
+					text = TR("已满级")
+				},
+				children = {}
+			},
+			{
+				name = "untitled43",
+				cType = "Button",
+				params = {
+					image = "tb_gn_74.png",
+					clickAction = "onDiscardRewardAction",
+					pos = {
+						x = -0.56,
+						y = 208
+					},
+					titleSize = {
+						width = 80,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "untitled44",
+						cType = "RedDot",
+						params = {
+							subKey = "Discard",
+							moduleId = 12700
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled45",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_zhujueguiyuanding",
+					pos = {
+						x = -191.06,
+						y = 2.1
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.mLayerData = {}
+	slot0.mSelectedList = {}
+
+	slot0.initUI(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eDiscard) then
+		RedDotObj:seeRedDot("Discard", "Xianji")
+	end
+
+	slot0.requestGetTitleInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.sortLayerData = function (slot0, ...)
+	slot0.mLayerData = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		slot7 = Resource.getModelInfo(slot6.ModelId)
+
+		for slot11, slot12 in pairs(PlayerAttrObj:getPlayerAttrByName("FashionActivedModelIds")) do
+			if slot7.outputModelID == slot12 then
+				table.insert(slot0.mLayerData, clone(slot6))
+
+				break
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		slot8 = Resource.getModelInfo(slot7.ModelId)
+
+		for slot12, slot13 in pairs(slot0.mTitleInfo) do
+			if slot13.TitleId == slot8.outputModelID and slot13.StatusType ~= 0 then
+				table.insert(slot0.mLayerData, clone(slot7))
+
+				break
+			end
+		end
+	end
+
+	for slot6, slot7 in pairs(ZhenfaModel.items) do
+		slot9 = Resource.getCount(slot8)
+		slot10 = false
+		slot11 = ipairs
+		slot12 = slot0.mAttrData.StrategyList or {}
+
+		for slot14, slot15 in slot11(slot12) do
+			if slot15 == slot7.Id then
+				slot10 = true
+
+				break
+			end
+		end
+
+		if 0 < slot9 and slot10 then
+			table.insert(slot0.mLayerData, {
+				ModelId = slot8,
+				Num = slot9
+			})
+		end
+	end
+
+	slot0.mSelectedList = {}
+
+	slot0.noGoodsLabel:setVisible(#slot0.mLayerData == 0)
+	slot0.mGridView:setItemNum(#slot0.mLayerData)
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2, slot3)
+	if next(slot0.mLayerData) == nil or not slot0.mLayerData[slot2] then
+		return 
+	end
+
+	slot6 = slot0.createLayoutTemplateNode(slot0, "gridNode", {
+		clickAction = function ()
+			slot0:selectClickAction(slot1.ModelId, )
+
+			return 
+		end
+	})
+
+	slot6.setPosition(slot6, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot6.cardNode:setCardData({
+		modelId = slot0.mLayerData[slot2].ModelId,
+		num = slot0.mLayerData[slot2].Num
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+	slot1.addChild(slot1, slot6)
+
+	slot7 = UIWrap.newControl("Label", {
+		fontSize = 18,
+		text = TR("经验+%s", slot0.getSingleExp(slot0, slot0.mLayerData[slot2].ModelId)),
+		color = cc.c3b(37, 37, 37),
+		pos = cc.p(slot6.getContentSize(slot6).height/2, -45)
+	})
+
+	slot7.setAnchorPoint(slot7, cc.p(0.5, 1))
+	slot6.addChild(slot6, slot7)
+
+	slot6.modelId = slot0.mLayerData[slot2].ModelId
+	slot6.colIndex = slot2
+	slot6.num = slot0.mLayerData[slot2].Num
+
+	if slot0.mSelectedList[slot0.mLayerData[slot2].ModelId] then
+		slot6.selectSprite:setVisible(true)
+	else
+		slot6.selectSprite:setVisible(false)
+	end
+
+	return 
+end
+slot0.selectClickAction = function (slot0, slot1, slot2)
+	if slot0.mSelectedList[slot1] then
+		slot0.mSelectedList[slot1] = nil
+	else
+		slot0.mSelectedList[slot1] = true
+	end
+
+	slot0.mGridView:refreshCell(slot2)
+	slot0.refreshExpInfo(slot0)
+	slot0.refreshSeclectOrCancelBtn(slot0)
+
+	return 
+end
+slot0.refreshAttrInfo = function (slot0)
+	slot0.maxLabel:setVisible(false)
+
+	if slot0.mCurentAttrNode then
+		slot0.mCurentAttrNode:removeFromParent()
+
+		slot0.mCurentAttrNode = nil
+	end
+
+	if slot0.mNextAttrNode then
+		slot0.mNextAttrNode:removeFromParent()
+
+		slot0.mNextAttrNode = nil
+	end
+
+	slot3 = clone(DiscardModel.items[slot0.mAttrData.Lv])
+	slot7 = slot0.createLayoutTemplateNode(slot0, "attrNode", {
+		ishideArrow = false,
+		curLvStr = TR("%s级归元聚气", slot0.mAttrData.Lv or 0),
+		fashStr = TR("时装基础属性 +%s%%", slot3.fashionAttStrAddR/100),
+		titleStr = TR("称号基础属性 +%s%%", slot3.titleAttStrAddR/100),
+		attr1 = slot0.getAttrStr(slot0, FightAttrType.eAtk, (slot0.mAttrData.FashionAllAttr or {}.Atk or 0)*slot3.fashionAttStrAddR/10000 + (slot0.mAttrData.TitleAllAttr or {}.Atk or 0)*slot3.titleAttStrAddR/10000),
+		attr2 = slot0.getAttrStr(slot0, FightAttrType.eArm, (slot0.mAttrData.FashionAllAttr or {}.Arm or 0)*slot3.fashionAttStrAddR/10000 + (slot0.mAttrData.TitleAllAttr or {}.Arm or 0)*slot3.titleAttStrAddR/10000),
+		attr3 = slot0.getAttrStr(slot0, FightAttrType.eHp, (slot0.mAttrData.FashionAllAttr or {}.Hp or 0)*slot3.fashionAttStrAddR/10000 + (slot0.mAttrData.TitleAllAttr or {}.Hp or 0)*slot3.titleAttStrAddR/10000),
+		color = cc.c3b(37, 37, 37)
+	})
+
+	slot7.setPosition(slot7, 100, 180)
+	slot7.setAnchorPoint(slot7, 0.5, 0)
+	slot0.centerNode:addChild(slot7)
+
+	slot0.mCurentAttrNode = slot7
+	slot8 = clone
+	slot9 = DiscardModel.items
+	slot10 = slot0.mAttrData.Lv or 0
+
+	if not slot8(slot9[slot10 + 1]) then
+		slot0.maxLabel:setVisible(true)
+
+		return 
+	end
+
+	slot12 = slot0.createLayoutTemplateNode(slot0, "attrNode", {
+		ishideArrow = true,
+		curLvStr = TR("%s级归元聚气", (slot0.mAttrData.Lv or 0) + 1),
+		fashStr = string.format("+ %s%%", slot8.fashionAttStrAddR/100),
+		titleStr = string.format("+ %s%%", slot8.titleAttStrAddR/100),
+		attr1 = slot0.getAttrStr(slot0, FightAttrType.eAtk, (slot1.Atk or 0)*slot8.fashionAttStrAddR/10000 + (slot2.Atk or 0)*slot8.titleAttStrAddR/10000, true),
+		attr2 = slot0.getAttrStr(slot0, FightAttrType.eArm, (slot1.Arm or 0)*slot8.fashionAttStrAddR/10000 + (slot2.Arm or 0)*slot8.titleAttStrAddR/10000, true),
+		attr3 = slot0.getAttrStr(slot0, FightAttrType.eHp, (slot1.Hp or 0)*slot8.fashionAttStrAddR/10000 + (slot2.Hp or 0)*slot8.titleAttStrAddR/10000, true),
+		color = cc.c3b(37, 135, 17)
+	})
+
+	slot12.setPosition(slot12, 380, 180)
+	slot12.setAnchorPoint(slot12, 0.5, 0)
+	slot12.nameLabel:setPosition(40, 0)
+	slot0.centerNode:addChild(slot12)
+
+	slot0.mNextAttrNode = slot12
+
+	return 
+end
+slot0.refreshExpInfo = function (slot0)
+	slot0.curLvLabel:setString(slot0.mAttrData.Lv or 0)
+
+	slot1 = 0
+
+	for slot5, slot6 in ipairs(slot0.mLayerData) do
+		if slot0.mSelectedList[slot6.ModelId] then
+			slot1 = slot1 + slot0.getSingleExp(slot0, slot6.ModelId)*slot6.Num
+		end
+	end
+
+	slot0.addExpLabel:stopAllActions()
+	slot0.addExpLabel:setScale(1)
+	slot0.addExpLabel:setVisible(0 < slot1)
+	slot0.addExpLabel:setString(TR("经验+%s", slot1))
+	Utility.scaleFadeAction(slot0.addExpLabel)
+
+	slot2 = DiscardModel.items[slot0.mAttrData.Lv]
+
+	if not DiscardModel.items[slot0.mAttrData.Lv + 1] then
+		slot0.expLabel:setString(TR("已满级"))
+
+		return 
+	end
+
+	slot4 = slot3.expTotal
+
+	if 0 < slot1 then
+		slot5 = TR("归元鼎经验：%s ( #252525+%s#252525 ) / %s", slot0.mAttrData.Exp - slot2.expTotal, slot1, slot4 - slot2.expTotal)
+		slot6 = slot0.mAttrData.Exp or 0
+
+		if slot4 <= slot1 + slot6 then
+			slot6 = DiscardModel.items_count - 1
+
+			for slot10, slot11 in ipairs(DiscardModel.items) do
+				if slot1 + (slot0.mAttrData.Exp or 0) < slot11.expTotal then
+					slot6 = slot11.Lv - 1
+
+					break
+				end
+			end
+
+			slot5 = slot5 .. TR(" #252525(可升%s级)", slot6 - slot0.mAttrData.Lv)
+		end
+
+		slot0.expLabel:setString(slot5)
+	else
+		slot0.expLabel:setString(TR("归元鼎经验：%s / %s", slot0.mAttrData.Exp - slot2.expTotal, slot4 - slot2.expTotal))
+	end
+
+	return 
+end
+slot0.onAllSelectAction = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mLayerData) do
+		slot0.mSelectedList[slot6.ModelId] = true
+	end
+
+	slot0.mGridView:reloadData()
+	slot0.refreshExpInfo(slot0)
+	slot0.refreshSeclectOrCancelBtn(slot0)
+
+	return 
+end
+slot0.onCancelAction = function (slot0, slot1)
+	slot0.mSelectedList = {}
+
+	slot0.mGridView:reloadData()
+	slot0.refreshExpInfo(slot0)
+	slot0.refreshSeclectOrCancelBtn(slot0)
+
+	return 
+end
+slot0.refreshSeclectOrCancelBtn = function (slot0)
+	slot1 = false
+
+	for slot5, slot6 in pairs(slot0.mSelectedList) do
+		if slot6 then
+			slot1 = true
+
+			break
+		end
+	end
+
+	slot0.selectAllBtn:setVisible(not slot1)
+	slot0.cancelBtn:setVisible(slot1)
+
+	return 
+end
+slot0.onDonaBtnAction = function (slot0, slot1)
+	slot2 = false
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot0.mLayerData) do
+		if slot0.mSelectedList[slot8.ModelId] then
+			if slot3[slot8.ModelId] then
+				slot3[slot8.ModelId] = slot3[slot8.ModelId] + slot8.Num
+			else
+				slot3[slot8.ModelId] = slot8.Num
+			end
+		end
+	end
+
+	if next(slot3) == nil then
+		ui.showFlashView(TR("请选择需要献祭的碎片！"))
+
+		return 
+	end
+
+	slot4 = {}
+
+	for slot8, slot9 in pairs(slot3) do
+		table.insert(slot4, tostring(slot8) .. ":" .. tostring(slot9))
+	end
+
+	slot0.requestLv(slot0, "{" .. table.concat(slot4, ",") .. "}", slot3)
+
+	return 
+end
+slot0.onDiscardRewardAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.DiscardBlessLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			attrData = slot0.mAttrData or {},
+			titleInfo = slot0.mTitleInfo or {},
+			callback = function (slot0)
+				slot0.mAttrData = slot0 or {}
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.getAttrStr = function (slot0, slot1, slot2, slot3)
+	slot4 = ""
+
+	return (not slot3 or ((not Utility.isAttrNeedPercent(slot1) or string.format("+ %s%%", slot2/100)) and string.format("+ %s", slot2))) and (not Utility.isAttrNeedPercent(slot1) or TR("全体%s + %s%%", FightAttrTypeName[slot1], slot2/100)) and TR("全体%s + %s", FightAttrTypeName[slot1], slot2)
+end
+slot0.getSingleExp = function (slot0, slot1)
+	return DiscardExpRelation.items[Resource.getSubType(slot1)] or DiscardExpRelation.items[slot1] or {}[Resource.getColorLv(slot1)] or {}.expAdd or 0
+end
+slot0.playDonateEff = function (slot0, slot1)
+	function slot2(slot0)
+		return cc.Spawn:create(cc.Sequence:create(slot2, slot1), cc.Sequence:create(slot4, slot5, slot6))
+	end
+
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot1) do
+		slot9 = UIWrap.newControl("CardNode", {
+			initParams = {
+				cardInfo = {
+					resourceId = slot7,
+					num = slot8
+				}
+			}
+		})
+
+		slot9.setPosition(slot9, 295, -100)
+		slot0.centerNode:addChild(slot9)
+		slot9.runAction(slot9, slot2(slot3))
+	end
+
+	return 
+end
+slot0.requestGetTitleInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Title",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mTitleInfo = slot0.TitleInfo or {}
+
+			slot0:requestGetAttrInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetAttrInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Discard",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mAttrData = slot0 or {}
+
+			slot0:sortLayerData()
+			slot0:refreshAttrInfo()
+			slot0:refreshExpInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestLv = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Lv",
+		moduleName = "Discard",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mAttrData = slot0 or {}
+
+			slot0:sortLayerData()
+			slot0:refreshAttrInfo()
+			slot0:refreshExpInfo()
+			slot0:refreshSeclectOrCancelBtn()
+			slot0:playDonateEff(slot0.playDonateEff)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

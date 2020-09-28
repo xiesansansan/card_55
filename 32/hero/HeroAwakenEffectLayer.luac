@@ -1,0 +1,246 @@
+slot0 = class("HeroAwakenEffectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled11",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "bg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xkjx_3.png",
+					pos = {
+						x = 0,
+						y = 320
+					}
+				},
+				children = {
+					{
+						name = "infoNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -81.4,
+								y = -169.12
+							}
+						},
+						children = {
+							{
+								name = "closeBtn",
+								cType = "Button",
+								params = {
+									childName = "closeBtn",
+									image = "c_39.png",
+									clickAction = "onExitAction",
+									pos = {
+										x = 641.68,
+										y = 203.09
+									},
+									size = {
+										width = 105,
+										height = 46
+									},
+									titleText = TR("确 定")
+								},
+								children = {}
+							},
+							{
+								name = "attList",
+								cType = "ListView",
+								params = {
+									direction = true,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 641.67,
+										y = 432.22
+									},
+									size = {
+										width = 440,
+										height = 200
+									}
+								},
+								children = {
+									{
+										name = "item",
+										cType = "Layout",
+										custom = {
+											{
+												value = "str-text",
+												name = "str",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 440,
+												height = 30
+											}
+										},
+										children = {
+											{
+												name = "str",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													isRichText = true,
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 220,
+														y = 15
+													},
+													text = TR("攻击+0")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "heroNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled10-heroModelId",
+								name = "heroModelId",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = -81.4,
+								y = -169.12
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									image = "lh_12104.png",
+									childName = "hero",
+									scale = 0.5,
+									pos = {
+										x = 343.03,
+										y = 367.26
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroInfo = slot1.heroInfo or {}
+	slot0.callback = slot1.callback or nil
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.bg:setOpacity(0)
+	slot0.bg:setVisible(true)
+	slot0.bg:removeAllChildren()
+	slot0.bg:setVisible(true)
+	slot0.bg:runAction(cc.Sequence:create(cc.FadeIn:create(0.6), cc.CallFunc:create(function ()
+		slot0:refreshUI()
+
+		return 
+	end)))
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.createLayoutTemplateNode(slot0, "heroNode", {}).hero:setTexture(slot3)
+	slot0.bg:addChild(slot2)
+
+	slot7 = (({
+		[18.0] = "hong",
+		[15.0] = "cheng",
+		[13.0] = "zi"
+	})[HeroModel.items[slot0.mHeroInfo.ModelId].quality] and slot4[slot6]) or slot4[13]
+
+	MqAudio.playEffect((({
+		[18.0] = "juexin_red.mp3",
+		[15.0] = "juexin_orange.mp3",
+		[13.0] = "juexin_purple.mp3"
+	})[slot6] and ({
+		[18.0] = "juexin_red.mp3",
+		[15.0] = "juexin_orange.mp3",
+		[13.0] = "juexin_purple.mp3"
+	})[slot6]) or ({
+		[18.0] = "juexin_red.mp3",
+		[15.0] = "juexin_orange.mp3",
+		[13.0] = "juexin_purple.mp3"
+	})[13])
+	slot0.addInfoNode(slot0)
+	Utility.performWithDelay(slot0, function ()
+		return 
+	end, (({
+		[18.0] = 0.4,
+		[15.0] = 0.8,
+		[13.0] = 1.4
+	})[slot6] and slot9[slot6]) or slot9[13])
+
+	return 
+end
+slot0.addInfoNode = function (slot0)
+	slot0.createLayoutTemplateNode(slot0, "infoNode").attList:removeAllChildren()
+
+	for slot8, slot9 in pairs(slot4) do
+		slot3.attList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "item", {
+			str = TR("%s%s+ %s", FightAttrTypeName[slot9.fightattr], "#8BA857", slot9.value)
+		}))
+	end
+
+	slot5 = Utility.analysisStrAttrToFromat(slot2.addSpecAttrStr, TR("%s + %d"))
+
+	if 0 < slot2.talentAddRC then
+		slot5 = slot5 .. "    " .. TR("经脉属性加成 + %d%%", slot2.talentAddRC/100)
+	end
+
+	slot3.attList:pushBackCustomItem(slot6)
+	slot3.addChild(slot3, slot7)
+	slot0.bg:addChild(slot3)
+
+	return 
+end
+slot0.onExitAction = function (slot0)
+	EventAuto:postEvent(EventDefine.eChangedHeroAwakenSub)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

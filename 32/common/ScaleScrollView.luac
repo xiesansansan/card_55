@@ -1,0 +1,204 @@
+slot0 = class("ScaleScrollView", function (slot0)
+	return display.newNode()
+end)
+slot0.ctor = function (slot0, slot1)
+	slot0.mViewSize = slot1 or {}.size or cc.size(1136, 500)
+	slot0.itemNum = slot1 or {}.itemNum
+	slot0.createCellCb = slot1 or {}.createCellCb
+	slot0.refreshCellCb = slot1 or {}.refreshCellCb
+	slot0.mSelectIndex = slot1 or {}.selectIndex
+	slot0.direction = slot1 or {}.direction
+	slot0.isScaleOffset = slot1 or {}.isScaleOffset
+	slot0.itemOffset = slot1 or {}.itemOffset
+	slot0.minScale = slot1 or {}.minScale or 0.5
+	slot0.itemsList = {}
+	slot0.itemSize = cc.size(slot0.itemOffset, slot0.mViewSize.height)
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot0.itemSize = cc.size(slot0.mViewSize.width, slot0.itemOffset)
+	end
+
+	slot0.showNum = math.ceil(slot0.mViewSize.width/slot0.itemOffset)
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot0.showNum = math.ceil(slot0.mViewSize.height/slot0.itemOffset)
+	end
+
+	slot0.showNum = slot0.showNum + 2
+	slot0.centerPos = cc.p(slot0.mViewSize.width*0.5, slot0.mViewSize.height*0.5)
+
+	slot0.setContentSize(slot0, slot0.mViewSize)
+	slot0.setAnchorPoint(slot0, slot1.anchor or cc.p(0.5, 0.5))
+	slot0.setIgnoreAnchorPointForPosition(slot0, false)
+
+	slot2 = cc.size(slot0.itemNum*slot0.itemOffset + slot0.mViewSize.width, slot0.mViewSize.height)
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot2 = cc.size(slot0.mViewSize.width, slot0.itemNum*slot0.itemOffset + slot0.mViewSize.height)
+	end
+
+	slot0.conSize = slot2
+	slot0.mScrollView = UIWrap.newControl("ScrollView", {
+		size = slot0.mViewSize,
+		pos = cc.p(0, 0),
+		anchor = cc.p(0, 0),
+		direction = slot1.direction,
+		conSize = slot2,
+		bounce = slot1.bounce,
+		swallowTouch = slot1.swallowTouch
+	})
+
+	slot0.addChild(slot0, slot0.mScrollView)
+	slot0.init(slot0)
+
+	return 
+end
+slot0.init = function (slot0)
+	for slot4 = 1, slot0.showNum, 1 do
+		slot5 = cc.Node:create()
+
+		slot5.setContentSize(slot5, slot0.itemSize)
+		slot5.setAnchorPoint(slot5, cc.p(0.5, 0.5))
+		slot5.setPosition(slot5, slot6)
+		slot0.mScrollView:addChild(slot5)
+		table.insert(slot0.itemsList, slot5)
+	end
+
+	slot1 = 0
+
+	slot0.mScrollView:onScroll(function (slot0)
+		if slot0.name == "CONTAINER_MOVED" then
+			slot0:_refreshItems()
+		elseif slot0.name == "SCROLLING" then
+			slot1 = 0
+		elseif not slot0.name then
+			if slot1 < 1 then
+				slot0:_finetuning()
+			end
+
+			slot1 = slot1 + 1
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0._refreshItems = function (slot0)
+	for slot4 = 1, slot0.showNum, 1 do
+		slot0.itemsList[slot4]:setScale(slot0._getScaleByPos(slot0, cc.p(slot0.itemsList[slot4]:getPosition())))
+	end
+
+	if slot0._oldOffsetIndx ~= slot0._getCurItemIndex(slot0) then
+		slot0._oldOffsetIndx = slot1
+
+		slot0.refreshData(slot0)
+	end
+
+	return 
+end
+slot0._getScaleByPos = function (slot0, slot1)
+	slot3 = slot0.mScrollView:convertToNodeSpace(slot2)
+	slot4 = 1
+
+	return (slot0.direction == ccui.ScrollViewDir.vertical and math.abs(slot0.centerPos.y - slot3.y)/slot0.centerPos.y*(slot0.minScale - 1) - 1) or math.abs(slot0.centerPos.x - slot3.x)/slot0.centerPos.x*(slot0.minScale - 1) - 1, slot3
+end
+slot0._getItemPosition = function (slot0, slot1)
+	slot2 = cc.p((slot1 - 1)*slot0.itemSize.width + slot0.mViewSize.width*0.5, slot0.itemSize.height*0.5)
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot2 = cc.p(slot0.itemSize.width*0.5, slot0.itemSize.height*(slot1 - 1) + slot0.mViewSize.height*0.5)
+	end
+
+	if slot0.isScaleOffset then
+		slot3, slot4 = slot0._getScaleByPos(slot0, slot2)
+
+		if slot0.direction == ccui.ScrollViewDir.vertical then
+			slot2.y = slot2.y + (slot0.centerPos.y - slot4.y)*(slot3 - 1)*0.5
+		else
+			slot2.x = slot2.x + (slot0.centerPos.x - slot4.x)*(slot3 - 1)*0.5
+		end
+	end
+
+	return slot2
+end
+slot0._getCurItemIndex = function (slot0)
+	slot3 = math.abs(cc.p(slot0.mScrollView:getInnerContainer().getPosition(slot1)).x)/slot0.itemSize.width
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot3 = math.abs(slot2.y)/slot0.itemSize.height
+	end
+
+	return (0.5 <= slot3%1 and math.ceil(slot3)) or math.floor(slot3)
+end
+slot0._finetuning = function (slot0)
+	slot0.moveItem(slot0, slot0._getCurItemIndex(slot0))
+
+	return 
+end
+slot0.moveItem = function (slot0, slot1)
+	if slot0.itemNum <= slot1 then
+		slot1 = slot0.itemNum - 1
+	end
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot0.mScrollView:scrollToPercentVertical(slot1/slot0.itemNum*100 - 100, 0.5, true)
+	elseif slot1 == 0 then
+		slot0.mScrollView:scrollToPercentHorizontal(slot0.itemNum/0.1*100, 0.5, true)
+	else
+		slot0.mScrollView:scrollToPercentHorizontal(slot1/slot0.itemNum*100, 0.5, true)
+	end
+
+	slot0.mSelectIndex = slot1 + 1
+
+	if slot0.refreshCellCb then
+		slot2 = slot0.itemsList[1]
+
+		for slot6, slot7 in pairs(slot0.itemsList) do
+			slot9 = slot0.mScrollView:convertToNodeSpace(slot8)
+			slot11 = slot0.mScrollView:convertToNodeSpace(slot10)
+
+			if slot0.direction == ccui.ScrollViewDir.vertical then
+				if math.abs(slot0.centerPos.y - slot9.y) < math.abs(slot0.centerPos.y - slot11.y) then
+					slot2 = slot7
+				end
+			elseif math.abs(slot0.centerPos.x - slot9.x) < math.abs(slot0.centerPos.x - slot11.x) then
+				slot2 = slot7
+			end
+		end
+
+		slot0.refreshCellCb(slot2, slot0.mSelectIndex)
+	end
+
+	return 
+end
+slot0.setItemNum = function (slot0, slot1)
+	slot0.itemNum = slot1
+	slot2 = cc.size(slot0.itemNum*slot0.itemOffset + slot0.mViewSize.width, slot0.mViewSize.height)
+
+	if slot0.direction == ccui.ScrollViewDir.vertical then
+		slot2 = cc.size(slot0.mViewSize.width, slot0.itemNum*slot0.itemOffset + slot0.mViewSize.height)
+	end
+
+	slot0.conSize = slot2
+
+	slot0.mScrollView:setInnerContainerSize(slot2)
+	slot0.moveItem(slot0, slot0.mSelectIndex or 0)
+
+	return 
+end
+slot0.refreshData = function (slot0)
+	for slot7 = math.ceil(slot0._getCurItemIndex(slot0) - slot0.showNum*0.5), math.floor(slot0._getCurItemIndex(slot0) + slot0.showNum*0.5), 1 do
+		slot0.itemsList[(slot7 + slot0.showNum)%slot0.showNum + 1].setPosition(slot9, slot8)
+		slot0.itemsList[(slot7 + slot0.showNum)%slot0.showNum + 1].setLocalZOrder(slot9, math.floor(slot0._getScaleByPos(slot0, slot8)*100))
+		slot0.itemsList[(slot7 + slot0.showNum)%slot0.showNum + 1]:removeAllChildren()
+
+		if 1 <= slot7 and slot7 <= slot0.itemNum and slot0.createCellCb then
+			slot0.createCellCb(slot9, slot7)
+		end
+	end
+
+	return 
+end
+
+return slot0

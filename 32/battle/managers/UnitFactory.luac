@@ -1,0 +1,204 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.FxHelper")
+slot2 = require("battle.models.Unit")
+slot3 = require("battle.models.Pet")
+slot4 = require("battle.models.UnitSkill")
+slot5 = require("battle.models.PetSkill")
+slot6 = class("UnitFactory")
+slot6.ctor = function (slot0)
+	slot0.uid = 1
+
+	return 
+end
+slot6.createPet = function (slot0, slot1)
+	slot0.new(slot1).uid = slot0.uid
+	slot0.uid = slot0.uid + 1
+
+	if slot1.getSpineInfo(slot0.new(slot1).spine, "isDefault") then
+		slot2.spine = "hero_yangguo"
+	end
+
+	slot0.initPetSkills(slot0, slot2, slot1.skillLvs)
+
+	return slot2
+end
+
+function slot7(slot0)
+	if slot0.TriggerToSkillType[slot0] then
+		return slot1
+	end
+
+	return "none"
+end
+
+slot6.initPetSkills = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		table.insert(slot3, {
+			skillId = tonumber(slot7),
+			skillLv = slot8
+		})
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		return slot0.skillId < slot1.skillId
+	end)
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot10 = slot8.skillLv
+
+		if SkillModel.items[tonumber(slot8.skillId)] and slot0(SkillModel.items[slot9].triggerId) and slot11 ~= "" and slot11 ~= "none" then
+			table.insert(slot1.skills[slot11], slot1.new(slot1, slot9, slot10))
+		end
+	end
+
+	return 
+end
+slot6.createUnit = function (slot0, slot1)
+	assert(HeroModel.items[slot1.id] ~= nil, "UnitFactory:createUnit invalid id:" .. slot2)
+
+	slot4 = slot0.new()
+	slot4.originData = slot1
+	slot4.heroId = slot2
+	slot4.camp = slot3.camp
+	slot4.job = slot3.profession
+	slot4.sex = slot3.sex
+	slot4.level = slot1.level or 1
+	slot4.star = slot1.star or 1
+	slot4.step = slot1.step or 1
+	slot4.stepLv = slot1.stepLv or 0
+	slot4.atkDecayRatio = slot1.atkDecayRatio or 1
+	slot4.atkDecayRatio = slot1.atkDecayRatio or 1
+	slot4.skillRatio = slot1.skillRatio or 1
+
+	if slot1.quality and slot1.quality ~= 0 then
+		slot4.quality = slot1.quality
+	else
+		slot4.quality = slot3.quality
+	end
+
+	if slot1.redStar then
+		slot4.redStar = slot1.redStar
+	end
+
+	slot4.fap = slot1.fap or 0
+	slot4.uid = slot0.uid
+	slot0.uid = slot0.uid + 1
+
+	for slot8, slot9 in pairs(slot1.props) do
+		slot4.part_attr[slot8] = clone(slot9)
+		slot4.attr[slot8] = slot9.a*(slot9.b/10000 + 1) + slot9.c
+	end
+
+	if slot1.bodyScale and 0 < slot1.bodyScale then
+		slot4.bodyScale = slot1.bodyScale/10000
+	end
+
+	if slot0.parseSkills(slot0, slot3, slot1.skillLvs)[slot3.fitSkillAttackId] then
+		slot4.isHeti = true
+	end
+
+	slot4.flashEffectTime = 2
+	slot4.flashEffect = slot3.drawingPicA
+	slot4.flashEffect2 = slot3.drawingPicB
+	slot4.skillSound = slot3.skillSound
+	slot4.attr.eAng = slot1.EnergyLimit
+
+	if slot1.curHp and 0 < slot1.curHp then
+		slot4.attr.hp = slot1.curHp
+	else
+		slot4.attr.hp = slot4.attr.eHp
+	end
+
+	slot4.initHp = slot4.attr.hp
+
+	if slot1.curMp and 0 < slot1.curMp then
+		slot4.attr.mp = slot1.curMp
+	else
+		slot4.attr.mp = slot1.EnergyInit
+	end
+
+	if slot1.curWp and 0 < slot1.curWp then
+		slot4.attr.wp = slot1.curWp
+	else
+		slot4.attr.wp = 0
+	end
+
+	if slot1.name == "" or slot1.name == nil then
+		slot4.name = slot3.name
+	else
+		slot4.name = slot1.name
+	end
+
+	slot4.spine = slot3.largePic
+	slot4.chufaAnimTime = slot2.getSpineInfo(slot4.spine, "chufa").totalTime
+
+	if slot2.getSpineInfo(slot4.spine, "isDefault") then
+		slot4.spine = "hero_yangguo"
+	end
+
+	slot0.initSkills(slot0, slot4, slot5)
+
+	return slot4
+end
+slot6.parseSkills = function (slot0, slot1, slot2)
+	slot3 = {}
+	slot4 = {}
+
+	for slot8, slot9 in pairs(slot2) do
+		slot4[tonumber(slot8)] = slot9
+	end
+
+	slot5 = nil
+	slot6 = 0
+	slot7 = slot1.normalAttacckId
+
+	for slot11, slot12 in pairs(slot4) do
+		if SkillModel.items[slot11] and slot13.triggerId == SkillTrigger.eChangeNormalAttack then
+			slot5 = slot11
+			slot6 = slot12
+		end
+	end
+
+	for slot11, slot12 in pairs(slot4) do
+		if slot7 == slot11 and slot5 then
+			slot3[slot5] = slot6
+		else
+			slot3[slot11] = slot12
+		end
+	end
+
+	return slot3
+end
+slot6.initSkills = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		table.insert(slot3, {
+			skillId = slot7,
+			skillLv = slot8
+		})
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		return slot0.skillId < slot1.skillId
+	end)
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot10 = slot8.skillLv
+
+		if SkillModel.items[slot8.skillId] and slot0(SkillModel.items[slot9].triggerId) and slot11 ~= "" and slot11 ~= "none" then
+			table.insert(slot1.skills[slot11], slot1.new(slot1, slot9, slot10))
+		end
+	end
+
+	return 
+end
+slot6.newUnitSkill = function (slot0, slot1, slot2, slot3)
+	slot0.new(slot1, slot2, slot3).isExtra = true
+
+	return slot0.new(slot1, slot2, slot3)
+end
+
+return slot6

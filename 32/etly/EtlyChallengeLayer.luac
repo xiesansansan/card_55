@@ -1,0 +1,819 @@
+slot0 = class("EtlyChallengeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("精英挑战")
+		},
+		children = {
+			{
+				name = "leftCountLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 636.19,
+						y = 109.23
+					},
+					text = TR("剩余次数：0")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_20.png",
+					clickAction = "onBuyCount",
+					pos = {
+						x = 724.93,
+						y = 108.05
+					}
+				},
+				children = {}
+			},
+			{
+				name = "btnFight",
+				cType = "Button",
+				params = {
+					isDisable = true,
+					clickAction = "onFight",
+					image = "c_19.png",
+					pos = {
+						x = 652.59,
+						y = 61.37
+					},
+					titleText = TR("挑 战")
+				},
+				children = {}
+			},
+			{
+				name = "saodangTishi",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					hide = true,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 399.36,
+						y = 109.15
+					},
+					text = TR("三星通关开启")
+				},
+				children = {}
+			},
+			{
+				name = "saodangBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onSaodang",
+					pos = {
+						x = 398.48,
+						y = 61.71
+					},
+					titleText = TR("扫 荡")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 323.95,
+						y = 182.83
+					},
+					size = {
+						width = 420,
+						height = 180
+					}
+				},
+				children = {
+					{
+						name = "mFirstRewardList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 5,
+								y = 90
+							},
+							size = {
+								width = 252.21,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "mTemplateRewardCell",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled12-initParams",
+										name = "initParams",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 90,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 42,
+												y = 45
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mPassRewardList",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 5,
+								y = 0
+							},
+							size = {
+								width = 410,
+								height = 90
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mHaveGetSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_55.png",
+							hide = true,
+							pos = {
+								x = 336.97,
+								y = 135.82
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 268.51,
+						y = 319.49
+					},
+					text = TR("首胜奖励：")
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 269.16,
+						y = 227.92
+					},
+					text = TR("通关奖励：")
+				},
+				children = {}
+			},
+			{
+				name = "getBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					scale = 0.9,
+					hide = true,
+					clickAction = "onGetFirstCrossReward",
+					pos = {
+						x = 659.94,
+						y = 316.18
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			},
+			{
+				name = "untitled27",
+				cType = "Scale9Sprite",
+				params = {
+					image = "dgjz_11.png",
+					pos = {
+						x = 424.58,
+						y = 430.52
+					}
+				},
+				children = {
+					{
+						name = "heroListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 28.92,
+								y = 0.49
+							},
+							size = {
+								width = 767.49,
+								height = 93.51
+							}
+						},
+						children = {
+							{
+								name = "heroLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "heroCardNode-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "untitled35-subKey",
+										name = "subKey",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										z = 0,
+										x = 0,
+										y = 18
+									},
+									size = {
+										width = 99.42,
+										height = 93.51
+									}
+								},
+								children = {
+									{
+										name = "heroCardNode",
+										cType = "CardNode",
+										params = {
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 50.74,
+												y = 47.13
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "RedDot",
+										params = {
+											subKey = "",
+											childName = "redDot",
+											moduleId = 4002
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled31",
+						cType = "Sprite",
+						params = {
+							image = "c_4.png",
+							pos = {
+								x = 32.68,
+								y = 53.01
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled32",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 180,
+							image = "c_4.png",
+							pos = {
+								x = 791.31,
+								y = 53.06
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "clipNode",
+				cType = "ClippingNode",
+				params = {
+					alpha = 1,
+					pos = {
+						x = 11.71,
+						y = 17.72
+					},
+					size = {
+						width = 200,
+						height = 358.64
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled34",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "c_82.png",
+					pos = {
+						x = 432.23,
+						y = 153.95
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled33",
+				cType = "Sprite",
+				params = {
+					scale = 0.7,
+					image = "c_101.png",
+					pos = {
+						x = 379.19,
+						y = 154.68
+					}
+				},
+				children = {}
+			},
+			{
+				name = "fapLabel",
+				cType = "Label",
+				params = {
+					text = "0",
+					charCount = 12,
+					scale = 0.7,
+					fontName = "c_81.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 426.8,
+						y = 153.15
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.passId = slot1 and slot1.etlyData.EliteNodeId
+	slot0.selectModelID = slot1 and ((slot1.etlyData.EliteNodeId == 0 and 1) or slot1.etlyData.EliteNodeId)
+	slot0.mLeftCount = slot1 and slot1.etlyData.EliteFightNum
+	slot0.mCommonMaxNodeId = slot1 and slot1.etlyData.CommonMaxNodeId
+	slot0.haveBuCount = slot1 and slot1.etlyData.TodayBuyEliteFightNum
+	slot0.refreshDataFunc = slot1 and slot1.callFunc
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:createHeadList()
+		slot0.createHeadList:refreshUI()
+
+		return 
+	end, 2)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.leftCountLabel:setString(TR("剩余次数：%d", slot0.mLeftCount))
+
+	return 
+end
+slot0.createHeadList = function (slot0)
+	slot1 = 0
+
+	for slot5, slot6 in ipairs(EtlyEliteNodeModel.items) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "heroLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = tonumber(string.splitBySep(slot6.npcModel, ",")[1])
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder
+				}
+			},
+			subKey = string.format("Elite_%s", slot6.modelId)
+		})
+		slot9 = 0
+
+		if not slot0.normalIsCross(slot0, slot6.modelId) then
+			slot9 = 1
+		elseif slot0.passId < slot6.modelId - 1 then
+			slot9 = 2
+		end
+
+		slot8.heroCardNode:setClickAction(function ()
+			if slot0 ~= 0 or slot1.selectModelID == slot2.modelId then
+				return 
+			end
+
+			slot0(slot1.btnFight, slot1.btnFight.btnFight.setEnabled == 0)
+
+			slot1.btnFight.selectModelID = slot1.btnFight.btnFight.setEnabled == 0.modelId
+			slot1.btnFight.btnFight.setEnabled == 0.modelId.selectHeroCard = slot3.heroCardNode
+
+			slot3.heroCardNode:refreshUI()
+
+			return 
+		end)
+		slot8.heroCardNode:setRightTextVisible(false)
+		slot0.heroListView:pushBackCustomItem(slot8)
+
+		if slot9 ~= 0 then
+			slot10 = UIWrap.newControl("Sprite", {
+				image = "c_21.png"
+			})
+
+			slot10.setPosition(slot10, cc.p(40, 40))
+			slot8.heroCardNode:addChild(slot10)
+
+			slot11 = ""
+
+			if slot9 == 1 then
+				slot11 = TR("%s解锁", EtlyNodeModel.items[slot6.openCondition].name)
+			elseif slot9 == 2 then
+				slot11 = TR("通过上一关")
+			end
+
+			slot8.heroCardNode:addChild(slot12)
+			slot8.heroCardNode:addChild(UIWrap.newControl("Label", {
+				fontSize = 14,
+				align = 1,
+				text = slot11,
+				size = cc.size(100, 50),
+				pos = cc.p(40, 10)
+			}))
+		elseif slot6.modelId == slot0.selectModelID then
+			slot0.btnFight:setEnabled(slot9 == 0)
+
+			slot0.selectHeroCard = slot8.heroCardNode
+			slot1 = slot5
+		end
+
+		slot10 = 0
+
+		for slot14, slot15 in pairs(slot0.eliteListData) do
+			if slot15.EliteNodeId == slot6.modelId then
+				slot10 = slot15.StarsNum
+
+				break
+			end
+		end
+
+		for slot14 = 1, slot10, 1 do
+			slot15 = UIWrap.newControl("Sprite", {
+				scale = 0.7,
+				image = "c_5.png"
+			})
+
+			slot15.setPosition(slot15, cc.p(slot14*20, 4))
+			slot8.heroCardNode:addChild(slot15)
+		end
+	end
+
+	ui.setListviewItemShow(slot0.heroListView, slot1)
+
+	return 
+end
+slot0.normalIsCross = function (slot0, slot1)
+	slot2 = EtlyEliteNodeModel.items[slot1].openCondition
+
+	if not EtlyNodeModel.items[slot0.mCommonMaxNodeId] then
+		return false
+	end
+
+	if slot3.nextNodeId == 0 then
+		return true
+	end
+
+	if slot3.ifSpecialBox then
+		return slot2 <= slot3.nextNodeId - 1
+	else
+		return slot2 <= slot3.modelId
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if slot0.mHeroFigure then
+		slot0.mHeroFigure:removeFromParent()
+	end
+
+	if slot0.selectKuang then
+		slot0.selectKuang:removeFromParent()
+	end
+
+	if slot0.mNameBg then
+		slot0.mNameBg:removeFromParent()
+	end
+
+	if slot0.selectHeroCard then
+		slot0.selectKuang = UIWrap.newControl("Sprite", {
+			image = "c_61.png"
+		})
+
+		slot0.selectKuang:setPosition(cc.p(40, 40))
+		slot0.selectHeroCard:addChild(slot0.selectKuang)
+	end
+
+	slot0.mFirstRewardList:removeAllItems()
+
+	for slot4, slot5 in ipairs(Utility.analysisStrResList(EtlyEliteNodeModel.items[slot0.selectModelID].firstReward)) do
+		slot0.mFirstRewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mTemplateRewardCell", {
+			initParams = {
+				cardInfo = {
+					modelId = slot5.resourceId,
+					num = slot5.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	slot0.mPassRewardList:removeAllItems()
+
+	for slot4, slot5 in ipairs(Utility.analysisStrResList(EtlyEliteNodeModel.items[slot0.selectModelID].customReward)) do
+		slot0.mPassRewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mTemplateRewardCell", {
+			initParams = {
+				cardInfo = {
+					modelId = slot5.resourceId,
+					num = slot5.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	slot0.mHeroFigure = UIWrap.newControl("Sprite", {
+		image = HeroModel.items[tonumber(string.splitBySep(EtlyEliteNodeModel.items[slot0.selectModelID].npcModel, ",")[1])].halfBodyPic .. ".png"
+	})
+
+	slot0.mHeroFigure:setPosition(88.5, 180)
+	slot0.clipNode:addChild(slot0.mHeroFigure)
+
+	slot0.mNameBg = UIWrap.newControl("Sprite", {
+		image = "dgjz_10.png"
+	})
+
+	slot0.mNameBg:setPosition(cc.p(450, 160))
+	slot0.clipNode:addChild(slot0.mNameBg)
+	slot0.mNameBg:addChild(slot2)
+
+	slot3 = nil
+
+	for slot7, slot8 in pairs(slot0.eliteListData) do
+		if slot8.EliteNodeId == slot0.selectModelID then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	if slot3 and slot3.StarsNum == 3 then
+		slot0.saodangTishi:setVisible(false)
+		slot0.saodangBtn:setEnabled(true)
+	else
+		slot0.saodangTishi:setVisible(true)
+		slot0.saodangBtn:setEnabled(false)
+	end
+
+	slot0.mHaveGetSprite:setVisible(false)
+
+	if slot3 then
+		slot0.getBtn:setEnabled(true)
+		slot0.getBtn:setVisible(not slot3.IsReceivedFirstReward)
+		slot0.mHaveGetSprite:setVisible(slot3.IsReceivedFirstReward)
+	else
+		slot0.getBtn:setVisible(true)
+		slot0.getBtn:setEnabled(false)
+	end
+
+	slot0.fapLabel:setString(TR("推荐战力：%s", Utility.numberWithUnit(EtlyEliteNodeModel.items[slot0.selectModelID].fapNeedShow)))
+
+	return 
+end
+slot0.onFight = function (slot0)
+	if slot0.mLeftCount <= 0 then
+		ui.showFlashView("挑战次数不足！")
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "feiji.FeiJiCampReadyLayer",
+			data = {
+				minCount = 5,
+				noNeedVit = true,
+				fromEtly = true,
+				teamTotalNum = 2,
+				teamData = formationList,
+				callModelSub = ModuleSub.eEtly,
+				titleText = TR("布  阵"),
+				callback = function (slot0)
+					for slot5, slot6 in ipairs(slot1) do
+						slot1[slot5] = slot1[slot5] .. ",0"
+					end
+
+					slot2 = slot0.selectModelID
+
+					slot0:socketRequest({
+						methodName = "GetEliteNodeFightInfo",
+						moduleName = "EtlyInfo",
+						methodData = {
+							slot0.selectModelID,
+							slot1
+						},
+						successCallback = function (slot0)
+							require("common.BattleEntry"):StartBattle({
+								fightInfo = slot0.FightInfo[1],
+								extraData = {
+									curFightId = 1,
+									allFightData = slot0.FightInfo,
+									nodeId = slot0,
+									battleResult = {}
+								}
+							})
+
+							return 
+						end
+					})
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onBuyCount = function (slot0)
+	if slot0.haveBuCount < VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].etlyEliteChallengeNum then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "etly.EtlyBuyCountLayer",
+			data = {
+				haveBuyCount = slot0.haveBuCount,
+				callFunc = function (slot0)
+					slot0.mLeftCount = slot0.EliteFightNum
+					slot0.haveBuCount = slot0.TodayBuyEliteFightNum
+
+					slot0.leftCountLabel:setString(TR("剩余次数：%d", slot0.mLeftCount))
+
+					if slot0.refreshDataFunc then
+						slot0.refreshDataFunc(slot0)
+					end
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		ui.showFlashView(TR("今日购买次数用完"))
+	end
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEliteNodeInfo",
+		moduleName = "EtlyInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.eliteListData = slot0.EliteList
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSaodang = function (slot0)
+	if slot0.mLeftCount <= 0 then
+		ui.showFlashView("挑战次数不足！")
+	else
+		slot0.socketRequest(slot0, {
+			methodName = "SweepEliteNode",
+			moduleName = "EtlyInfo",
+			methodData = {
+				slot0.selectModelID
+			},
+			successCallback = function (slot0)
+				slot0.mLeftCount = slot0.BaseInfo.EliteFightNum
+				slot0.haveBuCount = slot0.BaseInfo.TodayBuyEliteFightNum
+
+				slot0.leftCountLabel:setString(TR("剩余次数：%d", slot0.mLeftCount))
+
+				if slot0.refreshDataFunc then
+					slot0.refreshDataFunc(slot0.BaseInfo)
+				end
+
+				ui.showFlashReward(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onGetFirstCrossReward = function (slot0, ...)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveEliteNodeFirstReward",
+		moduleName = "EtlyInfo",
+		methodData = {
+			slot0.selectModelID
+		},
+		successCallback = function (slot0)
+			for slot4, slot5 in pairs(slot0.eliteListData) do
+				if slot0.EliteNode.EliteNodeId == slot5.EliteNodeId then
+					slot0.eliteListData[slot4] = slot0.EliteNode
+
+					break
+				end
+			end
+
+			ui.showFlashReward(slot0)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

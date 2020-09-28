@@ -1,0 +1,1254 @@
+slot0 = class("BattleDataLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 900,
+				height = 540
+			},
+			titleText = TR("战斗数据")
+		},
+		children = {
+			{
+				name = "untitled34",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onSelectChange",
+					fontSize = 20,
+					lightedImage = "xyyz_41.png",
+					direction = false,
+					normalImage = "xyyz_42.png",
+					btnInfos = {
+						{
+							title = TR("伤害输出")
+						},
+						{
+							title = TR("治疗生命")
+						},
+						{
+							title = TR("伤害承受")
+						},
+						{
+							title = TR("控制效果")
+						}
+					},
+					btnSize = {
+						width = 100,
+						height = 37
+					},
+					pos = {
+						x = 26.73,
+						y = 441.72
+					},
+					selectTitleColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					size = {
+						width = 540.45,
+						height = 56.74
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled64",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 458,
+						y = 407.5
+					}
+				},
+				children = {
+					{
+						name = "mLeftSprite",
+						cType = "Sprite",
+						params = {
+							image = "zd_45.png",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = -35,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "mLeftTitleLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									pos = {
+										x = 181,
+										y = 24
+									},
+									text = TR("我 方")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled66",
+						cType = "Sprite",
+						params = {
+							image = "zd_46.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mRightSprite",
+						cType = "Sprite",
+						params = {
+							image = "zd_44.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 35,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "mRightTitleLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									pos = {
+										x = 181,
+										y = 24
+									},
+									text = TR("敌 方")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 42.18,
+						y = 25.28
+					},
+					size = {
+						width = 830,
+						height = 350
+					}
+				},
+				children = {
+					{
+						name = "mLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = -0.63,
+								y = 548.74
+							},
+							size = {
+								width = 830,
+								height = 106
+							}
+						},
+						children = {
+							{
+								name = "untitled31",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 415,
+										y = 53
+									},
+									size = {
+										width = 830,
+										height = 106
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mLeftNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled23-normalImage",
+										name = "progressBgColor",
+										type = "string"
+									},
+									{
+										value = "untitled26-text",
+										name = "num",
+										type = "string"
+									},
+									{
+										value = "untitled23-currValue",
+										name = "currentValue",
+										type = "string"
+									},
+									{
+										value = "untitled23-maxValue",
+										name = "maxValue",
+										type = "string"
+									},
+									{
+										value = "untitled19-initParams",
+										name = "head",
+										type = "string"
+									},
+									{
+										value = "untitled32-hide",
+										name = "isHero",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 3
+									},
+									size = {
+										width = 415,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled19",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 58.82,
+												y = 50
+											}
+										},
+										children = {
+											{
+												name = "untitled32",
+												cType = "BadgeText",
+												params = {
+													fontSize = 20,
+													hide = true,
+													image = "c_76.png",
+													childName = "badge",
+													pos = {
+														x = 78,
+														y = 78
+													},
+													text = TR("主角")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled23",
+										cType = "ProgressBar",
+										params = {
+											maxValue = 100,
+											bgImage = "jyt_24.png",
+											currValue = 50,
+											normalImage = "jyt_25.png",
+											pos = {
+												x = 242.36,
+												y = 26.39
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled26",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "0",
+											anchor = {
+												x = 1,
+												y = 0
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 370,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "mRightNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled25-normalImage",
+										name = "progressBgColor",
+										type = "string"
+									},
+									{
+										value = "untitled27-text",
+										name = "num",
+										type = "string"
+									},
+									{
+										value = "untitled25-currValue",
+										name = "currentValue",
+										type = "string"
+									},
+									{
+										value = "untitled25-maxValue",
+										name = "maxValue",
+										type = "string"
+									},
+									{
+										value = "untitled21-initParams",
+										name = "head",
+										type = "string"
+									},
+									{
+										value = "untitled33-hide",
+										name = "isHero",
+										type = "string"
+									},
+									{
+										value = "untitled21-allowClick",
+										name = "allowClick",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 415,
+										y = 3
+									},
+									size = {
+										width = 415,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled21",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 353.05,
+												y = 50
+											}
+										},
+										children = {
+											{
+												name = "untitled33",
+												cType = "BadgeText",
+												params = {
+													fontSize = 20,
+													hide = true,
+													image = "c_76.png",
+													childName = "badge",
+													pos = {
+														x = 78,
+														y = 78
+													},
+													text = TR("主角")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled25",
+										cType = "ProgressBar",
+										params = {
+											maxValue = 100,
+											bgImage = "jyt_24.png",
+											currValue = 50,
+											normalImage = "jyt_25.png",
+											pos = {
+												x = 168.09,
+												y = 25.44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled27",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "0",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 40,
+												y = 50
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mBuffLayout",
+						cType = "Layout",
+						params = {
+							pos = {
+								z = 0,
+								x = -0.63,
+								y = 548.74
+							},
+							size = {
+								width = 830,
+								height = 106
+							}
+						},
+						children = {
+							{
+								name = "untitled37",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									pos = {
+										x = 415,
+										y = 53
+									},
+									size = {
+										width = 830,
+										height = 106
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mLeftLayout",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled39-initParams",
+										name = "head",
+										type = "string"
+									},
+									{
+										value = "untitled40-hide",
+										name = "isHero",
+										type = "string"
+									},
+									{
+										value = "untitled50-text",
+										name = "stun",
+										type = "string"
+									},
+									{
+										value = "untitled53-text",
+										name = "stone",
+										type = "string"
+									},
+									{
+										value = "untitled51-text",
+										name = "ice",
+										type = "string"
+									},
+									{
+										value = "untitled54-text",
+										name = "forbid",
+										type = "string"
+									},
+									{
+										value = "untitled52-text",
+										name = "angp",
+										type = "string"
+									},
+									{
+										value = "untitled55-text",
+										name = "angl",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 3
+									},
+									size = {
+										width = 415,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled39",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 60.82,
+												y = 50
+											}
+										},
+										children = {
+											{
+												name = "untitled40",
+												cType = "BadgeText",
+												params = {
+													fontSize = 20,
+													hide = true,
+													image = "c_76.png",
+													childName = "badge",
+													pos = {
+														x = 78,
+														y = 78
+													},
+													text = TR("主角")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled50",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 189.75,
+												y = 80.4
+											},
+											text = TR("眩晕")
+										},
+										children = {}
+									},
+									{
+										name = "untitled51",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 189.18,
+												y = 47.67
+											},
+											text = TR("冰冻")
+										},
+										children = {}
+									},
+									{
+										name = "untitled52",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 189.73,
+												y = 14.1
+											},
+											text = TR("回怒")
+										},
+										children = {}
+									},
+									{
+										name = "untitled53",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 259.14,
+												y = 80.48
+											},
+											text = TR("石化")
+										},
+										children = {}
+									},
+									{
+										name = "untitled54",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 257.81,
+												y = 47.56
+											},
+											text = TR("沉默")
+										},
+										children = {}
+									},
+									{
+										name = "untitled55",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 258.27,
+												y = 14.19
+											},
+											text = TR("降怒")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "mRightLayout",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled45-initParams",
+										name = "head",
+										type = "string"
+									},
+									{
+										value = "untitled46-hide",
+										name = "isHero",
+										type = "string"
+									},
+									{
+										value = "untitled56-text",
+										name = "stun",
+										type = "string"
+									},
+									{
+										value = "untitled59-text",
+										name = "stone",
+										type = "string"
+									},
+									{
+										value = "untitled57-text",
+										name = "ice",
+										type = "string"
+									},
+									{
+										value = "untitled60-text",
+										name = "forbid",
+										type = "string"
+									},
+									{
+										value = "untitled58-text",
+										name = "angp",
+										type = "string"
+									},
+									{
+										value = "untitled61-text",
+										name = "angl",
+										type = "string"
+									},
+									{
+										value = "untitled45-allowClick",
+										name = "allowClick",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 415,
+										y = 3
+									},
+									size = {
+										width = 415,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled45",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 354.82,
+												y = 50
+											}
+										},
+										children = {
+											{
+												name = "untitled46",
+												cType = "BadgeText",
+												params = {
+													fontSize = 20,
+													hide = true,
+													image = "c_76.png",
+													childName = "badge",
+													pos = {
+														x = 78,
+														y = 78
+													},
+													text = TR("主角")
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled56",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 115.75,
+												y = 80.4
+											},
+											text = TR("眩晕")
+										},
+										children = {}
+									},
+									{
+										name = "untitled57",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 115.18,
+												y = 47.67
+											},
+											text = TR("冰冻")
+										},
+										children = {}
+									},
+									{
+										name = "untitled58",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 115.73,
+												y = 14.1
+											},
+											text = TR("回怒")
+										},
+										children = {}
+									},
+									{
+										name = "untitled59",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 187.14,
+												y = 80.48
+											},
+											text = TR("石化")
+										},
+										children = {}
+									},
+									{
+										name = "untitled60",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 185.81,
+												y = 47.56
+											},
+											text = TR("沉默")
+										},
+										children = {}
+									},
+									{
+										name = "untitled61",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 186.27,
+												y = 14.19
+											},
+											text = TR("降怒")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mBattleData = slot1.battleData
+	slot0.mIsOthersBattle = slot1.isOthersBattle
+	slot0.mDamage = {}
+	slot0.mHeal = {}
+	slot0.mHit = {}
+	slot0.mBuff = {}
+
+	slot0.dealWithData(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.mIsOthersBattle then
+		slot0.mLeftSprite:setTexture("zd_44.png")
+		slot0.mRightSprite:setTexture("zd_45.png")
+		slot0.mLeftTitleLabel:setString("敌 方")
+		slot0.mRightTitleLabel:setString("我 方")
+	end
+
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.mDamage.team = slot0.mDamage.team or {}
+	slot0.mHeal.team = slot0.mHeal.team or {}
+	slot0.mHit.team = slot0.mHit.team or {}
+	slot0.mBuff.team = slot0.mBuff.team or {}
+
+	for slot4, slot5 in pairs(slot0.mBattleData.team) do
+		if slot5.damage then
+			table.insert(slot0.mDamage.team, {
+				num = slot5.damage,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.heal then
+			table.insert(slot0.mHeal.team, {
+				num = slot5.heal,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.beHit then
+			table.insert(slot0.mHit.team, {
+				num = slot5.beHit,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.buff then
+			table.insert(slot0.mBuff.team, {
+				buff = slot5.buff,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+	end
+
+	slot0.mDamage.enemy = slot0.mDamage.enemy or {}
+	slot0.mHeal.enemy = slot0.mHeal.enemy or {}
+	slot0.mHit.enemy = slot0.mHit.enemy or {}
+	slot0.mBuff.enemy = slot0.mBuff.enemy or {}
+
+	for slot4, slot5 in pairs(slot0.mBattleData.enemy) do
+		if slot5.damage then
+			table.insert(slot0.mDamage.enemy, {
+				num = slot5.damage,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.heal then
+			table.insert(slot0.mHeal.enemy, {
+				num = slot5.heal,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.beHit then
+			table.insert(slot0.mHit.enemy, {
+				num = slot5.beHit,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+
+		if slot5.buff then
+			table.insert(slot0.mBuff.enemy, {
+				buff = slot5.buff,
+				ModelId = slot5.ModelId,
+				Star = slot5.Star,
+				StepLv = slot5.StepLv,
+				isHero = slot5.isHero,
+				Lv = slot5.Lv,
+				TrainLv = slot5.TrainLv
+			})
+		end
+	end
+
+	if next(slot0.mDamage) then
+		slot0.mDamage.enemy, slot7 = slot0.sortDataAndGetMax(slot0, slot0.mDamage.enemy)
+		slot0.mDamage.team, slot8 = slot0.sortDataAndGetMax(slot0, slot0.mDamage.team)
+		slot0.mDamage.max = math.max(slot2, slot4)
+	end
+
+	if next(slot0.mHeal) then
+		data1, max1 = slot0.sortDataAndGetMax(slot0, slot0.mHeal.enemy)
+		slot0.mHeal.enemy = data1
+		data2, max2 = slot0.sortDataAndGetMax(slot0, slot0.mHeal.team)
+		slot0.mHeal.team = data2
+		slot0.mHeal.max = math.max(max1, max2)
+	end
+
+	if next(slot0.mHit) then
+		data1, max1 = slot0.sortDataAndGetMax(slot0, slot0.mHit.enemy)
+		slot0.mHit.enemy = data1
+		data2, max2 = slot0.sortDataAndGetMax(slot0, slot0.mHit.team)
+		slot0.mHit.team = data2
+		slot0.mHit.max = math.max(max1, max2)
+	end
+
+	return 
+end
+slot0.sortDataAndGetMax = function (slot0, slot1)
+	table.sort(slot1, function (slot0, slot1)
+		return slot1.num < slot0.num
+	end)
+
+	return slot1, slot1[1].num
+end
+slot0.refreshListView = function (slot0, slot1)
+	slot0.mListView:removeAllChildren()
+
+	slot2 = {
+		"jyt_25.png",
+		"jyt_25.png",
+		"jyt_25.png"
+	}
+
+	function slot3(slot0)
+		slot1 = {
+			Enums.CardShowAttr.eBorder
+		}
+
+		if slot0 then
+			table.insertto(slot1, {
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv,
+				Enums.CardShowAttr.eLevel
+			})
+		end
+
+		return slot1
+	end
+
+	function slot4(slot0, slot1)
+		if not next(slot0) then
+			return 
+		end
+
+		for slot6 = 1, math.ceil(math.max(#slot0.enemy, #slot0.team)), 1 do
+			slot7 = slot0[slot1]
+			slot8 = slot1:createLayoutTemplateNode("mLayout", {})
+
+			for slot12 = 1, 2, 1 do
+				if slot12 == 1 then
+					if slot0.team[slot6] then
+						slot14 = slot1:createLayoutTemplateNode("mLeftNode", {
+							progressBgColor = slot7,
+							num = Utility.changeNumToStrWithSign(math.floor(slot13.num)),
+							currentValue = slot13.num,
+							maxValue = slot0.max,
+							isHero = slot13.isHero,
+							head = {
+								showAttrs = slot2(slot13.isHero),
+								instanceData = slot13
+							}
+						})
+
+						slot14.setPosition(slot14, cc.p(0, 3))
+						slot8.addChild(slot8, slot14)
+					end
+				elseif slot12 == 2 and slot0.enemy[slot6] then
+					slot14 = slot1:createLayoutTemplateNode("mRightNode", {
+						progressBgColor = slot7,
+						num = Utility.changeNumToStrWithSign(math.floor(slot13.num)),
+						currentValue = slot13.num,
+						maxValue = slot0.max,
+						isHero = slot13.isHero,
+						head = {
+							showAttrs = slot2(slot13.isHero),
+							instanceData = slot13
+						},
+						allowClick = HeroObj:isHaveModel(slot13.ModelId)
+					})
+
+					slot14.setPosition(slot14, cc.p(415, 3))
+					slot8.addChild(slot8, slot14)
+				end
+			end
+
+			slot1.mListView:pushBackCustomItem(slot8)
+		end
+
+		return 
+	end
+
+	function slot5(slot0)
+		if not next(slot0) then
+			return 
+		end
+
+		for slot5 = 1, math.ceil(math.max(#slot0.enemy, #slot0.team)), 1 do
+			slot6 = slot0:createLayoutTemplateNode("mBuffLayout", {})
+
+			for slot10 = 1, 2, 1 do
+				if slot10 == 1 then
+					if slot0.team[slot5] then
+						slot13 = slot0:createLayoutTemplateNode("mLeftLayout", {
+							isHero = slot11.isHero,
+							head = {
+								showAttrs = slot1(slot11.isHero),
+								instanceData = slot11
+							},
+							stun = TR("眩晕 x%d", slot11.buff.stun),
+							stone = TR("石化 x%d", slot11.buff.stone),
+							ice = TR("冰冻 x%d", slot11.buff.ice),
+							forbid = TR("沉默 x%d", slot11.buff.forbid),
+							angp = TR("回怒 x%d", slot11.buff.angp),
+							angl = TR("降怒 x%d", slot11.buff.angl)
+						})
+
+						slot13.setPosition(slot13, cc.p(0, 3))
+						slot6.addChild(slot6, slot13)
+					end
+				elseif slot10 == 2 and slot0.enemy[slot5] then
+					slot13 = slot0:createLayoutTemplateNode("mRightLayout", {
+						isHero = slot11.isHero,
+						head = {
+							showAttrs = slot1(slot11.isHero),
+							instanceData = slot11
+						},
+						stun = TR("眩晕 x%d", slot11.buff.stun),
+						stone = TR("石化 x%d", slot11.buff.stone),
+						ice = TR("冰冻 x%d", slot11.buff.ice),
+						forbid = TR("沉默 x%d", slot11.buff.forbid),
+						angp = TR("回怒 x%d", slot11.buff.angp),
+						angl = TR("降怒 x%d", slot11.buff.angl),
+						allowClick = HeroObj:isHaveModel(slot11.ModelId)
+					})
+
+					slot13.setPosition(slot13, cc.p(415, 3))
+					slot6.addChild(slot6, slot13)
+				end
+			end
+
+			slot0.mListView:pushBackCustomItem(slot6)
+		end
+
+		return 
+	end
+
+	if slot1 == 1 then
+		slot4(slot0.mDamage, 1)
+	elseif slot1 == 2 then
+		slot4(slot0.mHeal, 2)
+	elseif slot1 == 3 then
+		slot4(slot0.mHit, 3)
+	elseif slot1 == 4 then
+		slot5(slot0.mBuff)
+	end
+
+	return 
+end
+slot0.onSelectChange = function (slot0, slot1)
+	slot0.mActiveTag = slot1
+
+	slot0.refreshListView(slot0, slot1)
+
+	return 
+end
+
+return slot0

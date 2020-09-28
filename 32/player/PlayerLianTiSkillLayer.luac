@@ -1,0 +1,175 @@
+slot0 = class("PlayerLianTiSkillLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 254.62,
+						y = 333.54
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 141.38,
+								y = 17.03
+							},
+							text = TR("技能描述")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					pos = {
+						x = 97.66,
+						y = 275
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					reverse = 1,
+					image = "c_36.png",
+					pos = {
+						x = 416.67,
+						y = 275
+					}
+				},
+				children = {}
+			},
+			{
+				name = "name",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 256.01,
+						y = 275
+					},
+					text = TR("技能名称")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.1,
+						y = 174.99
+					},
+					size = {
+						width = 450,
+						height = 150
+					}
+				},
+				children = {}
+			},
+			{
+				name = "des",
+				cType = "Label",
+				params = {
+					align = 1,
+					valign = 1,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 256.59,
+						y = 173.51
+					},
+					size = {
+						width = 430,
+						height = 130
+					},
+					text = TR("萨达就看到了还是阿斯顿发快了")
+				},
+				children = {}
+			},
+			{
+				name = "tips",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 256.02,
+						y = 62.81
+					},
+					text = TR("多少啊阿道夫")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.dataList = slot1.dataList
+	slot0.isActiveDes = slot1.isActiveDes
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.name:setString(TR("%s", SkillModel.items[slot0.dataList.skillId].skillName))
+	slot0.des:setString(SkillModel.items[slot0.dataList.skillId].skillIntro)
+	slot0.tips:setString(slot0.isActiveDes)
+
+	return 
+end
+
+return slot0

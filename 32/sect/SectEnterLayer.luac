@@ -1,0 +1,575 @@
+slot0 = class("SectEnterLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopAction",
+			needTouchClose = true,
+			closeAction = "onCloseCallBack",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "zm_24.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 151.68,
+						y = 180.54
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 337.34,
+						y = 328.36
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onSwitchSectCallBakc",
+					lightedImage = "zm_77.png",
+					direction = false,
+					normalImage = "zm_76.png",
+					selectTag = 1,
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = 274.57,
+						y = 363.44
+					},
+					size = {
+						width = 500,
+						height = 100
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 303.81,
+						y = 252.59
+					},
+					text = TR("宗门特性：")
+				},
+				children = {
+					{
+						name = "untitled22",
+						cType = "Sprite",
+						params = {
+							image = "kfbp_5.png",
+							pos = {
+								x = -10,
+								y = 9
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled18",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 302,
+						y = 158.36
+					},
+					text = TR("镇宗之宝：")
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -5.82,
+								y = -11.73
+							},
+							text = TR("(点击查看)")
+						},
+						children = {}
+					},
+					{
+						name = "untitled23",
+						cType = "Sprite",
+						params = {
+							image = "kfbp_5.png",
+							pos = {
+								x = -10,
+								y = 9
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Sprite",
+						params = {
+							image = "zm_78.png",
+							pos = {
+								x = 286.32,
+								y = -13.15
+							}
+						},
+						children = {}
+					},
+					{
+						name = "tokenSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 164.32,
+								y = -5.69
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled21",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 285,
+						y = 128.38
+					},
+					text = TR("宗门特产：")
+				},
+				children = {
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						params = {
+							image = "kfbp_5.png",
+							pos = {
+								x = -10,
+								y = 9
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "introLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					text = "Label",
+					align = 0,
+					valign = 1,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 502.41,
+						y = 132.85
+					},
+					size = {
+						width = 220,
+						height = 60
+					}
+				},
+				children = {}
+			},
+			{
+				name = "propertyLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 437.25,
+						y = 251.91
+					},
+					text = TR("宗门特性宗门特性宗门特性")
+				},
+				children = {}
+			},
+			{
+				name = "infoBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onTokenCallBakc",
+					pos = {
+						x = 369.39,
+						y = 133.09
+					},
+					size = {
+						width = 200,
+						height = 80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "zm_23.png",
+					pos = {
+						x = -20.87,
+						y = 278.5
+					}
+				},
+				children = {
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							text = "",
+							pos = {
+								x = 21.5,
+								y = 142.5
+							},
+							size = {
+								width = 28,
+								height = 160
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					hide = true,
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 520,
+						y = 87
+					},
+					size = {
+						width = 300,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled8-initParams",
+								name = "cardInfo",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 50,
+										y = 70
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "enterBtn",
+				cType = "Button",
+				params = {
+					image = "zm_22.png",
+					clickAction = "onEnterCallBack",
+					pos = {
+						x = 757.95,
+						y = -29.58
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tipsLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					pos = {
+						x = 487.86,
+						y = -7.4
+					},
+					text = TR("不可同时加入多个宗门")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(SectModel.items) do
+		slot2[slot7.Id] = {
+			title = "",
+			tag = slot7.Id,
+			normalImage = string.format("zm_%d.png", slot7.Id + 78),
+			lightedImage = string.format("zm_%d.png", slot7.Id + 78)
+		}
+	end
+
+	slot0.btnInfos = slot2
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "tabView" then
+			slot1.btnInfos = slot0.btnInfos
+			slot1.selectTag = slot0.mSectID
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onPopAction = function (slot0)
+	Guide.manager:exeGuideList({
+		[201701] = {
+			clickNode = slot0.tabView:getTabBtnByTag(2)
+		},
+		[201702] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.infoBtn
+		}
+	})
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.heroSprite:setTexture(HeroModel.items[slot0.mSectCfg.initHeroMOdelId].drawingPicA .. ".png")
+	slot0.heroSprite:setScale(1)
+	slot0.heroSprite:setPosition(cc.p(151, 180))
+
+	if slot0.mSectID == 1 then
+		slot0.heroSprite:setScale(0.9)
+	elseif slot0.mSectID == 2 then
+		slot0.heroSprite:setScale(0.9)
+		slot0.heroSprite:setScaleX(-0.9)
+		slot0.heroSprite:setPosition(cc.p(100, 180))
+	elseif slot0.mSectID == 3 then
+		slot0.heroSprite:setScale(0.9)
+		slot0.heroSprite:setScaleX(-0.9)
+	end
+
+	slot0.nameLabel:setString(slot0.mSectCfg.masterName)
+	slot0.introLabel:setString(SectTokenModel.items[slot0.mSectID][1].des)
+	slot0.propertyLabel:setString(slot0.mSectCfg.character)
+	slot0.titleSprite:setTexture(({
+		"zm_18.png",
+		"zm_19.png",
+		"zm_20.png",
+		"zm_21.png"
+	})[slot0.mSectID])
+	slot0.tokenSprite:setTexture(SectTokenModel.items[slot0.mSectID][1].tokenSmallPic .. ".png")
+	slot0.listView:removeAllChildren()
+	slot0.listView:setContentSize(cc.size(((3 <= #Utility.analysisStrResList(slot0.mSectCfg.sectOutput) and 3) or #slot2)*100, 120))
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "layout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot7.resourceId,
+					num = slot7.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eName
+				}
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onCloseCallBack = function (slot0, slot1)
+	if slot0.tokenInfoLayer then
+		LayerManager.removeLayer(slot0.tokenInfoLayer)
+
+		slot0.tokenInfoLayer = nil
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onSwitchSectCallBakc = function (slot0, slot1)
+	slot0.mSectID = slot1
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.refreshLayer(slot0)
+
+	if slot0.tokenInfoLayer then
+		LayerManager.removeLayer(slot0.tokenInfoLayer)
+
+		slot0.tokenInfoLayer = nil
+	end
+
+	return 
+end
+slot0.onTokenCallBakc = function (slot0)
+	if slot0.tokenInfoLayer then
+		LayerManager.removeLayer(slot0.tokenInfoLayer)
+
+		slot0.tokenInfoLayer = nil
+
+		return 
+	end
+
+	slot0.tokenInfoLayer = LayerManager.addLayer({
+		cleanUp = false,
+		name = "sect.SectTokenLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			sectID = slot0.mSectID
+		}
+	})
+
+	slot0.tokenInfoLayer.bg:setPosition(slot0.tokenInfoLayer:convertToNodeSpace(slot2))
+
+	return 
+end
+slot0.onEnterCallBack = function (slot0)
+	slot0.requestJoin(slot0)
+
+	return 
+end
+slot0.requestJoin = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "JoinSect",
+		moduleName = "Sect",
+		methodData = {
+			slot0.mSectID
+		},
+		successCallback = function (slot0)
+			LayerManager.addLayer({
+				cleanUp = true,
+				name = "sect.SectLayer",
+				data = {
+					sectID = slot0.mSectID
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

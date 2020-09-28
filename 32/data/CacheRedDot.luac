@@ -1,0 +1,174 @@
+slot0 = class("CacheRedDot", {})
+slot0.ctor = function (slot0)
+	slot0.mRedDotInfo = {}
+	slot0.redTier = {}
+	slot0.newTier = {
+		[ModuleSub.eTimedActivity] = {
+			ModuleSub.eTimedPointsMall,
+			ModuleSub.eTimedUseTotal,
+			ModuleSub.eTimedDoubleIncome,
+			ModuleSub.eOperatingActivitySkyStar,
+			ModuleSub.eTimedChargeSingle,
+			ModuleSub.eTimedChargeTotal,
+			ModuleSub.eChargeDays,
+			ModuleSub.eTimedTotalConsume,
+			ModuleSub.eTimedAcumulateLogin,
+			ModuleSub.eTimedLimitedExchange
+		},
+		[ModuleSub.eExtraActivity] = {
+			ModuleSub.eExtraActivitCompetition,
+			ModuleSub.eExtraActivityDoubleIncome
+		}
+	}
+	slot0.redCached = {}
+	slot0.newCached = {}
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mRedDotInfo = {}
+
+	return 
+end
+slot0.getRedDotInfo = function (slot0)
+	return slot0.mRedDotInfo
+end
+slot0.getEvents = function (slot0, slot1)
+	return slot0._getInnerEvents(slot0, EventDefine.eRedDotPrefix, slot0.redTier, slot0.redCached, slot1)
+end
+slot0.isValid = function (slot0, slot1, slot2)
+	slot2 = slot2 or "Default"
+
+	if not slot0.redCached[slot1] then
+		slot0._getInnerEvents(slot0, EventDefine.eRedDotPrefix, slot0.redTier, slot0.redCached, slot1)
+
+		slot3 = slot0.redCached[slot1]
+	end
+
+	for slot7, slot8 in ipairs(slot3) do
+		if slot0.mRedDotInfo[slot8] and slot0.mRedDotInfo[slot8][slot2] then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.saveOnceRedDot = function (slot0, slot1, slot2)
+	if type(slot2) == "boolean" then
+		Player:saveGameData("InnerRedDot" .. tostring(slot1), slot2)
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(slot1))
+	end
+
+	return 
+end
+slot0._getInnerEvents = function (slot0, slot1, slot2, slot3, slot4)
+	table.insertto({
+		slot4
+	}, slot2[slot4] or {})
+
+	slot6 = {}
+
+	for slot10, slot11 in ipairs(slot5) do
+		table.insert(slot6, slot1 .. tostring(slot11))
+	end
+
+	slot3[slot4] = slot5
+
+	return slot6
+end
+slot0.getNewEvents = function (slot0, slot1)
+	return slot0._getInnerEvents(slot0, EventDefine.eNewPrefix, slot0.newTier, slot0.newCached, slot1)
+end
+slot0.isNewValid = function (slot0, slot1)
+	function slot2(slot0)
+		return ActivityObj:activityIsNew(slot0)
+	end
+
+	slot3 = slot0.newCached[slot1] or {
+		slot1
+	}
+
+	for slot7, slot8 in ipairs(slot3) do
+		if slot2(tonumber(slot8)) then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.setSocketRedDotInfo = function (slot0, slot1)
+	slot2 = pairs
+	slot3 = slot1 or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		slot0.mRedDotInfo[tonumber(slot5)] = slot6
+
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. slot5)
+	end
+
+	return 
+end
+slot0.manualUpdateSocketRedDot = function (slot0, slot1, slot2, slot3)
+	dump(slot1)
+	dump(slot2)
+
+	slot0.mRedDotInfo[slot1] = slot0.mRedDotInfo[slot1] or {}
+	slot4 = true
+
+	if slot2 then
+		slot5 = slot0.mRedDotInfo[slot1][slot2]
+
+		if slot3 and not slot5 then
+			slot0.mRedDotInfo[slot1][slot2] = true
+			slot0.mRedDotInfo[slot1].Default = true
+		elseif not slot3 and slot5 then
+			slot0.mRedDotInfo[slot1][slot2] = false
+			slot6 = true
+
+			for slot10, slot11 in pairs(slot0.mRedDotInfo[slot1]) do
+				if slot11 and slot10 ~= "Default" then
+					slot6 = false
+
+					break
+				end
+			end
+
+			if slot6 then
+				slot0.mRedDotInfo[slot1].Default = false
+			end
+		else
+			slot4 = false
+		end
+	end
+
+	if slot3 or false then
+		EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(slot1))
+	end
+
+	return 
+end
+slot0.seeRedDot = function (slot0, slot1, slot2)
+	if (not slot1 and not slot2) or (slot1 == "" and slot2 == "") then
+		dump("阅读服务器推送的小红点错误")
+
+		return 
+	end
+
+	require("network.GameSocket"):socketRequest({
+		methodName = "See",
+		moduleName = "ReddotView",
+		ignoreNode = true,
+		needWait = false,
+		methodData = {
+			slot1,
+			slot2 or ""
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

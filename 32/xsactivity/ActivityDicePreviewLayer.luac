@@ -1,0 +1,226 @@
+slot0 = class("ActivityDicePreviewLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 530
+			},
+			titleText = TR("寻宝预览")
+		},
+		children = {
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onCellNum",
+					isVertical = true,
+					cellUpdateFunc = "onCellRefresh",
+					cellSizeFunc = "onCellSize",
+					cellFillFunc = "onCellCreate",
+					pos = {
+						x = 22.55,
+						y = 33.97
+					},
+					size = {
+						width = 470,
+						height = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "TaskTempNode",
+				cType = "TemplateNode",
+				params = {
+					sizeApt = 1,
+					pos = {
+						x = 29.76,
+						y = 292.79
+					},
+					size = {
+						width = 460,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_95.png",
+							pos = {
+								x = 230,
+								y = 60
+							},
+							size = {
+								width = 455,
+								height = 118
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "ListView",
+						params = {
+							childName = "listView",
+							direction = false,
+							swallowTouch = false,
+							pos = {
+								x = 17.5,
+								y = 7.12
+							},
+							size = {
+								width = 420,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "CardLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled9-initParams",
+										name = "cardData",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 80,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										params = {
+											scale = 0.9,
+											childName = "card",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 40,
+												y = 40
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							childName = "taskLabel",
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 230,
+								y = 103
+							},
+							text = TR("总共到达100步")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mTaskData = slot1.taskData
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 460, 120
+end
+slot0.onCellNum = function (slot0)
+	return (slot0.mTaskData and #slot0.mTaskData) or 0
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "TaskTempNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.refresh = function (slot0)
+		slot1.taskLabel:setString(slot0.mTaskData[slot0 + 1].Description)
+		slot1.listView:removeAllChildren()
+
+		if 5 < #Utility.analysisStrResList(slot0.mTaskData[slot0 + 1].Reward) then
+			for slot6, slot7 in pairs(slot2) do
+				slot1.listView:pushBackCustomItem(slot0:createLayoutTemplateNode("CardLayout", {
+					cardData = {
+						cardInfo = slot7,
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+		else
+			slot5 = (455 - #slot2*85)*0.5
+
+			for slot9, slot10 in pairs(slot2) do
+				slot11 = slot0:createLayoutTemplateNode("CardLayout", {
+					cardData = {
+						cardInfo = slot10,
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				})
+
+				slot11.setPosition(slot11, slot5 + (slot9 - 1)*slot3, 10)
+				slot1:addChild(slot11)
+			end
+		end
+
+		return 
+	end
+
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot2)
+
+	return 
+end
+
+return slot0

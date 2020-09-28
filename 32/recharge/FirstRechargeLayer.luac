@@ -1,0 +1,736 @@
+slot0 = class("FirstRechargeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bg",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "shc_11.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseAction",
+					pos = {
+						x = 569.9,
+						y = 514.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "shc_1.png",
+					pos = {
+						x = 412.08,
+						y = 475.87
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardSprite",
+				cType = "Sprite",
+				params = {
+					image = "shc_2.png",
+					pos = {
+						x = 402.17,
+						y = 375.83
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rechargeNum",
+				cType = "Label",
+				params = {
+					text = "0",
+					charCount = 10,
+					isRichText = true,
+					fontName = "shc_10.png",
+					pos = {
+						x = 335.21,
+						y = 376.96
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "shc_3.png",
+					hide = true,
+					pos = {
+						x = 399.36,
+						y = 337.19
+					}
+				},
+				children = {}
+			},
+			{
+				name = "priceNum",
+				cType = "Label",
+				params = {
+					text = "0",
+					charCount = 10,
+					hide = true,
+					fontName = "shc_10.png",
+					isRichText = true,
+					pos = {
+						x = 414.92,
+						y = 337.71
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 409.79,
+						y = 280.83
+					},
+					size = {
+						width = 313.76,
+						height = 83.98
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled11-initParams",
+								name = "head",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 13.11,
+								y = 4.3
+							},
+							size = {
+								width = 83.82,
+								height = 81.2
+							}
+						},
+						children = {
+							{
+								name = "untitled11",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 41.75,
+										y = 41.3
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "BtnTemplate",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled14-chargeTag",
+						name = "chargeTag",
+						type = "string"
+					},
+					{
+						value = "untitled37-text",
+						name = "numLabel",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 628.33,
+						y = 390.75
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "chargeTag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "shc_9.png",
+							clickAction = "onChangeRechargeAction",
+							childName = "button",
+							pos = {
+								x = 14.12,
+								y = 6.28
+							}
+						},
+						children = {
+							{
+								name = "untitled38",
+								cType = "Label",
+								params = {
+									childName = "titleLabel",
+									pos = {
+										x = 3.07,
+										y = 12.9
+									},
+									size = {
+										width = 30,
+										height = 100
+									},
+									text = TR("累充")
+								},
+								children = {}
+							},
+							{
+								name = "untitled36",
+								cType = "Effect",
+								params = {
+									loop = true,
+									dataFile = "effect_ui_chaozhishouchong",
+									hide = true,
+									isPlayAnimation = true,
+									childName = "effect",
+									animation = "animation",
+									pos = {
+										x = 0,
+										y = 6
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled37",
+								cType = "Label",
+								params = {
+									text = "0",
+									childName = "numLabel",
+									pos = {
+										x = -0.24,
+										y = -20.99
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "rechargeBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onRechargeAction",
+					pos = {
+						x = 411.52,
+						y = 192.96
+					},
+					titleText = TR("充 值")
+				},
+				children = {}
+			},
+			{
+				name = "drawIcon",
+				cType = "Sprite",
+				params = {
+					image = "c_55.png",
+					hide = true,
+					pos = {
+						x = 412.1,
+						y = 193.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Button",
+				params = {
+					image = "tb_gn_120.png",
+					clickAction = "onVipGift",
+					pos = {
+						x = 798.62,
+						y = 90.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "curRechargeLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					hide = true,
+					color = {
+						g = 232,
+						r = 255,
+						b = 97
+					},
+					pos = {
+						x = 412.23,
+						y = 194.53
+					},
+					text = TR("已累计充值0元")
+				},
+				children = {}
+			},
+			{
+				name = "recruit",
+				cType = "Sprite",
+				params = {
+					image = "fuli_104.png",
+					pos = {
+						x = 191.4,
+						y = 199.68
+					}
+				},
+				children = {
+					{
+						name = "untitled34",
+						cType = "Sprite",
+						params = {
+							image = "c_56.png",
+							pos = {
+								x = 33.2,
+								y = 211.23
+							}
+						},
+						children = {
+							{
+								name = "untitled35",
+								cType = "Label",
+								params = {
+									fontSize = 28,
+									pos = {
+										x = 25.95,
+										y = 135.77
+									},
+									size = {
+										width = 32,
+										height = 100
+									},
+									text = TR("十连抽")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "nameSprite",
+				cType = "Sprite",
+				params = {
+					image = "c_56.png",
+					hide = true,
+					zOrder = 1,
+					pos = {
+						x = 20.1,
+						y = 385.52
+					}
+				},
+				children = {
+					{
+						name = "heroNameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 28,
+							pos = {
+								x = 25.95,
+								y = 135.77
+							},
+							size = {
+								width = 32,
+								height = 100
+							},
+							text = TR("黄蓉")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "effectBtn",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "modelId",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "tb_gn_121.png",
+					zOrder = 1,
+					hide = true,
+					clickAction = "onEffectShowAction",
+					pos = {
+						x = 235.67,
+						y = 150.03
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.myBtnList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.showType = slot1.showType or #ChargeFirstConfig.items
+
+	slot0.requestInfo(slot0)
+	RedDotObj:saveOnceRedDot(ModuleSub.eFirstCharge, false)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot2 = ({
+		[5] = {
+			cc.p(551.33, 78.45),
+			cc.p(628.34, 150.04),
+			cc.p(680.4, 245.44),
+			cc.p(667.61, 353.1),
+			cc.p(611.95, 447.26)
+		},
+		[4] = {
+			cc.p(590.06, 143.22),
+			cc.p(679.64, 226.24),
+			cc.p(698.67, 343.52),
+			cc.p(655.31, 455.86)
+		},
+		[3] = {
+			cc.p(592.83, 152.72),
+			cc.p(651.24, 275.72),
+			cc.p(614.57, 395.19)
+		}
+	})[#ChargeFirstConfig.items]
+
+	for slot6, slot7 in ipairs(ChargeFirstConfig.items) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "BtnTemplate", {
+			chargeTag = slot6,
+			numLabel = slot7.num
+		})
+
+		if #ChargeFirstConfig.items == 5 then
+			slot8.button:setScale(0.8)
+		end
+
+		slot8.setPosition(slot8, slot2[slot6])
+		slot0.bg:addChild(slot8)
+		table.insert(slot0.myBtnList, slot8)
+	end
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		showType = slot0.showType
+	}
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onVipGift = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.PrivilegeLayer"
+	})
+
+	return 
+end
+slot0.onChangeRechargeAction = function (slot0, slot1)
+	if slot0.showType ~= slot1.chargeTag then
+		slot0.showType = slot1.chargeTag
+
+		slot0.refreshUI(slot0)
+	end
+
+	return 
+end
+slot0.onEffectShowAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot1.modelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	if slot1 then
+		function (slot0)
+			if ChargeFirstConfig.items[slot0].num <= slot0.curRechargeNum then
+				slot2 = true
+
+				for slot6, slot7 in ipairs(slot0.drawNums) do
+					if slot7 == slot1.num then
+						slot2 = false
+						slot1 = (slot0 < #ChargeFirstConfig.items and slot0 + 1) or 1
+
+						break
+					end
+				end
+
+				if slot2 then
+					slot0.showType = slot0
+				end
+			else
+				slot0.showType = slot0
+			end
+
+			return 
+		end(slot0.showType)
+
+		if nil then
+			while slot0.showType ~= slot2 do
+				slot3(slot2)
+			end
+		end
+	end
+
+	slot2 = ChargeFirstConfig.items[slot0.showType]
+	slot3 = {
+		"shc_9.png",
+		"shc_8.png"
+	}
+	slot4 = {
+		cc.c3b(228, 228, 228),
+		cc.c3b(255, 232, 97)
+	}
+	slot5 = {
+		355,
+		336,
+		335,
+		353,
+		353
+	}
+
+	for slot9, slot10 in ipairs(slot0.myBtnList) do
+		if slot10.button.chargeTag == slot0.showType then
+			slot0.rewardSprite:setTexture(ChargeFirstConfig.items[slot11.chargeTag].pic .. ".png")
+			slot0.rechargeNum:setPositionX(slot5[slot11.chargeTag])
+		end
+
+		slot11.loadTextures(slot11, (slot11.chargeTag == slot0.showType and slot3[2]) or slot3[1], )
+		slot11.effect:setVisible(slot11.chargeTag == slot0.showType)
+
+		if not slot11.redDot then
+			slot11.addChild(slot11, UIWrap.newControl("RedDot", {
+				moduleId = 1401,
+				subKey = tostring(ChargeFirstConfig.items[slot9].num)
+			}))
+
+			slot11.redDot = UIWrap.newControl("RedDot", {
+				moduleId = 1401,
+				subKey = tostring(ChargeFirstConfig.items[slot9].num)
+			})
+		end
+
+		slot11.titleLabel:setColor((slot11.chargeTag == slot0.showType and slot4[2]) or slot4[1])
+		slot11.numLabel:setString(ChargeFirstConfig.items[slot9].num)
+		slot11.numLabel:setColor((slot11.chargeTag == slot0.showType and slot4[2]) or slot4[1])
+	end
+
+	slot0.listView:removeAllChildren()
+
+	slot7 = false
+	slot8 = nil
+
+	for slot12, slot13 in ipairs(slot6) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			head = {
+				cardInfo = slot13,
+				showAttrs = {
+					Enums.CardShowAttr.eNum,
+					Enums.CardShowAttr.eName
+				}
+			}
+		}))
+
+		if slot13.resourceId == 16050026 or slot13.resourceId == 16050025 then
+			slot7 = true
+		elseif slot13.resourceId == 15093207 or slot13.resourceId == 15093101 then
+			slot0.effectBtn.modelId = HeroModel.items[GoodsModel.items[slot13.resourceId].outputModelID].modelId
+		end
+	end
+
+	slot0.listView:setContentSize(cc.size(#slot6*84, 84))
+
+	slot9 = {
+		[15093207] = cc.p(120.98, 100),
+		[15093101] = cc.p(40, 100)
+	}
+
+	if slot0.heroEffect and slot0.heroEffect.heroModel and slot0.heroEffect.heroModel ~= slot8 and not tolua.isnull(slot0.heroEffect) then
+		slot0.heroEffect:removeFromParent()
+
+		slot0.heroEffect = nil
+	end
+
+	if slot7 then
+		slot0.recruit:setVisible(true)
+		slot0.nameSprite:setVisible(false)
+		slot0.effectBtn:setVisible(false)
+	elseif slot8 then
+		if not slot0.heroEffect and HeroModel.items[GoodsModel.items[slot8].outputModelID].drawingPicB ~= "" and cc.FileUtils:getInstance():isFileExist(slot10.drawingPicB .. ".skel") then
+			slot0.heroEffect = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				scale = 0.48,
+				dataFile = slot10.drawingPicB
+			})
+
+			slot0.heroEffect:setPosition(slot9[slot8])
+			slot0.bg:addChild(slot0.heroEffect)
+
+			slot0.heroEffect.heroModel = slot8
+		end
+
+		slot0.recruit:setVisible(false)
+		slot0.nameSprite:setVisible(true)
+		slot0.heroNameLabel:setString(HeroModel.items[GoodsModel.items[slot8].outputModelID].name)
+		slot0.effectBtn:setVisible(true)
+	end
+
+	if slot0.rechargeBtn.redDot and not tolua.isnull(slot0.rechargeBtn.redDot) then
+		slot0.rechargeBtn.redDot:removeFromParent()
+
+		slot0.rechargeBtn.redDot = nil
+	end
+
+	if slot2.num <= slot0.curRechargeNum then
+		slot10 = true
+
+		for slot14, slot15 in ipairs(slot0.drawNums) do
+			if slot15 == slot2.num then
+				slot0.drawIcon:setVisible(true)
+				slot0.rechargeBtn:setVisible(false)
+
+				slot0.rechargeBtn.drawNum = 0
+				slot10 = false
+
+				break
+			end
+		end
+
+		if slot10 then
+			slot0.drawIcon:setVisible(false)
+			slot0.rechargeBtn:getTitleLabel():setString(TR("领 取"))
+			slot0.rechargeBtn:setVisible(true)
+
+			slot0.rechargeBtn.drawNum = slot2.num
+
+			slot0.rechargeBtn:addChild(UIWrap.newControl("RedDot", {
+				moduleId = 1401,
+				subKey = tostring(slot2.num)
+			}))
+
+			slot0.rechargeBtn.redDot = UIWrap.newControl("RedDot", {
+				moduleId = 1401,
+				subKey = tostring(slot2.num)
+			})
+		end
+	else
+		slot0.rechargeBtn:getTitleLabel():setString(TR("充 值"))
+		slot0.rechargeBtn:setVisible(true)
+		slot0.drawIcon:setVisible(false)
+
+		slot0.rechargeBtn.drawNum = 0
+	end
+
+	slot0.rechargeNum:setString(math.max(slot2.num - slot0.curRechargeNum, 0))
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ChargeInfo",
+		moduleName = "PlayerCharge",
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.curRechargeNum = slot0.ChargeNum
+			slot0.drawNums = slot0.DrawNums
+
+			slot0:refreshUI(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRechargeAction = function (slot0, slot1)
+	if slot1.drawNum and 0 < slot1.drawNum then
+		slot0.socketRequest(slot0, {
+			methodName = "DrawChargeBox",
+			moduleName = "PlayerCharge",
+			methodData = {
+				slot1.drawNum
+			},
+			successCallback = function (slot0)
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+				table.insert(slot0.drawNums, slot1.drawNum)
+				slot0:refreshUI(true)
+				PlayerAttrObj:checkLvUp()
+
+				return 
+			end
+		})
+	else
+		LayerManager.addLayer({
+			name = "recharge.RechargeHomeLayer"
+		})
+	end
+
+	return 
+end
+
+return slot0

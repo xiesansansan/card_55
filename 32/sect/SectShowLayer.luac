@@ -1,0 +1,331 @@
+slot0 = class("SectShowLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 880,
+				height = 540
+			},
+			titleText = TR("四大宗门")
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 440,
+						y = 270
+					},
+					size = {
+						width = 800,
+						height = 440
+					}
+				},
+				children = {}
+			},
+			{
+				name = "sectListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 440,
+						y = 270
+					},
+					size = {
+						width = 800,
+						height = 440
+					}
+				},
+				children = {
+					{
+						name = "sectLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled9-image",
+								name = "bg",
+								type = "string"
+							},
+							{
+								value = "untitled10-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled12-clickAction",
+								name = "enterActon",
+								type = "string"
+							},
+							{
+								value = "untitled16-text",
+								name = "guildName",
+								type = "string"
+							},
+							{
+								value = "untitled12-titleText",
+								name = "gotoBtnText",
+								type = "string"
+							},
+							{
+								value = "untitled12-image",
+								name = "btnImg",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 68
+							},
+							size = {
+								width = 200,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									image = "bp_96.png",
+									pos = {
+										x = 100,
+										y = 249
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 100,
+										y = 388
+									},
+									text = TR("大理皇宫")
+								},
+								children = {}
+							},
+							{
+								name = "rewardListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 102,
+										y = 105
+									},
+									size = {
+										width = 165,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled15-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = 4,
+												y = 10
+											},
+											size = {
+												width = 55,
+												height = 70
+											}
+										},
+										children = {
+											{
+												name = "untitled15",
+												cType = "CardNode",
+												params = {
+													scale = 0.6,
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 27.5,
+														y = 45
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								params = {
+									childName = "gotoBtn",
+									image = "c_27.png",
+									clickAction = "",
+									pos = {
+										x = 100,
+										y = 35
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									childName = "guildLabel",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 97.18,
+										y = 154.77
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.data = {}
+
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot1 = {
+	"bp_97.png",
+	"bp_96.png",
+	"bp_99.png",
+	"bp_98.png"
+}
+slot0.refreshLayer = function (slot0)
+	slot2 = PlayerAttrObj:getPlayerAttrByName("GuildInfo").SectId
+
+	for slot6, slot7 in ipairs(SectModel.items) do
+		slot0.sectListView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+		slot0.createLayoutTemplateNode(slot0, "sectLayout", {
+			bg = slot0[slot7.Id],
+			btnImg = (tonumber(slot2) == tonumber(slot7.Id) and "c_32.png") or "c_27.png",
+			name = slot7.name,
+			guildName = TR("帮派:%s", (slot0.data[tostring(slot7.Id)] and slot0.data[tostring(slot7.Id)].GuildName) or "未占领"),
+			gotoBtnText = (tonumber(slot2) == tonumber(slot7.Id) and TR("进 入")) or TR("前 往"),
+			enterActon = function ()
+				if slot0 then
+					LayerManager.addLayer({
+						cleanUp = true,
+						name = "sect.SectLayer",
+						data = {}
+					})
+
+					return 
+				end
+
+				LayerManager.addLayer({
+					name = "citywar.CityWarHomeLayer",
+					data = {
+						defaultCityId = slot1.needGetCityId
+					}
+				})
+
+				return 
+			end
+		}).rewardListView:removeAllChildren()
+
+		for slot16, slot17 in ipairs(slot12) do
+			slot11.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot17.resourceId,
+						num = slot17.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetSectOccopyGuildInfo",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,1496 @@
+slot0 = class("GuildHomeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite0",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "bp_89.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bgSprite1",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "bp_88.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mScrollView",
+		cType = "ScrollView",
+		params = {
+			posApt = 1,
+			direction = 2,
+			swallowTouch = false,
+			isFullScale = true,
+			sizeApt = 1,
+			conSize = {
+				width = 1800,
+				height = 640
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 1136,
+				height = 640
+			}
+		},
+		children = {
+			{
+				name = "bgSprite2",
+				cType = "Sprite",
+				params = {
+					scaleApt = 2,
+					isFullScale = true,
+					image = "bp_87.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onGuildBossBtn",
+							swallowTouch = false,
+							pos = {
+								x = 632.13,
+								y = 291.03
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派副本")
+								},
+								children = {}
+							},
+							{
+								name = "untitled53",
+								cType = "RedDot",
+								params = {
+									moduleId = 4611
+								},
+								children = {}
+							},
+							{
+								name = "untitled61",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onGuildBossBtn",
+									pos = {
+										x = -76.51,
+										y = -13.35
+									},
+									size = {
+										width = 138.35,
+										height = 129.52
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled21",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onStopAction",
+							pos = {
+								x = 884.22,
+								y = 207.24
+							}
+						},
+						children = {
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派商城")
+								},
+								children = {}
+							},
+							{
+								name = "untitled79",
+								cType = "RedDot",
+								params = {
+									moduleId = 1104
+								},
+								children = {}
+							},
+							{
+								name = "untitled62",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onStopAction",
+									pos = {
+										x = -18,
+										y = -12.24
+									},
+									size = {
+										width = 128.27,
+										height = 100
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled23",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onJobBtn",
+							pos = {
+								x = 1001.46,
+								y = 297.73
+							}
+						},
+						children = {
+							{
+								name = "untitled24",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派职位")
+								},
+								children = {}
+							},
+							{
+								name = "jobRedDot",
+								cType = "RedDot",
+								params = {
+									moduleId = 4614
+								},
+								children = {}
+							},
+							{
+								name = "untitled63",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onJobBtn",
+									pos = {
+										x = 17.34,
+										y = -20.51
+									},
+									size = {
+										width = 133.59,
+										height = 94.93
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled16",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onGuildCampClick",
+							hide = true,
+							pos = {
+								x = 785.39,
+								y = 362.11
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派大营")
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "RedDot",
+								params = {
+									moduleId = 4606
+								},
+								children = {}
+							},
+							{
+								name = "untitled64",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onGuildCampClick",
+									pos = {
+										x = 28.07,
+										y = -11.23
+									},
+									size = {
+										width = 170.72,
+										height = 97.44
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled66",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onGuildBuildClick",
+							pos = {
+								x = 726.56,
+								y = 169.97
+							}
+						},
+						children = {
+							{
+								name = "untitled67",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派建设")
+								},
+								children = {}
+							},
+							{
+								name = "untitled68",
+								cType = "RedDot",
+								params = {
+									moduleId = 4607
+								},
+								children = {}
+							},
+							{
+								name = "untitled69",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onGuildBuildClick",
+									pos = {
+										x = -43.35,
+										y = -15.62
+									},
+									size = {
+										width = 142.43,
+										height = 77.31
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled74",
+						cType = "Button",
+						params = {
+							image = "bp_3.png",
+							clickAction = "onGuildTalent",
+							hide = true,
+							pos = {
+								x = 513.28,
+								y = 404.43
+							}
+						},
+						children = {
+							{
+								name = "untitled75",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.69,
+										y = 22.77
+									},
+									size = {
+										width = 10,
+										height = 100.94
+									},
+									text = TR("帮派天赋")
+								},
+								children = {}
+							},
+							{
+								name = "untitled77",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onGuildTalent",
+									pos = {
+										x = 67.22,
+										y = -9.98
+									},
+									size = {
+										width = 184.6,
+										height = 86.94
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled78",
+								cType = "RedDot",
+								params = {
+									moduleId = 4615
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "manageTigNode",
+						cType = "Sprite",
+						params = {
+							image = "bp_4.png",
+							pos = {
+								x = 1074.14,
+								y = 300.18
+							}
+						},
+						children = {
+							{
+								name = "manageTigLabel",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 59.15,
+										y = 23.41
+									},
+									text = TR("职位竞选中...")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "sectBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onSectEnterAction",
+							hide = true,
+							image = "bp_3.png",
+							childName = "",
+							pos = {
+								x = 365.03,
+								y = 411.12
+							}
+						},
+						children = {
+							{
+								name = "untitled51",
+								cType = "Label",
+								params = {
+									pos = {
+										x = -4.81,
+										y = 21.31
+									},
+									size = {
+										width = 10,
+										height = 100
+									},
+									text = TR("帮派宗门")
+								},
+								children = {}
+							},
+							{
+								name = "untitled52",
+								cType = "RedDot",
+								params = {
+									moduleId = 21601
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "Button",
+								params = {
+									image = "bp_100.png",
+									childName = "buble",
+									pos = {
+										x = 58.87,
+										y = 101.66
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled65",
+								cType = "Button",
+								params = {
+									image = "c_58.png",
+									clickAction = "onSectEnterAction",
+									pos = {
+										x = -60.76,
+										y = -57.31
+									},
+									size = {
+										width = 102.66,
+										height = 179.27
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "bgSprite3",
+		cType = "Sprite",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isFullScale = true,
+			image = "bp_86.png",
+			anchor = {
+				x = 0,
+				y = 0.5
+			},
+			pos = {
+				x = -0.9,
+				y = 320.01
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseBtnAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "bp_1.png",
+							pos = {
+								x = -4.7,
+								y = 3.16
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnAction",
+					pos = {
+						x = 206.68,
+						y = -26.52
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled56",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled25",
+				cType = "Sprite",
+				params = {
+					image = "bp_90.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = -52
+					}
+				},
+				children = {
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							scale = 0.8,
+							image = "bp_28.png",
+							pos = {
+								x = 77.99,
+								y = 50.85
+							}
+						},
+						children = {}
+					},
+					{
+						name = "seriesIdSprite",
+						cType = "Sprite",
+						params = {
+							scale = 0.75,
+							image = "bp_29.png",
+							pos = {
+								x = 79.88,
+								y = 55.14
+							}
+						},
+						children = {}
+					},
+					{
+						name = "guildLv",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 118.95,
+								y = 64.96
+							},
+							text = TR("等级9")
+						},
+						children = {}
+					},
+					{
+						name = "guildFlag",
+						cType = "GuildFlag",
+						params = {
+							scale = 0.3,
+							pos = {
+								x = 197.14,
+								y = 61.03
+							}
+						},
+						children = {}
+					},
+					{
+						name = "guildNameLabel",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 216.84,
+								y = 64.87
+							},
+							text = TR("帮派的名字")
+						},
+						children = {}
+					},
+					{
+						name = "barLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 121.06,
+								y = 34.52
+							},
+							text = TR("杀敌：100/100")
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Button",
+						params = {
+							image = "bp_9.png",
+							clickAction = "onLvUpBtnAction",
+							pos = {
+								x = 319.51,
+								y = 36.46
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled58",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 368.5,
+								y = 72.07
+							},
+							text = TR("帮会公告")
+						},
+						children = {}
+					},
+					{
+						name = "untitled44",
+						cType = "Button",
+						params = {
+							image = "bp_6.png",
+							clickAction = "onNoticeBtnAction",
+							pos = {
+								x = 674.6,
+								y = 31.59
+							}
+						},
+						children = {}
+					},
+					{
+						name = "noticeScrollView",
+						cType = "ScrollView",
+						params = {
+							direction = 1,
+							conSize = {
+								width = 257.72,
+								height = 100
+							},
+							pos = {
+								x = 369.51,
+								y = 12.71
+							},
+							size = {
+								width = 272.16,
+								height = 44.26
+							}
+						},
+						children = {
+							{
+								name = "noticeLabel",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 0,
+									valign = 0,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 272.16,
+										height = 0
+									},
+									text = TR("帮派成员多前往武林攻打门派，加快门派升级速度！")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled6",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "TopResourceNode",
+				params = {
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled33",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled59",
+				cType = "Sprite",
+				params = {
+					image = "bp_91.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 12
+					}
+				},
+				children = {
+					{
+						name = "untitled36",
+						cType = "Button",
+						params = {
+							image = "tb_gn_63.png",
+							clickAction = "onRankClick",
+							pos = {
+								x = 157.06,
+								y = 40.08
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled38",
+						cType = "Button",
+						params = {
+							image = "tb_gn_61.png",
+							clickAction = "onGuildCityClick",
+							pos = {
+								x = 254.34,
+								y = 39.39
+							}
+						},
+						children = {
+							{
+								name = "untitled54",
+								cType = "RedDot",
+								params = {
+									moduleId = 5404
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "worldBtn",
+						cType = "Button",
+						custom = {
+							{
+								value = 5400,
+								name = "moduleId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tb_sy_gn_7.png",
+							clickAction = "onClickCityWar",
+							pos = {
+								x = 350.52,
+								y = 38.81
+							}
+						},
+						children = {
+							{
+								name = "autoCwarFlag",
+								cType = "Sprite",
+								params = {
+									image = "tb_sy_gn_21.png",
+									hide = true,
+									pos = {
+										x = 0.47,
+										y = -2.23
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled72",
+								cType = "RedDot",
+								params = {
+									moduleId = 22000
+								},
+								children = {}
+							},
+							{
+								name = "untitled73",
+								cType = "Sprite",
+								params = {
+									image = "wulin_5.png",
+									childName = "ji",
+									pos = {
+										x = -53.28,
+										y = 95.27
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled37",
+						cType = "Button",
+						params = {
+							image = "tb_gn_62.png",
+							clickAction = "onManageBtn",
+							pos = {
+								x = 446.63,
+								y = 38.71
+							}
+						},
+						children = {
+							{
+								name = "untitled47",
+								cType = "RedDot",
+								params = {
+									moduleId = 4603
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled35",
+						cType = "Button",
+						params = {
+							image = "tb_gn_64.png",
+							clickAction = "onApplyBtnAction",
+							pos = {
+								x = 541.63,
+								y = 40.16
+							}
+						},
+						children = {
+							{
+								name = "untitled48",
+								cType = "RedDot",
+								params = {
+									moduleId = 4612
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.guildInfo = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+	slot0.playerJobInfo = GuildPositionRelation.items[1][slot0.guildInfo.PositionId] or {}
+	slot0.citywarCurViewPos = slot1.curViewPos
+	slot0.PositionInfo = nil
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.registerSectBubleHandler(slot0)
+
+	return 
+end
+slot0.dealMapData = function (slot0)
+	slot1 = slot0.bgSprite0:getBoundingBox().width
+	slot2 = slot0.bgSprite1:getBoundingBox().width
+	slot3 = slot0.bgSprite2:getBoundingBox().width
+	slot4 = slot0.bgSprite3:getBoundingBox().width
+	slot5 = slot0.mScrollView:getContentSize().width
+
+	slot0.mScrollView:onScroll(function (slot0)
+		if slot0.name == "CONTAINER_MOVED" then
+			slot1 = slot0.mScrollView:getInnerContainer()
+			slot2 = slot1.getPosition(slot1)
+
+			slot0.bgSprite0:setPositionX(slot3)
+			slot0.bgSprite1:setPositionX(slot4)
+			slot0.bgSprite3:setPositionX((slot2*(slot0.bgSprite1.setPositionX - slot2))/(slot3 - slot2))
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot6 = slot0.mScrollView:getInnerContainer()
+
+	slot6.setPositionX(slot6, -(slot6.getContentSize(slot6).width/2 - slot0.mScrollView:getContentSize().width/2) + display.ySafeScale*114)
+
+	slot7 = slot6.getPosition(slot6)
+
+	slot0.bgSprite0:setPositionX(slot8)
+	slot0.bgSprite1:setPositionX(slot9)
+	slot0.bgSprite3:setPositionX(slot10)
+
+	slot0.mGuildInfo = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+	slot0.mMySeriesId = slot0.mGuildInfo.PositionSeriesId
+
+	slot0.seriesIdSprite:setTexture(({
+		[0] = "bp_109.png",
+		"bp_29.png",
+		"bp_30.png",
+		"bp_31.png",
+		"bp_32.png"
+	})[slot0.mMySeriesId] or "bp_29.png")
+	slot0.seriesIdSprite.setTexture(slot0.guildInfo)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eGuildTopPartUpdateEvent, function (slot0)
+		print("更新联盟名字和等级")
+		slot0(PlayerAttrObj:getPlayerAttrByName("GuildInfo"))
+
+		return 
+	end)
+	slot0.dealMapData(slot0)
+	slot0.initBubblesContent(slot0)
+
+	return 
+end
+slot0.onClickCityWar = function (slot0)
+	slot1 = {
+		fromNavigate = true
+	}
+
+	if not Utility.moduleIsOpen(ModuleSub.eCityWar, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "citywar.CityWarHomeLayer",
+		data = slot1
+	})
+
+	return 
+end
+slot0.initBubblesContent = function (slot0)
+	if PlayerAttrObj:getPlayerAttrByName("OnHook") then
+		slot0.autoCwarFlag:setVisible(true)
+		slot0.autoCwarFlag:runAction(cc.RepeatForever:create(cc.Sequence:create({
+			cc.MoveBy:create(0.15, cc.p(0, 10)),
+			cc.MoveBy:create(0.25, cc.p(0, -10)),
+			cc.DelayTime:create(2)
+		})))
+	else
+		slot0.autoCwarFlag:stopAllActions()
+		slot0.autoCwarFlag:setVisible(false)
+	end
+
+	EventAuto:registerAutoEvent(slot0.worldBtn.ji, EventDefine.eModuleVisible .. ModuleSub.eCityWarHomeShow, function ()
+		slot0()
+
+		return 
+	end)
+	function ()
+		slot0.worldBtn.ji:setVisible(ModuleVisibleObj:moduleIsVisible(ModuleSub.eCityWarHomeShow))
+		slot0.worldBtn.ji.setVisible.worldBtn.ji:stopAllActions()
+		slot0.worldBtn.ji.setVisible.worldBtn.ji.stopAllActions.worldBtn.ji:runAction(cc.RepeatForever:create(cc.Sequence:create({
+			cc.ScaleTo:create(0.5, 1.1),
+			cc.DelayTime:create(0.05),
+			cc.ScaleTo:create(0.5, 0.9)
+		})))
+
+		return 
+	end()
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			"成员权限：",
+			"1.帮主权限：门派宣战，调动大营兵力，群发帮派邮件，放弃已占领门派，编辑帮派公告，集火门派，任命所有官职，发布世界招募，转让帮主，解散帮派，帮派改名/改旗帜，招收成员，升级帮派，踢出任意成员，开启入帮审核免审批权限功能",
+			"2.副帮主权限：门派宣战，调动大营兵力，群发帮派邮件，放弃已占领门派，编辑帮派公告，集火门派，任命长老与护法，发布世界招募，弹劾帮主，招收成员，升级帮派，踢出低职位成员，开启入帮审核免审批权限功能",
+			"3.长老权限：招收成员，踢出低职位成员，发布世界招募",
+			"4.护法权限：招收成员，发布世界招募",
+			" ",
+			"大营：",
+			"1.投入帮派大营的部队，可供帮主、副帮主帮战中调遣使用",
+			"2.参与帮战的部队，将自动从帮派大营中移除",
+			"3.入驻帮派大营的侠客不可参与其他帮战，但可进行非帮战战斗",
+			"4.部队入驻大营会消耗干粮，撤回部队会返还已消耗的干粮",
+			" ",
+			"武林威望：",
+			"1.帮派占领的门派会产出武林威望，武林威望会自动发放至帮派账房中",
+			"2.占领门派越多，规模越大，奖励越丰厚",
+			" ",
+			"领地奖励：",
+			"1.帮派占领的门派，每小时会产出功勋、铜钱",
+			"2.帮派内成员每小时可领取1次，如不领取会累计至下一时段",
+			"3.若未领取奖励的门派被攻陷，奖励会通过邮件发放",
+			"4.占领门派越多，规模越大，奖励越丰厚",
+			" ",
+			"帮派任务：",
+			"1.召集帮派成员一起完成帮派每日进攻任务，一统武林吧",
+			"2.每日11点50分、17点50分、20点50分将刷新帮派专属任务。完成后即可获得元宝奖励",
+			" ",
+			"官职：",
+			"1.帮主和副帮主有权限更改成员官职",
+			"2.当帮派规模发生变动的时候，官职收益加成也会变更",
+			"3.帮主离线超过72小时即可由副帮主发起弹劾，弹劾成功后副帮主自动晋升帮主"
+		}
+	})
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRankClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.StrongestGuildLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGuildCampClick = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eGuildCamp, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.GuildCampLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGuildBuildClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.GuildBuildLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onApplyBtnAction = function (slot0)
+	if slot0.playerJobInfo.ifRecruit then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "guild.GuildApplyListLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		ui.showFlashView(TR("您当前职位没有此权限"))
+	end
+
+	return 
+end
+slot0.onManageBtn = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.GuildManageLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onJobBtn = function (slot0)
+	LayerManager.addLayer({
+		name = "guild.GuildJobLayer"
+	})
+
+	return 
+end
+slot0.onSectEnterAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "sect.SectShowLayer",
+		data = {},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onStopAction = function (slot0)
+	LayerManager.addLayer({
+		name = "guild.GuildShopLayer"
+	})
+
+	return 
+end
+slot0.onGuildCityClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "guild.GuildCityLayer",
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onGuildBossBtn = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eGuildBoss, true) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "guild.GuildBossChapterLayer"
+	})
+
+	return 
+end
+slot0.onGuildTalent = function (slot0)
+	if not Utility.moduleIsOpen(ModuleSub.eGuildTalent, true) then
+		return 
+	end
+
+	if slot0.mGuildInfo.GuildLevel < GuildConfig.items[1].guildTalentOpenGuildLv then
+		ui.showFlashView(TR("帮派等级达到%s级后开启", GuildConfig.items[1].guildTalentOpenGuildLv))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "guild.GuildTalentLayer"
+	})
+
+	return 
+end
+slot0.getIsHaveCanChallengePos = function (slot0)
+	if slot0.guildInfo.PositionId == 1 then
+		return 
+	end
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(GuildPositionRelation.items[slot0.guildInfo.PositionSeriesId]) do
+		if slot0.guildInfo.PositionId == 0 then
+			table.insert(slot1, slot6)
+		elseif slot6.positionLv < GuildPositionRelation.items[slot0.guildInfo.PositionSeriesId][slot0.guildInfo.PositionId].positionLv then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.positionId < slot1.positionId
+	end)
+
+	function slot2()
+		for slot4, slot5 in pairs(slot0) do
+			slot6 = nil
+
+			for slot10, slot11 in pairs(slot1.PositionInfo) do
+				if slot11.PositionId == slot5.positionId then
+					slot6 = slot11
+
+					break
+				end
+			end
+
+			if not slot6 then
+				slot0 = true
+			end
+		end
+
+		return 
+	end
+
+	if slot0.PositionInfo ~= nil then
+		slot2()
+	else
+		slot0.socketRequest(slot0, {
+			methodName = "GetGuildPositionInfo",
+			moduleName = "Guild",
+			successCallback = function (slot0)
+				slot0.PositionInfo = {}
+				slot0.PositionInfo = (slot0.PositionInfo and slot0.PositionInfo) or {}
+
+				slot0()
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.registerSectBubleHandler = function (slot0)
+	slot0.sectBtn.buble.runAction(slot1, cc.RepeatForever:create(cc.Sequence:create({
+		cc.ScaleTo:create(0.5, 1.1),
+		cc.DelayTime:create(0.05),
+		cc.ScaleTo:create(0.5, 0.9)
+	})))
+	slot1.setVisible(slot1, 2 <= slot0.guildInfo.PositionSeriesId and slot0.guildInfo.SectId == 0)
+
+	return 
+end
+slot0.onLvUpBtnAction = function (slot0, slot1)
+	slot2 = PlayerAttrObj:getPlayerAttrByName("GuildInfo")
+
+	if slot0.playerJobInfo.ifLvUpGuild then
+		if #Utility.getConfigItems("GuildLvRelation") <= slot2.GuildLevel then
+			ui.showFlashView(TR("已达最高级"))
+
+			return 
+		end
+
+		if slot0.isCanLvUp then
+			if Player:getCurrentTime() < slot2.LvUpTime then
+				ui.showFlashView(TR("%s后可升级帮派", MqTime.completeFormat(slot2.LvUpTime - Player:getCurrentTime())))
+			else
+				slot0.requestGetApplyList(slot0)
+			end
+		else
+			ui.showFlashView(TR("%s不足", Resource.getName(slot0.resourceId)))
+		end
+	else
+		ui.showFlashView(TR("您当前职位没有此权限"))
+	end
+
+	return 
+end
+slot0.onNoticeBtnAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("Vip") < 2 then
+		ui.showFlashView(TR("会员2玩家才能发帮派公告"))
+
+		return 
+	end
+
+	if slot0.playerJobInfo.ifNotice then
+		ui.showMessageBox({
+			titleText = TR("发布公告"),
+			diyUICallback = function (slot0, slot1)
+				slot2 = ((slot0.guildInfo.Notice == "" or string.len(slot0.guildInfo.Notice) == 0) and "帮派成员多前往武林攻打门派，加快门派升级速度！") or slot0.guildInfo.Notice
+
+				if slot0.playerJobInfo.ifNotice then
+					slot0.addChild(slot0, UIWrap.newControl("EditBox", {
+						fontSize = 24,
+						maxLength = 40,
+						placeHolder = "",
+						multiLine = true,
+						size = cc.size(454, 192),
+						pos = cc.p(slot1.width/2, slot1.height/2 + 40),
+						fontColor = cc.c3b(255, 244, 232)
+					}))
+
+					if slot2 ~= "" then
+						slot3.setText(slot3, slot2)
+					end
+
+					slot0.getParent(slot0):addChild(UIWrap.newControl("Button", {
+						titleText = "修改",
+						image = "c_19.png",
+						pos = cc.p(256, 70),
+						clickAction = function (slot0)
+							if slot0:getText() == slot1.guildInfo.Notice then
+								ui.showFlashView("公告和之前的内容是一样的！")
+
+								return 
+							end
+
+							slot1:updateNotice(slot1, slot1.updateNotice)
+
+							return 
+						end
+					}))
+
+					return 
+				end
+
+				slot0.addChild(slot0, UIWrap.newControl("Label", {
+					fontSize = 24,
+					text = (slot2 == "" and "暂无公告") or slot2,
+					color = cc.c3b(255, 244, 232),
+					anchor = cc.p(0, 1),
+					size = cc.size(430, 0),
+					pos = cc.p(15, slot1.height - 10)
+				}))
+			end
+		})
+	else
+		ui.showFlashView(TR("您当前职位没有此权限"))
+	end
+
+	return 
+end
+slot0.updateNotice = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateNotice",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.guildInfo.Notice = slot0.guildInfo
+
+			ui.showFlashView("修改成功！")
+			slot0.noticeLabel:setString((slot0.guildInfo.Notice ~= "" and slot0.guildInfo.Notice) or "暂无公告")
+			LayerManager.removeLayer(slot2:getParent())
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetApplyList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "UpgradeLv",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("升级成功!"))
+			EventAuto:postEvent(EventDefine.eGuildTopPartUpdateEvent)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

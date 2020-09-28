@@ -1,0 +1,32 @@
+if cc.CCBProxy == nil then
+	return 
+end
+
+DeprecatedCocosBuilderClass = {} or DeprecatedCocosBuilderClass
+
+function slot0(slot0, slot1)
+	print("\n********** \n" .. slot0 .. " was deprecated please use " .. slot1 .. " instead.\n**********")
+
+	return 
+end
+
+DeprecatedCocosBuilderClass.CCBReader = function ()
+	slot0("CCBReader", "cc.BReader")
+
+	return cc.BReader
+end
+_G.CCBReader = DeprecatedCocosBuilderClass.CCBReader()
+DeprecatedCocosBuilderClass.CCBAnimationManager = function ()
+	slot0("CCBAnimationManager", "cc.BAnimationManager")
+
+	return cc.BAnimationManager
+end
+_G.CCBAnimationManager = DeprecatedCocosBuilderClass.CCBAnimationManager()
+DeprecatedCocosBuilderClass.CCBProxy = function ()
+	slot0("CCBProxy", "cc.CCBProxy")
+
+	return cc.CCBProxy
+end
+_G.CCBProxy = DeprecatedCocosBuilderClass.CCBProxy()
+
+return 

@@ -1,0 +1,462 @@
+slot0 = class("OnlineRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "fuli_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "progressBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jyt_33.png",
+					pos = {
+						x = 192.14,
+						y = -97.01
+					},
+					size = {
+						width = 724,
+						height = 21
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progressBar",
+				cType = "ProgressBar",
+				params = {
+					maxValue = 100,
+					currValue = 100,
+					normalImage = "jyt_34.png",
+					pos = {
+						x = 185.74,
+						y = -98.12
+					},
+					size = {
+						width = 703,
+						height = 10
+					}
+				},
+				children = {}
+			},
+			{
+				name = "templateNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled5-initParams",
+						name = "head",
+						type = "string"
+					},
+					{
+						value = "untitled18-text",
+						name = "timeLabel",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = -11.73,
+						y = -99.84
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "CardNode",
+						params = {
+							childName = "card",
+							allowClick = true,
+							initParams = {},
+							pos = {
+								x = -1.28,
+								y = 61.23
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Sprite",
+						params = {
+							image = "fuli_16.png",
+							childName = "timePointSprite",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled18",
+						cType = "Label",
+						params = {
+							pos = {
+								x = -1.33,
+								y = -27.77
+							},
+							text = TR("5分钟")
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "Sprite",
+						params = {
+							image = "fuli_14.png",
+							childName = "drawIcon",
+							pos = {
+								x = -6.66,
+								y = 56.43
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mDrawBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					hide = true,
+					clickAction = "onOkAction",
+					pos = {
+						x = 202.98,
+						y = -213.92
+					},
+					titleText = TR("领 取")
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "RedDot",
+						params = {
+							moduleId = 1601
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mCountDownLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					pos = {
+						x = 204.27,
+						y = -212.93
+					},
+					text = TR("00:00:00（倒计时结束后领取）")
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Sprite",
+				params = {
+					image = "fuli_71.png",
+					hide = true,
+					pos = {
+						x = 239.35,
+						y = -161.75
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					hide = true,
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 239.5,
+						y = -161.24
+					},
+					size = {
+						width = 581.77,
+						height = 89.88
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled23-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 5.57,
+								y = 5.63
+							},
+							size = {
+								width = 89.54,
+								height = 87.38
+							}
+						},
+						children = {
+							{
+								name = "untitled23",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 44.49,
+										y = 42.81
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot0.ctor = function (slot0, slot1)
+	slot0.mResourceList = slot1.resourceList or OnlineRewardObj:getResourceList()
+
+	slot0.super.ctor(slot0)
+
+	slot0.mItemList = {}
+
+	slot0.dealData(slot0)
+	slot0.initUI(slot0)
+	OnlineRewardObj:reset()
+	OnlineRewardObj:requestOnlineRewardInfo(slot0, slot0.refreshUI)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createUI(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(OnLineRewardRelation.items) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.onLinetime < slot1.onLinetime
+	end)
+
+	slot0.mData = slot1
+
+	return 
+end
+slot0.createUI = function (slot0)
+	slot1 = #slot0.mData
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.mData) do
+		slot9 = slot0.createLayoutTemplateNode(slot0, "templateNode", {
+			head = {
+				cardInfo = {
+					modelId = Utility.analysisStrResList(slot7.resourceList)[1].resourceId,
+					num = Utility.analysisStrResList(slot7.resourceList)[1].num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			},
+			timeLabel = TR("%d分钟", slot2)
+		})
+
+		slot9.setPosition(slot9, (1.455486542443064*32 - 703)*slot6/slot1, slot0.progressBar:getContentSize().height/2)
+		slot0.progressBar:addChild(slot9)
+
+		slot9.refreshItem = function ()
+			if OnlineRewardObj.mOnlineRewardInfo.NeedReachedNum < slot1.onLinetime then
+				slot2.timePointSprite:setGLProgram(slot0)
+				slot2.timePointSprite.setGLProgram.drawIcon:setTexture("c_pure.png")
+			elseif slot1.onLinetime == OnlineRewardObj.mOnlineRewardInfo.NeedReachedNum then
+				if OnlineRewardObj:allowReward() then
+					slot2.drawIcon:setTexture("fuli_15.png")
+					slot2.drawIcon.setTexture.timePointSprite:setGLProgram(slot1)
+				else
+					slot2.drawIcon:setTexture("c_pure.png")
+					slot2.drawIcon.setTexture.timePointSprite:setGLProgram(slot0)
+				end
+
+				slot3 = slot2:getParent():convertToNodeSpace(slot2.card:getParent():convertToWorldSpace(cc.p(slot2.card:getPositionX(), slot2.card:getPositionY())))
+				slot3.y = slot3.y - 2
+
+				if not slot3.selectSprite then
+					slot2:getParent():addChild(UIWrap.newControl("Effect", {
+						loop = true,
+						animation = "cheng",
+						dataFile = "effect_ui_touxiangkuang",
+						pos = slot3
+					}))
+
+					slot3.selectSprite = UIWrap.newControl("Effect", {
+						loop = true,
+						animation = "cheng",
+						dataFile = "effect_ui_touxiangkuang",
+						pos = slot3
+					})
+				else
+					slot3.selectSprite:setPosition(slot3)
+				end
+			else
+				slot2.drawIcon:setTexture("fuli_14.png")
+				slot2.drawIcon.setTexture.timePointSprite:setGLProgram(slot1)
+			end
+
+			return 
+		end
+
+		table.insert(slot0.mItemList, slot9)
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if OnlineRewardObj.mOnlineRewardInfo and not next(OnlineRewardObj.mOnlineRewardInfo) then
+		slot0.mDrawBtn:setVisible(false)
+		slot0.mItemList[#slot0.mItemList].drawIcon:setTexture("fuli_14.png")
+
+		if slot0.selectSprite ~= nil and not tolua.isnull(slot0.selectSprite) then
+			slot0.selectSprite:removeFromParent()
+
+			slot0.selectSprite = nil
+		end
+
+		return 
+	end
+
+	for slot4, slot5 in pairs(slot0.mItemList) do
+		slot5.refreshItem(slot5)
+	end
+
+	if not OnlineRewardObj:allowReward() then
+		slot0.mDrawBtn:setVisible(false)
+		slot0.mCountDownLabel:setVisible(true)
+	else
+		slot0.mDrawBtn:setVisible(true)
+		slot0.mCountDownLabel:setVisible(false)
+	end
+
+	slot0.addScheduleTime(slot0)
+
+	return 
+end
+slot0.addScheduleTime = function (slot0)
+	slot0.mCountDownLabel:stopAllActions()
+
+	function slot1(slot0)
+		slot1 = {}
+
+		if 86400 < slot0 then
+			slot1 = {
+				hour = false,
+				min = false,
+				sec = false
+			}
+		end
+
+		if 0 < slot0 then
+			return MqTime.formatAsDay(slot0, slot1, false)
+		end
+
+		return ""
+	end
+
+	Utility.schedule(slot0.mCountDownLabel, function ()
+		if not OnlineRewardObj:allowReward() then
+			slot0.mCountDownLabel:setString(string.format("%s(倒计时结束后领取)", MqTime.formatAsDay(OnlineRewardObj:getNextCooledTime(), {}, true)))
+		end
+
+		if OnlineRewardObj.mOnlineRewardInfo ~= nil then
+			for slot3, slot4 in pairs(slot0.mData) do
+				if slot4.onLinetime == OnlineRewardObj.mOnlineRewardInfo.NeedReachedNum then
+					slot0:refreshProgressBar(slot3)
+
+					break
+				end
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshProgressBar = function (slot0, slot1)
+	slot0.progressBar:setMaxValue(1)
+
+	slot2 = 1.455486542443064
+	slot3 = 0
+
+	if OnlineRewardObj:allowReward() then
+		slot0.progressBar:setCurrValue(slot3 + ((slot2*32 - 703)*slot1/#slot0.mData)/703)
+		slot0.refreshUI(slot0)
+	else
+		slot4 = nil
+
+		slot0.progressBar:setCurrValue(((1 < slot1 and slot3 + ((slot2*32 - 703)*(slot1 - 1)/#slot0.mData)/703) or slot3) + (slot0.mData[slot1].onLinetime*60 - OnlineRewardObj:getNextCooledTime())/(slot0.mData[slot1].onLinetime*60)*#slot0.mData/1)
+	end
+
+	return 
+end
+slot0.onOkAction = function (slot0, slot1)
+	OnlineRewardObj:requestDrawOnlineReward(function (slot0)
+		ui.showFlashReward({
+			BaseGetGameResourceList = slot0.BaseGetGameResourceList
+		})
+		OnlineRewardObj:reset()
+		OnlineRewardObj:requestOnlineRewardInfo(slot0, slot0.refreshUI)
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

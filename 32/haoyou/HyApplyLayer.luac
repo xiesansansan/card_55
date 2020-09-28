@@ -1,0 +1,356 @@
+slot0 = class("HyApplyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "tips",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255.5,
+						y = 170.4
+					},
+					text = TR("暂无申请数据")
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 255.77,
+						y = 333.81
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 142.37,
+								y = 17.29
+							},
+							text = TR("好友申请")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "friendNum",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 260.95,
+						y = 41.84
+					}
+				},
+				children = {}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 22.32,
+						y = 57.29
+					},
+					size = {
+						width = 470,
+						height = 255
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -90
+							},
+							size = {
+								width = 470,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_106.png",
+									pos = {
+										x = 235,
+										y = 45
+									},
+									size = {
+										width = 460,
+										height = 85
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 108.54,
+										y = 61.75
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Button",
+								params = {
+									image = "c_32.png",
+									childName = "unGreeBtn",
+									pos = {
+										x = 285,
+										y = 45
+									},
+									titleText = TR("拒 绝")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "greeBtn",
+									pos = {
+										x = 400,
+										y = 45
+									},
+									titleText = TR("接 受")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "PlayerHeroNode",
+								params = {
+									scale = 0.9,
+									modelId = 19010000,
+									childName = "heroNode",
+									allowClick = true,
+									pos = {
+										x = 60,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getSeverInfo(slot0)
+
+	return 
+end
+slot0.refreeUi = function (slot0)
+	FriendObj:requestGetFriendList(function (slot0)
+		slot0.friendList = slot0 or {}
+
+		slot0.friendNum:setString(TR("好友数量:%s/%s", table.maxn(slot0.friendList), PlayerConfig.items[1].friendMaxNum))
+
+		return 
+	end)
+
+	if table.maxn(slot0.mApplyList) <= 0 then
+		slot0.tips:setVisible(true)
+	else
+		slot0.tips:setVisible(false)
+	end
+
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 470, 90
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mApplyList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.name:setString(slot0.mApplyList[slot1 + 1].SendPlayerName)
+		slot0.heroNode:setPlayerHeader(slot0.mApplyList[slot1 + 1].HeadImageId, nil, {
+			fashionLv = slot0.mApplyList[slot1 + 1].FashionLevel
+		})
+		slot0.unGreeBtn:setClickAction(function ()
+			slot0:requestFriendApplyResponse(slot1.SendPlayerId, false)
+
+			return 
+		end)
+		slot0.greeBtn:setClickAction(function ()
+			slot0:isFull(slot1.SendPlayerId)
+
+			return 
+		end)
+		slot0.heroNode:setClickAction(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.OtherPlayerInfoLayer",
+				data = {
+					playerId = slot0.SendPlayerId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.getSeverInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFriendMessageByPage",
+		moduleName = "FriendMessage",
+		methodData = {
+			0,
+			30
+		},
+		successCallback = function (slot0)
+			slot0.mApplyList = {}
+
+			for slot4, slot5 in pairs(slot0) do
+				if slot5.Type == 1 then
+					table.insert(slot0.mApplyList, slot5)
+				end
+			end
+
+			table.sort(slot0.mApplyList, function (slot0, slot1)
+				return slot1.SendTime < slot0.SendTime
+			end)
+			slot0:refreeUi()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFriendApplyResponse = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "FriendApplyResponse",
+		moduleName = "Friend",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			ui.showFlashView((slot0 and TR("同意成为好友成功")) or TR("已拒绝成为好友"))
+			(slot0 and TR("同意成为好友成功")) or TR("已拒绝成为好友"):getSeverInfo()
+			FriendObj:getFriendList(nil, true)
+			EventAuto:postEvent("eREFFRIENDEVENT")
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.isFull = function (slot0, slot1)
+	FriendObj:getFriendList(function (slot0)
+		if PlayerConfig.items[1].friendMaxNum <= table.maxn(slot0 or {}) then
+			ui.showFlashView(TR("你的好友数达到上限!"))
+			slot0:getSeverInfo()
+		else
+			slot0:requestFriendApplyResponse(slot1, true)
+		end
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

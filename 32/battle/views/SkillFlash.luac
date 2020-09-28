@@ -1,0 +1,288 @@
+slot0 = require("battle.common.FxHelper")
+slot1 = require("common.SpineManager")
+slot2 = require("battle.managers.BattleManager")
+slot3 = require("battle.common.UIHelper")
+slot4 = require("battle.common.LiHuiConf")
+slot6 = {
+	StartFlash = function (slot0, slot1, slot2, slot3, slot4)
+		slot0.parent = slot1
+		slot0.gameScene = slot4
+		slot5 = ""
+		slot6 = ""
+		slot7 = 1
+		slot8 = 0
+		slot10 = false
+
+		if slot0.getUnitByUid(slot2) == nil then
+			slot10 = true
+			slot5 = slot0.getPetByUid(slot2).skillSound
+			slot6 = FashionModel.items[slot0.getPetByUid(slot2).heroId].skillPic
+			slot8 = 18
+		else
+			slot5 = HeroModel.items[slot9.heroId].skillSound
+			slot7 = HeroModel.items[slot9.heroId].sex
+			slot6 = SkillModel.items[slot3].skillWordPic
+			slot8 = slot9.quality
+		end
+
+		slot0.group = slot9.group
+		slot0.unitSex = slot7
+		slot0.quality = slot8
+
+		MqAudio.playEffect("effect_qieping.mp3")
+
+		if slot5 ~= "" then
+			MqAudio.playEffect(slot5 .. ".mp3")
+		end
+
+		slot11 = slot9.flashEffect
+
+		if cc.FileUtils:getInstance():isFileExist(slot9.flashEffect2 .. ".skel") then
+			slot11 = slot9.flashEffect2
+		end
+
+		slot0.addHDPicture(slot0, slot11, slot6)
+
+		return 
+	end,
+	addHDPicture = function (slot0, slot1, slot2)
+		if not slot1 then
+			return 
+		end
+
+		slot4 = 1
+
+		if slot0.gameScene.speed == 2 then
+			slot4 = 1.5
+		elseif slot3 == 3 then
+			slot4 = 2
+		end
+
+		MqAudio.playEffect("qieping_lihui.mp3")
+
+		slot5 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent:addChild(slot5)
+		slot5.setTimeScale(slot5, slot4)
+		slot5.playAnimation(slot5, "xia", 1)
+
+		slot6 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent:addChild(slot6)
+		slot6.setTimeScale(slot6, slot4)
+
+		slot7 = nil
+
+		if slot0.unitSex == 1 then
+			slot6.playAnimation(slot6, "nan", 1)
+
+			slot7 = slot6.bindBoneNode(slot6, "socket_nan")
+		else
+			slot6.playAnimation(slot6, "nv", 1)
+
+			slot7 = slot6.bindBoneNode(slot6, "socket_nv")
+		end
+
+		if cc.FileUtils:getInstance():isFileExist(slot1 .. ".skel") then
+			slot8 = slot0.createAnimation(slot1, 1, true)
+
+			slot8.setName(slot8, "sprite")
+			slot7.addChild(slot7, slot8)
+			slot8.setScale(slot8, 0.7)
+			slot8.playAnimation(slot8, "animation", 1)
+
+			slot0.gameScene.effects[#slot0.gameScene.effects + 1] = slot8
+
+			if slot1[slot1] then
+				slot8.setPosition(slot8, cc.p(slot9.x + 60, slot9.y + 120))
+			end
+
+			if slot0.group == 2 then
+				slot8.setRotation3D(slot8, cc.vec3(0, 180, 0))
+			end
+		elseif cc.FileUtils:getInstance():isFileExist(slot1 .. ".png") then
+			slot8 = cc.Sprite:create(slot1 .. ".png")
+
+			slot8.setName(slot8, "sprite")
+			slot8.setScale(slot8, 1.1)
+			slot7.addChild(slot7, slot8)
+
+			if slot1[slot1] then
+				slot8.setPosition(slot8, cc.p(slot9.x + 60, slot9.y + 120))
+			end
+
+			if slot0.group == 2 then
+				slot8.setRotation3D(slot8, cc.vec3(0, 180, 0))
+			end
+		end
+
+		slot8 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent:addChild(slot8)
+		slot8.setTimeScale(slot8, slot4)
+
+		if 18 <= slot0.quality then
+			slot8.playAnimation(slot8, "shang_pro", 1)
+		else
+			slot8.playAnimation(slot8, "shang", 1)
+		end
+
+		slot9 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent:addChild(slot9)
+		slot9.setTimeScale(slot9, slot4)
+		slot9.playAnimation(slot9, "ziti", 1)
+
+		if slot2 and cc.FileUtils:getInstance():isFileExist(slot2 .. ".png") then
+			slot11 = cc.Sprite:create(slot2 .. ".png")
+
+			slot11.setPosition(slot11, cc.p(-200, 0))
+			slot11.setName(slot11, "sprite")
+			slot9.bindBoneNode(slot9, "socket_zi"):addChild(slot11)
+		end
+
+		return 
+	end
+}
+
+return {
+	StartFlash = function (slot0, slot1, slot2, slot3, slot4)
+		slot0.parent = slot1
+		slot0.gameScene = slot4
+		slot5 = ""
+		slot6 = ""
+		slot7 = 1
+		slot8 = 0
+		slot10 = false
+
+		if slot0.getUnitByUid(slot2) == nil then
+			slot10 = true
+			slot5 = slot0.getPetByUid(slot2).skillSound
+			slot6 = FashionModel.items[slot0.getPetByUid(slot2).heroId].skillPic
+			slot8 = 18
+		else
+			slot5 = HeroModel.items[slot9.heroId].skillSound
+			slot7 = HeroModel.items[slot9.heroId].sex
+			slot6 = SkillModel.items[slot3].skillWordPic
+			slot8 = slot9.quality
+		end
+
+		slot0.group = slot9.group
+		slot0.unitSex = slot7
+		slot0.quality = slot8
+
+		MqAudio.playEffect("effect_qieping.mp3")
+
+		if slot5 ~= "" then
+			MqAudio.playEffect(slot5 .. ".mp3")
+		end
+
+		slot11 = slot9.flashEffect
+
+		if cc.FileUtils.getInstance().isFileExist(slot9.flashEffect2 .. ".skel") then
+			slot11 = slot9.flashEffect2
+		end
+
+		slot0.addHDPicture(slot0, slot11, slot6)
+
+		return 
+	end,
+	addHDPicture = function (slot0, slot1, slot2)
+		if not slot1 then
+			return 
+		end
+
+		slot4 = 1
+
+		if slot0.gameScene.speed == 2 then
+			slot4 = 1.5
+		elseif slot3 == 3 then
+			slot4 = 2
+		end
+
+		MqAudio.playEffect("qieping_lihui.mp3")
+
+		slot5 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent.addChild(slot5)
+		slot5.setTimeScale(slot5, slot4)
+		slot5.playAnimation(slot5, "xia", 1)
+
+		slot6 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent.addChild(slot6)
+		slot6.setTimeScale(slot6, slot4)
+
+		slot7 = nil
+
+		if slot0.unitSex == 1 then
+			slot6.playAnimation(slot6, "nan", 1)
+
+			slot7 = slot6.bindBoneNode(slot6, "socket_nan")
+		else
+			slot6.playAnimation(slot6, "nv", 1)
+
+			slot7 = slot6.bindBoneNode(slot6, "socket_nv")
+		end
+
+		if cc.FileUtils.getInstance().isFileExist(slot1 .. ".skel") then
+			slot8 = slot0.createAnimation(slot1, 1, true)
+
+			slot8.setName(slot8, "sprite")
+			slot7.addChild(slot7, slot8)
+			slot8.setScale(slot8, 0.7)
+			slot8.playAnimation(slot8, "animation", 1)
+
+			slot0.gameScene.effects[#slot0.gameScene.effects + 1] = slot8
+
+			if slot1[slot1] then
+				slot8.setPosition(slot8, cc.p(slot9.x + 60, slot9.y + 120))
+			end
+
+			if slot0.group == 2 then
+				slot8.setRotation3D(slot8, cc.vec3(0, 180, 0))
+			end
+		elseif cc.FileUtils.getInstance().isFileExist(slot1 .. ".png") then
+			slot8 = cc.Sprite.create(slot1 .. ".png")
+
+			slot8.setName(slot8, "sprite")
+			slot8.setScale(slot8, 1.1)
+			slot7.addChild(slot7, slot8)
+
+			if slot1[slot1] then
+				slot8.setPosition(slot8, cc.p(slot9.x + 60, slot9.y + 120))
+			end
+
+			if slot0.group == 2 then
+				slot8.setRotation3D(slot8, cc.vec3(0, 180, 0))
+			end
+		end
+
+		slot8 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent.addChild(slot8)
+		slot8.setTimeScale(slot8, slot4)
+
+		if 18 <= slot0.quality then
+			slot8.playAnimation(slot8, "shang_pro", 1)
+		else
+			slot8.playAnimation(slot8, "shang", 1)
+		end
+
+		slot9 = slot0.createAnimation("effect_tongyi_qiepin", 1)
+
+		slot0.parent.addChild(slot9)
+		slot9.setTimeScale(slot9, slot4)
+		slot9.playAnimation(slot9, "ziti", 1)
+
+		if slot2 and cc.FileUtils.getInstance().isFileExist(slot2 .. ".png") then
+			slot11 = cc.Sprite.create(slot2 .. ".png")
+
+			slot11.setPosition(slot11, cc.p(-200, 0))
+			slot11.setName(slot11, "sprite")
+			slot9.bindBoneNode(slot9, "socket_zi").addChild(slot11)
+		end
+
+		return 
+	end
+}

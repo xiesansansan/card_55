@@ -1,0 +1,883 @@
+slot0 = class("CityWarArmyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("队 伍")
+		},
+		children = {
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 423.96,
+						y = 481.08
+					},
+					size = {
+						width = 800,
+						height = 330
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "cancleBtn-image",
+								name = "cancelBtnImg",
+								type = "string"
+							},
+							{
+								value = "untitled44-text",
+								name = "indexText",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 6,
+								y = 280
+							},
+							size = {
+								width = 784,
+								height = 120
+							}
+						},
+						children = {
+							{
+								name = "cellSprite",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 392,
+										y = 60
+									},
+									size = {
+										width = 784,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "titleSprite",
+										cType = "Sprite",
+										params = {
+											image = "gcz_12.png",
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											pos = {
+												x = 7.23,
+												y = 113.05
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 1,
+												name = "head",
+												type = "integer"
+											}
+										},
+										params = {
+											scale = 0.8,
+											allowClick = false,
+											pos = {
+												x = 96,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled39",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 2,
+												name = "head",
+												type = "integer"
+											}
+										},
+										params = {
+											scale = 0.8,
+											allowClick = false,
+											pos = {
+												x = 176,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 3,
+												name = "head",
+												type = "integer"
+											}
+										},
+										params = {
+											scale = 0.8,
+											allowClick = false,
+											pos = {
+												x = 256,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled41",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 4,
+												name = "head",
+												type = "integer"
+											}
+										},
+										params = {
+											scale = 0.8,
+											allowClick = false,
+											pos = {
+												x = 336,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "CardNode",
+										custom = {
+											{
+												value = 5,
+												name = "head",
+												type = "integer"
+											}
+										},
+										params = {
+											scale = 0.8,
+											allowClick = false,
+											pos = {
+												x = 416,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled50",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											hide = true,
+											childName = "zhenfaNode",
+											allowClick = false,
+											pos = {
+												x = 495,
+												y = 44
+											}
+										},
+										children = {}
+									},
+									{
+										name = "locationLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											hide = true,
+											anchor = {
+												x = 1,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 765.4,
+												y = 94.96
+											},
+											text = TR("大理天龙寺")
+										},
+										children = {}
+									},
+									{
+										name = "gotoBtn",
+										cType = "Button",
+										params = {
+											image = "c_50.png",
+											hide = true,
+											pos = {
+												x = 656.93,
+												y = 94.12
+											}
+										},
+										children = {}
+									},
+									{
+										name = "cancleBtn",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											hide = true,
+											pos = {
+												x = 600.94,
+												y = 53.8
+											},
+											titleText = TR("撤 退")
+										},
+										children = {}
+									},
+									{
+										name = "campBtn",
+										cType = "Button",
+										params = {
+											image = "c_32.png",
+											hide = true,
+											pos = {
+												x = 718.94,
+												y = 53.8
+											},
+											titleText = TR("编 队")
+										},
+										children = {}
+									},
+									{
+										name = "vitLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 247.94,
+												y = 94.44
+											},
+											text = TR("进攻：古墓派")
+										},
+										children = {
+											{
+												name = "untitled53",
+												cType = "Sprite",
+												params = {
+													scale = 1,
+													image = "db_1114.png",
+													pos = {
+														x = -16.05,
+														y = 11.05
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "fapLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 84.81,
+												y = 93.05
+											},
+											text = TR("进攻：古墓派")
+										},
+										children = {
+											{
+												name = "untitled52",
+												cType = "Sprite",
+												params = {
+													scale = 0.8,
+													image = "c_110.png",
+													pos = {
+														x = -16.05,
+														y = 11.05
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled43",
+										cType = "Sprite",
+										params = {
+											image = "xyyz_44.png",
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											pos = {
+												x = 14.56,
+												y = 114.11
+											}
+										},
+										children = {
+											{
+												name = "untitled44",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													childName = "label",
+													text = "1",
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													pos = {
+														x = 13,
+														y = 15
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "hookSprite",
+										cType = "Sprite",
+										params = {
+											image = "xyyz_44.png",
+											hide = true,
+											anchor = {
+												x = 0.5,
+												y = 1
+											},
+											pos = {
+												x = 15.56,
+												y = 86.54
+											}
+										},
+										children = {
+											{
+												name = "untitled46",
+												cType = "Label",
+												params = {
+													fontSize = 16,
+													childName = "label",
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													pos = {
+														x = 12.5,
+														y = 13.5
+													},
+													text = TR("挂")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "addTeamBtn",
+				cType = "Button",
+				params = {
+					fontSize = 24,
+					clickAction = "onBuildNewTeam",
+					pressedAction = false,
+					image = "c_34.png",
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423,
+						y = 85
+					},
+					size = {
+						width = 770,
+						height = 110
+					},
+					titleColor = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					titleText = TR("点击添加队伍")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.jumpToIndex = slot1.jumpToIndex
+	slot0.callback = slot1.callback
+	slot0.gotoFunc = slot1.gotoFunc
+	slot0.mTeamInfo = slot1.teamInfo
+	slot0.mIsJzwl = slot1.isJzwl
+	slot0.minTrainLv = 0
+
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0.listView, EventDefine.eTeamStateChange, function ()
+		slot0:requestGetCitywarTeamInfo()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot3 = {
+	[({
+		defense = 2,
+		wait = 3,
+		idle = 4,
+		attack = 1,
+		dead = 5
+	})["attack"]] = "wc_45.png",
+	[({
+		defense = 2,
+		wait = 3,
+		idle = 4,
+		attack = 1,
+		dead = 5
+	})["defense"]] = "wc_47.png",
+	[({
+		defense = 2,
+		wait = 3,
+		idle = 4,
+		attack = 1,
+		dead = 5
+	})["wait"]] = "wc_46.png",
+	[({
+		defense = 2,
+		wait = 3,
+		idle = 4,
+		attack = 1,
+		dead = 5
+	})["idle"]] = "wc_71.png",
+	[({
+		defense = 2,
+		wait = 3,
+		idle = 4,
+		attack = 1,
+		dead = 5
+	})["dead"]] = "wc_45.png"
+}
+slot4 = {
+	[({
+		manually = 1,
+		campground = 3,
+		leaguetop = 4,
+		onhook = 2
+	})["manually"]] = "",
+	[({
+		manually = 1,
+		campground = 3,
+		leaguetop = 4,
+		onhook = 2
+	})["onhook"]] = "挂",
+	[({
+		manually = 1,
+		campground = 3,
+		leaguetop = 4,
+		onhook = 2
+	})["campground"]] = "营",
+	[({
+		manually = 1,
+		campground = 3,
+		leaguetop = 4,
+		onhook = 2
+	})["leaguetop"]] = "武"
+}
+slot0.refreshUI = function (slot0)
+	slot0.listView:removeAllItems()
+
+	for slot4, slot5 in ipairs(slot0.mTeamInfo) do
+		slot6 = (slot5.State == slot0.idle and "c_27.png") or "c_32.png"
+
+		for slot11, slot12 in ipairs(slot0.getCustomChildren(slot0, slot0.createLayoutTemplateNode(slot0, "layout", {
+			indexText = slot4,
+			cancelBtnImg = slot6
+		}).cellSprite, "head")) do
+			slot12.setCardData(slot12, nil, {
+				Enums.CardShowAttr.eLevel,
+				Enums.CardShowAttr.eStar,
+				Enums.CardShowAttr.eTrainLv
+			}, HeroObj:getItem(slot5.HeroInfoList[slot11].HeroModelId))
+
+			if slot5.HeroInfoList[slot11].IfDead == true then
+				slot12.setExtraImg(slot12, "fb_23.png")
+			end
+		end
+
+		if slot5.StrategyId == 0 then
+			slot7.cellSprite.zhenfaNode:setExtraImg("tb_gn_119.png")
+		else
+			slot7.cellSprite.zhenfaNode:setCardData({
+				resourceId = slot5.StrategyId
+			})
+		end
+
+		if CitywarCityConfig.items[slot5.ChapterModelId or 0] ~= nil and slot8.name ~= nil and slot5.State ~= slot0.idle then
+			slot7.locationLabel:setString(slot8.name)
+		end
+
+		if slot5.Type == slot1.leaguetop then
+			slot7.locationLabel:setVisible(true)
+			slot7.locationLabel:setString(TR("决战武林"))
+		end
+
+		slot14, slot13 = slot0.getFapAndVitCost(slot0, slot5.HeroInfoList)
+
+		slot7.fapLabel:setString(Utility.numberWithUnit(slot9))
+		slot7.vitLabel:setString(slot10)
+		slot7.hookSprite:setVisible(slot5.Type ~= slot1.manually)
+		slot7.hookSprite.label:setString(slot2[slot5.Type])
+		slot7.titleSprite:setTexture(slot3[slot5.State])
+
+		if slot5.State == slot0.idle then
+			slot7.cancleBtn:setVisible(true)
+
+			if slot5.Type == slot1.campground then
+				slot7.cancleBtn:setTitleText("撤出大营")
+				slot7.cancleBtn:setClickAction(function ()
+					slot0:onRequestCancelTeam(slot1.Type, slot1.TeamId)
+
+					return 
+				end)
+			else
+				slot7.cancleBtn:setTitleText("撤 销")
+				slot7.cancleBtn:setClickAction(function ()
+					ui.showMessageBox({
+						titleText = TR("提示"),
+						text = TR("确定撤销该编队吗？"),
+						okCallback = function (slot0)
+							slot0:onRequestCancelTeam(slot1.Type, slot1.TeamId)
+
+							return 
+						end
+					})
+
+					return 
+				end)
+			end
+		elseif slot5.State == slot0.defense or slot5.State == slot0.wait then
+			slot7.cancleBtn:setVisible(true)
+			slot7.cancleBtn:setTitleText("撤退")
+			slot7.cancleBtn:setClickAction(function ()
+				if slot0.Type == slot1.leaguetop then
+					ui.showFlashView(TR("决战武林中的队伍不能撤退"))
+
+					return 
+				end
+
+				slot2:onRequestCancleArmy(slot0.Type, slot0.TeamId, slot0.ChapterModelId)
+
+				return 
+			end)
+		end
+
+		if slot5.State ~= slot0.idle then
+			slot7.locationLabel:setVisible(true)
+			slot7.gotoBtn:setVisible(true)
+			slot7.gotoBtn:setClickAction(function ()
+				slot0:onGotoClick(slot1.State, slot1.ChapterModelId)
+
+				return 
+			end)
+
+			if slot5.State == slot0.defense or slot5.State == slot0.wait then
+				slot7.locationLabel:setPositionX(420)
+			end
+
+			slot7.gotoBtn:setPositionX(cc.p(slot7.locationLabel:getPosition()).x - slot7.locationLabel:getContentSize().width - 15)
+
+			if slot5.Type == slot1.leaguetop then
+				slot7.gotoBtn:setVisible(false)
+			end
+		end
+
+		if slot5.State == slot0.idle then
+			slot7.campBtn:setVisible(true)
+			slot7.campBtn:setClickAction(function ()
+				slot0:onCampBtn(slot0)
+
+				return 
+			end)
+		end
+
+		slot0.listView:pushBackCustomItem(slot7)
+	end
+
+	slot1 = #CitywarQueueConfig.items
+	slot2 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if CitywarQueueConfig.items[#slot0.mTeamInfo + 1] then
+		if slot2 < slot3.needPlayerLv then
+			slot0.addTeamBtn:setTitleText(TR("%s级开启", slot3.needPlayerLv))
+			slot0.addTeamBtn:setEnabled(false)
+		else
+			slot0.addTeamBtn:setTitleText(TR("点击添加队伍"))
+			slot0.addTeamBtn:setEnabled(true)
+		end
+	end
+
+	if slot1 <= #slot0.mTeamInfo then
+		slot0.listView:setContentSize(800, 440)
+		slot0.addTeamBtn:setVisible(false)
+	else
+		slot0.listView:setContentSize(800, 330)
+		slot0.addTeamBtn:setVisible(true)
+	end
+
+	if slot0.jumpToIndex then
+		ui.setListviewItemShow(slot0.listView, slot0.jumpToIndex)
+
+		slot0.jumpToIndex = nil
+	end
+
+	return 
+end
+slot0.refreshAddBtn = function (slot0)
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.getFapAndVitCost = function (slot0, slot1)
+	slot2 = 0
+	slot3 = 0
+	slot4 = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot2 = slot2 + (HeroObj:getItem(slot9.HeroModelId) or {}.Fap or 0)
+		slot3 = slot3 + Utility.getNeedVitByFap(HeroObj.getItem(slot9.HeroModelId) or {}.Fap or 0)
+	end
+
+	if 0 < slot2 then
+		slot2 = slot2 + Player:getGameData("Push_SkillTotalFap")
+	end
+
+	if slot4 then
+		slot3 = math.floor(slot3*(slot4 - 1))
+	end
+
+	return slot2, slot3
+end
+slot0.onBuildNewTeam = function (slot0)
+	slot1 = HeroObj:getList()
+	slot2 = (slot0.mTeamInfo and #slot0.mTeamInfo) or 0
+	slot3 = 0
+
+	for slot7, slot8 in pairs(slot1) do
+		slot3 = slot3 + 1
+	end
+
+	if slot3 - slot2*5 < 5 then
+		ui.showFlashView(TR("人数不足，无法继续编队"))
+
+		return 
+	end
+
+	slot0.onCampBtn(slot0)
+
+	return 
+end
+slot0.onCampBtn = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeamStateInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			slot1({
+				cleanUp = false,
+				name = "citywar.CitywarCampReadyLayer",
+				data = {
+					minCount = 5,
+					callModelSub = ModuleSub.eCityWar,
+					titleText = TR("编队布阵"),
+					teamIndex = slot0,
+					minTrainLv = (slot1.mIsJzwl and LeaguetopConfig.items[1].fightTrainLvMin) or 0,
+					cityWarTeamData = slot0.Value or {},
+					vitCostR = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0,
+					callback = function (slot0, slot1)
+						slot0:socketRequest({
+							methodName = "BuildTeam",
+							moduleName = "Citywar",
+							methodData = {
+								slot0,
+								slot1,
+								false
+							},
+							successCallback = function ()
+								ui.showFlashView("编队成功！")
+
+								return 
+							end
+						})
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGotoClick = function (slot0, slot1, slot2)
+	if slot0.gotoFunc then
+		slot0.gotoFunc(slot2)
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.closeLayer = function (slot0, slot1)
+	if slot0.callback then
+		slot0.callback(slot1)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestGetCitywarTeamInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeamStateInfo",
+		moduleName = "Citywar",
+		successCallback = function (slot0)
+			slot0.mTeamInfo = slot0.Value
+			slot0.mIsJzwl = slot0.IsInLeaguetop
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onDealResponseData = function (slot0, slot1)
+	if slot1 and slot1.BaseGetGameResourceList and next(slot1.BaseGetGameResourceList) then
+		ui.showFlashReward({
+			BaseGetGameResourceList = slot1.BaseGetGameResourceList
+		})
+	end
+
+	return 
+end
+slot0.onRequestCancelTeam = function (slot0, slot1, slot2)
+	if slot1 == slot0.campground then
+		slot0.socketRequest(slot0, {
+			methodName = "UnDispatch",
+			moduleName = "Guild",
+			methodData = {
+				slot2
+			},
+			successCallback = function (slot0)
+				slot0:onDealResponseData(slot0)
+				ui.showFlashView("撤回成功！")
+
+				return 
+			end
+		})
+	else
+		slot0.socketRequest(slot0, {
+			methodName = "DismissTeam",
+			moduleName = "Citywar",
+			methodData = {
+				slot2
+			},
+			successCallback = function (slot0)
+				slot0:onDealResponseData(slot0)
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.onRequestCancleArmy = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "RecallTeam",
+		moduleName = "Citywar",
+		methodData = {
+			slot3,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0:onDealResponseData(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,227 @@
+slot0 = class("ResOutInfoDlgLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("加成详情")
+		},
+		children = {
+			{
+				name = "baseLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 96.49,
+						y = 276.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "guildLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 96.49,
+						y = 238.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "lvLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 96.49,
+						y = 198.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "outperMinLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 96.67,
+						y = 120
+					}
+				},
+				children = {}
+			},
+			{
+				name = "totalLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 96.67,
+						y = 80
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.45,
+						y = 156.93
+					},
+					text = TR("总押镖产出")
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -86,
+								y = 11
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 186,
+								y = 11
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mConfigInfo = slot1.configInfo
+	slot0.mMyInfo = slot1.myInfo
+	slot0.mLayerInfo = slot1.layerInfo
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot3 = Resource.getDaibiImg(Utility.analysisStrResList(slot0.mConfigInfo.resource1Out)[1].resourceId)
+	slot4 = Resource.getDaibiImg(Utility.analysisStrResList(slot0.mConfigInfo.resource2Out)[1].resourceId)
+	slot6 = 0
+
+	if 1 < slot0.getGuildMemNum(slot0) + 1 then
+		if 5 <= slot5 then
+			slot5 = 5
+		end
+
+		slot6 = KuangzhanResourceUpRelation.items[slot5].outUp
+	end
+
+	slot0.baseLabel:setString(TR("基本产出/分钟： {%s}%s   {%s}%s", slot3, slot1[1].num, slot4, slot2[1].num))
+	slot0.guildLabel:setString(TR("帮派加成(%s人)： {%s}%s%%   {%s}%s%%", slot5, slot3, slot6, slot4, slot6))
+	slot0.lvLabel:setString(TR("等级加成(%s级)： {%s}%s%%   {%s}%s%%", slot0.mMyInfo.CarLv, slot3, KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource1Out*100, slot4, KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource2Out*100))
+	slot0.outperMinLabel:setString(TR("每分钟产出：   {%s}%s   {%s}%s", slot3, slot8, slot4, slot9))
+	slot0.totalLabel:setString(TR("8小时产出：    {%s}%s   {%s}%s", slot3, math.floor(slot1[1].num*(slot6/100 + 1 + KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource1Out))*480, slot4, math.floor(slot2[1].num*(slot6/100 + 1 + KuangzhanLvConfig.items[slot0.mMyInfo.CarLv].resource2Out))*480))
+
+	return 
+end
+slot0.getGuildMemNum = function (slot0)
+	if not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+		return 0
+	end
+
+	slot2 = 0
+
+	for slot6, slot7 in pairs(slot0.mLayerInfo) do
+		if slot7.GuildId == slot1 and not PlayerAttrObj:isPlayerSelf(slot7.PlayerId) then
+			slot2 = slot2 + 1
+		end
+	end
+
+	return slot2
+end
+
+return slot0

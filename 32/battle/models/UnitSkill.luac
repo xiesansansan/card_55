@@ -1,0 +1,796 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.FxHelper")
+slot2 = require("battle.common.BuffHelper")
+slot3 = require("battle.common.AttrHelper")
+slot4 = require("battle.common.Random")
+slot5 = require("battle.managers.ViewDelegate")
+slot6 = require("battle.managers.BattleManager")
+slot7 = require("battle.managers.BuffManager")
+slot8 = require("battle.common.Formula")
+slot9 = require("battle.common.SkillFunc")
+slot10 = class("UnitSkill")
+slot10.ctor = function (slot0, slot1, slot2, slot3)
+	assert(SkillModel.items[slot2] ~= nil, "invalid unit skillId: " .. (slot2 or "nil"))
+
+	slot0.owner = slot1
+	slot0.conf = clone(slot4)
+	slot0.level = slot3 or 1
+	slot0.star = slot1.star
+
+	if 0 < slot4.skillStarKey then
+		slot0.star = slot0.fixSkillStar(slot0.star, slot4.skillStarKey)
+	end
+
+	slot0.conf.skillAudioType = "none"
+	slot0.conf.skillAudioName = ""
+
+	slot0.fixSkillConf(slot0.conf, slot3, slot0.star, slot0.owner.spine)
+
+	slot0.isFreezing = false
+	slot0.isExtra = false
+	slot0.isCrit = false
+	slot0.isKill = false
+	slot0.isBlock = false
+	slot0.isLastSkill = false
+	slot0.dmgInfos = nil
+	slot0.deathTriggerUid = 0
+
+	if slot0.conf.skillAction == nil or slot5 == "" or slot5 == "0" then
+		slot5 = slot0.getSkillAction(slot0.conf.triggerId)
+	end
+
+	slot6 = slot0.getSpineInfo(slot0.owner.spine, slot5)
+
+	if slot0.conf.skillShow and slot0.conf.skillShow ~= "" then
+		slot6 = slot0.defaultSpineInfo().passive
+	end
+
+	slot0.animTime = (slot6 ~= nil and slot6.totalTime) or -1
+	slot0.events = (slot6 ~= nil and slot6.events) or {}
+	slot0.totalCount = (slot6 ~= nil and slot6.triggerCnt) or 0
+	slot0.damageIdx = 0
+	slot0.skillFuncs = {}
+	slot0.externTargetUids = {}
+	slot0.externDmgRatio = 0
+	slot0.extNextSkills = {}
+	slot0.finalDmgRatio = 0
+	slot0.hurtRatio2 = 1
+
+	if slot0.conf.functionId ~= "" then
+		for slot11, slot12 in ipairs(slot7) do
+			slot0.addSkillFunc(slot0, slot12)
+		end
+	end
+
+	if slot0.conf.skillType == slot1.SkillType.SKILL and slot0.owner.skillRatio then
+		slot0.conf.damageRatio = slot0.conf.damageRatio*slot0.owner.skillRatio
+		slot0.conf.damageValue = slot0.conf.damageValue*slot0.owner.skillRatio
+	end
+
+	return 
+end
+slot10.addSkillFunc = function (slot0, slot1)
+	slot2 = {}
+
+	if type(slot1) == "string" then
+		for slot7, slot8 in ipairs(slot3) do
+			table.insert(slot2, tonumber(slot8))
+		end
+	else
+		slot2 = {
+			slot1
+		}
+	end
+
+	for slot6, slot7 in ipairs(slot2) do
+		table.insert(slot0.skillFuncs, slot0.parseSkillFunc(slot7, slot0.level, slot0.star))
+	end
+
+	return 
+end
+slot10.valid = function (slot0)
+	if slot0.conf.triggerId == SkillTrigger.eSkillAttack and slot0.owner.attr.mp < slot0.EnergyFull then
+		return false
+	end
+
+	return true
+end
+slot10.checkSkillFunc = function (slot0, slot1, slot2, slot3)
+	for slot7, slot8 in ipairs(slot0.skillFuncs) do
+		if slot8.CheckPhase == slot1 or slot8.CheckPhase == 0 then
+			if slot1 == 1 then
+				slot9, slot10 = slot8.Checker(slot0.owner, slot2, slot0, slot3, slot8.Args)
+
+				if slot9 == true then
+					if slot8.ExtraTarget then
+						slot12 = tonumber(slot8.ExtraTarget[2])
+						slot13 = tonumber(slot8.ExtraTarget[3])
+
+						if slot0:random() <= tonumber(slot8.ExtraTarget[1]) then
+							for slot18, slot19 in ipairs(slot14) do
+								slot0.externTargetUids[slot19] = slot13
+
+								table.insert(slot0.targetUids, slot19)
+							end
+						end
+					end
+
+					if slot8.ExtraDmgRatio then
+						slot12 = tonumber(slot8.ExtraDmgRatio[2])
+						slot13 = tonumber(slot8.ExtraDmgRatio[3])
+
+						if slot0:random() <= tonumber(slot8.ExtraDmgRatio[1]) then
+							slot0.externDmgRatio = slot0.externDmgRatio + slot12 + slot13*slot8.CheckNum
+						end
+					end
+
+					if slot8.SkillDmgRatioChangeRatio then
+						slot0.hurtRatio2 = slot0:random()*(tonumber(slot8.SkillDmgRatioChangeRatio[2]) - tonumber(slot8.SkillDmgRatioChangeRatio[1])) + tonumber(slot8.SkillDmgRatioChangeRatio[1])
+					end
+
+					if slot8.ShareDmg ~= nil then
+						slot0.damageRatio = math.min(slot0.conf.damageRatio/#slot0.targetUids, slot8.ShareDmg)
+					end
+
+					if slot8.NextSkill then
+						for slot14, slot15 in ipairs(slot8.NextSkill) do
+							table.insert(slot0.extNextSkills, {
+								skillId = tonumber(slot15),
+								targetUids = clone(slot0.targetUids)
+							})
+						end
+					end
+				end
+			elseif slot1 == 3 then
+				slot9, slot10 = slot8.Checker(slot0.owner, slot2, slot0, slot3, slot8.Args)
+
+				if slot9 == true then
+					if slot8.FinalDmgChange then
+						slot0.finalDmgRatio = slot0.finalDmgRatio + slot8.FinalDmgChange
+					end
+
+					if slot8.NextSkill then
+						slot11 = {}
+
+						for slot15, slot16 in ipairs(slot8.NextSkill) do
+							table.insert(slot0.extNextSkills, {
+								skillId = tonumber(slot16),
+								targetUids = {
+									slot2.uid
+								}
+							})
+						end
+					end
+				end
+			end
+		end
+	end
+
+	return 
+end
+slot10.start = function (slot0, slot1, slot2)
+	slot3 = false
+
+	if slot1 == nil and slot2 ~= nil then
+		slot3 = true
+	end
+
+	slot0.dt = 0
+	slot0.triggers = clone(slot0.events)
+	slot0.targetUids = slot1 or slot0.getUnitSkillTarget(slot0)
+	slot0.totalTime = slot0.animTime
+	slot0.isCrit = false
+	slot0.isKill = false
+	slot0.isBlock = false
+	slot0.isLastSkill = false
+	slot0.dmgInfos = nil
+	slot0.damageIdx = 0
+	slot0.damageRatio = 0
+	slot0.damageValue = 0
+
+	if slot0.conf.skillType == slot1.SkillType.NORMAL or slot0.conf.skillType == slot1.SkillType.SKILL then
+		slot4 = false
+
+		if slot2.getConfuseBuff(slot0.owner.uid) and slot0.getConfuseTargetUid(slot0.owner)[1] then
+			slot0.targetUids = {
+				slot7
+			}
+			slot4 = true
+		end
+
+		if slot4 == false and slot0.conf.targetPhalanx == 2 and slot0.conf.targetRange == slot1.TargetRange.Current and 0 < slot0.findTauntTarget(slot0.owner) then
+			slot0.targetUids = {
+				slot6
+			}
+		end
+	end
+
+	slot0.finalDmgRatio = 0
+	slot0.externDmgRatio = 0
+	slot0.hurtRatio2 = 1
+	slot0.externTargetUids = {}
+	slot0.extNextSkills = {}
+
+	slot0.checkSkillFunc(slot0, 1, nil, 0)
+
+	if slot3 then
+		slot4 = slot2[0]
+		slot2 = {}
+
+		for slot8, slot9 in pairs(slot0.targetUids) do
+			slot2[slot9] = slot4
+		end
+	end
+
+	if #slot0.targetUids <= 0 then
+		slot0.totalTime = 0
+		slot0.triggers = {}
+
+		if 0 < #slot0.conf.beforeSkill then
+			slot0.triggerSkills(slot0.owner, slot0.conf.beforeSkill, slot0.level)
+		end
+
+		if 0 < #slot0.conf.nextSkill then
+			slot0.triggerSkills(slot0.owner, slot0.conf.nextSkill, slot0.level)
+		end
+
+		return 
+	end
+
+	if slot0.damageRatio == 0 then
+		slot0.damageRatio = (slot0.conf.damageRatio + slot0.externDmgRatio)*slot0.hurtRatio2
+	else
+		slot0.damageRatio = (slot0.damageRatio + slot0.externDmgRatio)*slot0.hurtRatio2
+	end
+
+	slot0.damageValue = slot0.conf.damageValue*slot0.owner.atkDecayRatio
+
+	if slot0.conf.skillType == slot1.SkillType.SKILL then
+		slot0.owner:updateEnergy(-slot0.owner.attr.mp, true)
+
+		if 0 < slot0.conf.damageRatio then
+			slot0.damageRatio = slot0.damageRatio + slot0.owner.attr.eSklAdd/10000
+			slot0.damageRatio = slot0.damageRatio + (slot4 - 100)*slot1.CalcConst.EnergyRatio
+		end
+	end
+
+	if 0 < #slot0.conf.beforeSkill then
+		slot0.triggerSkills(slot0.owner, slot0.conf.beforeSkill, slot0.level, slot0.targetUids)
+	end
+
+	if slot0.animTime < 0 or (slot0.conf.skillType == slot1.SkillType.PASSIVE and slot0.animTime < 0) then
+		slot0.totalTime = 0
+
+		if slot0.conf.buffIds then
+			for slot7, slot8 in ipairs(slot0.targetUids) do
+				slot9 = slot0.getUnitByUid(slot8)
+				slot10 = nil
+
+				if slot2 then
+					slot10 = slot2[slot8]
+				end
+
+				for slot14, slot15 in ipairs(slot0.conf.buffIds) do
+					slot17 = slot3.getBuffAddRatio(slot16, slot0.level, slot0.star)
+
+					if slot3.readBuff(slot15).isControl then
+						slot18, slot19 = slot4.calcControlRatio(slot0.owner, slot9)
+						slot17 = (slot17 + slot18)*slot19
+					end
+
+					if slot16.IfRatioAverage then
+						slot17 = slot17/#slot0.targetUids
+					end
+
+					if slot5:random() <= slot17 then
+						slot2.addBuff(slot15, slot9, slot0.owner, slot0.conf.skillType, slot0.level, slot0.star, slot10)
+					end
+				end
+			end
+		end
+
+		slot0.handleNextSkills(slot0)
+
+		return 
+	end
+
+	slot0.calcDamage(slot0)
+
+	if slot0.conf.skillShow and slot0.conf.skillShow ~= "" then
+		slot0.handleCommonEvent(slot0)
+	else
+		slot0.handleSkillEvent(slot0)
+	end
+
+	return 
+end
+slot10.handleNextSkills = function (slot0)
+	if slot0.isLastSkill == true then
+		return 
+	end
+
+	if 0 < #slot0.conf.nextSkill then
+		slot0.triggerSkills(slot0.owner, slot0.conf.nextSkill, slot0.level, slot0.targetUids, slot0.dmgInfos)
+	end
+
+	if 0 < #slot0.extNextSkills then
+		for slot4, slot5 in ipairs(slot0.extNextSkills) do
+			slot0.triggerSkills(slot0.owner, {
+				slot5.skillId
+			}, slot0.level, slot5.targetUids, slot0.dmgInfos)
+		end
+	end
+
+	return 
+end
+slot10.handleCommonEvent = function (slot0)
+	if slot0.conf.skillType == slot0.SkillType.WARSKILL then
+		table.insert(slot0.triggers, {
+			time = 0,
+			name = "start_warskill"
+		})
+		table.sort(slot0.triggers, function (slot0, slot1)
+			return slot1.time < slot0.time
+		end)
+	end
+
+	return 
+end
+slot10.canFlashScreen = function (slot0)
+	if slot0.owner.flashEffect ~= "" and slot0.canFreezing[slot0.owner.group] and 14 <= slot0.owner.quality then
+		return true
+	end
+
+	return false
+end
+slot10.handleSkillEvent = function (slot0)
+	slot1 = 0
+	slot2 = 0
+
+	if slot0.conf.skillType == slot0.SkillType.SKILL then
+		table.insert(slot0.triggers, {
+			time = 0,
+			name = "camera_focus"
+		})
+		table.insert(slot0.triggers, {
+			name = "gather_enemy",
+			time = 1.2 + 0.1
+		})
+
+		if slot0.canFlashScreen(slot0) then
+			table.insert(slot0.triggers, {
+				name = "flashstart",
+				time = slot2
+			})
+			table.insert(slot0.triggers, {
+				name = "flashend",
+				time = slot2 + slot0.owner.flashEffectTime
+			})
+		end
+	end
+
+	slot3 = 0
+	slot0.totalTime = slot0.totalTime + ((slot0.conf.moveType ~= 1 or 0) and slot0.MoveNearTime)*2 + slot1 + slot2
+
+	for slot8, slot9 in pairs(slot0.triggers) do
+		if slot9.name ~= "camera_focus" and slot9.name ~= "gather_enemy" and (slot9.name ~= "flashstart" or false) and (slot9.name ~= "flashend" or false) then
+			slot9.time = slot9.time + slot3 + slot1 + slot2
+		end
+	end
+
+	if 0 < slot3 then
+		table.insert(slot0.triggers, {
+			name = "move_back",
+			time = slot0.totalTime - slot3,
+			duration = slot3
+		})
+		table.insert(slot0.triggers, {
+			name = "start_skill",
+			time = slot3 + slot1 + slot2
+		})
+		table.insert(slot0.triggers, {
+			name = "move_towards",
+			time = slot1 + slot2,
+			duration = slot3
+		})
+	else
+		table.insert(slot0.triggers, {
+			name = "start_skill",
+			time = slot1 + slot2
+		})
+	end
+
+	if slot0.conf.skillType == slot0.SkillType.SKILL then
+		table.insert(slot0.triggers, {
+			name = "restore_enemy",
+			time = slot0.totalTime - slot3
+		})
+	end
+
+	table.insert(slot0.triggers, {
+		name = "end_skill",
+		time = slot0.totalTime
+	})
+
+	if slot0.isExtra == true then
+		for slot8, slot9 in ipairs(slot0.triggers) do
+			slot9.time = slot9.time + 0.8
+		end
+
+		slot0.totalTime = slot0.totalTime + 0.8
+	end
+
+	table.sort(slot0.triggers, function (slot0, slot1)
+		return slot1.time < slot0.time
+	end)
+
+	return 
+end
+slot10.update = function (slot0, slot1)
+	slot0.dt = slot0.dt + slot1
+
+	for slot5 = #slot0.triggers, 1, -1 do
+		if slot0.triggers[slot5].time <= slot0.dt then
+			slot0.triggerEvent(slot0, slot6)
+			table.remove(slot0.triggers, slot5)
+		else
+			break
+		end
+	end
+
+	if slot0.totalTime < slot0.dt then
+		return true
+	end
+
+	return false
+end
+slot10.checkNextSkill = function (slot0)
+	if slot0.isLastSkill == true then
+		return 
+	end
+
+	if slot0.isLastSkill == false then
+		slot0.isLastSkill = true
+	end
+
+	if slot0.isCrit == true then
+		slot0.checkUnitCritAssistAttack(slot0.owner, slot0.conf.skillType, slot0.targetUids)
+	end
+
+	slot0.checkUnitFriendAttack(slot0.owner, slot0.conf.skillType, slot0.targetUids)
+	slot0.checkUnitAssistAttack(slot0.owner, slot0.conf.skillType, slot0.targetUids)
+
+	if slot0.isExtra == false then
+		if slot0.conf.skillType == slot1.SkillType.NORMAL and slot2.getCommonAttackNoAngBuff(slot0.owner.uid) == nil then
+			if slot1.BranchVersion == 3 then
+				slot0.owner:updateEnergy(slot1.EnergyPugong)
+			else
+				slot0.owner:updateEnergy(slot1.EnergyPugong + slot0.owner.attr.eAngRecover)
+			end
+		end
+
+		if slot0.conf.skillType == slot1.SkillType.SKILL then
+			slot0.updatePetEnergy(slot0.owner.uid, slot0.owner.group, slot1.EnergySkillPet)
+		end
+
+		if (slot0.conf.skillType == slot1.SkillType.NORMAL or slot0.conf.skillType == slot1.SkillType.SKILL) and slot0.owner:hasWarSkill() then
+			slot0.owner:updateWarEnergy(slot1.AttackWarEnergy)
+		end
+	end
+
+	return 
+end
+slot10.triggerEvent = function (slot0, slot1)
+	if slot1.name == "start_skill" then
+		slot0.unitUseSkill(slot0.owner.uid, slot0.conf.modelId, slot0.owner.spine, slot0.conf.skillType)
+
+		if slot0.conf.skillType == slot1.SkillType.SKILL and slot0.owner.quality == 18 then
+			slot0.skillMusicEffect("effect_nuji_env.mp3")
+		end
+	elseif slot1.name == "start_warskill" then
+		slot0.unitUseWarSkill(slot0.owner, slot0.conf.modelId, slot0.conf)
+	elseif slot1.name == "end_skill" then
+		slot0.unitEndSkill(slot0.owner.uid, slot0.targetUids)
+	elseif slot1.name == "move_towards" then
+		slot0.unitMoveTowards(slot0.owner.uid, slot0.owner.spine, slot0.conf.skillType, clone(slot0.targetUids), slot1.duration)
+	elseif slot1.name == "move_back" then
+		slot0.unitMoveBack(slot0.owner.uid, slot1.duration)
+	elseif slot1.name == "daji" then
+		slot0.damageIdx = slot0.damageIdx + 1
+
+		slot0.damageIdx + 1.addSkillBullet(slot0, slot1.int)
+	elseif slot1.name == "flashstart" then
+		if slot0.conf.skillType == slot1.SkillType.SKILL and slot2.canFreezing[slot0.owner.group] then
+			slot0.isFreezing = true
+			true.freezing = slot2.freezing + 1
+
+			slot0.flashStart(slot0.owner.uid, slot0.conf.modelId)
+		end
+	elseif slot1.name == "flashend" then
+		if slot0.conf.skillType == slot1.SkillType.SKILL and slot2.canFreezing[slot0.owner.group] then
+			slot0.isFreezing = false
+			false.freezing = slot2.freezing - 1
+
+			slot0.flashEnd(slot0.owner.uid)
+		end
+	elseif slot1.name == "camera_focus" then
+		slot0.cameraFocusUnit(slot0.owner)
+	elseif slot1.name == "gather_enemy" then
+		slot0.gatherUnits(slot0.owner, slot0.targetUids)
+	elseif slot1.name == "restore_enemy" then
+		slot0.restoreUnits(slot0.owner, slot0.targetUids)
+	elseif slot1.name == "hide" then
+		slot0.hideTargets(slot0.targetUids)
+	elseif slot1.name == "show" then
+		slot0.showTargets(slot0.targetUids)
+	else
+		slot2, slot3 = string.find(slot1.name, ".mp3")
+
+		if slot2 and 0 < slot2 then
+			slot0.skillMusicEffect(slot1.name)
+		end
+	end
+
+	return 
+end
+slot10.calcDamage = function (slot0)
+	if slot0.dmgInfos == nil then
+		slot0.dmgInfos = {}
+	else
+		assert(slot0.dmgInfos ~= nil, "只能计算一次伤害值.")
+
+		return 
+	end
+
+	for slot4, slot5 in ipairs(slot0.targetUids) do
+		slot6 = slot0.getUnitByUid(slot5)
+		slot7 = false
+		slot8 = true
+		slot9 = false
+		slot10 = 0
+		slot11 = false
+		slot12 = clone(slot0.owner.part_attr)
+		slot13 = clone(slot6.part_attr)
+		slot6.skillFuncs = nil
+
+		for slot18, slot19 in ipairs(slot14) do
+			if (slot19.CheckPhase == 2 or slot19.CheckPhase == 0) and slot19.Checker(slot6, slot0.owner, slot0, 0, slot19.Args) then
+				slot2.mergeToPartAttr(slot19.AtkAttr, slot13)
+				slot2.mergeToPartAttr(slot19.DefAttr, slot12)
+			end
+		end
+
+		for slot18, slot19 in ipairs(slot0.skillFuncs) do
+			if slot19.CheckPhase == 2 or slot19.CheckPhase == 0 then
+				slot19.CheckNum = 0
+				slot19.NumAttrPer = nil
+				slot19.HpperAttrPer = nil
+				slot20, slot21 = slot19.Checker(slot0.owner, slot6, slot0, 0, slot19.Args)
+
+				if slot21 then
+					slot19.CheckNum = slot21
+				end
+
+				if slot20 == true then
+					if slot19.BaseNumAttrPer then
+						slot19.NumAttrPer = {}
+
+						for slot25, slot26 in pairs(slot19.BaseNumAttrPer) do
+							slot19.NumAttrPer[slot25] = slot26*slot19.CheckNum
+						end
+					end
+
+					if slot19.BaseHpperAttrPer then
+						slot22 = math.floor((slot0.owner.attr.hp/slot0.owner.attr.eHp - 1)/0.01)
+						slot19.HpperAttrPer = {}
+
+						for slot26, slot27 in pairs(slot19.BaseHpperAttrPer) do
+							slot19.HpperAttrPer[slot26] = slot27*slot22
+						end
+					end
+
+					slot2.mergeToPartAttr(slot19.AtkAttr, slot12)
+					slot2.mergeToPartAttr(slot19.DefAttr, slot13)
+
+					if slot19.NumAttrPer then
+						slot2.mergeToPartAttr(slot19.NumAttrPer, slot12)
+					end
+
+					if slot19.HpperAttrPer then
+						slot2.mergeToPartAttr(slot19.HpperAttrPer, slot12)
+					end
+
+					if slot19.NextSkill then
+						slot22 = {}
+
+						for slot26, slot27 in ipairs(slot19.NextSkill) do
+							table.insert(slot0.extNextSkills, {
+								skillId = tonumber(slot27),
+								targetUids = {
+									slot6.uid
+								}
+							})
+						end
+					end
+
+					if slot19.ExtraDmgRatioBySurplusHp then
+						slot0.damageRatio = slot0.damageRatio + (slot6.attr.hp/slot6.attr.eHp - 1)*slot19.ExtraDmgRatioBySurplusHp
+					end
+				end
+			end
+		end
+
+		slot15 = {}
+		slot16 = {}
+
+		for slot20, slot21 in pairs(slot12) do
+			slot15[slot20] = slot21.a*(slot21.b/10000 + 1) + slot21.c
+		end
+
+		for slot20, slot21 in pairs(slot13) do
+			slot16[slot20] = slot21.a*(slot21.b/10000 + 1) + slot21.c
+		end
+
+		if slot0.isInvincible(slot6, slot0.conf.skillType, slot0.owner) == true and slot0.isWushiInvincible(slot0.owner, slot0.conf.skillType) then
+			slot17 = false
+		end
+
+		if slot17 == false then
+			if slot0.conf.ifRealHurt == false then
+				if slot0.isExtra == true then
+					slot10 = slot3.calcDotDamage({
+						ignoreArm = false,
+						attacker = slot0.owner,
+						defender = slot6,
+						atkValue = math.max(slot0.owner.attr.eAtk, 1),
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot15,
+						defAttrMap = slot16,
+						hurtType = slot0.conf.hurtType
+					})
+				else
+					slot18 = {}
+					slot10 = (slot4.BranchVersion ~= 3 or slot3.calcWugongDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot0.owner.attr,
+						defAttrMap = slot6.attr,
+						hurtType = slot0.conf.hurtType,
+						ifIgnoreArm = slot0.conf.ifIgnoreArm
+					})) and slot3.calcCommonDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot15,
+						defAttrMap = slot16
+					}).damage
+					slot7 = (slot4.BranchVersion ~= 3 or slot3.calcWugongDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot0.owner.attr,
+						defAttrMap = slot6.attr,
+						hurtType = slot0.conf.hurtType,
+						ifIgnoreArm = slot0.conf.ifIgnoreArm
+					})) and slot3.calcCommonDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot15,
+						defAttrMap = slot16
+					}).crit
+					slot8 = (slot4.BranchVersion ~= 3 or slot3.calcWugongDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot0.owner.attr,
+						defAttrMap = slot6.attr,
+						hurtType = slot0.conf.hurtType,
+						ifIgnoreArm = slot0.conf.ifIgnoreArm
+					})) and slot3.calcCommonDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot15,
+						defAttrMap = slot16
+					}).hit
+					slot9 = (slot4.BranchVersion ~= 3 or slot3.calcWugongDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot0.owner.attr,
+						defAttrMap = slot6.attr,
+						hurtType = slot0.conf.hurtType,
+						ifIgnoreArm = slot0.conf.ifIgnoreArm
+					})) and slot3.calcCommonDamage({
+						attacker = slot0.owner,
+						defender = slot6,
+						dmgRatio = slot0.damageRatio,
+						dmgValue = slot0.damageValue,
+						skillType = slot0.conf.skillType,
+						atkAttrMap = slot15,
+						defAttrMap = slot16
+					}).block
+				end
+			else
+				slot10 = slot3.calcRealDamage(math.max(slot0.owner.attr.eAtk, 1), slot0.damageRatio, slot0.damageValue)
+			end
+
+			if slot0.conf.skillType == slot4.SkillType.NORMAL and 0 < slot10 and slot0.isExtra == false then
+				slot10 = slot3.fixJobAttackValue(slot0.owner.job, slot6.job)*slot10
+				slot11 = 1 < slot3.fixJobAttackValue(slot0.owner.job, slot6.job)
+			end
+		end
+
+		if slot7 then
+			slot0.isCrit = true
+		end
+
+		if slot9 then
+			slot0.isBlock = true
+		end
+
+		slot10 = slot1.getHardSkinRatio(slot6)*slot10
+
+		if slot0.externTargetUids[slot5] then
+			slot10 = slot10*slot0.externTargetUids[slot5]
+		end
+
+		slot0.checkSkillFunc(slot0, 3, slot6, slot10)
+
+		for slot22, slot23 in ipairs(slot18) do
+			if slot23.CheckPhase == 3 or slot23.CheckPhase == 0 then
+				slot24, slot25 = slot23.Checker(slot6, slot0.owner, slot0, 0, slot23.Args)
+
+				if slot24 == true and slot23.FinalDmgChange then
+					slot0.finalDmgRatio = slot0.finalDmgRatio + slot23.FinalDmgChange
+				end
+			end
+		end
+
+		if slot0.finalDmgRatio ~= 0 then
+			slot10 = slot10*(slot0.finalDmgRatio + 1)
+		end
+
+		slot0.dmgInfos[slot5] = {
+			hit = slot8,
+			crit = slot7,
+			block = slot9,
+			damage = math.floor(slot10*1000)/1000,
+			invincible = slot17,
+			kezhi = slot11
+		}
+	end
+
+	if slot4.IsDebug == true then
+		require("battle.managers.DebugManager").addRecord({
+			dmgType = "skill",
+			time = slot0.dt,
+			group = slot0.owner.group,
+			order = slot0.owner.order,
+			uid = slot0.owner.uid,
+			dmgInfo = slot0.dmgInfos
+		})
+	end
+
+	return 
+end
+
+return slot10

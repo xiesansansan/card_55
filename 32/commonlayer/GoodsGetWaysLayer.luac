@@ -1,0 +1,356 @@
+slot0 = class("GoodsGetWaysLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 634,
+				height = 500
+			},
+			titleText = TR("获取途径")
+		},
+		children = {
+			{
+				name = "cardNode",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 79.46,
+						y = 405.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "nameLabel",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 64,
+						r = 232,
+						b = 46
+					},
+					pos = {
+						x = 138.68,
+						y = 442.87
+					},
+					text = TR("合适的话")
+				},
+				children = {}
+			},
+			{
+				name = "introLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 64,
+						r = 66,
+						b = 84
+					},
+					pos = {
+						x = 138.1,
+						y = 425.42
+					},
+					size = {
+						width = 440,
+						height = 0
+					},
+					text = TR("介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍")
+				},
+				children = {}
+			},
+			{
+				name = "untitled14",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 316.62,
+						y = 189.37
+					},
+					size = {
+						width = 576,
+						height = 316
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mIntroListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 138.25,
+						y = 427.45
+					},
+					size = {
+						width = 450,
+						height = 70
+					}
+				},
+				children = {
+					{
+						name = "introLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled17-text",
+								name = "introStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 450,
+								height = 22
+							}
+						},
+						children = {
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "str",
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 64,
+										r = 66,
+										b = 84
+									},
+									pos = {
+										x = 0,
+										y = 21
+									},
+									size = {
+										width = 450,
+										height = 0
+									},
+									text = TR("介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 35.94,
+						y = 37.32
+					},
+					size = {
+						width = 560,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "mlayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled8-text",
+								name = "moduleName",
+								type = "string"
+							},
+							{
+								value = "untitled9-isDisable",
+								name = "isOpen",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 564,
+								height = 102
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 282,
+										y = 51
+									},
+									size = {
+										width = 564,
+										height = 102
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 64,
+										r = 66,
+										b = 84
+									},
+									pos = {
+										x = 54.28,
+										y = 51
+									},
+									text = TR("商店商店")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Button",
+								params = {
+									fontSize = 28,
+									clickAction = "onGotoAction",
+									isDisable = false,
+									scale = 0.9,
+									image = "c_27.png",
+									childName = "gotoBtn",
+									pos = {
+										x = 390.75,
+										y = 51
+									},
+									titleText = TR("前 往")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "BadgeText",
+								params = {
+									image = "c_76.png",
+									anchor = {
+										x = 1,
+										y = 1
+									},
+									pos = {
+										x = 563.55,
+										y = 97.11
+									},
+									text = TR("推荐")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.resourceId = slot1.resourceId
+	slot0.dropConfig = slot1.dropConfig
+
+	print(slot0.resourceId)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = Resource.getModelInfo(slot0.resourceId)
+
+	slot0.nameLabel:setString(slot1.name)
+	slot0.nameLabel:setColor(slot2)
+	slot0.introLabel:setString(slot1.intro)
+	slot0.cardNode:setCardData({
+		resourceId = slot0.resourceId
+	})
+
+	slot3 = slot0.createLayoutTemplateNode(slot0, "introLayout", {
+		introStr = slot1.intro
+	})
+	slot4 = slot3.str:getContentSize()
+
+	slot3.setContentSize(slot3, cc.size(slot4.width, slot4.height + 2))
+	slot3.str:setPositionY(slot4.height + 1)
+	slot0.mIntroListView:pushBackCustomItem(slot3)
+
+	for slot9, slot10 in ipairs(slot5) do
+		slot0.createLayoutTemplateNode(slot0, "mlayout", {
+			moduleName = slot10.name,
+			isOpen = not Utility.moduleIsOpen(slot10.moduleID, false)
+		}).gotoBtn.moduleId = slot10.moduleID
+
+		if slot10.moduleID == ModuleSub.eMarketFeats then
+			for slot15, slot16 in pairs(FeatsShopRelation.items) do
+				if tonumber(Utility.analysisStrResList(slot16.goodStr)[1].resourceId) == slot0.resourceId and slot16.buyNeedLv < PlayerAttrObj:getPlayerAttrByName("Lv") then
+					slot11.gotoBtn:getTitleLabel():setString(TR("%s级", slot16.buyNeedLv))
+					slot11.gotoBtn:getTitleLabel():setFontSize(22)
+				end
+			end
+		end
+
+		slot0.mListView:pushBackCustomItem(slot11)
+	end
+
+	if slot0.dropConfig then
+		for slot9, slot10 in ipairs(slot0.dropConfig) do
+			slot0.createLayoutTemplateNode(slot0, "mlayout", {
+				moduleName = slot10.name,
+				isOpen = not Utility.moduleIsOpen(slot10.moduleID, false)
+			}).gotoBtn.moduleId = slot10.moduleID
+
+			slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mlayout", {
+				moduleName = slot10.name,
+				isOpen = not Utility.moduleIsOpen(slot10.moduleID, false)
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onGotoAction = function (slot0, slot1)
+	LayerManager.showModuleLayer(slot1.moduleId)
+
+	return 
+end
+
+return slot0

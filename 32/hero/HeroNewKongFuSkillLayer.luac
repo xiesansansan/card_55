@@ -1,0 +1,432 @@
+slot0 = class("HeroNewKongFuSkillLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 590,
+				height = 575
+			},
+			titleText = TR("神功技")
+		},
+		children = {
+			{
+				name = "untitled30",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xksg_5.png",
+					pos = {
+						x = 295.99,
+						y = 375.6
+					},
+					size = {
+						width = 540,
+						height = 320
+					}
+				},
+				children = {
+					{
+						name = "kongfuEffect",
+						cType = "Effect",
+						params = {
+							scale = 0.55,
+							dataFile = "effect_ui_sgxf_chuanyangwujigong",
+							pos = {
+								x = 264.89,
+								y = 159.26
+							}
+						},
+						children = {}
+					},
+					{
+						name = "shangzhen",
+						cType = "Sprite",
+						params = {
+							image = "gcz_21.png",
+							pos = {
+								x = 171.58,
+								y = 224.28
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled39",
+						cType = "Button",
+						params = {
+							image = "tb_gn_221.png",
+							clickAction = "onKongFuYuLang",
+							pos = {
+								x = 472.57,
+								y = 55.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 267,
+								y = 295.13
+							},
+							text = TR("新神功名字")
+						},
+						children = {}
+					},
+					{
+						name = "miaoshuLabel",
+						cType = "Label",
+						params = {
+							fontSize = 19,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 270,
+								y = 37.84
+							},
+							text = TR("升重神功可提升神功技")
+						},
+						children = {}
+					},
+					{
+						name = "untitled43",
+						cType = "Label",
+						params = {
+							fontSize = 19,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 271.03,
+								y = 14.07
+							},
+							text = TR("神功技会替换主动技能")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "centerSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 296.72,
+						y = 108.59
+					},
+					size = {
+						width = 540,
+						height = 130
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = 145.83,
+								y = 146.36
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 285.47,
+								y = 147.93
+							},
+							text = TR("神功技能")
+						},
+						children = {}
+					},
+					{
+						name = "untitled21",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 425,
+								y = 146.36
+							}
+						},
+						children = {}
+					},
+					{
+						name = "SkillDescTemplate",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled57-image",
+								name = "skillImage",
+								type = "string"
+							},
+							{
+								value = "untitled50-text",
+								name = "skillDesc",
+								type = "string"
+							},
+							{
+								value = "untitled54-hide",
+								name = "jihuoLabel",
+								type = "string"
+							},
+							{
+								value = "untitled53-isGray",
+								name = "skillImageHide",
+								type = "string"
+							},
+							{
+								value = "untitled55-hide",
+								name = "effect",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 540,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled52",
+								cType = "Sprite",
+								params = {
+									image = "c_25.png",
+									pos = {
+										x = 61,
+										y = 68
+									}
+								},
+								children = {
+									{
+										name = "untitled57",
+										cType = "Sprite",
+										params = {
+											scale = 0.95,
+											image = "sk_100001.png",
+											pos = {
+												x = 39,
+												y = 39
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled56",
+										cType = "Sprite",
+										params = {
+											image = "xksg_15.png",
+											pos = {
+												x = 5,
+												y = 55
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled50",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									valign = 1,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 330.47,
+										y = 71.8
+									},
+									size = {
+										width = 405.97,
+										height = 93.14
+									},
+									text = TR("技能描述技能描述技能描述技能描述技能描述能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述技")
+								},
+								children = {}
+							},
+							{
+								name = "untitled54",
+								cType = "Label",
+								params = {
+									hide = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 62.3,
+										y = 68.32
+									},
+									text = TR("未激活")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot0.ctor = function (slot0, slot1)
+	dump(slot1, "=============params=========")
+
+	slot0.heroId = slot1.kongfuInfo.HeroModelId
+	slot0.step = slot1.kongfuInfo.Step
+	slot0.isKongFuId = slot1.kongfuInfo.ModelId
+	slot0.kongfuId = Utility.getKongfuIdByHeroId(slot0.heroId)
+	slot0.heroKongInfo = NewKongfuSkillRelation.items[slot0.heroId][slot0.kongfuId]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = NewKongfuModel.items[slot0.kongfuId]
+	slot2 = true
+
+	if slot0.isKongFuId == slot0.kongfuId then
+		slot2 = false
+	end
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "kongfuEffect" then
+			slot1.dataFile = slot0.effect
+		elseif slot0.name == "nameLabel" then
+			slot1.text = slot0.name
+		elseif slot0.name == "shangzhen" then
+			slot1.image = (slot1 and "gcz_29.png") or "gcz_21.png"
+		elseif slot0.name == "miaoshuLabel" then
+			slot1.text = (slot1 and TR("需要上阵%s神功才能激活神功技", slot0.name)) or "升重神功可提升神功技"
+		end
+
+		return 
+	end)
+
+	if slot2 then
+		slot0.kongfuEffect:setGLProgram(slot0.loadShader(slot0.Gray))
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot1 = slot0.heroKongInfo[slot0.step]
+	slot2 = false
+	slot3 = false
+
+	if slot0.isKongFuId == slot0.kongfuId then
+		slot2 = true
+
+		if slot0.heroKongInfo[#slot0.heroKongInfo].needStep == slot1.needStep then
+			slot3 = true
+		end
+	end
+
+	slot5 = HeroObj:getItem(slot0.heroId)
+
+	slot0.centerSprite:addChild(slot0.createLayoutTemplateNode(slot0, "SkillDescTemplate", {
+		skillImage = SkillModel.items[slot1.KFSkill].skillPic .. ".png",
+		skillDesc = Resource.getSkillIntroStr(SkillModel.items[slot1.KFSkill].modelId, slot6, slot5.Star, "#252525", "#258711"),
+		skillImageHide = not slot2,
+		jihuoLabel = slot2,
+		effect = not slot3
+	}))
+
+	return 
+end
+slot0.onKongFuYuLang = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.HeroKongFuUpPreviewLayer",
+		popRestore = true,
+		data = {
+			heroModelId = slot0.heroId,
+			kongfuId = slot0.isKongFuId,
+			step = slot0.step
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+
+return slot0

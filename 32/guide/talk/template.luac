@@ -1,0 +1,5681 @@
+return {
+	template = {
+		debug = {
+			{
+				checkpoint = {}
+			}
+		},
+		shipin = {
+			{
+				video = {
+					path = "@1"
+				}
+			}
+		},
+		setorder = {
+			{
+				order = {
+					tag = "@1",
+					order = "@2"
+				}
+			}
+		},
+		bg_eff = {
+			{
+				model = {
+					speed = "@4",
+					animation = "@3",
+					endRlease = false,
+					scaleY = "@8",
+					loop = true,
+					file = "@2",
+					tag = "@1",
+					scaleX = "@7",
+					order = 0,
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@5", "@6"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		bg_join = {
+			{
+				model = {
+					opacity = 0,
+					scale = "@2",
+					file = "jqdh_9.png",
+					tag = "bg",
+					order = 0,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(0, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "bg",
+					file = "@1",
+					tag = "bg_pic1",
+					order = 0,
+					type = TalkView.DEF.PIC,
+					anchor = cc.p(0.5, 0.5),
+					pos = cc.p(693, 320),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "bg",
+					file = "@1",
+					tag = "bg_pic2",
+					order = 0,
+					type = TalkView.DEF.PIC,
+					anchor = cc.p(0.5, 0.5),
+					pos = cc.p(2079, 320),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "bg",
+					file = "@1",
+					tag = "bg_pic3",
+					order = 0,
+					type = TalkView.DEF.PIC,
+					anchor = cc.p(0.5, 0.5),
+					pos = cc.p(-693, 320),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			}
+		},
+		bgltor0 = {
+			{
+				action = {
+					sync = false,
+					tag = "bg",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 1,
+									by = cc.p(TalkView.DEF.WIDTH*0.2, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.1, 0),
+										cc.p(TalkView.DEF.WIDTH*0.16, 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.5
+				}
+			}
+		},
+		bgltor1 = {
+			{
+				action = {
+					sync = false,
+					tag = "bg",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 1,
+									by = cc.p(TalkView.DEF.WIDTH*0.2, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.09, 0),
+										cc.p(TalkView.DEF.WIDTH*0.16, 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.5
+				}
+			}
+		},
+		bgltor2 = {
+			{
+				action = {
+					sync = false,
+					tag = "bg",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*0.14, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.08, 0),
+										cc.p(TalkView.DEF.WIDTH*0.12, 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.3
+				}
+			}
+		},
+		bgrtol1 = {
+			{
+				action = {
+					sync = false,
+					tag = "bg",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 1,
+									by = cc.p(TalkView.DEF.WIDTH*-0.2, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*-0.09, 0),
+										cc.p(TalkView.DEF.WIDTH*-0.16, 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.5
+				}
+			}
+		},
+		bgrtol2 = {
+			{
+				action = {
+					sync = false,
+					tag = "bg",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*-0.14, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*-0.08, 0),
+										cc.p(TalkView.DEF.WIDTH*-0.12, 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.3
+				}
+			}
+		},
+		bgmove = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = "@2",
+									by = cc.p("@3", 0),
+									control = {
+										cc.p("@4", 0),
+										cc.p("@5", 0)
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = "@6"
+				}
+			}
+		},
+		bg_pic = {
+			{
+				model = {
+					opacity = "@3",
+					scaleY = "@7",
+					file = "@2",
+					tag = "@1",
+					scaleX = "@6",
+					order = 0,
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@4", "@5"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		text_board = {
+			{
+				model = {
+					opacity = 205,
+					scaleY = 1,
+					file = "jqdh_11.png",
+					tag = "back_board",
+					scaleX = 1,
+					order = 80,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH/2, 100)
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					file = "jqdh_9.png",
+					tag = "talk_button",
+					order = 52,
+					scaleY = 1.25,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(810, 50),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "talk_button",
+					what = {
+						loop = {
+							sequence = {
+								{
+									move = {
+										time = 0.5,
+										by = cc.p(0, -10)
+									}
+								},
+								{
+									move = {
+										time = 0.5,
+										by = cc.p(0, 10)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		model_pic_b = {
+			{
+				model = {
+					opacity = "@4",
+					scaleY = "@6",
+					file = "@2",
+					tag = "@1",
+					scaleX = "@5",
+					order = "@3",
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, "@7"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					time = 0,
+					text = "@9",
+					parent = "name_parent",
+					tag = "@8",
+					size = 25,
+					order = 64,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		model_pic = {
+			{
+				model = {
+					opacity = "@4",
+					scaleY = "@6",
+					file = "@2",
+					tag = "@1",
+					scaleX = "@5",
+					order = "@3",
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, "@7"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					time = 0,
+					text = "@9",
+					parent = "name_parent",
+					tag = "@8",
+					size = 25,
+					order = 64,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		model_lh = {
+			{
+				model = {
+					opacity = "@4",
+					scaleY = "@6",
+					speed = 1.1,
+					file = "@2",
+					tag = "@1",
+					scaleX = "@5",
+					order = "@3",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, "@7"),
+					animation = animation,
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					time = 0,
+					text = "@9",
+					parent = "name_parent",
+					tag = "@8",
+					size = 25,
+					order = 64,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		loadall = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				load = {
+					tmpl = "@2"
+				}
+			},
+			{
+				load = {
+					tmpl = "@3"
+				}
+			},
+			{
+				load = {
+					tmpl = "@4"
+				}
+			},
+			{
+				load = {
+					tmpl = "@5"
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 0
+								}
+							},
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.4, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 0
+								}
+							},
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.2, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@3",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 0
+								}
+							},
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@4",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 0
+								}
+							},
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0.2, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@5",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 0
+								}
+							},
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0.4, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 50
+				}
+			}
+		},
+		move_in_f = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.5, TalkView.DEF.HEIGHT*0.08)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 35
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*0.45, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.36, 0),
+										cc.p(TalkView.DEF.WIDTH*0.48, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.4
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_m",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_l = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.6, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.3,
+									by = cc.p(TalkView.DEF.WIDTH*0.3, 0)
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_l",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_m = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.5, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 38
+				}
+			},
+			{
+				load = {
+					tmpl = "bgltor0"
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*0.45, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.36, 0),
+										cc.p(TalkView.DEF.WIDTH*0.48, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.4
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_m",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_mh = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*-0.5, TalkView.DEF.HEIGHT*0.08)
+								}
+							},
+							{
+								scale = {
+									time = 0,
+									by = 0.96
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 35
+				}
+			},
+			{
+				load = {
+					tmpl = "bgltor0"
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*0.45, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*0.36, 0),
+										cc.p(TalkView.DEF.WIDTH*0.48, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.4
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_m",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_mrh = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0.4, TalkView.DEF.HEIGHT*0.08)
+								}
+							},
+							{
+								scale = {
+									time = 0,
+									by = 0.96
+								}
+							},
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 180, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 35
+				}
+			},
+			{
+				load = {
+					tmpl = "bgrtol1"
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*-0.45, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*-0.36, 0),
+										cc.p(TalkView.DEF.WIDTH*-0.48, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_m",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_mr = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0.4, 0)
+								}
+							},
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 180, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 38
+				}
+			},
+			{
+				load = {
+					tmpl = "bgrtol1"
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.8,
+									by = cc.p(TalkView.DEF.WIDTH*-0.45, 0),
+									control = {
+										cc.p(TalkView.DEF.WIDTH*-0.36, 0),
+										cc.p(TalkView.DEF.WIDTH*-0.48, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_m",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		move_in_r = {
+			{
+				load = {
+					tmpl = "@1"
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(TalkView.DEF.WIDTH*0.6, 0)
+								}
+							},
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 180, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.3,
+									by = cc.p(TalkView.DEF.WIDTH*-0.3, 0)
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_model_r",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		turnback = {
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.4,
+									by = cc.p(20, 0),
+									control = {
+										cc.p(3, 0),
+										cc.p(6, 0)
+									}
+								}
+							},
+							{
+								fadeout = {
+									time = 0.32
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								rotate = {
+									time = 0,
+									by = cc.vec3(0, 180, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								bezier = {
+									time = 0.4,
+									by = cc.p(-20, 0),
+									control = {
+										cc.p(-30, 0),
+										cc.p(-22, 0)
+									}
+								}
+							},
+							{
+								fadein = {
+									time = 0.32
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.25
+				}
+			}
+		},
+		mtor = {
+			{
+				remove = {
+					model = {
+						"name_bg3"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 39
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 180, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.35,
+									by = cc.p(TalkView.DEF.WIDTH*0.35, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgltor2"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg2",
+					order = 52,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(788, 180),
+					rotation3D = cc.vec3(0, 180, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(758, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		ltor = {
+			{
+				remove = {
+					model = {
+						"name_bg1"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 39
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 180, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.6,
+									by = cc.p(TalkView.DEF.WIDTH*0.6, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgltor1"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg2",
+					order = 52,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(788, 180),
+					rotation3D = cc.vec3(0, 180, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(728, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		mtol = {
+			{
+				remove = {
+					model = {
+						"name_bg3"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 40
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 0, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.35,
+									by = cc.p(TalkView.DEF.WIDTH*-0.25, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgrtol2"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg1",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(180, 180),
+					rotation3D = cc.vec3(0, 0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(120, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		mtom = {
+			{
+				order = {
+					tag = "@1",
+					order = 38
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.1,
+									by = cc.p(0, TalkView.DEF.HEIGHT*-0.08)
+								}
+							},
+							{
+								scale = {
+									time = 0.1,
+									by = 1.0416666666666667
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		rtol = {
+			{
+				remove = {
+					model = {
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 40
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 0, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.6,
+									by = cc.p(TalkView.DEF.WIDTH*-0.6, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgrtol1"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg1",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(180, 180),
+					rotation3D = cc.vec3(0, 0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(120, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		ltom = {
+			{
+				remove = {
+					model = {
+						"name_bg1"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 38
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 0, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.25,
+									by = cc.p(TalkView.DEF.WIDTH*0.25, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgltor2"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg3",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(450, 180),
+					rotation3D = cc.vec3(0, 0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(400, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		rtom = {
+			{
+				remove = {
+					model = {
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 38
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								rotate = {
+									time = 0,
+									to = cc.vec3(0, 0, 0)
+								}
+							},
+							{
+								delay = {
+									time = 0.02
+								}
+							},
+							{
+								move = {
+									time = 0.35,
+									by = cc.p(TalkView.DEF.WIDTH*-0.35, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "bgrtol1"
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg3",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(450, 180),
+					rotation3D = cc.vec3(0, 0, 0),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(400, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.1
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		move_out0 = {
+			{
+				remove = {
+					model = {
+						"name_bg3"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.5,
+									by = cc.p(-1, 60)
+								}
+							},
+							{
+								scale = {
+									time = 0.45,
+									by = 0.94
+								}
+							},
+							{
+								fadeout = {
+									time = 0.5
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out1 = {
+			{
+				remove = {
+					model = {
+						"name_bg1"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(-400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out11 = {
+			{
+				remove = {
+					model = {
+						"name_bg1"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(-400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out12 = {
+			{
+				remove = {
+					model = {
+						"name_bg3"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.4,
+									by = cc.p(-500, 40)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.36
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out13 = {
+			{
+				remove = {
+					model = {
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.6,
+									by = cc.p(-900, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.8
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out2 = {
+			{
+				remove = {
+					model = {
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out21 = {
+			{
+				remove = {
+					model = {
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out22 = {
+			{
+				remove = {
+					model = {
+						"name_bg3"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.4,
+									by = cc.p(600, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.36
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out23 = {
+			{
+				remove = {
+					model = {
+						"name_bg1"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.6,
+									by = cc.p(900, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.7
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2"
+					}
+				}
+			}
+		},
+		move_out3 = {
+			{
+				remove = {
+					model = {
+						"name_bg1",
+						"name_bg2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@4",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(-400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@3",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(400, 0)
+								}
+							},
+							{
+								fadeout = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1",
+						"@2",
+						"@3",
+						"@4"
+					}
+				}
+			}
+		},
+		name_model_m = {
+			{
+				model = {
+					opacity = 0,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg3",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(450, 180),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "name_bg3",
+					what = {
+						sequence = {
+							{
+								delay = {
+									time = 0.2
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(400, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.3
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			}
+		},
+		name_model_r = {
+			{
+				model = {
+					opacity = 0,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg2",
+					order = 52,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(788, 180),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "name_bg2",
+					what = {
+						sequence = {
+							{
+								delay = {
+									time = 0.2
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(758, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.3
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			}
+		},
+		name_model_l = {
+			{
+				model = {
+					opacity = 0,
+					parent = "name_parent",
+					file = "jqdh_10.png",
+					tag = "name_bg1",
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(180, 180),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "name_bg1",
+					what = {
+						sequence = {
+							{
+								delay = {
+									time = 0.2
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								move = {
+									time = 0,
+									to = cc.p(120, 195)
+								}
+							},
+							{
+								delay = {
+									time = 0.3
+								}
+							},
+							{
+								fadein = {
+									time = 0.3
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			}
+		},
+		name_parent = {
+			{
+				model = {
+					opacity = 0,
+					scaleY = 1,
+					file = "jqdh_11.png",
+					tag = "name_parent",
+					scaleX = 1,
+					order = 81,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH/2, 100)
+				}
+			}
+		},
+		namel = {
+			{
+				color = {
+					tag = "name_bg1",
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		namer = {
+			{
+				color = {
+					tag = "name_bg2",
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		namem = {
+			{
+				color = {
+					tag = "name_bg3",
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 248, 213)
+				}
+			}
+		},
+		name_hide = {
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(80, 80, 80)
+				}
+			}
+		},
+		head_down = {
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(125, 125, 125)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						move = {
+							time = 0.1,
+							by = cc.p("0", "-15")
+						}
+					}
+				}
+			}
+		},
+		head_up = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(0, 15)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 255, 255)
+				}
+			}
+		},
+		head_keep = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						move = {
+							time = 0,
+							by = cc.p(0, 0)
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@2",
+					what = {
+						move = {
+							time = 0,
+							by = cc.p(0, 0)
+						}
+					}
+				}
+			}
+		},
+		talk_r = {
+			{
+				load = {
+					tmpl = "@1",
+					params = {
+						"@3"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "head_up",
+					params = {
+						"@2"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.15
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					sound = "@4",
+					text = "@5",
+					maxWidth = 720,
+					tag = "talk_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(484, 136),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk_tag"
+					}
+				}
+			}
+		},
+		talk_l = {
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					sound = "@3",
+					text = "@4",
+					maxWidth = 720,
+					tag = "talk_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(484, 136),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				load = {
+					tmpl = "head_keep",
+					params = {
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk_tag"
+					}
+				}
+			}
+		},
+		talk_e = {
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					sound = "@3",
+					text = "@4",
+					maxWidth = 720,
+					tag = "talk_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(484, 136),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk_tag"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "head_down",
+					params = {
+						"@1"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_hide",
+					params = {
+						"@2"
+					}
+				}
+			}
+		},
+		talk_r_e = {
+			{
+				load = {
+					tmpl = "@1",
+					params = {
+						"@3"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "head_up",
+					params = {
+						"@2"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.15
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					sound = "@4",
+					text = "@5",
+					maxWidth = 720,
+					tag = "talk_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(484, 136),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk_tag"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "head_down",
+					params = {
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_hide",
+					params = {
+						"@3"
+					}
+				}
+			}
+		},
+		talk_nil = {
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(80, 80, 80)
+				}
+			},
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						move = {
+							time = 0.2,
+							by = cc.p("0", "-15")
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "name_hide",
+					params = {
+						"@2"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.15
+				}
+			}
+		},
+		talk_n = {
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					time = 0,
+					text = "@2",
+					maxWidth = 720,
+					tag = "talkname_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(404, 140),
+					color = cc.c3b(255, 222, 173)
+				}
+			},
+			{
+				model = {
+					parent = "back_board",
+					sound = "@1",
+					text = "@3",
+					maxWidth = 720,
+					tag = "talk_tag",
+					size = 25,
+					order = 66,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(484, 106),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talkname_tag",
+						"talk_tag"
+					}
+				}
+			}
+		},
+		remove_tb = {
+			{
+				remove = {
+					model = {
+						"back_board",
+						"talk_button"
+					}
+				}
+			}
+		},
+		zm_parent = {
+			model = {
+				opacity = 0,
+				file = "jqdh_9.png",
+				tag = "zm_parent",
+				order = 100,
+				type = TalkView.DEF.PIC,
+				pos = cc.p(0, 0)
+			}
+		},
+		bg_zm = {
+			{
+				load = {
+					tmpl = "zm_parent"
+				}
+			},
+			{
+				model = {
+					file = "@1",
+					scale = "@2",
+					scaleY = 2,
+					tag = "zmbg",
+					scaleX = 2,
+					order = 90,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5)
+				}
+			},
+			{
+				delay = {
+					time = 0.15
+				}
+			}
+		},
+		zmlable = {
+			{
+				model = {
+					opacity = 0,
+					parent = "zm_parent",
+					time = 0,
+					text = "@4",
+					maxWidth = 800,
+					tag = "@1",
+					size = 25,
+					order = 95,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p("@2", "@3"),
+					color = cc.c3b(8, 23, 28)
+				}
+			}
+		},
+		zmbg_fade_remove = {
+			{
+				action = {
+					sync = true,
+					tag = "zmbg",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 1
+								}
+							},
+							{
+								move = {
+									time = 0.8,
+									by = cc.p(0, 0)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"zmbg",
+						"zm_parent"
+					}
+				}
+			}
+		},
+		zmpos = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p("@2", "@3")
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		zmall = {
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"11",
+						"640",
+						"520",
+						"@5"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"12",
+						"650",
+						"480",
+						"@6"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"13",
+						"660",
+						"440",
+						"@7"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"14",
+						"670",
+						"400",
+						"@8"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"15",
+						"680",
+						"360",
+						"@9"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"16",
+						"690",
+						"320",
+						"@10"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"21",
+						"790",
+						"300",
+						"@11"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"22",
+						"800",
+						"260",
+						"@12"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"23",
+						"810",
+						"220",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"24",
+						"820",
+						"180",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"25",
+						"830",
+						"140",
+						"@15"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmlable",
+					params = {
+						"26",
+						"840",
+						"100",
+						"@16"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"11",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"12",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"13",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"14",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"15",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"16",
+						"@1",
+						"@2"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"21",
+						"@3",
+						"@4"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"22",
+						"@3",
+						"@4"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"23",
+						"@3",
+						"@4"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"24",
+						"@3",
+						"@4"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"25",
+						"@3",
+						"@4"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmpos",
+					params = {
+						"26",
+						"@3",
+						"@4"
+					}
+				}
+			}
+		},
+		zmnil = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(0, 0)
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		zmin = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								fadein = {
+									time = 1.2
+								}
+							},
+							{
+								move = {
+									time = 1.2,
+									by = cc.p(0, 15)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.15
+				}
+			}
+		},
+		zmout = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						sequence = {
+							{
+								delay = {
+									time = "@2"
+								}
+							},
+							{
+								delay = {
+									time = "@3"
+								}
+							},
+							{
+								spawn = {
+									{
+										fadeout = {
+											time = 0.8
+										}
+									},
+									{
+										move = {
+											time = 0.8,
+											by = cc.p(100, 0)
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		zminall = {
+			{
+				load = {
+					tmpl = "@1",
+					params = {
+						"11"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@2",
+					params = {
+						"12"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@3",
+					params = {
+						"13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@4",
+					params = {
+						"14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@5",
+					params = {
+						"15"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@6",
+					params = {
+						"16"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.3
+				}
+			},
+			{
+				load = {
+					tmpl = "@7",
+					params = {
+						"21"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@8",
+					params = {
+						"22"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@9",
+					params = {
+						"23"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@10",
+					params = {
+						"24"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@11",
+					params = {
+						"25"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "@12",
+					params = {
+						"26"
+					}
+				}
+			}
+		},
+		zmoutall = {
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@1",
+						"1.50",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@2",
+						"1.75",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@3",
+						"2.00",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@4",
+						"2.25",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@5",
+						"2.50",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@6",
+						"2.75",
+						"@13"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@7",
+						"3.00",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@8",
+						"3.25",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@9",
+						"3.50",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@10",
+						"3.75",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@11",
+						"4.00",
+						"@14"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "zmout",
+					params = {
+						"@12",
+						"4.25",
+						"@14"
+					}
+				}
+			},
+			{
+				delay = {
+					time = "@13"
+				}
+			},
+			{
+				delay = {
+					time = "@14"
+				}
+			},
+			{
+				delay = {
+					time = 1.75
+				}
+			},
+			{
+				load = {
+					tmpl = "zmbg_fade_remove"
+				}
+			},
+			{
+				remove = {
+					model = {
+						"21",
+						"22",
+						"23",
+						"24",
+						"25",
+						"26",
+						"11",
+						"12",
+						"13",
+						"14",
+						"15",
+						"16"
+					}
+				}
+			}
+		},
+		dm = {
+			{
+				model = {
+					opacity = 205,
+					file = "c_97.png",
+					scale = 1.55,
+					tag = "jq_dm",
+					order = 105,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, 100)
+				}
+			},
+			{
+				model = {
+					text = "@1",
+					maxWidth = 600,
+					tag = "@1",
+					size = 28,
+					scale = 1,
+					order = 106,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(TalkView.DEF.WIDTH*0.5, 140),
+					color = cc.c3b(23, 18, 24)
+				}
+			},
+			{
+				delay = {
+					time = 0
+				}
+			},
+			{
+				load = {
+					tmpl = "fade_out",
+					params = {
+						"@1",
+						0.1,
+						false
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "fade_out",
+					params = {
+						"jq_dm",
+						0.1,
+						false
+					}
+				}
+			}
+		},
+		mhzm = {
+			{
+				model = {
+					opacity = 0,
+					file = "jqdh_9.png",
+					tag = "@1",
+					order = 105,
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@2", "@3")
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					scaleY = "@5",
+					parent = "@1",
+					file = "@4",
+					tag = "@6",
+					scaleX = 1,
+					order = 10,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(0, 0),
+					anchor = cc.p(0.5, 1)
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					time = 0,
+					maxWidth = 13,
+					text = "@8",
+					parent = "@1",
+					tag = "@7",
+					size = 25,
+					order = 20,
+					anchor = cc.p(0.5, 1),
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(0, -20),
+					color = cc.c3b(255, 255, 255)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@6",
+					what = {
+						fadein = {
+							time = 0.3
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@7",
+					what = {
+						fadein = {
+							time = 0.6
+						}
+					}
+				}
+			},
+			{
+				model = {
+					opacity = 0,
+					text = "ns",
+					sound = "jq00010.mp3",
+					tag = "zm_tag",
+					size = 28,
+					type = TalkView.DEF.LABEL
+				}
+			},
+			{
+				remove = {
+					model = {
+						"zm_tag"
+					}
+				}
+			}
+		},
+		mhzm_fadeout = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.5
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@2",
+					what = {
+						spawn = {
+							{
+								fadeout = {
+									time = 0.7
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		talk_delay = {
+			{
+				model = {
+					text = "delayliketalk",
+					sound = "@1",
+					opacity = 0,
+					tag = "delay_tag",
+					size = 28,
+					type = TalkView.DEF.LABEL
+				}
+			},
+			{
+				remove = {
+					model = {
+						"delay_tag"
+					}
+				}
+			}
+		},
+		talk_delay01 = {
+			{
+				model = {
+					text = "dl",
+					sound = "@1",
+					opacity = 0,
+					tag = "@1",
+					size = 28,
+					type = TalkView.DEF.LABEL
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			}
+		},
+		delaytalk05 = {
+			{
+				model = {
+					text = "de",
+					sound = "jq00005.mp3",
+					time = 0.1,
+					tag = "talk_de",
+					size = 28,
+					opacity = 0,
+					type = TalkView.DEF.LABEL
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk_de"
+					}
+				}
+			}
+		},
+		delaytalk10 = {
+			{
+				load = {
+					tmpl = "talk_delay01",
+					params = {
+						"jq00010.mp3"
+					}
+				}
+			}
+		},
+		delaytalk30 = {
+			{
+				load = {
+					tmpl = "talk_delay01",
+					params = {
+						"jq00030.mp3"
+					}
+				}
+			}
+		},
+		delaytalk50 = {
+			{
+				load = {
+					tmpl = "talk_delay01",
+					params = {
+						"jq00050.mp3"
+					}
+				}
+			}
+		},
+		talklong = {
+			{
+				model = {
+					opacity = 85,
+					file = "jqdh_long.png",
+					tag = "talklong",
+					scale = 1,
+					order = 115,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(880, 120)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "talklong",
+					what = {
+						loop = {
+							spawn = {
+								{
+									rotate = {
+										time = 3,
+										by = cc.vec3(0, 0, -60)
+									}
+								},
+								{
+									sequence = {
+										{
+											scale = {
+												time = 1.5,
+												by = 1.03
+											}
+										},
+										{
+											scale = {
+												time = 1.5,
+												by = 0.970873786407767
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		mod_parent = {
+			{
+				model = {
+					opacity = 0,
+					parent = "@5",
+					file = "jqdh_9.png",
+					tag = "@1",
+					scale = 1,
+					order = "@2",
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@3", "@4")
+				}
+			}
+		},
+		model_frame = {
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = true,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FRAME,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, "@10", 0)
+				}
+			}
+		},
+		model_figure = {
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = true,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, "@10", 0)
+				}
+			}
+		},
+		wp = {
+			{
+				model = {
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					type = TalkView.DEF.CLIPPING,
+					pos = cc.p("@3", "@4")
+				}
+			}
+		},
+		mod1 = {
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = true,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		mod2 = {
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = true,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			}
+		},
+		mod11 = {
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = false,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		mod22 = {
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					speed = "@9",
+					endRlease = false,
+					animation = "@8",
+					loop = false,
+					parent = "@6",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = "@7",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			}
+		},
+		mod3 = {
+			{
+				model = {
+					speed = "@9",
+					animation = "@6",
+					endRlease = true,
+					scaleY = "@8",
+					loop = false,
+					parent = "@10",
+					file = "@5",
+					tag = "@1",
+					scaleX = "@7",
+					order = "@4",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@2", "@3"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		talk_nh = {
+			{
+				delay = {
+					time = 0.1
+				}
+			},
+			{
+				model = {
+					sound = "@2",
+					text = "@1",
+					maxWidth = 550,
+					tag = "talk-tag",
+					size = 25,
+					order = 53,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(320, 185),
+					color = cc.c3b(66, 24, 10)
+				}
+			},
+			{
+				remove = {
+					model = {
+						"talk-tag"
+					}
+				}
+			}
+		},
+		mod4 = {
+			{
+				model = {
+					speed = "@9",
+					animation = "@6",
+					endRlease = true,
+					scaleY = "@8",
+					loop = false,
+					parent = "@10",
+					file = "@5",
+					tag = "@1",
+					scaleX = "@7",
+					order = "@4",
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@2", "@3"),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			}
+		},
+		talk_head2 = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(0, 0)
+								}
+							},
+							{
+								fadein = {
+									time = 0.15
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				order = {
+					tag = "@1",
+					order = 105
+				}
+			}
+		},
+		scale_xs = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(0, 0)
+								}
+							},
+							{
+								scale = {
+									time = 0.15,
+									to = 0.6
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(150, 150, 150)
+				}
+			}
+		},
+		scale_xs1 = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0,
+									by = cc.p(0, 0)
+								}
+							},
+							{
+								scale = {
+									time = 0,
+									to = 0.6
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(150, 150, 150)
+				}
+			}
+		},
+		scale_xl = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(0, 0)
+								}
+							},
+							{
+								scale = {
+									time = 0.15,
+									to = 0.7
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 255, 255)
+				}
+			}
+		},
+		scale_xll = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(-5, 0)
+								}
+							},
+							{
+								scale = {
+									time = 0.15,
+									to = 0.52
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "setorder",
+					params = {
+						"@1",
+						51
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(255, 255, 255)
+				}
+			}
+		},
+		scale_xss = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.15,
+									by = cc.p(5, 0)
+								}
+							},
+							{
+								scale = {
+									time = 0.15,
+									to = 0.5
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "setorder",
+					params = {
+						"@1",
+						50
+					}
+				}
+			},
+			{
+				color = {
+					tag = "@1",
+					color = cc.c3b(155, 155, 155)
+				}
+			}
+		},
+		move_in1_p = {
+			{
+				model = {
+					file = "@5",
+					tag = "@1",
+					scale = "@2",
+					order = 51,
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(200, 0)
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				model = {
+					text = "@6",
+					time = 0.01,
+					tag = "name-tag1",
+					size = 25,
+					order = 54,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(127, 258),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				model = {
+					file = "jq_dh_1.png",
+					tag = "name-bg1",
+					scale = 1,
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(105, 240),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			}
+		},
+		move_in2_p = {
+			{
+				model = {
+					file = "@5",
+					tag = "@1",
+					scale = "@2",
+					order = 51,
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@3", "@4"),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.2,
+									by = cc.p(-200, 0)
+								}
+							},
+							{
+								fadein = {
+									time = 0.2
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				model = {
+					text = "@6",
+					time = 0.01,
+					tag = "name-tag2",
+					size = 25,
+					order = 54,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(515, 258),
+					color = cc.c3b(255, 248, 213)
+				}
+			},
+			{
+				model = {
+					file = "jq_dh_1.png",
+					tag = "name-bg2",
+					scale = 1,
+					order = 53,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(535, 240),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				delay = {
+					time = 0.1
+				}
+			}
+		},
+		move1 = {
+			{
+				model = {
+					file = "@2",
+					tag = "@1",
+					scale = 0.7,
+					order = 50,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(-140, 320)
+				}
+			},
+			{
+				load = {
+					tmpl = "scale_xs1",
+					params = {
+						"@1"
+					}
+				}
+			},
+			{
+				action = {
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.25,
+									to = cc.p(100, 320)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag1",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(120, 290),
+					color = cc.c3b(255, 204, 124)
+				}
+			}
+		},
+		move2 = {
+			{
+				model = {
+					file = "@2",
+					tag = "@1",
+					scale = 0.7,
+					order = 50,
+					type = TalkView.DEF.PIC,
+					rotation3D = cc.vec3(0, 180, 0),
+					pos = cc.p(TalkView.DEF.WIDTH + 140, 320)
+				}
+			},
+			{
+				load = {
+					tmpl = "scale_xs1",
+					params = {
+						"@1"
+					}
+				}
+			},
+			{
+				action = {
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.3,
+									to = cc.p(TalkView.DEF.WIDTH - 100, 320)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag2",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(520, 245),
+					color = cc.c3b(255, 204, 124)
+				}
+			}
+		},
+		move3 = {
+			{
+				model = {
+					name = "@3",
+					file = "@2",
+					tag = "@1",
+					nameBg = "jq_27.png",
+					scale = 0.7,
+					order = 50,
+					type = TalkView.DEF.PIC,
+					pos = cc.p(-140, 320),
+					namePos = cc.p(0.5, 0.45)
+				}
+			},
+			{
+				model = {
+					skew = true,
+					name = "@6",
+					file = "@5",
+					tag = "@4",
+					nameBg = "jq_27.png",
+					scale = 0.7,
+					order = 50,
+					type = TalkView.DEF.PIC,
+					rotation3D = cc.vec3(0, 180, 0),
+					pos = cc.p(840, 320),
+					namePos = cc.p(0.5, 0.45)
+				}
+			},
+			{
+				load = {
+					tmpl = "scale_xs1",
+					params = {
+						"@1"
+					}
+				}
+			},
+			{
+				load = {
+					tmpl = "scale_xs1",
+					params = {
+						"@2"
+					}
+				}
+			},
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.3,
+									to = cc.p(100, 320)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				action = {
+					tag = "@4",
+					what = {
+						spawn = {
+							{
+								move = {
+									time = 0.3,
+									to = cc.p(TalkView.DEF.WIDTH - 100, 320)
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag1",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(120, 290),
+					color = cc.c3b(255, 204, 124)
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag2",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(520, 290),
+					color = cc.c3b(255, 204, 124)
+				}
+			},
+			{
+				delay = {
+					time = 0.5
+				}
+			}
+		},
+		move11 = {
+			{
+				model = {
+					opacity = 255,
+					skew = "@6",
+					speed = 0.8,
+					endRlease = false,
+					animation = "@4",
+					loop = true,
+					parent = "clip_1",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = 50,
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@7", "@8"),
+					color = cc.c3b(155, 155, 155),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag1",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(120, 245),
+					color = cc.c3b(255, 204, 124)
+				}
+			}
+		},
+		move22 = {
+			{
+				model = {
+					opacity = 255,
+					skew = "@6",
+					speed = 0.8,
+					endRlease = false,
+					animation = "@4",
+					loop = true,
+					parent = "clip_1",
+					file = "@2",
+					tag = "@1",
+					scale = "@5",
+					order = 50,
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p("@7", "@8"),
+					color = cc.c3b(155, 155, 155),
+					rotation3D = cc.vec3(0, 180, 0)
+				}
+			},
+			{
+				load = {
+					tmpl = "scale_xll",
+					params = {
+						"@1"
+					}
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag2",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(520, 245),
+					color = cc.c3b(255, 204, 124)
+				}
+			}
+		},
+		move111 = {
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			},
+			{
+				model = {
+					speed = 0.8,
+					endRlease = false,
+					animation = "@4",
+					loop = false,
+					parent = "clip_1",
+					file = "@2",
+					tag = "@1",
+					scale = 0.5,
+					order = 50,
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p(115, -50),
+					color = cc.c3b(155, 155, 155),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			},
+			{
+				model = {
+					text = "@3",
+					time = 0.01,
+					tag = "name-tag1",
+					size = 25,
+					order = 100,
+					type = TalkView.DEF.LABEL,
+					pos = cc.p(120, 245),
+					color = cc.c3b(255, 204, 124)
+				}
+			},
+			{
+				delay = {
+					time = 0.25
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			},
+			{
+				model = {
+					opacity = 255,
+					speed = 0.8,
+					endRlease = false,
+					animation = "daiji",
+					loop = true,
+					parent = "clip_1",
+					file = "@2",
+					tag = "@1",
+					scale = 0.5,
+					order = 50,
+					type = TalkView.DEF.FIGURE,
+					pos = cc.p(115, -50),
+					color = cc.c3b(155, 155, 155),
+					rotation3D = cc.vec3(0, 0, 0)
+				}
+			}
+		},
+		loop_map_action = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						loop = {
+							sequence = {
+								{
+									move = {
+										time = 6,
+										by = cc.p(0, -100)
+									}
+								},
+								{
+									move = {
+										time = 18,
+										by = cc.p(0, 100)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		jtt = {
+			{
+				action = {
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								scale = {
+									time = "@2",
+									to = "@3"
+								}
+							},
+							{
+								move = {
+									time = "@2",
+									to = cc.p("@4", "@5")
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		jtttb = {
+			{
+				action = {
+					sync = false,
+					tag = "@1",
+					what = {
+						spawn = {
+							{
+								scale = {
+									time = "@2",
+									to = "@3"
+								}
+							},
+							{
+								move = {
+									time = "@2",
+									to = cc.p("@4", "@5")
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		bz = {
+			{
+				action = {
+					sync = true,
+					tag = "@1",
+					what = {
+						bezier = {
+							time = "@2",
+							to = cc.p("@3", "@4"),
+							control = {
+								cc.p("@5", "@6"),
+								cc.p("@7", "@8")
+							}
+						}
+					}
+				}
+			}
+		},
+		fade_out = {
+			{
+				action = {
+					sync = "@3",
+					tag = "@1",
+					what = {
+						fadeout = {
+							time = "@2"
+						}
+					}
+				}
+			},
+			{
+				remove = {
+					model = {
+						"@1"
+					}
+				}
+			}
+		},
+		fade_in = {
+			{
+				action = {
+					sync = "@3",
+					tag = "@1",
+					what = {
+						fadein = {
+							time = "@2"
+						}
+					}
+				}
+			}
+		},
+		fade_in_pic = {
+			{
+				model = {
+					opacity = 0,
+					file = "@2",
+					tag = "@1",
+					scale = "@4",
+					order = "@7",
+					type = TalkView.DEF.PIC,
+					pos = cc.p("@5", "@6")
+				}
+			},
+			{
+				action = {
+					tag = "@1",
+					what = {
+						fadein = {
+							time = "@3"
+						}
+					}
+				}
+			}
+		},
+		zj = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"zj",
+						"effect_lihui_baojiannan",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"zjname",
+						"@main"
+					}
+				}
+			}
+		},
+		yxd = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"yxd",
+						"effect_lihui_nvzhu_yu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-220",
+						"yxdname",
+						"夜小蝶"
+					}
+				}
+			}
+		},
+		fhy = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"fhy",
+						"effect_lihui_huan",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-220",
+						"fhyname",
+						"绯红依"
+					}
+				}
+			}
+		},
+		gj = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"gj",
+						"effect_lihui_guojing_juqing",
+						"40",
+						"0",
+						"-0.74",
+						"0.74",
+						"-50",
+						"gjname",
+						"郭靖"
+					}
+				}
+			}
+		},
+		hr = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"hr",
+						"effect_lihui_huangrong",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"hrname",
+						"黄蓉"
+					}
+				}
+			}
+		},
+		hz = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"hz",
+						"effect_lihui_huazheng",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"hzname",
+						"华筝"
+					}
+				}
+			}
+		},
+		wyhl = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"wyhl",
+						"effect_lihui_wanyanhonglie",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"wyhlname",
+						"完颜洪烈"
+					}
+				}
+			}
+		},
+		cjsh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"cjsh",
+						"effect_lihui_chengjisihan",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-200",
+						"cjshname",
+						"成吉思汗"
+					}
+				}
+			}
+		},
+		jgsz = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"jgsz",
+						"effect_lihui_lingzhishangren",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"jgszname",
+						"灵智上人"
+					}
+				}
+			}
+		},
+		jgsb = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"jgsb",
+						"effect_lihui_zhebie",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"jgsbname",
+						"金国士兵"
+					}
+				}
+			}
+		},
+		tl = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"tl",
+						"effect_lihui_tuolei",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"tlname",
+						"托雷"
+					}
+				}
+			}
+		},
+		yk = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"yk",
+						"effect_lihui_yangkang",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"ykname",
+						"杨康"
+					}
+				}
+			}
+		},
+		plh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"plh",
+						"effect_lihui_penglianhu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"plhname",
+						"彭连虎"
+					}
+				}
+			}
+		},
+		smr = {
+			{
+				load = {
+					tmpl = "model_pic_b",
+					params = {
+						"smr",
+						"lh_mcf_hy.png",
+						"40",
+						"0",
+						"1.5",
+						"1.5",
+						"120",
+						"smrname",
+						"神秘人"
+					}
+				}
+			}
+		},
+		kze = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"kze",
+						"effect_lihui_kezhene",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"kzename",
+						"柯镇恶"
+					}
+				}
+			}
+		},
+		mcf = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"mcf",
+						"effect_lihui_meichaofeng",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-210",
+						"mcfname",
+						"梅超风"
+					}
+				}
+			}
+		},
+		hxy = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"hxy",
+						"effect_lihui_hanxiaoying",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-230",
+						"hxyname",
+						"韩小莹"
+					}
+				}
+			}
+		},
+		my = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"my",
+						"effect_lihui_mayu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"myname",
+						"马钰"
+					}
+				}
+			}
+		},
+		oyk = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"oyk",
+						"effect_lihui_ouyangke",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-280",
+						"oykname",
+						"欧阳克"
+					}
+				}
+			}
+		},
+		lzsr = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"lzsr",
+						"effect_lihui_lingzhishangren",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"lzsrname",
+						"灵智上人"
+					}
+				}
+			}
+		},
+		lzw = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"lzw",
+						"effect_lihui_hebiweng",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"lzwname",
+						"梁子翁"
+					}
+				}
+			}
+		},
+		wfxr = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"wfxr",
+						"effect_lihui_wuxiuwen",
+						"40",
+						"0",
+						"0.78",
+						"0.78",
+						"-280",
+						"wfxrname",
+						"王府下人"
+					}
+				}
+			}
+		},
+		bysn = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"bysn",
+						"effect_lihui_jixiaofu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-260",
+						"bysnname",
+						"白驼侍女"
+					}
+				}
+			}
+		},
+		mlc = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"mlc",
+						"effect_lihui_monianchi",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"mlcname",
+						"穆念慈"
+					}
+				}
+			}
+		},
+		qcj = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"qcj",
+						"effect_lihui_qiuchuji",
+						"40",
+						"0",
+						"0.7",
+						"0.7",
+						"-120",
+						"qcjname",
+						"丘处机"
+					}
+				}
+			}
+		},
+		ytx = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"ytx",
+						"effect_lihui_yangtiexin",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"ytxname",
+						"杨铁心"
+					}
+				}
+			}
+		},
+		hqg = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"hqg",
+						"effect_lihui_hongqigong",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-150",
+						"hqgname",
+						"洪七公"
+					}
+				}
+			}
+		},
+		nzy = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"nzy",
+						"effect_lihui_nvzhuying",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"nzyname",
+						" 影 "
+					}
+				}
+			}
+		},
+		oyf = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"oyf",
+						"effect_lihui_ouyangfeng",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"oyfname",
+						"欧阳锋"
+					}
+				}
+			}
+		},
+		hys = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"hys",
+						"effect_lihui_huangyaoshi",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-280",
+						"hysname",
+						"黄药师"
+					}
+				}
+			}
+		},
+		lcf = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"lcf",
+						"effect_lihui_luchengfeng",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"lcfname",
+						"陆乘风"
+					}
+				}
+			}
+		},
+		lgy = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"lgy",
+						"effect_lihui_yelvqi",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"lgyname",
+						"陆冠英"
+					}
+				}
+			}
+		},
+		thdd = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"thdd",
+						"effect_lihui_wusantong",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"thddname",
+						"太湖大盗"
+					}
+				}
+			}
+		},
+		btsn = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"btsn",
+						"effect_lihui_yinkexi",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-210",
+						"btsnname",
+						"白驼蛇奴"
+					}
+				}
+			}
+		},
+		mjjt01 = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"mjjt01",
+						"effect_lihui_wuxiuwen",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"mjjt01name",
+						"魔教教徒"
+					}
+				}
+			}
+		},
+		mjtm = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"mjtm",
+						"effect_lihui_wudunru",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-210",
+						"mjtmname",
+						"魔教头目"
+					}
+				}
+			}
+		},
+		lyj = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"lyj",
+						"effect_lihui_luyoujiao",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"lyjname",
+						"鲁有脚"
+					}
+				}
+			}
+		},
+		znqg = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"znqg",
+						"effect_lihui_chenxuanfeng",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-260",
+						"znqgname",
+						"乞丐"
+					}
+				}
+			}
+		},
+		qqr = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"qqr",
+						"effect_lihui_qiuqianzhang",
+						"40",
+						"0",
+						"0.75",
+						"0.78",
+						"-240",
+						"qqrname",
+						"裘千仞"
+					}
+				}
+			}
+		},
+		zqqr = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"qqr",
+						"effect_lihui_qiuqianren",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"qqrname",
+						"裘千仞"
+					}
+				}
+			}
+		},
+		zc = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"zc",
+						"effect_lihui_zhucong",
+						"40",
+						"0",
+						"-0.8",
+						"0.8",
+						"-240",
+						"zcname",
+						"朱聪"
+					}
+				}
+			}
+		}
+	}
+}

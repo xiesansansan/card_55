@@ -1,0 +1,521 @@
+slot0 = class("ActivityExchangeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					scale = 1.2,
+					image = "lh_12406.png",
+					pos = {
+						x = -235.65,
+						y = -135.02
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -236.19,
+						y = 232.86
+					},
+					size = {
+						width = 360.36,
+						height = 41.15
+					}
+				},
+				children = {
+					{
+						name = "untitled5",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 19
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 155.46,
+								y = 19
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled9",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 257.02,
+						y = -25.82
+					}
+				},
+				children = {
+					{
+						name = "untitled10",
+						cType = "ScrollView",
+						params = {
+							pos = {
+								x = 28.82,
+								y = 40.18
+							},
+							size = {
+								width = 519,
+								height = 470
+							}
+						},
+						children = {
+							{
+								name = "mTableView",
+								cType = "TableView",
+								params = {
+									numOfCellsFunc = "onCellNum",
+									isVertical = true,
+									cellUpdateFunc = "onCellRefresh",
+									cellSizeFunc = "onCellSize",
+									cellFillFunc = "onCellCreate",
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 519,
+										height = 470
+									}
+								},
+								children = {
+									{
+										name = "ExchangeTemNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = -150.55
+											},
+											size = {
+												width = 519,
+												height = 136
+											}
+										},
+										children = {
+											{
+												name = "untitled13",
+												cType = "Scale9Sprite",
+												params = {
+													image = "c_95.png",
+													pos = {
+														x = 259.5,
+														y = 68
+													},
+													size = {
+														width = 519,
+														height = 136
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled15",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "limitLabel",
+													isRichText = true,
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 10,
+														y = 120
+													},
+													text = TR("全服剩余")
+												},
+												children = {}
+											},
+											{
+												name = "untitled16",
+												cType = "ListView",
+												params = {
+													childName = "rewardListView",
+													direction = false,
+													swallowTouch = false,
+													pos = {
+														x = 11.29,
+														y = 8.7
+													},
+													size = {
+														width = 360,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "CardLayout",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 90,
+																height = 90
+															}
+														},
+														children = {
+															{
+																name = "untitled18",
+																cType = "CardNode",
+																params = {
+																	childName = "card",
+																	allowClick = true,
+																	initParams = {},
+																	pos = {
+																		x = 45,
+																		y = 45
+																	}
+																},
+																children = {}
+															}
+														}
+													},
+													{
+														name = "ArrowLayout",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 50,
+																height = 90
+															}
+														},
+														children = {
+															{
+																name = "untitled23",
+																cType = "Scale9Sprite",
+																params = {
+																	image = "c_23.png",
+																	pos = {
+																		x = 25,
+																		y = 45
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "untitled19",
+												cType = "Button",
+												params = {
+													childName = "exchangeBtn",
+													image = "c_32.png",
+													clickAction = "onExchange",
+													pos = {
+														x = 450,
+														y = 54
+													},
+													titleText = TR("兑 换")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 457.1,
+						y = -294.46
+					},
+					text = TR("每日0点重置")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedLimitedExchange
+	slot0.mActivityType = slot1.activityType
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString(TR("活动已结束"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.refreshNumLabel = function (slot0)
+	slot1 = "#8ba857"
+	slot2 = "#c04141"
+	slot3 = ""
+
+	if slot0.GlobalNum then
+		slot3 = slot3 .. TR("#ffffff全服剩余: %s%s  ", (slot0.GlobalNum <= 0 and slot2) or slot1, slot0.GlobalNum)
+	end
+
+	if slot0.PersonalNum then
+		slot3 = slot3 .. TR("#ffffff个人可购: %s%s  ", (slot0.PersonalNum <= 0 and slot2) or slot1, slot0.PersonalNum)
+	end
+
+	if 0 <= slot0.DailyNum then
+		slot3 = slot3 .. TR("#ffffff每日数量: %s%s  ", (slot0.DailyNum <= 0 and slot2) or slot1, slot0.DailyNum)
+	end
+
+	if 0 < slot0.NeedVIPLv then
+		slot3 = slot3 .. TR("#ffffff会员等级: %s  ", slot0.NeedVIPLv)
+	end
+
+	if 0 < slot0.NeedLv then
+		slot3 = slot3 .. TR("#ffffff玩家等级: %s  ", slot0.NeedLv)
+	end
+
+	return slot3
+end
+slot0.refreshLayer = function (slot0)
+	slot0.createTimeUpdate(slot0)
+	table.sort(slot0.ActivityList, function (slot0, slot1)
+		if slot0.Serial ~= slot1.Serial then
+			return slot0.Serial < slot1.Serial
+		end
+
+		return 
+	end)
+	slot0.mTableView:reloadData()
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 519, 136
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.ActivityList
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "ExchangeTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.refresh = function (slot0)
+		slot1.limitLabel:setString(slot0.refreshNumLabel(slot1))
+		ui.createLabelClipRoll({
+			label = slot1.limitLabel,
+			dimensions = cc.size(580, 28),
+			anchorPoint = cc.p(0, 0.5),
+			position = cc.p(10, 120)
+		})
+		slot1.rewardListView:removeAllChildren()
+
+		for slot5, slot6 in ipairs(slot0.ActivityList[slot0 + 1].NeedGameResourceList) do
+			slot0:createLayoutTemplateNode("CardLayout").card:setCardData({
+				modelId = slot6.ResourceId,
+				num = slot6.Num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot1.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode("CardLayout"))
+
+			if Resource.getCount(slot6.ResourceId) < slot6.Num then
+				slot7.card:setGray()
+			end
+
+			slot7.card.mShowAttrControl[Enums.CardShowAttr.eNum].label:setString(string.format("%s/%s", Utility.numberWithUnit(slot8), Utility.numberWithUnit(slot6.Num)))
+		end
+
+		slot1.rewardListView:pushBackCustomItem(slot2)
+
+		for slot6, slot7 in ipairs(slot1.ExchaneGameResourceList) do
+			slot0:createLayoutTemplateNode("CardLayout").card:setCardData({
+				modelId = slot7.ResourceId,
+				num = slot7.Num
+			}, {
+				Enums.CardShowAttr.eNum
+			})
+			slot1.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode("CardLayout"))
+		end
+
+		slot1.exchangeBtn.index = slot0
+
+		if slot1.PersonalNum <= 0 or slot1.GlobalNum <= 0 or slot1.DailyNum == 0 then
+			slot1.exchangeBtn:setEnabled(false)
+		else
+			slot1.exchangeBtn:setEnabled(true)
+		end
+
+		return 
+	end
+
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onExchange = function (slot0, slot1)
+	if 0 < slot0.ActivityList[slot1.index].NeedLv and PlayerAttrObj:getPlayerAttrByName("Lv") < slot2.NeedLv then
+		ui.showFlashView(TR("需要玩家等级达到%s", slot2.NeedLv))
+
+		return 
+	elseif 0 < slot2.NeedVIPLv and PlayerAttrObj:getPlayerAttrByName("Vip") < slot2.NeedVIPLv then
+		ui.showFlashView(TR("需要会员等级达到%s", slot2.NeedVIPLv))
+
+		return 
+	end
+
+	for slot6, slot7 in ipairs(slot2.NeedGameResourceList) do
+		if not Resource.isEnough(slot7.ResourceId, slot7.Num, true, true) then
+			return 
+		end
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "xsactivity.ActivityExchangePopLayer",
+		data = {
+			exchangeData = slot2,
+			callback = function (slot0)
+				slot0:requestExchange(slot1.Serial, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedLimitExchange",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0.ActivityList = slot0.ActivityList
+			slot0.mEndTime = slot0.EndTime
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExchange = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Exchange",
+		moduleName = "TimedLimitExchange",
+		methodData = {
+			slot0.mActivityId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.ActivityList = slot0.ActivityList
+			slot0.mEndTime = slot0.EndTime
+
+			slot0:refreshLayer()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

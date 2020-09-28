@@ -1,0 +1,173 @@
+slot0 = class("EveningBossHintLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onCloseLayer",
+			hideCloseButton = true,
+			image = "tzsj_19.png",
+			pos = {
+				x = 568,
+				y = 338
+			}
+		},
+		children = {
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					pos = {
+						x = 515.28,
+						y = 347.7
+					},
+					text = TR("活动时间")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 962.95,
+						y = 454.39
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "jhjs_7.png",
+					pos = {
+						x = 361.82,
+						y = 153.19
+					}
+				},
+				children = {
+					{
+						name = "untitled9",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 12.31,
+								y = 32.6
+							},
+							size = {
+								width = 20,
+								height = 60
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 386.91,
+						y = 106.5
+					},
+					size = {
+						width = 300,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "RewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-initParams",
+								name = "cardData",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "tzsj_18.png",
+					clickAction = "onGoto",
+					pos = {
+						x = 519.29,
+						y = 61.63
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mTimeLabel:setString(TR("活动时间：%s-%s", EveningbossConfig.items[1].startTime, EveningbossConfig.items[1].endTime))
+
+	for slot5, slot6 in pairs(slot1) do
+		slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "RewardLayout", {
+			cardData = {
+				cardInfo = slot6
+			}
+		}))
+	end
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGoto = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eEveningBoss)
+
+	return 
+end
+
+return slot0

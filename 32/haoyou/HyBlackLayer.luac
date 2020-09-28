@@ -1,0 +1,274 @@
+slot0 = class("HyBlackLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "myBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 257.09,
+						y = 335.25
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 141.06,
+								y = 16.9
+							},
+							text = TR("黑名单")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tips",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.85,
+						y = 171.96
+					},
+					text = TR("暂无黑名单数据")
+				},
+				children = {}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 22.95,
+						y = 33.64
+					},
+					size = {
+						width = 470,
+						height = 280
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -88.95
+							},
+							size = {
+								width = 470,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_106.png",
+									pos = {
+										x = 235,
+										y = 45
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									text = "",
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 113.17,
+										y = 66.08
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "deleteBtn",
+									pos = {
+										x = 386,
+										y = 45
+									},
+									titleText = TR("删除")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "PlayerHeroNode",
+								params = {
+									scale = 0.9,
+									modelId = 19010000,
+									childName = "heroNode",
+									allowClick = true,
+									pos = {
+										x = 66,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getSeverInfo(slot0)
+
+	return 
+end
+slot0.refreeUi = function (slot0)
+	if table.maxn(slot0.mEnemyList) <= 0 then
+		slot0.tips:setVisible(true)
+	else
+		slot0.tips:setVisible(false)
+	end
+
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 470, 90
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mEnemyList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.name:setString(slot0.mEnemyList[slot1 + 1].Name)
+		slot0.heroNode:setPlayerHeader(slot0.mEnemyList[slot1 + 1].HeadImageId, nil, {
+			fashionLv = slot0.mEnemyList[slot1 + 1].FashionLevel
+		})
+		slot0.deleteBtn:setClickAction(function ()
+			ui.showMessageBox({
+				text = TR("是否确认将此人移除黑名单?"),
+				okCallback = function ()
+					EnemyObj:deleteEnemy(slot0.PlayerId, function (...)
+						slot0:getSeverInfo()
+
+						return 
+					end)
+
+					return 
+				end,
+				cancelCallback = function ()
+					return 
+				end
+			})
+
+			return 
+		end)
+		slot0.heroNode:setClickAction(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.OtherPlayerInfoLayer",
+				data = {
+					playerId = slot0.PlayerId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.getSeverInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEnemyList",
+		moduleName = "Enemy",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mEnemyList = slot0 or {}
+
+			slot0:refreeUi()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

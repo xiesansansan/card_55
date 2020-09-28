@@ -1,0 +1,256 @@
+slot0 = class("ActivityVIPActivityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled13",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			image = "fuli_78.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled12",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 796.66,
+						y = 470.89
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 276.91,
+						y = 119.85
+					},
+					size = {
+						width = 504.91,
+						height = 337.04
+					}
+				},
+				children = {
+					{
+						name = "tempLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "tipLabel-text",
+								name = "tipStr",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 480,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "tipLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 5,
+										y = 186.15
+									},
+									text = TR("一、")
+								},
+								children = {}
+							},
+							{
+								name = "goodsListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 240,
+										y = 123.83
+									},
+									size = {
+										width = 460,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "goodLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 80,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "untitled5",
+												cType = "CardNode",
+												params = {
+													scale = 0.75,
+													childName = "card",
+													allowClick = true,
+													pos = {
+														x = 40,
+														y = 55
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot1 = {
+	{
+		16050013,
+		16050040,
+		16060020,
+		16060019,
+		1112
+	},
+	{
+		16050021,
+		16058004,
+		1112
+	}
+}
+slot2 = {
+	{
+		tip = TR("一、单日充值奖励#dfc72a（具体奖励内容请联系专属客服确认）"),
+		intro = {
+			TR("1、在一个自然日内充值达到指定金额（2000/5000/10000），可联系专属客服参与活动；"),
+			TR("2、每15天可兑换一次；"),
+			TR("3、需在符合领取条件后的5个工作日内与专属客服联系，逾期视为放弃领取资格；"),
+			TR("4、三个档位奖励只能选择其一，无法叠加兑换。如：已兑换2000元档位奖励，则15天内不可再兑换5000/10000档位奖励。")
+		}
+	},
+	{
+		tip = TR("二、累充奖励#dfc72a（具体奖励内容请联系专属客服确认）"),
+		intro = {
+			TR("1、用户在30天内充值达到指定金额（10000/30000）,可联系专属客服参与活动；"),
+			TR("2、每30天可兑换一次；"),
+			TR("3、用户需在符合条件后5个工作日内与专属客服联系，否则视为放弃参与。")
+		}
+	}
+}
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createRewardView(slot0)
+
+	return 
+end
+slot0.createRewardView = function (slot0)
+	for slot4, slot5 in ipairs(slot0) do
+		slot6 = 140
+		slot7 = slot0.createLayoutTemplateNode(slot0, "tempLayout", {
+			tipStr = slot5.tip
+		})
+
+		for slot11, slot12 in ipairs(slot1[slot4]) do
+			slot0.createLayoutTemplateNode(slot0, "goodLayout").card:setCardData({
+				resourceId = slot12
+			}, {
+				Enums.CardShowAttr.eName
+			})
+			slot7.goodsListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "goodLayout"))
+		end
+
+		slot8 = #slot1[slot4]*80
+
+		if 5 < #slot1[slot4] then
+			slot8 = 460
+		end
+
+		slot7.goodsListView:setContentSize(slot8, 90)
+
+		slot9 = {}
+
+		for slot13, slot14 in ipairs(slot5.intro) do
+			slot15 = UIWrap.newControl("Label", {
+				fontSize = 18,
+				text = slot14,
+				anchor = cc.p(0, 1),
+				size = cc.size(450, 0),
+				color = cc.c3b(255, 255, 255)
+			})
+
+			slot7.addChild(slot7, slot15)
+
+			slot6 = slot6 + slot15.getContentSize(slot15).height
+
+			table.insert(slot9, slot15)
+		end
+
+		slot7.setContentSize(slot7, 480, slot6)
+		slot7.tipLabel:setPositionY(slot6 - 15)
+		slot7.goodsListView:setPositionY(slot6 - 35)
+
+		slot10 = 0
+
+		for slot14, slot15 in ipairs(slot9) do
+			slot15.setPosition(slot15, 27, slot6 - 130 - slot10)
+
+			slot10 = slot10 + slot15.getContentSize(slot15).height
+		end
+
+		slot0.rewardListView:pushBackCustomItem(slot7)
+	end
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

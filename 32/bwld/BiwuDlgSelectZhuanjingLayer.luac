@@ -1,0 +1,356 @@
+slot0 = class("BiwuDlgSelectZhuanjingLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 416,
+				height = 524
+			},
+			titleText = TR("选择专精")
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 208,
+						y = 281
+					},
+					size = {
+						width = 350,
+						height = 386
+					}
+				},
+				children = {
+					{
+						name = "templateRoadNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled8-image",
+								name = "roadPic",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 11,
+								y = 13
+							},
+							size = {
+								width = 114,
+								height = 366
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "bwld_36.png",
+									pos = {
+										x = 57,
+										y = 183
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_21.png",
+									childName = "roadSprite",
+									pos = {
+										x = 57,
+										y = 315
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Sprite",
+								params = {
+									image = "bwld_37.png",
+									pos = {
+										x = 57,
+										y = 256
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "ListView",
+								params = {
+									childName = "skillListView",
+									direction = true,
+									pos = {
+										x = 7,
+										y = 15
+									},
+									size = {
+										width = 100,
+										height = 220
+									}
+								},
+								children = {
+									{
+										name = "templateSkillCell",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled12-image",
+												name = "skillPic",
+												type = "string"
+											},
+											{
+												value = "untitled14-text",
+												name = "skillName",
+												type = "string"
+											},
+											{
+												value = "untitled13-skillId",
+												name = "skillId",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 105
+											}
+										},
+										children = {
+											{
+												name = "untitled13",
+												cType = "Button",
+												custom = {
+													{
+														value = 1,
+														name = "skillId",
+														type = "integer"
+													}
+												},
+												params = {
+													pressedAction = false,
+													clickAction = "onLookSkillAction",
+													image = "c_25.png",
+													pos = {
+														x = 50,
+														y = 63.5
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled12",
+												cType = "Sprite",
+												params = {
+													scale = 0.8,
+													image = "wxtz_1.png",
+													pos = {
+														x = 50,
+														y = 63.5
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled14",
+												cType = "Label",
+												params = {
+													fontSize = 22,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 50,
+														y = 12
+													},
+													text = TR("五个的名字")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "btnSelect1",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "roadId",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onSelectBtnAction",
+					pos = {
+						x = 108,
+						y = 60
+					},
+					titleText = TR("启 用")
+				},
+				children = {}
+			},
+			{
+				name = "btnSelect2",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "roadId",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onSelectBtnAction",
+					pos = {
+						x = 308,
+						y = 60
+					},
+					titleText = TR("启 用")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.jobId = slot1.jobId
+	slot0.classId = slot1.classId
+	slot0.callback = slot1.callback
+	slot0.selectRoadId = slot1.roadId or 0
+	slot0.roadDecConfig = HeroRoadDecRelation.items[slot0.jobId]
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.showRoadInfo(slot0, 1, 87.5)
+	slot0.showRoadInfo(slot0, 2, 262.5)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot1 = {
+	{
+		img = "c_27.png",
+		text = TR("启用中")
+	},
+	{
+		img = "c_32.png",
+		text = TR("启用")
+	}
+}
+slot0.refreshUI = function (slot0)
+	if slot0.roadDecConfig[slot0.selectRoadId] == nil then
+		slot0.btnSelect1:loadTextures(slot0[2].img, slot0[2].img)
+		slot0.btnSelect2:loadTextures(slot0[2].img, slot0[2].img)
+		slot0.btnSelect1:setTitleText(slot0[2].text)
+		slot0.btnSelect2:setTitleText(slot0[2].text)
+	else
+		slot2 = (slot0.selectRoadId == 1 and 1) or 2
+
+		if slot0.selectRoadId == 1 then
+			slot0.btnSelect1:loadTextures(slot0[1].img, slot0[1].img)
+			slot0.btnSelect2:loadTextures(slot0[2].img, slot0[2].img)
+			slot0.btnSelect1:setTitleText(slot0[1].text)
+			slot0.btnSelect2:setTitleText(slot0[2].text)
+		else
+			slot0.btnSelect1:loadTextures(slot0[2].img, slot0[2].img)
+			slot0.btnSelect2:loadTextures(slot0[1].img, slot0[1].img)
+			slot0.btnSelect1:setTitleText(slot0[2].text)
+			slot0.btnSelect2:setTitleText(slot0[1].text)
+		end
+	end
+
+	return 
+end
+slot0.showRoadInfo = function (slot0, slot1, slot2)
+	slot4 = slot0.createLayoutTemplateNode(slot0, "templateRoadNode", {
+		roadPic = slot0.roadDecConfig[slot1].newProfessionPic .. ".png"
+	})
+
+	slot4.setAnchorPoint(slot4, cc.p(0.5, 0))
+	slot4.setPosition(slot4, slot2, 5)
+	slot0.bgSprite:addChild(slot4)
+
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(HeroRoadModel.items[slot0.classId][slot1]) do
+		if 0 < slot10.skillId then
+			table.insert(slot5, {
+				skillId = slot10.skillId,
+				floorId = slot10.floorID,
+				orderId = slot10.orderID
+			})
+		end
+	end
+
+	for slot9, slot10 in ipairs(slot5) do
+		skillId = tonumber(slot10.skillId)
+
+		slot4.skillListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "templateSkillCell", {
+			skillId = skillId,
+			skillName = SkillModel.items[skillId].skillName,
+			skillPic = SkillModel.items[skillId].skillPic .. ".png"
+		}))
+	end
+
+	return 
+end
+slot0.onSelectBtnAction = function (slot0, slot1)
+	if slot0.callback ~= nil then
+		slot0.callback(slot1.roadId)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onLookSkillAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.DlgRoadSkillLayer",
+		data = {
+			skillModelId = slot1.skillId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+
+return slot0

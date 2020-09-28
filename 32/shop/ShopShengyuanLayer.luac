@@ -1,0 +1,340 @@
+slot0 = class("ShopShengyuanLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled36",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 104.69,
+						y = 17.58
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {
+					{
+						name = "mTemplateGrid",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled40-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled41-initParams",
+								name = "cardParams",
+								type = "string"
+							},
+							{
+								value = "untitled42-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled43-modelId",
+								name = "costResId",
+								type = "string"
+							},
+							{
+								value = "untitled44-text",
+								name = "derisNum",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 200,
+								y = 200
+							}
+						},
+						children = {
+							{
+								name = "untitled45",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0.31,
+										y = 106.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0,
+										y = -6.91
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 0,
+										y = 26.48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "nameLabel",
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0.44,
+										y = 93.99
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "button",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 1,
+										y = -87.05
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled43",
+								cType = "ResLabel",
+								params = {
+									fontSize = 20,
+									modelId = 1111,
+									num = 0,
+									childName = "priceLabel",
+									pos = {
+										x = -34.88,
+										y = -54.18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled44",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "progressLabel",
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -0.91,
+										y = -28.43
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.dealData(slot0)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot0.mDataList = {}
+
+	for slot4, slot5 in pairs(GoddomainShopConfig.items) do
+		table.insert(slot0.mDataList, slot5)
+	end
+
+	table.sort(slot0.mDataList, function (slot0, slot1)
+		return slot0.ID < slot1.ID
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.mGridView:setItemNum(#slot0.mDataList)
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if slot0.mDataList[slot2] == nil then
+		return 
+	end
+
+	slot6, slot7 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(slot3.goods)[1].resourceId))
+	slot3.needResourceId = Utility.analysisStrResList(slot3.needCoin)[1].resourceId
+	slot3.needNum = Utility.analysisStrResList(slot3.needCoin)[1].num
+	slot8 = ""
+
+	if Resource.getSubType(Utility.analysisStrResList(slot3.goods)[1].resourceId) == ResourceTypeSub.eKongFuDebris then
+		if 0 < Resource.getCount(Resource.getModelInfo(slot4.resourceId) or {}.outputModelID) then
+			slot8 = TR("已拥有该神功")
+		else
+			slot8 = TR("合成: %s%s/%s", (slot9.outputNeedNum <= Resource.getCount(slot4.resourceId) and "#258711") or "#EA2C00", slot10, slot9.outputNeedNum)
+		end
+	end
+
+	slot9 = slot0.createLayoutTemplateNode(slot0, "mTemplateGrid", {
+		goodId = slot3.ID,
+		cardParams = {
+			cardInfo = {
+				modelId = slot4.resourceId,
+				num = slot4.num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = slot7 .. Resource.getName(slot4.resourceId),
+		costResId = slot5.resourceId,
+		derisNum = slot8
+	})
+
+	slot9.setPosition(slot9, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot9)
+
+	slot9.refreshCell = function (slot0)
+		slot0.priceLabel:setString(slot0.num, (slot0.num <= Resource.getCount(slot0.resourceId) and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+
+		return 
+	end
+
+	slot9.refreshCell(slot9)
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.mDataList) do
+		if slot7.ID == slot1.goodId then
+			slot2 = clone(slot7)
+
+			break
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if Resource.isEnough(slot2.needResourceId, slot2.needNum) == false then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.commBuyGoodSeclectLayer",
+		data = {
+			info = {
+				modelId = Utility.analysisStrResList(slot2.goods)[1].resourceId,
+				goodsNum = Utility.analysisStrResList(slot2.goods)[1].num,
+				sellTypeID = slot2.needResourceId,
+				sellNum = slot2.needNum,
+				maxNum = math.min(math.floor(Resource.getCount(slot2.needResourceId)/slot2.needNum), slot1.buyCount or 9999)
+			},
+			callBack = function (slot0)
+				slot0:requestBuy(slot1.goodId, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GodDomainBuyShopGoods",
+		moduleName = "GodDomain",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mGridView:setItemNum(#slot0.mDataList)
+			ui.showFlashView(TR("购买成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

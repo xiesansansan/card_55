@@ -1,0 +1,318 @@
+slot0 = class("EveningBossWinRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 820,
+				height = 520
+			},
+			titleText = TR("四绝奖赏")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tzsj_7.png",
+					pos = {
+						x = 404.98,
+						y = 241.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					text = "",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 410,
+						y = 468
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onCreateGrid",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 5,
+					celHeight = 130,
+					pos = {
+						x = 409.43,
+						y = 244.02
+					},
+					size = {
+						width = 772,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "BoxTemNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 275.92,
+								y = 245.89
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Button",
+								params = {
+									childName = "boxBtn",
+									image = "tzsj_9.png",
+									swallowTouch = false,
+									clickAction = "onDrawBtn",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_tiaozhansijue_b",
+									hide = true,
+									childName = "effect",
+									animation = "a",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "tzsj_10.png",
+									childName = "nameSprite",
+									pos = {
+										x = 0,
+										y = -47
+									}
+								},
+								children = {
+									{
+										name = "playerName",
+										cType = "Label",
+										params = {
+											text = "Label",
+											pos = {
+												x = 81.5,
+												y = 15.5
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled10",
+								cType = "CardNode",
+								params = {
+									childName = "cardNode",
+									allowClick = true,
+									pos = {
+										x = 0,
+										y = 15
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCallback = slot1.callback
+	slot0.alreadyDraw = false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:refreshData()
+		slot0.refreshData.mGridView:setItemNum(EveningbossConfig.items[1].boxNums)
+		slot0.refreshData.mGridView.setItemNum:createTimeUpdate()
+
+		return 
+	end, 2)
+
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshData = function (slot0)
+	slot0.mRewardList = {}
+
+	for slot4, slot5 in pairs(slot0.mBoxInfo) do
+		slot0.mRewardList[slot5.BoxId] = slot5
+
+		if slot5.PlayerId == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			slot0.alreadyDraw = true
+		end
+	end
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mResetTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(TR("重置倒计时：%s", MqTime.completeFormat(slot0)))
+		else
+			slot0.mTimeLabel:setString(TR("重置倒计时：%s", "00:00:00"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onCreateGrid = function (slot0, slot1, slot2, slot3)
+	slot0.createLayoutTemplateNode(slot0, "BoxTemNode").boxBtn:loadTextures((((not slot0.mRewardList[slot2] and true) or false) and "tzsj_8.png") or "tzsj_9.png", )
+	slot0.createLayoutTemplateNode(slot0, "BoxTemNode").boxBtn:setTouchEnabled((not slot0.mRewardList[slot2] and true) or false)
+
+	if not slot5 then
+		slot7.cardNode:setCardData({
+			modelId = Utility.analysisStrResList(EveningbossRewardBoxRelation.items[slot4.RewardId].reward)[1].resourceId,
+			num = Utility.analysisStrResList(EveningbossRewardBoxRelation.items[slot4.RewardId].reward)[1].num
+		}, {
+			Enums.CardShowAttr.eNum,
+			Enums.CardShowAttr.eBorder
+		})
+		slot7.playerName:setString(slot4.PlayerInfo.Name)
+	end
+
+	slot7.nameSprite:setVisible(not slot5)
+	slot7.cardNode:setVisible(not slot5)
+	slot7.effect:setVisible(not slot5)
+
+	slot7.boxBtn.boxId = slot2
+
+	slot7.setPosition(slot7, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot7)
+
+	return 
+end
+slot0.onDrawBtn = function (slot0, slot1)
+	if slot0.alreadyDraw then
+		ui.showFlashView(TR("已经抽取过宝箱"))
+
+		return 
+	end
+
+	slot0.requestDraw(slot0, slot1)
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "EveningbossInfo",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "GetInfo")
+
+			slot0.mResetTime = slot0.BossInfo.FightTime
+			slot0.mBoxInfo = slot0.BoxInfo
+			slot0.mEveningBossData = slot0
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDraw = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawBoxReward",
+		moduleName = "EveningbossInfo",
+		methodData = {
+			slot1.boxId
+		},
+		successCallback = function (slot0)
+			if slot0.mCallback then
+				slot0.mCallback(slot0)
+			end
+
+			slot0.mBoxInfo = slot0.BoxInfo
+
+			slot0:refreshData()
+			slot1:addChild(UIWrap.newControl("Effect", {
+				loop = false,
+				animation = "b",
+				dataFile = "effect_ui_tiaozhansijue_b",
+				pos = cc.p(0, 0),
+				complete = function ()
+					ui.showFlashReward(ui.showFlashReward)
+					slot1.mGridView:setItemNum(EveningbossConfig.items[1].boxNums)
+
+					return 
+				end
+			}))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

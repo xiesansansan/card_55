@@ -1,0 +1,490 @@
+slot1 = {}
+slot2 = {
+	start = sp.EventType.ANIMATION_START,
+	interrupt = sp.EventType.ANIMATION_INTERRUPT,
+	end = sp.EventType.ANIMATION_END,
+	complete = sp.EventType.ANIMATION_COMPLETE,
+	dispose = sp.EventType.ANIMATION_DISPOSE,
+	event = sp.EventType.ANIMATION_EVENT
+}
+slot3 = {
+	effect_ui_zhuangbeihecheng = "zhuangbeihecheng.mp3",
+	effect_ui_zhuangbeishengjijinglian = "shengqishengji.mp3",
+	effect_ui_gongxihuode = "gongxihuode.mp3",
+	effect_ui_dengjitisheng = "dengjitisheng.mp3",
+	effect_ui_zhaomu = "zhaomu.mp3",
+	effect_ui_jihuoshenqi = "jihuoshenqi.mp3",
+	effect_ui_shegnxingchenggong = "shengxingchenggong.mp3",
+	effect_ui_zhanlitisheng = "zhanlitisheng.mp3",
+	effect_ui_fuwenhecheng = "fuwenhecheng.mp3",
+	effect_ui_tiaozhanchenggong = "fightvictory.mp3",
+	effect_ui_xueyuanfenjie = "xueyuanfenjie.mp3",
+	effect_ui_jinjiechenggong = "jinjiechegngong.mp3",
+	effect_ui_leijishouyi = "leijishouyi.mp3",
+	effect_ui_tiaozhanshibai = "fightfail.mp3",
+	effect_ui_xueyuanshengji = "shengji.mp3",
+	effect_ui_gonghuijineng = "shetuanjineng.mp3"
+}
+slot4 = {
+	effect_ui_dengjitisheng = "CHUFA",
+	effect_ui_jihuoshenqi = "CHUFA",
+	effect_ui_xueyuanfenjie = "fenjie"
+}
+slot5 = sp.SkeletonExtend
+slot6 = sp.SkeletonDataCache:getInstance()
+slot7 = cc.FileUtils:getInstance()
+slot8 = {
+	preLoad = function (slot0, slot1, slot2)
+		slot2 = slot2 or 1
+
+		if slot0 == "" or slot1 == "" then
+			print("spine动画创建失败, dataFile, atlasFile为空!")
+
+			return false
+		end
+
+		slot4 = slot0:isFileExist(slot1)
+
+		if slot0:isFileExist(slot0) == false or slot4 == false then
+			print(string.format("spine动画创建失败, dataFile:%s 或者 atlasFile:%s 不存在!", slot0, slot1))
+
+			return false
+		end
+
+		slot6 = false
+
+		if ((cc.FileUtils:getInstance():getFileExtension(slot0) ~= ".skel" or slot1:loadBinaryData(slot0, slot1, slot2)) and slot1:loadJsonData(slot0, slot1, slot2)) == true then
+			slot2[slot0] = true
+		end
+
+		return slot6
+	end,
+	preLoadAsync = function (slot0, slot1, slot2, slot3)
+		slot0:preloadAsync(slot0, slot1, slot2, function (slot0)
+			if slot0 == true then
+				slot0[] = true
+			end
+
+			if slot2 then
+				slot2(slot0)
+			end
+
+			return 
+		end)
+
+		return 
+	end,
+	create = function (slot0, slot1, slot2)
+		if slot0[slot0] == nil and slot1.preLoad(slot0, slot1, slot2) == false then
+			return nil
+		end
+
+		slot3 = slot1.createWithKey(slot0)
+
+		slot3.scheduleUpdateLua(slot3)
+
+		return slot3
+	end,
+	createWithKey = function (slot0)
+		if slot0[slot0] == nil then
+			print("使用该函数创建spine动画前, 先调用preLoad函数进行预加载。")
+
+			return nil
+		end
+
+		slot2 = string.getFileName(slot0)
+		slot1:createWithKey(slot0)._luaHandlers = {}
+
+		if slot1.createWithKey(slot0) then
+			slot1.setName(slot1, slot0)
+
+			slot1.playAnimation = function (slot0, slot1, slot2)
+				if slot2 == nil or 1 < slot2 then
+					slot0.setAnimation(slot0, 0, slot1, true)
+				else
+					slot0.setAnimation(slot0, 0, slot1, false)
+				end
+
+				if MqAudio then
+					slot4 = slot2[slot1]
+
+					if slot0[slot1] and ((slot4 and slot4 == slot1) or not slot4) then
+						MqAudio.playEffect(slot3)
+					end
+				end
+
+				return 
+			end
+			slot1.appendAnimation = function (slot0, slot1, slot2)
+				if slot2 == nil or 1 < slot2 then
+					slot0.addAnimation(slot0, 0, slot1, true)
+				else
+					slot0.addAnimation(slot0, 0, slot1, false)
+				end
+
+				return 
+			end
+			slot1.registerLuaHandler = function (slot0, slot1, slot2)
+				if slot0[slot1] == nil then
+					return false
+				end
+
+				slot1._luaHandlers[slot1] = {}
+
+				slot1:addLuaHandler(slot1, slot2)
+				slot1:enableEventType(slot1)
+
+				return true
+			end
+			slot1.addLuaHandler = function (slot0, slot1, slot2)
+				if slot0[slot1] == nil then
+					return false
+				end
+
+				table.insert(slot0._luaHandlers[slot1], slot2)
+
+				return true
+			end
+			slot1.clearLuaHandler = function ()
+				for slot3, slot4 in pairs(pairs) do
+					slot1._luaHandlers[slot3] = {}
+				end
+
+				return 
+			end
+			slot1.addChildFollowBone = function (slot0, slot1, slot2)
+				slot3 = slot0.bindBoneNode(slot0, slot1)
+				slot3.child = slot2
+
+				slot3.addChild(slot3, slot2)
+
+				return 
+			end
+			slot1.getChildFollowBone = function (slot0, slot1)
+				return slot0.bindBoneNode(slot0, slot1).child
+			end
+			slot1._isComplete = slot1.isComplete
+			slot1.isComplete = function (slot0)
+				return slot0._isComplete(slot0)
+			end
+			slot1.getAabbBoundingRegion = function (slot0)
+				return slot0.getBoundingBox(slot0)
+			end
+
+			function slot3(slot0, slot1)
+				for slot5, slot6 in pairs(slot0._luaHandlers[slot0]) do
+					slot6(slot1)
+				end
+
+				return 
+			end
+
+			slot1.enableEventType = function (slot0, slot1)
+				if slot0[slot1] == nil then
+					print(string.format("错误的事件类型: %s", slot1))
+
+					return false
+				end
+
+				slot1:registerSpineEventHandler(function (slot0)
+					slot0(slot0, slot0)
+
+					return 
+				end, slot2)
+
+				return true
+			end
+			slot1.autoRemove = function (slot0)
+				slot0.registerLuaHandler(slot0, "complete", function ()
+					slot0:removeFromParent()
+
+					return 
+				end)
+
+				return 
+			end
+			slot1.disableEventType = function (slot0, slot1)
+				if slot0[slot1] == nil then
+					print(string.format("错误的事件类型: %s", slot1))
+
+					return false
+				end
+
+				slot1:unregisterSpineEventHandler(slot2)
+
+				return true
+			end
+
+			slot1.setName(slot1, slot0)
+			slot1.clearLuaHandler(slot1)
+		end
+
+		return slot1
+	end,
+	unLoad = function (slot0)
+		if slot0[slot0] == nil then
+			return true
+		end
+
+		return slot1:delItem(slot0)
+	end,
+	clearCaches = function ()
+		slot0 = {}
+
+		slot1:clearCaches()
+
+		return 
+	end,
+	dumpCache = function ()
+		dump(dump)
+
+		return 
+	end,
+	createAnimation = function (slot0, slot1, slot2)
+		slot3 = slot0 .. ".skel"
+		slot4 = slot0 .. ".atlas"
+		slot5 = slot1 or 1
+
+		if slot0[slot3] == nil and slot1.preLoad(slot3, slot4, slot5) == false then
+			return nil
+		end
+
+		if slot1.createWithKey(slot3) == nil then
+			return nil
+		end
+
+		if not slot2 then
+			slot6.scheduleUpdateLua(slot6)
+		end
+
+		return slot6
+	end
+}
+
+return {
+	preLoad = function (slot0, slot1, slot2)
+		slot2 = slot2 or 1
+
+		if slot0 == "" or slot1 == "" then
+			print("spine动画创建失败, dataFile, atlasFile为空!")
+
+			return false
+		end
+
+		slot4 = slot0.isFileExist(slot1)
+
+		if slot0.isFileExist(slot0) == false or slot4 == false then
+			print(string.format("spine动画创建失败, dataFile:%s 或者 atlasFile:%s 不存在!", slot0, slot1))
+
+			return false
+		end
+
+		slot6 = false
+
+		if ((cc.FileUtils.getInstance().getFileExtension(slot0) ~= ".skel" or slot1.loadBinaryData(slot0, slot1, slot2)) and slot1.loadJsonData(slot0, slot1, slot2)) == true then
+			slot2[slot0] = true
+		end
+
+		return slot6
+	end,
+	preLoadAsync = function (slot0, slot1, slot2, slot3)
+		slot0.preloadAsync(slot0, slot1, slot2, function (slot0)
+			if slot0 == true then
+				slot0[] = true
+			end
+
+			if slot2 then
+				slot2(slot0)
+			end
+
+			return 
+		end)
+
+		return 
+	end,
+	create = function (slot0, slot1, slot2)
+		if slot0[slot0] == nil and slot1.preLoad(slot0, slot1, slot2) == false then
+			return nil
+		end
+
+		slot3 = slot1.createWithKey(slot0)
+
+		slot3.scheduleUpdateLua(slot3)
+
+		return slot3
+	end,
+	createWithKey = function (slot0)
+		if slot0[slot0] == nil then
+			print("使用该函数创建spine动画前, 先调用preLoad函数进行预加载。")
+
+			return nil
+		end
+
+		slot2 = string.getFileName(slot0)
+		slot1.createWithKey(slot0)._luaHandlers = {}
+
+		if slot1.createWithKey(slot0) then
+			slot1.setName(slot1, slot0)
+
+			slot1.playAnimation = function (slot0, slot1, slot2)
+				if slot2 == nil or 1 < slot2 then
+					slot0.setAnimation(slot0, 0, slot1, true)
+				else
+					slot0.setAnimation(slot0, 0, slot1, false)
+				end
+
+				if MqAudio then
+					slot4 = slot2[slot1]
+
+					if slot0[slot1] and ((slot4 and slot4 == slot1) or not slot4) then
+						MqAudio.playEffect(slot3)
+					end
+				end
+
+				return 
+			end
+			slot1.appendAnimation = function (slot0, slot1, slot2)
+				if slot2 == nil or 1 < slot2 then
+					slot0.addAnimation(slot0, 0, slot1, true)
+				else
+					slot0.addAnimation(slot0, 0, slot1, false)
+				end
+
+				return 
+			end
+			slot1.registerLuaHandler = function (slot0, slot1, slot2)
+				if slot0[slot1] == nil then
+					return false
+				end
+
+				slot1._luaHandlers[slot1] = {}
+
+				slot1.addLuaHandler(slot1, slot2)
+				slot1.enableEventType(slot1)
+
+				return true
+			end
+			slot1.addLuaHandler = function (slot0, slot1, slot2)
+				if slot0[slot1] == nil then
+					return false
+				end
+
+				table.insert(slot0._luaHandlers[slot1], slot2)
+
+				return true
+			end
+			slot1.clearLuaHandler = function ()
+				for slot3, slot4 in pairs(pairs) do
+					slot1._luaHandlers[slot3] = {}
+				end
+
+				return 
+			end
+			slot1.addChildFollowBone = function (slot0, slot1, slot2)
+				slot3 = slot0.bindBoneNode(slot0, slot1)
+				slot3.child = slot2
+
+				slot3.addChild(slot3, slot2)
+
+				return 
+			end
+			slot1.getChildFollowBone = function (slot0, slot1)
+				return slot0.bindBoneNode(slot0, slot1).child
+			end
+			slot1._isComplete = slot1.isComplete
+			slot1.isComplete = function (slot0)
+				return slot0._isComplete(slot0)
+			end
+			slot1.getAabbBoundingRegion = function (slot0)
+				return slot0.getBoundingBox(slot0)
+			end
+
+			function slot3(slot0, slot1)
+				for slot5, slot6 in pairs(slot0._luaHandlers[slot0]) do
+					slot6(slot1)
+				end
+
+				return 
+			end
+
+			slot1.enableEventType = function (slot0, slot1)
+				if slot0[slot1] == nil then
+					print(string.format("错误的事件类型: %s", slot1))
+
+					return false
+				end
+
+				slot1.registerSpineEventHandler(function (slot0)
+					slot0(slot0, slot0)
+
+					return 
+				end, slot2)
+
+				return true
+			end
+			slot1.autoRemove = function (slot0)
+				slot0.registerLuaHandler(slot0, "complete", function ()
+					slot0.removeFromParent()
+
+					return 
+				end)
+
+				return 
+			end
+			slot1.disableEventType = function (slot0, slot1)
+				if slot0[slot1] == nil then
+					print(string.format("错误的事件类型: %s", slot1))
+
+					return false
+				end
+
+				slot1.unregisterSpineEventHandler(slot2)
+
+				return true
+			end
+
+			slot1.setName(slot1, slot0)
+			slot1.clearLuaHandler(slot1)
+		end
+
+		return slot1
+	end,
+	unLoad = function (slot0)
+		if slot0[slot0] == nil then
+			return true
+		end
+
+		return slot1.delItem(slot0)
+	end,
+	clearCaches = function ()
+		slot0 = {}
+
+		slot1.clearCaches()
+
+		return 
+	end,
+	dumpCache = function ()
+		dump(dump)
+
+		return 
+	end,
+	createAnimation = function (slot0, slot1, slot2)
+		slot3 = slot0 .. ".skel"
+		slot4 = slot0 .. ".atlas"
+		slot5 = slot1 or 1
+
+		if slot0[slot3] == nil and slot1.preLoad(slot3, slot4, slot5) == false then
+			return nil
+		end
+
+		if slot1.createWithKey(slot3) == nil then
+			return nil
+		end
+
+		if not slot2 then
+			slot6.scheduleUpdateLua(slot6)
+		end
+
+		return slot6
+	end
+}

@@ -1,0 +1,172 @@
+slot0 = class("GameBootLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "parentNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "banhao",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			hide = true,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 14,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = 53
+					},
+					text = TR("著作权人：成都趣乐柒科技有限公司   出版单位：成都盈众九州网络科技有限公司")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Label",
+				params = {
+					fontSize = 14,
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = 31
+					},
+					text = TR("审批文号：国新出审【2020】1534号 网络游戏出版物号：ISBN 978-7-498-07874-2")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = cc.Director:getInstance():getScheduler()
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mThirdLogoList = slot1 or {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.banhao:setVisible(true)
+
+	for slot4 = #slot0.mThirdLogoList, 1, -1 do
+		if not cc.FileUtils:getInstance():isFileExist(slot0.mThirdLogoList[slot4]) then
+			table.remove(slot0.mThirdLogoList, slot4)
+		end
+	end
+
+	if 0 < #slot0.mThirdLogoList then
+		slot0.logoSprite = cc.Sprite:create(slot0.mThirdLogoList[1])
+
+		slot0.logoSprite:setPosition(cc.p(0, 0))
+		slot0.parentNode:addChild(slot0.logoSprite)
+		table.remove(slot0.mThirdLogoList, 1)
+		slot0.createTimer(slot0)
+	end
+
+	return 
+end
+slot0.onExit = function (slot0)
+	slot0.closeTimer(slot0)
+
+	return 
+end
+slot0.createTimer = function (slot0)
+	if slot0.mScheduleHandle then
+		return 
+	end
+
+	slot0.mScheduleHandle = slot0:scheduleScriptFunc(function ()
+		if #slot0.mThirdLogoList == 0 then
+			slot0:closeTimer()
+
+			if MQUnCompress.isNewVersion then
+				LayerManager.addLayer({
+					name = "login.CheckUpdateLayer"
+				})
+			elseif device.platform == "mac" or not cc.UserDefault:getInstance():getBoolForKey("needUnzipFlag", true) then
+				LayerManager.addLayer({
+					name = "login.CheckUpdateLayer"
+				})
+			else
+				LayerManager.addLayer({
+					name = "login.UnCompressLayer",
+					data = {
+						callback = function ()
+							cc.UserDefault:getInstance():setBoolForKey("needUnzipFlag", false)
+							LayerManager.addLayer({
+								name = "login.CheckUpdateLayer"
+							})
+
+							return 
+						end
+					}
+				})
+			end
+
+			return 
+		end
+
+		if slot0.logoSprite then
+			slot0.parentNode:removeChild(slot0.logoSprite)
+		end
+
+		slot0 = cc.Sprite:create(slot0.mThirdLogoList[1])
+
+		table.remove(slot0.mThirdLogoList, 1)
+		slot0.setPosition(slot0, cc.p(0, 0))
+		slot0.parentNode:addChild(slot0)
+
+		return 
+	end, 2, false)
+
+	return 
+end
+slot0.closeTimer = function (slot0)
+	if slot0.mScheduleHandle then
+		slot0:unscheduleScriptEntry(slot0.mScheduleHandle)
+
+		slot0.mScheduleHandle = nil
+	end
+
+	return 
+end
+
+return slot0

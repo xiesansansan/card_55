@@ -1,0 +1,369 @@
+slot0 = class("ChallengeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "tz_8.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "pareantNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "listview",
+				cType = "ListView",
+				params = {
+					bounce = true,
+					direction = true,
+					pos = {
+						x = -680,
+						y = -320
+					},
+					size = {
+						width = 680,
+						height = 640
+					}
+				},
+				children = {
+					{
+						name = "empty",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled35-clickAction",
+								name = "clickAction",
+								type = "string"
+							},
+							{
+								value = "untitled35-image",
+								name = "btnImage",
+								type = "string"
+							},
+							{
+								value = "untitled36-moduleId",
+								name = "red",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -2,
+								y = 465
+							},
+							size = {
+								width = 680,
+								height = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled35-clickAction",
+								name = "clickAction",
+								type = "string"
+							},
+							{
+								value = "untitled35-image",
+								name = "btnImage",
+								type = "string"
+							},
+							{
+								value = "untitled36-moduleId",
+								name = "red",
+								type = "string"
+							},
+							{
+								value = "untitled37-clickAction",
+								name = "guideClick",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -2,
+								y = 465
+							},
+							size = {
+								width = 680,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled35",
+								cType = "Button",
+								params = {
+									clickAction = "onCloseClick",
+									image = "tz_13.png",
+									childName = "button",
+									anchor = {
+										x = 0.7,
+										y = 0.5
+									},
+									pos = {
+										x = 400,
+										y = 49
+									}
+								},
+								children = {
+									{
+										name = "untitled36",
+										cType = "RedDot",
+										params = {
+											moduleId = 1,
+											offset = {
+												x = 0.95,
+												y = 0.9
+											},
+											pos = {
+												z = 0,
+												x = 278.69,
+												y = 47.82
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled37",
+								cType = "Button",
+								params = {
+									childName = "guildBtn",
+									image = "c_pure.png",
+									clickAction = "onCloseClick",
+									pos = {
+										x = 340,
+										y = 52
+									},
+									size = {
+										width = 50,
+										height = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled28",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled34",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_lihui_duanshui",
+					pos = {
+						x = 279.2,
+						y = -451.95
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_1.png",
+					clickAction = "onCloseClick",
+					pos = {
+						x = 124.37,
+						y = -29.35
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "tz_7.png",
+							pos = {
+								x = 0,
+								y = 5
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled26",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled27",
+				cType = "TopResourceNode",
+				params = {
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					moduleIdList = {
+						1111,
+						1112,
+						1114
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.fromNavigate = slot1.fromNavigate
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		fromNavigate = slot0.fromNavigate
+	}
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.listview:pushBackCustomItem(slot1)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "itemLayout", {
+			clickAction = function ()
+				LayerManager.showModuleLayer(slot0.moduleId)
+
+				return 
+			end,
+			guideClick = function ()
+				LayerManager.showModuleLayer(slot0.moduleId)
+
+				return 
+			end,
+			red = slot7.moduleId,
+			btnImage = slot7.image
+		})
+
+		slot8.button:setRotation3D(cc.vec3(0, -40, 0))
+		slot0.listview:pushBackCustomItem(slot8)
+		slot8.button:setPositionX(slot8.button:getPositionX() - 500)
+		slot8.button:setPositionZ(slot8.button:getPositionZ() - 500)
+		slot8.button:runAction(cc.Sequence:create({
+			cc.DelayTime:create(slot6*0.05),
+			cc.EaseBackOut:create(cc.MoveBy:create(0.5, cc.vec3(500, 0, 500))),
+			cc.CallFunc:create(function ()
+				if slot0 == #slot1 then
+					slot2:executeGuide()
+				end
+
+				return 
+			end)
+		}))
+		slot8.button:setBright(Utility.moduleIsOpen(slot7.moduleId, false))
+	end
+
+	return 
+end
+slot0.onCloseClick = function (slot0)
+	if slot0.fromNavigate then
+		display.getRunningScene():jumpToNavigate(Enums.Navigate.eHome)
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		slot0.listview:setTouchEnabled(false)
+	end
+
+	Guide.manager:exeGuideList({
+		[200301] = {
+			clickNode = slot0.listview:getItem(1).guildBtn
+		},
+		[200801] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.listview:getItem(3).guildBtn
+		},
+		[200901] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.listview:getItem(2).guildBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

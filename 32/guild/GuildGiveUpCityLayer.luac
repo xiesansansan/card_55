@@ -1,0 +1,544 @@
+slot0 = class("GuildGiveUpCityLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			closeAction = "onCloseLayerCallback",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 423,
+						y = 509.3
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					pos = {
+						x = 425.97,
+						y = 508.9
+					},
+					text = TR("放弃领地")
+				},
+				children = {}
+			},
+			{
+				name = "giveUpTimeLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 55.71,
+						y = 52.71
+					},
+					text = TR("今日剩余时间")
+				},
+				children = {}
+			},
+			{
+				name = "grayNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 416.4,
+						y = 257.49
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_24.png",
+							pos = {
+								x = 6.28,
+								y = 206.01
+							},
+							size = {
+								width = 773,
+								height = 35
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 60,
+										y = 17
+									},
+									text = TR("编号")
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 260,
+										y = 17
+									},
+									text = TR("领地名")
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 494,
+										y = 17
+									},
+									text = TR("占领时间")
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 684,
+										y = 17
+									},
+									text = TR("操作")
+								},
+								children = {}
+							},
+							{
+								name = "cityInfoList",
+								cType = "ListView",
+								params = {
+									direction = true,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 387.18,
+										y = -366.68
+									},
+									size = {
+										width = 780,
+										height = 360
+									}
+								},
+								children = {
+									{
+										name = "cityInfoItem",
+										cType = "Layout",
+										custom = {
+											{
+												value = "button-orderId",
+												name = "orderId",
+												type = "string"
+											},
+											{
+												value = "untitled12-text",
+												name = "cityName",
+												type = "string"
+											},
+											{
+												value = "untitled13-text",
+												name = "cityHoldTime",
+												type = "string"
+											},
+											{
+												value = "orderLabel-text",
+												name = "cityNum",
+												type = "string"
+											},
+											{
+												value = "button-cityId",
+												name = "cityId",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 780,
+												height = 70
+											}
+										},
+										children = {
+											{
+												name = "untitled10",
+												cType = "Scale9Sprite",
+												params = {
+													image = "bp_82.png",
+													pos = {
+														x = 390,
+														y = 35
+													},
+													size = {
+														width = 773,
+														height = 68
+													}
+												},
+												children = {
+													{
+														name = "orderLabel",
+														cType = "Label",
+														params = {
+															text = "1",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 50,
+																y = 35
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled12",
+														cType = "Label",
+														params = {
+															anchor = {
+																x = 0.5,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 257,
+																y = 35
+															},
+															text = TR("领地名称")
+														},
+														children = {}
+													},
+													{
+														name = "untitled13",
+														cType = "Label",
+														params = {
+															anchor = {
+																x = 0.5,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 495,
+																y = 35
+															},
+															text = TR("55小时")
+														},
+														children = {}
+													},
+													{
+														name = "button",
+														cType = "Button",
+														custom = {
+															{
+																value = 1,
+																name = "orderId",
+																type = "integer"
+															},
+															{
+																value = 1,
+																name = "cityId",
+																type = "integer"
+															}
+														},
+														params = {
+															image = "c_27.png",
+															clickAction = "onGiveUpCityCallback",
+															pos = {
+																x = 687.05,
+																y = 35
+															},
+															titleText = TR("放弃领地")
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.layerType = slot1.layerType or 1
+	slot0.ownCityIdInfo = slot1.ownCityIdInfo
+	slot0.spInfo = slot1.spInfo
+	slot0.allCityInfo = slot1.allCityInfo
+	slot0.giveUpCityNum = slot1.giveUpCityNum
+	slot0.closeUpdateFunc = slot1.closeUpdateFunc
+	slot0.mMainCityId = slot1.mainCityId
+	slot0.mIfHasGiveUpPosition = (PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId ~= 0 and GuildPositionRelation.items[1][slot1.layerType or 1].ifGiveUpDemesne) or false
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.adjustUI(slot0)
+
+	return 
+end
+slot0.adjustUI = function (slot0)
+	if slot0.layerType == 1 then
+		slot0.createUISubTree(slot0, "grayNode")
+		slot0.refreshCityList(slot0)
+		slot0.refreshGiveUpCount(slot0)
+	elseif slot0.layerType == 3 then
+		slot0.titleLabel:setString("更换总部")
+		slot0.createUISubTree(slot0, "grayNode")
+		slot0.changeHomeView(slot0)
+	end
+
+	return 
+end
+slot0.refreshCityList = function (slot0)
+	slot1 = {
+		"小型门派",
+		"中型门派",
+		"大型门派",
+		"宗门"
+	}
+
+	slot0.cityInfoList:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot0.ownCityIdInfo) do
+		slot0.createLayoutTemplateNode(slot0, "cityInfoItem", {
+			orderId = slot5,
+			cityName = TR("%s[%s]", CitywarCityConfig.items[tonumber(slot6)].name, slot1[CitywarCityConfig.items[tonumber(slot6)].cityType]),
+			cityHoldTime = MqTime.toDownFormat(slot7),
+			cityNum = tostring(slot5),
+			cityId = tonumber(slot6)
+		}).button.index = slot5 - 1
+
+		if slot0.mMainCityId == tonumber(slot6) then
+			slot8.button:setEnabled(false)
+		end
+
+		slot0.cityInfoList:pushBackCustomItem(slot8)
+	end
+
+	return 
+end
+slot0.changeHomeView = function (slot0)
+	slot1 = {
+		"小型门派",
+		"中型门派",
+		"大型门派",
+		"宗门"
+	}
+
+	slot0.cityInfoList:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot0.ownCityIdInfo) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "cityInfoItem", {
+			orderId = slot5,
+			cityName = TR("%s[%s]", CitywarCityConfig.items[tonumber(slot6)].name, slot1[CitywarCityConfig.items[tonumber(slot6)].cityType]),
+			cityHoldTime = MqTime.toDownFormat(slot7),
+			cityNum = tostring(slot5),
+			cityId = tonumber(slot6)
+		})
+		slot8.button.index = slot5 - 1
+
+		slot8.button:setTitleText(TR("设为总部"))
+		slot8.button:setClickAction(function ()
+			ui.showMessageBox({
+				text = TR("确定将总部设置为%s？", CitywarCityConfig.items[ui.showMessageBox].name),
+				okCallback = function ()
+					slot0:requestUpdateMainCityId(slot0)
+
+					return 
+				end,
+				cancelCallback = function ()
+					return 
+				end
+			})
+
+			return 
+		end)
+
+		if slot0.mMainCityId == tonumber(slot6) then
+			slot8.button:setEnabled(false)
+		end
+
+		slot0.cityInfoList:pushBackCustomItem(slot8)
+	end
+
+	if slot0.mMainCityId ~= 0 then
+		slot0.giveUpTimeLabel:setString(TR("当前总部：#258711%s", CitywarCityConfig.items[slot0.mMainCityId].name))
+	else
+		slot0.giveUpTimeLabel:setString("")
+	end
+
+	return 
+end
+slot0.refreshGiveUpCount = function (slot0)
+	slot0.giveUpTimeLabel:setString(TR("今日剩余放弃次数 %s%s", (0 < GuildConfig.items[1].dailyGiveUpDemesneTimes - slot0.giveUpCityNum and "#258711") or "#ff0000", slot1))
+
+	return 
+end
+slot0.onCloseLayerCallback = function (slot0, slot1)
+	if slot0.closeUpdateFunc then
+		slot0.closeUpdateFunc()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGiveUpCityCallback = function (slot0, slot1)
+	if not slot0.mIfHasGiveUpPosition then
+		ui.showFlashView("无权操作")
+
+		return 
+	end
+
+	slot2 = slot1.cityId
+
+	if GuildConfig.items[1].dailyGiveUpDemesneTimes - slot0.giveUpCityNum == 0 then
+		ui.showFlashView(TR("今日放弃次数已用完！"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		text = TR("确认放弃%s？", CitywarCityConfig.items[slot2].name),
+		okCallback = function ()
+			slot0:socketRequest({
+				methodName = "GiveUpCity",
+				moduleName = "Citywar",
+				methodData = {
+					slot0
+				},
+				successCallback = function (slot0)
+					dump(slot0, "GuildGiveUpCityLayer.GiveUpCity")
+
+					slot0.giveUpCityNum = slot0.GiveUpCityNum or slot0.giveUpCityNum + 1
+
+					slot0:refreshGiveUpCount()
+					slot0.cityInfoList:removeItem(slot0.index)
+
+					for slot4, slot5 in ipairs(slot0.cityInfoList:getItems()) do
+						slot5.orderLabel:setString(tostring(slot4))
+
+						slot5.button.index = slot4 - 1
+					end
+
+					return 
+				end
+			})
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUpdateMainCityId = function (slot0, slot1)
+	if not slot0.mIfHasGiveUpPosition then
+		ui.showFlashView("无权操作")
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateMainCityId",
+		moduleName = "Guild",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "UpdateMainCityId")
+
+			slot0.mMainCityId = slot0
+
+			slot0:changeHomeView()
+			ui.showFlashView(TR("设定总部成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

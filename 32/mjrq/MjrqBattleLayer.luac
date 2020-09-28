@@ -1,0 +1,1274 @@
+slot0 = class("MjrqBattleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_zhandou_zhongnanshanbaitian",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "battleUnit",
+		cType = "FileLayer",
+		params = {
+			file = "mjrq.MjrqBattleUnitLayer"
+		},
+		children = {}
+	},
+	{
+		name = "rankNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled18",
+				cType = "Sprite",
+				params = {
+					image = "gcz_19.png",
+					pos = {
+						x = 0,
+						y = -20
+					}
+				},
+				children = {
+					{
+						name = "cityNameLabel",
+						cType = "Label",
+						params = {
+							emptyInit = true,
+							text = "cityNameLabel",
+							pos = {
+								x = 136.5,
+								y = 19.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "counDownLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							hide = true,
+							emptyInit = true,
+							outlineColor = {
+								g = 42,
+								r = 51,
+								b = 24
+							},
+							pos = {
+								x = 135.71,
+								y = -14.48
+							},
+							text = TR("剩余%d秒攻击方攻击失败")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rankSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "gcz_40.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 425,
+						y = 0
+					},
+					size = {
+						width = 277,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "titleLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 135,
+								y = 106
+							},
+							text = TR("杀敌排行")
+						},
+						children = {}
+					},
+					{
+						name = "rankTableView",
+						cType = "TableView",
+						params = {
+							isVertical = true,
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 135,
+								y = 96
+							},
+							size = {
+								width = 250,
+								height = 60
+							}
+						},
+						children = {
+							{
+								name = "rankTemplate",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -20
+									},
+									size = {
+										width = 240,
+										height = 20
+									}
+								},
+								children = {
+									{
+										name = "untitled11",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "rankLabel",
+											text = "99",
+											pos = {
+												x = 14,
+												y = 9
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 55,
+												y = 9
+											},
+											text = TR("玩家名字6字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "winNumLabel",
+											anchor = {
+												x = 1,
+												y = 0.5
+											},
+											pos = {
+												x = 244,
+												y = 9
+											},
+											text = TR("99胜")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "arrowBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onRankCallBack",
+							image = "c_Pure.png",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 135,
+								y = 39
+							},
+							size = {
+								width = 277,
+								height = 30
+							}
+						},
+						children = {
+							{
+								name = "arrowSprite",
+								cType = "Sprite",
+								params = {
+									image = "jzwl_27.png",
+									scaleY = 1,
+									pos = {
+										x = 0,
+										y = -1
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 197.22,
+						y = 36.1
+					},
+					size = {
+						width = 380,
+						height = 94
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				params = {
+					image = "gcz_9.png",
+					reverse = 1,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				params = {
+					image = "gcz_3.png",
+					pos = {
+						x = 44.84,
+						y = 57.08
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 138.66,
+						y = 17.68
+					},
+					text = TR("本盟当前未占领任何门派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled24",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 55,
+						b = 64
+					},
+					pos = {
+						x = 317.95,
+						y = 17.56
+					},
+					text = TR("可占领")
+				},
+				children = {}
+			},
+			{
+				name = "untitled25",
+				cType = "Sprite",
+				params = {
+					image = "gcz_8.png",
+					hide = true,
+					pos = {
+						x = 330,
+						y = 58.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Label",
+				params = {
+					text = "110",
+					hide = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 275.9,
+						y = 57.55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled27",
+				cType = "Label",
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 160.92,
+						y = 57.67
+					},
+					text = TR("魔教大军")
+				},
+				children = {}
+			},
+			{
+				name = "untitled28",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 100,
+						y = 100
+					}
+				},
+				children = {
+					{
+						name = "untitled29",
+						cType = "Sprite",
+						params = {
+							scaleX = 1.8,
+							image = "c_118.png",
+							pos = {
+								x = 63.31,
+								y = -0.29
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled30",
+						cType = "Label",
+						params = {
+							text = "",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 154,
+								y = -0.54
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Button",
+						custom = {
+							{
+								value = true,
+								name = "isAttack",
+								type = "bool"
+							}
+						},
+						params = {
+							image = "c_32.png",
+							clickAction = "onClickReviv",
+							pos = {
+								x = 209.29,
+								y = 0.55
+							},
+							titleText = TR("复活")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled33",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "c_pure.png",
+					clickAction = "onTeamCallBack",
+					pos = {
+						x = -188.88,
+						y = 35
+					},
+					size = {
+						width = 380,
+						height = 94
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled34",
+				cType = "Sprite",
+				params = {
+					image = "gcz_9.png",
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled35",
+				cType = "Sprite",
+				params = {
+					image = "gcz_4.png",
+					pos = {
+						x = -28.1,
+						y = 60.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled36",
+				cType = "Sprite",
+				params = {
+					image = "gcz_8.png",
+					pos = {
+						x = -323.11,
+						y = 58.81
+					}
+				},
+				children = {}
+			},
+			{
+				name = "defenderNumLabel",
+				cType = "Label",
+				params = {
+					text = "110",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -296.59,
+						y = 58.37
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = -158.48,
+						y = 58.21
+					},
+					text = TR("武林正派")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "defenceLabel",
+				cType = "Button",
+				params = {
+					image = "gcz_7.png",
+					clickAction = "onDefenceBtnClick",
+					pos = {
+						x = 0,
+						y = 100
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseCallback",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled38",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleCallBack",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 193.74,
+						y = -10
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled37",
+		cType = "Button",
+		params = {
+			image = "c_13.png",
+			scaleApt = 2,
+			hide = true,
+			posApt = 1,
+			clickAction = "onTestBtn",
+			pos = {
+				x = 298.17,
+				y = 597.21
+			},
+			titleText = TR("测试")
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCityId = slot1.cityId or 101
+	slot0.shrink = true
+
+	slot0.initData(slot0)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	slot2 = ui.turnAction(slot0)
+
+	slot2.startTurn(slot2, 0)
+
+	slot0.cover = slot2
+
+	slot0.registerEvent(slot0)
+	slot0.requestOnLook(slot0)
+
+	return 
+end
+slot0.initData = function (slot0)
+	slot0.mHeroDataList = {}
+	slot0.currPlayerCnt = 0
+	slot0.mShowCredits = {}
+	slot0.mRankDataList = {}
+	slot0.mShowCreditsSorted = {}
+	slot0.inBattle = false
+	slot1 = {}
+
+	for slot5, slot6 in pairs(RobotConfig.items) do
+		if slot6.matchModuleId == ModuleSub.eCityWar then
+			table.insert(slot1, slot6.robotId)
+		end
+	end
+
+	slot0.mRobotIdList = slot1
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.rankTableView:setIgnoreAnchorPointForPosition(false)
+
+	if CitywarCityConfig.items[slot0.mCityId] then
+		slot0.cityNameLabel:setString(slot1.name)
+	end
+
+	return 
+end
+slot0.registerEvent = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eCityWarArmyEnd, function (slot0, slot1)
+		dump(slot1, "魔教入侵结束推送")
+		slot0:stopFight()
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "mjrq.MjrqCloseTipsLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eCityWarArmyRankInfo, function (slot0, slot1)
+		dump(slot1, "定时推送积分信息给观战玩家")
+		slot0:handleRankData(slot1)
+		slot0:refreshRankInfo()
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eCityWarArmyPlayerJoin, function (slot0, slot1)
+		dump(slot1, "实时推送新加入战斗的玩家")
+		slot0:handleHeroData({
+			slot1
+		})
+
+		if not slot0.inBattle then
+			slot1.diffCredit = 0
+			slot1.HeroId = slot1.HeroModelId[#slot1.HeroModelId]
+
+			slot0.battleUnit:tryCreateHeroOutSide(false, slot1)
+			slot0.battleUnit:tryHeroInSide(false)
+		end
+
+		return 
+	end)
+	slot0.counDownLabel:setVisible(true)
+	Utility.schedule(slot0.counDownLabel, function ()
+		if not slot0.fightTime and not slot0.endTime then
+			return 
+		end
+
+		slot1 = nil
+		slot2 = false
+
+		if Player:getCurrentTime() < slot0.fightTime then
+			slot3, slot9 = Utility.getCountDownStr(slot1, true)
+
+			slot0.counDownLabel:setString(TR("开始倒计时:%s", slot4))
+		elseif slot0.fightTime <= slot0 and slot0 < slot0.endTime then
+			slot3, slot9 = Utility.getCountDownStr(slot1, true)
+
+			slot0.counDownLabel:setString(TR("结束倒计时:%s", slot4))
+
+			if not slot0.inBattle then
+				slot0:startFight()
+			end
+		else
+			slot0.counDownLabel:setString(TR("已结束"))
+			slot0.counDownLabel:stopAllActions()
+		end
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.handleHeroData = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		if not slot0.mHeroDataList[slot6.Id] then
+			slot0.currPlayerCnt = slot0.currPlayerCnt + 1
+		end
+
+		slot0.mHeroDataList[slot6.Id] = clone(slot6)
+	end
+
+	slot0.defenderNumLabel:setString(slot0.currPlayerCnt)
+
+	return 
+end
+slot0.handleRankData = function (slot0, slot1)
+	slot0.mRankDataList = slot1
+	slot2 = slot0.mShowCredits
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot0.mRankDataList) do
+		if not slot2[slot8.PlayerId] then
+			slot2[slot8.PlayerId] = clone(slot8)
+			slot2[slot8.PlayerId].showCredit = 0
+			slot2[slot8.PlayerId].diffCredit = slot8.Credit
+		else
+			slot2[slot8.PlayerId].Credit = slot8.Credit
+			slot2[slot8.PlayerId].diffCredit = slot2[slot8.PlayerId].Credit - slot2[slot8.PlayerId].showCredit
+		end
+
+		if 0 < slot2[slot8.PlayerId].diffCredit then
+			table.insert(slot3, clone(slot2[slot8.PlayerId]))
+		end
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		return slot1.diffCredit < slot0.diffCredit
+	end)
+
+	slot0.mShowCreditsSorted = slot3
+
+	return 
+end
+slot0.initBattleUnit = function (slot0)
+	slot0.battleUnit:initHeros(slot0.getRandomHeroDatas(slot0, slot1, true), slot0.getRandomHeroDatas(slot0, 7, false))
+	slot0.battleUnit:registerHeroDataCallBack(handler(slot0, slot0.getRandomHeroDatas))
+
+	return 
+end
+slot0.startFight = function (slot0)
+	slot0.inBattle = true
+
+	slot0.battleUnit:startFight()
+
+	return 
+end
+slot0.stopFight = function (slot0)
+	slot0.battleUnit:stopFight()
+
+	return 
+end
+slot1 = 2
+slot0.getRandomHeroDatas = function (slot0, slot1, slot2)
+	slot3 = {}
+	slot1 = (type(slot1) == "number" and slot1) or 1
+
+	if slot2 then
+		for slot7 = 1, slot1, 1 do
+			table.insert(slot3, {
+				Id = "",
+				FashionLevel = 1,
+				isAttacker = true,
+				Name = RobotConfig.items[slot0.mRobotIdList[math.random(1, #slot0.mRobotIdList)]].name,
+				HeroModelId = {
+					RobotConfig.items[slot0.mRobotIdList[math.random(1, #slot0.mRobotIdList)]].heroModelId
+				},
+				HeroId = RobotConfig.items[slot0.mRobotIdList[math.random(1, #slot0.mRobotIdList)]].heroModelId
+			})
+		end
+	else
+		if #slot0.mShowCreditsSorted == 0 then
+			slot0.handleRankData(slot0, slot0.mRankDataList)
+		end
+
+		if 0 < #slot0.mShowCreditsSorted then
+			slot4 = {}
+
+			for slot8, slot9 in ipairs(slot0.mShowCreditsSorted) do
+				if slot1 <= #slot3 then
+					break
+				end
+
+				slot0.mShowCredits[slot9.PlayerId].showCredit = slot0.mShowCredits[slot9.PlayerId].Credit
+				slot4[slot8] = true
+				slot12 = math.min(#(clone(slot0.mHeroDataList[slot9.PlayerId]) and slot10.HeroModelId), 1)
+
+				while 0 < slot12 do
+					slot10.diffCredit = slot0.mShowCredits[slot9.PlayerId].diffCredit
+					slot10.HeroId = slot11[math.random(1, #slot11)]
+					slot10.isAttacker = false
+
+					table.insert(slot3, slot10)
+
+					slot12 = slot12 - 1
+				end
+			end
+
+			for slot8, slot9 in ipairs(slot4) do
+				table.remove(slot0.mShowCreditsSorted, slot8)
+			end
+		else
+			slot4 = pairs
+			slot5 = slot0.mHeroDataList or {}
+
+			for slot7, slot8 in slot4(slot5) do
+				if slot1 <= #slot3 then
+					break
+				end
+
+				slot11 = math.min(#(clone(slot8) and slot9.HeroModelId), 1)
+
+				while 0 < slot11 do
+					slot9.diffCredit = 0
+					slot9.HeroId = slot10[math.random(1, #slot10)]
+					slot9.isAttacker = false
+
+					table.insert(slot3, slot9)
+
+					slot11 = slot11 - 1
+				end
+			end
+		end
+	end
+
+	return slot3
+end
+slot0.calcGUID = function (slot0, slot1, slot2)
+	return table.concat({
+		slot1,
+		slot2
+	}, "|")
+end
+slot0.getShowCredit = function (slot0, slot1)
+	return (slot0.mShowCredits[slot1] and slot0.mShowCredits[slot1].showCredit) or 0
+end
+slot0.dealWithCampReadyData = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+	slot4 = {}
+	slot5 = {}
+	slot6 = {}
+
+	for slot10, slot11 in pairs(slot1) do
+		slot12 = tonumber(slot10)
+
+		if slot11.Status == 0 then
+			table.insert(slot4, slot12)
+		elseif slot11.Status == 1 then
+			if slot11.Hp == 0 then
+				table.insert(slot3, {
+					Hp = 0,
+					Ang = 0,
+					ModelId = slot12
+				})
+			else
+				table.insert(slot2, slot12)
+			end
+		elseif slot11.Status == 2 and slot11.Hp == 0 then
+			table.insert(slot3, {
+				Hp = 0,
+				Ang = 0,
+				ModelId = slot12
+			})
+			table.insert(slot6, {
+				Hp = 0,
+				Ang = 0,
+				ModelId = slot12
+			})
+
+			slot5[slot12] = slot11.RebornNum
+		end
+	end
+
+	return slot2, slot4, slot3, slot6, slot5
+end
+slot0.refreshRankInfo = function (slot0)
+	slot0.rankTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 240, 20
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return (slot0.mRankDataList and #slot0.mRankDataList) or 0
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rankTemplate")
+	slot3.refresh = function (slot0, slot1)
+		slot0.rankLabel:setString(slot1)
+		slot0.nameLabel:setString(slot0.mRankDataList[slot1 + 1].Name)
+		slot0.winNumLabel:setString(TR("%d胜", slot0.mRankDataList[slot1 + 1].Credit))
+
+		return 
+	end
+
+	slot1.addChild(slot1, slot3)
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot3.refresh(slot3, slot2)
+
+	slot1.rankTemplate = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.rankTemplate:refresh(slot2)
+
+	return 
+end
+slot0.onCloseCallback = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onDefenceBtnClick = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetCitywarTeamInfoNew",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			slot1, slot2, slot3, slot4, slot5 = slot0:dealWithCampReadyData(slot0.TeamInfo)
+
+			function slot6(slot0)
+				slot1 = false
+
+				for slot5, slot6 in pairs(slot0) do
+					if slot0 == slot6.ModelId then
+						slot1 = true
+
+						break
+					end
+				end
+
+				if slot1 then
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "citywar.CityWarHeroReviveLayer",
+						data = {
+							chapterId = slot1.mCityId,
+							reviveHeroList = slot0,
+							reviveHistory = slot2,
+							callback = function ()
+								requestGetCitywarTeamInfo()
+
+								return 
+							end
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				else
+					ui.showFlashView(TR("队伍存在不可复活"))
+					requestGetCitywarTeamInfo()
+				end
+
+				return 
+			end
+
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "guild.CityWarFightListLayer",
+				data = {
+					curCityId = slot0.mCityId,
+					callback = function (slot0, slot1)
+						slot0:requestDefence(slot0)
+
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onTeamCallBack = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6 = 1, 3, 1 do
+		if slot0.battleUnit:isValidObj(slot0.battleUnit:getFightHeros(slot6, false)) then
+			slot8 = clone(slot7.createData)
+			slot8.pathIndex = slot6
+			slot8.PlayerId = slot8.Id
+			slot8.PlayerName = slot8.Name
+			slot8.HeroModelId = slot8.HeroId
+
+			table.insert(slot2, slot8)
+		end
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.CityWarTeamStatusLayer",
+		data = {
+			inArmystrikes = true,
+			chapterId = slot0.mCityId,
+			teamInfo = slot2,
+			sideTag = Enums.CityWarType.eDefend
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot2 = {
+	cc.size(277, 120),
+	cc.size(277, 300)
+}
+slot0.onRankCallBack = function (slot0)
+	slot0.shrink = not slot0.shrink
+
+	slot0.titleLabel:setPositionY(slot0[(slot0.shrink and 1) or 2].height - 13)
+	slot0.rankSprite:setContentSize(slot0)
+	slot0.rankTableView:setPositionY(slot0[(slot0.shrink and 1) or 2].height - 20)
+	slot0.rankTableView:setViewSize(cc.size(250, slot0[(slot0.shrink and 1) or 2].height - 50))
+	slot0.rankTableView:reloadData()
+	slot0.arrowSprite:setScaleY((slot0.shrink and 1) or -1)
+
+	return 
+end
+slot0.onRuleCallBack = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、魔教入侵开始后战斗持续5分钟；"),
+			TR("2、战斗采用快捷战斗模式；"),
+			TR("3、战斗杀敌的数量和玩家自身队伍战力相关；"),
+			TR("4、派遣的队伍数越多，杀敌也会越多。")
+		}
+	})
+
+	return 
+end
+slot0.onExit = function (slot0)
+	slot0.requestExitLook(slot0)
+
+	return 
+end
+slot0.requestOnLook = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "EnterCityWarArmyFiled",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+			slot0:handleHeroData(slot0.PlayerInfo)
+			slot0:handleRankData(slot0.PlayerRankList)
+			slot0:refreshRankInfo()
+
+			slot0.fightTime = slot0.FightTime
+			slot0.endTime = slot0.EndTime
+
+			slot0:initBattleUnit()
+
+			if slot0.cover then
+				slot0.cover:endTurn(0.2)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.TEST = function (slot0)
+	slot1 = {}
+	slot2 = {}
+
+	for slot6 = 1, 10, 1 do
+		table.insert(slot1, {
+			HeroId = 12012107,
+			FashionLevel = 1,
+			isAttacker = true,
+			Id = slot6,
+			Name = string.format("玩家 %d号", slot6),
+			HeroModelId = {
+				12012107,
+				12012201,
+				12012202
+			}
+		})
+	end
+
+	for slot6 = 1, 10, 1 do
+		table.insert(slot2, {
+			PlayerId = slot6,
+			Name = string.format("玩家 %d号", slot6),
+			Credit = slot6
+		})
+	end
+
+	slot0.handleHeroData(slot0, slot1)
+	slot0.handleRankData(slot0, slot2)
+	slot0.refreshRankInfo(slot0)
+	slot0.initBattleUnit(slot0)
+	slot0.startFight(slot0)
+
+	if slot0.cover then
+		slot0.cover:endTurn(0.2)
+	end
+
+	return 
+end
+slot3 = 100
+slot0.onTestBtn = function (slot0)
+	return 
+end
+slot0.requestExitLook = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ExitCityWarArmyFiled",
+		ignoreNode = true,
+		moduleName = "Citywar",
+		needWait = false,
+		methodData = {
+			slot0.mCityId
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDefence = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "PersonalSendTeam",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.mCityId,
+			false,
+			slot1,
+			true
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,828 @@
+slot0 = class("HeroStarUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionEnd",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 736,
+				height = 463
+			},
+			titleText = TR("升 星")
+		},
+		children = {
+			{
+				name = "titel1",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 115,
+						y = 398.34
+					}
+				},
+				children = {
+					{
+						name = "text",
+						cType = "Label",
+						params = {
+							fontSize = 25,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 207.57,
+								y = 3.99
+							},
+							text = TR("属性成长")
+						},
+						children = {}
+					},
+					{
+						name = "untitled9",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 180,
+							image = "c_36.png",
+							pos = {
+								x = 435.21,
+								y = 2
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "awakenBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					hide = true,
+					clickAction = "onClose",
+					pos = {
+						x = 617.51,
+						y = 86.54
+					},
+					titleText = TR("觉 醒")
+				},
+				children = {}
+			},
+			{
+				name = "starUpBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onHeroStarUp",
+					pos = {
+						x = 617.51,
+						y = 86.54
+					},
+					titleText = TR("升 星")
+				},
+				children = {}
+			},
+			{
+				name = "title2",
+				cType = "Sprite",
+				params = {
+					image = "c_36.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 115,
+						y = 193.65
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Label",
+						params = {
+							fontSize = 25,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 207.57,
+								y = 3.99
+							},
+							text = TR("升星消耗")
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							rotationAngle = 180,
+							image = "c_36.png",
+							pos = {
+								x = 435.21,
+								y = 2
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "proBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jyt_1.png",
+					pos = {
+						x = 370.65,
+						y = 87.17
+					},
+					size = {
+						width = 270,
+						height = 13
+					}
+				},
+				children = {
+					{
+						name = "untitled14",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_2.png",
+							childName = "universalDebrisProBar",
+							pos = {
+								x = 135,
+								y = 7
+							},
+							size = {
+								width = 270,
+								height = 12
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_57.png",
+							childName = "proBar",
+							pos = {
+								x = 135,
+								y = 7
+							},
+							size = {
+								width = 270,
+								height = 13
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							childName = "proLabel",
+							text = "15/30",
+							color = {
+								g = 49,
+								r = 49,
+								b = 49
+							},
+							pos = {
+								x = 136.23,
+								y = 32.22
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Button",
+						params = {
+							image = "c_20.png",
+							clickAction = "onGetHeroDeirCallBack",
+							pos = {
+								x = 262.88,
+								y = 5.56
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "header",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 182.2,
+						y = 94.86
+					}
+				},
+				children = {}
+			},
+			{
+				name = "progNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 339.42,
+						y = 295.85
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Scale9Sprite",
+						custom = {
+							{
+								value = 1,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jyt_5.png",
+							pos = {
+								x = 5.49,
+								y = 45.76
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_38.png",
+									pos = {
+										x = -22.64,
+										y = 6.69
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled37",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_54.png",
+									childName = "progNextBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_6.png",
+									childName = "progBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled24",
+								cType = "Label",
+								params = {
+									text = "45/100",
+									childName = "des2",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 361.54,
+										y = 10.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled40",
+								cType = "Label",
+								params = {
+									childName = "des1",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 11.42,
+										y = 32.41
+									},
+									text = TR("攻击成长：7 {c_38.png}")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "Scale9Sprite",
+						custom = {
+							{
+								value = 2,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jyt_5.png",
+							pos = {
+								x = 5.49,
+								y = -6.15
+							}
+						},
+						children = {
+							{
+								name = "untitled26",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_39.png",
+									pos = {
+										x = -22.64,
+										y = 6.69
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled38",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_55.png",
+									childName = "progNextBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled27",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_7.png",
+									childName = "progBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Label",
+								params = {
+									childName = "des1",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 11.42,
+										y = 32.41
+									},
+									text = TR("攻击成长：7 {c_38.png}")
+								},
+								children = {}
+							},
+							{
+								name = "untitled29",
+								cType = "Label",
+								params = {
+									text = "45/100",
+									childName = "des2",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 361.54,
+										y = 10.34
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled30",
+						cType = "Scale9Sprite",
+						custom = {
+							{
+								value = 3,
+								name = "tag",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jyt_5.png",
+							pos = {
+								x = 5.49,
+								y = -59.79
+							}
+						},
+						children = {
+							{
+								name = "untitled31",
+								cType = "Sprite",
+								params = {
+									image = "xkxx_40.png",
+									pos = {
+										x = -22.64,
+										y = 6.69
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_56.png",
+									childName = "progNextBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled32",
+								cType = "ProgressBar",
+								params = {
+									normalImage = "jyt_8.png",
+									childName = "progBar",
+									pos = {
+										x = 175,
+										y = 7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled33",
+								cType = "Label",
+								params = {
+									childName = "des1",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 11.42,
+										y = 32.41
+									},
+									text = TR("攻击成长：7 {c_38.png}")
+								},
+								children = {}
+							},
+							{
+								name = "untitled34",
+								cType = "Label",
+								params = {
+									text = "45/100",
+									childName = "des2",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 49,
+										r = 49,
+										b = 49
+									},
+									pos = {
+										x = 361.54,
+										y = 10.34
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled35",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_10.png",
+					pos = {
+						x = 367.68,
+						y = 162.54
+					},
+					size = {
+						width = 406,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled36",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 64,
+								r = 66,
+								b = 84
+							},
+							pos = {
+								x = 202.22,
+								y = 15.44
+							},
+							text = TR("升星可提升技能效果")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "costLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = 618.05,
+						y = 128.99
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHeroModelId = slot1.heroModelId
+	slot0.mCallback = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	dump(slot0.mHeroModelId, "侠客ID")
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot9 = {
+		{
+			desLabel = TR("攻击成长: #67A31E%s {c_38.png} (%s)", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj:getItem(slot0.mHeroModelId).Star].starRatioAtk, (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj:getItem(slot0.mHeroModelId).Star + 1] == nil and TR("已到最高")) or slot6.starRatioAtk),
+			progLabel = TR("%s/%s", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioAtk, HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioAtk),
+			progCurValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioAtk,
+			progNextValue = (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star + 1] == nil and HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioAtk) or slot6.starRatioAtk,
+			progMaxValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioAtk
+		},
+		{
+			desLabel = TR("防御成长: #67A31E%s {c_38.png} (%s)", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioArm, (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star + 1] == nil and TR("已到最高")) or slot6.starRatioArm),
+			progLabel = TR("%s/%s", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioArm, HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioArm),
+			progCurValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioArm,
+			progNextValue = (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star + 1] == nil and HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioArm) or slot6.starRatioArm,
+			progMaxValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioArm
+		},
+		{
+			desLabel = TR("血量成长: #67A31E%s {c_38.png} (%s)", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioHp, (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star + 1] == nil and TR("已到最高")) or slot6.starRatioHp),
+			progLabel = TR("%s/%s", HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioHp, HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioHp),
+			progCurValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star].starRatioHp,
+			progNextValue = (HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj.getItem(slot0.mHeroModelId).Star + 1] == nil and HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioHp) or slot6.starRatioHp,
+			progMaxValue = HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][#HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId]].starRatioHp
+		}
+	}
+
+	for slot13, slot14 in ipairs(slot0.getCustomChildren(slot0, slot0.progNode, "tag")) do
+		slot14.des1:setString(slot9[slot13].desLabel)
+		slot14.des2:setString(slot9[slot13].progLabel)
+		slot14.progBar:setMaxValue((slot8 and 1) or slot15.progMaxValue*100)
+		slot14.progBar:setCurrValue((slot8 and 1) or slot15.progCurValue*100)
+		slot14.progNextBar:setMaxValue((slot8 and 1) or slot15.progMaxValue*100)
+		slot14.progNextBar:setCurrValue((slot8 and 1) or slot15.progNextValue*100)
+		slot14.progNextBar:stopAllActions()
+		slot14.progNextBar:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeOut:create(1.2), cc.FadeIn:create(0.6))))
+	end
+
+	slot0.header:setCardData({
+		modelId = slot3.debrisId
+	}, {
+		Enums.CardShowAttr.eBorder,
+		Enums.CardShowAttr.eDebris
+	})
+	slot0.proBg.proBar:setMaxValue((slot8 and 1) or slot6.needDebrisNum)
+	slot0.proBg.proBar:setCurrValue((slot8 and 1) or GoodsObj:getItemCount(slot3.debrisId))
+
+	slot12 = 0
+
+	if slot3.universalDebris and slot11 ~= 0 then
+		slot12 = Resource.getCount(slot11)
+	end
+
+	slot0.proBg.universalDebrisProBar:setMaxValue((slot8 and 1) or slot6.needDebrisNum)
+	slot0.proBg.universalDebrisProBar:setCurrValue((slot8 and 1) or slot10 + slot12)
+
+	if slot8 then
+		slot0.proBg.proLabel:setString(TR("星级已到最高"))
+	else
+		slot0.proBg.proLabel:setString(string.format("%s/%s", slot10 + slot12, slot6.needDebrisNum))
+	end
+
+	if slot8 then
+		slot0.costLabel:setVisible(false)
+		slot0.starUpBtn:setVisible(false)
+		slot0.awakenBtn:setVisible(true)
+	else
+		slot14 = ""
+
+		for slot18, slot19 in ipairs(slot13) do
+			slot20 = "#67A31E"
+
+			if not Resource.isEnough(slot19.resourceId, slot19.num, false) then
+				slot20 = "#DF0A0A"
+			end
+
+			slot14 = (slot18 == #slot13 and slot14 .. string.format("%s{%s}%s", slot20, Resource.getDaibiImg(slot19.resourceId), Utility.numberWithUnit(slot19.num))) or slot14 .. string.format("%s{%s}%s ", slot20, Resource.getDaibiImg(slot19.resourceId), Utility.numberWithUnit(slot19.num))
+		end
+
+		slot0.costLabel:setString(TR(slot14))
+		slot0.awakenBtn:setVisible(false)
+	end
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGetHeroDeirCallBack = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.GoodsGetWaysLayer",
+		popRestore = true,
+		data = {
+			resourceId = HeroModel.items[slot0.mHeroModelId].debrisId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onHeroStarUp = function (slot0)
+	slot6 = Utility.analysisStrResList(HeroStarRelation.items[HeroModel.items[slot0.mHeroModelId].modelId][HeroObj:getItem(slot0.mHeroModelId).Star + 1].starUpConsume)
+
+	dump(HeroModel.items[slot0.mHeroModelId].universalDebris, "122")
+
+	slot8 = 0
+
+	if HeroModel.items[slot0.mHeroModelId].universalDebris and slot7 ~= 0 then
+		slot8 = Resource.getCount(slot7)
+	end
+
+	if GoodsObj:getItemCount(slot3.debrisId) + slot8 < slot5.needDebrisNum then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.GoodsGetWaysLayer",
+			data = {
+				resourceId = slot3.debrisId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end
+
+	for slot13, slot14 in ipairs(slot6) do
+		if not Resource.isEnough(slot14.resourceId, slot14.num, true) then
+			return 
+		end
+	end
+
+	if slot9 < slot5.needDebrisNum then
+		ui.showMessageBox({
+			text = TR("人物碎片不足，可使用%s个%s代替，确定要使用吗?", slot5.needDebrisNum - slot9, Resource.getName(slot7)),
+			okCallback = function (...)
+				slot0:requestHeroStarUp()
+
+				return 
+			end,
+			msgBoxParams = {
+				hideCloseButton = false
+			}
+		})
+	else
+		slot0.requestHeroStarUp(slot0)
+	end
+
+	return 
+end
+slot0.onActionEnd = function (slot0)
+	Guide.manager:exeGuideList({
+		[20706] = {
+			clickNode = slot0.starUpBtn
+		}
+	})
+
+	return 
+end
+slot0.requestHeroStarUp = function (slot0)
+	slot1 = clone(HeroObj:getItem(slot0.mHeroModelId))
+
+	slot0.socketRequest(slot0, {
+		methodName = "HeroStarUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.mHeroModelId
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			HeroObj:modifyItem(slot0)
+			MqAudio.playEffect("ui_rwtp.mp3")
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0, slot0.mCallback)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

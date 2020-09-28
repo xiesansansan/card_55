@@ -1,0 +1,352 @@
+slot0 = class("VegetableShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("商 店")
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 423.99,
+						y = 262.98
+					},
+					size = {
+						width = 782.77,
+						height = 360.79
+					}
+				},
+				children = {}
+			},
+			{
+				name = "curCoinLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 36.71,
+						y = 461.65
+					},
+					text = TR("当前元宝：0")
+				},
+				children = {}
+			},
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridCellAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 2,
+					celHeight = 110,
+					pos = {
+						x = 424.74,
+						y = 263.15
+					},
+					size = {
+						width = 777.92,
+						height = 347.5
+					}
+				},
+				children = {
+					{
+						name = "GirdCell",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled8-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled10-index",
+								name = "index",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 199.07,
+								y = 273.19
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 2.53,
+										y = 4.49
+									},
+									size = {
+										width = 376,
+										height = 110
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									childName = "header",
+									allowClick = true,
+									pos = {
+										x = -129.74,
+										y = 5.49
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									childName = "nameLabel",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -76.11,
+										y = 33.62
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "ResLabel",
+								params = {
+									num = 0,
+									modelId = 1111,
+									childName = "resLabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = -75.16,
+										y = -17.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "index",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_27.png",
+									clickAction = "onClickBuy",
+									pos = {
+										x = 122.45,
+										y = -10.65
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Label",
+								params = {
+									childName = "buyCountLabel",
+									isRichText = true,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 172.89,
+										y = 35.49
+									},
+									text = TR("今日剩余次数")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.type = slot1.eType
+	slot0.mShopInfo = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestShopInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.curCoinLabel:setString(TR("当前元宝: #d17b00{%s}%s", Resource.getDaibiImg(ResourceTypeSub.eDiamond), Utility.numberWithUnit(Resource.getCount(ResourceTypeSub.eDiamond))))
+
+	return 
+end
+slot0.onGridCellAction = function (slot0, slot1, slot2, slot3)
+	if slot0.mShopInfo[slot2] == nil then
+		return 
+	end
+
+	slot7, slot15 = Utility.getColorValue(slot6)
+	slot9 = slot0.createLayoutTemplateNode(slot0, "GirdCell", {
+		name = string.format("%s%s", slot8, Resource.getName(Utility.analysisStrResList(slot4.SellResource)[1].resourceId)),
+		index = slot2
+	})
+
+	slot9.header:setCardData({
+		resourceId = Utility.analysisStrResList(slot4.SellResource)[1].resourceId,
+		num = Utility.analysisStrResList(slot4.SellResource)[1].num
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+
+	slot11 = Resource.getDaibiImg(Utility.analysisStrResList(slot4.NeedResource)[1].resourceId)
+
+	slot9.resLabel:setType(Utility.analysisStrResList(slot4.NeedResource)[1].resourceId)
+	slot9.resLabel:setString(Utility.analysisStrResList(slot4.NeedResource)[1].num, (Resource.isEnough(Utility.analysisStrResList(slot4.NeedResource)[1].resourceId, Utility.analysisStrResList(slot4.NeedResource)[1].num, false, false) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65))
+	slot9.buyCountLabel:setString(TR("今日剩余%s%d%s次", "#8BA857", slot4.PerMaxNum - slot4.PerBuyNum, "#252525"))
+	slot9.setPosition(slot9, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot9)
+
+	return 
+end
+slot0.onClickBuy = function (slot0, slot1)
+	if not Resource.isEnough(Utility.analysisStrResList(slot0.mShopInfo[slot1.index].NeedResource)[1].resourceId, Utility.analysisStrResList(slot0.mShopInfo[slot1.index].NeedResource)[1].num) then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.DlgBuyTimesLayer",
+		data = {
+			boughtNum = slot3.PerBuyNum,
+			maxNum = slot3.PerMaxNum,
+			price = slot3.NeedResource,
+			callback = function (slot0)
+				slot0:requestBuyShopGoods(slot1.SellId, slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getModuleName = function (slot0)
+	slot1 = nil
+
+	if slot0.type == 1 then
+		slot1 = "MergedVegetablesShop"
+	elseif slot0.type == 2 then
+		slot1 = "NormalCrossVegetablesShop"
+	end
+
+	print(slot1)
+
+	return slot1
+end
+slot0.requestShopInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = slot0.getModuleName(slot0),
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mShopInfo = slot0.MergedVegetablesShopInfo
+
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+			print(#slot0.mShopInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuyShopGoods = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "Buy",
+		moduleName = slot0.getModuleName(slot0),
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mShopInfo = slot0.MergedVegetablesShopInfo
+
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+			ui.showFlashReward(slot0)
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

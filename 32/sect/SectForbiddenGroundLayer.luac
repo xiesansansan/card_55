@@ -1,0 +1,1213 @@
+slot0 = class("SectForbiddenGroundLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "sect.SectLayer"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 120,
+					image = "tc_2.png",
+					pos = {
+						x = 400,
+						y = 0
+					},
+					size = {
+						width = 475,
+						height = 522
+					}
+				},
+				children = {
+					{
+						name = "enterNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = 237.5,
+								y = 261
+							}
+						},
+						children = {
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "zm_14.png",
+									pos = {
+										x = 0,
+										y = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "giveUpBtn",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									clickAction = "onGiveUpCallBack",
+									pos = {
+										x = -80,
+										y = -190
+									},
+									titleText = TR("放弃")
+								},
+								children = {}
+							},
+							{
+								name = "needBtn",
+								cType = "Button",
+								params = {
+									image = "c_32.png",
+									clickAction = "onRollCallBack",
+									pos = {
+										x = 80,
+										y = -190
+									},
+									titleText = TR("需求")
+								},
+								children = {
+									{
+										name = "costLabel",
+										cType = "ResLabel",
+										params = {
+											modelId = 1111,
+											num = 0,
+											childName = "",
+											resScale = 0.8,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -31,
+												y = 35
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled45",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = -221
+									},
+									text = TR("声望达到威震江湖且排名前三的玩家可以进行购买")
+								},
+								children = {}
+							},
+							{
+								name = "countDownLabel2",
+								cType = "Label",
+								params = {
+									text = "Label",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0,
+										y = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "playerNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 0,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "sellCard",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									pos = {
+										x = 0,
+										y = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "sellName",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									color = {
+										g = 125,
+										r = 203,
+										b = 69
+									},
+									pos = {
+										x = 0,
+										y = 212.5
+									}
+								},
+								children = {}
+							},
+							{
+								name = "enterPlayerTemplate",
+								cType = "TemplateNode",
+								params = {
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 400,
+										height = 70
+									}
+								},
+								children = {
+									{
+										name = "untitled80",
+										cType = "CardNode",
+										params = {
+											scale = 0.75,
+											childName = "card",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 75,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled83",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											childName = "name",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 126,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled84",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "Label",
+											childName = "rollNum",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 300,
+												y = 35
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "tipsNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 237.5,
+								y = 261
+							}
+						},
+						children = {
+							{
+								name = "untitled53",
+								cType = "Sprite",
+								params = {
+									image = "zm_31.png",
+									pos = {
+										x = 0,
+										y = 150
+									}
+								},
+								children = {}
+							},
+							{
+								name = "goodsNode",
+								cType = "ClippingNode",
+								params = {
+									alpha = 1,
+									pos = {
+										x = -125.54,
+										y = 100.2
+									},
+									size = {
+										width = 250,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled55",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 125,
+										r = 203,
+										b = 69
+									},
+									pos = {
+										x = 0,
+										y = 212.5
+									},
+									text = TR("禁地秘宝")
+								},
+								children = {}
+							},
+							{
+								name = "untitled54",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0,
+										y = 77
+									},
+									text = TR("禁地开启后会随机出现一件秘宝")
+								},
+								children = {}
+							},
+							{
+								name = "openTipsLabel",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = 30
+									},
+									text = TR("恭喜本轮获得权限进入宗门禁地的大侠")
+								},
+								children = {}
+							},
+							{
+								name = "untitled13",
+								cType = "Button",
+								params = {
+									image = "c_32.png",
+									clickAction = "onEnterCallBack",
+									pos = {
+										x = 0,
+										y = -170
+									},
+									titleText = TR("进 入")
+								},
+								children = {
+									{
+										name = "countDownLabel1",
+										cType = "Label",
+										params = {
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = -42
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "enterPlayerNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 0,
+										y = -70
+									}
+								},
+								children = {
+									{
+										name = "playerTemplate",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled75-text",
+												name = "name",
+												type = "string"
+											}
+										},
+										params = {
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 150,
+												height = 120
+											}
+										},
+										children = {
+											{
+												name = "untitled71",
+												cType = "Sprite",
+												params = {
+													image = "zm_5.png",
+													pos = {
+														x = 75,
+														y = 60
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled72",
+												cType = "CardNode",
+												params = {
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 75,
+														y = 60
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled73",
+												cType = "Sprite",
+												params = {
+													image = "zm_6.png",
+													childName = "header",
+													pos = {
+														x = 75,
+														y = 60
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled74",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "prestigeLvLabel",
+													text = "",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 75,
+														y = 112
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled75",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "nameLabel",
+													text = "Label",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 75,
+														y = 8
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "puzzleNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 32,
+								y = 61
+							}
+						},
+						children = {
+							{
+								name = "untitled95",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 216.51,
+										y = 425.11
+									},
+									text = TR("完成拼图识破禁地秘密")
+								},
+								children = {}
+							},
+							{
+								name = "countDownLabel3",
+								cType = "Label",
+								params = {
+									text = "",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 216.51,
+										y = -18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "completeSprite",
+								cType = "Sprite",
+								params = {
+									image = "zm_40.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "partsNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "partTemplate",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled92-image",
+										name = "bgImg",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 68.5,
+										y = 68.5
+									}
+								},
+								children = {
+									{
+										name = "untitled93",
+										cType = "Sprite",
+										params = {
+											image = "zm_39.png",
+											childName = "s1",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = -68.5,
+												y = 68
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled94",
+										cType = "Sprite",
+										params = {
+											image = "zm_39.png",
+											childName = "s2",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = -68.5,
+												y = -68
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled92",
+										cType = "Sprite",
+										params = {
+											image = "zm_47.png",
+											childName = "bg",
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "touchArea",
+								cType = "Node",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 413,
+										height = 413
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = cc.size(137, 137)
+slot2 = 3
+slot3 = 3
+slot4 = {
+	{
+		completeSprite = "zm_40.png",
+		blankPartNumber = 9,
+		partsSprite = {
+			"zm_41.png",
+			"zm_42.png",
+			"zm_43.png",
+			"zm_44.png",
+			"zm_45.png",
+			"zm_46.png",
+			"zm_47.png",
+			"zm_48.png"
+		}
+	}
+}
+slot5 = {
+	eRight = 4,
+	eUp = 1,
+	eDown = 2,
+	eLeft = 3
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetForbiddenInfo(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eSectPoint, "21606") then
+		RedDotObj:seeRedDot("SectForbidden", "21606")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0, slot1)
+	slot0.enterNode:setVisible(slot1)
+	slot0.tipsNode:setVisible(not slot1)
+	slot0.puzzleNode:setVisible(false)
+
+	if slot0.touchListner and not tolua.isnull(slot0.touchListner) then
+		slot0.touchArea:getEventDispatcher():removeEventListener(slot0.touchListner)
+	end
+
+	slot0.countDownLabel1:stopAllActions()
+	slot0.countDownLabel2:stopAllActions()
+	slot0.countDownLabel3:stopAllActions()
+
+	if slot1 then
+		slot2 = nil
+
+		for slot6, slot7 in ipairs(slot0.data.ForbiddenInfo) do
+			if slot7.Name == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+				slot2 = slot7
+			end
+		end
+
+		slot0.playerInfo = slot2
+
+		if slot2.IsPuzzle then
+			slot0.refreshEnterNode(slot0)
+		else
+			slot0.enterNode:setVisible(false)
+			slot0.tipsNode:setVisible(false)
+			slot0.puzzleNode:setVisible(true)
+			slot0.initPuzzle(slot0)
+			slot0.refreshPuzzle(slot0)
+		end
+	else
+		slot0.refreshTipsNode(slot0)
+	end
+
+	return 
+end
+slot0.groundIsOpen = function (slot0)
+	return slot0.data.ForbiddenStartTime <= Player:getCurrentTime() and slot2 < slot1.ForbiddenEndTime
+end
+slot6 = {
+	cc.p(0, 0),
+	cc.p(-120, 0),
+	cc.p(120, 0)
+}
+slot0.refreshTipsNode = function (slot0)
+	slot1 = slot0.groundIsOpen(slot0)
+
+	slot0.enterPlayerNode:removeAllChildren()
+
+	for slot5 = 1, 3, 1 do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "playerTemplate", {
+			name = (slot0.data.ForbiddenInfo[slot5] and slot6.Name) or ""
+		})
+
+		slot7.header:setVisible(not slot6)
+		slot7.card:setAllowClick(false)
+		slot7.card:setBorder((slot5 == 1 and "c_17.png") or "c_16.png")
+
+		if slot6 then
+			slot7.card:setPlayerHeader(slot6.HeadImageId)
+		end
+
+		slot7.setPosition(slot7, slot0[slot5])
+		slot0.enterPlayerNode:addChild(slot7)
+	end
+
+	slot0.openTipsLabel:setString((slot1 and TR("恭喜本轮获得进入宗门禁地的大侠")) or TR("声望前三大侠有资格获取无上秘宝"))
+	Utility.schedule(slot0.countDownLabel1, function ()
+		slot2, slot1 = nil
+
+		if slot0 then
+			slot0, slot1 = Utility.getCountDownStr(slot1.data.ForbiddenEndTime)
+		else
+			slot0, slot1 = Utility.getCountDownStr(slot1.data.ForbiddenStartTime)
+		end
+
+		if slot0 then
+			if slot0 then
+				slot1.countDownLabel1:setString(TR("%s后关闭禁地", slot1))
+			else
+				slot1.countDownLabel1:setString(TR("%s后开启禁地", slot1))
+			end
+		else
+			slot1.countDownLabel1:setString("")
+			slot1:requestGetForbiddenInfo()
+		end
+
+		return 
+	end, 0.5)
+	slot0.refreshRollGoods(slot0)
+
+	return 
+end
+slot0.refreshEnterNode = function (slot0)
+	slot2 = nil
+
+	slot0.playerNode:removeAllChildren()
+
+	for slot6, slot7 in ipairs(slot0.data.ForbiddenInfo) do
+		if slot7.Name == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+			slot2 = slot7
+		end
+
+		slot8 = slot0.createLayoutTemplateNode(slot0, "enterPlayerTemplate")
+
+		slot8.setPosition(slot8, cc.p(0, (slot6 - 1)*70 - -35))
+		slot0.playerNode:addChild(slot8)
+		slot8.card:setPlayerHeader(slot7.HeadImageId)
+		slot8.card:setAllowClick(false)
+		slot8.name:setString(slot7.Name)
+		slot8.rollNum:setString((slot7.IfGiveup and TR("已放弃")) or (slot7.RollingNum == 0 and TR("暂未需求")) or slot7.RollingNum)
+	end
+
+	slot0.sellCard:setCardData({
+		modelId = Utility.analysisStrResList(SectForbiddenRelation.items[slot1.ForbiddenRewardId].sellStr)[1].resourceId,
+		num = Utility.analysisStrResList(SectForbiddenRelation.items[slot1.ForbiddenRewardId].sellStr)[1].num
+	}, {
+		Enums.CardShowAttr.eNum
+	})
+	slot0.sellName:setString(Resource.getName(Utility.analysisStrResList(SectForbiddenRelation.items[slot1.ForbiddenRewardId].sellStr)[1].resourceId))
+	slot0.costLabel:setType(Utility.analysisStrResList(SectForbiddenRelation.items[slot1.ForbiddenRewardId].useStr)[1].resourceId)
+	slot0.costLabel:setString(Utility.analysisStrResList(SectForbiddenRelation.items[slot1.ForbiddenRewardId].useStr)[1].num)
+	Utility.schedule(slot0.countDownLabel2, function ()
+		slot0, slot1 = Utility.getCountDownStr(slot0.data.ForbiddenEndTime)
+
+		if slot0 then
+			slot0.countDownLabel2:setString(TR("%s后将关闭禁地", slot1))
+		else
+			slot0.countDownLabel2:setString("")
+			slot0:requestGetForbiddenInfo()
+		end
+
+		return 
+	end, 0.5)
+	slot0.needBtn:setEnabled(not slot2.IfGiveup and slot2.RollingNum == 0)
+	slot0.giveUpBtn:setEnabled(not slot2.IfGiveup and slot2.RollingNum == 0)
+
+	return 
+end
+slot0.refreshRollGoods = function (slot0)
+	slot5 = slot4()
+
+	slot5.setPosition(slot5, 0, 0)
+	slot4().setPosition(slot6, slot3, 0)
+
+	slot7 = 1
+
+	Utility.schedule(slot5, function ()
+		if LayerManager.layerStack[#LayerManager.layerStack] and slot0.name ~= "sect.SectLayer" then
+			return 
+		end
+
+		if (slot0:getPositionX() + slot2) - () < 0 then
+			slot0:setPositionX(slot2 + slot2)
+		else
+			slot0:setPositionX(slot1 - slot3)
+		end
+
+		if (slot2 + slot2) - () < 0 then
+			slot1:setPositionX(slot1 + slot2)
+		else
+			slot1:setPositionX(slot2 - slot3)
+		end
+
+		return 
+	end, 0.016666666666666666)
+
+	return 
+end
+slot0.initPuzzle = function (slot0)
+	slot1 = slot0.touchArea:getContentSize()
+	slot2 = {}
+
+	for slot6 = 1, slot0, 1 do
+		for slot10 = 1, slot1, 1 do
+			slot2[(slot6 - 1)*slot0 + slot10] = cc.p((slot10 - 0.5)*slot2.width, slot1.height - (slot6 - 0.5)*slot2.height)
+		end
+	end
+
+	slot0.partPosMap = slot2
+	slot0.puzzleImgCfg = slot3[1]
+
+	slot0.initTouchArea(slot0)
+
+	return 
+end
+slot0.initTouchArea = function (slot0)
+	slot1 = slot0.touchArea:getContentSize()
+	slot2, slot3, slot4 = nil
+	slot0.touchListner = ui.addTouchEvent({
+		swallowTouch = false,
+		node = slot0.touchArea,
+		beganEvent = function (slot0, slot1)
+			if slot0.playerInfo and slot0.playerInfo.IsPuzzle then
+				slot0:checkComplete()
+
+				return false
+			end
+
+			slot1 = slot0.getLocation(slot0)
+			slot2 = slot0.touchArea:convertToNodeSpaceAR(slot0.getLocation(slot0))
+
+			if cc.rectContainsPoint(cc.rect(0, 0, slot2.width, slot2.height), slot2) then
+				slot3 = slot0:getPartNode(slot2)
+				slot4 = cc.pSub(slot2, slot0.partPosMap[slot3.idx])
+
+				return true
+			end
+
+			return false
+		end,
+		movedEvent = function (slot0, slot1)
+			return 
+		end,
+		endedEvent = function (slot0, slot1)
+			if ui.isTouchNodeClicked(slot0, slot0.getLocation(slot0)) then
+				if slot1:getMoveDiretcion(slot1.getMoveDiretcion) then
+					slot1:movePartNodeByDirection(slot2, slot2)
+				else
+					ui.showFlashView(TR("无法移动这一块"))
+				end
+			end
+
+			slot1:checkComplete()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getPartNode = function (slot0, slot1)
+	return slot0.partsNodeList[(math.ceil((slot0.touchArea:getContentSize().height - slot1.y)/slot0.height) - 1)*slot1 + math.ceil(slot1.x/slot0.width)]
+end
+slot7 = 30
+slot0.getDirection = function (slot0, slot1, slot2)
+	if cc.pDistanceSQ(slot1, slot2) <= 30 then
+		return 
+	end
+
+	if math.abs(cc.pSub(slot2, slot1).y) < math.abs(slot4) then
+		return (0 < slot4 and slot0.eRight) or slot0.eLeft
+	else
+		return (0 < slot5 and slot0.eUp) or slot0.eDown
+	end
+
+	return 
+end
+slot0.getNeighborPartNode = function (slot0, slot1, slot2)
+	if not slot2 then
+		return 
+	end
+
+	slot4 = math.ceil(slot1.idx/slot0)
+	slot5 = (slot1.idx - 1)%slot1 + 1
+
+	if slot2 == slot2.eUp then
+		slot4 = slot4 - 1
+	elseif slot2 == slot2.eDown then
+		slot4 = slot4 + 1
+	elseif slot2 == slot2.eLeft then
+		slot5 = slot5 - 1
+	elseif slot2 == slot2.eRight then
+		slot5 = slot5 + 1
+	end
+
+	if 1 <= slot4 and slot4 <= slot1 and 1 <= slot5 and slot5 <= slot0 then
+		return slot0.partsNodeList[(slot4 - 1)*slot1 + slot5]
+	end
+
+	return 
+end
+slot0.movePartNodeByDirection = function (slot0, slot1, slot2)
+	slot3 = slot0.getNeighborPartNode(slot0, slot1, slot2)
+	slot0.partsNodeList[slot3.idx] = slot1
+	slot0.partsNodeList[slot1.idx] = slot3
+	slot3.idx = slot1.idx
+	slot1.idx = slot3.idx
+
+	slot0.resumePartNode(slot0, slot0.partsNodeList[slot3.idx])
+	slot0.resumePartNode(slot0, slot0.partsNodeList[slot1.idx])
+
+	return 
+end
+slot0.movePartNodeByPos = function (slot0, slot1, slot2, slot3)
+	slot1.setPosition(slot1, cc.pSub(slot2, slot3))
+	slot1.setLocalZOrder(slot1, 100)
+
+	return 
+end
+slot0.resumePartNode = function (slot0, slot1)
+	slot1.setPosition(slot1, slot0.partPosMap[slot1.idx])
+	slot1.setLocalZOrder(slot1, slot1.idx)
+
+	return 
+end
+slot0.checkEnableMove = function (slot0, slot1, slot2)
+	if not slot2 then
+		return false
+	end
+
+	return (slot0.getNeighborPartNode(slot0, slot1, slot2) and slot3.partNumber == slot0.puzzleImgCfg.blankPartNumber) or false
+end
+slot0.getMoveDiretcion = function (slot0, slot1)
+	if slot1.partNumber == slot0.puzzleImgCfg.blankPartNumber then
+		return 
+	end
+
+	slot3 = math.ceil(slot1.idx/slot0)
+	slot4 = (slot1.idx - 1)%slot1 + 1
+
+	for slot9, slot10 in ipairs(slot5) do
+		slot12 = slot4 + slot10[2]
+
+		if 1 <= slot3 + slot10[1] and slot11 <= slot1 and 1 <= slot12 and slot12 <= slot0 and slot0.partsNodeList[(slot11 - 1)*slot1 + slot12].partNumber == slot0.puzzleImgCfg.blankPartNumber then
+			return slot9
+		end
+	end
+
+	return 
+end
+slot0.refreshPuzzle = function (slot0)
+	slot0.partsNode:removeAllChildren()
+	Utility.schedule(slot0.countDownLabel3, function ()
+		slot0, slot1 = Utility.getCountDownStr(slot0.data.ForbiddenEndTime)
+
+		if slot0 then
+			slot0.countDownLabel3:setString(TR("%s后宗门禁地将关闭", slot1))
+		else
+			slot0.countDownLabel3:setString("")
+			slot0:requestGetForbiddenInfo()
+		end
+
+		return 
+	end, 0.5)
+
+	slot2 = {}
+
+	for slot6 = 1, slot0*, 1 do
+		slot2[slot6] = slot6
+	end
+
+	slot3 = {}
+
+	while #table.keys(slot2) ~= 0 do
+		slot3[#slot3 + 1] = slot2[math.random(1, #slot2)]
+		slot2[math.random(1, #slot2)] = nil
+		slot2 = table.values(slot2)
+	end
+
+	slot4 = {}
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot11 = slot0.createLayoutTemplateNode(slot0, "partTemplate", {
+			bgImg = (slot9 == slot0.puzzleImgCfg.blankPartNumber and "c_pure.png") or slot0.puzzleImgCfg.partsSprite[slot9]
+		})
+
+		if slot10 then
+			slot11.s1:setVisible(false)
+			slot11.s2:setVisible(false)
+		end
+
+		slot11.setPosition(slot11, slot0.partPosMap[slot8])
+
+		slot11.idx = slot8
+		slot11.partNumber = slot9
+
+		slot0.partsNode:addChild(slot11, slot8)
+
+		slot4[slot8] = slot11
+	end
+
+	slot0.partsNodeList = slot4
+
+	return 
+end
+slot0.checkComplete = function (slot0)
+	for slot5 = 1, slot0*, 1 do
+		if slot0.partsNodeList[slot5].partNumber ~= slot5 then
+			return false
+		end
+	end
+
+	slot0.requestPuzzleComplete(slot0)
+
+	return true
+end
+slot0.onEnterCallBack = function (slot0)
+	if not slot0.groundIsOpen(slot0) then
+		ui.showFlashView(TR("宗门禁地暂未开放，无法进入！"))
+
+		return 
+	end
+
+	slot2 = false
+
+	for slot6, slot7 in ipairs(slot0.data.ForbiddenInfo) do
+		if slot7.Name == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+			slot2 = true
+		end
+	end
+
+	if slot2 then
+		slot0.refreshLayer(slot0, true)
+	else
+		ui.showFlashView(TR("没有进入的权限"))
+	end
+
+	return 
+end
+slot0.onGiveUpCallBack = function (slot0)
+	slot0.requestChoice(slot0, false)
+
+	return 
+end
+slot0.onRollCallBack = function (slot0)
+	slot0.requestChoice(slot0, true)
+
+	return 
+end
+slot0.requestGetForbiddenInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetForbiddenInfo",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.data = slot0
+
+			slot0:refreshLayer(false)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestChoice = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Forbidden",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.data.ForbiddenInfo = slot0.ForbiddenInfo
+
+			slot0:refreshLayer(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPuzzleComplete = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ForbiddenPuzzle",
+		moduleName = "Sect",
+		methodData = {
+			true
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("宗门禁地解秘成功, 成功进入禁地!"))
+
+			slot0.data = slot0
+
+			slot0:refreshLayer(true)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

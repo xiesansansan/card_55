@@ -1,0 +1,308 @@
+slot0 = class("PracticeCheckInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("属性预览")
+		},
+		children = {
+			{
+				name = "btnNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "tempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled8-image",
+								name = "btnPic",
+								type = "string"
+							},
+							{
+								value = "untitled7-tag",
+								name = "tag",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 43,
+								y = 259
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "zj_92.png",
+									clickAction = "onChangeBtnAction",
+									childName = "btn",
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "zj_72.png",
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									image = "c_26.png",
+									childName = "tig",
+									scale = 0.8,
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tig",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 263.55,
+						y = 144.2
+					},
+					text = TR("未对该职业进行修炼")
+				},
+				children = {}
+			},
+			{
+				name = "attrBg",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257.73,
+						y = 137.92
+					},
+					size = {
+						width = 454,
+						height = 198
+					}
+				},
+				children = {
+					{
+						name = "totalAttrNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled12-text",
+								name = "str",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 10,
+								y = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									text = "Label",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "totalTips",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 257.5,
+						y = 119
+					},
+					text = TR("全体属性")
+				},
+				children = {
+					{
+						name = "untitled16",
+						cType = "Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -87.6,
+								y = 10
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 152.95,
+								y = 10
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.tag = slot1.tag or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.btnNode:removeAllChildren()
+
+	slot0.btnList = {}
+	slot1 = {
+		"zj_74.png",
+		"zj_75.png",
+		"zj_73.png",
+		"zj_76.png",
+		"zj_72.png"
+	}
+
+	for slot5 = 1, 5, 1 do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "tempNode", {
+			btnPic = slot1[slot5],
+			tag = slot5
+		})
+
+		slot6.setPosition(slot6, (slot5 - 1)*90 + 45, 260)
+		slot0.btnNode:addChild(slot6)
+		table.insert(slot0.btnList, slot6)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.attrBg:removeAllChildren()
+	slot0.tig:setVisible(true)
+	slot0.totalTips:setVisible(false)
+
+	if Player:getGameData("PlayerPracticeData").PracticeStr[tostring(slot0.tag)] then
+		slot0.tig:setVisible(false)
+
+		for slot7, slot8 in ipairs(slot3) do
+			slot10 = slot0.createLayoutTemplateNode(slot0, "totalAttrNode", {
+				slot0.tag,
+				str = Utility.analysisStrAttrToFromat(slot8, TR("%s:%s"))
+			})
+
+			slot10.setPosition(slot10, slot11)
+			slot0.attrBg:addChild(slot10)
+		end
+
+		slot5 = string.split(slot4, ",")
+
+		slot0.totalTips:setVisible(PracticeConfig.items[slot1.Job][slot1.Page][slot1.Layer].allAttrStr ~= "")
+
+		for slot9, slot10 in ipairs(slot5) do
+			slot12 = slot0.createLayoutTemplateNode(slot0, "totalAttrNode", {
+				slot0.tag,
+				str = Utility.analysisStrAttrToFromat(slot10, TR("%s:%d"))
+			})
+
+			slot12.setPosition(slot12, slot13)
+			slot0.attrBg:addChild(slot12)
+		end
+	end
+
+	for slot5, slot6 in pairs(slot0.btnList) do
+		slot6.tig:setVisible(slot6.btn.tag == slot0.tag)
+	end
+
+	return 
+end
+slot0.onChangeBtnAction = function (slot0, slot1)
+	slot0.tag = slot1.tag
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+
+return slot0

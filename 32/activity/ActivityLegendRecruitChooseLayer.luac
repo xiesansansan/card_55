@@ -1,0 +1,420 @@
+slot0 = class("ActivityLegendRecruitChooseLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onCloseAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 400
+			},
+			titleText = TR("切换侠客")
+		},
+		children = {
+			{
+				name = "btnNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "tempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled8-image",
+								name = "btnPic",
+								type = "string"
+							},
+							{
+								value = "untitled7-tag",
+								name = "tag",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 43,
+								y = 295
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "zj_92.png",
+									clickAction = "onChangeBtnAction",
+									childName = "btn",
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "zj_72.png",
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Sprite",
+								params = {
+									image = "c_26.png",
+									childName = "tig",
+									scale = 0.8,
+									pos = {
+										x = 30,
+										y = 20
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "noHeroLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 258,
+						y = 178
+					},
+					text = TR("当前阵营没有侠客可以选择")
+				},
+				children = {}
+			},
+			{
+				name = "heroBgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 259,
+						y = 174
+					},
+					size = {
+						width = 454,
+						height = 140
+					}
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 450,
+								y = 157
+							},
+							text = TR("只能选已拥有的侠客和本期侠客")
+						},
+						children = {}
+					},
+					{
+						name = "heroListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 227,
+								y = 2.5
+							},
+							size = {
+								width = 440,
+								height = 135
+							}
+						},
+						children = {
+							{
+								name = "heroLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled20-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "untitled21-heroId",
+										name = "heroId",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 100,
+										height = 135
+									}
+								},
+								children = {
+									{
+										name = "untitled20",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											anchor = {
+												x = 0.5,
+												y = 0.5
+											},
+											initParams = {},
+											pos = {
+												x = 50,
+												y = 67.5
+											}
+										},
+										children = {
+											{
+												name = "untitled21",
+												cType = "Checkbox",
+												custom = {
+													{
+														value = 1,
+														name = "heroId",
+														type = "integer"
+													}
+												},
+												params = {
+													selectImage = "c_44.png",
+													callback = "onChooseAction",
+													normalImage = "c_43.png",
+													childName = "checkBox",
+													pos = {
+														x = 70.41,
+														y = 10
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled22",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSureAction",
+					pos = {
+						x = 256,
+						y = 65
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mAllHeroList = slot1.heroList or {}
+	slot0.mCallBack = slot1.callBack
+	slot0.mCheckBoxList = {}
+	slot0.mSelectHeroId = slot1.selectHeroId or 0
+	slot0.mUpHeroId = slot1.upHeroId or 0
+	slot0.tag = (Resource.getModelInfo(slot0.mSelectHeroId) and slot1.upHeroId or 0.profession) or 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.btnList = {}
+	slot1 = {
+		"zj_74.png",
+		"zj_75.png",
+		"zj_73.png",
+		"zj_76.png",
+		"zj_72.png"
+	}
+
+	for slot5 = 1, 5, 1 do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "tempNode", {
+			btnPic = slot1[slot5],
+			tag = slot5
+		})
+
+		slot6.setPosition(slot6, (slot5 - 1)*90 + 45, 295)
+		slot0.btnNode:addChild(slot6)
+		table.insert(slot0.btnList, slot6)
+		slot6.tig:setVisible(slot5 == slot0.tag)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mCheckBoxList) do
+		if slot5 ~= nil and not tolua.isnull(slot5) then
+			slot5.removeFromParent(slot5)
+
+			slot5 = nil
+		end
+	end
+
+	slot0.mCheckBoxList = {}
+
+	slot0.heroListView:removeAllItems()
+	slot0.noHeroLabel:setVisible(#slot0.getHeroListByProfessionIndex(slot0, slot0.tag) == 0)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "heroLayout", {
+			cardInfo = {
+				cardInfo = {
+					modelId = slot6
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eName
+				}
+			},
+			heroId = slot6
+		})
+
+		slot0.heroListView:pushBackCustomItem(slot8)
+		table.insert(slot0.mCheckBoxList, slot8.cardNode.checkBox)
+		slot8.cardNode.checkBox:setScale(0.7)
+		slot8.cardNode.checkBox:setSelected(slot6 == slot0.mSelectHeroId)
+	end
+
+	slot0.heroListView:setContentSize(cc.size(math.min(#slot1*100, 440), 135))
+
+	return 
+end
+slot0.onChangeBtnAction = function (slot0, slot1)
+	if slot0.tag == slot1.tag then
+		return 
+	end
+
+	slot0.tag = slot1.tag
+
+	for slot5, slot6 in pairs(slot0.btnList) do
+		slot6.tig:setVisible(slot6.btn.tag == slot0.tag)
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onChooseAction = function (slot0, slot1)
+	if slot1.isSelected(slot1) == true then
+		slot0.mSelectHeroId = slot1.heroId
+	else
+		slot0.mSelectHeroId = 0
+	end
+
+	for slot5, slot6 in ipairs(slot0.mCheckBoxList) do
+		slot6.setSelected(slot6, slot6.heroId == slot0.mSelectHeroId)
+	end
+
+	return 
+end
+slot0.getHeroListByProfessionIndex = function (slot0, slot1)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7, slot8 in pairs(HeroObj:getListByProfession(slot1)) do
+		table.insert(slot3, slot8.ModelId)
+	end
+
+	for slot7, slot8 in pairs(slot0.mAllHeroList) do
+		for slot12, slot13 in ipairs(slot3) do
+			if slot8 == slot13 then
+				table.insert(slot2, slot13)
+
+				break
+			end
+		end
+	end
+
+	if Resource.getModelInfo(slot0.mUpHeroId).profession == slot1 then
+		table.insert(slot2, slot0.mUpHeroId)
+	end
+
+	return slot2
+end
+slot0.onSureAction = function (slot0)
+	if not slot0.mSelectHeroId or slot0.mSelectHeroId == 0 then
+		ui.showFlashView(TR("请选择一个招募侠客！"))
+
+		return 
+	end
+
+	if slot0.mCallBack then
+		slot0.mCallBack(slot0.mSelectHeroId)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

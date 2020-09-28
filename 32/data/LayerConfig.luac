@@ -1,0 +1,1085 @@
+require("config.EnumsConfig")
+
+return {
+	bgmInfo = {
+		login = {
+			needLoop = true,
+			musicList = {
+				"jq_loginmusic2.mp3"
+			}
+		},
+		battle = {
+			needLoop = true,
+			musicList = {
+				"battle1.mp3",
+				"battle2.mp3",
+				"battle3.mp3",
+				"battle4.mp3",
+				"battle5.mp3",
+				"battle6.mp3",
+				"battle7.mp3",
+				"battle8.mp3",
+				"battle9.mp3"
+			}
+		},
+		home = {
+			needLoop = true,
+			musicList = {
+				"zhucheng2.mp3",
+				"zhucheng5.mp3",
+				"zhucheng6.mp3",
+				"zhucheng7.mp3"
+			}
+		},
+		world = {
+			needLoop = true,
+			musicList = {
+				"wulin2.mp3",
+				"wulin4.mp3",
+				"wulin5.mp3"
+			}
+		},
+		bwld = {
+			needLoop = true,
+			musicList = {
+				"biwulundao_shui.mp3"
+			}
+		},
+		manor = {
+			needLoop = true,
+			musicList = {
+				"wulin4.mp3"
+			}
+		},
+		ScriptScene = {
+			needLoop = true,
+			musicList = {
+				"battle9.mp3"
+			}
+		}
+	},
+	layerBgm = {
+		["citywar.CityWarHomeLayer"] = "world",
+		["manor.ManorMainLayer"] = "manor",
+		["battle.views.ScriptScene"] = "ScriptScene",
+		["challenge.ChallengeLayer"] = "home",
+		["pve.PveChapterInfoLayer"] = "home",
+		["citywar.CityWarBattleLayer"] = "battle",
+		["login.GameLoginLayer"] = "login",
+		["experience.ExperienceLayer"] = "home",
+		["battle.views.DebugScene"] = "battle",
+		["battle.views.GameScene"] = "battle",
+		["home.HomeLayer"] = "home",
+		["bwld.BwldHomeLayer"] = "bwld"
+	},
+	jumpInfo = {
+		[ModuleSub.eXiangYangFight] = function ()
+			if MqTime.isSameDay(LocalData:getGameDataValue("MysteryHoleOpenDoorTime") or 0, Player:getCurrentTime() or 0) then
+				LayerManager.addLayer({
+					name = "challenge.MysteryHoleHomeLayer"
+				})
+			else
+				LayerManager.addLayer({
+					name = "challenge.MysteryHoleOpenLayer"
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eSwing] = {
+			name = "challenge.SwingMainLayer"
+		},
+		[ModuleSub.eElite] = {
+			name = "elite.EliteChapterLayer"
+		},
+		[ModuleSub.eJhxs] = {
+			name = "jhjs.JhjsMainLayer"
+		},
+		[ModuleSub.eTrial] = {
+			name = "martial.MartialMainLayer"
+		},
+		[ModuleSub.eGddh] = {
+			name = "challenge.DwdhMainLayer"
+		},
+		[ModuleSub.ePvp] = {
+			name = "pvp.PvpMainLayer"
+		},
+		[ModuleSub.eMeeting] = {
+			name = "home.HomeLayer"
+		},
+		[ModuleSub.eEveningBoss] = {
+			name = "eveningboss.EveningBossMainLayer"
+		},
+		[ModuleSub.eExpedition] = function ()
+			if PlayerAttrObj:getPlayerAttrByName("IsFirstEnter") then
+				LayerManager.addLayer({
+					name = "expedition.ExpeditionNewMapLayer",
+					data = {
+						canRun = false
+					}
+				})
+			else
+				LayerManager.addLayer({
+					name = "expedition.ExpeditionNewMainLayer"
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eCharacter] = {
+			name = "xsactivity.ActivityNewCharacterLayer"
+		},
+		[ModuleSub.ePve] = {
+			name = "pve.PveChapterListLayer"
+		},
+		[ModuleSub.ePveMoppingUp] = {
+			name = "pve.PveChapterListLayer"
+		},
+		[ModuleSub.eCityWar] = {
+			name = "citywar.CityWarHomeLayer"
+		},
+		[ModuleSub.eHero] = {
+			name = "hero.HeroListLayer"
+		},
+		[ModuleSub.eBiWu] = {
+			name = "bwld.BwldHomeLayer"
+		},
+		[ModuleSub.eLeaguetopFinal] = function ()
+			slot0 = PlayerAttrObj:getPlayerAttrByName("LeaguetopfinalStatus")
+
+			if (not PlayerAttrObj:getPlayerAttrByName("LeaguetopfinalGroupId") or slot1 == 0) and slot0 == 2 then
+				ui.showFlashView(TR("本服前四帮派才可参与"))
+
+				return 
+			end
+
+			if slot0 == 1 then
+				return LayerManager.addLayer({
+					cleanUp = false,
+					name = "jzwl.JzwlWillOpenLayer",
+					data = {},
+					zOrder = Enums.ZOrderType.eMessageBox
+				})
+			elseif slot0 == 2 then
+				return LayerManager.addLayer({
+					cleanUp = true,
+					name = "jzwl.JzwlMainLayer",
+					data = {}
+				})
+			elseif slot0 == 3 or slot0 == 4 then
+				if not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+					ui.showFlashView(TR("未加入帮派无法进入"))
+
+					return 
+				end
+
+				return LayerManager.addLayer({
+					cleanUp = true,
+					name = "jzwl.JzwlHallOfFameLayer",
+					data = {}
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eEtly] = {
+			name = "etly.EtlyMainLayer"
+		},
+		[ModuleSub.eGuild] = function ()
+			slot0 = "guild.GuildHomeLayer"
+			slot1 = true
+
+			if not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+				slot0 = "guild.GuildCreateLayer"
+				slot1 = false
+			end
+
+			return LayerManager.addLayer({
+				name = slot0,
+				cleanUp = slot1
+			})
+		end,
+		[ModuleSub.eGuildBoss] = {
+			name = "guild.GuildBossChapterLayer"
+		},
+		[ModuleSub.eRepository] = {
+			cleanUp = false,
+			name = "home.FundsLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eRepositoryDiamondConsume] = {
+			cleanUp = false,
+			name = "home.FundsLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eRecuit] = {
+			name = "recruit.RecruitMainLayer"
+		},
+		[ModuleSub.eMarket] = {
+			name = "shop.ShopLayer"
+		},
+		[ModuleSub.eMarketNormal] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eMarketNormal
+			}
+		},
+		[ModuleSub.eMarketMateria] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eMarketMateria
+			}
+		},
+		[ModuleSub.eMarketFeats] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eMarketFeats
+			}
+		},
+		[ModuleSub.eMarketGuild] = function ()
+			if Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+				LayerManager.addLayer({
+					name = "guild.GuildShopLayer"
+				})
+			else
+				ui.showFlashView(TR("请先加入帮派"))
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "guild.GuildCreateLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eMarketTreasure] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eMarketTreasure
+			}
+		},
+		[ModuleSub.ePvpShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.ePvpShop
+			}
+		},
+		[ModuleSub.eStoreExpedition] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eStoreExpedition
+			}
+		},
+		[ModuleSub.eStoreDwdh] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eStoreDwdh
+			}
+		},
+		[ModuleSub.eEtlyShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eEtlyShop
+			}
+		},
+		[ModuleSub.eEquipShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eEquipShop
+			}
+		},
+		[ModuleSub.eGemShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eGemShop
+			}
+		},
+		[ModuleSub.eMarketWuxue] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eWuxue
+			}
+		},
+		[ModuleSub.eLeaguetopShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eLeaguetopShop
+			}
+		},
+		[ModuleSub.eShenyuanShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eShenyuanShop
+			}
+		},
+		[ModuleSub.eLeaguetopFinalShop] = {
+			name = "shop.ShopLayer",
+			data = {
+				moduleId = ModuleSub.eLeaguetopFinalShop
+			}
+		},
+		[ModuleSub.eFormation] = {
+			name = "hero.HeroListLayer"
+		},
+		[ModuleSub.eHeroLv] = {
+			name = "hero.HeroListLayer"
+		},
+		[ModuleSub.eHeroTrain] = {
+			name = "hero.HeroListLayer"
+		},
+		[ModuleSub.eHeroStar] = {
+			name = "hero.HeroListLayer"
+		},
+		[ModuleSub.eWuxue] = function ()
+			if 0 < #HeroObj:getSortList() then
+				LayerManager.addLayer({
+					name = "hero.HeroMainLayer",
+					data = {
+						moduleId = ModuleSub.eWuxue
+					}
+				})
+			else
+				ui.showFlashView(TR("未获取侠客不能跳转到武学页面"))
+			end
+
+			return 
+		end,
+		[ModuleSub.eHomepageFaction] = {
+			name = "home.HomeLayer"
+		},
+		[ModuleSub.eGuildMission] = {
+			name = "citywar.CityWarHomeLayer"
+		},
+		[ModuleSub.eVipGift] = {
+			name = "recharge.PrivilegeLayer"
+		},
+		[ModuleSub.eTimedExpShop] = {
+			cleanUp = false,
+			name = "activity.LvUpStoreLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eDailyTask] = {
+			cleanUp = false,
+			name = "dailytask.DailyTaskLayer",
+			popRestore = true,
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eChasing] = {
+			name = "chasing.ChasingMainLayer"
+		},
+		[ModuleSub.eHegemony] = {
+			name = "hegemony.HegemonyMainLayer"
+		},
+		[ModuleSub.eQunxia] = {
+			name = "renwuliezhuan.RenWuLiezhuanMainLayer"
+		},
+		[ModuleSub.ePrivilegeCard] = {
+			cleanUp = false,
+			name = "activity.PrivilegeCardLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eExtraActivitSpCard] = {
+			name = "activity.ActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eExtraActivitSpCard
+			}
+		},
+		[ModuleSub.eTimedLuckDraw] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedLuckDraw
+			}
+		},
+		[ModuleSub.eLoadReward] = {
+			name = "activity.ActivitySubSevendayRewardLayer"
+		},
+		[ModuleSub.eLimitGiftStrategy] = {
+			cleanUp = false,
+			name = "strategy.TimedGiftStrategyLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eLimitGiftTitle] = {
+			cleanUp = false,
+			name = "player.TimedGiftTitleLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eFashionGift] = {
+			cleanUp = false,
+			name = "player.TimedGiftFashionLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eNewKongfuGift] = {
+			cleanUp = false,
+			name = "hero.TimedGiftKongFuLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eMainTask] = {
+			cleanUp = false,
+			name = "home.YTWLTaskMainLayer",
+			popRestore = true,
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eExtraActivitRetrieve] = {
+			name = "activity.ActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eExtraActivitRetrieve
+			}
+		},
+		[ModuleSub.eChargeBag] = {
+			name = "xsactivity.ActivityDayChargeGiftLayer"
+		},
+		[ModuleSub.eTimedContinuousCharge] = {
+			cleanUp = false,
+			name = "activity.ActivityLianChongFanLiLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eWishTree] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eWishTree
+			}
+		},
+		[ModuleSub.eMiaoSha] = {
+			cleanUp = false,
+			name = "xsactivity.ActivityMiaoshaLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eLuckyturntable] = {
+			name = "xsactivity.ActivityTurnTableLayer"
+		},
+		[ModuleSub.eExtraActivitCompetition] = {
+			name = "activity.ActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eExtraActivitCompetition
+			}
+		},
+		[ModuleSub.eOnlineReward] = {
+			name = "activity.ActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eOnlineReward
+			}
+		},
+		[ModuleSub.eShengyuanWars] = {
+			name = "feiji.FeiJiStartLayer"
+		},
+		[ModuleSub.eAircraft] = {
+			name = "aircraft.AircraftStartLayer"
+		},
+		[ModuleSub.eShengyuanOfflineMatch] = {
+			cleanUp = false,
+			name = "feiji.FeiJiHangUpLayer",
+			zOrder = Enums.ZOrderType.ePopLayer + 10
+		},
+		[ModuleSub.eIcefire] = {
+			name = "bhd.BhdEntryLayer"
+		},
+		[ModuleSub.eDiligent] = {
+			name = "recharge.RechargeHomeLayer",
+			data = {
+				moduleId = ModuleSub.eDiligent
+			}
+		},
+		[ModuleSub.eTeQuanKa] = {
+			name = "recharge.RechargeHomeLayer",
+			data = {
+				moduleId = ModuleSub.eTeQuanKa
+			}
+		},
+		[ModuleSub.eTimedServerChargeRank] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedServerChargeRank
+			}
+		},
+		[ModuleSub.eTimedHawkGift] = {
+			name = "activity.ActivityHawkGiftLayer"
+		},
+		[ModuleSub.eTimedPuzzlematch] = {
+			name = "xsactivity.JigsawPuzzleLayer"
+		},
+		[ModuleSub.eUnderground] = {
+			name = "conspiracy.ConspiracyMainLayer"
+		},
+		[ModuleSub.eAchievementTask] = {
+			cleanUp = false,
+			name = "achievement.AchieveMainLayer"
+		},
+		[ModuleSub.eFriend] = {
+			cleanUp = false,
+			name = "haoyou.ContactsLayer"
+		},
+		[ModuleSub.eQinXiu] = {
+			name = "xsactivity.QinxiuRoadLayer"
+		},
+		[ModuleSub.eCharge] = {
+			name = "recharge.RechargeHomeLayer"
+		},
+		[ModuleSub.eTimedPlay] = {
+			cleanUp = false,
+			name = "xsactivity.XSPlayerMainLayer"
+		},
+		[ModuleSub.eTimedPointsMall] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedPointsMall
+			}
+		},
+		[ModuleSub.eFirstCharge] = {
+			cleanUp = false,
+			name = "recharge.FirstRechargeLayer",
+			popRestore = true,
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eWorldBoss] = {
+			cleanUp = false,
+			name = "mjrq.MjrqOpenTipsLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.ePvePrice] = {
+			cleanUp = false,
+			name = "pve.PveAutoHookLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.ePveOnlinReward] = {
+			cleanUp = false,
+			name = "pve.PveAutoHookLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eLeaderBoard] = {
+			name = "home.RankListLayer.lua"
+		},
+		[ModuleSub.eBulletin] = {
+			cleanUp = false,
+			name = "home.NoticeLayer",
+			zOrder = Enums.ZOrderType.eAnnounce
+		},
+		[ModuleSub.eEventChallengePoint] = {
+			name = "xsactivity.ActivityEventChallengeLayer"
+		},
+		[ModuleSub.eWorldNumOne] = function ()
+			slot1 = Player:getCurrentTime()
+
+			if PlayerAttrObj:getPlayerAttrByName("WorldnumoneOpenTime") == nil or slot0 <= slot1 or RedDotObj:isValid(ModuleSub.eWorldNumOne, "IsOpen") then
+				return LayerManager.addLayer({
+					name = "pvp.WorldBestHomeLayer"
+				})
+			else
+				return LayerManager.addLayer({
+					cleanUp = false,
+					name = "pvp.DlgWorldBestStartTipsLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eUniverseNumOne] = function ()
+			slot1 = Player:getCurrentTime()
+
+			if (PlayerAttrObj:getPlayerAttrByName("UniversenumoneSeasonEndTime") or 0) == nil or slot1 <= slot0 then
+				return LayerManager.addLayer({
+					name = "crowns.CrownsHomeLayer"
+				})
+			else
+				return LayerManager.addLayer({
+					cleanUp = false,
+					name = "crowns.DlgCrownsStartTipsLayer",
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eNewFirstChager] = function ()
+			if PlayerAttrObj:getPlayerAttrByName("IsChargeNewFirstGift") ~= 2 then
+				return LayerManager.addLayer({
+					name = "recharge.NewFirstRechargeRewardLayer"
+				})
+			end
+
+			return 
+		end,
+		[ModuleSub.eExtraActivity] = {
+			name = "activity.ActivityMainLayer"
+		},
+		[ModuleSub.eTimedActivity] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1
+			}
+		},
+		[ModuleSub.eCommonHoliday] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 3
+			}
+		},
+		[ModuleSub.eChristmas] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 2
+			}
+		},
+		[ModuleSub.ePveShop] = {
+			cleanUp = false,
+			name = "pve.PveTimeLimitStoreLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eFunctionOpen] = function ()
+			slot0 = {}
+
+			for slot4, slot5 in pairs(clone(FunctionOpenConfig.items)) do
+				slot5.openLv = ModuleSubConfig.items[slot4].openLv
+
+				table.insert(slot0, slot5)
+			end
+
+			table.sort(slot0, function (slot0, slot1)
+				return slot0.openLv < slot1.openLv
+			end)
+
+			return LayerManager.addLayer({
+				cleanUp = false,
+				name = "home.FunctionsOpenLayer",
+				data = {
+					config = slot0
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+		end,
+		[ModuleSub.ePVPMainModule] = {
+			name = "challenge.ChallengeLayer"
+		},
+		[ModuleSub.ePVEMainModule] = {
+			name = "experience.ExperienceLayer"
+		},
+		[ModuleSub.eHeroTalent] = {
+			name = "hero.HeroMainLayer"
+		},
+		[ModuleSub.eMissDragon] = {
+			cleanUp = false,
+			name = "activity.MissDragonLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eBag] = {
+			name = "bag.BagLayer"
+		},
+		[ModuleSub.eFashion] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eFashion
+			}
+		},
+		[ModuleSub.eTreasure] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eTreasure
+			}
+		},
+		[ModuleSub.eBagua] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eBagua
+			}
+		},
+		[ModuleSub.eGem] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eGem
+			}
+		},
+		[ModuleSub.eMount] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eMount
+			}
+		},
+		[ModuleSub.eSkin] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.eSkin
+			}
+		},
+		[ModuleSub.ePosition] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.ePosition
+			}
+		},
+		[ModuleSub.ePracticeBody] = {
+			name = "player.PlayerMainLayer",
+			data = {
+				defaultModuleId = ModuleSub.ePracticeBody
+			}
+		},
+		[ModuleSub.eMergedActivity] = {
+			name = "xsactivity.MergeSeverActivityLayer",
+			data = {
+				eType = 1
+			}
+		},
+		[ModuleSub.eClassOverActivity] = {
+			name = "xsactivity.MergeSeverActivityLayer",
+			data = {
+				eType = 2
+			}
+		},
+		[ModuleSub.eMergedVegetables] = {
+			name = "xsactivity.MergeSeverActivityLayer",
+			data = {
+				eType = 1
+			}
+		},
+		[ModuleSub.eClassOverVegetables] = {
+			name = "xsactivity.MergeSeverActivityLayer",
+			data = {
+				eType = 2
+			}
+		},
+		[ModuleSub.eHerosMap] = {
+			name = "home.HerosMapLayer",
+			data = {}
+		},
+		[ModuleSub.eTujian] = {
+			name = "home.IllustratedHeroLayer",
+			data = {}
+		},
+		[ModuleSub.eTimeLimitRecruit] = {
+			name = "recruit.RecruitMainLayer"
+		},
+		[ModuleSub.eLegendRecuit] = {
+			name = "recruit.LegendRecruitLayer"
+		},
+		[ModuleSub.eDart] = {
+			name = "crossServerFunction.BlessedSpotLayer"
+		},
+		[ModuleSub.eSect] = function ()
+			if PlayerAttrObj:getPlayerAttrByName("SectId") and slot0 ~= 0 then
+				return LayerManager.addLayer({
+					cleanUp = true,
+					name = "sect.SectLayer",
+					data = {
+						selectTag = 1
+					}
+				})
+			end
+
+			return LayerManager.addLayer({
+				cleanUp = false,
+				name = "sect.SectEnterLayer",
+				data = {
+					sectID = math.random(1, 4)
+				}
+			})
+		end,
+		[ModuleSub.eSectMove] = function ()
+			if PlayerAttrObj:getPlayerAttrByName("SectId") and slot0 ~= 0 then
+				return LayerManager.addLayer({
+					cleanUp = true,
+					name = "sect.SectLayer",
+					data = {
+						selectTag = 4
+					}
+				})
+			end
+
+			return LayerManager.addLayer({
+				cleanUp = false,
+				name = "sect.SectEnterLayer",
+				data = {
+					sectID = math.random(1, 4)
+				}
+			})
+		end,
+		[ModuleSub.eSectTask] = function ()
+			if PlayerAttrObj:getPlayerAttrByName("SectId") and slot0 ~= 0 then
+				return LayerManager.addLayer({
+					cleanUp = true,
+					name = "sect.SectLayer",
+					data = {
+						selectTag = 3
+					}
+				})
+			end
+
+			return LayerManager.addLayer({
+				cleanUp = false,
+				name = "sect.SectEnterLayer",
+				data = {
+					sectID = math.random(1, 4)
+				}
+			})
+		end,
+		[ModuleSub.eStrong] = function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "strong.StrongerLayer",
+				data = {}
+			})
+
+			return 
+		end,
+		[ModuleSub.eEmail] = function ()
+			return LayerManager.addLayer({
+				cleanUp = true,
+				name = "mail.MailLayer",
+				data = {}
+			})
+		end,
+		[ModuleSub.eBoundary] = {
+			name = "swxy.SwxyMainLayer"
+		},
+		[ModuleSub.eBaixiaosheng] = {
+			name = "bxs.BxsLayer"
+		},
+		[ModuleSub.eTimedLuckyTurntableNew] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedLuckyTurntableNew
+			}
+		},
+		[ModuleSub.eFamousPavilion] = {
+			name = "xsactivity.ActivityRecruitLayer"
+		},
+		[ModuleSub.eDaychargeLuxurygift] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eDaychargeLuxurygift
+			}
+		},
+		[ModuleSub.eTimedUseTotal] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedUseTotal
+			}
+		},
+		[ModuleSub.eWorldSecret] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eWorldSecret
+			}
+		},
+		[ModuleSub.eEventChallenge] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eEventChallenge
+			}
+		},
+		[ModuleSub.eJlbz] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eJlbz
+			}
+		},
+		[ModuleSub.eWulinTreasure] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eWulinTreasure
+			}
+		},
+		[ModuleSub.eTimedChargeSingle] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedChargeSingle
+			}
+		},
+		[ModuleSub.eTimedChargeTotal] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedChargeTotal
+			}
+		},
+		[ModuleSub.eChargeDays] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eChargeDays
+			}
+		},
+		[ModuleSub.eTimedTotalConsume] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				activityType = 1,
+				moduleId = ModuleSub.eTimedTotalConsume
+			}
+		},
+		[ModuleSub.eTimedAcumulateLogin] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedAcumulateLogin
+			}
+		},
+		[ModuleSub.eTimedHolidayOutput] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedHolidayOutput
+			}
+		},
+		[ModuleSub.eTimedLimitedExchange] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedLimitedExchange
+			}
+		},
+		[ModuleSub.eDiscount] = {
+			name = "recharge.RechargeHomeLayer",
+			data = {
+				moduleId = ModuleSub.eDiscount
+			}
+		},
+		[ModuleSub.eDice] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eDice
+			}
+		},
+		[ModuleSub.eResConsuming] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eResConsuming
+			}
+		},
+		[ModuleSub.eTimedWeekendPurchase] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedWeekendPurchase
+			}
+		},
+		[ModuleSub.eTimedUniverseTurntable] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedUniverseTurntable
+			}
+		},
+		[ModuleSub.eTimedActiveChallenge] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedActiveChallenge
+			}
+		},
+		[ModuleSub.eChargeDaysChristmas] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eChargeDaysChristmas
+			}
+		},
+		[ModuleSub.eTimedAcumulateLoginChristmas] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedAcumulateLoginChristmas
+			}
+		},
+		[ModuleSub.eTimedLimitedExchangeChristmas] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedLimitedExchangeChristmas
+			}
+		},
+		[ModuleSub.eChargeDaysCommon] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eChargeDaysCommon
+			}
+		},
+		[ModuleSub.eTimedAcumulateLoginCommon] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedAcumulateLoginCommon
+			}
+		},
+		[ModuleSub.eTimedLimitedExchangeCommon] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedLimitedExchangeCommon
+			}
+		},
+		[ModuleSub.eTimedMountExchange] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedMountExchange
+			}
+		},
+		[ModuleSub.eTeamCopy] = {
+			name = "teamCopy.TeamCopyMainNewLayer"
+		},
+		[ModuleSub.eTimedDayDayCharge] = {
+			cleanUp = false,
+			name = "xsactivity.ActivityDailyChargeLayer"
+		},
+		[ModuleSub.eTimedGodsoldier] = {
+			name = "xsactivity.XSActivityMainLayer",
+			data = {
+				moduleId = ModuleSub.eTimedGodsoldier
+			}
+		},
+		[ModuleSub.eTerritory] = {
+			name = "manor.ManorMainLayer"
+		},
+		[ModuleSub.eNationalHero] = {
+			name = "xsactivity.ActivityLegendFashionLayer"
+		},
+		[ModuleSub.eTriggerGift] = {
+			cleanUp = false,
+			name = "xsactivity.ActivityTriggerGiftLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eSuperDailyGift] = {
+			cleanUp = false,
+			name = "recharge.RechargeRebateLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eMercenary] = {
+			cleanUp = false,
+			name = "mercenary.MercenaryLayer"
+		},
+		[ModuleSub.eArmsBook] = {
+			cleanUp = true,
+			name = "meet.WeaponSpectrumLayer"
+		},
+		[ModuleSub.eTimedReservationReward] = {
+			cleanUp = false,
+			name = "xsactivity.ActivityTimedOrderInfoGiftLayer",
+			zOrder = Enums.ZOrderType.ePopLayer
+		},
+		[ModuleSub.eAuction] = {
+			name = "paimai.PaimaiHomeLayer"
+		},
+		[ModuleSub.eQixiActivity] = {
+			name = "specialActivity.ActivityQiXiMainLayer"
+		},
+		[ModuleSub.eQixiCharacter] = {
+			name = "specialActivity.ActivityLoginGiftLayer"
+		},
+		[ModuleSub.eQixiExchange] = {
+			name = "specialActivity.ActivityQiXiShopLayer"
+		},
+		[ModuleSub.eQixiRecruit] = {
+			name = "specialActivity.ActivityCourtesyLayer"
+		},
+		[ModuleSub.eQixiStrain] = {
+			name = "specialActivity.ActivityCourtesyLayer",
+			data = {
+				defaultTag = 2
+			}
+		}
+	},
+	navigateSecondResList = {
+		["formation.FormationHomeLayer"] = ResourceTypeSub.eGold
+	},
+	rootList = {
+		"home.HomeLayer"
+	}
+}

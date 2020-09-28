@@ -1,0 +1,446 @@
+slot0 = class("ShopExpeditionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 104.69,
+						y = 17.58
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {
+					{
+						name = "mTemplateGrid",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled9-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled6-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled7-initParams",
+								name = "cardParams",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 200,
+								y = 200
+							}
+						},
+						children = {
+							{
+								name = "untitled13",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0.31,
+										y = 106.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0,
+										y = -6.91
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "nameLabel",
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 1.44,
+										y = 93.99
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 1,
+										y = 26.48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "button",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 2,
+										y = -87.05
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "ResLabel",
+								params = {
+									fontSize = 20,
+									modelId = 1111,
+									num = 0,
+									childName = "priceLabel",
+									pos = {
+										x = -33.88,
+										y = -54.18
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									childName = "progressLabel",
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0.09,
+										y = -28.43
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "sc_19.png",
+					clickAction = "onRefreshAction",
+					pos = {
+						x = 501.48,
+						y = -237.55
+					}
+				},
+				children = {}
+			},
+			{
+				name = "refreshCountLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					emptyInit = true,
+					isRichText = true,
+					text = "Label",
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 374.67,
+						y = -278.29
+					}
+				},
+				children = {}
+			},
+			{
+				name = "refreshPriceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					hide = true,
+					text = "Label",
+					isRichText = true,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 502.89,
+						y = -296.7
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.mShopFreeRefreshCount = 0
+	slot0.mShopVipRefreshCount = 0
+	slot0.mDataList = {}
+
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshRefreshLabel = function (slot0)
+	slot0.refreshCountLabel:setVisible(slot0.mShopFreeRefreshCount < NewexpeditionConfig.items[1].shopFreeRefreshNum)
+	slot0.refreshPriceLabel:setVisible(slot2 <= slot0.mShopFreeRefreshCount)
+
+	if slot0.mShopFreeRefreshCount < slot2 then
+		slot0.refreshModel = nil
+
+		slot0.refreshCountLabel:setString(TR("免费次数: %s%s", "#258711", slot2 - slot0.mShopFreeRefreshCount))
+	else
+		slot0.refreshModel = Utility.analysisStrResList(slot1.shopRefreshNeed)[1]
+		slot0.refreshModel.num = slot0.refreshModel.num*(math.ceil(slot0.mShopVipRefreshCount/2) + 1)
+
+		slot0.refreshPriceLabel:setString(string.format("{%s}%s%s", Resource.getDaibiImg(slot0.refreshModel.resourceId), (slot0.refreshModel.num <= Resource.getCount(slot0.refreshModel.resourceId) and "#258711") or "#EA2C00", slot0.refreshModel.num))
+	end
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if slot0.mDataList[slot2] == nil then
+		return 
+	end
+
+	slot7, slot13 = Utility.getColorValue(Resource.getColorLv(Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].goodStr)[1].resourceId))
+
+	slot0.createLayoutTemplateNode(slot0, "mTemplateGrid", {
+		goodId = NewexpeditionShopConfig.items[slot3.Id].Id,
+		cardParams = {
+			cardInfo = {
+				modelId = Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].goodStr)[1].resourceId,
+				num = Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].goodStr)[1].num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = slot8 .. Resource.getName(Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].goodStr)[1].resourceId)
+	}).priceLabel:setString(Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].buyNeedStr)[1].num, (Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].buyNeedStr)[1].num <= Resource.getCount(Utility.analysisStrResList(NewexpeditionShopConfig.items[slot3.Id].buyNeedStr)[1].resourceId) and cc.c3b(37, 135, 17)) or cc.c3b(234, 44, 0))
+	slot9.priceLabel:setType(slot6.resourceId)
+	slot9.button:setEnabled(0 < slot0.getRemainCount(slot0, slot4))
+	slot9.setPosition(slot9, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot9)
+	ui.createLabelClipRoll({
+		label = slot9.nameLabel,
+		dimensions = cc.size(cc.size(150, 30).width + 10, cc.size(150, 30).height),
+		anchorPoint = cc.p(0.5, 0.5),
+		position = cc.p(95, 263)
+	})
+
+	if HeroModel.items[(GoodsModel.items[slot5.resourceId] and GoodsModel.items[slot12].outputModelID) or 0] then
+		slot9.progressLabel:setVisible(true)
+
+		slot14 = ""
+		slot15 = ""
+		slot17 = GoodsObj:getItemCount(slot12)
+
+		if HeroObj:getItem(slot13) and next(slot16) then
+			if HeroStarRelation.items[slot13][slot16.Star + 1] == nil then
+				slot14 = TR("星级已满")
+				slot15 = slot17
+			else
+				slot14 = TR("升星")
+				slot15 = TR("%s/%s", slot17, slot18.needDebrisNum)
+			end
+		else
+			slot14 = TR("合成")
+			slot15 = TR("%s/%s", slot17, GoodsModel.items[slot12].outputNeedNum)
+		end
+
+		slot9.progressLabel:setString(TR("%s: %s", slot14, slot15))
+	else
+		slot9.progressLabel:setVisible(false)
+	end
+
+	return 
+end
+slot0.onRefreshAction = function (slot0, slot1)
+	if slot0.refreshModel ~= nil then
+		if Resource.isEnough(slot0.refreshModel.resourceId, slot0.refreshModel.num) == false then
+			return 
+		end
+
+		slot0.requestRefresh(slot0, false)
+	else
+		slot0.requestRefresh(slot0, true)
+	end
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	if NewexpeditionShopConfig.items[slot1.goodId] == nil then
+		return 
+	end
+
+	if Resource.isEnough(Utility.analysisStrResList(slot2.buyNeedStr)[1].resourceId, Utility.analysisStrResList(slot2.buyNeedStr)[1].num) == false then
+		return 
+	end
+
+	slot0.requestBuy(slot0, slot2.Id)
+
+	return 
+end
+slot0.getRemainCount = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.mDataList) do
+		if slot1.Id == slot7.Id then
+			slot2 = slot7.BuyCount
+
+			break
+		end
+	end
+
+	return slot1.buyNum - slot2
+end
+slot0.dealWithResponseData = function (slot0, slot1)
+	slot0.mDataList = slot1.ShopBuyRecord
+	slot0.mShopFreeRefreshCount = slot1.ShopRefreshCount
+	slot0.mShopVipRefreshCount = slot1.ShopVipRefreshCount
+
+	slot0.refreshRefreshLabel(slot0)
+	slot0.mGridView:setItemNum(#slot0.mDataList)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetShopInfo",
+		moduleName = "Expedition",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+			slot0:dealWithResponseData(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefresh = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopRefresh",
+		moduleName = "Expedition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:dealWithResponseData(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ShopBuy",
+		moduleName = "Expedition",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			slot0:dealWithResponseData(slot0)
+			ui.showFlashView(TR("购买成功"))
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

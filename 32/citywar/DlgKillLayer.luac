@@ -1,0 +1,544 @@
+slot0 = class("DlgKillLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopAction",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("门派杀敌")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 432.95,
+						y = 297.75
+					},
+					size = {
+						width = 776,
+						height = 358
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "jh_13.png",
+					pos = {
+						x = 142.81,
+						y = 293.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "jh_12.png",
+					pos = {
+						x = 490.08,
+						y = 438.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "tb_gn_56.png",
+					clickAction = "onRankListClick",
+					pos = {
+						x = 780.67,
+						y = 433
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mBtnKillReward",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					pos = {
+						x = 544.09,
+						y = 73.74
+					},
+					titleText = TR("领取")
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "RedDot",
+						params = {
+							moduleId = 5402
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mMyRankLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					text = "",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 298,
+						y = 341.77
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mRewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 537.94,
+						y = 129.98
+					},
+					size = {
+						width = 400,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "mTemplateRewardCell",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled18-initParams",
+								name = "initParams",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 100,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 50,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "noLvLabel",
+				cType = "Label",
+				params = {
+					fontSize = 28,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 593.18,
+						y = 161.46
+					},
+					text = TR("等级达到可解锁更多奖励")
+				},
+				children = {}
+			},
+			{
+				name = "noRewardLabel",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 593.18,
+						y = 206.46
+					},
+					text = TR("今日奖励已领完")
+				},
+				children = {}
+			},
+			{
+				name = "barSp",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "guildLv",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							text = "fadsfasdf",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 298,
+								y = 300.83
+							}
+						},
+						children = {}
+					},
+					{
+						name = "bar",
+						cType = "ProgressBar",
+						params = {
+							normalImage = "jyt_34.png",
+							bgImage = "jyt_33.png",
+							pos = {
+								x = 542.89,
+								y = 301.06
+							}
+						},
+						children = {}
+					},
+					{
+						name = "levelUpBtn",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onLvUpBtnAction",
+							pos = {
+								x = 763.49,
+								y = 301.06
+							},
+							titleText = TR("升级")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "barLabel",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					text = "",
+					pos = {
+						x = 552.84,
+						y = 299.06
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.bar:setScaleX(0.5)
+	slot0.levelUpBtn:setScale(0.8)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {}
+	slot2 = {}
+
+	for slot6, slot7 in pairs(CitywarKillDailyrewardConfig.items) do
+		table.insert(slot1, slot7)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.killNum < slot1.killNum
+	end)
+
+	slot0.dailyKillRewardList = slot1
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if slot0.mKillData == nil then
+		return 
+	end
+
+	slot1 = ""
+	slot2 = 0
+	slot3 = 0
+	slot4 = false
+	slot5 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	if 1 < #string.split(slot0.mKillData.ReceiveKillNum, ",") then
+		table.sort(slot6, function (slot0, slot1)
+			return tonumber(slot0) < tonumber(slot1)
+		end)
+	end
+
+	slot7 = tonumber(slot6[#slot6])
+
+	if slot0.mKillData.ReceiveKillNum == "" then
+		slot3 = slot0.dailyKillRewardList[1].needLv
+		slot2 = slot0.dailyKillRewardList[1].killNum
+		slot1 = slot0.dailyKillRewardList[1].reward
+
+		if slot0.getExpConfig(slot0)[slot0.dailyKillRewardList[1].expRewardID] then
+			slot1 = string.format("%s||%s", slot9[slot8].reward, slot1)
+
+			if string.format("%s||%s", slot9[slot8].reward, slot1) then
+			end
+		end
+	elseif slot7 == slot0.dailyKillRewardList[#slot0.dailyKillRewardList].killNum then
+		slot3 = 0
+		slot2 = slot7
+		slot1 = ""
+		slot4 = true
+	else
+		for slot11, slot12 in ipairs(slot0.dailyKillRewardList) do
+			if slot7 < slot12.killNum then
+				slot3 = slot12.needLv
+				slot2 = slot12.killNum
+				slot1 = slot12.reward
+
+				if slot0.getExpConfig(slot0)[slot12.expRewardID] then
+					slot1 = string.format("%s||%s", slot14[slot13].reward, slot1)
+
+					break
+				end
+
+				break
+			end
+		end
+	end
+
+	if (slot0.mKillData.RandNum or 0) == 0 then
+		slot8 = TR("未上榜")
+	end
+
+	slot0.mMyRankLabel:setString(TR("当前排名:%s        我的杀敌:%s/%s", slot8, slot0.mKillData.KillNum, slot2))
+	slot0.mBtnKillReward:setEnabled(slot2 <= slot0.mKillData.KillNum and not slot4 and slot3 <= slot5)
+	slot0.mBtnKillReward:setClickAction(function ()
+		slot0:requestMineReward(slot0)
+
+		return 
+	end)
+
+	slot11 = (#Utility.analysisStrResList(slot1) <= 4 and slot0.mBtnKillReward*120) or 540
+
+	slot0.noRewardLabel:setPositionY((slot5 < slot3 and 205) or 180)
+	slot0.noLvLabel:setString(TR("等级达到%s可解锁更多奖励", slot3))
+	slot0.noLvLabel:setVisible(slot5 < slot3)
+	slot0.noRewardLabel:setVisible(slot5 < slot3 or slot0.mBtnKillReward == 0)
+	slot0.mRewardListView:removeAllItems()
+
+	if slot3 <= slot5 then
+		slot0.mRewardListView:setContentSize(cc.size(slot11, 135))
+
+		for slot15, slot16 in ipairs(slot9) do
+			slot0.mRewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mTemplateRewardCell", {
+				initParams = {
+					cardInfo = {
+						modelId = slot16.resourceId,
+						num = slot16.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eName,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	end
+
+	slot0.refreshBar(slot0)
+
+	return 
+end
+slot0.getExpConfig = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot2 = 1
+	slot3 = {}
+
+	for slot7, slot8 in pairs(CitywarMonsterkillExpRelation.items) do
+		if slot2 <= slot7 and slot7 <= slot1 then
+			slot2 = slot7
+			slot3 = slot8
+		end
+	end
+
+	return slot3
+end
+slot0.refreshBar = function (slot0)
+	if Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+		slot0.barSp:setVisible(true)
+		slot0.guildLv:setString(TR("帮派等级%s", slot1.GuildLevel))
+
+		slot2 = false
+		slot2 = slot1.GuildLevel == #Utility.getConfigItems("GuildLvRelation")
+		slot4 = nil
+		slot0.isCanLvUp = (Utility.getConfigItems("GuildLvRelation")[slot1.GuildLevel].lvUpBankrollUse == "" or Utility.analysisStrResList(slot3.lvUpBankrollUse)[1]) and Utility.analysisStrResList(Utility.getConfigItems("GuildLvRelation")[1].lvUpBankrollUse)[1].num <= slot1.GuildFund
+		slot0.resourceId = (Utility.getConfigItems("GuildLvRelation")[slot1.GuildLevel].lvUpBankrollUse == "" or Utility.analysisStrResList(slot3.lvUpBankrollUse)[1]) and Utility.analysisStrResList(Utility.getConfigItems("GuildLvRelation")[1].lvUpBankrollUse)[1].resourceId
+
+		if slot2 then
+			slot0.bar:setCurrValue(100)
+			slot0.bar:setMaxValue(100)
+			slot0.barLabel:setString(TR("已达最高等级"))
+		else
+			slot0.bar:setCurrValue(slot1.GuildFund/slot4.num*100)
+			slot0.bar:setMaxValue(100)
+			slot0.barLabel:setString(TR("%s/%s", Utility.numberWithUnit(slot1.GuildFund), Utility.numberWithUnit(slot4.num)))
+		end
+	else
+		slot0.barSp:setVisible(false)
+	end
+
+	return 
+end
+slot0.onRankListClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "citywar.DlgKillRankListLayer",
+		zOrder = Enums.ZOrderType.ePopLayer,
+		data = {
+			data = slot0.mKillData
+		}
+	})
+
+	return 
+end
+slot0.onLvUpBtnAction = function (slot0, slot1)
+	if GuildPositionRelation.items[1][PlayerAttrObj:getPlayerAttrByName("GuildInfo").PositionId] or {}.ifLvUpGuild then
+		if #Utility.getConfigItems("GuildLvRelation") <= slot2.GuildLevel then
+			ui.showFlashView(TR("已达最高级"))
+
+			return 
+		end
+
+		if slot0.isCanLvUp then
+			if Player:getCurrentTime() < slot2.LvUpTime then
+				ui.showFlashView(TR("%s后可升级帮派", MqTime.completeFormat(slot2.LvUpTime - Player:getCurrentTime())))
+			else
+				slot0.requestGetApplyList(slot0)
+			end
+		else
+			ui.showFlashView(TR("%s不足", Resource.getName(slot0.resourceId)))
+		end
+	else
+		ui.showFlashView(TR("您当前职位没有此权限"))
+	end
+
+	return 
+end
+slot0.requestGetKillInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetDailyKillRank",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mKillData = clone(slot0)
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onPopAction = function (slot0)
+	slot0.requestGetKillInfo(slot0)
+
+	return 
+end
+slot0.requestMineReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ReceiveKillNumReward",
+		moduleName = "Citywar",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mKillData.ReceiveKillNum = slot0.CitywarInfo.ReceiveKillNum
+
+			slot0:refreshUI()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetApplyList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "UpgradeLv",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("升级成功!"))
+			slot0:refreshBar()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

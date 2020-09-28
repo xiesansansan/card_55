@@ -1,0 +1,572 @@
+slot0 = class("ActivityStarUpTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled21",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "jg_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "heroSprite",
+				cType = "Sprite",
+				params = {
+					image = "lh_12107.png",
+					hide = true,
+					scale = 0.75,
+					pos = {
+						x = -240.83,
+						y = -70.62
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_2.png",
+					pos = {
+						x = -239.45,
+						y = 218.5
+					},
+					size = {
+						width = 300,
+						height = 40
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 39,
+								y = 20
+							},
+							text = TR("活动倒计时:")
+						},
+						children = {}
+					},
+					{
+						name = "timeLabel",
+						cType = "Label",
+						params = {
+							text = "22:22:22",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 165,
+								y = 20
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled11",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_2.png",
+					pos = {
+						x = 276.08,
+						y = -32
+					}
+				},
+				children = {
+					{
+						name = "mTabView",
+						cType = "TabView",
+						params = {
+							selectTag = 1,
+							onSelectChange = "onTabChanged",
+							lightedImage = "cz_112.png",
+							direction = false,
+							delayInit = true,
+							normalImage = "cz_113.png",
+							btnInfos = {
+								{
+									title = TR("侠客")
+								},
+								{
+									title = TR("古")
+								}
+							},
+							pos = {
+								x = 33.52,
+								y = 461.18
+							},
+							size = {
+								width = 500,
+								height = 55
+							},
+							titleOffset = {
+								x = 0.5,
+								y = 0.4
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 20.58,
+								y = 32.47
+							},
+							size = {
+								width = 540,
+								height = 480
+							}
+						},
+						children = {
+							{
+								name = "taskNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -120
+									},
+									size = {
+										width = 540,
+										height = 120
+									}
+								},
+								children = {
+									{
+										name = "untitled14",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											pos = {
+												x = 270,
+												y = 60
+											},
+											size = {
+												width = 530,
+												height = 115
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											childName = "title",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 18,
+												y = 100
+											},
+											text = TR("再充值")
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											childName = "btn",
+											pos = {
+												x = 460,
+												y = 45
+											},
+											titleText = TR("领取")
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "ListView",
+										params = {
+											childName = "cardNodeList",
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 12.51,
+												y = 7.04
+											},
+											size = {
+												width = 380,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "cardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled19-initParams",
+														name = "cardParams",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 80,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "untitled19",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															childName = "cardNode",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 40,
+																y = 40
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eTimedStarUpTask)
+	slot0.mSelectTag = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+	slot0.createTimeInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.initWithData = function (slot0)
+	slot3, slot4 = Utility.getCampProfessionRoadImage(slot2)
+
+	slot0.heroSprite:setTexture(Resource.getModelInfo(slot1).drawingPicA .. ".png")
+	slot0.heroSprite:setVisible(false)
+
+	if slot0.heroEffect then
+		slot0.heroEffect:removeFromParent()
+
+		slot0.heroEffect = nil
+	end
+
+	if slot2.drawingPicB ~= "" then
+		if cc.FileUtils:getInstance():isFileExist(slot2.drawingPicB .. ".skel") then
+			slot5 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				scale = 0.55,
+				dataFile = slot2.drawingPicB
+			})
+
+			slot5.setPosition(slot5, cc.p(-208, -370))
+			slot0.centerNode:addChild(slot5, 0)
+
+			slot0.heroEffect = slot5
+		else
+			slot0.heroSprite:setVisible(true)
+		end
+	else
+		slot0.heroSprite:setVisible(true)
+	end
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 540, 120
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mActivityData[slot0.mSelectTag].taskInfo
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskNode")
+	slot3.refreshCell = function (slot0, slot1)
+		if slot0.mActivityData[slot0.mSelectTag].taskInfo[slot1 + 1].Status == 0 then
+			slot1.btn:setTitleText(TR("前 往"))
+			slot1.btn:loadTextures("c_27.png", "c_27.png")
+		elseif slot2.Status == 1 then
+			slot1.btn:setTitleText(TR("领 取"))
+			slot1.btn:loadTextures("c_32.png", "c_32.png")
+		elseif slot2.Status == 2 then
+			slot1.btn:setTitleText("")
+			slot1.btn:loadTextures("c_55.png", "c_55.png")
+		end
+
+		slot1.btn:setClickAction(function ()
+			if not HeroObj:isHaveModel(slot0.mActivityData[slot0.mSelectTag].heroModelId) then
+				ui.showFlashView(TR("请先获得%s", Resource.getName(slot0.mActivityData[slot0.mSelectTag].heroModelId)))
+
+				return 
+			end
+
+			if slot1.Status == 0 then
+				LayerManager.addLayer({
+					cleanUp = true,
+					name = "hero.HeroMainLayer",
+					data = {
+						defModelId = slot0.mActivityData[slot0.mSelectTag].heroModelId
+					}
+				})
+			else
+				slot0:requestDrawReward(slot1.TaskOrder)
+			end
+
+			return 
+		end)
+
+		slot3 = MaintaskModel.items[slot2.TaskModelId]
+
+		slot1.title:setString(slot2.Describe)
+		slot1.cardNodeList:removeAllChildren()
+
+		for slot8, slot9 in ipairs(slot4) do
+			slot1.cardNodeList:pushBackCustomItem(slot0:createLayoutTemplateNode("cardLayout", {
+				cardParams = {
+					cardInfo = {
+						modelId = slot9.resourceId,
+						num = slot9.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	slot0.mSelectTag = slot1
+
+	slot0.mTableView:reloadData()
+	slot0.initWithData(slot0)
+
+	return 
+end
+slot0.createTimeInfo = function (slot0)
+	slot1 = ActivityObj:getActivityInfo(ModuleSub.eTimedStarUpTask)
+	slot0.mTimeUpdate = Utility.schedule(slot0.timeLabel, function ()
+		if 0 < slot0[1].EndDate - Player:getCurrentTime() then
+			slot1.timeLabel:setString(MqTime.completeFormat(slot0))
+		elseif slot1.mTimeUpdate then
+			slot1.timeLabel:stopAllActions()
+
+			slot1.timeLabel.stopAllActions.mTimeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.creareTabs = function (slot0)
+	slot0.mTableView:setViewSize(cc.size(540, 430))
+
+	slot0.mBtnInfos = {}
+
+	for slot4, slot5 in ipairs(slot0.mActivityData) do
+		table.insert(slot0.mBtnInfos, {
+			title = Resource.getName(slot5.heroModelId),
+			tag = slot4,
+			heroModelId = slot5.heroModelId
+		})
+	end
+
+	slot0.createUISubTree(slot0, "mTabView", function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0.mBtnInfos
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eTimedStarUpTask,
+			subKey = tostring(slot0.mBtnInfos[slot5].heroModelId),
+			offset = cc.p(0.9, 0.8)
+		}))
+	end
+
+	slot0.mTabView:activeTabBtnByTag2(slot0.mSelectTag)
+
+	return 
+end
+slot0.handleData = function (slot0, slot1, slot2)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot1) do
+		table.insert(slot3, {
+			heroModelId = tonumber(slot7),
+			taskInfo = slot8
+		})
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		if slot0.heroModelId ~= slot1.heroModelId then
+			return slot0.heroModelId < slot1.heroModelId
+		end
+
+		return 
+	end)
+
+	for slot7, slot8 in ipairs(slot3) do
+		table.sort(slot8.taskInfo, function (slot0, slot1)
+			if slot0.Status == 1 ~= slot1.Status == 1 then
+				return slot0.Status == 1
+			end
+
+			if slot0.Status ~= slot1.Status then
+				return slot0.Status < slot1.Status
+			end
+
+			return slot0.TaskOrder < slot1.TaskOrder
+		end)
+	end
+
+	slot0.mActivityData = slot3
+
+	if slot2 then
+		slot0.mTableView:reloadData()
+	elseif 1 < #slot0.mActivityData then
+		slot0.creareTabs(slot0)
+	else
+		slot0.mTableView:reloadData()
+		slot0.initWithData(slot0)
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedStarUpTask",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			slot0:handleData(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "TimedStarUpTask",
+		methodData = {
+			slot0.mActivityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:handleData(slot0.TaskInfo, true)
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

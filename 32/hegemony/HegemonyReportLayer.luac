@@ -1,0 +1,771 @@
+slot0 = class("HegemonyReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onActionEnd",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 870,
+				height = 520
+			},
+			titleText = TR("战报")
+		},
+		children = {
+			{
+				name = "mReportListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 34,
+						y = 37
+					},
+					size = {
+						width = 800,
+						height = 430
+					}
+				},
+				children = {
+					{
+						name = "ReportLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 800,
+								height = 260
+							}
+						},
+						children = {
+							{
+								name = "summaryBg",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_34.png",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 400,
+										y = 260
+									},
+									size = {
+										width = 800,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "challengeTypeSprite",
+										cType = "Sprite",
+										params = {
+											image = "xyyz_17.png",
+											pos = {
+												x = 20,
+												y = 60
+											}
+										},
+										children = {}
+									},
+									{
+										name = "challengeTypeLabel",
+										cType = "Label",
+										params = {
+											pos = {
+												x = 24.37,
+												y = 67.09
+											},
+											size = {
+												width = 30,
+												height = 0
+											},
+											text = TR("挑战")
+										},
+										children = {}
+									},
+									{
+										name = "ownHead",
+										cType = "PlayerHeroNode",
+										params = {
+											scale = 0.8,
+											modelId = 19010000,
+											allowClick = false,
+											pos = {
+												x = 105,
+												y = 40
+											}
+										},
+										children = {}
+									},
+									{
+										name = "ownNameLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											pos = {
+												x = 105,
+												y = 82.33
+											},
+											text = TR("玩家名字")
+										},
+										children = {}
+									},
+									{
+										name = "winSprite",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_15.png",
+											pos = {
+												x = 135.08,
+												y = 58.32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerHead",
+										cType = "PlayerHeroNode",
+										params = {
+											scale = 0.8,
+											modelId = 19010000,
+											allowClick = false,
+											pos = {
+												x = 296,
+												y = 40
+											}
+										},
+										children = {}
+									},
+									{
+										name = "playerNameLabel",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											pos = {
+												x = 296,
+												y = 82.33
+											},
+											text = TR("玩家名字")
+										},
+										children = {}
+									},
+									{
+										name = "playerWinSprite",
+										cType = "Sprite",
+										params = {
+											scale = 0.5,
+											image = "xyyz_15.png",
+											pos = {
+												x = 326.08,
+												y = 58.32
+											}
+										},
+										children = {}
+									},
+									{
+										name = "duanLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 449.94,
+												y = 67.38
+											},
+											text = TR("当前积分：")
+										},
+										children = {}
+									},
+									{
+										name = "curScoreLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 449.94,
+												y = 37.38
+											},
+											text = TR("当前分数：")
+										},
+										children = {}
+									},
+									{
+										name = "changeScoreLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 449.94,
+												y = 7.38
+											},
+											text = TR("变化分数：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 687.75,
+												y = 50.41
+											},
+											text = TR("查看详情")
+										},
+										children = {}
+									},
+									{
+										name = "showBtn",
+										cType = "Button",
+										params = {
+											image = "c_4.png",
+											rotationAngle = -90,
+											clickAction = "onShowInfo",
+											pos = {
+												x = 730.42,
+												y = 27.45
+											},
+											size = {
+												width = 40,
+												height = 40
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled22",
+										cType = "Scale9Sprite",
+										params = {
+											image = "zd_46.png",
+											pos = {
+												x = 205.39,
+												y = 45.85
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "infoBg",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_24.png",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 400,
+										y = 155
+									},
+									size = {
+										width = 768,
+										height = 200
+									}
+								},
+								children = {
+									{
+										name = "InfoTemNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 16,
+												y = 85
+											},
+											size = {
+												width = 734,
+												height = 106
+											}
+										},
+										children = {
+											{
+												name = "untitled21",
+												cType = "Scale9Sprite",
+												params = {
+													image = "xyyz_38.png",
+													pos = {
+														x = 367,
+														y = 53
+													}
+												},
+												children = {}
+											},
+											{
+												name = "ownName",
+												cType = "Label",
+												params = {
+													anchor = {
+														x = 1,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 185,
+														y = 80
+													},
+													text = TR("玩家名字")
+												},
+												children = {}
+											},
+											{
+												name = "otherName",
+												cType = "Label",
+												params = {
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 565,
+														y = 80
+													},
+													text = TR("玩家名字")
+												},
+												children = {}
+											},
+											{
+												name = "ownWinSprite",
+												cType = "Sprite",
+												params = {
+													scale = 0.7,
+													image = "xyyz_15.png",
+													pos = {
+														x = 223.61,
+														y = 80
+													}
+												},
+												children = {}
+											},
+											{
+												name = "otherWinSprite",
+												cType = "Sprite",
+												params = {
+													scale = 0.7,
+													image = "xyyz_15.png",
+													pos = {
+														x = 517.69,
+														y = 80
+													}
+												},
+												children = {}
+											},
+											{
+												name = "indexSprite",
+												cType = "Sprite",
+												params = {
+													scale = 0.8,
+													image = "xyyz_19.png",
+													pos = {
+														x = 367,
+														y = 73
+													}
+												},
+												children = {}
+											},
+											{
+												name = "playBtn",
+												cType = "Button",
+												params = {
+													image = "xyyz_39.png",
+													clickAction = "onPlay",
+													pos = {
+														x = 367,
+														y = 23
+													}
+												},
+												children = {}
+											},
+											{
+												name = "ownHeroNode",
+												cType = "Node",
+												params = {
+													anchor = {
+														x = 0.5,
+														y = 0.5
+													},
+													pos = {
+														x = 149.96,
+														y = 30
+													},
+													size = {
+														width = 100,
+														height = 55
+													}
+												},
+												children = {}
+											},
+											{
+												name = "otherHeroNode",
+												cType = "Node",
+												params = {
+													anchor = {
+														x = 0.5,
+														y = 0.5
+													},
+													pos = {
+														x = 590.31,
+														y = 30
+													},
+													size = {
+														width = 100,
+														height = 55
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 849.94,
+						y = 499.44
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 445,
+						y = 277
+					},
+					text = TR("暂无战报")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mBattleReport = {}
+	slot0.mReportIndex = slot1.reportIndex
+	slot0.mOpenShow = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.actionRefresh = Utility.getCounterFunc(function ()
+		slot0:refreshUI()
+
+		if slot0.refreshUI.mReportIndex then
+			slot0:refreshReportItem(slot0.mReportIndex)
+			ui.setListviewItemShow(slot0.mReportListView, slot0.mReportIndex)
+		end
+
+		return 
+	end, 2)
+
+	slot0.requestReportInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if next(slot0.mBattleReport) then
+		slot0.refreshListView(slot0)
+	else
+		slot0.mEmptyHint:setVisible(true)
+	end
+
+	return 
+end
+slot0.getRestoreData = function (slot0)
+	return {
+		reportIndex = slot0.mReportIndex
+	}
+end
+slot0.refreshListView = function (slot0)
+	slot0.mReportListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mBattleReport) do
+		slot0.refreshReportItem(slot0, slot4)
+	end
+
+	return 
+end
+slot0.refreshReportItem = function (slot0, slot1)
+	slot2 = slot0.mBattleReport[slot1]
+
+	if slot0.mReportListView:getItem(slot1 - 1) then
+		slot0.mReportListView:removeItem(slot1 - 1)
+
+		slot0.mOpenShow[slot1] = not slot0.mOpenShow[slot1]
+	end
+
+	slot0.mReportListView:insertCustomItem(slot3, slot1 - 1)
+	slot0.createLayoutTemplateNode(slot0, "ReportLayout").playerWinSprite:setTexture((not slot2.IsWin and "xyyz_15.png") or "xyyz_16.png")
+	slot3.playerHead:setPlayerHeader(slot2.DefHeadImage)
+	slot3.playerNameLabel:setString(slot2.DefName)
+	slot3.winSprite:setTexture((slot2.IsWin and "xyyz_15.png") or "xyyz_16.png")
+	slot3.ownHead:setPlayerHeader(PlayerAttrObj:getPlayerAttrByName("HeadImageId"))
+	slot3.ownNameLabel:setString(PlayerAttrObj:getPlayerAttrByName("PlayerName"))
+
+	if (slot2.CurStep or 1) == 0 then
+		slot4 = 1
+	end
+
+	slot3.duanLabel:setString(TR("上次段位：%s", slot5))
+	slot3.curScoreLabel:setString(TR("上次分数：%s", slot2.CurScore))
+	slot3.changeScoreLabel:setString(TR("变化分数：%s", (0 < slot2.ChangeScore and "+" .. slot2.ChangeScore) or slot2.ChangeScore))
+
+	slot3.showBtn.reportIndex = slot1
+	slot6 = {}
+
+	if slot2.FightReportDetail and slot2.FightReportDetail ~= "" then
+		slot6 = cjson.decode(slot2.FightReportDetail)
+	end
+
+	slot3.infoBg:setContentSize(cc.size(768, slot7))
+
+	slot8 = {
+		"xyyz_19.png",
+		"xyyz_20.png",
+		"xyyz_21.png",
+		"xyyz_22.png",
+		"xyyz_23.png"
+	}
+
+	for slot12, slot13 in ipairs(slot6) do
+		slot14 = slot0.createLayoutTemplateNode(slot0, "InfoTemNode")
+
+		slot3.infoBg:addChild(slot14)
+		slot14.setPosition(slot14, 16, slot7 - slot12*110)
+		slot14.ownName:setString(PlayerAttrObj:getPlayerAttrByName("PlayerName"))
+		slot14.otherName:setString(slot2.DefName)
+		slot14.ownWinSprite:setTexture((slot13.IsWin and "xyyz_15.png") or "xyyz_16.png")
+		slot14.otherWinSprite:setTexture((not slot13.IsWin and "xyyz_15.png") or "xyyz_16.png")
+		slot14.indexSprite:setTexture(slot8[slot12])
+
+		slot14.playBtn.reportId = slot13.BattleReportId
+		slot14.playBtn.reportIndex = slot1
+
+		slot0.formationShow(slot0, slot14.ownHeroNode, slot13.OwnFormationInfo)
+		slot0.formationShow(slot0, slot14.otherHeroNode, slot13.TargetFormationInfo)
+
+		if slot0.mOpenShow[slot1] then
+			slot14.setVisible(slot14, false)
+			Utility.performWithDelay(slot14, function ()
+				slot0:setVisible(true)
+				slot1.rightMove(slot1.rightMove)
+				slot1.rightMove:moveListView(slot1.rightMove.moveListView)
+
+				return 
+			end, slot12*0.3)
+		end
+	end
+
+	if slot0.mOpenShow[slot1] then
+		slot3.setContentSize(slot3, cc.size(800, slot9))
+		slot3.summaryBg:setPosition(400, slot9)
+		slot3.infoBg:setPosition(400, (slot3.summaryBg:getContentSize().height + slot3.infoBg:getContentSize().height + 10) - slot3.summaryBg:getContentSize().height)
+		slot3.infoBg:setVisible(true)
+		slot3.showBtn:setRotation(90)
+	else
+		slot3.setContentSize(slot3, cc.size(800, slot9))
+		slot3.summaryBg:setPosition(400, slot9)
+		slot3.infoBg:setPosition(400, (slot3.summaryBg:getContentSize().height + 10) - slot3.summaryBg:getContentSize().height)
+		slot3.infoBg:setVisible(false)
+		slot3.showBtn:setRotation(-90)
+	end
+
+	return 
+end
+slot0.rightMove = function (slot0)
+	slot2, slot8 = slot0.getPosition(slot0)
+
+	slot0.setPosition(slot0, slot4, slot3)
+	slot0.runAction(slot0, cc.EaseBounceOut:create(slot5))
+
+	return 
+end
+slot0.moveListView = function (slot0, slot1)
+	if slot1.getParent(slot1):convertToWorldSpace(cc.p(slot1.getPosition(slot1))).y < slot0.mReportListView:getParent():convertToWorldSpace(cc.p(slot0.mReportListView:getPosition())).y then
+		slot0.mReportListView:getInnerContainer():runAction(cc.MoveBy:create(0.5, cc.p(0, slot1.getContentSize(slot1).height)))
+	end
+
+	return 
+end
+slot0.formationStrToList = function (slot0, slot1)
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		if 0 < tonumber(slot8) then
+			table.insert(slot3, tonumber(slot8))
+		end
+	end
+
+	return slot3
+end
+slot0.formationShow = function (slot0, slot1, slot2)
+	slot1.setContentSize(slot1, cc.size(55*#slot0.formationStrToList(slot0, slot2), 55))
+
+	for slot8, slot9 in ipairs(slot3) do
+		slot10 = UIWrap.newControl("CardNode", {
+			scale = 0.6,
+			allowClick = false,
+			pos = cc.p((slot8 - 0.5)*slot4, 27.5)
+		})
+
+		slot10.setCardData(slot10, {
+			modelId = slot9
+		})
+		slot1.addChild(slot1, slot10)
+	end
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onShowInfo = function (slot0, slot1)
+	slot0.refreshReportItem(slot0, slot1.reportIndex)
+
+	return 
+end
+slot0.onPlay = function (slot0, slot1)
+	slot0.requestFightInfo(slot0, slot1.reportId)
+
+	slot0.mReportIndex = slot1.reportIndex
+
+	return 
+end
+slot0.onActionEnd = function (slot0, slot1)
+	slot0.actionRefresh()
+
+	return 
+end
+slot0.requestReportInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightReportData",
+		moduleName = "Hegemony",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			slot0.mBattleReport = slot0.FightReport
+
+			slot0.actionRefresh()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFightInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightReport",
+		moduleName = "FightReoprt",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			if slot0 and slot0.FightInfo then
+				require("common.BattleEntry"):StartBattle({
+					battleMap = "effect_zhandou_zijinzhidian",
+					fightInfo = slot0.FightInfo,
+					extraData = {}
+				})
+			else
+				ui.showFlashView(TR("战报数据已被清除"))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

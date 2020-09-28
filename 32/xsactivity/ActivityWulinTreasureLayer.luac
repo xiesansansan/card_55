@@ -1,0 +1,774 @@
+slot0 = class("ActivityWulinTreasureLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "xsactivity/XSActivityMainLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					scale = 1.35,
+					image = "lh_13202.png",
+					pos = {
+						x = -280.04,
+						y = -171.8
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "xshd_3.png",
+					pos = {
+						x = -230.62,
+						y = 250.89
+					},
+					size = {
+						width = 356,
+						height = 30
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 91.41,
+								y = 13
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 155.46,
+								y = 13
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled25",
+				cType = "Sprite",
+				params = {
+					image = "wlbz_1.png",
+					pos = {
+						x = 208.88,
+						y = 163.7
+					}
+				},
+				children = {
+					{
+						name = "untitled27",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 178.49,
+								y = 80
+							},
+							text = TR("旗帜：")
+						},
+						children = {}
+					},
+					{
+						name = "untitled28",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 178.49,
+								y = 45
+							},
+							text = TR("头巾：")
+						},
+						children = {}
+					},
+					{
+						name = "mFlagRes",
+						cType = "ResLabel",
+						params = {
+							num = 0,
+							modelId = 1111,
+							pos = {
+								x = 208.71,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mScarfRes",
+						cType = "ResLabel",
+						params = {
+							num = 0,
+							modelId = 1111,
+							pos = {
+								x = 208.71,
+								y = 45
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Button",
+						custom = {
+							{
+								value = 1135,
+								name = "resId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "wlbz_3.png",
+							clickAction = "onGoToGetActGoods",
+							pos = {
+								x = 354.65,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled32",
+						cType = "Button",
+						custom = {
+							{
+								value = 1136,
+								name = "resId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "wlbz_3.png",
+							clickAction = "onGoToGetActGoods",
+							pos = {
+								x = 354.65,
+								y = 45
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled33",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 424.69,
+								y = 80
+							},
+							text = TR("每充值1元获得1旗帜")
+						},
+						children = {}
+					},
+					{
+						name = "untitled34",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 424.69,
+								y = 45
+							},
+							text = TR("活动结束后旗帜、头巾清零")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled26",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 210.47,
+						y = -97.41
+					},
+					size = {
+						width = 697,
+						height = 441
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onChangeTag",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = "Test"
+						}
+					},
+					pos = {
+						x = -95,
+						y = 43
+					},
+					size = {
+						width = 620,
+						height = 45
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.6
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled36",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					capInsets = {
+						x = 100,
+						height = 1,
+						width = 1,
+						y = 100
+					},
+					pos = {
+						x = 211.28,
+						y = -120.86
+					},
+					size = {
+						width = 644,
+						height = 312
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onCellNum",
+					isVertical = false,
+					cellUpdateFunc = "onCellRefresh",
+					cellSizeFunc = "onCellSize",
+					cellFillFunc = "onCellCreate",
+					pos = {
+						x = -102.66,
+						y = -278.61
+					},
+					size = {
+						width = 620,
+						height = 312
+					}
+				},
+				children = {
+					{
+						name = "GoodsTemNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 4.93,
+								y = -310.84
+							},
+							size = {
+								width = 156,
+								height = 312
+							}
+						},
+						children = {
+							{
+								name = "untitled38",
+								cType = "Scale9Sprite",
+								params = {
+									image = "qxzl_2.png",
+									pos = {
+										x = 76.33,
+										y = 201.31
+									},
+									size = {
+										width = 153,
+										height = 203
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled39",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = true,
+									pos = {
+										x = 75.33,
+										y = 235.31
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled41",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									isRichText = true,
+									align = 1,
+									text = "Label",
+									childName = "useLabel",
+									valign = 1,
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 17.42,
+										y = 121.47
+									},
+									size = {
+										width = 117.89,
+										height = 66.92
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled42",
+								cType = "Button",
+								params = {
+									childName = "buyBtn",
+									image = "c_27.png",
+									clickAction = "onBuy",
+									pos = {
+										x = 76.33,
+										y = 43.31
+									},
+									titleText = TR("购 买")
+								},
+								children = {}
+							},
+							{
+								name = "untitled44",
+								cType = "BadgeText",
+								params = {
+									childName = "discountBDLabel",
+									image = "c_76.png",
+									anchor = {
+										x = 1,
+										y = 1
+									},
+									pos = {
+										x = 147.27,
+										y = 296.39
+									},
+									text = TR("折扣")
+								},
+								children = {}
+							},
+							{
+								name = "untitled45",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "limitLabel",
+									text = "Label",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 75.89,
+										y = 84.93
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mGoodsParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -106.4,
+						y = -277.88
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mEmptyLabel",
+				cType = "Label",
+				params = {
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 246.45,
+						y = -119.45
+					},
+					text = TR("暂无数据")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mModuleId = slot1.moduleId or ModuleSub.eTimedPointsMall
+	slot0.mActivityType = slot1.activityType
+	slot0.mActivityId = ActivityObj:getEntityId(slot0.mModuleId, slot0.mActivityType)
+	slot0.mTableData = {}
+	slot0.mActivityData = {}
+	slot0.mCurTag = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {
+		{
+			tag = 1,
+			title = TR("旗帜兑换")
+		},
+		{
+			tag = 2,
+			title = TR("折扣兑换")
+		},
+		{
+			tag = 3,
+			title = TR("头巾兑换")
+		},
+		{
+			tag = 4,
+			title = TR("元宝兑换")
+		}
+	}
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mFlagRes:setType(ResourceTypeSub.eYellowFlag)
+	slot0.mScarfRes:setType(ResourceTypeSub.eYellowScarf)
+	slot0.mFlagRes:setString(Resource.getCount(ResourceTypeSub.eYellowFlag))
+	slot0.mScarfRes:setString(Resource.getCount(ResourceTypeSub.eYellowScarf))
+	slot0.refreshTableData(slot0)
+	slot0.createTimeUpdate(slot0)
+
+	return 
+end
+slot0.refreshTableData = function (slot0)
+	if slot0.mCurTag == 1 then
+		slot0.mTableData = (slot0.mActivityData.YellowFlagConvert and table.values(slot0.mActivityData.YellowFlagConvert)) or {}
+	elseif slot0.mCurTag == 2 then
+		slot0.mTableData = (slot0.mActivityData.DiscountConvert and table.values(slot0.mActivityData.DiscountConvert)) or {}
+	elseif slot0.mCurTag == 3 then
+		slot0.mTableData = (slot0.mActivityData.YellowScarfConvert and table.values(slot0.mActivityData.YellowScarfConvert)) or {}
+	elseif slot0.mCurTag == 4 then
+		slot0.mTableData = (slot0.mActivityData.YuanbaoConvert and table.values(slot0.mActivityData.YuanbaoConvert)) or {}
+	end
+
+	table.sort(slot0.mTableData, function (slot0, slot1)
+		return slot0.ID < slot1.ID
+	end)
+	slot0.mEmptyLabel:setVisible(not next(slot0.mTableData))
+	slot0.mGoodsParent:removeAllChildren()
+
+	if 4 <= #slot0.mTableData then
+		slot0.mTableView:reloadData()
+	else
+		slot0.mTableData = {}
+
+		slot0.mTableView:reloadData()
+
+		slot3 = (156*#slot0.mTableData - 620)*0.5
+
+		for slot7, slot8 in pairs(slot1) do
+			slot9 = slot0.createCell(slot0, slot8)
+
+			slot0.mGoodsParent:addChild(slot9)
+			slot9.setPosition(slot9, slot3 + slot2*(slot7 - 1), 0)
+		end
+	end
+
+	return 
+end
+slot0.createCell = function (slot0, slot1)
+	slot2 = slot0.createLayoutTemplateNode(slot0, "GoodsTemNode")
+
+	slot2.setPosition(slot2, 0, 0)
+	slot2.card:setCardData(slot3, {
+		Enums.CardShowAttr.eNum
+	})
+
+	slot5 = ""
+
+	for slot9, slot10 in pairs(slot4) do
+		slot5 = slot5 .. string.format("%s:{%s}%s\n", Resource.getName(slot10.resourceId), Resource.getDaibiImg(slot10.resourceId), slot10.num)
+	end
+
+	slot2.useLabel:setString(slot5)
+
+	slot2.buyBtn.itemData = slot1
+
+	slot2.buyBtn:setEnabled(slot1.BuyNum < slot1.ExchageNum)
+	slot2.discountBDLabel:setText((slot1.Discount ~= nil and slot1.Discount ~= "" and slot1.Discount ~= 0 and TR("%s折", slot1.Discount)) or TR("特惠"))
+	slot2.limitLabel:setString(TR("可兑换:%d/%d", slot1.ExchageNum - slot1.BuyNum, slot1.ExchageNum))
+
+	return slot2
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString(TR("活动已结束"))
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onChangeTag = function (slot0, slot1)
+	slot0.mCurTag = slot1
+
+	slot0.refreshTableData(slot0)
+
+	return 
+end
+slot0.onCellSize = function (slot0)
+	return 156, 312
+end
+slot0.onCellNum = function (slot0)
+	return #slot0.mTableData
+end
+slot0.onCellCreate = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "GoodsTemNode")
+
+	slot3.setPosition(slot3, 0, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.refresh = function (slot0)
+		slot1.card:setCardData(slot2, {
+			Enums.CardShowAttr.eNum
+		})
+
+		slot4 = ""
+
+		for slot8, slot9 in pairs(slot3) do
+			slot4 = slot4 .. string.format("{%s}%s\n", Resource.getDaibiImg(slot9.resourceId), slot9.num)
+		end
+
+		slot1.useLabel:setString(slot4)
+
+		slot1.buyBtn.itemData = slot1
+
+		slot1.buyBtn:setEnabled(slot1.BuyNum < slot1.ExchageNum)
+		slot1.discountBDLabel:setText((slot1.Discount ~= nil and slot1.Discount ~= "" and slot1.Discount ~= 0 and TR("%s折", slot1.Discount)) or TR("特惠"))
+		slot1.limitLabel:setString(TR("可兑换:%d/%d", slot1.ExchageNum - slot1.BuyNum, slot1.ExchageNum))
+
+		return 
+	end
+
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onCellRefresh = function (slot0, slot1, slot2)
+	slot1.refresh(slot2)
+
+	return 
+end
+slot0.onGoToGetActGoods = function (slot0, slot1)
+	if slot1.resId == ResourceTypeSub.eYellowFlag then
+		LayerManager.addLayer({
+			name = "recharge.RechargeHomeLayer"
+		})
+	elseif slot1.resId == ResourceTypeSub.eYellowScarf then
+		slot2 = {}
+
+		for slot6, slot7 in pairs(slot0.mActivityData.YellowScarfDropConfig) do
+			table.insert(slot2, {
+				name = ModuleSubConfig.items[slot7.ModuleId].name,
+				moduleID = slot7.ModuleId
+			})
+		end
+
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.GoodsGetWaysLayer",
+			popRestore = true,
+			data = {
+				resourceId = ResourceTypeSub.eYellowScarf,
+				dropConfig = slot2
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onBuy = function (slot0, slot1)
+	if slot1.itemData.ExchageNum - slot1.itemData.BuyNum <= 0 then
+		ui.showFlashView(TR("购买次数已达上限"))
+
+		return 
+	end
+
+	slot4 = nil
+
+	for slot9, slot10 in pairs(slot5) do
+		if not Resource.isEnough(slot10.resourceId, slot10.num, true, true) then
+			return 
+		end
+
+		slot11 = math.floor(Resource.getCount(slot10.resourceId)/slot10.num)
+
+		if not slot4 or slot11 < slot4 then
+			slot4 = slot11
+		end
+	end
+
+	if math.min(slot3, slot4) == 1 then
+		slot0.requestDrawReward(slot0, slot2.ID, slot6)
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "xsactivity.GoodsCountSelectLayer",
+			data = {
+				goodsInfo = Utility.analysisStrResList(slot2.Reward)[1],
+				maxCount = slot6,
+				operaCallback = function (slot0)
+					slot0:requestDrawReward(slot1.ID, slot0)
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "TimedYellowtowelTreasure",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			dump(slot0, "返回")
+
+			slot0.mEndTime = slot0.EndTime
+			slot0.mActivityData = slot0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "TimedYellowtowelTreasure",
+		methodData = {
+			slot0.mActivityId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0
+
+			slot0:refreshUI()
+			ui.showFlashReward(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

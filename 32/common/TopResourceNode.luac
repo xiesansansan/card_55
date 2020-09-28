@@ -1,0 +1,165 @@
+require("common.Resource")
+require("config.EnumsConfig")
+require("data.Player")
+
+slot0 = class("SliderTableView", function (slot0)
+	return UIWrap.newControl("Node", {
+		size = cc.size(520, 50)
+	})
+end)
+slot0.ctor = function (slot0, slot1)
+	slot0.mResTable = slot1 and slot1.moduleIdList
+
+	slot0.refreshResInfo(slot0)
+
+	slot0.allowAutoUpdate = true
+
+	return 
+end
+slot0.getColor = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	if slot1 == ResourceTypeSub.eGold then
+		slot3 = (slot2 < PlayerAttrObj:getPlayerAttrByName("GoldLimitNum") and cc.c3b(246, 248, 245)) or cc.c3b(192, 65, 65)
+	elseif slot1 == ResourceTypeSub.eVit then
+		slot3 = (slot2 < PlayerAttrObj:getPlayerAttrByName("VitLimitNum") and cc.c3b(246, 248, 245)) or cc.c3b(192, 65, 65)
+	else
+		slot3 = cc.c3b(246, 248, 245)
+	end
+
+	return slot3
+end
+slot0.refreshResInfo = function (slot0)
+	slot0.resLabelList = {}
+
+	for slot4, slot5 in pairs(slot0.mResTable) do
+		slot6 = UIWrap.newControl("ResLabel", {
+			bgImage = "c_2.png",
+			modelId = slot5,
+			num = Resource.getCount(slot5),
+			color = (IN_EDITER_ENVIRONMENT and cc.c3b(246, 248, 245)) or slot0.getColor(slot0, slot5, Resource.getCount(slot5)),
+			clickAction = function ()
+				if slot0 == ResourceTypeSub.eGold or slot0 == ResourceTypeSub.eVit then
+					print("添加铜钱或者干粮")
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "home.FundsLayer",
+						zOrder = Enums.ZOrderType.eMessageBox
+					})
+				elseif slot0 == ResourceTypeSub.eDiamond then
+					print("添加宝石")
+					LayerManager.addLayer({
+						name = "recharge.RechargeHomeLayer"
+					})
+				else
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "commonlayer.GoodsGetWaysLayer",
+						data = {
+							resourceId = LayerManager.addLayer
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				end
+
+				return 
+			end
+		})
+
+		slot6.setPosition(slot6, (slot4 - 1)*170 + 90, 25)
+
+		slot0.resLabelList[slot4] = slot6
+		slot7 = PlayerAttrObj:getNameByResType(slot5)
+
+		if not IN_EDITER_ENVIRONMENT then
+			ui.setAutoPlayerAttrNode(slot6, {
+				slot5,
+				"GoldLimitNum",
+				"VitLimitNum"
+			}, function (slot0, slot1)
+				if slot0.allowAutoUpdate then
+					slot2 = PlayerAttrObj:getPlayerAttrByName(slot1) or 0
+
+					if slot0.getCount and slot0.needChangeFlag then
+						ui.addEffectLabelToResLabel(slot0, cc.p(50, 0), slot2 - slot0.getCount(slot0))
+					end
+
+					slot0.setString(slot0, slot2, slot0:getColor(slot2, slot2))
+				end
+
+				return 
+			end)
+		end
+
+		slot0.addChild(slot0, slot6)
+	end
+
+	return 
+end
+slot0.resetThirdBtn = function (slot0, slot1, slot2)
+	if slot0.resLabelList[slot1] and not tolua.isnull(slot0.resLabelList[slot1]) then
+		slot0.resLabelList[slot1]:removeFromParent()
+
+		slot0.resLabelList[slot1] = UIWrap.newControl("ResLabel", {
+			bgImage = "c_2.png",
+			modelId = slot2,
+			num = Resource.getCount(slot2),
+			color = slot0.getColor(slot0, slot2, Resource.getCount(slot2)),
+			clickAction = function ()
+				if slot0 == ResourceTypeSub.eGold or slot0 == ResourceTypeSub.eVit then
+					print("添加铜钱或者干粮")
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "home.FundsLayer",
+						zOrder = Enums.ZOrderType.eMessageBox
+					})
+				elseif slot0 == ResourceTypeSub.eDiamond then
+					print("添加宝石")
+					LayerManager.addLayer({
+						name = "recharge.RechargeHomeLayer"
+					})
+				else
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "commonlayer.GoodsGetWaysLayer",
+						data = {
+							resourceId = LayerManager.addLayer
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				end
+
+				return 
+			end
+		})
+
+		slot0.resLabelList[slot1]:setPosition((slot1 - 1)*170 + 90, 25)
+		slot0.addChild(slot0, slot0.resLabelList[slot1])
+
+		slot3 = PlayerAttrObj:getNameByResType(slot2)
+
+		if not IN_EDITER_ENVIRONMENT then
+			ui.setAutoPlayerAttrNode(slot0.resLabelList[slot1], {
+				slot2,
+				"GoldLimitNum",
+				"VitLimitNum"
+			}, function (slot0, slot1)
+				if slot0.allowAutoUpdate then
+					slot2 = PlayerAttrObj:getPlayerAttrByName(slot1) or Resource.getCount(Resource.getCount)
+
+					if slot0.getCount and slot0.needChangeFlag then
+						ui.addEffectLabelToResLabel(slot0, cc.p(50, 0), slot2 - slot0.getCount(slot0))
+					end
+
+					slot0.setString(slot0, slot2, slot0:getColor(slot2, slot2))
+				end
+
+				return 
+			end)
+		end
+	end
+
+	return 
+end
+
+return slot0

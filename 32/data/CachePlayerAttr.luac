@@ -1,0 +1,357 @@
+slot0 = class("CachePlayerAttr", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	slot0.attrNames = {
+		"ChatUrl",
+		"ChatToken",
+		"RegisterTime",
+		"ServerOpenDays",
+		"HeadImageId",
+		"HeadPicId",
+		"FashionModelId",
+		"PlayerName",
+		"Gender",
+		"PlayerId",
+		"Lv",
+		"Fap",
+		"Vip",
+		"VITNextRecoverTime",
+		"VITMaxRecoverTime",
+		"STAMaxNum",
+		"STANextRecoverTime",
+		"STAMaxRecoverTime",
+		"Diamond",
+		"Gold",
+		"RealDragonCoin",
+		"Vit",
+		"Exp",
+		"Feats",
+		"VipExp",
+		"HeroExp",
+		"FashionActivedModelIds",
+		"FashionShowIdList",
+		"StepCountList",
+		"WorldLv",
+		"WorldLvAddR",
+		"ExpeditionCoin",
+		"GuildInfo",
+		"GoldLimitNum",
+		"VitLimitNum",
+		"IfDisableSendMsg",
+		"TitleId",
+		"PvpCoin",
+		"EtlyCoin",
+		"YellowFlag",
+		"YellowScarf",
+		"DrumInfo",
+		"IsActiveDrum",
+		"IsDrumChallengeOpen",
+		"DrumEndTime",
+		"IsActivePrivilege",
+		"PrivilegeCardInfo",
+		"IsZhiZunFirstCharge",
+		"IsShowNewFirstCharge",
+		"PveShopExpireTime",
+		"ExpshopOpeningTime",
+		"TotalFap",
+		"OpenDoubleModuleId",
+		"FashionLevel",
+		"OnHook",
+		"IsActiveSpCard",
+		"IsShowLvPlan",
+		"CharacterEndTime",
+		"IsNewSpCard",
+		"WorldTaskInfo",
+		"GddhCoin",
+		"SpCardStatus",
+		"OtherIncomeTime",
+		"FoodIncomeTime",
+		"GoldIncomeTime",
+		"BeforeIncome",
+		"DrumEndTime",
+		"ResConsumingExpireTime",
+		"HeroSoul",
+		"Silver",
+		"OpencontestEndTime",
+		"IfFire",
+		"IfProclaimWar",
+		"IsShowSlotPrefData",
+		"FashionSkills",
+		"TempFirstOpenDate",
+		"LimitShopInfo",
+		"ShengyuanWarsInvitData",
+		"GoddomainInvitData",
+		"TeamId",
+		"IsShowFashionGift",
+		"FashionGiftEndTime",
+		"OutNums",
+		"IsShowTitleGift",
+		"TitleGiftEndTime",
+		"StrategyGiftEndTime",
+		"IsShowStrategyGift",
+		"IsShowNewKongfuGift",
+		"NewKongfuGiftEndTime",
+		"GodDomainGlory",
+		"TitleCityWarVitCostR",
+		"UseModelType",
+		"OpenTimedDoubleModuleInfo",
+		"EveningBossIsShow",
+		"EveningBossEndTime",
+		"LoserBuff",
+		"LeaguetopIdentityId",
+		"WorldAdventureEndTime",
+		"AllTitleId",
+		"FriendVit",
+		"WorldnumoneOpenTime",
+		"IcefireStatus",
+		"MoonvstodCoin",
+		"ZhenQi",
+		"FriendMeinvActivedModelIds",
+		"KuangZhanIsOpen",
+		"KuangZhanCountdown",
+		"TotalFeats",
+		"EquipSkillIdList",
+		"IsShowLuxurygift",
+		"KuangzhanFeats",
+		"WuxueCanye",
+		"ServerChargeEndTimes",
+		"RemainPriceCount",
+		"AnniversaryBlessEndTime",
+		"UndergroundCoin",
+		"ChatPartnerIdStr",
+		"TimedSurpriseGiftVipLv",
+		"Svip",
+		"SectCoin",
+		"SectAExp",
+		"SectBExp",
+		"SectCExp",
+		"SectDExp",
+		"SectPrestigeCount",
+		"SectPrestigeLv",
+		"SectId",
+		"IsInnerPlayer",
+		"NewplayertaskIsOver",
+		"YtjExp",
+		"FriendshipPoint",
+		"IsFirstEnter",
+		"VegetablesActivityEndTime",
+		"NationalHeroEndTime",
+		"TriggerGiftInfo",
+		"TriggerGiftNewInfo",
+		"LotusSeed",
+		"IsChargeNewFirstGift",
+		"ActivityName",
+		"ActivityPic",
+		"HolidayActivityName",
+		"HolidayActivityPic",
+		"CommonActivityName",
+		"CommonActivityPic",
+		"SmithyCoin",
+		"TimedOrderEndTime",
+		"IsOpenLimitPlayerVit",
+		"GoldDao",
+		"LeaguetopfinalStatus",
+		"LeaguetopfinalStartTime",
+		"LeaguetopfinalFightEndTime",
+		"LeaguetopfinalIsGameOver",
+		"LeaguetopfinalWinnerInfo",
+		"LeaguetopfinalGroupId",
+		"ChargeNum"
+	}
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mPlayerAttr = {}
+	slot0.upLvOld = 0
+	slot0.upVipLvOld = 0
+
+	return 
+end
+slot0.changeAttr = function (slot0, slot1)
+	function slot2(slot0, slot1)
+		slot2 = slot0.mPlayerAttr[slot0]
+
+		if slot0 == "StepCountList" or slot0 == "GuildInfo" or slot0 == "FashionSkills" then
+			slot0.mPlayerAttr[slot0] = slot0.mPlayerAttr[slot0] or {}
+
+			table.merge(slot0.mPlayerAttr[slot0], slot1)
+		elseif slot0 == "FashionActivedModelIds" then
+			slot0.mPlayerAttr[slot0] = slot0.mPlayerAttr[slot0] or {}
+
+			for slot6, slot7 in ipairs(slot1) do
+				if not table.indexof(slot0.mPlayerAttr[slot0], slot7) then
+					table.insert(slot0.mPlayerAttr[slot0], slot7)
+				end
+			end
+		else
+			slot0.mPlayerAttr[slot0] = slot1
+
+			if slot0 == "Lv" and slot1 ~= slot2 then
+				slot0.upLvOld = slot2
+
+				Utility.cpInvoke("LevelChanged")
+			elseif slot0 == "Vip" and slot1 ~= slot2 then
+				slot0.upVipLvOld = slot1 - slot2
+			elseif slot0 == "Fap" and slot1 ~= slot2 then
+				if slot0.fapLayer and not tolua.isnull(slot0.fapLayer) then
+					slot0.fapLayer:restartAction()
+				else
+					slot0.fapLayer = LayerManager.addLayer({
+						cleanUp = false,
+						name = "commonlayer.FlashFapLayer",
+						data = {
+							oldFap = slot2
+						},
+						zOrder = Enums.ZOrderType.eLevelUp
+					})
+				end
+
+				Player:saveGameData("RecruitFap", slot1 - slot2)
+			elseif slot0 == "IsShowSlotPrefData" then
+				EventAuto:postEvent(EventDefine.eRedDotPrefix .. tostring(Enums.ClientRedDot.eBestFapHero))
+			end
+		end
+
+		EventAuto:postEvent(EventDefine.ePlayerAttrPrefix .. slot0, {
+			oldAttr = slot2,
+			newAttr = slot1
+		})
+
+		return 
+	end
+
+	for slot6, slot7 in ipairs(slot0.attrNames) do
+		if slot1[slot7] ~= nil then
+			slot2(slot7, slot1[slot7])
+		end
+	end
+
+	return 
+end
+slot0.updatePlayerInfo = function (slot0, slot1)
+	table.merge(slot0.mPlayerAttr, slot1)
+
+	return 
+end
+slot0.getPlayerAttrByName = function (slot0, slot1)
+	return slot1 and slot0.mPlayerAttr[slot1]
+end
+slot0.isPlayerSelf = function (slot0, slot1)
+	return slot1 == slot0.mPlayerAttr.PlayerId
+end
+slot0.getCurrentLvExp = function (slot0)
+	slot2 = slot0.mPlayerAttr.Exp
+	slot3 = 0
+	slot4 = 120
+
+	if slot0.mPlayerAttr.Lv <= PlayerLvRelation.items_count and 0 < slot1 then
+		slot3 = PlayerLvRelation.items[slot1].expTotal
+
+		if PlayerLvRelation.items[slot1 + 1] then
+			slot4 = slot5.expTotal
+		end
+	end
+
+	return slot2 - slot3, slot4 - slot3
+end
+slot0.getNameByResType = function (slot0, slot1)
+	return ({
+		[ResourceTypeSub.eExp] = "Exp",
+		[ResourceTypeSub.eVipExp] = "VipExp",
+		[ResourceTypeSub.eDiamond] = "Diamond",
+		[ResourceTypeSub.eGold] = "Gold",
+		[ResourceTypeSub.eHeroExp] = "HeroExp",
+		[ResourceTypeSub.eVit] = "Vit",
+		[ResourceTypeSub.eFeats] = "Feats",
+		[ResourceTypeSub.eExpeditionCoin] = "ExpeditionCoin",
+		[ResourceTypeSub.ePvpCoin] = "PvpCoin",
+		[ResourceTypeSub.eEtlyCoin] = "EtlyCoin",
+		[ResourceTypeSub.eGddhCoin] = "GddhCoin",
+		[ResourceTypeSub.eHeroSoul] = "HeroSoul",
+		[ResourceTypeSub.eSilver] = "Silver",
+		[ResourceTypeSub.eGodDomainGlory] = "GodDomainGlory",
+		[ResourceTypeSub.eKuangzhanFeats] = "KuangzhanFeats",
+		[ResourceTypeSub.eWuxueCanye] = "WuxueCanye",
+		[ResourceTypeSub.eUndergroundCoin] = "UndergroundCoin",
+		[ResourceTypeSub.eRealDragonCoin] = "RealDragonCoin",
+		[ResourceTypeSub.eYellowFlag] = "YellowFlag",
+		[ResourceTypeSub.eYellowScarf] = "YellowScarf",
+		[ResourceTypeSub.eSectCoin] = "SectCoin",
+		[ResourceTypeSub.eSectAExp] = "SectAExp",
+		[ResourceTypeSub.eSectBExp] = "SectBExp",
+		[ResourceTypeSub.eSectCExp] = "SectCExp",
+		[ResourceTypeSub.eSectDExp] = "SectDExp",
+		[ResourceTypeSub.eYtjExp] = "YtjExp",
+		[ResourceTypeSub.eFriendshipPoint] = "FriendshipPoint",
+		[ResourceTypeSub.eLotusSeed] = "LotusSeed",
+		[ResourceTypeSub.eSmithyCoin] = "SmithyCoin",
+		[ResourceTypeSub.eGoldKnife] = "GoldDao"
+	})[slot1] or ""
+end
+slot0.checkLvUpNow = function (slot0)
+	return 0 < slot0.upLvOld
+end
+slot0.checkLvUp = function (slot0, slot1, slot2)
+	if 0 < slot0.upLvOld then
+		EventAuto:postEvent(EventDefine.ePlayerLvUp)
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.LevelUpLayer",
+			data = {
+				oldLv = slot0.upLvOld,
+				callback = slot1,
+				showTips = slot2
+			},
+			zOrder = Enums.ZOrderType.eLevelUp
+		})
+
+		slot0.upLvOld = 0
+	elseif slot1 then
+		slot1()
+	end
+
+	return 
+end
+slot0.checkVipLvUp = function (slot0, slot1)
+	if 0 < slot0.upVipLvOld then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.VipUpLayer",
+			data = {
+				callback = slot1
+			},
+			zOrder = Enums.ZOrderType.eLevelUp
+		})
+
+		slot0.upVipLvOld = 0
+	elseif slot1 then
+		slot1()
+	end
+
+	return 
+end
+slot0.isModuleDoubleIncome = function (slot0, slot1)
+	return slot0.mPlayerAttr.OpenDoubleModuleId and slot0.mPlayerAttr.OpenDoubleModuleId == slot1
+end
+slot0.isTimeModuleDoubleIncome = function (slot0, slot1)
+	slot2 = {}
+
+	if slot0.mPlayerAttr.OpenTimedDoubleModuleInfo then
+		slot2 = slot0.mPlayerAttr.OpenTimedDoubleModuleInfo.OpenModuleList or {}
+		slot3 = false
+	end
+
+	for slot7, slot8 in pairs(slot2) do
+		if slot8 == slot1 then
+			slot3 = true
+
+			break
+		end
+	end
+
+	return slot3
+end
+
+return slot0

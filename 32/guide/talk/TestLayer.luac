@@ -1,0 +1,655 @@
+require("battle.init")
+require("guide.GuideInit")
+
+slot0 = require("common.SpineManager")
+slot1 = require("common.ShaderManager")
+slot2 = require("battle.managers.TeamManager")
+slot3 = require("battle.common.UIHelper")
+slot4 = class("TestLayer", cc.Layer)
+slot4.ctor = function (slot0)
+	slot0.setName(slot0, "TestLayer")
+	cc.Director:getInstance():setDisplayStats(true)
+
+	slot1 = cc.Sprite:create("zdcj_01.jpg")
+
+	slot1.setScale(slot1, display.minScale)
+	slot1.setPosition(slot1, slot0.autoPos(320, 568))
+	slot0.addChild(slot0, slot1, -2)
+	slot0.enableNodeEvents(slot0)
+
+	return 
+end
+slot4.onEnter = function (slot0)
+	slot0.addTestBtn(slot0)
+
+	slot1 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot1.setPosition(slot1, slot0.autoPos(500, 600))
+	slot1.setTitleText(slot1, "Reload")
+	slot1.setScale(slot1, display.minScale)
+	slot1.setTitleFontSize(slot1, 25)
+	slot1.setScale(slot1, display.minScale)
+	slot1.setPressedActionEnabled(slot1, true)
+	slot1.addClickEventListener(slot1, function (slot0)
+		slot0:removeFromParent()
+		cc.Director:getInstance():purgeCachedData()
+		cc.Director.getInstance().purgeCachedData.clearCaches()
+		rebootLua()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot1)
+
+	return 
+end
+slot4.addTestBtn = function (slot0)
+	slot1 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot1.setPosition(slot1, slot0.autoPos(500, 500))
+	slot1.setTitleText(slot1, "randTest")
+	slot1.setScale(slot1, display.minScale)
+	slot1.setTitleFontSize(slot1, 25)
+	slot1.setPressedActionEnabled(slot1, true)
+	slot1.addClickEventListener(slot1, function (slot0)
+		slot0:randTest()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot1)
+
+	slot2 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot2.setPosition(slot2, slot0.autoPos(500, 400))
+	slot2.setTitleText(slot2, "LocalPvp")
+	slot2.setScale(slot2, display.minScale)
+	slot2.setTitleFontSize(slot2, 25)
+	slot2.setPressedActionEnabled(slot2, true)
+	slot2.addClickEventListener(slot2, function (slot0)
+		slot0:testBattlePvp()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot2)
+
+	slot3 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot3.setPosition(slot3, slot0.autoPos(500, 300))
+	slot3.setTitleText(slot3, "LocalPve")
+	slot3.setScale(slot3, display.minScale)
+	slot3.setTitleFontSize(slot3, 25)
+	slot3.setPressedActionEnabled(slot3, true)
+	slot3.addClickEventListener(slot3, function (slot0)
+		slot0:testBattlePve()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot3)
+
+	slot4 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot4.setPosition(slot4, slot0.autoPos(500, 200))
+	slot4.setTitleText(slot4, "TestServer")
+	slot4.setScale(slot4, display.minScale)
+	slot4.setTitleFontSize(slot4, 25)
+	slot4.setPressedActionEnabled(slot4, true)
+	slot4.addClickEventListener(slot4, function (slot0)
+		slot0:testServer()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot4)
+
+	slot5 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot5.setPosition(slot5, slot0.autoPos(300, 100))
+	slot5.setTitleText(slot5, "TestJq")
+	slot5.setScale(slot5, display.minScale)
+	slot5.setTitleFontSize(slot5, 25)
+	slot5.setPressedActionEnabled(slot5, true)
+	slot5.addClickEventListener(slot5, function (slot0)
+		slot0:testJq()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot5)
+
+	slot6 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot6.setPosition(slot6, slot0.autoPos(500, 100))
+	slot6.setTitleText(slot6, "TestJqBattle")
+	slot6.setScale(slot6, display.minScale)
+	slot6.setTitleFontSize(slot6, 25)
+	slot6.setPressedActionEnabled(slot6, true)
+	slot6.addClickEventListener(slot6, function (slot0)
+		slot0:testJqBattle()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot6)
+
+	slot7 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot7.setPosition(slot7, slot0.autoPos(300, 200))
+	slot7.setTitleText(slot7, "showRewards")
+	slot7.setScale(slot7, display.minScale)
+	slot7.setTitleFontSize(slot7, 25)
+	slot7.setPressedActionEnabled(slot7, true)
+	slot7.addClickEventListener(slot7, function (slot0)
+		slot0:showRewards()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot7)
+
+	slot8 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot8.setPosition(slot8, slot0.autoPos(300, 200))
+	slot8.setTitleText(slot8, "testParticle")
+	slot8.setScale(slot8, display.minScale)
+	slot8.setTitleFontSize(slot8, 25)
+	slot8.setPressedActionEnabled(slot8, true)
+	slot8.addClickEventListener(slot8, function (slot0)
+		slot0:testParticle()
+
+		return 
+	end)
+	slot0.addChild(slot0, slot8)
+
+	return 
+end
+slot4.testAsyncTask = function (slot0)
+	sp.SkeletonDataCache:getInstance():preloadAsync("hero_huangrong.skel", "hero_huangrong.atlas", 1, function (slot0)
+		slot1 = slot0.createAnimation("hero_huangrong", 1)
+
+		slot1.setMix(slot1, "pugong", "daiji", 0.2)
+		slot1.setMix(slot1, "daiji", "pugong", 0.2)
+		slot1.setMix(slot1, "nuji", "daiji", 0.2)
+		slot1.setMix(slot1, "daiji", "nuji", 0.2)
+		slot1.setScale(slot1, display.minScale*0.2)
+		slot1.setPosition(slot1, slot1.autoPos(200, 200))
+		slot1.playAnimation(slot1, "daiji")
+		slot1.appendAnimation(slot1, "pugong", 1)
+		slot1.appendAnimation(slot1, "daiji")
+		slot1.appendAnimation:addChild(slot1)
+
+		return 
+	end)
+
+	return 
+end
+slot4.testEllipse3DLayer = function (slot0)
+	slot1 = require("common.EllipseLayer3D"):create({
+		totalItemNum = 6,
+		axiasSize = cc.size(300, 400),
+		itemContentCallback = function (slot0, slot1)
+			slot2 = cc.LayerColor:create(cc.c3b(255, 0, 0))
+
+			slot2.setContentSize(slot2, cc.size(200, 100))
+			slot2.setPosition(slot2, cc.p(-100, -50))
+			slot0.addChild(slot0, slot2)
+			slot2.addChild(slot2, slot0.newLabel({
+				fontSize = 16,
+				text = slot1,
+				outlineColor = cc.c3b(0, 0, 0),
+				pos = cc.p(100, 50)
+			}))
+
+			return 
+		end
+	})
+
+	slot1.setPosition(slot1, cc.p(320, 400))
+	slot0.addChild(slot0, slot1)
+
+	slot2 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+	slot2.setPosition(slot2, cc.p(500, 700))
+	slot2.setTitleText(slot2, "resetItem")
+	slot2.setTitleFontSize(slot2, 25)
+	slot2.setPressedActionEnabled(slot2, true)
+	slot2.addClickEventListener(slot2, function (slot0)
+		slot0:resetItemNum(4, 3)
+
+		return 
+	end)
+	slot0.addChild(slot0, slot2)
+
+	return 
+end
+slot4.testRichText = function (slot0)
+	slot6 = require("common.RichTextEx"):create({
+		text = "测试label哒哒哒哒哒所付",
+		align = cc.TEXT_ALIGNMENT_LEFT,
+		valign = cc.VERTICAL_TEXT_ALIGNMENT_CENTER,
+		dimensions = ({})["size"],
+		formatInfo = {
+			needStrikethrough = false,
+			url = "",
+			needUnderline = false,
+			needBold = false,
+			needeGlow = false,
+			needUrl = false,
+			font = Enums.Font.eDefault,
+			fontSize = 22,
+			color = cc.c3b(255, 8, 234),
+			needOutLine = ({})["outlineColor"] ~= nil,
+			outlineColor = slot5.outlineColor,
+			outlineSize = slot5.outlineSize or 2,
+			needShadow = slot5.shadowColor ~= nil,
+			shadowColor = slot5.shadowColor
+		}
+	})
+
+	slot6.setPosition(slot6, cc.p(320, 500))
+	slot0.addChild(slot0, slot6)
+
+	slot8 = slot0.newLabel({
+		text = "测试拉贝l",
+		fontSize = 22,
+		outlineSize = 2,
+		color = cc.c3b(255, 237, 76),
+		outlineColor = cc.c3b(89, 40, 23),
+		align = cc.TEXT_ALIGNMENT_CENTER,
+		valign = cc.VERTICAL_TEXT_ALIGNMENT_CENTER,
+		pos = cc.p(0, 0)
+	})
+
+	slot8.setPosition(slot8, cc.p(320, 400))
+	slot8.setAnchorPoint(slot8, cc.p(0.5, 0.5))
+	slot0.addChild(slot0, slot8)
+
+	slot9 = cc.Camera:create()
+
+	slot9.setCameraFlag(slot9, cc.CameraFlag.USER1)
+	slot0.addChild(slot0, slot9)
+
+	slot0.camera = slot9
+
+	display.getRunningScene().getDefaultCamera(slot5.shadowColor ~= nil).setVisible(slot11, false)
+	Utility.performWithDelay(slot0, function ()
+		slot0:setCameraMask(cc.CameraFlag.USER1)
+
+		return 
+	end, 0.1)
+
+	return 
+end
+slot4.testShadowEffect = function (slot0)
+	slot1 = slot0.createAnimation("hero_huangrong", 1)
+
+	slot1.setScale(slot1, display.minScale*0.2)
+	slot1.setPosition(slot1, slot1.autoPos(200, 600))
+	slot1.playAnimation(slot1, "daiji")
+	slot0.addChild(slot0, slot1)
+	ui.addTouchEvent({
+		node = slot1,
+		beganEvent = function ()
+			return true
+		end,
+		movedEvent = function (slot0, slot1)
+			slot0:setPosition(slot0.getLocation(slot0))
+
+			return 
+		end
+	})
+	Utility.performWithDelay(slot0, function ()
+		slot1:addChild(slot0, slot1)
+
+		slot2 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+		slot2.setPosition(slot2, slot2.autoPos(100, 400))
+		slot2.setTitleText(slot2, "randTest1")
+		slot2.setScale(slot2, display.minScale)
+		slot2.setTitleFontSize(slot2, 25)
+		slot2.setPressedActionEnabled(slot2, true)
+		slot2.addClickEventListener(slot2, function (slot0)
+			slot0:stopAllActions()
+			slot0:runAction(cc.Sequence:create({
+				cc.CallFunc:create(function ()
+					slot0:startEffect()
+
+					return 
+				end),
+				cc.MoveTo:create(3, cc.p(500, 600)),
+				cc.CallFunc:create(function ()
+					slot0:stopEffect()
+
+					return 
+				end)
+			}))
+
+			return 
+		end)
+		slot1:addChild(slot2)
+
+		slot3 = ccui.Button:create("c_70.png", "c_70.png", "c_70.png")
+
+		slot3.setPosition(slot3, slot2.autoPos(100, 300))
+		slot3.setTitleText(slot3, "randTest2")
+		slot3.setScale(slot3, display.minScale)
+		slot3.setTitleFontSize(slot3, 25)
+		slot3.setPressedActionEnabled(slot3, true)
+		slot3.addClickEventListener(slot3, function (slot0)
+			slot0:stopAllActions()
+			slot0:runAction(cc.Sequence:create({
+				cc.CallFunc:create(function ()
+					slot0:startEffect()
+
+					return 
+				end),
+				cc.MoveTo:create(3, cc.p(100, 600)),
+				cc.CallFunc:create(function ()
+					slot0:stopEffect()
+
+					return 
+				end)
+			}))
+
+			return 
+		end)
+		slot1:addChild(slot3)
+
+		return 
+	end, 0.01)
+
+	return 
+end
+slot4.randTest = function (slot0)
+	slot1 = table.keys(HeroModel.items)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7 = 1, 5, 1 do
+		table.insert(slot2, slot1[math.random(1, #slot1)])
+	end
+
+	for slot7 = 1, 5, 1 do
+		table.insert(slot3, slot1[math.random(1, #slot1)])
+	end
+
+	slot0.getTestTeam(slot2, slot3, 1).cb = function (slot0)
+		dump(slot0)
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "battle.views.DebugScene",
+		data = slot0.getTestTeam(slot2, slot3, 1)
+	})
+
+	return 
+end
+slot4.testServer = function (slot0)
+	slot1 = cc.FileUtils:getInstance()
+
+	require("common.BattleEntry"):StartBattle({
+		extraData = "ddddddd",
+		fightInfo = cjson.decode(slot3)
+	})
+
+	return 
+end
+slot4.testBattlePvp = function (slot0)
+	slot0.getTestTeam({
+		12011304,
+		12011304,
+		12011304,
+		12011304,
+		12011304
+	}, {
+		12011304,
+		12011304,
+		12011304,
+		12011304,
+		12011304
+	}, 10, true).cb = function (slot0)
+		dump(slot0)
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "battle.views.DebugScene",
+		data = slot0.getTestTeam({
+			12011304,
+			12011304,
+			12011304,
+			12011304,
+			12011304
+		}, {
+			12011304,
+			12011304,
+			12011304,
+			12011304,
+			12011304
+		}, 10, true)
+	})
+
+	return 
+end
+slot4.testBattlePve = function (slot0)
+	slot0.getTestTeam({
+		12011304,
+		12011304,
+		12011304,
+		12011304,
+		12011304
+	}, {
+		12011304,
+		12011304,
+		12011304,
+		12011304,
+		12011304
+	}, 10, false).cb = function (slot0)
+		dump(slot0)
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		name = "battle.views.DebugScene",
+		data = slot0.getTestTeam({
+			12011304,
+			12011304,
+			12011304,
+			12011304,
+			12011304
+		}, {
+			12011304,
+			12011304,
+			12011304,
+			12011304,
+			12011304
+		}, 10, false)
+	})
+
+	return 
+end
+slot4.testJq = function (slot0)
+	LayerManager.addLayer({
+		name = "guide.view.TalkLayer",
+		data = {
+			map = "10001"
+		}
+	})
+
+	return 
+end
+slot4.testVerfiyBattle = function (slot0)
+	slot1 = table.keys(HeroModel.items)
+	slot2 = {}
+	slot3 = {}
+
+	for slot7 = 1, 5, 1 do
+		table.insert(slot2, slot1[math.random(1, #slot1)])
+	end
+
+	for slot7 = 1, 5, 1 do
+		table.insert(slot3, slot1[math.random(1, #slot1)])
+	end
+
+	slot4 = slot0.getTestTeam(slot2, slot3, 1)
+
+	require("battle.managers.VerifyBattle").Init(slot4.params.fightStatus, slot4, {}, slot4.params.seed)
+	slot0.onUpdate(slot0, function (slot0)
+		slot1, slot2 = slot0.DoStep()
+
+		if slot1 == true then
+			print(slot1, slot2)
+			slot1:unscheduleUpdate()
+			dump(slot0.getResult())
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot4.testCamera = function (slot0)
+	slot1 = slot0.createAnimation("hero_chuiliuyiyi", 1)
+
+	slot1.setScale(slot1, 0.125)
+	slot1.setPosition(slot1, cc.p(display.cx, display.cy))
+	slot1.playAnimation(slot1, "nuji_cont1", 1)
+	slot1.appendAnimation(slot1, "nuji_cont2", 1)
+	slot1.appendAnimation(slot1, "nuji_cont3", 1)
+	slot1.appendAnimation(slot1, "nuji_cont4", 1)
+	slot1.appendAnimation(slot1, "nuji_cont5", 1)
+	slot0.addChild(slot0, slot1)
+
+	slot0.defaultCamera = display.getRunningScene():getDefaultCamera()
+	slot0.defaultCameraPos = slot0.defaultCamera:getPosition3D()
+
+	if slot1.bindBoneNode(slot1, "camera") then
+		slot2.onNodeEvent(slot2, "cleanup", function (slot0)
+			slot0.defaultCamera:setPosition3D(slot0.defaultCameraPos)
+
+			return 
+		end)
+		slot2.onUpdate(slot2, function (slot0)
+			slot1 = slot0:getPosition3D()
+			slot3 = cc.vec3(slot1.defaultCameraPos.x, slot1.defaultCameraPos.y, slot1.defaultCameraPos.z)
+			slot3.x = slot3.x + slot1.x/8
+			slot3.y = slot3.y + slot1.y/8
+			slot3.z = slot3.z*slot0:getScale()/8
+
+			slot1.defaultCamera:setPosition3D(slot3)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot4.showRewards = function (slot0)
+	slot1 = 1
+	slot2 = 0.66
+	slot3 = {
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1
+	}
+
+	if slot0.getNode ~= nil then
+		slot0.getNode:removeFromParent()
+
+		slot0.getNode = nil
+	end
+
+	slot4 = cc.Node:create()
+	slot0.getNode = slot4
+
+	slot4.setPosition(slot4, cc.p(320, 400))
+	slot0.addChild(slot0, slot4)
+	slot0.onUpdate(slot0, function ()
+		if not slot0[slot1] then
+			slot2:stopAllActions()
+
+			if slot2.getWardEffect then
+				slot2.getWardEffect = nil
+			end
+
+			cc.Sequence:runAction(cc.Sequence:create(cc.DelayTime:create(slot3 + 0.2), cc.CallFunc:create(function ()
+				slot0:removeAllChildren()
+
+				return 
+			end)))
+
+			return 
+		end
+
+		slot1 = slot5.createAnimation("ui_tubiaotantiao", 1)
+
+		slot1.playAnimation(slot1, "animation", 1)
+		slot1:addChild(slot1)
+
+		slot3 = cc.Sprite:create("tb_452.png")
+
+		slot3.setScale(slot3, 0.6)
+		slot1.bindBoneNode(slot1, "tubiao").addChild(slot2, slot3)
+
+		slot4 = math.random(-250, 250)
+		slot5 = math.random(0, 250)
+
+		while math.abs(slot4) <= 50 and math.abs(slot5) <= 50 do
+			slot5 = math.random(0, 250)
+			slot4 = math.random(-250, 250)
+		end
+
+		slot1.runAction(slot1, cc.MoveBy:create(slot3, cc.p(slot4, slot5)))
+
+		slot1 = slot1 + 1
+
+		return 
+	end, 0.1)
+
+	return 
+end
+slot4.testParticle = function (slot0)
+	slot1 = cc.ParticleSystemQuad:create("effect_particle_zhuye.plist")
+
+	slot1.setPosition(slot1, cc.p(display.cx, display.height))
+	slot1.setPosVar(slot1, cc.p(display.cx, 0))
+	slot1.setStartSize(slot1, display.minScale*60)
+	slot1.setStartSizeVar(slot1, display.minScale*10)
+	slot1.setEndSize(slot1, display.minScale*15)
+	slot1.setEndSizeVar(slot1, display.minScale*0)
+	slot1.resetSystem(slot1)
+	slot0.addChild(slot0, slot1)
+
+	return 
+end
+slot4.testJqBattle = function (slot0)
+	LayerManager.addLayer({
+		name = "battle.views.ScriptScene",
+		data = {
+			script = "1001",
+			cb = function ()
+				print("end...")
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+
+return slot4

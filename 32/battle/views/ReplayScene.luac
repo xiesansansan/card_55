@@ -1,0 +1,97 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.ResDefine")
+slot2 = require("common.SpineManager")
+slot3 = require("battle.managers.ReplayManager")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.managers.StatisticsManager")
+slot7 = class("ReplayScene", require("battle.views.GameScene"))
+slot7.ctor = function (slot0, slot1, slot2)
+	slot0.super.ctor(slot0, slot1)
+	slot0.new(slot2.record)
+
+	return 
+end
+slot7.startGame = function (slot0)
+	slot0.initializeUnits()
+	slot0.initSkillButtons(slot0)
+	slot0.onUpdate(slot0, function (slot0)
+		for slot4 = 1, slot0.speed, 1 do
+			slot1 = slot1 + slot0
+
+			while slot2.FrameTime <= slot1 do
+				slot3.update(slot4.dt)
+				slot4.update(slot2.FrameTime)
+
+				slot1 = slot1 - slot2.FrameTime
+			end
+		end
+
+		return 
+	end)
+
+	slot2 = {
+		[slot1.UnitGroup.ATTACKER] = {},
+		[slot1.UnitGroup.DEFENDER] = {}
+	}
+
+	for slot6, slot7 in pairs(slot0.units) do
+		table.insert(slot2[slot7.group], slot7.uid)
+	end
+
+	slot0.showHeros(slot0, slot2, function ()
+		slot0.start()
+
+		return 
+	end)
+
+	for slot6, slot7 in ipairs(slot3.buffList) do
+		slot4.preLoad(slot7 .. ".skel", slot7 .. ".atlas", 1)
+	end
+
+	return 
+end
+slot7.getResult = function (slot0)
+	slot1.Result = (slot0.state == slot1.GameState.ATTACK_WIN and true) or false
+	slot1.Heros = {}
+	slot1.Round = slot0.curRound
+	slot1.RandNum = seed
+
+	for slot5, slot6 in pairs(slot0.units) do
+		slot7 = slot6.order + (slot6.group - 1)*5
+
+		if slot6.isAlive(slot6) then
+			slot1.Heros[slot7] = {
+				modelId = slot6.heroId,
+				initHp = slot6.initHp,
+				curHp = slot6.attr.hp,
+				curAng = slot6.attr.mp,
+				totalHp = slot6.attr.eHp
+			}
+		else
+			slot1.Heros[slot7] = {
+				curAng = 0,
+				curHp = 0,
+				modelId = slot6.heroId,
+				initHp = slot6.initHp,
+				totalHp = slot6.attr.eHp
+			}
+		end
+	end
+
+	slot2 = slot2.getStatisticsData()
+
+	return slot1
+end
+slot7.setGameState = function (slot0, slot1)
+	slot0.super.setGameState(slot0, slot1)
+
+	if (slot1 ~= slot0.GameState.NEXT_WAVE or false) and (slot1 == slot0.GameState.ATTACK_WIN or slot1 == slot0.GameState.ATTACK_LOSE or slot1 == slot0.GameState.COMPLETE) then
+		dump(slot0.getResult(slot0))
+		require("battle.managers.DebugManager").dumpRandom()
+		require("battle.managers.DebugManager").dump()
+	end
+
+	return 
+end
+
+return slot7

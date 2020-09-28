@@ -1,0 +1,428 @@
+slot0 = class("CacheHero", require("data.CacheModel"))
+slot0.ctor = function (slot0)
+	slot0.super.ctor(slot0)
+
+	return 
+end
+slot0.getSortList = function (slot0, slot1)
+	slot2 = {}
+	slot3 = pairs
+	slot4 = slot0.mModelList or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		table.insert(slot2, slot7.ModelId)
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		slot2 = slot0.mModelList[slot0].Fap
+		slot3 = slot0.mModelList[slot1].Fap
+		slot4 = HeroModel.items[slot0].quality
+		slot5 = HeroModel.items[slot1].quality
+
+		if slot1 then
+			if slot4 ~= slot5 then
+				return slot5 < slot4
+			elseif slot2 ~= slot3 then
+				return slot3 < slot2
+			else
+				return slot1 < slot0
+			end
+		elseif slot2 ~= slot3 then
+			if 14 <= slot4 and 14 <= slot5 then
+				return slot3 < slot2
+			elseif slot4 ~= slot5 then
+				return slot5 < slot4
+			end
+
+			return slot3 < slot2
+		elseif slot4 ~= slot5 then
+			return slot5 < slot4
+		else
+			return slot1 < slot0
+		end
+
+		return 
+	end)
+
+	return slot2
+end
+slot0.updateHerosBattleAttr = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot1) do
+		if slot0.mModelList[slot6.ModelId] then
+			slot0.mModelList[slot6.ModelId].AttrContent = slot6.AttrContent
+			slot0.mModelList[slot6.ModelId].Fap = slot6.Fap
+		end
+	end
+
+	return 
+end
+slot0.getHeroFap = function (slot0, slot1)
+	return slot0.mModelList[slot1].Fap
+end
+slot0.setRedHeroStar = function (slot0, slot1, slot2)
+	slot0.mModelList[slot1].RedStar = slot2
+
+	return 
+end
+slot0.getListByCamp = function (slot0, slot1)
+	slot2 = slot0.getList(slot0)
+
+	if (slot1 or 0) == 0 then
+		return slot2
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		if HeroModel.items[tonumber(slot7)].camp == slot1 then
+			slot3[slot7] = slot8
+		end
+	end
+
+	return slot3
+end
+slot0.getListByProfession = function (slot0, slot1)
+	slot2 = slot0.getList(slot0)
+
+	if (slot1 or 0) == 0 then
+		return slot2
+	end
+
+	slot3 = {}
+
+	for slot7, slot8 in pairs(slot2) do
+		if HeroModel.items[tonumber(slot7)].profession == slot1 then
+			slot3[slot7] = slot8
+		end
+	end
+
+	return slot3
+end
+slot0.getIndexPrDesc = function (slot0, slot1, slot2, slot3, slot4)
+	slot5 = {
+		TR("一星羁绊:"),
+		TR("二星羁绊:"),
+		TR("三星羁绊:"),
+		TR("四星羁绊:"),
+		TR("五星羁绊:")
+	}
+
+	if HeroPrRelation.items[slot1][slot2] then
+		return ((slot4 and "#306614") or "") .. slot5[slot3] .. slot8, ((slot4 and "#306614") or "") .. Utility.analysisStrAttrToFromat(slot6[slot3].totalAttr, TR("%s+%d"))
+	end
+
+	return ""
+end
+slot0.getADHAttr = function (slot0, slot1, slot2)
+	slot3 = HeroModel.items[slot1].initialAtk
+	slot4 = HeroModel.items[slot1].initialArm
+	slot5 = HeroModel.items[slot1].initialHp
+
+	if HeroObj:getItem(slot1) and next(slot6) then
+		slot7 = cjson.decode(slot6.AttrContent)
+		slot3 = slot7.Atk*((slot7.AtkPer or 0)/10000 + 1)
+		slot4 = slot7.Arm*((slot7.ArmPer or 0)/10000 + 1)
+		slot5 = slot7.Hp*((slot7.HpPer or 0)/10000 + 1)
+	end
+
+	slot3 = math.ceil(slot3)
+	slot4 = math.ceil(slot4)
+	slot5 = math.ceil(slot5)
+
+	if slot2 ~= nil and slot2 == true then
+		return slot3, slot4, slot5
+	else
+		return Utility.numberWithUnit(slot3), Utility.numberWithUnit(slot4), Utility.numberWithUnit(slot5)
+	end
+
+	return slot3, slot4, slot5
+end
+slot0.getSICAttr = function (slot0, slot1, slot2)
+	slot5 = 0
+	slot6 = 0
+	slot7 = 0
+
+	for slot11, slot12 in ipairs(slot4) do
+		slot15 = tonumber(string.split(slot3, "|")[2])
+
+		if tonumber(string.split(slot3, "|")[1]) == FightAttrType.eStr then
+			slot5 = slot15
+		elseif slot14 == FightAttrType.eInte then
+			slot6 = slot15
+		elseif slot14 == FightAttrType.eCon then
+			slot7 = slot15
+		end
+	end
+
+	if HeroObj:getItem(slot1) and next(slot8) then
+		slot9 = cjson.decode(slot8.AttrContent)
+		slot5 = slot9.Str*((slot9.Strr or 0)/10000 + 1)
+		slot6 = slot9.Inte*((slot9.Inter or 0)/10000 + 1)
+		slot7 = slot9.Con*((slot9.Conr or 0)/10000 + 1)
+	end
+
+	slot5 = math.ceil(slot5)
+	slot6 = math.ceil(slot6)
+	slot7 = math.ceil(slot7)
+
+	if slot2 ~= nil and slot2 == true then
+		return slot5, slot6, slot7
+	else
+		return Utility.numberWithUnit(slot5), Utility.numberWithUnit(slot6), Utility.numberWithUnit(slot7)
+	end
+
+	return slot5, slot6, slot7
+end
+slot0.getPrStateOfHero = function (slot0, slot1)
+	slot3 = (GoodsModel.items[slot1] ~= nil and slot2.outputModelID) or slot1
+	slot5 = {
+		TR("推荐"),
+		[3] = TR("可激活"),
+		[2] = TR("可搭配")
+	}
+
+	function slot6(slot0)
+		if table.indexof(slot0, table.indexof) ~= false then
+			return 0
+		end
+
+		slot2 = false
+
+		for slot6, slot7 in ipairs(slot1) do
+			if slot1 == tonumber(slot7) then
+				slot2 = true
+
+				break
+			end
+		end
+
+		if slot2 == false then
+			return 0
+		end
+
+		slot3 = true
+
+		for slot7, slot8 in ipairs(slot1) do
+			if slot1 ~= tonumber(slot8) and table.indexof(slot0, tonumber(slot8)) == false then
+				slot3 = false
+
+				break
+			end
+		end
+
+		if slot3 == true then
+			return 3
+		else
+			return 2
+		end
+
+		return 
+	end
+
+	slot7 = 0
+
+	for slot11, slot12 in ipairs(slot4) do
+		if slot11 <= 5 then
+			for slot16, slot17 in pairs(HeroPrRelation.items[slot12]) do
+				if slot7 < slot6(slot17) then
+					slot7 = slot18
+				end
+			end
+		end
+	end
+
+	if slot7 == 0 then
+		for slot11, slot12 in ipairs(slot4) do
+			if slot11 <= 5 and slot12 == slot3 then
+				slot7 = 1
+
+				break
+			end
+		end
+	end
+
+	return slot7, slot5[slot7]
+end
+slot0.isHaveModel = function (slot0, slot1)
+	if not slot1 or slot1 == 0 then
+		return false
+	end
+
+	for slot6, slot7 in pairs(slot2) do
+		if tonumber(slot6) == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.isQualityUpHero = function (slot0, slot1, slot2)
+	slot4 = false
+
+	if (slot2 or HeroObj:getItem(slot1)) and next(slot3) ~= nil and slot3.Quality == 18 and HeroQualityModel.items[slot1] then
+		slot4 = true
+	end
+
+	return slot4
+end
+slot0.getHeroRealModelInfo = function (slot0, slot1, slot2)
+	slot3 = nil
+
+	if slot0.isQualityUpHero(slot0, slot1, slot2) then
+		slot3 = clone(HeroModel.items[slot1])
+		slot4 = HeroQualityRedstarConfig.items[slot1]
+		slot5 = 0
+
+		if slot2 then
+			slot5 = slot2.RedStar or 0
+		else
+			slot5 = slot0.getItem(slot0, slot1).RedStar or 0
+		end
+
+		if slot4 then
+			slot6 = {}
+
+			for slot10, slot11 in pairs(slot4) do
+				table.insert(slot6, clone(slot11))
+			end
+
+			table.sort(slot6, function (slot0, slot1)
+				return slot0.redStar < slot1.redStar
+			end)
+
+			for slot10, slot11 in ipairs(slot6) do
+				if slot11.changeSkillStr ~= "" and slot11.redStar <= slot5 then
+					slot14 = string.split(slot11.changeSkillStr, "|")[2]
+
+					if slot3.skillAttackId == tonumber(string.split(slot11.changeSkillStr, "|")[1]) then
+						slot3.skillAttackId = tonumber(slot14)
+					end
+
+					if string.find(slot3.skillId, slot13) then
+						slot3.skillId = slot3.skillId:gsub(slot13, slot14)
+					end
+				end
+			end
+		end
+	else
+		slot3 = clone(HeroModel.items[slot1])
+	end
+
+	return slot3
+end
+slot0.getHeroByKFEntityId = function (slot0, slot1)
+	for slot6, slot7 in pairs(slot2) do
+		if slot7.KongfuInfo and slot7.KongfuInfo.EntityId == slot1 then
+			return slot7
+		end
+	end
+
+	return nil
+end
+slot0.updateHerosKongfuInfo = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		if slot0.mModelList[tonumber(slot5)] then
+			if next(slot6) ~= nil then
+				slot0.mModelList[slot7].KongfuInfo = slot6
+			else
+				slot0.mModelList[slot7].KongfuInfo = nil
+			end
+		end
+	end
+
+	return 
+end
+slot0.updateHerosWuxueInfo = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		if slot0.mModelList[tonumber(slot5)] then
+			if next(slot6) ~= nil then
+				slot0.mModelList[slot7].WuxueInfo = slot6
+			else
+				slot0.mModelList[slot7].WuxueInfo = nil
+			end
+		end
+	end
+
+	return 
+end
+slot0.getHeroRealQuality = function (slot0, slot1, slot2)
+	slot4 = HeroModel.items[slot1].quality
+	slot5 = slot0.getItem(slot0, slot1) or {}
+
+	if next(slot2 or slot5) ~= nil and slot6.Quality then
+		return (0 < slot6.Quality and slot6.Quality) or slot3.quality
+	end
+end
+slot0.isOpenRoad = function (slot0, slot1)
+	if slot0.mHeroConfig == nil then
+		slot0.mHeroConfig = HeroConfig.items[1]
+	end
+
+	if slot0.mHeroConfig.roadOpenNeedHeroTrainLv == nil or slot0.mHeroConfig.roadOpenNeedHeroStarLv == nil then
+		return false
+	end
+
+	return (slot0.mHeroConfig.roadOpenNeedHeroTrainLv or 0) <= (slot0.getItem(slot0, slot1) or {}.TrainLv or 0) and (slot0.mHeroConfig.roadOpenNeedHeroStarLv or 0) <= (slot0.getItem(slot0, slot1) or {}.Star or 0) and (slot0.mHeroConfig.needHeroLv or 0) <= (slot0.getItem(slot0, slot1) or {}.Lv or 0) and HeroModel.items[slot1].roadClassID ~= 0
+end
+slot0.isOpenTupo = function (slot0, slot1, slot2)
+	if slot0.mHeroTupoConfig == nil then
+		slot0.mHeroTupoConfig = HeroTupoConfig.items[1]
+	end
+
+	if slot0.mHeroTupoConfig.star == nil or slot0.mHeroTupoConfig.heroLv == nil or slot0.mHeroTupoConfig.trainLv == nil then
+		return false
+	end
+
+	slot3 = slot0.getItem(slot0, slot1) or {}
+
+	if slot2 and next(slot2) then
+		slot3 = slot2
+	end
+
+	return (slot0.mHeroTupoConfig.trainLv or 0) <= (slot3.TrainLv or 0) and (slot0.mHeroTupoConfig.star or 0) <= (slot3.Star or 0) and (slot0.mHeroTupoConfig.heroLv or 0) <= (slot3.Lv or 0) and (slot0.mHeroTupoConfig.heroQuality or 0) <= (HeroModel.items[slot1] or {}.quality or 0)
+end
+slot0.resetChangePositionNumOfAllHero = function (slot0)
+	for slot4, slot5 in pairs(slot0.getList(slot0)) do
+		if slot5.HeroRoadInfo ~= nil then
+			slot5.HeroRoadInfo.ChangePositionNum = 0
+		end
+	end
+
+	return 
+end
+slot0.isFreeHeroRebirth = function (slot0, slot1, slot2)
+	if next(slot0.getItem(slot0, slot2) or {}) == nil then
+		return true
+	end
+
+	if slot3.ResetFreeRecord == "" then
+		return true
+	end
+
+	slot6 = 0
+
+	for slot10, slot11 in ipairs(slot5) do
+		if tonumber(string.split(slot11, "|")[1]) == slot1 then
+			slot6 = tonumber(slot12[2])
+
+			break
+		end
+	end
+
+	return slot6 < HeroRebirthRelation.items[slot1].freeRebirthNum
+end
+slot0.getHeroRedStarNumModel = function (slot0, slot1, slot2)
+	if not HeroQualityRedstarConfig.items[slot1] then
+		return 
+	end
+
+	for slot7, slot8 in pairs(slot3) do
+		if slot8.redStar == slot2 then
+			return clone(slot8)
+		end
+	end
+
+	return nil
+end
+
+return slot0

@@ -1,0 +1,467 @@
+slot0 = class("ShopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled4",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "sc_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				params = {
+					image = "sc_21.png",
+					pos = {
+						x = 91,
+						y = -25
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "topResourceNode",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1113
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled23",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "closeBtn",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled2",
+						cType = "Sprite",
+						params = {
+							image = "sc_6.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -43.09,
+								y = 26.08
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled25",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled8",
+				cType = "Sprite",
+				params = {
+					image = "sc_14.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = -85.76,
+						y = 281
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = 87.35,
+								y = 440.2
+							},
+							size = {
+								width = 178.09,
+								height = 383.43
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+
+require("config.ModuleSubConfig")
+require("config.PlayerConfig")
+
+slot0.ctor = function (slot0, slot1)
+	slot0.fromNavigate = slot1 or {}.fromNavigate
+
+	slot0.super.ctor(slot0)
+
+	slot0.mTargetModuleId = slot1 or {}.moduleId
+	slot0.mPageData = slot1 or {}.pageData or {}
+
+	slot0.initUI(slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.subConfig = {
+		{
+			filename = "shop.MarketHomeLayer",
+			moduleId = ModuleSub.eMarketNormal,
+			reddotId = ModuleSub.eMarketNormal,
+			title = TR("集市")
+		},
+		{
+			filename = "shop.DlgEquipShopLayer",
+			moduleId = ModuleSub.eEquipShop,
+			title = TR("装备商店")
+		},
+		{
+			filename = "shop.ShopExpeditionLayer",
+			moduleId = ModuleSub.eStoreExpedition,
+			title = TR("拜庄论剑"),
+			reddotId = ModuleSub.eStoreExpedition
+		},
+		{
+			filename = "shop.MarketTreasureLayer",
+			moduleId = ModuleSub.eMarketTreasure,
+			title = TR("珍宝阁")
+		},
+		{
+			filename = "shop.MarketFeatsLayer",
+			moduleId = ModuleSub.eMarketFeats,
+			reddotId = ModuleSub.eMarketFeats,
+			title = TR("武林商店")
+		},
+		{
+			filename = "shop.JzwlShopLayer",
+			moduleId = ModuleSub.eLeaguetopFinalShop,
+			title = TR("武林密藏")
+		},
+		{
+			filename = "shop.ShopEtlyLayer",
+			reddotId = ModuleSub.eEtlyShop,
+			moduleId = ModuleSub.eEtlyShop,
+			title = TR("万剑墓窟")
+		},
+		{
+			filename = "shop.ShopPvpLayer",
+			moduleId = ModuleSub.ePvpShop,
+			title = TR("比武试刀")
+		},
+		{
+			filename = "shop.ShopShengyuanLayer",
+			moduleId = ModuleSub.eShenyuanShop,
+			title = TR("战江湖")
+		},
+		{
+			filename = "shop.MarketLegendLayer",
+			moduleId = ModuleSub.eMarketLegend,
+			title = TR("传奇商店")
+		}
+	}
+	slot0.mSubNodeList = {}
+	slot0.mCurrModuleId = 0
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.subConfig) do
+		if Utility.moduleIsOpen(slot6.moduleId, false) == true then
+			if slot6.moduleId == ModuleSub.eIcefire then
+				if PlayerAttrObj:getPlayerAttrByName("IcefireStatus") and 0 <= slot7 then
+					table.insert(slot1, slot6)
+				end
+			else
+				table.insert(slot1, slot6)
+			end
+		end
+	end
+
+	slot2 = cc.size(182, 55)
+	slot3 = nil
+	slot4 = {}
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot10 = UIWrap.newControl("Layout", {
+			size = slot2
+		})
+
+		slot10.addChild(slot10, UIWrap.newControl("Node", {
+			size = slot2
+		}))
+
+		slot10.parent = UIWrap.newControl("Node", {
+			size = slot2
+		})
+		slot3 = slot3 or slot11
+		slot12 = UIWrap.newControl("Button", {
+			swallowTouch = false,
+			pressedAction = true,
+			image = "sc_15.png",
+			pos = cc.p(slot2.width/2, slot2.height/2),
+			clickAction = function ()
+				slot0:onChangeModuleStoreAction(slot1.moduleId)
+
+				return 
+			end
+		})
+
+		slot11.addChild(slot11, slot12, 1)
+
+		slot11.button = slot12
+
+		slot12.addChild(slot12, UIWrap.newControl("Label", {
+			fontSize = 24,
+			text = slot9.title,
+			color = cc.c3b(237, 231, 224),
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(0, -5)
+		}), 2)
+
+		slot11.titleLabel = UIWrap.newControl("Label", {
+			fontSize = 24,
+			text = slot9.title,
+			color = cc.c3b(237, 231, 224),
+			anchor = cc.p(0.5, 0.5),
+			pos = cc.p(0, -5)
+		})
+
+		if slot9.reddotId ~= nil then
+			slot12.addChild(slot12, UIWrap.newControl("RedDot", {
+				moduleId = slot9.reddotId,
+				offset = cc.p(0.1, 0.62)
+			}))
+		end
+
+		slot0.mSubNodeList[slot9.moduleId] = slot11
+
+		table.insert(slot4, slot11)
+		slot0.mListView:pushBackCustomItem(slot10)
+	end
+
+	for slot8, slot9 in ipairs(slot4) do
+		if slot8 ~= 1 then
+			slot9.setPositionY(slot9, slot8*slot3.getContentSize(slot3).height)
+		end
+	end
+
+	for slot8, slot9 in pairs(slot4) do
+		slot9.runAction(slot9, cc.EaseSineOut:create(cc.MoveTo:create(slot8*0.1, cc.p(0, 0))))
+	end
+
+	slot0.onChangeModuleStoreAction(slot0, slot0.mTargetModuleId or slot1[1].moduleId)
+
+	slot5 = 1
+
+	for slot9, slot10 in ipairs(slot1) do
+		if slot0.mTargetModuleId ~= nil and slot0.mTargetModuleId == slot10.moduleId then
+			slot5 = slot9
+
+			break
+		end
+	end
+
+	ui.setListviewItemShow(slot0.mListView, slot5)
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	if slot0.fromNavigate then
+		display.getRunningScene():jumpToNavigate(Enums.Navigate.eHome)
+	else
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.onChangeModuleStoreAction = function (slot0, slot1)
+	if slot0.mCurrModuleId == slot1 then
+		return 
+	end
+
+	if Utility.moduleIsOpen(slot1, true) == false then
+		return 
+	end
+
+	for slot5, slot6 in pairs(slot0.mSubNodeList) do
+		slot6.titleLabel:setColor((slot5 == slot1 and cc.c3b(37, 37, 37)) or cc.c3b(237, 231, 224))
+		slot6.titleLabel:setPositionY((slot5 == slot1 and -7) or -5)
+		slot6.button:loadTextures((slot5 == slot1 and "sc_16.png") or "sc_15.png", )
+	end
+
+	slot0.mCurrModuleId = slot1
+	slot2 = nil
+
+	for slot6, slot7 in ipairs(slot0.subConfig) do
+		if slot7.moduleId == slot1 then
+			slot2 = slot7.filename
+
+			break
+		end
+	end
+
+	if slot2 == nil then
+		return 
+	end
+
+	if slot0.mCurrFileLayer ~= nil then
+		slot0.mCurrFileLayer:removeFromParent()
+
+		slot0.mCurrFileLayer = nil
+	end
+
+	package.loaded[slot2] = nil
+
+	if ModuleSub.eEquipShop == slot1 or ModuleSub.eMarketLegend == slot1 then
+		slot0.mPageData.topResourceNode = slot0.topResourceNode
+	end
+
+	slot0.mCurrFileLayer = UIWrap.newControl("FileLayer", {
+		file = slot2,
+		initParams = slot0.mPageData
+	})
+
+	slot0.addChild(slot0, slot0.mCurrFileLayer)
+
+	if ModuleSub.eMarketNormal == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eVit)
+	elseif ModuleSub.eMarketMateria == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eVit)
+	elseif ModuleSub.eMarketFeats == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eFeats)
+	elseif ModuleSub.eMarketGuild == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eFeats)
+	elseif ModuleSub.eGemShop == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eVit)
+	elseif ModuleSub.eLeaguetopFinalShop == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eSilver)
+	elseif ModuleSub.eMarketTreasure == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eVit)
+	elseif ModuleSub.eStoreExpedition == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eExpeditionCoin)
+	elseif ModuleSub.ePvpShop == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eGddhCoin)
+	elseif ModuleSub.eEtlyShop == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eEtlyCoin)
+	elseif ModuleSub.eStoreDwdh == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eGddhCoin)
+	elseif ModuleSub.eMarketWuxue == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eWuxueCanye)
+	elseif ModuleSub.eShenyuanShop == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, ResourceTypeSub.eGodDomainGlory)
+	elseif ModuleSub.eMarketLegend == slot1 then
+		slot0.topResourceNode:resetThirdBtn(3, 16050169)
+	end
+
+	slot0.topResourceNode:resetThirdBtn(1, ResourceTypeSub.eDiamond)
+
+	if ModuleSub.ePvpShop == slot1 then
+		if Utility.moduleIsOpen(ModuleSub.eHegemony) then
+			slot0.topResourceNode:resetThirdBtn(2, ResourceTypeSub.eGoldKnife)
+		end
+	else
+		slot0.topResourceNode:resetThirdBtn(2, ResourceTypeSub.eGold)
+	end
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[800902] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.closeBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

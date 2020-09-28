@@ -1,0 +1,548 @@
+slot0 = class("SectAdventureLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "sect.SectAdventureLayer"
+		},
+		children = {}
+	},
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 400,
+						y = 0
+					},
+					size = {
+						width = 500,
+						height = 522
+					}
+				},
+				children = {
+					{
+						name = "taskListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 250,
+								y = 286
+							},
+							size = {
+								width = 444,
+								height = 420
+							}
+						},
+						children = {
+							{
+								name = "taskTemplate",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled7-image",
+										name = "taskLevelImg",
+										type = "string"
+									},
+									{
+										value = "untitled8-text",
+										name = "taskNameStr",
+										type = "string"
+									},
+									{
+										value = "untitled10-image",
+										name = "btnImg",
+										type = "string"
+									},
+									{
+										value = "untitled10-clickAction",
+										name = "btnClickAction",
+										type = "string"
+									},
+									{
+										value = "untitled9-id",
+										name = "id",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 444,
+										height = 118
+									}
+								},
+								children = {
+									{
+										name = "untitled6",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											pos = {
+												x = 222,
+												y = 59
+											},
+											size = {
+												width = 444,
+												height = 118
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled7",
+										cType = "Sprite",
+										params = {
+											image = "zm_9.png",
+											pos = {
+												x = 27,
+												y = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 168,
+												r = 139,
+												b = 87
+											},
+											pos = {
+												x = 50,
+												y = 100
+											},
+											text = TR("任务名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "Button",
+										custom = {
+											{
+												value = 1,
+												name = "id",
+												type = "integer"
+											}
+										},
+										params = {
+											image = "zm_8.png",
+											clickAction = "onRefreshCallBack",
+											pos = {
+												x = 419,
+												y = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "tipsLabel",
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 370,
+												y = 69.02
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "Button",
+										params = {
+											childName = "btn",
+											image = "c_27.png",
+											clickAction = "",
+											pos = {
+												x = 370,
+												y = 37
+											},
+											titleText = TR("前往调查")
+										},
+										children = {}
+									},
+									{
+										name = "rewardListView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											pos = {
+												x = 11.77,
+												y = 6.6
+											},
+											size = {
+												width = 300,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "cardTemplate",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled13-initParams",
+														name = "cardInfo",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 80,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "untitled13",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 40,
+																y = 40
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "untitled16",
+										cType = "ResLabel",
+										params = {
+											num = 0,
+											modelId = 1111,
+											childName = "resLabel",
+											pos = {
+												x = 330,
+												y = 100
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							fontSize = 22,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 250,
+								y = 49
+							},
+							text = TR("每日05:00新增1条奇遇最多累积存在3条")
+						},
+						children = {}
+					},
+					{
+						name = "emptyTipsLabel",
+						cType = "Sprite",
+						params = {
+							image = "bp_25.png",
+							hide = true,
+							pos = {
+								x = 250,
+								y = 261
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 242.5,
+										y = 50
+									},
+									size = {
+										width = 180,
+										height = 100
+									},
+									text = TR("奇遇已经全部完成，次日05:00会有新的奇遇")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetEncounterInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot1 = {
+	{
+		pic = "zm_17.png",
+		color = cc.c3b(255, 255, 255)
+	},
+	{
+		pic = "zm_9.png",
+		color = cc.c3b(139, 168, 87)
+	},
+	{
+		pic = "zm_10.png",
+		color = cc.c3b(92, 167, 187)
+	},
+	{
+		pic = "zm_11.png",
+		color = cc.c3b(170, 51, 221)
+	},
+	{
+		pic = "zm_12.png",
+		color = cc.c3b(203, 125, 69)
+	}
+}
+slot0.refreshLayer = function (slot0)
+	slot0.taskListView:removeAllChildren()
+
+	function slot1(slot0, slot1)
+		slot3 = {}
+
+		for slot7, slot8 in ipairs(slot2) do
+			for slot13, slot14 in ipairs(Utility.analysisStrResList(slot9)) do
+				table.insert(slot3, slot14)
+			end
+		end
+
+		table.insert(slot3, Utility.analysisStrResList(slot1)[1])
+
+		return slot3
+	end
+
+	slot0.emptyTipsLabel:setVisible(#slot0.baseInfoList == 0)
+
+	for slot5, slot6 in ipairs(slot0.baseInfoList) do
+		slot11 = Player:getCurrentTime() < slot6.EndTime and slot6.StartTime <= slot10
+		slot13 = slot0.createLayoutTemplateNode(slot0, "taskTemplate", {
+			id = slot6.EncounterId,
+			taskLevelImg = slot0[SectThingsModel.items[slot6.EncounterId].colorLv].pic,
+			taskNameStr = SectThingsCityRelation.items[SectThingsModel.items[slot6.EncounterId].needCityId][slot6.CityId].name,
+			btnImg = (slot6.EndTime < slot10 and not slot6.IsDraw and "c_32.png") or "c_27.png",
+			btnClickAction = function ()
+				slot1 = Player:getCurrentTime() < slot0.EndTime and slot0.StartTime <= slot0
+
+				if slot0.EndTime < slot0 and not slot0.IsDraw then
+					slot1:requestDrawEncounter(slot0.EncounterId)
+					dump("111")
+				elseif slot1 then
+					ui.showFlashView(TR("任务调查中.."))
+					dump("222")
+				else
+					dump("333")
+					slot1:requestResearchEncounter(slot0.EncounterId)
+				end
+
+				return 
+			end
+		})
+
+		slot13.nameLabel:setColor(slot0[SectThingsModel.items[slot6.EncounterId].colorLv].color)
+		slot13.resLabel:setType(Utility.analysisStrResList(SectConfig.items[1].thingsRefreshUse)[1].resourceId)
+		slot13.resLabel:setString(Utility.analysisStrResList(SectConfig.items[1].thingsRefreshUse)[1].num)
+
+		if slot12 then
+			slot13.btn:setTitleText(TR("领取奖励"))
+			slot13.tipsLabel:setString(TR("调查成功"))
+		elseif slot11 then
+			slot13.btn:setTitleText(TR("正在调查"))
+			Utility.schedule(slot13.tipsLabel, function ()
+				slot0, slot1 = Utility.getCountDownStr(slot0.EndTime)
+
+				if slot0 then
+					slot1.tipsLabel:setString(slot1)
+				else
+					slot1.tipsLabel:setString("")
+				end
+
+				return 
+			end, 0.5)
+		else
+			slot13.btn:setTitleText(TR("前往调查"))
+		end
+
+		slot13.rewardListView:removeAllChildren()
+
+		for slot19, slot20 in ipairs(slot15) do
+			slot13.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardTemplate", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot20.resourceId,
+						num = slot20.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot0.taskListView:pushBackCustomItem(slot13)
+	end
+
+	return 
+end
+slot0.onRefreshCallBack = function (slot0, slot1)
+	slot0.requestRefreshEncounter(slot0, slot1.id)
+
+	return 
+end
+slot0.requestGetEncounterInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetEncounterInfo",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.baseInfoList = slot0.BaseInfo
+
+			table.sort(slot0.baseInfoList, function (slot0, slot1)
+				return slot0.EncounterId < slot1.EncounterId
+			end)
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefreshEncounter = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshEncounter",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.baseInfoList = slot0.BaseInfo
+
+			table.sort(slot0.baseInfoList, function (slot0, slot1)
+				return slot0.EncounterId < slot1.EncounterId
+			end)
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestResearchEncounter = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ResearchEncounter",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.baseInfoList = slot0.BaseInfo
+
+			table.sort(slot0.baseInfoList, function (slot0, slot1)
+				return slot0.EncounterId < slot1.EncounterId
+			end)
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawEncounter = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawEncounter",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.baseInfoList = slot0.BaseInfo
+
+			table.sort(slot0.baseInfoList, function (slot0, slot1)
+				return slot0.EncounterId < slot1.EncounterId
+			end)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,1027 @@
+slot0 = class("CityWarSpecialtyProductLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionOver",
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("门派特产")
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 425.06,
+						y = 38.81
+					},
+					size = {
+						width = 776,
+						height = 448
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							pos = {
+								x = 0,
+								y = 2.69
+							},
+							size = {
+								width = 776,
+								height = 440
+							}
+						},
+						children = {
+							{
+								name = "goingLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 776,
+										height = 50
+									}
+								},
+								children = {
+									{
+										name = "untitled36",
+										cType = "Sprite",
+										params = {
+											image = "c_36.png",
+											pos = {
+												x = 145.81,
+												y = 25
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled37",
+										cType = "Sprite",
+										params = {
+											reverse = 1,
+											image = "c_36.png",
+											pos = {
+												x = 630.89,
+												y = 24
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Label",
+										params = {
+											isRichText = true,
+											childName = "timeLabel",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 388,
+												y = 25
+											},
+											text = TR("#99E53D00:00:00#252525后仍占领的帮派可领取")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "futureLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 776,
+										height = 50
+									}
+								},
+								children = {
+									{
+										name = "untitled40",
+										cType = "Sprite",
+										params = {
+											image = "c_36.png",
+											childName = "sp_l",
+											pos = {
+												x = 211.09,
+												y = 25
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled41",
+										cType = "Sprite",
+										params = {
+											image = "c_36.png",
+											childName = "sp_r",
+											reverse = 1,
+											pos = {
+												x = 562,
+												y = 25
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled42",
+										cType = "Label",
+										params = {
+											isRichText = true,
+											childName = "timeLabel",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 388,
+												y = 25
+											},
+											text = TR("16点-18点出现")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "spLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 776,
+										height = 260
+									}
+								},
+								children = {
+									{
+										name = "tmpOneSp",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 21.5,
+												y = 53
+											},
+											size = {
+												width = 164,
+												height = 204
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "Sprite",
+												params = {
+													image = "jh_20.png",
+													pos = {
+														x = 82,
+														y = 102
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled32",
+												cType = "Button",
+												params = {
+													childName = "citybtn",
+													image = "c_pure.png",
+													swallowTouch = false,
+													clickAction = "onGoToCity",
+													pos = {
+														x = 82,
+														y = 146
+													},
+													size = {
+														width = 90,
+														height = 80
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled52",
+												cType = "Button",
+												params = {
+													image = "mptc_1.png",
+													isGray = true,
+													clickAction = "onClickOpBtnCallBack",
+													childName = "wlmzBtn",
+													pos = {
+														x = 27.46,
+														y = 166.89
+													}
+												},
+												children = {
+													{
+														name = "untitled59",
+														cType = "RedDot",
+														params = {
+															childName = "redDot",
+															hide = true
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "untitled28",
+												cType = "Sprite",
+												params = {
+													image = "jh_23.png",
+													childName = "citylogo",
+													scale = 0.8,
+													pos = {
+														x = 82,
+														y = 149.52
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled30",
+												cType = "Sprite",
+												params = {
+													scaleX = 0.65,
+													image = "c_2.png",
+													pos = {
+														x = 88,
+														y = 104
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled31",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													isRichText = true,
+													childName = "cityname",
+													text = "???",
+													pos = {
+														x = 79,
+														y = 104
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled46",
+												cType = "Button",
+												params = {
+													childName = "opbtn",
+													image = "c_19.png",
+													swallowTouch = false,
+													clickAction = "onGetReward",
+													pos = {
+														x = 82,
+														y = -24.02
+													},
+													size = {
+														width = 124,
+														height = 50
+													},
+													titleText = TR("领 取")
+												},
+												children = {}
+											},
+											{
+												name = "untitled48",
+												cType = "ListView",
+												params = {
+													childName = "rewardList",
+													direction = false,
+													pos = {
+														x = 15,
+														y = 12
+													},
+													size = {
+														width = 130,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "rewardlayout",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 80,
+																height = 80
+															}
+														},
+														children = {
+															{
+																name = "untitled50",
+																cType = "CardNode",
+																params = {
+																	scale = 0.78,
+																	childName = "card",
+																	allowClick = true,
+																	pos = {
+																		x = 40,
+																		y = 40
+																	}
+																},
+																children = {
+																	{
+																		name = "untitled51",
+																		cType = "BadgeText",
+																		params = {
+																			fontSize = 25,
+																			fontRotation = -45,
+																			image = "c_88.png",
+																			anchor = {
+																				x = 1,
+																				y = 1
+																			},
+																			fontPos = {
+																				x = 19,
+																				y = 36
+																			},
+																			pos = {
+																				x = 56.83,
+																				y = 79.1
+																			},
+																			text = TR("双倍")
+																		},
+																		children = {}
+																	}
+																}
+															}
+														}
+													},
+													{
+														name = "unkownLayout",
+														cType = "Layout",
+														params = {
+															size = {
+																width = 80,
+																height = 80
+															}
+														},
+														children = {
+															{
+																name = "untitled56",
+																cType = "Sprite",
+																params = {
+																	scale = 0.78,
+																	image = "c_18.png",
+																	pos = {
+																		x = 40,
+																		y = 40
+																	}
+																},
+																children = {}
+															},
+															{
+																name = "untitled57",
+																cType = "Sprite",
+																params = {
+																	scale = 0.85,
+																	image = "txdy_9.png",
+																	pos = {
+																		x = 40,
+																		y = 40
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											},
+											{
+												name = "untitled58",
+												cType = "GuildFlag",
+												params = {
+													childName = "guildFlag",
+													hide = true,
+													scale = 0.3,
+													pos = {
+														x = 135.27,
+														y = 172.18
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled47",
+				cType = "Button",
+				params = {
+					image = "c_3.png",
+					clickAction = "onRuleBtnAction",
+					pos = {
+						x = 53.59,
+						y = 464.37
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.dealData(slot0, slot1)
+
+	slot0.mCallBack = slot1.callback
+
+	slot0.initUI(slot0)
+	slot0.updateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, slot0.updateTime, 1)
+
+	EventAuto:registerAutoEvent(slot0, EventDefine.eCityWarHomeDataUpdate, function (slot0, slot1)
+		dump(slot1, "2222")
+		slot0:dealData({
+			cityInfo = slot1.CityInfo,
+			teChanInfo = slot1.TeChanInfo,
+			jishi = slot1.Jishi
+		})
+		slot0:refreshUI()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.initUIElement(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0, slot1)
+	slot0.mAllCityInfo = slot1.cityInfo
+	slot0.mTeChanInfo = slot1.teChanInfo
+	slot0.mSelectTeChanId = slot1.jishi.Id
+	slot0.mJiShiInfo = slot1.jishi
+	slot0.mDoubleCity = {}
+
+	for slot5, slot6 in ipairs(string.split(slot1.jishi.CityIds, ",")) do
+		slot0.mDoubleCity[tostring(slot6)] = true
+	end
+
+	return 
+end
+slot0.onRuleBtnAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1.每日在10点-12点，16点-18点，19点-21点，会随机出现特产门派。"),
+			TR("2.只有在12点、18点、21点占有对应门派的帮派成员才可领取特产奖励。"),
+			TR("3.每日24点将清除当天的特产门派记录，请大侠们在24点前及时领取。"),
+			TR("4.盟主可对特产门派使用盟主令。使用后的门派特产奖励将翻倍。"),
+			TR("5.盟主每日只可在一个时间段选取两个门派。")
+		}
+	})
+
+	return 
+end
+slot0.onPopActionOver = function (slot0)
+	slot0.getGotStatusInfo(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	EventAuto:postEvent(EventDefine.eRefreshAllCityEvent)
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	return 
+end
+slot0.onGoToCity = function (slot0, slot1)
+	if slot1.cityId and slot0.mCallBack then
+		slot0.mCallBack(slot1.cityId)
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.onGetReward = function (slot0, slot1)
+	if not slot1.cityInfo then
+		return 
+	end
+
+	if not Utility.isEntityId(clone(slot1.cityInfo).GuildId) then
+		ui.showFlashView(TR("没有帮派占领该城池不可领取"))
+
+		return 
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId ~= slot2.GuildId then
+		ui.showFlashView(TR("产出期间不是自己帮派占领该城池不可领取"))
+
+		return 
+	end
+
+	slot0.requestGetReward(slot0, slot1.teChanId, slot2.CityIdInfo)
+
+	return 
+end
+slot0.updateTime = function (slot0)
+	for slot4, slot5 in pairs(slot0.mTitileNodeList) do
+		if slot5 and not tolua.isnull(slot5) then
+			slot6 = slot5.teChanId
+
+			slot5.refreshLayout(slot5)
+
+			if slot5.statusType ~= -1 and slot7 ~= slot5.statusType then
+				slot0.refreshUI(slot0, slot6)
+			end
+		end
+	end
+
+	return 
+end
+slot0.initUIElement = function (slot0)
+	slot0.mTitileNodeList = {}
+	slot0.mMainNodeList = {}
+
+	slot0.mListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mTeChanInfo) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "futureLayout", {})
+		slot6.teChanId = slot5.Id
+		slot6.statusType = -1
+		slot0.mTitileNodeList[tostring(slot6.teChanId)] = slot6
+
+		slot0.mListView:pushBackCustomItem(slot6)
+
+		slot8 = slot0.createLayoutTemplateNode(slot0, "spLayout", {})
+		slot8.teChanId = slot5.Id
+
+		slot8.setContentSize(slot8, slot10)
+
+		slot0.mMainNodeList[tostring(slot8.teChanId)] = slot8
+
+		slot0.mListView:pushBackCustomItem(slot8)
+	end
+
+	for slot4, slot5 in pairs(slot0.mTitileNodeList) do
+		slot5.refreshLayout = function (slot0, slot1)
+			slot5 = -1
+			slot0.statusType = (Player:getCurrentTime() >= slot0:getTechanInfoById(slot2).StartTime or 0) and ((slot3.StartTime <= slot4 and slot4 <= slot3.EndTime and 1) or 2)
+
+			if ((Player.getCurrentTime() >= slot0.getTechanInfoById(slot2).StartTime or 0) and ((slot3.StartTime <= slot4 and slot4 <= slot3.EndTime and 1) or 2)) == 1 then
+				slot0.sp_l:setPositionX(145)
+				slot0.sp_r:setPositionX(630)
+			elseif slot5 == 0 then
+				slot0.sp_l:setPositionX(211)
+				slot0.sp_r:setPositionX(562)
+			else
+				slot0.sp_l:setPositionX(185)
+				slot0.sp_r:setPositionX(590)
+			end
+
+			slot0.timeLabel:setString(slot0:getTimeStr(slot3.StartTime, slot3.EndTime))
+
+			return 
+		end
+	end
+
+	for slot4, slot5 in pairs(slot0.mMainNodeList) do
+		slot5.refreshLayout = function (slot0, slot1)
+			slot4 = slot0:getTechanStatueById(slot2)
+
+			slot0.removeAllChildren(slot0)
+
+			slot7 = cc.size(776, math.ceil(#slot0:getTechanInfoById(slot2).CityIdInfo/3)*260)
+
+			for slot11 = 1, #slot0.getTechanInfoById(slot2).CityIdInfo, 1 do
+				slot18 = slot3.CityIdInfo[slot11].RewardList
+				slot19 = CitywarCityConfig.items[slot3.CityIdInfo[slot11].CityIdInfo]
+				slot20 = slot0.mAllCityInfo[tostring(slot17)]
+				slot21 = slot0:createLayoutTemplateNode("tmpOneSp", {})
+
+				slot21.setPosition(slot21, cc.p((slot11 - 1)%3*230 + 75, slot7.height - 206 - (math.ceil(slot11/3) - 1)*260))
+				slot0.addChild(slot0, slot21)
+
+				if 0 < slot4 then
+					slot22, slot26 = Utility.getCityNameColor(slot17)
+
+					slot21.cityname:setString(slot23 .. slot19.name)
+
+					slot24, slot28 = Utility.getCityTypePic(slot19.cityType)
+
+					slot21.citylogo:setTexture(slot25)
+
+					slot21.citybtn.cityId = slot17
+
+					if Utility.isEntityId(slot16.GuildId) then
+						slot21.guildFlag:setFlag(slot16.BannerInfo)
+						slot21.guildFlag:setString(slot16.Logo)
+						slot21.guildFlag:setVisible(true)
+					elseif slot4 == 1 and Utility.isEntityId(slot20.GuildId) then
+						slot21.guildFlag:setFlag(slot20.BannerInfo)
+						slot21.guildFlag:setString(slot20.Logo)
+						slot21.guildFlag:setVisible(true)
+					else
+						slot21.guildFlag:setVisible(false)
+					end
+
+					slot21.rewardList:removeAllChildren()
+
+					for slot31 = 1, #Utility.analysisStrResList(slot18), 1 do
+						tempCardData = slot26[slot31]
+
+						slot0:createLayoutTemplateNode("rewardlayout", {}).card:setCardData({
+							modelId = tempCardData.resourceId,
+							num = tempCardData.num
+						}, {
+							Enums.CardShowAttr.eNum
+						})
+						slot21.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode("rewardlayout", {}))
+
+						if slot0.mSelectTeChanId == slot2 and slot0.mDoubleCity[tostring(slot17)] then
+							slot0:setDoubleRecommend(slot32.card)
+							slot21.wlmzBtn:setBright(true)
+						else
+							slot21.wlmzBtn:setBright(false)
+						end
+					end
+
+					if 1 < slot27 then
+						slot21.rewardList:setPositionX(15)
+					else
+						slot21.rewardList:setPositionX(42)
+					end
+
+					slot21.opbtn.cityInfo = slot16
+					slot21.opbtn.teChanId = slot2
+
+					if slot4 == 2 then
+						slot28 = PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId
+
+						if not Utility.isEntityId(slot16.GuildId) or slot28 ~= slot16.GuildId then
+							slot21.opbtn:setEnabled(false)
+							slot21.opbtn:setTitleText(TR("领 取"))
+						elseif slot0:isGetReward(slot2, slot17) then
+							slot21.opbtn:setTitleText(TR("已领取"))
+							slot21.opbtn:setEnabled(false)
+						else
+							slot21.opbtn:setEnabled(true)
+							slot21.opbtn:setTitleText(TR("领 取"))
+						end
+					elseif slot4 == 1 then
+						slot21.opbtn:setEnabled(false)
+						slot21.opbtn:setTitleText(TR("领 取"))
+					end
+
+					if slot0.mIsLeaguetopLeader then
+						slot21.wlmzBtn.teChanId = slot2
+						slot21.wlmzBtn.cityId = slot17
+
+						if slot4 == 1 then
+							slot28, slot29 = slot0:getWLMZHaveOpNum(slot2, slot17)
+
+							slot21.wlmzBtn.redDot:setVisible(0 < slot28 and not slot29)
+						else
+							slot21.wlmzBtn.redDot:setVisible(false)
+						end
+					end
+				else
+					slot21.rewardList:removeAllChildren()
+					slot21.rewardList:pushBackCustomItem(slot22)
+					slot21.rewardList:setPositionX(42)
+
+					slot21.citybtn.cityId = nil
+
+					slot21.opbtn:setEnabled(false)
+				end
+			end
+
+			return 
+		end
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot0.mMainNodeList) do
+		slot6.refreshLayout(slot6)
+	end
+
+	for slot5, slot6 in pairs(slot0.mTitileNodeList) do
+		slot6.refreshLayout(slot6)
+	end
+
+	return 
+end
+slot0.getTechanInfoById = function (slot0, slot1)
+	for slot5, slot6 in ipairs(slot0.mTeChanInfo) do
+		if slot6.Id == slot1 then
+			return clone(slot6)
+		end
+	end
+
+	return 
+end
+slot0.thisCityIsJiShi = function (slot0, slot1, slot2)
+	slot3 = false
+
+	if slot0.mJiShiInfo.CityIds ~= "" then
+		for slot7, slot8 in ipairs(string.split(slot0.mJiShiInfo.CityIds, ",")) do
+			if slot2 and tonumber(slot2) == tonumber(slot8) then
+				return true
+			end
+		end
+	end
+
+	return slot3
+end
+slot0.getWLMZHaveOpNum = function (slot0, slot1, slot2)
+	slot3 = 0
+	slot4 = false
+
+	if slot0.mJiShiInfo.Id == 0 or slot0.mJiShiInfo.Id == slot1 then
+		slot5 = CitywarConfig.items[1].sacrificeCityNum
+
+		if slot0.mJiShiInfo.CityIds ~= "" then
+			for slot9, slot10 in ipairs(string.split(slot0.mJiShiInfo.CityIds, ",")) do
+				slot5 = slot5 - 1
+
+				if slot2 and tonumber(slot2) == tonumber(slot10) then
+					slot4 = true
+				end
+			end
+		end
+
+		slot3 = slot5
+	end
+
+	return slot3, slot4
+end
+slot0.getTechanStatueById = function (slot0, slot1)
+	slot2 = -1
+	slot3 = Player:getCurrentTime()
+
+	for slot7, slot8 in ipairs(slot0.mTeChanInfo) do
+		if slot8.Id == slot1 then
+			if slot3 < clone(slot8).StartTime then
+				slot2 = 0
+
+				break
+			end
+
+			if slot9.StartTime <= slot3 and slot3 <= slot9.EndTime then
+				slot2 = 1
+
+				break
+			end
+
+			slot2 = 2
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.onSelectDoubleCity = function (slot0)
+	return 
+end
+slot0.isGetReward = function (slot0, slot1, slot2)
+	slot3 = false
+
+	for slot7, slot8 in ipairs(slot0.mGetStatusList) do
+		if slot8.Id == slot1 then
+			for slot13, slot14 in ipairs(slot9) do
+				if tonumber(slot2) == tonumber(slot14) then
+					return true
+				end
+			end
+		end
+	end
+
+	return slot3
+end
+slot0.onClickOpBtnCallBack = function (slot0, slot1)
+	if not slot0.mIsLeaguetopLeader then
+		ui.showFlashView(TR("只有武林盟主才能发布盟主令"))
+
+		return 
+	end
+
+	slot2, slot3 = slot0.getWLMZHaveOpNum(slot0, slot1.teChanId, slot1.cityId)
+
+	if 0 < slot0.mJiShiInfo.Id and slot0.mJiShiInfo.Id ~= slot1.teChanId then
+		ui.showFlashView(TR("每日只能在同一个时间段祭祀两座城池"))
+
+		return 
+	end
+
+	if slot2 <= 0 then
+		ui.showFlashView(TR("今日已经没有可祭祀次数了"))
+
+		return 
+	end
+
+	if slot3 then
+		ui.showFlashView(TR("已经祭祀过这座城池了"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		msgBoxParams = {
+			titleText = TR("提 示"),
+			cancelText = TR("容我三思"),
+			okText = TR("我意已决")
+		},
+		okCallback = function (...)
+			slot0:requestJiShiCity(slot1.teChanId, slot1.cityId)
+
+			return 
+		end,
+		cancelCallback = function (...)
+			return 
+		end,
+		diyUICallback = function (slot0, slot1)
+			slot0.addChild(slot0, slot2)
+			slot0.addChild(slot0, slot3)
+			slot0.addChild(slot0, slot5)
+
+			slot6 = UIWrap.newControl("Label", {
+				fontSize = 18,
+				text = TR("今日次数:%d", slot1),
+				anchor = cc.p(0, 1),
+				color = cc.c3b(37, 37, 37)
+			})
+
+			slot6.setPosition(slot6, cc.p(310, 55))
+			slot0.addChild(slot0, slot6)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.setDoubleRecommend = function (slot0, slot1)
+	slot2 = UIWrap.newControl("BadgeText", {
+		fontSize = 25,
+		fontRotation = -45,
+		image = "c_88.png",
+		text = TR("双倍"),
+		fontPos = cc.p(19, 36)
+	})
+
+	slot2.setAnchorPoint(slot2, cc.p(1, 1))
+	slot2.setPosition(slot2, cc.p(56.83, 79.1))
+
+	slot1.tmpBadgeText = slot2
+
+	slot1.addChild(slot1, slot2, Enums.CardShowAttr.eRecommend)
+
+	return 
+end
+slot0.getTimeStr = function (slot0, slot1, slot2)
+	slot4 = ""
+
+	if slot1 <= Player:getCurrentTime() and slot3 <= slot2 then
+		slot4 = TR("#99E53D%s#252525后仍占领的帮派可领取", MqTime.formatAsHour(slot2 - slot3))
+	else
+		slot5 = {
+			hour = true,
+			month = true,
+			year = true,
+			min = true,
+			sec = true,
+			day = true
+		}
+		slot7 = os.date("*t", slot2)
+		slot8 = os.date("*t", slot1).hour .. TR("点")
+
+		if os.date("*t", slot1).min ~= 0 then
+			slot8 = slot8 .. TR("分")
+		end
+
+		slot9 = slot7.hour .. TR("点")
+
+		if slot7.min ~= 0 then
+			slot9 = slot9 .. TR("分")
+		end
+
+		if not MqTime.isSameDay(slot1, slot2) and slot7.hour == 0 and slot7.min == 0 then
+			slot9 = TR("%d点", 24)
+		end
+
+		slot4 = slot8 .. "-" .. slot9 .. TR("出现")
+
+		if slot2 < slot3 then
+			slot4 = slot4 .. TR("(已结束)")
+		end
+	end
+
+	return slot4
+end
+slot0.getGotStatusInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTeChanInfo",
+		moduleName = "Citywar",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mGetStatusList = slot0.Info
+			slot0.mIsLeaguetopLeader = slot0.IsWLMZ
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "RewardTeChan",
+		moduleName = "Citywar",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.mGetStatusList = slot0.Info
+
+			slot0:refreshUI(slot0.refreshUI)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestJiShiCity = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "JiShi",
+		moduleName = "Citywar",
+		methodData = {
+			slot1,
+			{
+				slot2
+			}
+		},
+		successCallback = function (slot0)
+			dump(slot0, "祭祀结果")
+
+			slot0.mJiShiInfo = slot0.Jishi
+			slot0.mSelectTeChanId = slot0.Jishi.Id
+			slot0.mDoubleCity = {}
+
+			for slot4, slot5 in ipairs(string.split(slot0.mJiShiInfo.CityIds, ",")) do
+				slot0.mDoubleCity[tostring(slot5)] = true
+			end
+
+			slot0:refreshUI(slot0.refreshUI)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

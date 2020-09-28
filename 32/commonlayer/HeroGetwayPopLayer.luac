@@ -1,0 +1,104 @@
+slot0 = class("HeroGetwayPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled11",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "dl_13.png",
+			closeAction = "onCloseLayerCb",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled10",
+				cType = "Sprite",
+				params = {
+					image = "dl_14.png",
+					pos = {
+						x = 99,
+						y = 250
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 440,
+						y = 272
+					},
+					size = {
+						width = 299.59,
+						height = 58.74
+					},
+					text = TR("侠客不足，可从下列途径获取")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Button",
+				custom = {
+					{
+						value = 3600,
+						name = "moduleId",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "tb_gn_211.png",
+					clickAction = "onGotoLayer",
+					pos = {
+						x = 425,
+						y = 205
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onCloseLayerCb = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGotoLayer = function (slot0, slot1)
+	if slot1.moduleId == ModuleSub.eRecuit then
+		LayerManager.showModuleLayer(ModuleSub.eRecuit)
+	end
+
+	return 
+end
+
+return slot0

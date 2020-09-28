@@ -1,0 +1,271 @@
+slot0 = class("SwxyResultLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_67.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled7",
+				cType = "Sprite",
+				params = {
+					image = "lh_13101.png",
+					pos = {
+						x = -304.22,
+						y = -8.69
+					}
+				},
+				children = {}
+			},
+			{
+				name = "eff",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_zhandoushengli",
+					pos = {
+						x = -123.19,
+						y = -17.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "resultLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					isRichText = true,
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 180.56,
+						y = 94.69
+					},
+					text = TR("恭喜大侠击溃来犯敌人，成功守住了光明顶")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 201.91,
+						y = -202.57
+					},
+					text = TR("奖励在当晚结算后通过邮件发放")
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "c_60.png",
+					pos = {
+						x = 0,
+						y = -293.49
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 165.25,
+						y = 39.14
+					},
+					text = TR("战 报")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "zd_35.png",
+					pos = {
+						x = 165.84,
+						y = 37.57
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bloodLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -32,
+						y = -20
+					},
+					text = TR("城池血量：100/200")
+				},
+				children = {}
+			},
+			{
+				name = "totalLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -32,
+						y = -65
+					},
+					text = TR("总击分：1000")
+				},
+				children = {}
+			},
+			{
+				name = "maxKillLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = -32,
+						y = -110
+					},
+					text = TR("单队最高积分：100")
+				},
+				children = {}
+			},
+			{
+				name = "totalRankLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 220,
+						y = -65
+					},
+					text = TR("排名：22")
+				},
+				children = {}
+			},
+			{
+				name = "maxKillRankLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 220,
+						y = -110
+					},
+					text = TR("排名：100")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		clickEvent = function (slot0, slot1)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	slot0.isWin = slot1.isWin
+	slot0.resultInfo = slot1.info
+	slot0.effUrl = (slot0.isWin and "effect_ui_zhandoushengli") or "effect_ui_zhandoushibai"
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "eff" then
+			slot1.dataFile = slot0.effUrl
+		end
+
+		return 
+	end)
+
+	if slot0.isWin then
+		slot0.bloodLabel:setString(TR("城池血量：%s%s#37ff40/%s", (slot0.resultInfo.BoundaryHp < 200 and "#ea2c00") or "#37ff40", slot0.resultInfo.BoundaryHp, 200))
+	else
+		slot0.bloodLabel:setString(TR("驻守时间：#ffe748%s", MqTime.formatAsHour((600 < Player:getCurrentTime() - slot0.resultInfo.OpenTime and 600) or slot2 - slot1)))
+		slot0.resultLabel:setString(TR("将士拼尽性命与敌军同归于尽，损失惨烈"))
+	end
+
+	slot0.totalLabel:setString(TR("总积分：#37ff40%s", slot0.resultInfo.Score))
+	slot0.maxKillLabel:setString(TR("单队最高积分：#37ff40%s", slot0.resultInfo.TeamScore))
+	slot0.totalRankLabel:setString(TR("排名：#37ff40%s", slot0.resultInfo.Rank))
+	slot0.maxKillRankLabel:setString(TR("排名：#37ff40%s", slot0.resultInfo.TeamRank))
+
+	return 
+end
+
+return slot0

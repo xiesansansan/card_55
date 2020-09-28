@@ -1,0 +1,587 @@
+slot0 = class("RechargeDoubleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled17",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "cz_92.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "tipNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			hide = true,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled24",
+				cType = "Sprite",
+				params = {
+					image = "fuli_99.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled25",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					pos = {
+						x = 40.52,
+						y = -16.44
+					},
+					text = TR("能看到这行字的人在江湖上也是凤毛麟角的存在，")
+				},
+				children = {}
+			},
+			{
+				name = "untitled26",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					pos = {
+						x = 70.49,
+						y = -49.3
+					},
+					text = TR("敬请期待下轮充值回馈！")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "chargeNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -373.52,
+						y = 126.92
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Scale9Sprite",
+						params = {
+							image = "fuli_98.png",
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = -81.35,
+								y = -114.91
+							}
+						},
+						children = {}
+					},
+					{
+						name = "doubleTipSprite",
+						cType = "Sprite",
+						params = {
+							image = "fuli_97.png",
+							pos = {
+								x = -16.43,
+								y = 109.83
+							}
+						},
+						children = {}
+					},
+					{
+						name = "typeSprite",
+						cType = "Sprite",
+						params = {
+							scale = 0.8,
+							image = "cz_12.png",
+							pos = {
+								x = 9.25,
+								y = -4.16
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled22",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_shanguang",
+							animation = "animation",
+							pos = {
+								x = 8.92,
+								y = 25.94
+							}
+						},
+						children = {}
+					},
+					{
+						name = "giftSprite",
+						cType = "Sprite",
+						params = {
+							scale = 0.9,
+							image = "cz_10.png",
+							pos = {
+								x = 39.81,
+								y = -4.67
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled10",
+						cType = "Sprite",
+						params = {
+							image = "cz_11.png",
+							pos = {
+								x = 24.8,
+								y = 5.54
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled11",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							pos = {
+								x = 57.41,
+								y = 6.21
+							}
+						},
+						children = {}
+					},
+					{
+						name = "giftLabel",
+						cType = "Label",
+						params = {
+							text = "999",
+							childName = "giftLabel",
+							pos = {
+								x = 41.81,
+								y = -27.49
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled13",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_93.png",
+							pos = {
+								x = 10.09,
+								y = -60.49
+							},
+							size = {
+								width = 160,
+								height = 28
+							}
+						},
+						children = {}
+					},
+					{
+						name = "getLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							isRichText = true,
+							imageScale = 0.9,
+							pos = {
+								x = 8.48,
+								y = -59.52
+							}
+						},
+						children = {}
+					},
+					{
+						name = "priceLabel",
+						cType = "Label",
+						params = {
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 7.88,
+								y = -90.79
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Button",
+						params = {
+							childName = "chargeBtn",
+							image = "c_58.png",
+							swallowTouch = false,
+							clickAction = "onRechargeAction",
+							pos = {
+								x = 8.08,
+								y = 13.92
+							},
+							size = {
+								width = 187.71,
+								height = 230.72
+							}
+						},
+						children = {}
+					},
+					{
+						name = "firstNum",
+						cType = "Label",
+						params = {
+							hide = true,
+							text = "0",
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							pos = {
+								x = 86.16,
+								y = 109.88
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "topNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "timeNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -52,
+						y = -70
+					}
+				},
+				children = {
+					{
+						name = "timeBg",
+						cType = "Sprite",
+						params = {
+							image = "xshd_6.png",
+							pos = {
+								x = -50.12,
+								y = 10
+							}
+						},
+						children = {}
+					},
+					{
+						name = "timeTitle",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 1,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = -127.84,
+								y = 9.31
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "hour",
+						cType = "Label",
+						params = {
+							text = "0",
+							fontName = "xshd_7.png",
+							isRichText = true,
+							pos = {
+								x = -113.2,
+								y = 10.07
+							}
+						},
+						children = {}
+					},
+					{
+						name = "minute",
+						cType = "Label",
+						params = {
+							text = "0",
+							fontName = "xshd_7.png",
+							isRichText = true,
+							pos = {
+								x = -72.21,
+								y = 9.74
+							}
+						},
+						children = {}
+					},
+					{
+						name = "second",
+						cType = "Label",
+						params = {
+							text = "0",
+							fontName = "xshd_7.png",
+							isRichText = true,
+							pos = {
+								x = -29.88,
+								y = 9.26
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mCurrentVIP = PlayerAttrObj:getPlayerAttrByName("Vip")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetChargeList(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eDiamond, function ()
+		slot0:requestGetChargeList()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mChargeInfoList) do
+		if 1 < slot6.Ratio then
+			table.insert(slot1, clone(slot6))
+		end
+	end
+
+	slot0.mChargeList = slot1
+
+	return 
+end
+slot1 = {
+	[6.0] = "cz_12.png",
+	[2000.0] = "cz_20.png",
+	[50.0] = "cz_14.png",
+	[98.0] = "cz_15.png",
+	[1000.0] = "cz_19.png",
+	[648.0] = "cz_18.png",
+	[198.0] = "cz_16.png",
+	[30.0] = "cz_13.png",
+	[328.0] = "cz_17.png"
+}
+slot0.onCreateCell = function (slot0, slot1)
+	slot2 = slot0.createLayoutTemplateNode(slot0, "chargeNode")
+	slot2.refreshCell = function (slot0, slot1)
+		slot0.typeSprite:setTexture(slot1[slot0.mChargeList[slot1 + 1].ChargePoint] or "cz_20.png")
+		slot0.getLabel:setString(string.format("{db_1111.png}%d", slot2.GamePoint))
+		slot0.priceLabel:setString(string.format("%s元", slot2.ChargePoint))
+		slot0.giftLabel:setString(slot2.GiveGamePoint)
+
+		slot0.chargeBtn.chargeInfo = slot2
+
+		slot0.firstNum:setVisible(0 < slot2.FirstNum)
+		slot0.firstNum:setString(string.format("%s/%s", math.max(0, slot2.FirstNum - slot2.ChargeNum), slot2.FirstNum))
+
+		return 
+	end
+
+	slot2.refreshCell(slot2, slot1)
+
+	return slot2
+end
+slot0.refreshChargeList = function (slot0)
+	slot0.centerNode:removeAllChildren()
+
+	for slot4 = 0, #slot0.mChargeList - 1, 1 do
+		slot5 = slot0.onCreateCell(slot0, slot4)
+
+		slot5.setPosition(slot5, (slot4%5*190 + 261) - 568, math.floor(slot4/5)*260 - 418 - 320)
+		slot0.centerNode:addChild(slot5)
+	end
+
+	return 
+end
+slot0.onRechargeAction = function (slot0, slot1)
+	function slot2(slot0)
+		slot1 = PlayerAttrObj:getPlayerAttrByName("IsInnerPlayer")
+		slot2 = IPlatform:getInstance():getConfigItem("Channel") == "MQKK"
+		slot0.mIsMonthCard = false
+
+		Utility.recharge({
+			chargeType = 0,
+			productId = slot0.ProductId,
+			price = slot0.ChargePoint,
+			count = slot0.GamePoint,
+			giftCount = slot0.GiveGamePoint
+		}, function ()
+			return 
+		end)
+
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("是否充值%d元获得%d元宝？", slot1.chargeInfo.ChargePoint, slot1.chargeInfo.GamePoint + slot1.chargeInfo.GiveGamePoint),
+		okCallback = function (...)
+			slot0(slot1)
+
+			return 
+		end,
+		cancelCallback = function (...)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetChargeList = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChargeList",
+		moduleName = "PlayerCharge",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mChargeInfoList = slot0.ChargeConfigList
+			slot0.RefreshEndTime = slot0.DoubleResetTime
+
+			slot0:handleData()
+
+			if #slot0.mChargeList <= 0 then
+				slot0.tipNode:setVisible(true)
+
+				slot1 = slot0.timeNode
+
+				slot0.timeNode:retain()
+				slot0.timeNode:removeFromParent()
+				slot0.tipNode:addChild(slot0.timeNode)
+				slot0.timeNode:setPosition(202.25, 23.02)
+				slot0.timeTitle:setString(TR("距下次翻倍刷新还有："))
+			else
+				slot0.tipNode:setVisible(false)
+
+				slot1 = slot0.timeNode
+
+				slot0.timeNode:retain()
+				slot0.timeNode:removeFromParent()
+				slot0.topNode:addChild(slot0.timeNode)
+				slot0.timeNode:setPosition(-52, -70)
+				slot0.timeTitle:setString(TR("活动倒计时："))
+			end
+
+			if slot0.sch then
+				slot0.timeNode:stopAllActions()
+
+				slot0.sch = nil
+			end
+
+			if slot0.RefreshEndTime then
+				slot0.sch = Utility.schedule(slot0.timeNode, function ()
+					if 0 < slot0.RefreshEndTime - Player:getCurrentTime() then
+						slot1, slot2, slot3 = MqTime.toHour(slot0, true)
+
+						if 86400 <= slot0 then
+							slot0.timeBg:setTexture("xshd_43.png")
+							slot0.hour:setString(math.floor(slot1/24))
+							slot0.minute:setString(slot1 - math.floor(slot1/24)*24)
+							slot0.second:setString(slot2)
+						else
+							slot0.timeBg:setTexture("xshd_6.png")
+							slot0.hour:setString(slot1)
+							slot0.minute:setString(slot2)
+							slot0.second:setString(slot3)
+						end
+					else
+						slot0:requestGetChargeList()
+					end
+
+					return 
+				end, 1)
+			end
+
+			slot0:refreshChargeList()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestTestRecharge = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ConfirmOrder",
+		moduleName = "PlayerCharge",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0:requestGetChargeList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

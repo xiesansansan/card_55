@@ -1,0 +1,590 @@
+slot0 = class("EveningBossReviveLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 825,
+				height = 510
+			},
+			titleText = TR("侠客复活")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "ScrollView",
+				params = {
+					pos = {
+						x = 20.26,
+						y = 68.38
+					},
+					size = {
+						width = 785,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateGridAction",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 5,
+							celHeight = 205,
+							pos = {
+								x = 392.5,
+								y = 200
+							},
+							size = {
+								width = 785,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "HeroTemNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled10-image",
+										name = "professionImg",
+										type = "string"
+									},
+									{
+										value = "untitled12-text",
+										name = "nameText",
+										type = "string"
+									},
+									{
+										value = "untitled11-text",
+										name = "numStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 229.82,
+										y = 261.45
+									}
+								},
+								children = {
+									{
+										name = "untitled7",
+										cType = "Scale9Sprite",
+										params = {
+											image = "qxzl_2.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "timeLabel",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = 88
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled9",
+										cType = "CardNode",
+										params = {
+											childName = "cardNode",
+											allowClick = true,
+											pos = {
+												x = 0,
+												y = 14
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "Sprite",
+										params = {
+											image = "zj_74.png",
+											childName = "professionSprite",
+											anchor = {
+												x = 1,
+												y = 0.5
+											},
+											pos = {
+												x = -29.04,
+												y = 62.07
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = -17,
+												y = -87
+											},
+											text = TR("复活：")
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 34,
+												y = -87
+											},
+											text = TR("次")
+										},
+										children = {}
+									},
+									{
+										name = "untitled11",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											text = "0",
+											childName = "numLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											pos = {
+												x = 5,
+												y = -87
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Label",
+										params = {
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 0,
+												y = -45
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											image = "c_44.png",
+											hide = true,
+											pos = {
+												x = 0,
+												y = 13
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled19",
+						cType = "ResLabel",
+						params = {
+							num = 0,
+							modelId = 1111,
+							pos = {
+								x = 365.85,
+								y = -19.91
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled16",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onClickHeroRevive",
+					pos = {
+						x = 261.43,
+						y = 46
+					},
+					titleText = TR("全部治愈")
+				},
+				children = {}
+			},
+			{
+				name = "untitled17",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onRevival",
+					pos = {
+						x = 584.86,
+						y = 46
+					},
+					titleText = TR("治愈")
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 359.08,
+						y = 46
+					},
+					text = TR("消耗：")
+				},
+				children = {}
+			},
+			{
+				name = "mCostLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 380.08,
+						y = 46
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.revivalInfo = slot1.revivalInfo or {}
+	slot0.mCallback = slot1.callback
+	slot0.selectHeroList = {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealWithData(slot0)
+	slot0.refreshUIState(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if slot0.mPopLayer and not tolua.isnull(slot0.mPopLayer) then
+		LayerManager.removeLayer(slot0.mPopLayer)
+
+		slot0.mPopLayer = nil
+	end
+
+	return 
+end
+slot0.dealWithData = function (slot0)
+	slot0.mDataList = {}
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.revivalInfo) do
+		slot8 = clone(slot7)
+		slot8.RevivalTime = slot6.RevivalTime
+		slot8.RevivalNum = slot6.RevivalNum
+
+		table.insert(slot0.mDataList, slot8)
+	end
+
+	table.sort(slot0.mDataList, function (slot0, slot1)
+		return slot1.Fap < slot0.Fap
+	end)
+	slot0.mGridView:setItemNum(slot2)
+	Utility.schedule(slot0, function ()
+		for slot3, slot4 in ipairs(slot0.mDataList) do
+			if 0 < slot4.RevivalTime - Player:getCurrentTime() then
+				if slot0.mGridView:getItem(slot3) then
+					slot6.timeLabel:setString(MqTime.formatAsDay(slot5))
+				end
+			else
+				slot0:schRefresh()
+			end
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onCreateGridAction = function (slot0, slot1, slot2)
+	slot5 = slot0.createHeroHeader(slot0, slot4)
+	slot10, slot7 = slot0.isHeroSelected(slot0, slot0.mDataList[slot2].ModelId)
+
+	slot5.selectSprite:setVisible(slot6)
+	slot5.setAnchorPoint(slot5, cc.p(0.5, 0.5))
+	slot5.setPosition(slot5, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot5)
+
+	slot1.timeLabel = slot5.timeLabel
+
+	return 
+end
+slot0.isHeroSelected = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot0.selectHeroList) do
+		if slot6 == slot1 then
+			return true, slot5
+		end
+	end
+
+	return false
+end
+slot0.selectOneHero = function (slot0, slot1)
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.mDataList) do
+		if slot7.ModelId == slot1 then
+			slot2 = slot6
+
+			break
+		end
+	end
+
+	slot3, slot4 = slot0.isHeroSelected(slot0, slot1)
+
+	if slot3 == true then
+		table.remove(slot0.selectHeroList, slot4)
+	else
+		slot6 = slot0.createHeroHeader(slot0, slot5)
+
+		slot6.setIgnoreAnchorPointForPosition(slot6, false)
+		slot6.setAnchorPoint(slot6, cc.p(0.5, 0))
+		slot6.setPosition(slot6, 58, 12)
+		slot6.setScale(slot6, 0.9)
+		table.insert(slot0.selectHeroList, slot1)
+	end
+
+	slot0.mGridView:refreshCell(slot2)
+	slot0.refreshUIState(slot0)
+
+	return 
+end
+slot0.createHeroHeader = function (slot0, slot1)
+	slot3, slot10.professionImg, slot5, slot6 = Utility.getHeroCampProfessionImg(slot1.ModelId)
+	slot7 = slot0.createLayoutTemplateNode(slot0, "HeroTemNode", {
+		professionImg = slot4,
+		nameText = Resource.getName(slot1.ModelId),
+		numStr = slot1.RevivalNum
+	})
+
+	slot7.cardNode:setCardData(nil, slot2, slot1)
+	slot7.cardNode:setClickAction(function ()
+		slot0:selectOneHero(slot1.ModelId)
+
+		return 
+	end)
+	slot7.timeLabel:setString(MqTime.formatAsDay(slot1.RevivalTime - Player:getCurrentTime()))
+
+	return slot7
+end
+slot0.refreshUIState = function (slot0)
+	slot5, slot4 = slot0.getPerPrice(slot0)
+
+	slot0.mCostLabel:setString(string.format("{%s}%s%d/%d", Resource.getDaibiImg(slot2), (Resource.isEnough(slot2, slot1, false) and "#258711") or "#EA2C00", slot1, Resource.getCount(slot2)))
+
+	return 
+end
+slot0.getPerPrice = function (slot0)
+	slot1 = Utility.analysisStrResList(EveningbossConfig.items[1].rebornUse)[1].resourceId
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.selectHeroList) do
+		slot8 = nil
+
+		for slot12, slot13 in ipairs(slot0.mDataList) do
+			if slot7 == slot13.ModelId then
+				slot8 = slot13.RevivalNum + 1
+			end
+		end
+
+		if EveningbossRebornRelation.items_count < slot8 then
+			slot8 = EveningbossRebornRelation.items_count
+		end
+
+		slot2 = slot2 + Utility.analysisStrResList(EveningbossConfig.items[1].rebornUse)[1].num
+	end
+
+	return slot2, slot1
+end
+slot0.getPerPriceGold = function (slot0)
+	slot1 = Utility.analysisStrResList(EveningbossRebornRelation.items[1].rebornDiamondUse)[1].resourceId
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.selectHeroList) do
+		slot8 = nil
+
+		for slot12, slot13 in ipairs(slot0.mDataList) do
+			if slot7 == slot13.ModelId then
+				slot8 = slot13.RevivalNum + 1
+			end
+		end
+
+		if EveningbossRebornRelation.items_count < slot8 then
+			slot8 = EveningbossRebornRelation.items_count
+		end
+
+		slot2 = slot2 + Utility.analysisStrResList(EveningbossRebornRelation.items[slot8].rebornDiamondUse)[1].num
+	end
+
+	return slot2, slot1
+end
+slot0.onClickHeroRevive = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mDataList) do
+		if not slot0.isHeroSelected(slot0, slot6.ModelId) then
+			slot0.selectOneHero(slot0, slot6.ModelId)
+		end
+	end
+
+	return 
+end
+slot0.onRevival = function (slot0)
+	if #slot0.selectHeroList <= 0 then
+		ui.showFlashView(TR("选择不能为空"))
+
+		return 
+	end
+
+	slot1 = table.concat(slot0.selectHeroList, ",")
+	slot6, slot5 = slot0.getPerPrice(slot0)
+
+	if not Resource.isEnough(slot3, slot2, false) then
+		slot11, slot11 = slot0.getPerPriceGold(slot0)
+		slot0.mPopLayer = ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("道具不足，是否使用{%s}%d复活？", Resource.getDaibiImg(slot5), slot4),
+			okCallback = function ()
+				if Resource.isEnough(Resource.isEnough, ) then
+					slot2:requestHeroRevive(slot3, 0)
+					LayerManager.removeLayer(slot2.mPopLayer)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end
+
+	slot0.requestHeroRevive(slot0, slot1, 1)
+end
+slot0.schRefresh = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mDataList) do
+		if Player:getCurrentTime() < slot6.RevivalTime then
+			table.insert(slot1, slot6)
+		end
+	end
+
+	slot0.mDataList = slot1
+
+	if #slot0.mDataList <= 0 then
+		LayerManager.removeLayer(slot0)
+	end
+
+	slot0.selectHeroList = {}
+
+	slot0.mGridView:setItemNum(#slot0.mDataList)
+
+	return 
+end
+slot0.requestHeroRevive = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "HeroesReborn",
+		moduleName = "EveningbossInfo",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			dump(slot0, "HeroesReborn")
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

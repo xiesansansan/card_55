@@ -1,0 +1,248 @@
+slot0 = require("battle.common.Const")
+slot2 = {
+	getDefaultData = function (slot0)
+		slot1 = slot0.getUnitIdx(slot0)
+		slot2 = true
+
+		if slot0.petId then
+			slot2 = false
+		end
+
+		slot0.data[slot1] = slot0.data[slot1] or {
+			damage = 0,
+			beHit = 0,
+			maxLife = 0,
+			hp = 0,
+			heal = 0,
+			modelId = slot0.heroId or slot0.petId,
+			star = slot0.star,
+			step = slot0.step,
+			lv = slot0.level,
+			stepLv = slot0.stepLv,
+			isHero = slot2,
+			buff = {
+				forbid = 0,
+				stun = 0,
+				angp = 0,
+				stone = 0,
+				angl = 0,
+				ice = 0
+			}
+		}
+
+		return slot0.data[slot1]
+	end,
+	new = function ()
+		slot0.data = {}
+		slot0.debug = {}
+
+		return 
+	end,
+	reset = function (slot0)
+		slot0.data = {}
+
+		for slot4, slot5 in ipairs(slot0) do
+			slot0.damageStatistics(slot5, 0)
+		end
+
+		return 
+	end,
+	getUnitIdx = function (slot0)
+		return (slot0.group - 1)*6 + slot0.order
+	end,
+	behitStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).beHit = slot0.getDefaultData(slot0).beHit + slot1
+
+		return 
+	end,
+	buffStatistics = function (slot0, slot1)
+		slot2 = slot0.getDefaultData(slot0)
+
+		if slot1.buffType == "Stun" then
+			slot2.buff.stun = slot2.buff.stun + 1
+		elseif slot1.buffType == "Stone" then
+			slot2.buff.stone = slot2.buff.stone + 1
+		elseif slot1.buffType == "Ice" then
+			slot2.buff.ice = slot2.buff.ice + 1
+		elseif slot1.buffType == "Forbid" then
+			slot2.buff.forbid = slot2.buff.forbid + 1
+		elseif slot1.buffType == "ChangeAng" then
+			if 0 < slot1.damageRatioValue[2] then
+				slot2.buff.angp = slot2.buff.angp + 1
+			else
+				slot2.buff.angl = slot2.buff.angl + 1
+			end
+		end
+
+		return 
+	end,
+	damageStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).damage = slot0.getDefaultData(slot0).damage + slot1
+
+		return 
+	end,
+	healStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).heal = slot0.getDefaultData(slot0).heal + math.abs(slot1)
+
+		return 
+	end,
+	life = function (slot0)
+		slot0.getDefaultData(slot0).hp = slot0.attr.hp
+		slot0.getDefaultData(slot0).maxLife = slot0.attr.eHp
+
+		return 
+	end,
+	getStatisticsData = function ()
+		slot0 = {
+			team = {},
+			enemy = {}
+		}
+
+		for slot4 = 1, 12, 1 do
+			if slot0.data[slot4] then
+				slot6 = nil
+
+				table.insert((6 >= slot4 or slot0.enemy) and slot0.team, {
+					damage = slot5.damage,
+					heal = slot5.heal,
+					ModelId = slot5.modelId,
+					Lv = slot5.lv,
+					TrainLv = slot5.step,
+					StepLv = slot5.stepLv,
+					Star = slot5.star,
+					isHero = slot5.isHero,
+					hp = slot5.hp,
+					maxLife = slot5.maxLife,
+					beHit = slot5.beHit,
+					buff = slot5.buff
+				})
+			end
+		end
+
+		return slot0
+	end
+}
+
+return {
+	getDefaultData = function (slot0)
+		slot1 = slot0.getUnitIdx(slot0)
+		slot2 = true
+
+		if slot0.petId then
+			slot2 = false
+		end
+
+		slot0.data[slot1] = slot0.data[slot1] or {
+			damage = 0,
+			beHit = 0,
+			maxLife = 0,
+			hp = 0,
+			heal = 0,
+			modelId = slot0.heroId or slot0.petId,
+			star = slot0.star,
+			step = slot0.step,
+			lv = slot0.level,
+			stepLv = slot0.stepLv,
+			isHero = slot2,
+			buff = {
+				forbid = 0,
+				stun = 0,
+				angp = 0,
+				stone = 0,
+				angl = 0,
+				ice = 0
+			}
+		}
+
+		return slot0.data[slot1]
+	end,
+	new = function ()
+		slot0.data = {}
+		slot0.debug = {}
+
+		return 
+	end,
+	reset = function (slot0)
+		slot0.data = {}
+
+		for slot4, slot5 in ipairs(slot0) do
+			slot0.damageStatistics(slot5, 0)
+		end
+
+		return 
+	end,
+	getUnitIdx = function (slot0)
+		return (slot0.group - 1)*6 + slot0.order
+	end,
+	behitStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).beHit = slot0.getDefaultData(slot0).beHit + slot1
+
+		return 
+	end,
+	buffStatistics = function (slot0, slot1)
+		slot2 = slot0.getDefaultData(slot0)
+
+		if slot1.buffType == "Stun" then
+			slot2.buff.stun = slot2.buff.stun + 1
+		elseif slot1.buffType == "Stone" then
+			slot2.buff.stone = slot2.buff.stone + 1
+		elseif slot1.buffType == "Ice" then
+			slot2.buff.ice = slot2.buff.ice + 1
+		elseif slot1.buffType == "Forbid" then
+			slot2.buff.forbid = slot2.buff.forbid + 1
+		elseif slot1.buffType == "ChangeAng" then
+			if 0 < slot1.damageRatioValue[2] then
+				slot2.buff.angp = slot2.buff.angp + 1
+			else
+				slot2.buff.angl = slot2.buff.angl + 1
+			end
+		end
+
+		return 
+	end,
+	damageStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).damage = slot0.getDefaultData(slot0).damage + slot1
+
+		return 
+	end,
+	healStatistics = function (slot0, slot1)
+		slot0.getDefaultData(slot0).heal = slot0.getDefaultData(slot0).heal + math.abs(slot1)
+
+		return 
+	end,
+	life = function (slot0)
+		slot0.getDefaultData(slot0).hp = slot0.attr.hp
+		slot0.getDefaultData(slot0).maxLife = slot0.attr.eHp
+
+		return 
+	end,
+	getStatisticsData = function ()
+		slot0 = {
+			team = {},
+			enemy = {}
+		}
+
+		for slot4 = 1, 12, 1 do
+			if slot0.data[slot4] then
+				slot6 = nil
+
+				table.insert((6 >= slot4 or slot0.enemy) and slot0.team, {
+					damage = slot5.damage,
+					heal = slot5.heal,
+					ModelId = slot5.modelId,
+					Lv = slot5.lv,
+					TrainLv = slot5.step,
+					StepLv = slot5.stepLv,
+					Star = slot5.star,
+					isHero = slot5.isHero,
+					hp = slot5.hp,
+					maxLife = slot5.maxLife,
+					beHit = slot5.beHit,
+					buff = slot5.buff
+				})
+			end
+		end
+
+		return slot0
+	end
+}

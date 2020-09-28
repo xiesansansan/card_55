@@ -1,0 +1,567 @@
+slot0 = class("TimedGiftKongFuLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onRequesetGetInfo",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "xssglb_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseLayer",
+					pos = {
+						x = 862.9,
+						y = 375.64
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 194.65,
+						y = 249.28
+					},
+					size = {
+						width = 100,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "untitled54",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xssglb_3.png",
+							pos = {
+								x = 54.87,
+								y = -25.28
+							}
+						},
+						children = {
+							{
+								name = "kongfuName",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 28.69,
+										y = 112
+									},
+									size = {
+										width = 30,
+										height = 120
+									},
+									text = TR("洗髓经")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled32",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 453.08,
+						y = 302.29
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							outlineColor = {
+								g = 42,
+								r = 58,
+								b = 24
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("活动倒计时：")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							text = "00:00:00",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 42,
+								r = 58,
+								b = 24
+							},
+							pos = {
+								x = 126.64,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "skillNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 301.89,
+						y = 230.83
+					}
+				},
+				children = {
+					{
+						name = "untitled37",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_51.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "skillPic",
+						cType = "Sprite",
+						params = {
+							scale = 0.75,
+							image = "sk_12104122.png",
+							pos = {
+								x = 53.85,
+								y = -0.5
+							}
+						},
+						children = {}
+					},
+					{
+						name = "skillDesc",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 116.44,
+								y = 0
+							},
+							size = {
+								width = 400,
+								height = 80
+							},
+							text = TR("技能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述技能描述")
+						},
+						children = {}
+					},
+					{
+						name = "untitled55",
+						cType = "Sprite",
+						params = {
+							image = "xksg_15.png",
+							hide = true,
+							pos = {
+								x = 87.95,
+								y = 19.99
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled56",
+						cType = "Effect",
+						params = {
+							scale = 0.9,
+							dataFile = "effect_ui_shengongkuang",
+							pos = {
+								x = 54,
+								y = 3
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "attrsNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 425,
+						y = 160
+					}
+				},
+				children = {
+					{
+						name = "AttrTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled46-text",
+								name = "attrStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled45",
+								cType = "Sprite",
+								params = {
+									image = "c_108.png",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled46",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 14,
+										y = 0
+									},
+									text = TR("攻击+2000")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "hintNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 425,
+						y = 105
+					}
+				},
+				children = {
+					{
+						name = "untitled48",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "label1",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("激活")
+						},
+						children = {}
+					},
+					{
+						name = "untitled49",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							childName = "label2",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 97,
+								y = 0
+							},
+							text = TR("神功，技能效果超强提升！")
+						},
+						children = {}
+					},
+					{
+						name = "untitled50",
+						cType = "Label",
+						params = {
+							fontSize = 27,
+							childName = "namelabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							pos = {
+								x = 43,
+								y = 2
+							},
+							text = TR("杨过")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled51",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					pos = {
+						x = 502.09,
+						y = 50.58
+					},
+					text = TR("限时神功礼包不能参与【超值首充】【经典首充】和其他充值活动")
+				},
+				children = {}
+			},
+			{
+				name = "untitled38",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 864.83,
+						y = 66.02
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Button",
+						params = {
+							image = "xssglb_2.png",
+							clickAction = "onBuy",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled30",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 12.81,
+								y = 23.06
+							},
+							text = TR("648元")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = 12012104
+slot0.ctor = function (slot0, slot1)
+	slot0.mGiftModelInfo = clone(NewKongfuGiftConfig.items[table.keys(NewKongfuGiftConfig.items)[1]][table.keys(NewKongfuGiftConfig.items[table.keys(NewKongfuGiftConfig.items)[1]])[1]])
+	slot0.mKongfuModel = NewKongfuModel.items[Utility.analysisStrResList(slot0.mGiftModelInfo.sellStr)[1].resourceId]
+	slot0.mKongfuSkillRatios = NewKongfuSkillRelation.items[slot0][slot0.mKongfuModel.modelId]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eKongfuGift, function (slot0)
+		PlayerAttrObj:changeAttr({
+			IsShowNewKongfuGift = false
+		})
+		LayerManager.removeLayer(slot0)
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "kongfuEffect" then
+			slot1.dataFile = slot0.mKongfuModel.effect
+		end
+
+		return 
+	end)
+	slot0.kongfuName:setString(slot0.mKongfuModel.name)
+	slot0.skillPic:setTexture(SkillModel.items[HeroModel.items[slot0].skillAttackId].skillPic .. ".png")
+	slot0.skillDesc:setString(Resource.getSkillIntroStr(slot1, nil, nil, "#ffffff", "#dfc72a", {
+		kongfuRatio = slot0.mKongfuSkillRatios[table.keys(slot0.mKongfuSkillRatios)[1]].skillRatio
+	}))
+
+	slot5 = 3
+	slot6 = 160
+
+	for slot10, slot11 in ipairs(slot4) do
+		slot12 = slot0.createLayoutTemplateNode(slot0, "AttrTempNode", {
+			attrStr = Utility.analysisStrAttrToFromat(slot11, "%s#8ba857+%s", "")
+		})
+
+		slot12.setPosition(slot12, (slot10 - 1)%slot5*slot6, math.floor((slot10 - 1)/slot5)*-30)
+		slot0.attrsNode:addChild(slot12)
+	end
+
+	slot0.hintNode.namelabel:setString(HeroModel.items[slot0].name)
+	slot0.hintNode.label2:setPositionX(slot0.hintNode.namelabel:getContentSize().width + 45)
+
+	return 
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mGiftInfo.EndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString("00:00:00")
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			PlayerAttrObj:changeAttr({
+				IsShowNewKongfuGift = false
+			})
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	function slot1()
+		Utility.recharge({
+			chargeType = Enums.chargeType.eKongfuGift,
+			price = slot0.mGiftModelInfo.priceRMB,
+			productId = slot0.mGiftInfo.ProductId
+		})
+
+		return 
+	end
+
+	if not slot0.mGiftInfo.IsBuy then
+		if PlayerAttrObj:getPlayerAttrByName("IsShowNewFirstCharge") == 0 then
+			ui.showMessageBox({
+				titleText = TR("提示"),
+				text = TR("#258711神功礼包#45220d不能激活#dfc72a超值首充#45220d，是否确认继续购买？"),
+				msgBoxParams = {
+					cancelImage = "c_32.png",
+					okImage = "c_27.png",
+					cancelText = TR("确  定"),
+					okText = TR("超值首充")
+				},
+				okCallback = function (...)
+					LayerManager.showModuleLayer(ModuleSub.eNewFirstChager)
+
+					return 
+				end,
+				cancelCallback = function (...)
+					slot0()
+
+					return 
+				end
+			})
+		else
+			slot1()
+		end
+	end
+
+	return 
+end
+slot0.onRequesetGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "NewKongfuGift",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mGiftInfo = slot0.GiftInfo[1]
+
+			slot0:createTimeUpdate()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

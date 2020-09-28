@@ -1,0 +1,1231 @@
+slot0 = class("DlgManorBuildMakeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMsgBoxBg",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 740,
+				height = 520
+			},
+			titleText = TR("生  产")
+		},
+		children = {
+			{
+				name = "untitled74",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 51,
+					image = "c_93.png",
+					pos = {
+						x = 487.74,
+						y = 461.06
+					}
+				},
+				children = {
+					{
+						name = "untitled75",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 199.97,
+								y = 17.14
+							},
+							text = TR("侠客训练等级越高，生产产量越高")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mMakeTips",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 697.47,
+						y = 427.83
+					},
+					text = TR("今日已经生产：1/2")
+				},
+				children = {}
+			},
+			{
+				name = "mRefreshCostNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 594.64,
+						y = 382
+					}
+				},
+				children = {
+					{
+						name = "untitled78",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							childName = "sprite",
+							pos = {
+								x = 14.29,
+								y = 14.27
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled79",
+						cType = "Label",
+						params = {
+							text = "0",
+							childName = "label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 36.81,
+								y = 14.27
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled72",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 486.19,
+						y = 224
+					},
+					size = {
+						width = 420,
+						height = 148
+					}
+				},
+				children = {
+					{
+						name = "mListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							pos = {
+								x = 28,
+								y = -0.21
+							},
+							size = {
+								width = 360,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "mItemLayout",
+								cType = "Layout",
+								params = {
+									pos = {
+										z = 0,
+										x = 1.61,
+										y = -1.37
+									},
+									size = {
+										width = 120,
+										height = 150
+									}
+								},
+								children = {
+									{
+										name = "untitled103",
+										cType = "CardNode",
+										params = {
+											childName = "card",
+											allowClick = true,
+											pos = {
+												x = 60,
+												y = 91.38
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled104",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											childName = "num",
+											isRichText = true,
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 60,
+												y = 18.06
+											},
+											text = TR("产量：100")
+										},
+										children = {}
+									},
+									{
+										name = "untitled105",
+										cType = "Scale9Sprite",
+										params = {
+											childName = "selectSp",
+											hide = true,
+											image = "c_61.png",
+											pos = {
+												x = 60,
+												y = 72
+											},
+											size = {
+												width = 120,
+												height = 155
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled120",
+										cType = "Button",
+										params = {
+											childName = "btn",
+											swallowTouch = false,
+											pressedAction = false,
+											image = "c_pure.png",
+											pos = {
+												x = 60,
+												y = 75
+											},
+											size = {
+												width = 120,
+												height = 150
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mbox1",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "cbClickCheckboxCallBack",
+					pos = {
+						x = 357.26,
+						y = 194.1
+					}
+				},
+				children = {
+					{
+						name = "untitled106",
+						cType = "Node",
+						params = {
+							childName = "node",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled107",
+								cType = "Node",
+								params = {
+									childName = "costNode",
+									pos = {
+										x = 40,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled108",
+										cType = "Sprite",
+										params = {
+											image = "db_1111.png",
+											childName = "sprite",
+											pos = {
+												x = 14.29,
+												y = 14.27
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled109",
+										cType = "Label",
+										params = {
+											text = "10",
+											childName = "label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 36.81,
+												y = 14.27
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled110",
+								cType = "Label",
+								params = {
+									childName = "tipslabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 114.58,
+										y = 14.9
+									},
+									text = TR("增加30%产量")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mbox2",
+				cType = "Checkbox",
+				params = {
+					normalImage = "c_43.png",
+					selectImage = "c_44.png",
+					callback = "cbClickCheckboxCallBack",
+					pos = {
+						x = 357.26,
+						y = 146.67
+					}
+				},
+				children = {
+					{
+						name = "untitled111",
+						cType = "Node",
+						params = {
+							childName = "node",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled112",
+								cType = "Node",
+								params = {
+									childName = "costNode",
+									pos = {
+										x = 40,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "untitled113",
+										cType = "Sprite",
+										params = {
+											image = "db_1111.png",
+											childName = "sprite",
+											pos = {
+												x = 14.29,
+												y = 14.27
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled114",
+										cType = "Label",
+										params = {
+											text = "10",
+											childName = "label",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 36.81,
+												y = 14.27
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled115",
+								cType = "Label",
+								params = {
+									childName = "tipslabel",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 114.58,
+										y = 14.9
+									},
+									text = TR("增加30%产量")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mMakeCostNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 449,
+						y = 101.13
+					}
+				},
+				children = {
+					{
+						name = "untitled89",
+						cType = "Sprite",
+						params = {
+							image = "db_1111.png",
+							childName = "sprite",
+							pos = {
+								x = 14.29,
+								y = 14.27
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled90",
+						cType = "Label",
+						params = {
+							text = "10",
+							childName = "label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 36.81,
+								y = 14.27
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mOpBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onClickMake",
+					pos = {
+						x = 489.06,
+						y = 74.23
+					},
+					titleText = TR("开始生产")
+				},
+				children = {}
+			},
+			{
+				name = "untitled92",
+				cType = "Scale9Sprite",
+				params = {
+					rotationAngle = 90,
+					image = "c_11.png",
+					pos = {
+						x = 251.79,
+						y = 269.56
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mHeroBtn",
+				cType = "Button",
+				params = {
+					pressedAction = false,
+					clickAction = "onClickChangeHero",
+					image = "zy_27.png",
+					pos = {
+						x = 138,
+						y = 281
+					}
+				},
+				children = {
+					{
+						name = "untitled117",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							pos = {
+								x = 0,
+								y = 8
+							},
+							text = TR("空 闲")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mChangeHeroBtn",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onClickChangeHero",
+					pos = {
+						x = 138.21,
+						y = 59.8
+					},
+					titleText = TR("更换侠客")
+				},
+				children = {}
+			},
+			{
+				name = "mRefreshBtn",
+				cType = "Button",
+				params = {
+					image = "zy_23.png",
+					clickAction = "onRefreshItems",
+					scale = 0.9,
+					pos = {
+						x = 681.28,
+						y = 395
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mTimeBg",
+				cType = "Scale9Sprite",
+				params = {
+					opacity = 51,
+					image = "c_93.png",
+					hide = true,
+					pos = {
+						x = 487.88,
+						y = 169.48
+					}
+				},
+				children = {
+					{
+						name = "untitled119",
+						cType = "Label",
+						params = {
+							childName = "label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 199.97,
+								y = 17.14
+							},
+							text = TR("生产倒计时")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mFreeTips",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 276.54,
+						y = 393.32
+					},
+					text = TR("免费刷新倒计时")
+				},
+				children = {}
+			},
+			{
+				name = "mNoUseTips",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 65,
+						r = 192,
+						b = 65
+					},
+					pos = {
+						x = 490.67,
+						y = 38.09
+					},
+					text = TR("今日次数已用尽")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mLandId = slot1.landId
+	slot0.mLandInfo = ManorHelper:getLandInfoByLandId(slot0.mLandId).landStautus.opData
+	slot0.mHeroId = slot0.mLandInfo.HeroId
+
+	if slot0.mHeroId == 0 then
+		slot0.mHeroId = ManorHelper:getIdleStatusHero()
+	end
+
+	slot0.mBuildType = slot0.mLandInfo.Type
+	slot0.mSelectItmeIndex = 0
+	slot0.mDiamondR = 0
+	slot0.mSelectDiamond = 0
+
+	slot0.initUI(slot0)
+	slot0.refreshUI(slot0, true)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		return 
+	end)
+
+	slot1 = {}
+
+	for slot5, slot6 in pairs(TerritoryPayputoutConfig.items) do
+		table.insert(slot1, clone(slot6))
+	end
+
+	for slot5, slot6 in ipairs({
+		slot0.mbox1,
+		slot0.mbox2
+	}) do
+		slot6.diamondR = slot1[slot5].artisanPayOutputR
+		slot6.diamond = slot1[slot5].payDiamondNum
+
+		slot6.node.costNode.label:setString(tostring(slot1[slot5].payDiamondNum))
+		slot6.node.tipslabel:setString(TR("增加%d%%产量", slot1[slot5].artisanPayOutputR*100))
+	end
+
+	return 
+end
+slot0.createOneHeroNode = function (slot0, slot1)
+	if slot0.mHeroNode and not tolua.isnull(slot0.mHeroNode) then
+		slot0.mHeroNode:removeFromParent()
+
+		slot0.mHeroNode = nil
+	end
+
+	slot3 = require("common.BustCard"):create({
+		ModelId = slot1,
+		InstanceData = HeroObj:getItem(slot1),
+		ClickAction = function (slot0)
+			return 
+		end
+	})
+
+	slot3.setPosition(slot3, 138, 281)
+	slot0.mMsgBoxBg:addChild(slot3, 2)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	return 
+end
+slot0.calculateOutPutR = function (slot0)
+	slot1 = 0
+	slot2 = 0
+
+	if 0 < slot0.mHeroId then
+		slot2 = TerritoryArtisanTrainoutput.items[HeroObj:getItem(slot0.mHeroId).TrainLv].artisanTrainOutputR
+	end
+
+	return TerritoryBuildlvConfig.items[slot0.mLandInfo.Type][slot0.mLandInfo.Lv].artisanLvOutputR, slot2
+end
+slot0.refreshUI = function (slot0)
+	slot0.mLandInfo = ManorHelper:getLandInfoByLandId(slot0.mLandId).landStautus.opData
+	slot0.mMakeStatus = ManorHelper:getBulidProcStatus(slot0.mLandId)
+	slot2, slot3 = slot0.calculateOutPutR(slot0)
+	slot0.mEndTime = nil
+
+	if ManorHelper.getBulidProcStatus(slot0.mLandId) == 0 then
+		slot0.mChangeHeroBtn:setVisible(true)
+		slot0.mHeroBtn:setEnabled(true)
+		slot0.mbox1:setVisible(true)
+		slot0.mbox2:setVisible(true)
+		slot0.mRefreshBtn:setVisible(true)
+		slot0.mRefreshCostNode:setVisible(true)
+		slot0.mMakeCostNode:setVisible(true)
+		slot0.mFreeTips:setVisible(true)
+		slot0.mListView:setPositionX(28)
+		slot0.mTimeBg:setVisible(false)
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mOpBtn:setTitleText(TR("开始生产"))
+		slot0.mOpBtn:setBright(true)
+		slot0.mOpBtn:setClickAction(function ()
+			slot0:onClickMake()
+
+			return 
+		end)
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].artisanNumDaily <= slot0.mLandInfo.DailyNum then
+			slot0.mOpBtn:setBright(false)
+			slot0.mOpBtn:setClickAction(function ()
+				ui.showFlashView(TR("提升VIP等级可以增加生产次数"))
+
+				return 
+			end)
+			slot0.mNoUseTips:setVisible(true)
+
+			slot5 = "#EC2A00"
+		end
+
+		slot0.mMakeTips:setString(TR("今日已生产：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+
+		slot0.mLastRefreshTime = slot0.mLandInfo.LastRefreshTime or Player:getCurrentTime()
+		slot0.mEndTime = slot0.mLastRefreshTime + TerritoryConfig.items[1].artisanRefreshTime
+
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mRefreshCostNode:setVisible(true)
+			slot0.setTimer(slot0)
+		else
+			slot0.mRefreshCostNode:setVisible(false)
+			slot0.mFreeTips:setString(TR("免费刷新倒计时:(已免费)"))
+		end
+
+		slot8 = Utility.analysisStrResList(slot6)[1]
+
+		if 1 < #Utility.analysisStrResList(slot6) then
+			assert(false, "确定消耗是两个物品吗？")
+		end
+
+		slot0.mRefreshCostNode.sprite:setTexture(Resource.getDaibiImg(slot8.resourceId))
+		slot0.mRefreshCostNode.label:setString(slot8.num)
+		slot0.mListView:removeAllChildren()
+
+		for slot13, slot14 in ipairs(slot9) do
+			slot17 = slot0.createLayoutTemplateNode(slot0, "mItemLayout", {})
+			slot18 = {
+				Enums.CardShowAttr.eName
+			}
+
+			if Utility.isMaterialCanRecommend(Utility.analysisStrResList(clone(TerritoryArtisanBaseoutput.items[tonumber(slot14)]).outputStr)[1].resourceId) == true then
+				table.insert(slot18, Enums.CardShowAttr.eRecommend)
+			end
+
+			slot17.card:setCardData({
+				modelId = slot16[1].resourceId
+			}, slot18)
+			slot17.num:setString(TR("%d#258711+%d", math.floor(math.floor(slot16[1].num*(slot2 + 1))*(slot0.mDiamondR + 1)), math.floor(math.floor(slot16[1].num*(slot2 + 1)*slot3)*(slot0.mDiamondR + 1))))
+
+			slot17.itemId = tonumber(slot14)
+
+			slot17.btn:setClickAction(function ()
+				slot0:onSelectItem(tonumber(slot0))
+
+				return 
+			end)
+			slot0.mListView:pushBackCustomItem(slot17)
+		end
+
+		if slot0.mSelectItmeIndex == 0 then
+			slot0.mSelectItmeIndex = tonumber(slot9[1])
+		end
+
+		slot0.onSelectItem(slot0, slot0.mSelectItmeIndex)
+		slot0.mMakeCostNode.sprite:setTexture(Resource.getDaibiImg(Utility.analysisStrResList(slot10)[1].resourceId))
+		slot0.mMakeCostNode.label:setString(Utility.analysisStrResList(slot10)[1].num)
+	elseif slot1 == 1 then
+		slot0.mHeroId = slot0.mLandInfo.HeroId
+
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mChangeHeroBtn:setVisible(false)
+		slot0.mHeroBtn:setEnabled(false)
+		slot0.mbox1:setVisible(false)
+		slot0.mbox2:setVisible(false)
+		slot0.mRefreshBtn:setVisible(false)
+		slot0.mRefreshCostNode:setVisible(false)
+		slot0.mMakeCostNode:setVisible(false)
+		slot0.mFreeTips:setVisible(false)
+		slot0.mTimeBg:setVisible(true)
+		slot0.mListView:setPositionX(148)
+		slot0.mOpBtn:setTitleText(TR("加 速"))
+		slot0.mOpBtn:setBright(true)
+		slot0.mOpBtn:setClickAction(function ()
+			slot0:onSpeedUpMake()
+
+			return 
+		end)
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].artisanNumDaily <= slot0.mLandInfo.DailyNum then
+			slot5 = "#EC2A00"
+		end
+
+		slot0.mMakeTips:setString(TR("今日已生产：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+		slot0.mListView:removeAllChildren()
+
+		for slot10, slot11 in ipairs(slot6) do
+			slot14 = {
+				Enums.CardShowAttr.eName
+			}
+
+			if Utility.isMaterialCanRecommend(Utility.analysisStrResList(clone(TerritoryArtisanBaseoutput.items[tonumber(slot11)]).outputStr)[1].resourceId) == true then
+				table.insert(slot14, Enums.CardShowAttr.eRecommend)
+			end
+
+			slot0.createLayoutTemplateNode(slot0, "mItemLayout", {}).card:setCardData({
+				modelId = slot13[1].resourceId
+			}, slot14)
+
+			if 0 < slot0.mLandInfo.AddNum then
+				slot15.num:setString(TR("%d#258711+%d", math.floor(math.floor(slot13[1].num*(slot2 + 1))*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].artisanPayOutputR + 1)), math.floor(math.floor(slot13[1].num*(slot2 + 1)*slot3)*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].artisanPayOutputR + 1))))
+			else
+				slot15.num:setString(TR("%d#258711+%d", math.floor(slot13[1].num*(slot2 + 1)), math.floor(slot13[1].num*(slot2 + 1)*slot3)))
+			end
+
+			slot15.itemId = tonumber(slot11)
+
+			slot0.mListView:pushBackCustomItem(slot15)
+		end
+
+		slot0.mEndTime = slot0.mLandInfo.RewardTime
+
+		slot0.setTimer(slot0)
+	elseif slot1 == 2 then
+		slot0.mHeroId = slot0.mLandInfo.HeroId
+
+		slot0.mNoUseTips:setVisible(false)
+		slot0.mChangeHeroBtn:setVisible(false)
+		slot0.mHeroBtn:setEnabled(false)
+		slot0.mbox1:setVisible(false)
+		slot0.mbox2:setVisible(false)
+		slot0.mRefreshBtn:setVisible(false)
+		slot0.mRefreshCostNode:setVisible(false)
+		slot0.mMakeCostNode:setVisible(false)
+		slot0.mFreeTips:setVisible(false)
+		slot0.mTimeBg:setVisible(true)
+		slot0.mTimeBg.label:setString("已完成")
+		slot0.mListView:setPositionX(148)
+		slot0.mOpBtn:setTitleText(TR("领 取"))
+		slot0.mOpBtn:setBright(true)
+		slot0.mOpBtn:setClickAction(function ()
+			slot0:onGetRewardClickAciton()
+
+			return 
+		end)
+
+		if 0 < slot0.mHeroId then
+			slot0.createOneHeroNode(slot0, slot0.mHeroId)
+		end
+
+		slot5 = "#8BA857"
+
+		if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].artisanNumDaily <= slot0.mLandInfo.DailyNum then
+			slot5 = "#EC2A00"
+		end
+
+		slot0.mMakeTips:setString(TR("今日已生产：%s%d/%d", slot5, slot0.mLandInfo.DailyNum, slot4))
+		slot0.mListView:removeAllChildren()
+
+		for slot10, slot11 in ipairs(slot6) do
+			slot14 = {
+				Enums.CardShowAttr.eName
+			}
+
+			if Utility.isMaterialCanRecommend(Utility.analysisStrResList(clone(TerritoryArtisanBaseoutput.items[tonumber(slot11)]).outputStr)[1].resourceId) == true then
+				table.insert(slot14, Enums.CardShowAttr.eRecommend)
+			end
+
+			slot0.createLayoutTemplateNode(slot0, "mItemLayout", {}).card:setCardData({
+				modelId = slot13[1].resourceId
+			}, slot14)
+
+			if 0 < slot0.mLandInfo.AddNum then
+				slot15.num:setString(TR("%d#258711+%d", math.floor(math.floor(slot13[1].num*(slot2 + 1))*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].artisanPayOutputR + 1)), math.floor(math.floor(slot13[1].num*(slot2 + 1)*slot3)*(TerritoryPayputoutConfig.items[slot0.mLandInfo.AddNum].artisanPayOutputR + 1))))
+			else
+				slot15.num:setString(TR("%d#258711+%d", math.floor(slot13[1].num*(slot2 + 1)), math.floor(slot13[1].num*(slot2 + 1)*slot3)))
+			end
+
+			slot15.itemId = tonumber(slot11)
+
+			slot0.mListView:pushBackCustomItem(slot15)
+		end
+	end
+
+	return 
+end
+slot0.setTimer = function (slot0)
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), 1)
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if not slot0.mEndTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+
+		return 
+	end
+
+	slot2 = slot0.mEndTime - Player:getCurrentTime()
+
+	if slot0.mMakeStatus == 1 then
+		if 0 < slot2 then
+			slot0.mTimeBg.label:setString(TR("生产倒计时:%s", MqTime.completeFormat(slot2)))
+		else
+			slot0.mTimeBg.label:setString(TR("00:00:00"))
+
+			if slot0.mSchelTime then
+				slot0.stopAction(slot0, slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+				slot0.mEndTime = nil
+			end
+		end
+	elseif slot0.mMakeStatus == 0 then
+		if 0 < slot2 then
+			slot0.mFreeTips:setString(TR("免费刷新倒计时:%s", MqTime.completeFormat(slot2)))
+		else
+			slot0.mFreeTips:setString(TR("免费刷新倒计时:(已免费)"))
+			slot0.mRefreshCostNode:setVisible(false)
+
+			if slot0.mSchelTime then
+				slot0.stopAction(slot0, slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+				slot0.mEndTime = nil
+			end
+		end
+	end
+
+	return 
+end
+slot0.onSpeedUpMake = function (slot0)
+	if math.ceil((slot0.mLandInfo.RewardTime - Player:getCurrentTime())/TerritoryConfig.items[1].basePaySpeedUp) <= 0 then
+		ui.showFlashView(TR("已经可以免费了"))
+
+		return 
+	end
+
+	ui.showMessageBox({
+		titleText = TR("提示"),
+		text = TR("是否消耗%s%s%s加速生产?", (Resource.isEnough(ResourceTypeSub.eDiamond, slot2, false) and "#8BA857") or "#C04141", "{" .. Resource.getDaibiImg(ResourceTypeSub.eDiamond) .. "}" .. slot2, "#252525"),
+		okCallback = function ()
+			slot0:requestSpeedUp()
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetRewardClickAciton = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Haverst",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot0.mLandInfo.HeroId
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			if slot0.HeroInfo then
+				HeroObj:modifyItem(slot0.HeroInfo)
+			end
+
+			ManorHelper:updateManorInfo(slot0.TerritoryInfo, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+
+			slot0.mHeroId = slot0.mLandInfo.HeroId
+			slot0.mSelectItmeIndex = 0
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSelectItem = function (slot0, slot1)
+	for slot6, slot7 in ipairs(slot2) do
+		slot7.selectSp:setVisible(slot7.itemId == slot1)
+	end
+
+	slot0.mSelectItmeIndex = slot1
+
+	return 
+end
+slot0.cbClickCheckboxCallBack = function (slot0, slot1)
+	if slot1.isSelected(slot1) then
+		slot0.mDiamondR = slot1.diamondR
+		slot0.mSelectDiamond = slot1.diamond
+	else
+		slot0.mDiamondR = 0
+		slot0.mSelectDiamond = 0
+	end
+
+	for slot5, slot6 in ipairs({
+		slot0.mbox1,
+		slot0.mbox2
+	}) do
+		if slot1 ~= slot6 or not slot1.isSelected(slot1) then
+			slot6.setSelected(slot6, false)
+		end
+	end
+
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.onClickMake = function (slot0, slot1)
+	slot0.requestMakeItem(slot0)
+
+	return 
+end
+slot0.onRefreshItems = function (slot0, slot1)
+	if 0 < (slot0.mLastRefreshTime + TerritoryConfig.items[1].artisanRefreshTime) - Player:getCurrentTime() then
+		ui.showMessageBox({
+			titleText = TR("提示"),
+			text = TR("是否消耗%s%s%s刷新生产列表?", (Resource.isEnough(Utility.analysisStrResList(slot3)[1].resourceId, Utility.analysisStrResList(slot3)[1].num, false) and "#8BA857") or "#C04141", "{" .. Resource.getDaibiImg(slot5.resourceId) .. "}" .. slot5.num, "#252525"),
+			okCallback = function ()
+				slot0:requestRefresh(false)
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	else
+		slot0.requestRefresh(slot0, true)
+	end
+
+	return 
+end
+slot0.onClickChangeHero = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "manor.DlgManorHeroSelectLayer",
+		data = {
+			callback = function (slot0)
+				slot0.mHeroId = slot0
+
+				slot0:refreshUI()
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestMakeItem = function (slot0)
+	if slot0.mSelectItmeIndex <= 0 then
+		ui.showFlashView("请选择要制造的物品")
+
+		return 
+	end
+
+	if slot0.mHeroId <= 0 then
+		ui.showFlashView("请选择执行任务的侠客")
+
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Produce",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot0.mSelectItmeIndex,
+			slot0.mHeroId,
+			slot0.mSelectDiamond
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("开始生产"))
+			ManorHelper:updateManorInfo(slot0, true)
+			slot0:refreshUI()
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefresh = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshGoods",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("%s刷新成功", (slot0 and TR("免费")) or ""))
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				ui.showFlashView.mLandId
+			})
+			EventAuto.postEvent:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSpeedUp = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ProduceSpeedUp",
+		moduleName = "TerritoryMainCity",
+		methodData = {
+			slot0.mLandId
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("加速成功"))
+			ManorHelper:updateManorInfo(slot0, true)
+			EventAuto:postEvent(ManorHelper.Events.eUpdateSubManorLayer)
+			EventAuto:postEvent(ManorHelper.Events.eUpdatePartLands, {
+				slot0.mLandId
+			})
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,268 @@
+slot0 = class("WiseTreeSeclectLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 640,
+				height = 450
+			},
+			titleText = TR("祈愿豪礼")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 319.25,
+						y = 356.1
+					},
+					size = {
+						width = 550,
+						height = 80
+					},
+					text = TR("从下列道具中选择一种作为您想要的奖励，选完全部奖励以后可以开始抽取奖励，选定奖励之后不能重新选择哦！")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 313.77,
+						y = 323.83
+					},
+					size = {
+						width = 550,
+						height = 220
+					}
+				},
+				children = {
+					{
+						name = "mRewardListView",
+						cType = "ListView",
+						params = {
+							margin = 15,
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 550,
+								height = 220
+							}
+						},
+						children = {
+							{
+								name = "rewardLayout",
+								cType = "Layout",
+								params = {
+									size = {
+										width = 550,
+										height = 160
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "okBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onClick",
+					pos = {
+						x = 319.74,
+						y = 50.82
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mId = slot1.id or 1
+	slot0.mCallback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.mRewardListView:removeAllItems()
+
+	slot1 = {}
+	slot3 = slot0.mRewardListView:getContentSize().width
+	slot4 = 100
+	slot5 = {}
+
+	for slot9 = 1, 4, 1 do
+		slot5[slot9] = cc.p((slot9 - 1)*120 + 90, 95)
+	end
+
+	slot6 = {
+		"cheng",
+		"hong",
+		"jinse",
+		"zuanshi"
+	}
+
+	for slot10 = 1, math.ceil(#slot0.mRewardInfo/slot2), 1 do
+		slot0.mRewardListView:pushBackCustomItem(slot11)
+
+		slot12 = nil
+		slot12 = (slot10 <= math.floor(#slot0.mRewardInfo/slot2) and slot2) or #slot0.mRewardInfo%slot2
+
+		for slot16 = 1, slot12, 1 do
+			slot19 = nil
+			slot19 = UIWrap.newControl("CardNode", {
+				allowClick = true,
+				initParams = {
+					cardInfo = {
+						modelId = Utility.analysisStrResList(slot0.mRewardInfo[slot2*(slot10 - 1) + slot16].Reward)[1].resourceId,
+						num = Utility.analysisStrResList(slot0.mRewardInfo[slot2*(slot10 - 1) + slot16].Reward)[1].num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eName,
+						Enums.CardShowAttr.eNum
+					}
+				},
+				pos = slot5[slot16],
+				clickAction = function ()
+					if slot0.mProId == slot1.Id then
+						slot2:defaultCardClick()
+					else
+						for slot3, slot4 in ipairs(slot3) do
+							if not tolua.isnull(slot4) then
+								slot4.setSelected(slot4, false)
+							end
+						end
+
+						slot2:setSelected(true)
+
+						slot2.setSelected.mProId = slot2.Id
+					end
+
+					return 
+				end
+			})
+
+			if slot0.mRewardInfo[slot2*(slot10 - 1) + slot16].RewardFrameInfo ~= 0 then
+				slot19.setLiubian(slot19, "effect_ui_touxiangkuang", slot6[slot17.RewardFrameInfo] or "cheng")
+			end
+
+			slot11.addChild(slot11, slot19)
+			table.insert(slot1, slot19)
+		end
+	end
+
+	return 
+end
+slot0.onClick = function (slot0)
+	if not slot0.mProId then
+		ui.showFlashView(TR("还没有选择奖励哦"))
+
+		return 
+	else
+		ui.showMessageBox({
+			text = TR("选定奖励后不能重新选择，是否确定?"),
+			okCallback = function ()
+				slot0:requestSetReward()
+
+				return 
+			end,
+			cancelCallback = function ()
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetRewardInfo",
+		moduleName = "TimedWishtree",
+		methodData = {
+			ActivityObj:getEntityId(ModuleSub.eWishTree),
+			slot0.mId
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			slot0.mRewardInfo = slot0 or {}
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSetReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "SetReward",
+		moduleName = "TimedWishtree",
+		methodData = {
+			ActivityObj:getEntityId(ModuleSub.eWishTree),
+			slot0.mId,
+			slot0.mProId
+		},
+		successCallback = function (slot0)
+			dump(slot0)
+
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

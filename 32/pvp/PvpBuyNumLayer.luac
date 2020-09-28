@@ -1,0 +1,122 @@
+slot0 = class("PvpBuyNumLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("提 示")
+		},
+		children = {
+			{
+				name = "textLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 244,
+						y = 200
+					},
+					text = TR("是否花费")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onOkBtnClickAction",
+					pos = {
+						x = 244,
+						y = 64
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mBoughtNum = slot1 or {}.boughtNum
+	slot0.mCallBack = slot1 or {}.callback
+	slot0.mCostList = Utility.analysisStrResList((PvpTimeBuyConfig.items[slot0.mBoughtNum + 1] and PvpTimeBuyConfig.items[slot0.mBoughtNum + 1].buyNeed) or PvpTimeBuyConfig.items[PvpTimeBuyConfig.items_count].buyNeed)
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = TR("是否花费 ")
+
+	for slot5, slot6 in ipairs(slot0.mCostList) do
+		slot1 = (slot5 == #slot0.mCostList and slot1 .. TR("{%s}%s 购买5次？", Resource.getDaibiImg(slot6.resourceId), slot6.num)) or slot1 .. TR("{%s}%s ", Resource.getDaibiImg(slot6.resourceId), slot6.num)
+	end
+
+	slot0.textLabel:setString(TR(slot1))
+
+	return 
+end
+slot0.onOkBtnClickAction = function (slot0, slot1)
+	if VipConfig.items[PlayerAttrObj:getPlayerAttrByName("Vip")].pvpBuyNum <= slot0.mBoughtNum then
+		ui.showFlashView(TR("购买次数已达到上限，请提升会员等级"))
+
+		return 
+	end
+
+	for slot7, slot8 in ipairs(slot0.mCostList) do
+		if not Resource.isEnough(slot8.resourceId, slot8.num, true) then
+			return 
+		end
+	end
+
+	slot0.requestBuyNum(slot0)
+
+	return 
+end
+slot0.requestBuyNum = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "BuyNum",
+		moduleName = "Pvp",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "购买次数返回数据")
+
+			slot0.mBoughtNum = slot0.PvpInfo.DailyBuyNum
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.PvpInfo.ChallengeNum, slot0.PvpInfo.DailyBuyNum)
+			end
+
+			ui.showFlashView(TR("购买成功!!!"))
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

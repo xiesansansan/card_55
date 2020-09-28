@@ -1,0 +1,797 @@
+slot0 = class("LvUpStoreLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 144)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled33",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			image = "swgr_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 1015,
+				height = 513
+			}
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_2.png",
+					pos = {
+						x = 507.5,
+						y = 45
+					},
+					size = {
+						width = 266,
+						height = 48
+					}
+				},
+				children = {
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "00:00:00",
+							outlineColor = {
+								g = 0,
+								r = 0,
+								b = 0
+							},
+							pos = {
+								x = 130,
+								y = 24
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mExpNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					hide = true,
+					pos = {
+						x = 701.29,
+						y = 244.44
+					},
+					size = {
+						width = 480,
+						height = 250
+					}
+				},
+				children = {
+					{
+						name = "mGoNBtn",
+						cType = "Button",
+						params = {
+							image = "swgr_5.png",
+							clickAction = "onRefershNomalPage",
+							pos = {
+								x = 408.31,
+								y = 25.87
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mTips2",
+						cType = "Sprite",
+						params = {
+							image = "swgr_2.png",
+							pos = {
+								x = -40,
+								y = 169.51
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled50",
+						cType = "Sprite",
+						params = {
+							image = "swgr_4.png",
+							pos = {
+								x = 173.81,
+								y = 169.7
+							}
+						},
+						children = {
+							{
+								name = "mExpLabelBg",
+								cType = "Scale9Sprite",
+								params = {
+									image = "swgr_3.png",
+									pos = {
+										x = 158.49,
+										y = 42.42
+									}
+								},
+								children = {
+									{
+										name = "mCurExpGoodLabel",
+										cType = "Label",
+										params = {
+											text = "Label",
+											pos = {
+												x = 93.47,
+												y = 14.37
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mPriceLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 170.15,
+								y = 32.44
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled54",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							childName = "buyBtn",
+							pos = {
+								x = 172.05,
+								y = -8.72
+							},
+							titleText = TR("接受传功")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mNomalNode",
+				cType = "Scale9Sprite",
+				params = {
+					image = "grxx_1.png",
+					hide = true,
+					pos = {
+						x = 701.29,
+						y = 244.44
+					},
+					size = {
+						width = 480,
+						height = 250
+					}
+				},
+				children = {
+					{
+						name = "mTips1",
+						cType = "Sprite",
+						params = {
+							image = "swgr_6.png",
+							pos = {
+								x = -40,
+								y = 135
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled7",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 202,
+								y = 274.1
+							},
+							text = TR("每日凌晨5点刷新")
+						},
+						children = {}
+					},
+					{
+						name = "mGoEBtn",
+						cType = "Button",
+						params = {
+							image = "c_27.png",
+							hide = true,
+							clickAction = "onRefershExpGoodPage",
+							pos = {
+								x = 214.77,
+								y = -25.47
+							},
+							titleText = TR("前往传功")
+						},
+						children = {}
+					},
+					{
+						name = "boxBtn",
+						cType = "Button",
+						params = {
+							image = "cz_50.png",
+							clickAction = "onFreeRewardBtn",
+							scale = 0.7,
+							pos = {
+								x = 417.97,
+								y = 279.75
+							}
+						},
+						children = {
+							{
+								name = "untitled31",
+								cType = "RedDot",
+								params = {
+									moduleId = 6801
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "goodsListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0,
+								y = 0
+							},
+							pos = {
+								x = 10,
+								y = 5
+							},
+							size = {
+								width = 460,
+								height = 250
+							}
+						},
+						children = {
+							{
+								name = "GoodsLayout",
+								cType = "Layout",
+								params = {
+									pos = {
+										z = 0,
+										x = -6,
+										y = 390.5
+									},
+									size = {
+										width = 130,
+										height = 250
+									}
+								},
+								children = {
+									{
+										name = "oneCellNode",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 130,
+												height = 250
+											}
+										},
+										children = {
+											{
+												name = "untitled14",
+												cType = "Scale9Sprite",
+												params = {
+													image = "qxzl_2.png",
+													pos = {
+														x = 65,
+														y = 147.05
+													},
+													size = {
+														width = 130,
+														height = 195
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled20",
+												cType = "Sprite",
+												params = {
+													image = "db_1111.png",
+													childName = "dimSprite",
+													pos = {
+														x = 31.55,
+														y = 90.53
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled19",
+												cType = "CardNode",
+												params = {
+													childName = "card",
+													allowClick = true,
+													pos = {
+														x = 65,
+														y = 178.33
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled15",
+												cType = "Sprite",
+												params = {
+													image = "c_88.png",
+													childName = "discountBg",
+													pos = {
+														x = 35.27,
+														y = 210.83
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled16",
+												cType = "Button",
+												params = {
+													fontSize = 26,
+													childName = "buyBtn",
+													image = "c_27.png",
+													pos = {
+														x = 65,
+														y = 31
+													},
+													titleText = TR("购 买")
+												},
+												children = {}
+											},
+											{
+												name = "untitled18",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "discountLabel",
+													rotationAngle = -45,
+													outlineColor = {
+														g = 0,
+														r = 0,
+														b = 0
+													},
+													pos = {
+														x = 26.23,
+														y = 219.28
+													},
+													text = TR("5折")
+												},
+												children = {}
+											},
+											{
+												name = "untitled21",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "oldPriceLabel",
+													text = "1233123",
+													color = {
+														g = 95,
+														r = 95,
+														b = 95
+													},
+													pos = {
+														x = 77.81,
+														y = 101.11
+													}
+												},
+												children = {
+													{
+														name = "untitled26",
+														cType = "Scale9Sprite",
+														params = {
+															image = "c_46.png",
+															childName = "redLine",
+															pos = {
+																x = 33.12,
+																y = 8.93
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "untitled22",
+												cType = "Label",
+												params = {
+													fontSize = 20,
+													childName = "curPriceLabel",
+													text = "21122111",
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 77.66,
+														y = 78.04
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 910.92,
+						y = 446.56
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.isFrist = true
+	slot0.mTag = 1
+
+	slot0.initUI(slot0)
+
+	slot0.mDuration = ExpshopConfig.items[1].duration
+
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.handelData = function (slot0)
+	slot1 = {}
+	slot3 = {}
+
+	for slot7, slot8 in ipairs(slot2) do
+		slot10 = Utility.analysisStrResList(ExpshopRelation.items[tonumber(slot8)].sellStr)
+
+		table.insert(slot1, ExpshopRelation.items[tonumber(slot8)])
+	end
+
+	slot4 = {}
+	slot5 = {}
+
+	for slot9, slot10 in ipairs(slot1) do
+		table.insert(slot4, slot10)
+
+		if slot9%3 == 0 then
+			table.insert(slot5, slot4)
+
+			slot4 = {}
+		end
+	end
+
+	if next(slot4) ~= nil then
+		table.insert(slot5, slot4)
+	end
+
+	table.sort(slot3, function (slot0, slot1)
+		if Utility.analysisStrResList(slot0.buyCost)[1].num ~= Utility.analysisStrResList(slot1.buyCost)[1].num then
+			return slot2[1].num < slot3[1].num
+		end
+
+		return false
+	end)
+
+	slot0.mGoodList = slot5
+	slot0.mExpGoodList = slot3
+
+	slot0.refreshUi(slot0)
+
+	return 
+end
+slot0.refreshUi = function (slot0)
+	if next(slot0.mExpGoodList) ~= nil and slot0.isFrist then
+		slot0.mIsSellOut = false
+
+		for slot4, slot5 in ipairs(slot0.mExpGoodList) do
+			if not slot0.mTodayBuyRecord[tostring(slot5.sellNum)] then
+				slot0.mTodayBuyRecord[tostring(slot5.sellNum)] = 0
+			end
+
+			if slot0.mTodayBuyRecord[tostring(slot5.sellNum)] < slot5.dailyBuyNum then
+				slot0.mIsSellOut = true
+				slot0.mTag = 2
+
+				break
+			end
+		end
+	end
+
+	slot0.isFrist = false
+
+	if slot0.mTag == 1 then
+		slot0.mExpNode:setVisible(false)
+		slot0.refreshList(slot0)
+		slot0.mNomalNode:setVisible(true)
+
+		if next(slot0.mExpGoodList) ~= nil then
+			slot0.mGoEBtn:setVisible(true)
+		else
+			slot0.mGoEBtn:setVisible(false)
+		end
+	else
+		slot0.mNomalNode:setVisible(false)
+		slot0.refreshExpGoodPage(slot0)
+		slot0.mExpNode:setVisible(true)
+	end
+
+	slot0.boxBtn:loadTextures((slot0.mDailyRewardDraw and "cz_93.png") or "cz_50.png", )
+
+	return 
+end
+slot0.onRefershExpGoodPage = function (slot0)
+	slot0.mTag = 2
+
+	slot0.refreshUi(slot0)
+
+	return 
+end
+slot0.onRefershNomalPage = function (slot0)
+	slot0.mTag = 1
+
+	slot0.refreshUi(slot0)
+
+	return 
+end
+slot0.refreshExpGoodPage = function (slot0)
+	slot0.mExpGoodInfo = nil
+
+	for slot4, slot5 in ipairs(slot0.mExpGoodList) do
+		if not slot0.mTodayBuyRecord[tostring(slot5.sellNum)] then
+			slot0.mTodayBuyRecord[tostring(slot5.sellNum)] = 0
+		end
+
+		if slot0.mTodayBuyRecord[tostring(slot5.sellNum)] < slot5.dailyBuyNum then
+			slot0.mExpGoodInfo = clone(slot5)
+
+			break
+		end
+	end
+
+	if not slot0.mExpGoodInfo then
+		slot0.mExpLabelBg:setVisible(false)
+		slot0.mPriceLabel:setString(TR("少侠今日已尽得真传"))
+		slot0.mExpNode.buyBtn:setEnabled(false)
+	else
+		slot0.mExpLabelBg:setVisible(true)
+		slot0.mExpNode.buyBtn:setEnabled(true)
+		slot0.mCurExpGoodLabel:setString(TR("主角经验+%d", Utility.analysisStrResList(slot0.mExpGoodInfo.sellStr)[1].num))
+		slot0.mPriceLabel:setString(TR("花费{db_%s.png}%d可得高人醍醐灌顶%d年功力", tostring(Utility.analysisStrResList(slot0.mExpGoodInfo.buyCost)[1].resourceId), Utility.analysisStrResList(slot0.mExpGoodInfo.buyCost)[1].num, math.floor(Utility.analysisStrResList(slot0.mExpGoodInfo.sellStr)[1].num/500)))
+		slot0.mExpNode.buyBtn:setClickAction(function ()
+			slot0:requestBuy(slot0.mExpGoodInfo.sellNum)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.refreshList = function (slot0)
+	slot0.goodsListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mGoodList) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "GoodsLayout")
+
+		slot6.setContentSize(slot6, cc.size(#slot5*130, 255))
+		slot0.goodsListView:pushBackCustomItem(slot6)
+
+		for slot10, slot11 in ipairs(slot5) do
+			slot12 = Utility.analysisStrResList(slot11.sellStr)
+			slot15 = Resource.getName(slot12[1].resourceId)
+			slot16 = slot0.createLayoutTemplateNode(slot0, "oneCellNode")
+
+			slot16.setPosition(slot16, (slot10 - 1)*130 + 0, 0)
+			slot6.addChild(slot6, slot16)
+			slot16.card:setCardData({
+				modelId = slot12[1].resourceId,
+				num = slot12[1].num
+			}, {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eName
+			})
+			slot16.oldPriceLabel:setString(Utility.analysisStrResList(slot11.originalPrice)[1].num)
+			slot16.curPriceLabel:setString(Utility.analysisStrResList(slot11.buyCost)[1].num)
+			slot16.card:getAttrCtrl(Enums.CardShowAttr.eName).label.setPositionY(slot17, -3)
+
+			slot18 = slot16.oldPriceLabel:getContentSize()
+
+			slot16.dimSprite:setPositionX(cc.p(slot16.oldPriceLabel:getPosition()).x - slot18.width/2 - 15)
+			slot16.oldPriceLabel.redLine:setContentSize(cc.size(slot18.width + 10, 2))
+			slot16.oldPriceLabel.redLine:setPosition(slot18.width/2, slot18.height/2)
+			slot16.discountLabel:setString(TR("%s折", slot11.showSale))
+			slot16.discountLabel:setRotation(-45)
+			slot16.discountBg:setVisible(0 < slot11.showSale and slot11.showSale < 10)
+			slot16.discountLabel:setVisible(0 < slot11.showSale and slot11.showSale < 10)
+
+			if 10 <= slot11.showSale then
+				slot16.oldPriceLabel:setVisible(false)
+				slot16.curPriceLabel:setPositionY(slot16.dimSprite:getPositionY())
+			end
+
+			if slot0.mTodayBuyRecord[tostring(slot11.sellNum)] then
+				slot16.buyBtn:setEnabled(slot0.mTodayBuyRecord[tostring(slot11.sellNum)] < slot11.dailyBuyNum)
+			end
+
+			slot16.buyBtn:setClickAction(function ()
+				slot0:requestBuy(slot1.sellNum)
+
+				return 
+			end)
+		end
+	end
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onFreeRewardBtn = function (slot0)
+	if slot0.mDailyRewardDraw then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.DlgRewardShowLayer",
+			data = {
+				title = TR("明日登录可领取"),
+				rewardStr = ExpshopConfig.items[1].dailyBoxReward
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		slot0.requestGetFreeReward(slot0)
+	end
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if 0 < (slot0.mOpeningTime + slot0.mDuration*24*3600) - Player:getCurrentTime() then
+		slot0.mTimeLabel:setString(TR("世外高人将在:%s后离去", MqTime.completeFormat(slot2)))
+	else
+		slot0.mTimeLabel:setString(TR("世外高人将在:00:00:00后离去"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Expshop",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSellNums = slot0.ExpshopInfo.SellNums
+			slot0.mTodayBuyRecord = slot0.ExpshopInfo.TodayBuyRecord
+			slot0.mOpeningTime = slot0.ExpshopInfo.OpeningTime
+			slot0.mDailyRewardDraw = slot0.ExpshopInfo.DailyRewardDraw
+
+			slot0:handelData()
+
+			if slot0.mSchelTime then
+				slot0:stopAction(slot0.mSchelTime)
+
+				slot0.mSchelTime = nil
+			end
+
+			slot0:upDateTime()
+
+			slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), 1)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "Buy",
+		moduleName = "Expshop",
+		methodData = {
+			slot1,
+			1
+		},
+		successCallback = function (slot0)
+			slot0.mSellNums = slot0.ExpshopInfo.SellNums
+			slot0.mTodayBuyRecord = slot0.ExpshopInfo.TodayBuyRecord
+			slot0.mOpeningTime = slot0.ExpshopInfo.OpeningTime
+
+			slot0:handelData()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			PlayerAttrObj:checkLvUp()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetFreeReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawDailyReward",
+		moduleName = "Expshop",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSellNums = slot0.ExpshopInfo.SellNums
+			slot0.mTodayBuyRecord = slot0.ExpshopInfo.TodayBuyRecord
+			slot0.mOpeningTime = slot0.ExpshopInfo.OpeningTime
+			slot0.mDailyRewardDraw = slot0.ExpshopInfo.DailyRewardDraw
+
+			slot0:handelData()
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

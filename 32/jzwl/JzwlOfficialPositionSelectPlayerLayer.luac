@@ -1,0 +1,435 @@
+slot0 = class("JzwlOfficialPositionSelectPlayerLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 120)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "myBox",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 515,
+				height = 580
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "tc_4.png",
+					pos = {
+						x = 257.95,
+						y = 560.32
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 24,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							pos = {
+								x = 140.51,
+								y = 17.84
+							},
+							text = TR("官职任命")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "editBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 20,
+					maxLength = 15,
+					image = "c_41.png",
+					fontColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeHolder = TR("          点击输入玩家角色名"),
+					pos = {
+						x = 200,
+						y = 59
+					},
+					size = {
+						width = 300,
+						height = 30
+					}
+				},
+				children = {}
+			},
+			{
+				name = "taskTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 22.15,
+						y = 113.84
+					},
+					size = {
+						width = 470,
+						height = 420
+					}
+				},
+				children = {
+					{
+						name = "taskTempNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -100
+							},
+							size = {
+								width = 470,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_106.png",
+									pos = {
+										x = 235,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "PlayerHeroNode",
+								params = {
+									scale = 0.9,
+									modelId = 19010000,
+									childName = "heroNode",
+									allowClick = true,
+									pos = {
+										x = 53,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									text = "",
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 95,
+										y = 72
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled16",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									childName = "fap",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 95,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled17",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "",
+									childName = "guild",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 95,
+										y = 30
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled14",
+								cType = "Button",
+								params = {
+									image = "c_27.png",
+									childName = "addBtn",
+									pos = {
+										x = 401.48,
+										y = 50
+									},
+									titleText = TR("添加")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onSearchBtnAction",
+					pos = {
+						x = 420,
+						y = 59
+					},
+					titleText = TR("搜索")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_58.png",
+					clickAction = "onRefAllInfo",
+					pos = {
+						x = 257.68,
+						y = 93.2
+					},
+					size = {
+						width = 100,
+						height = 30
+					}
+				},
+				children = {
+					{
+						name = "untitled7",
+						cType = "Sprite",
+						params = {
+							image = "hy_3.png",
+							pos = {
+								x = -31,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 11,
+								y = 0
+							},
+							text = TR("换一批")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.posisionId = slot1.posisionId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestPlayerSearch(slot0)
+
+	return 
+end
+slot0.refreeUi = function (slot0)
+	slot0.taskTableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 470, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mPlayerList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "taskTempNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.name:setString(slot0.mPlayerList[slot1 + 1].Name)
+		slot0.name:setColor(Utility.getPlayerNameColor(slot0.mPlayerList[slot1 + 1].FashionLevel or 1))
+		slot0.heroNode:setPlayerHeader(slot2.HeadImageId, nil, {
+			fashionLv = slot2.FashionLevel
+		})
+		slot0.fap:setString(TR("战力: %s", Utility.numberWithUnit(slot2.Fap)))
+		slot0.guild:setString(TR("帮派: %s", slot2.GuildName or ""))
+		slot0.addBtn:setClickAction(function ()
+			slot0:requestSet(slot1.PlayerId, slot0.posisionId)
+
+			return 
+		end)
+
+		if slot2.Status == 1 then
+			slot0.addBtn:loadTextures("c_32.png", "c_32.png")
+			slot0.addBtn:setTitleText(TR("撤销"))
+		else
+			slot0.addBtn:loadTextures("c_27.png", "c_27.png")
+			slot0.addBtn:setTitleText(TR("任命"))
+		end
+
+		slot0.heroNode:setClickAction(function ()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "player.OtherPlayerInfoLayer",
+				data = {
+					playerId = slot0.PlayerId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end)
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.newNode = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.newNode:refreshCell(slot2)
+
+	return 
+end
+slot0.onRefAllInfo = function (slot0)
+	slot0.requestPlayerSearch(slot0)
+
+	return 
+end
+slot0.onSearchBtnAction = function (slot0)
+	if slot0.editBox:getText() ~= "" then
+		slot0.requestPlayerSearch(slot0, slot1)
+	else
+		ui.showFlashView(TR("请输入玩家名字"))
+	end
+
+	return 
+end
+slot0.onCloseBtnAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.requestSet = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "SetIdentity",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0:onCloseBtnAction()
+			EventAuto:postEvent(EventDefine.eJZWLOfficialPositonChanged)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestPlayerSearch = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetIdentityOperationList",
+		moduleName = "Leaguetopfinal",
+		methodData = {
+			slot0.posisionId,
+			slot1 or ""
+		},
+		successCallback = function (slot0)
+			if 0 < #slot0 then
+				slot0.mPlayerList = slot0
+
+				slot0:refreeUi()
+			else
+				ui.showFlashView(TR("没搜索到相关玩家"))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,638 @@
+slot0 = class("DailyChargeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "cz_21.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled1",
+				cType = "Sprite",
+				params = {
+					image = "cz_100.png",
+					pos = {
+						x = -199,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 271.43,
+						y = -20.74
+					},
+					size = {
+						width = 576,
+						height = 560
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 5.05,
+						y = 262.16
+					},
+					text = TR("活动期间，累计充值任务达到条件时可领取对应天数奖励")
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onSkillShow",
+					pos = {
+						x = -109.88,
+						y = 231.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_118.png",
+					pos = {
+						x = -235.38,
+						y = -241.58
+					},
+					size = {
+						width = 397,
+						height = 31
+					}
+				},
+				children = {
+					{
+						name = "daysLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 20,
+								y = 14.5
+							},
+							text = TR("累计天数")
+						},
+						children = {}
+					},
+					{
+						name = "progressLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 199,
+								y = 14.5
+							},
+							text = TR("当前进度")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "mTabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onTabChanged",
+					lightedImage = "cz_112.png",
+					direction = false,
+					delayInit = true,
+					normalImage = "cz_113.png",
+					btnInfos = {
+						{
+							title = TR("史诗侠客")
+						},
+						{
+							title = TR("古墓传人")
+						}
+					},
+					pos = {
+						x = 24.06,
+						y = 179.35
+					},
+					size = {
+						width = 500,
+						height = 55
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.4
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled22",
+				cType = "ScrollView",
+				params = {
+					pos = {
+						x = 9,
+						y = -271
+					},
+					size = {
+						width = 525,
+						height = 450
+					}
+				},
+				children = {
+					{
+						name = "mTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "onNumOfCellFunc",
+							isVertical = true,
+							cellUpdateFunc = "onCellUpdateFunc",
+							cellSizeFunc = "onCellSizeFunc",
+							cellFillFunc = "onCellFillFunc",
+							pos = {
+								x = 0,
+								y = -2
+							},
+							size = {
+								width = 525,
+								height = 450
+							}
+						},
+						children = {
+							{
+								name = "rewardNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -120
+									}
+								},
+								children = {
+									{
+										name = "untitled11",
+										cType = "Scale9Sprite",
+										params = {
+											image = "cz_101.png",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = 0,
+												y = -7
+											},
+											size = {
+												width = 525,
+												height = 120
+											}
+										},
+										children = {}
+									},
+									{
+										name = "nameLabel",
+										cType = "Label",
+										params = {
+											text = "Label",
+											isRichText = true,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 20.52,
+												y = 96.95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "rewardListView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 20.93,
+												y = -5.66
+											},
+											size = {
+												width = 320,
+												height = 90
+											}
+										},
+										children = {
+											{
+												name = "goodLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled18-initParams",
+														name = "cardInfo",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 100,
+														height = 90
+													}
+												},
+												children = {
+													{
+														name = "untitled18",
+														cType = "CardNode",
+														params = {
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 50,
+																y = 45
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "tempBtn",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											pos = {
+												x = 453.93,
+												y = 25.36
+											},
+											titleText = TR("前 往")
+										},
+										children = {}
+									},
+									{
+										name = "chargeLabel",
+										cType = "Label",
+										params = {
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 448.1,
+												y = 64.13
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mActivityId = ActivityObj:getEntityId(ModuleSub.eDaychargeLuxurygift)
+	slot0.mSelectTag = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if RedDotObj:isValid(ModuleSub.eDaychargeLuxurygiftPoint) then
+		RedDotObj:seeRedDot("DaychargeLuxurygiftDefault")
+	end
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 520, 120
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mRewardInfo
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rewardNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.nameLabel:setString(TR("累计充值%s%s#FFFFFF天可领取", (slot0.mRewardInfo[slot1 + 1].Day <= slot0.mChargeDay and "#8BA857") or "#C04141", slot2.Day))
+		slot0.chargeLabel:setString(TR("累计充值%s元", slot2.ChargeNum))
+		slot0.rewardListView:removeAllChildren()
+
+		for slot8, slot9 in ipairs(slot4) do
+			slot0.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("goodLayout", {
+				cardInfo = {
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					},
+					instanceData = {
+						modelId = slot9.resourceId,
+						num = slot9.num
+					}
+				}
+			}))
+		end
+
+		slot0.tempBtn:setEnabled(true)
+
+		if slot2.Status == 0 then
+			slot0.tempBtn:loadTextures("c_27.png", "c_27.png")
+			slot0.tempBtn:setTitleText(TR("前 往"))
+			slot0.tempBtn:setClickAction(function ()
+				slot0:onGotoBtn()
+
+				return 
+			end)
+		elseif slot2.Status == 1 then
+			slot0.tempBtn:loadTextures("c_32.png", "c_32.png")
+			slot0.tempBtn:setTitleText(TR("领 取"))
+			slot0.tempBtn:setClickAction(function ()
+				slot0:onGetBtn(slot0.mBtnInfos[slot0.mSelectTag].TypeId, slot1.Day)
+
+				return 
+			end)
+		else
+			slot0.tempBtn:setEnabled(false)
+			slot0.tempBtn:setTitleText(TR("已领取"))
+		end
+
+		if slot0.tempBtn.redDot then
+			slot0.tempBtn.redDot:removeFromParent()
+
+			slot0.tempBtn.redDot = nil
+		end
+
+		slot0.tempBtn:addChild(UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eDaychargeLuxurygiftPoint,
+			subKey = slot0.mSelectTag .. "_" .. slot2.Day,
+			offset = cc.p(0.9, 0.9)
+		}))
+
+		slot0.tempBtn.redDot = UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eDaychargeLuxurygiftPoint,
+			subKey = slot0.mSelectTag .. "_" .. slot2.Day,
+			offset = cc.p(0.9, 0.9)
+		})
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onGetBtn = function (slot0, slot1, slot2)
+	slot0.requestDrawReward(slot0, slot1, slot2)
+
+	return 
+end
+slot0.onGotoBtn = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.RechargeHomeLayer"
+	})
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = ""
+
+	if slot0.mLuxuryGiftInfo.Finish == 1 then
+		slot1 = TR("当前进度：#8BA857已完成")
+	elseif not MqTime.isSameDay(slot0.mLuxuryGiftInfo.FinishDate, Player:getCurrentTime()) then
+		for slot5, slot6 in ipairs(slot0.mRewardInfo) do
+			if slot6.Day == slot0.mChargeDay + 1 then
+				if slot6.Status == 0 then
+					if slot0.mLuxuryGiftInfo.ChargeNum <= 0 then
+						slot1 = TR("当前进度：#C04141未完成")
+
+						break
+					end
+
+					slot1 = TR("当前进度：#8BA857%d/%d", slot0.mLuxuryGiftInfo.ChargeNum, slot6.ChargeNum)
+
+					break
+				end
+
+				slot1 = TR("当前进度：#8BA857已完成")
+
+				break
+			end
+		end
+	else
+		slot1 = TR("当前进度：#8BA857已完成")
+	end
+
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(slot0.mRewardInfo) do
+		if slot7.Status ~= 0 then
+			slot2 = slot2 + 1
+		end
+	end
+
+	slot0.daysLabel:setString(TR("累计天数：#8BA857%d/%d", slot2, #slot0.mRewardInfo))
+	slot0.progressLabel:setString(slot1)
+
+	return 
+end
+slot0.onSkillShow = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = 12012103
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onTabChanged = function (slot0, slot1)
+	if not slot0.mActivityData then
+		return 
+	end
+
+	slot0.mSelectTag = slot1
+
+	slot0.getCurData(slot0, slot1)
+
+	return 
+end
+slot0.getCurData = function (slot0, slot1)
+	slot0.mRewardInfo = slot0.mActivityData[slot1].GiftRewardDic
+	slot0.mChargeDay = slot0.mActivityData[slot1].ChargeDay
+	slot0.mLuxuryGiftInfo = slot0.mActivityData[slot1]
+
+	table.sort(slot0.mRewardInfo, function (slot0, slot1)
+		if slot0.Status == 2 ~= slot1.Status == 2 then
+			return not slot2
+		end
+
+		if slot0.Status ~= slot1.Status then
+			return slot1.Status < slot0.Status
+		end
+
+		if slot0.Day ~= slot1.Day then
+			return slot0.Day < slot1.Day
+		end
+
+		return 
+	end)
+	slot0.mTableView:reloadData()
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.creareTabs = function (slot0)
+	slot0.mBtnInfos = {}
+
+	for slot4, slot5 in ipairs(slot0.mActivityData) do
+		table.insert(slot0.mBtnInfos, {
+			title = slot5.Name,
+			tag = slot4,
+			TypeId = slot5.TypeId
+		})
+	end
+
+	slot0.createUISubTree(slot0, "mTabView", function (slot0, slot1)
+		if slot0.name == "mTabView" then
+			slot1.btnInfos = slot0.mBtnInfos
+		end
+
+		return 
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot6.addChild(slot6, UIWrap.newControl("RedDot", {
+			moduleId = ModuleSub.eDaychargeLuxurygiftPoint,
+			subKey = "Tap_" .. tostring(slot5),
+			offset = cc.p(0.9, 0.8)
+		}))
+	end
+
+	slot0.mTabView:activeTabBtnByTag2(1)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "DaychargeLuxurygift",
+		methodData = {
+			slot0.mActivityId
+		},
+		successCallback = function (slot0)
+			dump(slot0, "???????")
+
+			slot0.mActivityData = slot0.LuxuryGiftInfo
+
+			slot0:creareTabs()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawReward = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "DaychargeLuxurygift",
+		methodData = {
+			slot0.mActivityId,
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.mActivityData = slot0.LuxuryGiftInfo
+
+			slot0.mTabView:activeTabBtnByTag2(slot0.mSelectTag)
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

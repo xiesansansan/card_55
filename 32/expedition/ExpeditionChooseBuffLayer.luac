@@ -1,0 +1,203 @@
+slot0 = class("ExpeditionChooseBuffLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			needTouchClose = false,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 706,
+				height = 374
+			},
+			titleText = TR("选择加成")
+		},
+		children = {
+			{
+				name = "tempNode",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled7-text",
+						name = "buffName",
+						type = "string"
+					},
+					{
+						value = "untitled8-image",
+						name = "buffImg",
+						type = "string"
+					},
+					{
+						value = "untitled9-text",
+						name = "buffContent",
+						type = "string"
+					},
+					{
+						value = "untitled6-buffId",
+						name = "buffId",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 353,
+						y = 180
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "buffId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "bzlj_15.png",
+							childName = "buffBtn",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									pos = {
+										x = 0,
+										y = 110
+									},
+									text = TR("名 称")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Sprite",
+								params = {
+									image = "bzlj_14.png",
+									pos = {
+										x = 0,
+										y = 30.97
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 0,
+									valign = 0,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = -72.15
+									},
+									size = {
+										width = 155,
+										height = 103.27
+									},
+									text = TR("技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍技能介绍")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.buffList = slot1.buffList
+	slot0.mCallback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {
+		140,
+		353,
+		566
+	}
+
+	for slot5, slot6 in ipairs(slot0.buffList) do
+		slot8 = ""
+
+		if NewexpeditionBuffConfig.items[slot6].skillId == 0 then
+			dump(slot9, "buffAttrList")
+
+			for slot13 = 1, #Utility.analysisStrAttrList(slot7.attrStr), 1 do
+				slot8 = slot8 .. string.format(slot7.intro, (Utility.isAttrNeedPercent(slot9[slot13].fightattr) and slot9[slot13].value/100) or slot9[slot13].value)
+			end
+		else
+			slot8 = Resource.getSkillIntroStr(slot7.skillId)
+		end
+
+		slot9 = slot0.createLayoutTemplateNode(slot0, "tempNode", {
+			buffName = slot7.name,
+			buffImg = slot7.pic .. ".png",
+			buffContent = slot8,
+			buffId = slot6
+		})
+
+		slot9.setPosition(slot9, slot1[slot5], 180)
+		slot0.msgBox:addChild(slot9)
+		slot9.buffBtn:setClickAction(function ()
+			slot0:chooseBuff(slot0)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.chooseBuff = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "ChooseBuff",
+		moduleName = "Expedition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			if slot0.mCallback then
+				slot0.mCallback()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

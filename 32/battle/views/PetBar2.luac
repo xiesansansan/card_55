@@ -1,0 +1,138 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.ResDefine")
+slot2 = require("battle.common.UIHelper")
+slot3 = require("common.SpineManager")
+slot4 = class("PetBar2", function ()
+	return cc.Node:create()
+end)
+slot4.ctor = function (slot0, slot1, slot2)
+	slot0.gameScene = slot2
+	slot3 = cc.p(0, 0)
+	slot0.barPos = slot3
+	slot4 = cc.Sprite:create("zd_7.png")
+
+	slot4.setPosition(slot4, slot3)
+	slot0.addChild(slot0, slot4)
+
+	slot6 = cc.ProgressTimer:create(cc.Sprite:create("zd_8.png"))
+
+	slot6.setType(slot6, cc.PROGRESS_TIMER_TYPE_RADIAL)
+	slot6.setPercentage(slot6, slot1.attr.mp)
+	slot6.setPosition(slot6, cc.p(slot4.getContentSize(slot4).width/2 + 4, slot4.getContentSize(slot4).height/2))
+	slot4.addChild(slot4, slot6)
+	slot6.setRotation3D(slot6, cc.vec3(180, 0, 90))
+
+	slot0.petProgress = slot6
+	slot7 = slot1.attr.mp/100
+	slot8 = cc.Sprite:create("zd_9.png")
+
+	slot8.setPosition(slot8, cc.p(slot3.x - 58, slot3.y))
+	slot0.addChild(slot0, slot8)
+
+	slot0.fullEffect = slot0.createAnimation("effect_ui_zhujuekuang", 1)
+
+	slot0.fullEffect:setPosition(cc.p(slot3.x + 10, slot3.y - 10))
+	slot0.addChild(slot0, slot0.fullEffect)
+	slot0.fullEffect:playAnimation("daiji")
+	slot0.fullEffect:setVisible(false)
+	slot0.fullEffect:registerLuaHandler("complete", function (slot0)
+		if slot0.animation == "chufa" then
+			slot0.fullEffect:setVisible(false)
+		end
+
+		return 
+	end)
+
+	slot9 = cc.Sprite:create("zd_60.png")
+	slot10 = cc.Node:create()
+
+	slot10.setPosition(slot10, slot3)
+	slot0.addChild(slot0, slot10)
+
+	if cc.FileUtils:getInstance():isFileExist(FashionModel.items[slot1.id].fightSPic .. ".png") and cc.Sprite:create(slot12) then
+		slot13.setPosition(slot13, cc.p(4.5, 13))
+		slot10.addChild(slot10, slot13)
+	end
+
+	return 
+end
+slot4.updatePercent = function (slot0, slot1, slot2)
+	slot0.newPercent = slot1
+	slot0.newPosX = (slot1*463)/100
+
+	if slot2 ~= nil then
+		slot3 = slot0.createAnimation("effect_ui_zhandounuqi", 1)
+
+		slot3.setPosition3D(slot3, slot2)
+		slot0.addChild(slot0, slot3)
+		slot3.playAnimation(slot3, "qiu")
+		slot3.runAction(slot3, cc.Sequence:create({
+			cc.EaseExponentialOut:create(cc.MoveTo:create(slot0.gameScene.speed/0.7, cc.p(slot0.barPos.x - 58, slot0.barPos.y))),
+			cc.RemoveSelf:create(),
+			cc.CallFunc:create(function ()
+				slot0.petProgress:stopAllActions()
+				slot0.petProgress.stopAllActions.petProgress:runAction(cc.Sequence:create({
+					cc.ProgressTo:create(slot0.gameScene.speed/0.2, slot0.newPercent),
+					cc.CallFunc:create(function ()
+						if slot0.newPercent < 100 then
+							slot0.fullEffect:setVisible(false)
+						else
+							slot0.fullEffect:setVisible(true)
+						end
+
+						return 
+					end)
+				}))
+
+				return 
+			end)
+		}))
+	else
+		slot0.petProgress:stopAllActions()
+
+		if slot1 == 0 then
+			if slot0.petProgress:getPercentage() < 100 then
+				slot0.petProgress:runAction(cc.Sequence:create({
+					cc.ProgressTo:create(slot0.gameScene.speed/0.1, 100),
+					cc.CallFunc:create(function ()
+						slot0.fullEffect:setVisible(true)
+
+						return 
+					end),
+					cc.DelayTime:create(slot0.gameScene.speed/1),
+					cc.CallFunc:create(function ()
+						slot0.fullEffect:setVisible(false)
+						slot0.fullEffect.setVisible.petProgress:setPercentage(slot0.newPercent)
+
+						return 
+					end)
+				}))
+			else
+				slot0.petProgress:setPercentage(slot1)
+
+				if slot0.newPercent < 100 then
+					slot0.fullEffect:playAnimation("chufa", 1)
+				else
+					slot0.fullEffect:setVisible(true)
+				end
+			end
+		else
+			slot0.petProgress:runAction(cc.Sequence:create({
+				cc.ProgressTo:create(slot0.gameScene.speed/0.2, slot0.newPercent),
+				cc.CallFunc:create(function ()
+					if slot0.newPercent < 100 then
+						slot0.fullEffect:setVisible(false)
+					else
+						slot0.fullEffect:setVisible(true)
+					end
+
+					return 
+				end)
+			}))
+		end
+	end
+
+	return 
+end
+
+return slot4

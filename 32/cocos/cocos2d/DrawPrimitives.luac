@@ -1,0 +1,258 @@
+slot0 = false
+slot1 = nil
+slot2 = -1
+slot3 = {
+	1,
+	1,
+	1,
+	1
+}
+slot4 = -1
+slot5 = 1
+slot6 = "ShaderPosition_uColor"
+slot7 = cc.Application:getInstance():getTargetPlatform()
+
+function slot8()
+	if not slot0 and cc.ShaderCache:getInstance():getProgram(slot2) ~= nil then
+		slot3 = gl.getUniformLocation(slot1:getProgram(), "u_color")
+		slot4 = gl.getUniformLocation(slot1.getProgram():getProgram(), "u_pointSize")
+		dp_Initialized = true
+	end
+
+	if slot1 == nil then
+		print("Error:dp_shader is nil!")
+
+		return false
+	end
+
+	return true
+end
+
+function slot9()
+	gl.glEnableVertexAttribs(CCConstants.VERTEX_ATTRIB_FLAG_POSITION)
+	gl.glEnableVertexAttribs:use()
+	gl.glEnableVertexAttribs.use:setUniformsForBuiltins()
+	gl.glEnableVertexAttribs.use.setUniformsForBuiltins:setUniformLocationWith4fv(gl.glEnableVertexAttribs.use.setUniformsForBuiltins, , 1)
+
+	return 
+end
+
+function ccDrawInit()
+	slot0()
+
+	return 
+end
+
+function ccDrawFree()
+	slot0 = false
+
+	return 
+end
+
+function ccDrawColor4f(slot0, slot1, slot2, slot3)
+	slot0[1] = slot0
+	slot0[2] = slot1
+	slot0[3] = slot2
+	slot0[4] = slot3
+
+	return 
+end
+
+function ccPointSize(slot0)
+	slot0 = slot0*cc.Director:getInstance():getContentScaleFactor()
+
+	return 
+end
+
+function ccDrawColor4B(slot0, slot1, slot2, slot3)
+	slot0[1] = slot0/255
+	slot0[2] = slot1/255
+	slot0[3] = slot2/255
+	slot0[4] = slot3/255
+
+	return 
+end
+
+function ccDrawPoint(slot0)
+	if not slot0() then
+		return 
+	end
+
+	slot2()
+	slot1()
+	slot2:setUniformLocationWith1f(slot2.setUniformLocationWith1f, slot2)
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.POINTS, 0, 1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawPoints(slot0, slot1)
+	if not slot0() then
+		return 
+	end
+
+	slot4()
+	slot1()
+	slot2:setUniformLocationWith1f(slot3, slot4)
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.POINTS, 0, slot1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawLine(slot0, slot1)
+	if not slot0() then
+		return 
+	end
+
+	slot3()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.LINES, 0, 2)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawPoly(slot0, slot1, slot2)
+	if not slot0() then
+		return 
+	end
+
+	slot4 = 1
+
+	slot5()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+
+	if slot2 then
+		gl.drawArrays(gl.LINE_LOOP, 0, slot1)
+	else
+		gl.drawArrays(gl.LINE_STRIP, 0, slot1)
+	end
+
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawSolidPoly(slot0, slot1, slot2)
+	if not slot0() then
+		return 
+	end
+
+	slot4 = 1
+
+	slot5()
+	gl.glEnableVertexAttribs(CCConstants.VERTEX_ATTRIB_FLAG_POSITION)
+	slot1:use()
+	slot1:setUniformsForBuiltins()
+	slot1:setUniformLocationWith4fv(slot2, slot2, 1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.TRIANGLE_FAN, 0, slot1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawRect(slot0, slot1)
+	ccDrawLine(CCPoint:__call(slot0.x, slot0.y), CCPoint:__call(slot1.x, slot0.y))
+	ccDrawLine(CCPoint:__call(slot1.x, slot0.y), CCPoint:__call(slot1.x, slot1.y))
+	ccDrawLine(CCPoint:__call(slot1.x, slot1.y), CCPoint:__call(slot0.x, slot1.y))
+	ccDrawLine(CCPoint:__call(slot0.x, slot1.y), CCPoint:__call(slot0.x, slot0.y))
+
+	return 
+end
+
+function ccDrawSolidRect(slot0, slot1, slot2)
+	ccDrawSolidPoly({
+		slot0,
+		CCPoint:__call(slot1.x, slot0.y),
+		slot1,
+		CCPoint:__call(slot0.x, slot1.y)
+	}, 4, slot2)
+
+	return 
+end
+
+function ccDrawCircleScale(slot0, slot1, slot2, slot3, slot4, slot5, slot6)
+	if not slot0() then
+		return 
+	end
+
+	slot7 = 1
+
+	if slot4 then
+		slot7 = slot7 + 1
+	end
+
+	slot9()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.LINE_STRIP, 0, slot3 + slot7)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawCircle(slot0, slot1, slot2, slot3, slot4)
+	ccDrawCircleScale(slot0, slot1, slot2, slot3, slot4, 1, 1)
+
+	return 
+end
+
+function ccDrawSolidCircle(slot0, slot1, slot2, slot3, slot4, slot5)
+	if not slot0() then
+		return 
+	end
+
+	slot7()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.TRIANGLE_FAN, 0, slot3 + 1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawQuadBezier(slot0, slot1, slot2, slot3)
+	if not slot0() then
+		return 
+	end
+
+	slot5()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.LINE_STRIP, 0, slot3 + 1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+function ccDrawCubicBezier(slot0, slot1, slot2, slot3, slot4)
+	if not slot0 then
+		return 
+	end
+
+	slot6()
+	slot1()
+	gl.bindBuffer(gl.ARRAY_BUFFER, ({})["buffer_id"])
+	gl.vertexAttribPointer(CCConstants.VERTEX_ATTRIB_POSITION, 2, gl.FLOAT, false, 0, 0)
+	gl.drawArrays(gl.LINE_STRIP, 0, slot4 + 1)
+	gl.bindBuffer(gl.ARRAY_BUFFER, 0)
+
+	return 
+end
+
+return 

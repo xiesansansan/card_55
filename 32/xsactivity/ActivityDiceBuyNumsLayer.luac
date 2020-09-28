@@ -1,0 +1,336 @@
+slot0 = class("ActivityDiceBuyNumsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 600,
+				height = 450
+			},
+			titleText = TR("购买骰子")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 392
+					},
+					text = TR("使用骰子可增加次数")
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 300,
+						y = 270
+					},
+					size = {
+						width = 550,
+						height = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mCurCountLabel",
+				cType = "Label",
+				params = {
+					emptyInit = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 300,
+						y = 150
+					},
+					text = TR("当前次数：")
+				},
+				children = {}
+			},
+			{
+				name = "mCanBuyNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 151.88,
+						y = 38.34
+					},
+					text = TR("今日还可购买：100")
+				},
+				children = {}
+			},
+			{
+				name = "mGoodsCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 300,
+						y = 280
+					}
+				},
+				children = {}
+			},
+			{
+				name = "useResLabel",
+				cType = "ResLabel",
+				params = {
+					modelId = 1111,
+					num = 0,
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					pos = {
+						x = 105,
+						y = 115
+					}
+				},
+				children = {}
+			},
+			{
+				name = "diceResLabel",
+				cType = "ResLabel",
+				params = {
+					modelId = 1111,
+					num = 0,
+					color = {
+						g = 168,
+						r = 139,
+						b = 87
+					},
+					pos = {
+						x = 430,
+						y = 115
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 150,
+						y = 75
+					},
+					titleText = TR("购买")
+				},
+				children = {}
+			},
+			{
+				name = "untitled11",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onUse",
+					pos = {
+						x = 468,
+						y = 75
+					},
+					titleText = TR("使用")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = 16050124
+slot0.ctor = function (slot0, slot1)
+	slot0.activityId = ActivityObj:getEntityId(ModuleSub.eDice)
+	slot0.mData = slot1.data
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.maxBuyNum = 0
+
+	for slot4, slot5 in ipairs(slot0.mData.ConfigData.BuyNums) do
+		if slot0.maxBuyNum < slot5.EndNum then
+			slot0.maxBuyNum = slot5.EndNum
+		end
+	end
+
+	slot0.mGoodsCard:setCardData({
+		modelId = slot0
+	}, {
+		Enums.CardShowAttr.eName
+	})
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mCurCountLabel:setString(TR("当前次数：%s", slot0.mData.Count))
+	slot0.mCanBuyNumLabel:setString(TR("今日还可购买%s次", slot0.maxBuyNum - slot0.mData.BuyCount))
+	slot0.diceResLabel:setType(slot0)
+	slot0.diceResLabel:setString(Resource.getCount(slot0))
+	slot0.diceResLabel.label:setColor((0 < Resource.getCount(slot0) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65))
+
+	slot1 = ""
+
+	for slot5, slot6 in ipairs(slot0.mData.ConfigData.BuyNums) do
+		if slot0.mData.BuyCount + 1 <= slot6.EndNum and slot6.StartNum <= slot0.mData.BuyCount + 1 then
+			slot1 = slot6.Consume
+
+			break
+		end
+	end
+
+	if Utility.analysisStrResList(slot1)[1] then
+		slot0.useResLabel:setType(slot2.resourceId)
+		slot0.useResLabel:setString(slot2.num)
+		slot0.useResLabel.label:setColor((slot2.num <= Resource.getCount(slot2.resourceId) and cc.c3b(139, 168, 87)) or cc.c3b(192, 65, 65))
+	else
+		slot0.useResLabel:setVisible(false)
+	end
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	if slot0.maxBuyNum <= slot0.mData.BuyCount then
+		ui.showFlashView(TR("每日最多可以购买%d次", slot0.maxBuyNum))
+
+		return 
+	end
+
+	slot1 = ""
+
+	for slot5, slot6 in ipairs(slot0.mData.ConfigData.BuyNums) do
+		if slot0.mData.BuyCount + 1 <= slot6.EndNum and slot6.StartNum <= slot0.mData.BuyCount + 1 then
+			slot1 = slot6.Consume
+
+			break
+		end
+	end
+
+	for slot5, slot6 in pairs(Utility.analysisStrResList(slot1)) do
+		if not Resource.isEnough(slot6.resourceId, slot6.num, true, true) then
+			return 
+		end
+	end
+
+	slot0.requestBuy(slot0)
+
+	return 
+end
+slot0.onUse = function (slot0)
+	if Resource.getCount(slot0) <= 0 then
+		ui.showFlashView(TR("道具不足请购买"))
+
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "bag.UseNormalGoodsLayer",
+		data = {
+			info = {
+				ModelId = slot0,
+				Num = Resource.getCount(slot0)
+			},
+			callBack = function (slot0)
+				slot0:requestUse(slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Buy",
+		moduleName = "Dice",
+		methodData = {
+			slot0.activityId,
+			1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("购买成功"))
+
+			slot0.mData = slot0
+
+			slot0:refreshUI()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestUse = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "UseDice",
+		moduleName = "Dice",
+		methodData = {
+			slot0.activityId,
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("使用成功"))
+
+			slot0.mData = slot0
+
+			slot0:refreshUI()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

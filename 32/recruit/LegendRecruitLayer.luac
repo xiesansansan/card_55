@@ -1,0 +1,839 @@
+slot0 = class("LegendRecruitLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xshd_44.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled54",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "cqzm_10.png",
+			anchor = {
+				x = 0.5,
+				y = 0
+			},
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "nodeBg",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "cqzm_11.png",
+					pos = {
+						x = -176,
+						y = 19
+					}
+				},
+				children = {}
+			},
+			{
+				name = "titleSprite",
+				cType = "Sprite",
+				params = {
+					image = "cqzm_13.png",
+					pos = {
+						x = -176,
+						y = 211
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightBg",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_68.png",
+					zOrder = 2,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 385,
+						y = -15
+					}
+				},
+				children = {
+					{
+						name = "campSprite",
+						cType = "Sprite",
+						params = {
+							image = "xkxx_20.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = -20,
+								y = 75
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled30",
+						cType = "Sprite",
+						params = {
+							image = "cqzm_9.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 33,
+								y = 205
+							}
+						},
+						children = {}
+					},
+					{
+						name = "nameLabel",
+						cType = "Label",
+						params = {
+							fontSize = 42,
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 22,
+								y = 207
+							},
+							size = {
+								width = 20,
+								height = 0
+							},
+							text = TR("杨过")
+						},
+						children = {}
+					},
+					{
+						name = "skillBtn",
+						cType = "Button",
+						params = {
+							clickAction = "onEffectShowClick",
+							image = "tb_gn_121.png",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 33,
+								y = 40
+							}
+						},
+						children = {}
+					},
+					{
+						name = "choosBtn",
+						cType = "Button",
+						params = {
+							image = "cqzm_14.png",
+							clickAction = "onSelectHeroAction",
+							zOrder = 2,
+							pos = {
+								x = 33,
+								y = -100
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "oneBtn",
+				cType = "Button",
+				params = {
+					image = "cqzm_7.png",
+					zOrder = 2,
+					clickAction = "onOneBtnClick",
+					scale = 0.9,
+					pos = {
+						x = -195,
+						y = -206
+					}
+				},
+				children = {
+					{
+						name = "untitled49",
+						cType = "Sprite",
+						params = {
+							image = "bwld_14.png",
+							pos = {
+								x = 3,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled50",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							imageScale = 0.95,
+							childName = "resLabel",
+							text = "1000",
+							isRichText = true,
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 3,
+								y = 82
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled77",
+						cType = "RedDot",
+						params = {
+							childName = "redSprite"
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tenBtn",
+				cType = "Button",
+				params = {
+					image = "cqzm_8.png",
+					zOrder = 2,
+					clickAction = "onTenBtnClick",
+					scale = 0.9,
+					pos = {
+						x = 195,
+						y = -206
+					}
+				},
+				children = {
+					{
+						name = "untitled51",
+						cType = "Sprite",
+						params = {
+							image = "bwld_14.png",
+							pos = {
+								x = 0,
+								y = 80
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							imageScale = 0.95,
+							childName = "resLabel",
+							text = "1000",
+							isRichText = true,
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 82
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled78",
+						cType = "RedDot",
+						params = {
+							childName = "redSprite"
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rewardBg",
+				cType = "Sprite",
+				params = {
+					image = "cqzm_16.png",
+					zOrder = 2,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = -195,
+						y = -128
+					}
+				},
+				children = {
+					{
+						name = "untitled71",
+						cType = "Sprite",
+						params = {
+							image = "cqzm_15.png",
+							pos = {
+								x = 207,
+								y = 259
+							}
+						},
+						children = {}
+					},
+					{
+						name = "mGridView",
+						cType = "GridView",
+						params = {
+							createColCb = "onCreateGridItem",
+							itemNum = 1,
+							selectIndex = 1,
+							colCount = 4,
+							celHeight = 95,
+							pos = {
+								x = 207,
+								y = 128
+							},
+							size = {
+								width = 370,
+								height = 200
+							}
+						},
+						children = {
+							{
+								name = "gridCard",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled75-initParams",
+										name = "cardInfo",
+										type = "string"
+									},
+									{
+										value = "untitled76-text",
+										name = "numStr",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 4.44,
+										y = 107.39
+									},
+									size = {
+										width = 90.25,
+										height = 90
+									}
+								},
+								children = {
+									{
+										name = "untitled75",
+										cType = "CardNode",
+										params = {
+											scale = 0.85,
+											childName = "cardNode",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 45.13,
+												y = 56
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled76",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											text = "25%",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 45.13,
+												y = 13
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "introLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					childName = "label2",
+					isRichText = true,
+					zOrder = 2,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = -185.13
+					},
+					text = TR("再招募36必得传奇")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseClick",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "cqzm_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 100,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled19",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleAction",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 263,
+						y = -5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled53",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mGoodsList = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.getInfo(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot0.refreshBtnStatus(slot0)
+	slot0.refreshRightHero(slot0)
+	slot0.refreshReward(slot0)
+
+	slot2 = TR("再招募#C04141%s#ffffff次,必得%s", slot0.mLayerData.UpTotalNum or 1, HeroModel.items[slot0.mHeroModelId].name)
+
+	if slot0.mLayerData.UpTotalNum == 0 then
+		slot2 = TR("本次招募必得%s", slot1.name)
+	end
+
+	if slot1.quality < 16 then
+		slot2 = slot2 .. "x2"
+	end
+
+	slot0.introLabel:setString(slot2)
+
+	return 
+end
+slot0.refreshBtnStatus = function (slot0)
+	slot0.oneBtn.resLabel:setString(TR("{%s}%s/%s", Resource.getDaibiImg(slot4.resourceId), string.format("%s%s%s", (Utility.analysisStrResList(slot1(slot2, LegendRecuitModel.items[1].recruitUse2))[1].num <= Resource.getCount(Utility.analysisStrResList(slot1(slot2, LegendRecuitModel.items[1].recruitUse2))[1].resourceId) and "#37ff40") or "#ea2c00", Utility.numberWithUnit(slot5), "#ffffff"), Utility.numberWithUnit(slot4.num)))
+	slot0.oneBtn.redSprite:setVisible(Utility.analysisStrResList(slot2)[1].num <= Resource.getCount(Utility.analysisStrResList(slot2)[1].resourceId))
+	slot0.tenBtn.resLabel:setString(TR("{%s}%s/%s", Resource.getDaibiImg(Utility.analysisStrResList(slot2)[1].num <= Resource.getCount(Utility.analysisStrResList(slot2)[1].resourceId).resourceId), string.format("%s%s%s", (Utility.analysisStrResList(slot1(slot0.oneBtn.redSprite.setVisible, LegendRecuitModel.items[2].recruitUse2))[1].num <= Resource.getCount(Utility.analysisStrResList(slot1(slot0.oneBtn.redSprite.setVisible, LegendRecuitModel.items[2].recruitUse2))[1].resourceId) and "#37ff40") or "#ea2c00", Utility.numberWithUnit(slot13), "#ffffff"), Utility.numberWithUnit(Utility.analysisStrResList(slot2)[1].num <= Resource.getCount(Utility.analysisStrResList(slot2)[1].resourceId).num)))
+	slot0.tenBtn.redSprite:setVisible(Utility.analysisStrResList(slot0.oneBtn.redSprite.setVisible)[1].num <= Resource.getCount(Utility.analysisStrResList(slot0.oneBtn.redSprite.setVisible)[1].resourceId))
+
+	return 
+end
+slot0.refreshRightHero = function (slot0)
+	if cc.FileUtils:getInstance():isFileExist(HeroModel.items[slot0.mHeroModelId].drawingPicB .. ".skel") then
+		if slot0.heroEffect then
+			slot0.heroEffect:removeFromParent()
+
+			slot0.heroEffect = nil
+		end
+
+		slot0.heroEffect = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 0.42,
+			dataFile = slot2.drawingPicB
+		})
+
+		slot0.heroEffect:setPosition(cc.p(200, -200))
+		slot0.nodeBg:addChild(slot0.heroEffect, 1)
+	end
+
+	slot0.nameLabel:setString(slot2.name)
+	slot0.skillBtn:setPositionY(slot0.nameLabel:getContentSize().height - 207)
+	slot0.choosBtn:setPositionY(slot0.nameLabel:getContentSize().height - 207 - 130)
+	slot0.campSprite:setVisible(true)
+	slot0.campSprite:setTexture(Utility.getHeroQualityImage(slot1))
+
+	if not Utility.getHeroQualityImage(slot1) or slot3 == "" then
+		slot0.campSprite:setVisible(false)
+	end
+
+	return 
+end
+slot0.refreshReward = function (slot0)
+	slot1 = LegendRecuitModel.items[1].recruitShow
+	slot0.mGoodsList = {}
+	slot2 = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	for slot6, slot7 in pairs(LegendRecuitShowRelation.items) do
+		if slot7.needLv <= slot2 then
+			table.insert(slot0.mGoodsList, clone(slot7))
+		end
+	end
+
+	table.sort(slot0.mGoodsList, function (slot0, slot1)
+		if Resource.getColorLv(Utility.analysisStrResList(slot0.showGoods)[1].resourceId) ~= Resource.getColorLv(Utility.analysisStrResList(slot1.showGoods)[1].resourceId) then
+			return slot5 < slot4
+		end
+
+		if slot2.resourceId ~= slot3.resourceId then
+			return slot2.resourceId < slot2.resourceId
+		end
+
+		return 
+	end)
+	table.insert(slot0.mGoodsList, 1, {
+		odds = 3,
+		needLv = 0,
+		showGoods = "1509," .. tostring(slot3.debrisId) .. "," .. tostring((Resource.getModelInfo(slot0.mHeroModelId).quality < 16 and 200) or 100)
+	})
+	slot0.mGridView:setItemNum(#slot0.mGoodsList)
+
+	return 
+end
+slot0.onCreateGridItem = function (slot0, slot1, slot2, slot3)
+	if not slot0.mGoodsList[slot2] then
+		return 
+	end
+
+	slot6 = {
+		cardInfo = {
+			modelId = Utility.analysisStrResList(slot4.showGoods)[1].resourceId,
+			num = Utility.analysisStrResList(slot4.showGoods)[1].num
+		},
+		showAttrs = {}
+	}
+
+	if Resource.getSubType(Utility.analysisStrResList(slot4.showGoods)[1].resourceId) == ResourceTypeSub.eHeroDebris or slot7 == ResourceTypeSub.eHero then
+		table.insert(slot6.showAttrs, Enums.CardShowAttr.eNum)
+	end
+
+	slot8 = slot0.createLayoutTemplateNode(slot0, "gridCard", {
+		cardInfo = slot6,
+		numStr = string.format("%s%%", slot4.odds)
+	})
+
+	slot8.setAnchorPoint(slot8, cc.p(0.5, 0.5))
+	slot8.setPosition(slot8, slot1.getContentSize(slot1).width*0.5, slot1.getContentSize(slot1).height*0.5)
+	slot1.addChild(slot1, slot8)
+
+	return 
+end
+slot0.onEffectShowClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot0.mHeroModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onSelectHeroAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "recruit.LegendRecruitChooseLayer",
+		data = {
+			curSelectModelId = slot0.mHeroModelId,
+			chooseList = slot0.mLayerData.SeletHeroList,
+			callBack = function (slot0)
+				if slot0.mHeroModelId == slot0 then
+					return 
+				end
+
+				slot0:socketRequest({
+					methodName = "SelectHero",
+					moduleName = "LegendRecruit",
+					methodData = {
+						slot0
+					},
+					successCallback = function (slot0)
+						dump(slot0, "response")
+
+						slot0.mLayerData = slot0 or {}
+						slot0.mHeroModelId = slot0.mLayerData.SetSpecalHeroModelId
+
+						slot0:refreshLayer()
+
+						return 
+					end
+				})
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onCloseClick = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleAction = function (slot0, slot1)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、大侠可以在神话招募进行指定招募侠客；"),
+			TR("2、神话招募分为招募1次和招募10次；"),
+			TR("3、神话消耗需要消耗神话招募券或者元宝进行招募；"),
+			TR("4、选择初始16资质侠客可获得100碎片,选择初始15资质侠客可获得200碎片。")
+		}
+	})
+
+	return 
+end
+slot0.onOneBtnClick = function (slot0)
+	slot2 = LegendRecuitModel.items[1].recruitUse2
+
+	if not Resource.isEnough(Utility.analysisStrResList(slot1)[1].resourceId, Utility.analysisStrResList(slot1)[1].num, false, false) and not Resource.isEnough(Utility.analysisStrResList(slot2)[1].resourceId, Utility.analysisStrResList(slot2)[1].num) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Recruit",
+		moduleName = "LegendRecruit",
+		methodData = {
+			1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mLayerData = slot0.RecruitInfo or {}
+			slot0.mHeroModelId = slot0.mLayerData.SetSpecalHeroModelId
+
+			slot0:refreshLayer()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "recruit.RecruitShowRewardLayer",
+				data = {
+					listInfo = slot0.Reward,
+					use1 = slot0,
+					use2 = slot0,
+					recruitCallBack = function ()
+						slot0:onOneBtnClick()
+
+						return 
+					end,
+					extraReward = {},
+					closeCb = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onTenBtnClick = function (slot0)
+	slot2 = LegendRecuitModel.items[2].recruitUse2
+
+	if not Resource.isEnough(Utility.analysisStrResList(slot1)[1].resourceId, Utility.analysisStrResList(slot1)[1].num, false, false) and not Resource.isEnough(Utility.analysisStrResList(slot2)[1].resourceId, Utility.analysisStrResList(slot2)[1].num) then
+		return 
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "Recruit",
+		moduleName = "LegendRecruit",
+		methodData = {
+			2
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mLayerData = slot0.RecruitInfo or {}
+			slot0.mHeroModelId = slot0.mLayerData.SetSpecalHeroModelId
+
+			slot0:refreshLayer()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "recruit.RecruitShowRewardLayer",
+				data = {
+					listInfo = slot0.Reward,
+					use1 = slot0,
+					use2 = slot0,
+					recruitCallBack = function ()
+						slot0:onTenBtnClick()
+
+						return 
+					end,
+					extraReward = {},
+					closeCb = function ()
+						return 
+					end
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.getInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "LegendRecruit",
+		methodData = {},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+
+			slot0.mLayerData = slot0 or {}
+			slot0.mHeroModelId = slot0.mLayerData.SetSpecalHeroModelId
+
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

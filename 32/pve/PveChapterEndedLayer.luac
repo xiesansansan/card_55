@@ -1,0 +1,486 @@
+slot0 = class("PveChapterEndedLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bg",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "zjzj_4.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled12",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "clipNode",
+				cType = "ClippingNode",
+				params = {
+					alpha = 0.01,
+					image = "zjzj_5.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = -939,
+						y = 0
+					},
+					size = {
+						width = 100,
+						height = 100
+					}
+				},
+				children = {
+					{
+						name = "content",
+						cType = "Sprite",
+						params = {
+							image = "zjzj_3.png",
+							pos = {
+								x = 939,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "introNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 260.61,
+						y = 143.59
+					}
+				},
+				children = {
+					{
+						name = "labelTemplate",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled22-color",
+								name = "fontColor",
+								type = "string"
+							},
+							{
+								value = "untitled22-fontSize",
+								name = "fontSize",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Sprite",
+								params = {
+									hide = true,
+									image = "zjzj_1.png",
+									childName = "bgSprite",
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									align = 1,
+									outlineSize = 1,
+									childName = "label",
+									valign = 0,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = -17
+									},
+									size = {
+										width = 28,
+										height = 250
+									},
+									text = TR("第九十九章")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "stampSprite",
+				cType = "Sprite",
+				params = {
+					opacity = 0,
+					image = "zjzj_2.png",
+					scale = 1,
+					pos = {
+						x = -700,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rewardParent",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 125,
+						y = -175
+					}
+				},
+				children = {}
+			},
+			{
+				name = "clickBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onCloseBtnClick",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 1136,
+						height = 640
+					}
+				},
+				children = {}
+			},
+			{
+				name = "closeBtn",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onCloseBtnClick",
+					pos = {
+						x = 0,
+						y = -240
+					},
+					size = {
+						width = 300,
+						height = 50
+					}
+				},
+				children = {
+					{
+						name = "tipsLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = 0
+							},
+							text = TR("点击屏幕前往下一章节")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterId = slot1.chapterId or 11
+	slot0.guideCallback = slot1.guideCallback
+	slot0.callBack = slot1.callBack
+	slot0.mChapterModel = PveChapterModel.items[slot0.mChapterId]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.createIntroduce(slot0)
+	slot0.startAction(slot0, function ()
+		slot0:doIntroduceAction()
+		slot0.doIntroduceAction:doStampAction()
+		slot0.doIntroduceAction.doStampAction:doRewardAction()
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.content:setTexture(slot0.mChapterModel.summaryPic .. ".png")
+
+	return 
+end
+slot0.startAction = function (slot0, slot1)
+	slot0.createReward(slot0)
+	slot0.doOpenCanvasAction(slot0, slot1)
+
+	return 
+end
+slot0.forceStopAction = function (slot0)
+	slot0.content:stopAllActions()
+	slot0.content:setPosition(cc.p(0, 0))
+	slot0.clipNode:stopAllActions()
+	slot0.clipNode:setPosition(cc.p(0, 0))
+
+	for slot4, slot5 in ipairs(slot0.nodeList) do
+		slot5.setOpacity(slot5, 255)
+		slot5.setPosition(slot5, slot5.pos)
+	end
+
+	for slot4, slot5 in ipairs(slot0.rewardParent:getChildren()) do
+		slot5.setVisible(slot5, true)
+		slot5.setScale(slot5, 0.6)
+	end
+
+	slot0.stampSprite:setPosition(cc.p(130, -90))
+	slot0.stampSprite:setScale(0.3)
+	slot0.stampSprite:setOpacity(255)
+
+	slot0.actionDone = true
+
+	return 
+end
+slot0.doOpenCanvasAction = function (slot0, slot1)
+	slot0.clipNode:setInverted(false)
+	slot0.content:runAction(cc.Sequence:create(slot3))
+	slot0.clipNode:runAction(cc.Sequence:create({
+		cc.EaseSineOut:create(cc.MoveTo:create(slot2, cc.p(0, 0))),
+		cc.CallFunc:create(function ()
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.doStampAction = function (slot0, slot1)
+	slot4 = {
+		cc.p(slot0.stampSprite:getPosition()),
+		cc.p(-234, 500),
+		cc.p(130, -90)
+	}
+
+	slot0.stampSprite:setPosition(cc.p(130, -90))
+	slot0.stampSprite:runAction(cc.Sequence:create({
+		cc.EaseIn:create(cc.Spawn:create({
+			cc.FadeIn:create(slot2),
+			cc.ScaleTo:create(1, 0.3)
+		}), 1),
+		cc.CallFunc:create(function ()
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.createIntroduce = function (slot0)
+	slot2 = slot0._createLabel(slot0, slot0.mChapterModel.name, true)
+	slot2.pos = cc.p(0, 0)
+
+	table.insert(slot1, slot2)
+	slot0.introNode:addChild(slot2)
+
+	slot3 = slot0._createLabel(slot0, slot0.mChapterModel.chapterMainName, false)
+	slot3.pos = cc.p(-50, -30)
+
+	table.insert(slot1, slot3)
+	slot3.setPosition(slot3, slot3.pos)
+	slot0.introNode:addChild(slot3)
+
+	slot4 = slot0._createLabel(slot0, slot0.mChapterModel.chapterSubName, false)
+	slot4.pos = cc.p(-80, -60)
+
+	table.insert(slot1, slot4)
+	slot4.setPosition(slot4, slot4.pos)
+	slot0.introNode:addChild(slot4)
+
+	slot0.nodeList = {}
+
+	return 
+end
+slot0.doIntroduceAction = function (slot0)
+	slot1 = 1
+	slot2 = nil
+	slot2 = Utility.schedule(slot0, function ()
+		if not slot0.nodeList[slot1] then
+			slot0:stopAction(slot2)
+
+			return 
+		end
+
+		slot0.nodeList[slot1]:runAction(cc.FadeIn:create(1.6))
+
+		slot1 = slot0.nodeList[slot1].runAction + 1
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0._createLabel = function (slot0, slot1, slot2)
+	slot4 = slot0.createLayoutTemplateNode(slot0, "labelTemplate", {
+		fontSize = (slot2 and 28) or 28,
+		fontColor = cc.c3b(255, 255, 255)
+	})
+
+	slot4.setCascadeOpacityEnabled(slot4, true)
+	slot4.setOpacity(slot4, 0)
+
+	if slot2 then
+		slot4.bgSprite:setVisible(true)
+	end
+
+	slot4.label:setString(slot1)
+
+	return slot4
+end
+slot0.createReward = function (slot0)
+	slot2 = {}
+
+	for slot7, slot8 in ipairs(slot3) do
+		slot9 = UIWrap.newControl("CardNode", {
+			scale = 1.5,
+			initParams = {
+				cardInfo = {
+					modelId = slot8.resourceId,
+					num = slot8.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			},
+			pos = cc.p((slot7 - 1)*60, 0)
+		})
+
+		slot0.rewardParent:addChild(slot9)
+		slot9.setVisible(slot9, false)
+		table.insert(slot2, slot9)
+	end
+
+	slot0.headerList = slot2
+
+	return 
+end
+slot0.doRewardAction = function (slot0)
+	for slot5, slot6 in ipairs(slot1) do
+		slot6.runAction(slot6, cc.Sequence:create(cc.DelayTime:create((slot5 - 1)*0.2), cc.Show:create(), cc.ScaleTo:create(0.1, 0.6), cc.CallFunc:create(function ()
+			if slot0 == #slot1 then
+				slot2.actionDone = true
+
+				slot2:executeGuide()
+			end
+
+			return 
+		end)))
+	end
+
+	return 
+end
+slot0.onCloseBtnClick = function (slot0)
+	if slot0.actionDone ~= true then
+		slot0.forceStopAction(slot0)
+
+		return 
+	end
+
+	slot0.requestDrawChapterFirstReward(slot0)
+
+	return 
+end
+slot0.requestDrawChapterFirstReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChapterFirstReward",
+		moduleName = "PveChapter",
+		methodData = {
+			slot0.mChapterId
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			PveObj:modifyOneChapterInfo(slot0.PveChapterInfo)
+			ui.showFlashReward({
+				moveTime = 0.5,
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList,
+				callback = function ()
+					if slot0.callBack then
+						slot0.callBack()
+					end
+
+					if slot0.guideCallback then
+						slot0.guideCallback()
+					end
+
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[10504] = {
+			clickNode = slot0.closeBtn
+		},
+		[207031] = {
+			clickNode = slot0.closeBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

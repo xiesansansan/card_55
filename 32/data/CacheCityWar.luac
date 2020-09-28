@@ -1,0 +1,54 @@
+slot0 = class("CacheCityWar", {})
+slot0.ctor = function (slot0)
+	slot0.mCityList = {}
+	slot0.mSpecialtyList = {}
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mCityList = {}
+	slot0.mSpecialtyList = {}
+
+	return 
+end
+slot0.getCityList = function (slot0, slot1)
+	if next(slot0.mCityList) then
+		slot1(clone(slot0.mCityList), clone(slot0.mSpecialtyList))
+	else
+		require("network.GameSocket"):socketRequest({
+			methodName = "GetCityInfo",
+			moduleName = "Citywar",
+			ignoreNode = true,
+			methodData = {
+				0
+			},
+			successCallback = function (slot0)
+				slot0.mCityList = {}
+
+				for slot4, slot5 in pairs(slot0.CityInfo) do
+					slot0.mCityList[tonumber(slot4)] = slot5
+				end
+
+				slot0.mSpecialtyList = {}
+
+				for slot4, slot5 in ipairs(slot0.SpInfo) do
+					slot0.mSpecialtyList[slot5.ChapterModelId] = slot5
+				end
+
+				slot1(clone(slot0.mCityList), clone(slot0.mSpecialtyList))
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.getOneCityInfo = function (slot0, slot1)
+	return clone(slot0.mCityList[slot1] or {})
+end
+slot0.getOneCitySpecialty = function (slot0, slot1)
+	return clone(slot0.mSpecialtyList[slot1] or {})
+end
+
+return slot0

@@ -1,0 +1,2021 @@
+slot0 = class("JzwlStartBattleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			opacity = 0,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xksl_13.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled128",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_zhandou_zhongnanshanbaitian",
+					pos = {
+						x = 693,
+						y = 280
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftBattleNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 125,
+						y = 110
+					},
+					size = {
+						width = 400,
+						height = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightBattleNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 862,
+						y = 110
+					},
+					size = {
+						width = 400,
+						height = 200
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled98",
+				cType = "Sprite",
+				params = {
+					image = "xksl_1.png",
+					pos = {
+						x = 693,
+						y = 564
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled99",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_30.png",
+					hide = true,
+					pos = {
+						x = 593,
+						y = 564
+					}
+				},
+				children = {
+					{
+						name = "leftSectLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 12.5,
+								y = 37.5
+							},
+							size = {
+								width = 22,
+								height = 80
+							},
+							text = TR("南帝")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled100",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_30.png",
+					hide = true,
+					pos = {
+						x = 793,
+						y = 564
+					}
+				},
+				children = {
+					{
+						name = "rightSectLabel",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 12.5,
+								y = 37.5
+							},
+							size = {
+								width = 22,
+								height = 80
+							},
+							text = TR("南帝")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "effectNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 693,
+						y = 360
+					}
+				},
+				children = {}
+			},
+			{
+				name = "multipleKillEffectTemplate",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = 446.57,
+						y = 474.05
+					}
+				},
+				children = {
+					{
+						name = "untitled122",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_39.png",
+							childName = "effectSprite",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "untitled129",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "rankSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jzwl_26.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 120
+					},
+					size = {
+						width = 440,
+						height = 260
+					}
+				},
+				children = {
+					{
+						name = "rankTableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 10,
+								y = 5
+							},
+							size = {
+								width = 420,
+								height = 220
+							}
+						},
+						children = {
+							{
+								name = "rankTemplate",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = 0,
+										y = -30
+									},
+									size = {
+										width = 420,
+										height = 30
+									}
+								},
+								children = {
+									{
+										name = "untitled114",
+										cType = "Scale9Sprite",
+										params = {
+											image = "jzwl_31.png",
+											childName = "bg",
+											pos = {
+												x = 210,
+												y = 15
+											},
+											size = {
+												width = 420,
+												height = 30
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled115",
+										cType = "Sprite",
+										params = {
+											childName = "rankSprite",
+											scale = 0.5,
+											hide = true,
+											image = "c_51.png",
+											pos = {
+												x = 120,
+												y = 13
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled116",
+										cType = "Label",
+										params = {
+											text = "99",
+											hide = true,
+											childName = "rankLabel",
+											pos = {
+												x = 115,
+												y = 15
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled117",
+										cType = "Label",
+										params = {
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 150,
+												y = 15
+											},
+											text = TR("玩家名字6字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled118",
+										cType = "Label",
+										params = {
+											childName = "winNumLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 295,
+												y = 15
+											},
+											text = TR("99胜")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled111",
+						cType = "Button",
+						params = {
+							clickAction = "onRankCallBack",
+							image = "c_Pure.png",
+							anchor = {
+								x = 0.5,
+								y = 1
+							},
+							pos = {
+								x = 220,
+								y = 260
+							},
+							size = {
+								width = 400,
+								height = 40
+							}
+						},
+						children = {
+							{
+								name = "untitled108",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									pos = {
+										x = 0,
+										y = 0
+									},
+									text = TR("杀敌排行榜")
+								},
+								children = {}
+							},
+							{
+								name = "arrowSprite",
+								cType = "Sprite",
+								params = {
+									image = "jzwl_27.png",
+									scaleY = -1,
+									pos = {
+										x = 100,
+										y = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "leftPlayerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled84",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_29.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 111,
+						y = -50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled83",
+				cType = "GuildFlag",
+				params = {
+					childName = "guildFlag",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled85",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_31.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 132,
+						y = -85.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled86",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_10.png",
+					bgImage = "jyt_9.png",
+					childName = "progress",
+					pos = {
+						x = 247.87,
+						y = -55.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled87",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_28.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 300.69,
+						y = -53.76
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled88",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					childName = "guildName",
+					pos = {
+						x = 220,
+						y = -35
+					},
+					text = TR("帮派名字六字")
+				},
+				children = {}
+			},
+			{
+				name = "untitled89",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					childName = "num",
+					pos = {
+						x = 220,
+						y = -73.68
+					},
+					text = TR("人数：100/100")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightPlayerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled91",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_29.png",
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = -111,
+						y = -50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled92",
+				cType = "GuildFlag",
+				params = {
+					childName = "guildFlag",
+					anchor = {
+						x = 1,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled93",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_31.png",
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = -132,
+						y = -85.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled95",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_28.png",
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = -300.69,
+						y = -53.76
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled94",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jyt_10.png",
+					bgImage = "jyt_9.png",
+					childName = "progress",
+					pos = {
+						x = -247.87,
+						y = -55.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled96",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					childName = "guildName",
+					pos = {
+						x = -220,
+						y = -35
+					},
+					text = TR("帮派名字六字")
+				},
+				children = {}
+			},
+			{
+				name = "untitled97",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					childName = "num",
+					pos = {
+						x = -220,
+						y = -73.68
+					},
+					text = TR("人数：100/100")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "heroTemplate",
+		cType = "TemplateNode",
+		custom = {
+			{
+				value = "untitled33-heroModelId",
+				name = "heroModelId",
+				type = "string"
+			},
+			{
+				value = "untitled34-text",
+				name = "name",
+				type = "string"
+			},
+			{
+				value = "untitled36-currValue",
+				name = "hpCV",
+				type = "string"
+			},
+			{
+				value = "untitled36-maxValue",
+				name = "hpMV",
+				type = "string"
+			},
+			{
+				value = "untitled33-flipX",
+				name = "flipX",
+				type = "string"
+			},
+			{
+				value = "untitled33-scale",
+				name = "scale",
+				type = "string"
+			},
+			{
+				value = "untitled36-normalImage",
+				name = "hpImg",
+				type = "string"
+			}
+		},
+		params = {
+			pos = {
+				x = 400.27,
+				y = 156.4
+			}
+		},
+		children = {
+			{
+				name = "untitled33",
+				cType = "FigureHero",
+				params = {
+					heroModelId = 12011101,
+					scale = 0.8,
+					childName = "figure",
+					flipX = false,
+					pos = {
+						x = 3.11,
+						y = 1.46
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled124",
+				cType = "Sprite",
+				params = {
+					image = "zd_61.png",
+					pos = {
+						x = 29,
+						y = 191
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled34",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					isRichText = true,
+					childName = "nameLabel",
+					pos = {
+						x = 5,
+						y = 188.86
+					},
+					text = TR("玩家名字六字")
+				},
+				children = {}
+			},
+			{
+				name = "untitled113",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_38.png",
+					pos = {
+						x = 5,
+						y = 170
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled36",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "jzwl_37.png",
+					bgImage = "jzwl_36.png",
+					currValue = 1,
+					maxValue = 1,
+					childName = "hp",
+					pos = {
+						x = 5,
+						y = 170
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled112",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					childName = "teamLabel",
+					hide = true,
+					text = "Label",
+					isRichText = true,
+					pos = {
+						x = 5,
+						y = -12
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled123",
+				cType = "Sprite",
+				params = {
+					image = "jzwzs_1.png",
+					childName = "goodsSprite",
+					pos = {
+						x = -66,
+						y = 190
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled125",
+				cType = "Effect",
+				params = {
+					loop = false,
+					hide = true,
+					childName = "goodsEffect",
+					dataFile = "effect_ui_juezhanwulin_zhandou",
+					pos = {
+						x = 90,
+						y = 220
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled75",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseCallBack",
+			posApt = 1,
+			scaleApt = 2,
+			image = "tb_gn_244.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 983.87,
+				y = 514.56
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled126",
+		cType = "Button",
+		params = {
+			clickAction = "onBarrageSendWindowCallbakc",
+			posApt = 1,
+			scaleApt = 2,
+			image = "tb_gn_262.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 881.48,
+				y = 514.56
+			}
+		},
+		children = {}
+	},
+	{
+		name = "barrageTextLayer",
+		cType = "FileLayer",
+		params = {
+			file = "commonlayer.BarrageTextLayer",
+			initParams = {
+				speed = 2,
+				yPosBegin = 360,
+				yPosEnd = 600
+			}
+		},
+		children = {}
+	}
+}
+slot1 = require("common.SpineManager")
+slot2 = {
+	[0] = {
+		scale = 0.95,
+		anchorPos = cc.p(1.15, 0.3)
+	},
+	{
+		scale = 1,
+		anchorPos = cc.p(0.4, 0)
+	},
+	{
+		scale = 0.95,
+		anchorPos = cc.p(0.55, 0.3)
+	},
+	{
+		scale = 0.9,
+		anchorPos = cc.p(0.7, 0.6)
+	},
+	{
+		scale = 1,
+		anchorPos = cc.p(0.1, 0)
+	},
+	{
+		scale = 0.95,
+		anchorPos = cc.p(0.25, 0.3)
+	},
+	{
+		scale = 0.9,
+		anchorPos = cc.p(0.4, 0.6)
+	}
+}
+slot3 = {
+	nil,
+	nil,
+	"jzwl_39.png",
+	"jzwl_40.png",
+	"jzwl_41.png",
+	"jzwl_42.png",
+	"jzwl_43.png",
+	"jzwl_44.png",
+	"jzwl_45.png",
+	"jzwl_46.png"
+}
+slot4 = {
+	[3] = TR("%s达成了3连胜，已经渐入佳境！"),
+	[4] = TR("%s达成了4连胜，对手一一倒在了他的身前。"),
+	[5] = TR("%s达成了5连胜，对手没有一个能走过3个回合。"),
+	[6] = TR("%s达成了6连胜，上场的敌人已经能感受到之间的差距。"),
+	[7] = TR("%s达成了7连胜，传说中的绝世高人或许也就是这样了。"),
+	[8] = TR("%s达成了8连胜，一击致命，四绝恐怕也就如此了！"),
+	[9] = TR("%s达成了9连胜，无敌，当代无敌，只能如此形容了！"),
+	[10] = TR("%s达成了10连胜，江湖中的霸主，已经是神一样的存在了！")
+}
+slot5 = {
+	TR("%s出场携带了毒药精粹，将与对手同归于尽！"),
+	TR("%s出场携带了蒙汗药，战斗中将降低对方的各方面属性！"),
+	TR("%s出场携带了鼓舞号角，战斗中将提升自己的各方面属性！")
+}
+slot6 = {
+	eMultipleKill = 3,
+	eSingleKill = 1,
+	eGoods = 4,
+	eDragKill = 2
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.matchId = slot1.battleId
+	slot0.loadedCallBack = slot1.loadedCallBack
+	slot0._battleTimeScale = 1
+	slot0._battleCache = {}
+	slot0.inTop = false
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	slot2 = ui.turnAction(slot0)
+
+	slot2.startTurn(slot2, 0)
+
+	slot0.cover = slot2
+
+	slot0.requestOnLook(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	slot0.requestExitLook(slot0)
+
+	return 
+end
+slot0.initLayer = function (slot0, slot1)
+	slot0.refreshTextInfo(slot0, nil, slot1)
+	slot0.refreshHeros(slot0)
+	slot0.refreshRankInfo(slot0)
+	slot0.registerPushFightInfo(slot0)
+	slot0.registerBarrageEvent(slot0)
+	slot0.showBattleStart(slot0, function ()
+		slot0:registerBattleHandler()
+
+		return 
+	end)
+
+	return 
+end
+slot0.refreshTextInfo = function (slot0, slot1, slot2)
+	if slot1 or slot0._initData.GuestPlayerInfo and slot1.GuestPlayerInfo.BannerInfo then
+		slot0.leftPlayerNode.guildFlag:setFlag(slot1.GuestPlayerInfo.BannerInfo)
+		slot0.leftPlayerNode.guildFlag:setString(slot1.GuestPlayerInfo.Logo)
+		slot0.leftPlayerNode.guildName:setString(slot1.GuestPlayerInfo.GuildName)
+	end
+
+	if slot1.HostPlayerInfo and slot1.HostPlayerInfo.BannerInfo then
+		slot0.rightPlayerNode.guildFlag:setFlag(slot1.HostPlayerInfo.BannerInfo)
+		slot0.rightPlayerNode.guildFlag:setString(slot1.HostPlayerInfo.Logo)
+		slot0.rightPlayerNode.guildName:setString(slot1.HostPlayerInfo.GuildName)
+	end
+
+	if slot1.GuestGuildRemindArmy then
+		slot3 = slot1.GuestGuildRemindArmy
+
+		if slot2 and (slot1.IsWin == 2 or slot1.IsWin == 3) then
+			slot3 = slot3 + 1
+		end
+
+		slot0.leftPlayerNode.num:setString(TR("人数：%d/%d", slot3, slot1.GuestGuildToTalArmy))
+		slot0.leftPlayerNode.progress:setCurrValue(slot3)
+		slot0.leftPlayerNode.progress:setMaxValue(slot1.GuestGuildToTalArmy)
+	end
+
+	if slot1.HostGuildRemindArmy then
+		slot3 = slot1.HostGuildRemindArmy
+
+		if slot2 and (slot1.IsWin == 1 or slot1.IsWin == 3) then
+			slot3 = slot3 + 1
+		end
+
+		slot0.rightPlayerNode.num:setString(TR("人数：%d/%d", slot3, slot1.HostGuildTotalArmy))
+		slot0.rightPlayerNode.progress:setCurrValue(slot3)
+		slot0.rightPlayerNode.progress:setMaxValue(slot1.HostGuildTotalArmy)
+	end
+
+	return 
+end
+slot0.refreshRankInfo = function (slot0, slot1)
+	slot0.rankDatas = slot1 or slot0._initData.KillNumRank
+
+	slot0.rankTableView:reloadData()
+
+	return 
+end
+slot0._createPlayer = function (slot0, slot1, slot2, slot3, slot4)
+	slot6 = slot0.createLayoutTemplateNode(slot0, "heroTemplate", {
+		heroModelId = slot3.FashionId,
+		name = slot3.PlayerName,
+		hpImg = (slot4 and "jzwl_34.png") or "jzwl_35.png",
+		hpCV = slot3.RemainHP,
+		hpMV = slot3.TotalHp,
+		flipX = not slot4,
+		scale = slot0[slot2].scale - 0.2
+	})
+
+	slot6.setPosition(slot6, slot0)
+	slot1.addChild(slot1, slot6, slot2 - 7)
+
+	slot8 = slot6.hp:getContentSize()
+
+	if 1 < slot3.TotalHp then
+		slot10 = tonumber(string.format("%.2f", slot8.width/slot3.TotalHp))
+
+		for slot14 = 1, slot3.TotalHp - 1, 1 do
+			slot6.hp:addChild(UIWrap.newControl("Sprite", {
+				image = "jzwl_37.png",
+				pos = cc.p(slot10*slot14, slot8.height/2)
+			}))
+		end
+	end
+
+	if slot3.BattleToolsInfo[1] then
+		slot6.goodsSprite:setTexture(NewleaguetopShopRelation.items[slot9].smallPic .. ".png")
+	else
+		slot6.goodsSprite:setTexture("c_pure.png")
+	end
+
+	if not slot4 then
+		slot6.goodsSprite:setPosition(cc.p(80, 190))
+		slot6.goodsEffect:setPosition(cc.p(-90, 220))
+	end
+
+	slot6.isLeft = slot4
+	slot6.fasionID = slot3.FashionId
+	slot6.name = slot3.PlayerName
+	slot6.goods = slot9
+
+	return slot6
+end
+slot0._createPlayers = function (slot0)
+	slot0.leftBattleNode:removeAllChildren()
+	slot0.rightBattleNode:removeAllChildren()
+
+	slot1 = ipairs
+	slot2 = slot0._initData.GuestWaitPlayList or {}
+
+	for slot4, slot5 in slot1(slot2) do
+		slot7 = nil
+		slot9 = slot0._createPlayer(slot0, (not true or slot0.leftBattleNode) and slot0.rightBattleNode, (slot6 and #slot0.leftPlayerNodes + 1) or #slot0.rightPlayerNodes + 1, slot5, slot6)
+
+		if slot6 then
+			table.insert(slot0.leftPlayerNodes, slot9)
+		else
+			table.insert(slot0.rightPlayerNodes, slot9)
+		end
+	end
+
+	slot1 = ipairs
+	slot2 = slot0._initData.HostWaitPlayList or {}
+
+	for slot4, slot5 in slot1(slot2) do
+		slot7 = nil
+		slot9 = slot0._createPlayer(slot0, (not false or slot0.leftBattleNode) and slot0.rightBattleNode, (slot6 and #slot0.leftPlayerNodes + 1) or #slot0.rightPlayerNodes + 1, slot5, slot6)
+
+		if slot6 then
+			table.insert(slot0.leftPlayerNodes, slot9)
+		else
+			table.insert(slot0.rightPlayerNodes, slot9)
+		end
+	end
+
+	return 
+end
+slot0._getPosByCmpIdx = function (slot0, slot1, slot2)
+	slot3 = slot0.leftBattleNode:getContentSize()
+
+	return (slot1 and cc.p(slot0[slot2].anchorPos.x*slot3.width, slot0[slot2].anchorPos.y*slot3.height)) or cc.p((slot0[slot2].anchorPos.x - 1)*slot3.width, slot0[slot2].anchorPos.y*slot3.height)
+end
+slot0.getNodePosByCmpIdx = function (slot0, slot1, slot2, slot3)
+	return (slot2 and slot0.leftBattleNode) or slot0.rightBattleNode:convertToNodeSpace((slot2 and slot0.leftBattleNode) or slot0.rightBattleNode:getParent():convertToWorldSpace(slot0._getPosByCmpIdx(slot0, slot2, slot3)))
+end
+slot7 = {
+	cc.p(-100, 0),
+	cc.p(1236, 0)
+}
+slot0.playerSetOut = function (slot0, slot1, slot2)
+	slot1.stopAllActions(slot1)
+	slot1.setPosition(slot1, (slot1.isLeft and slot0[1]) or slot0[2])
+
+	return 
+end
+slot0.playerMove = function (slot0, slot1, slot2, slot3, slot4)
+	slot1.stopAllActions(slot1)
+	slot1.figure.playAnimation(slot6, "pao")
+	slot1.runAction(slot1, cc.Sequence:create({
+		cc.MoveTo:create((slot3 or 1)*slot0._battleTimeScale, slot7),
+		cc.CallFunc:create(function ()
+			slot0:playAnimation("daiji")
+
+			if slot0 then
+				slot1()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.setPlayerFightReady = function (slot0, slot1, slot2, slot3, slot4)
+	slot5 = 0
+	slot6 = 0
+
+	function slot7()
+		if slot0 + 1 == slot1 and slot2 then
+			slot2()
+		end
+
+		return 
+	end
+
+	if slot1.needMove == true then
+		slot5 = slot5 + 1
+
+		if slot1.goods and not slot1.playGoodsEffect then
+			slot0.playerMove(slot0, slot1, 0, slot0._battleTimeScale*1, function ()
+				slot0:showBarrageTips({
+					barrageType = slot1.eGoods,
+					templateIdx = slot2.goods,
+					varribleList = {
+						slot2.name
+					}
+				})
+				slot0.showBarrageTips:playerChufa({
+					barrageType = slot1.eGoods,
+					templateIdx = slot2.goods,
+					varribleList = {
+						slot2.name
+					}
+				}, function ()
+					slot0.playGoodsEffect = true
+
+					true()
+
+					return 
+				end)
+
+				return 
+			end)
+		else
+			slot0.playerMove(slot0, slot1, 0, slot0._battleTimeScale*1, function ()
+				slot0.playGoodsEffect = true
+
+				true()
+
+				return 
+			end)
+		end
+	end
+
+	if slot2.needMove == true then
+		slot5 = slot5 + 1
+
+		if slot2.goods and not slot2.playGoodsEffect then
+			slot0.playerMove(slot0, slot2, 0, slot0._battleTimeScale*1, function ()
+				slot0:showBarrageTips({
+					barrageType = slot1.eGoods,
+					templateIdx = slot2.goods,
+					varribleList = {
+						slot2.name
+					}
+				})
+				slot0.showBarrageTips:playerChufa({
+					barrageType = slot1.eGoods,
+					templateIdx = slot2.goods,
+					varribleList = {
+						slot2.name
+					}
+				}, function ()
+					slot0.playGoodsEffect = true
+
+					true()
+
+					return 
+				end)
+
+				return 
+			end)
+		else
+			slot0.playerMove(slot0, slot2, 0, slot0._battleTimeScale*1, slot7)
+		end
+	end
+
+	if slot5 == 0 and slot4 then
+		slot4()
+	end
+
+	return 
+end
+slot0.playerDeath = function (slot0, slot1, slot2)
+	slot3 = slot1.figure
+	slot5, slot6 = slot1.getParent(slot1):getPosition()
+	slot7 = (slot1.isLeft and cc.p(slot5 - 200, slot6)) or cc.p(slot5 + 400, slot6)
+
+	slot1.stopAllActions(slot1)
+	slot1.runAction(slot1, cc.Sequence:create({
+		cc.EaseSineIn:create(cc.FadeOut:create(slot0._battleTimeScale*0.4)),
+		cc.CallFunc:create(function ()
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.playerChufa = function (slot0, slot1, slot2)
+	slot3 = slot1.isLeft
+
+	slot1.figure.playAnimation(slot4, "chufa", 1)
+	slot0.showGoodsEffect(slot0, slot1)
+	slot1.figure:setCompleteCallback(function (slot0)
+		if slot0 then
+			slot0()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.playerPuGong = function (slot0, slot1, slot2)
+	slot3 = slot1.isLeft
+
+	slot1.figure.playAnimation(slot4, "pugong", 1)
+	slot1.figure:setCompleteCallback(function (slot0)
+		if slot0 then
+			slot0()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.playerNuji = function (slot0, slot1, slot2)
+	slot3 = slot1.isLeft
+
+	slot1.figure.playAnimation(slot4, "nuji", 1)
+	slot1.figure:setCompleteCallback(function (slot0)
+		if slot0 then
+			slot0()
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.playerShowDamage = function (slot0, slot1, slot2, slot3, slot4)
+	slot6 = (slot1.isLeft and -1) or 1
+	slot9 = UIWrap.newControl("Label", {
+		fontSize = 26,
+		outlineSize = 1,
+		text = string.format("-%d", math.max(1, (slot3 == slot3 and slot2 - slot3 + 1) or 1)),
+		pos = cc.p((slot5 and -43) or 43, 125),
+		color = cc.c3b(192, 65, 65),
+		outlineColor = cc.c3b(37, 37, 37)
+	})
+
+	slot1.addChild(slot1, slot9)
+	slot9.runAction(slot9, cc.Sequence:create({
+		cc.EaseOut:create(cc.Spawn:create({
+			cc.JumpTo:create(slot10, slot11, 60, 1),
+			cc.ScaleTo:create(2, 0.7)
+		}), 3),
+		cc.CallFunc:create(function ()
+			slot0:removeFromParent()
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.getEmptyCampIdx = function (slot0, slot1)
+	slot2 = (slot1 and slot0.leftPlayerNodes) or slot0.rightPlayerNodes
+
+	for slot6 = 1, #slot0, 1 do
+		if not slot2[slot6] then
+			return slot6
+		end
+
+		print(slot7.name, slot6)
+	end
+
+	return 
+end
+slot0.getPlayerNodeByName = function (slot0, slot1, slot2)
+	slot3 = (slot2 and slot0.leftPlayerNodes) or slot0.rightPlayerNodes
+
+	for slot7, slot8 in pairs(slot3) do
+		if slot8.name == slot1 then
+			return slot8, slot7
+		end
+
+		print(slot8.name, slot7)
+	end
+
+	return 
+end
+slot0.multipleKillEffect = function (slot0, slot1, slot2, slot3)
+	slot0.createLayoutTemplateNode(slot0, "multipleKillEffectTemplate"):setPosition(5, 190)
+	slot4.effectSprite:setTexture(slot0[slot2] or "jzwl_46.png")
+	slot1.addChild(slot1, slot4)
+	slot4.setScale(slot4, 0)
+	slot4.setOpacity(slot4, 0)
+	slot4.runAction(slot4, cc.Sequence:create({
+		cc.Spawn:create({
+			cc.FadeIn:create(0.25),
+			cc.MoveTo:create(0.25, cc.p(5, 200)),
+			cc.ScaleTo:create(0.25, 1)
+		}),
+		cc.DelayTime:create(1.3),
+		cc.ScaleTo:create(0.2, 0),
+		cc.CallFunc:create(function ()
+			slot0:removeFromParent()
+
+			if slot0 then
+				slot1()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot8 = 3
+slot0.startBattleSessionOne = function (slot0, slot1, slot2, slot3, slot4)
+	dump("---------- 一场战斗开始")
+
+	slot5 = 1
+	slot6 = slot3.DetailInfo
+	slot7 = false
+	slot8 = slot3.IsWin
+
+	function slot9(slot0, slot1, slot2, slot3)
+		slot4 = nil
+		slot4 = (not slot0.isLeft or slot1.GuestRemindHp) and slot1.HostRemindHp
+		slot6 = slot0.hp.mMaxValue
+
+		if slot2 == slot3 then
+			slot0.hp:setCurrValue(slot4)
+		else
+			slot0.hp:setCurrValue(slot4)
+		end
+
+		return 
+	end
+
+	function slot10(slot0, slot1, slot2, slot3)
+		if slot2.eventData.name == "daji" then
+			slot0.figure:playAnimation("aida", 1)
+			slot0:playerShowDamage(slot0, slot3, slot2.eventData.oldIdx, slot2.triggerCnt)
+			slot0.figure:setCompleteCallback(function ()
+				slot0.figure:playAnimation("daiji")
+
+				return 
+			end)
+			slot1(slot0, slot1, slot2.eventData.oldIdx, slot2.triggerCnt)
+		else
+			slot4, slot5 = string.find(slot2.eventData.name, ".mp3")
+
+			if slot4 and 0 < slot4 then
+				MqAudio.playEffect(slot2.eventData.name)
+			end
+		end
+
+		return 
+	end
+
+	function slot11(slot0, slot1, slot2, slot3)
+		if slot2.HostRemindHp ~= 0 and slot2.GuestRemindHp ~= 0 then
+			if slot3 then
+				slot3()
+			end
+
+			return 
+		end
+
+		function slot4(slot0)
+			print(slot0.name .. "死亡")
+			slot0:playerDeath(slot0, function ()
+				if slot0.isLeft then
+					slot1.leftFightPlayer = nil
+				else
+					slot1.rightFightPlayer = nil
+				end
+
+				slot0:removeFromParent()
+
+				if slot2 then
+					slot2()
+
+					slot2 = nil
+				end
+
+				return 
+			end)
+
+			return 
+		end
+
+		if slot1 == 3 then
+			slot0:showBarrageTips({
+				barrageType = slot2.eDragKill,
+				varribleList = {
+					slot0.name,
+					slot1.name
+				}
+			})
+			slot4(slot0)
+			slot4(slot1)
+		else
+			slot0:showBarrageTips({
+				barrageType = slot2.eSingleKill,
+				varribleList = {
+					slot0.name,
+					slot1.name
+				}
+			})
+			slot4(slot1)
+		end
+
+		return 
+	end
+
+	function slot12()
+		slot0 = false
+
+		if not slot2[slot1 + 1] then
+			slot3:stopAction(slot3.sessionAction)
+
+			slot3.sessionAction = nil
+
+			if slot4 then
+				slot4()
+				dump("---------- 一场战斗结束")
+			end
+
+			return 
+		end
+
+		return 
+	end
+
+	slot0.sessionAction = Utility.schedule(slot0, function ()
+		if slot0 then
+			return 
+		end
+
+		slot0 = true
+
+		slot3.figure:setTimeScale(slot4._battleTimeScale)
+		slot5.figure:setTimeScale(slot4._battleTimeScale)
+
+		slot1, slot2 = nil
+
+		if slot1[slot2].IsWin == 1 then
+			slot1 = slot3
+			slot2 = slot5
+		elseif slot0.IsWin == 2 then
+			slot1 = slot5
+			slot2 = slot3
+		end
+
+		if slot0.IsWin ~= 3 then
+			slot4 = 1
+
+			if slot0.attackType == 2 then
+				slot5 = slot1[slot2 - 1] or {}
+
+				if slot0.IsWin == 1 then
+					slot4 = (slot5.HostRemindHp or 0) - slot0.HostRemindHp
+				elseif slot0.IsWin == 2 then
+					slot4 = (slot5.GuestRemindHp or 0) - slot0.GuestRemindHp
+				end
+			end
+
+			slot1.figure:setEventCallback(function (slot0)
+				slot0(slot0, , slot0, )
+
+				return 
+			end)
+			(slot3 == 1 and handler(slot4, slot4.playerPuGong)) or handler(slot4, slot4.playerNuji)(slot1, function ()
+				slot0(slot1, slot2, slot3, slot4)
+
+				return 
+			end)
+
+			if slot9 <= ((slot0.IsWin == 1 and slot0.GuestMultiKillNum) or slot0.HostMultiKillNum) then
+				dump(slot6, "连杀数量: ---")
+
+				if 10 <= slot6 then
+					slot7 = 10
+				end
+
+				slot4:showBarrageTips({
+					barrageType = slot10.eMultipleKill,
+					templateIdx = slot7,
+					varribleList = {
+						slot1.name,
+						slot2.name
+					}
+				})
+				slot4:multipleKillEffect(slot1, slot7)
+			end
+
+			return 
+		end
+
+		slot7(slot7, slot5, slot0, slot8)
+	end, 0.5)
+
+	return 
+end
+slot0.registerPushFightInfo = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eJZWLFightInfo, function (slot0, slot1)
+		slot0:_addCache(slot1)
+
+		return 
+	end)
+
+	return 
+end
+slot0.registerBattleHandler = function (slot0)
+	slot0._battleIdx = 1
+	slot0.inBattle = false
+
+	Utility.schedule(slot0, function ()
+		if #slot0._battleCache == 0 then
+			return 
+		end
+
+		if not slot0.inBattle and slot0._battleCache[slot0._battleIdx] then
+			dump(slot0._battleIdx, "-------------- 战斗场次")
+
+			slot0.inBattle = true
+			slot1 = nil
+
+			if not slot0.leftFightPlayer then
+				dump(slot0.GuestPlayerInfo.PlayerName, "查找 ---》:")
+
+				slot2, slot1 = slot0:getPlayerNodeByName(slot0.GuestPlayerInfo.PlayerName, true)
+				slot3.needMove = true
+				slot0.leftPlayerNodes[slot4] = nil
+				slot0.leftFightPlayer = slot3
+			end
+
+			if not slot0.rightFightPlayer then
+				dump(slot0.HostPlayerInfo.PlayerName, "查找 ---》:")
+
+				slot3, slot1 = slot0:getPlayerNodeByName(slot0.HostPlayerInfo.PlayerName, false)
+				slot4.needMove = true
+				slot0.rightPlayerNodes[slot5] = nil
+				slot0.rightFightPlayer = slot4
+			end
+
+			slot0:setPlayerFightReady(slot2, slot3, slot0, function ()
+				slot0.needMove = nil
+				nil.needMove = nil
+
+				if slot2.JoinPlayerInfo then
+					for slot3, slot4 in ipairs(slot2.JoinPlayerInfo) do
+						slot8 = slot3:getEmptyCampIdx(slot5)
+
+						dump(slot8, "getEmptyCampIdx")
+
+						slot9 = slot3:_createPlayer((slot4.IsAttacker and slot3.leftBattleNode) or slot3.rightBattleNode, slot8, slot4, slot5)
+
+						slot3:playerSetOut(slot9)
+						slot3:playerMove(slot9, slot8, slot3._battleTimeScale*1)
+
+						(slot5 and slot3.leftPlayerNodes) or slot3.rightPlayerNodes[slot8] = slot9
+					end
+				end
+
+				slot3:startBattleSessionOne(slot3.startBattleSessionOne, slot3, , function ()
+					slot0:refreshTextInfo(slot0, false)
+					slot0.refreshTextInfo:refreshRankInfo(slot0.refreshTextInfo)
+
+					if slot0.refreshTextInfo.refreshRankInfo.matchId ~= 3 and slot0:battleEnded(slot0) then
+						slot0:showBattleResult(slot0)
+					end
+
+					slot0._battleIdx = slot0._battleIdx + 1
+					slot0.inBattle = false
+
+					return 
+				end)
+
+				return 
+			end)
+		end
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.testFunc = function (slot0)
+	slot1 = 3
+	slot3 = ({
+		FightTime = 1,
+		IsWin = 1,
+		MatchId = 1,
+		DetailInfo = {},
+		JoinPlayerInfo = {},
+		GuestPlayerInfo = {},
+		HostPlayerInfo = {},
+		GuestWaitPlayList = {},
+		HostWaitPlayList = {},
+		BattleToolsInfo = {}
+	})["GuestWaitPlayList"]
+	slot4 = ({
+		FightTime = 1,
+		IsWin = 1,
+		MatchId = 1,
+		DetailInfo = {},
+		JoinPlayerInfo = {},
+		GuestPlayerInfo = {},
+		HostPlayerInfo = {},
+		GuestWaitPlayList = {},
+		HostWaitPlayList = {},
+		BattleToolsInfo = {}
+	})["HostWaitPlayList"]
+
+	for slot8 = 2, 6, 1 do
+		table.insert(slot3, slot9)
+		table.insert(slot4, {
+			IsAttacker = false,
+			FashionId = 19010000,
+			PlayerName = "玩家" .. slot8,
+			TotalHp = slot1,
+			RemainHP = slot1,
+			BattleToolsInfo = {
+				2
+			}
+		})
+	end
+
+	slot5 = slot2.JoinPlayerInfo
+	slot6 = {
+		IsAttacker = true,
+		FashionId = 19010006,
+		PlayerName = "玩家7",
+		TotalHp = slot1,
+		RemainHP = slot1,
+		BattleToolsInfo = {}
+	}
+	slot2.HostPlayerInfo = {
+		IsAttacker = false,
+		PlayerName = "玩家1",
+		TotalHp = slot1,
+		RemainHP = slot1,
+		BattleToolsInfo = {
+			2
+		}
+	}
+	slot2.GuestPlayerInfo = {
+		IsAttacker = true,
+		PlayerName = "玩家1",
+		TotalHp = slot1,
+		RemainHP = slot1,
+		BattleToolsInfo = {
+			1
+		}
+	}
+	slot7 = slot1
+	slot8 = slot1
+	slot9 = slot2.DetailInfo
+	slot10 = 0
+	slot2.IsWin = 3
+
+	while 0 < slot7 and 0 < slot8 do
+		table.insert(slot9, {
+			HostMultiKillNum = 0,
+			RoundIndex = slot10 + 1,
+			IsWin = 2,
+			HostRemindHp = slot8,
+			GuestRemindHp = slot7 - 1,
+			GuestMultiKillNum = slot10 + 1
+		})
+	end
+
+	dump(slot9)
+	slot0._addCache(slot0, slot11)
+
+	slot0._initData = clone(slot2)
+	slot12 = clone(slot2)
+	slot12.HostPlayerInfo.PlayerName = "玩家2"
+	slot12.GuestPlayerInfo.PlayerName = "玩家2"
+
+	slot0._addCache(slot0, slot12)
+
+	return 
+end
+slot0.battleEnded = function (slot0, slot1)
+	if slot1.GuestGuildRemindArmy == 0 or slot1.HostGuildRemindArmy == 0 then
+		return true
+	end
+
+	return false
+end
+slot0.showBattleStart = function (slot0, slot1)
+	slot2 = slot0.createAnimation("effect_ui_zhandoukaishi", 1)
+
+	slot2.setPosition(slot2, cc.p(display.cxInPixels, display.cyInPixels))
+	slot2.setScale(slot2, 1.2)
+	slot0.addChild(slot0, slot2)
+	slot2.registerLuaHandler(slot2, "complete", function ()
+		slot0:removeFromParent()
+
+		if slot0 then
+			slot1()
+		end
+
+		return 
+	end)
+	slot2.playAnimation(slot2, "animation", 1)
+
+	return 
+end
+slot9 = {
+	"duyao",
+	"linpai",
+	"haojiao"
+}
+slot0.showGoodsEffect = function (slot0, slot1)
+	slot1.goodsEffect:setVisible(true)
+	slot1.goodsEffect:playAnimation(slot0[slot1.goods or 1])
+	slot1.goodsEffect:registerLuaHandler("complete", function (slot0)
+		if slot0.goodsEffect then
+			slot0.goodsEffect:setVisible(false)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.showBattleResult = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlBattleResultLayer",
+		data = {
+			winnerName = (slot1.IsWin == 1 and slot1.GuestPlayerInfo.GuildName) or slot1.HostPlayerInfo.GuildName
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot10 = 3
+slot0._handleCache = function (slot0, slot1)
+	slot2 = clone(slot1)
+	slot3 = {}
+
+	if 0 < #slot1 then
+		slot4 = slot1[1].IsWin
+		slot5 = 0
+
+		for slot9 = 1, #slot1, 1 do
+			if slot4 == slot1[slot9].IsWin then
+				slot5 = slot5 + 1
+			else
+				table.insert(slot3, slot5)
+
+				slot4 = slot10.IsWin
+				slot5 = 1
+			end
+		end
+
+		if slot5 ~= 0 then
+			table.insert(slot3, slot5)
+		end
+	end
+
+	slot4 = {}
+	slot5 = 0
+
+	for slot9, slot10 in ipairs(slot3) do
+		if slot0 <= slot10 then
+			for slot15 = 1, math.floor(slot10/3), 1 do
+				slot16 = slot5 + slot15*3
+
+				if slot15 == slot11 then
+					slot16 = slot16 + slot10%3
+				end
+
+				slot1[slot16].attackType = 2
+
+				table.insert(slot4, slot1[slot16])
+			end
+
+			slot5 = slot5 + slot10
+		else
+			while 0 < slot10 do
+				slot10 = slot10 - 1
+				slot1[slot5 + 1].attackType = 1
+
+				table.insert(slot4, slot1[slot5 + 1])
+			end
+		end
+	end
+
+	return slot2
+end
+slot0._addCache = function (slot0, slot1)
+	slot1.DetailInfo = slot0._handleCache(slot0, slot1.DetailInfo)
+
+	table.insert(slot0._battleCache, slot1)
+
+	return 
+end
+slot0._delCache = function (slot0, slot1)
+	slot0._battleCache[slot1] = nil
+
+	return 
+end
+slot11 = 260
+slot12 = 130
+slot0.onRankCallBack = function (slot0)
+	slot0.rankSprite:stopAllActions()
+
+	slot1, slot2 = slot0.rankSprite:getPosition()
+	slot3 = nil
+
+	slot0.arrowSprite:setScaleY((slot0.inTop and -1) or 1)
+	slot0.rankSprite:runAction((not slot0.inTop or cc.Sequence:create({
+		cc.MoveTo:create(0.5, cc.p(slot1, slot0)),
+		cc.CallFunc:create(function ()
+			slot0.inTop = false
+
+			return 
+		end)
+	})) and cc.Sequence:create({
+		cc.MoveTo:create(0.5, cc.p(slot1, slot1)),
+		cc.CallFunc:create(function ()
+			slot0.inTop = true
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.refreshHeros = function (slot0)
+	slot0.leftPlayerNodes = {}
+	slot0.rightPlayerNodes = {}
+
+	slot0._createPlayers(slot0)
+
+	slot0.leftFightPlayer = slot0._createPlayer(slot0, slot0.leftBattleNode, 0, slot0._initData.GuestPlayerInfo, true)
+	slot0.rightFightPlayer = slot0._createPlayer(slot0, slot0.rightBattleNode, 0, slot0._initData.HostPlayerInfo, false)
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 420, 30
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return (slot0.rankDatas and #slot0.rankDatas) or 0
+end
+slot13 = {
+	"c_51",
+	"c_52",
+	"c_53"
+}
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rankTemplate")
+	slot3.refresh = function (slot0, slot1)
+		slot2 = slot0.rankDatas[slot1 + 1]
+
+		slot0.bg:setTexture(((slot1 + 1)%2 == 0 and "jzwl_32.png") or "jzwl_31.png")
+		slot0.rankSprite:setVisible(slot1 < 3)
+
+		if slot1 <= 3 then
+			slot0.rankSprite:setTexture(slot1[slot1] .. ".png")
+		end
+
+		slot0.rankLabel:setString(slot1)
+		slot0.rankLabel:setVisible(3 <= slot1)
+		slot0.nameLabel:setString(slot2.Name)
+		slot0.winNumLabel:setString(TR("%d胜", slot2.KillNum))
+
+		return 
+	end
+
+	slot1.addChild(slot1, slot3)
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot3.refresh(slot3, slot2)
+
+	slot1.rankTemplate = slot3
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.rankTemplate:refresh(slot2)
+
+	return 
+end
+slot0.onCloseCallBack = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onBarrageSendWindowCallbakc = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "jzwl.JzwlBarrageTextSendLayer",
+		data = {
+			matchId = slot0.matchId,
+			lastSendTime = slot0.lastSendTime,
+			callBack = function (slot0)
+				slot0.lastSendTime = slot0
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.registerBarrageEvent = function (slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eJZWLBarrageMessagePush, function (slot0, slot1)
+		print(slot2)
+		slot0.barrageTextLayer:showOneText(string.format("%s: %s", slot1.PlayerName, slot1.Message))
+
+		return 
+	end)
+
+	return 
+end
+slot0.showBarrageTips = function (slot0, slot1)
+	slot2 = slot1.barrageType
+	slot3 = slot1.templateIdx
+	slot4 = ""
+	varribleList = slot1.varribleList
+	varribleList[1] = varribleList[1] or ""
+	varribleList[2] = varribleList[2] or ""
+
+	if slot2 == slot0.eSingleKill then
+		slot4 = TR("%s击败了%s！", varribleList[1], varribleList[2])
+	elseif slot2 == slot0.eDragKill then
+		slot4 = TR("%s悄然使用了毒药, 和%s共赴黄泉！", varribleList[1], varribleList[2])
+	elseif slot2 == slot0.eMultipleKill then
+		slot4 = string.format(slot1[slot3], varribleList[1])
+	elseif slot2 == slot0.eGoods then
+		slot4 = string.format(slot2[slot3], varribleList[1])
+	end
+
+	slot0.barrageTextLayer:showOneText(slot4)
+
+	return 
+end
+slot0.requestOnLook = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "EnterCityWarArmyFiled",
+		moduleName = "Citywar",
+		methodData = {
+			slot0.matchId
+		},
+		successCallback = function (slot0)
+			slot0._initData = slot0
+
+			slot0:_addCache(slot0._initData)
+			slot0:initLayer(true)
+
+			if slot0.loadedCallBack then
+				slot0:loadedCallBack()
+			end
+
+			slot0.cover:endTurn(0.2)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestExitLook = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ExitCityWarArmyFiled",
+		ignoreNode = true,
+		moduleName = "Citywar",
+		needWait = false,
+		methodData = {
+			slot0.matchId
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDefence = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ExitLook",
+		ignoreNode = true,
+		moduleName = "Leaguetop",
+		needWait = false,
+		methodData = {
+			slot0.matchId
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

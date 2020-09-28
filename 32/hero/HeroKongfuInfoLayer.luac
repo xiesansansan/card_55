@@ -1,0 +1,1579 @@
+slot0 = class("HeroKongfuInfoLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 144)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled134",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "bp_70.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled115",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled143",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 0,
+						y = -29
+					},
+					size = {
+						width = 970,
+						height = 560
+					}
+				},
+				children = {
+					{
+						name = "mTitle",
+						cType = "Scale9Sprite",
+						params = {
+							image = "tc_4.png",
+							pos = {
+								x = 485,
+								y = 542.5
+							},
+							size = {
+								width = 373,
+								height = 62
+							}
+						},
+						children = {
+							{
+								name = "stepSprite",
+								cType = "Sprite",
+								params = {
+									image = "xksg_8.png",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 154.93,
+										y = 15.05
+									}
+								},
+								children = {}
+							},
+							{
+								name = "stepLabel",
+								cType = "Label",
+								params = {
+									startChar = 48,
+									fontName = "xksg_9.png",
+									text = "0",
+									pos = {
+										x = 184,
+										y = 15.34
+									}
+								},
+								children = {}
+							},
+							{
+								name = "nameSprite",
+								cType = "Sprite",
+								params = {
+									image = "kf_name_0019.png",
+									pos = {
+										x = 186.5,
+										y = 52
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "untitled117",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_pure.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 714.84,
+								y = 31.41
+							},
+							size = {
+								width = 460,
+								height = 500
+							}
+						},
+						children = {
+							{
+								name = "untitled1",
+								cType = "Scale9Sprite",
+								params = {
+									image = "grxx_1.png",
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									capInsets = {
+										x = 206,
+										height = 1,
+										width = 1,
+										y = 111
+									},
+									pos = {
+										x = 230,
+										y = 61.88
+									},
+									size = {
+										width = 460,
+										height = 410
+									}
+								},
+								children = {
+									{
+										name = "levelUpBtn",
+										cType = "Button",
+										params = {
+											clickAction = "onStepClick",
+											image = "c_39.png",
+											pos = {
+												x = 384.93,
+												y = -31.98
+											},
+											size = {
+												width = 105,
+												height = 46
+											},
+											titleText = TR("参  悟")
+										},
+										children = {
+											{
+												name = "untitled71",
+												cType = "RedDot",
+												params = {
+													visibleFunc = "cbLevelUpBtnRedDotVisible",
+													childName = "redDot",
+													moduleId = 2615
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "downBtn",
+										cType = "Button",
+										params = {
+											clickAction = "onDownKongfu",
+											image = "c_27.png",
+											pos = {
+												x = 63.36,
+												y = -31.6
+											},
+											size = {
+												width = 105,
+												height = 46
+											},
+											titleText = TR("卸 下")
+										},
+										children = {}
+									},
+									{
+										name = "changeBtn",
+										cType = "Button",
+										params = {
+											clickAction = "onChangeClick",
+											image = "c_27.png",
+											pos = {
+												x = 224.36,
+												y = -31.6
+											},
+											size = {
+												width = 105,
+												height = 46
+											},
+											titleText = TR("更  换")
+										},
+										children = {
+											{
+												name = "untitled70",
+												cType = "RedDot",
+												params = {
+													visibleFunc = "cbChangeBtnRedDotVisible",
+													childName = "redDot",
+													moduleId = 2615
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled86",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 220,
+												y = 391
+											},
+											text = TR("可激活以下侠客招式技能")
+										},
+										children = {
+											{
+												name = "untitled101",
+												cType = "Sprite",
+												params = {
+													scaleX = 0.7,
+													rotationAngle = 180,
+													image = "c_36.png",
+													anchor = {
+														x = 0,
+														y = 0.5
+													},
+													pos = {
+														x = 356.44,
+														y = 9.22
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled102",
+												cType = "Sprite",
+												params = {
+													image = "c_36.png",
+													scaleX = 0.6,
+													anchor = {
+														x = 1,
+														y = 0.5
+													},
+													pos = {
+														x = -2.73,
+														y = 11
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled114",
+										cType = "Label",
+										params = {
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 220,
+												y = 351
+											},
+											text = TR("以下均为满级侠客大圆满招式技")
+										},
+										children = {}
+									},
+									{
+										name = "heroListView",
+										cType = "ListView",
+										params = {
+											direction = true,
+											swallowTouch = false,
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											pos = {
+												x = 6.17,
+												y = 329.5
+											},
+											size = {
+												width = 440,
+												height = 320
+											}
+										},
+										children = {
+											{
+												name = "heroLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled89-initParams",
+														name = "cardInfo",
+														type = "string"
+													},
+													{
+														value = "untitled111-text",
+														name = "skillIntro",
+														type = "string"
+													},
+													{
+														value = "untitled110-image",
+														name = "skillPic",
+														type = "string"
+													}
+												},
+												params = {
+													pos = {
+														z = 0,
+														x = -0.38,
+														y = 21.4
+													},
+													size = {
+														width = 450,
+														height = 145
+													}
+												},
+												children = {
+													{
+														name = "untitled113",
+														cType = "Scale9Sprite",
+														params = {
+															image = "c_11.png",
+															hide = false,
+															pos = {
+																x = 224.73,
+																y = 15.36
+															},
+															size = {
+																width = 450,
+																height = 2
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled111",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															text = "Label",
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 183.71,
+																y = 94.52
+															},
+															size = {
+																width = 245,
+																height = 0
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled89",
+														cType = "CardNode",
+														params = {
+															childName = "heroCard",
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 49.37,
+																y = 90
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled109",
+														cType = "Sprite",
+														params = {
+															zOrder = -1,
+															image = "c_25.png",
+															pos = {
+																x = 140.62,
+																y = 89.44
+															}
+														},
+														children = {
+															{
+																name = "untitled110",
+																cType = "Sprite",
+																params = {
+																	scale = 0.95,
+																	image = "sk_100001.png",
+																	pos = {
+																		x = 39,
+																		y = 39
+																	}
+																},
+																children = {}
+															},
+															{
+																name = "untitled133",
+																cType = "Sprite",
+																params = {
+																	image = "xksg_15.png",
+																	pos = {
+																		x = 5,
+																		y = 55
+																	}
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "mNullTips",
+								cType = "Scale9Sprite",
+								params = {
+									image = "zj_91.png",
+									hide = true,
+									scale = 0.4,
+									pos = {
+										x = 230.75,
+										y = 251.98
+									}
+								},
+								children = {
+									{
+										name = "untitled214",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											scale = 2,
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 540,
+												y = 297.18
+											},
+											size = {
+												width = 180,
+												height = 0
+											},
+											text = TR("暂未拥有可使用的侠客")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "mSkillInfoNode",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 253.16,
+								y = 456.18
+							},
+							size = {
+								width = 420,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "templateKongfuJihuoCell",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled132-image",
+										name = "skillImage",
+										type = "string"
+									},
+									{
+										value = "skillDesLabel-text",
+										name = "skillDes",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 420,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "skillNameScrollview",
+										cType = "ScrollView",
+										params = {
+											bounce = true,
+											direction = 1,
+											swallowTouch = true,
+											conSize = {
+												width = 320,
+												height = 1000
+											},
+											pos = {
+												x = 94.36,
+												y = -1.12
+											},
+											size = {
+												width = 320,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "skillDesLabel",
+												cType = "Label",
+												params = {
+													text = "Label",
+													align = 0,
+													valign = 0,
+													anchor = {
+														x = 0,
+														y = 1
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 0,
+														y = 74.87
+													},
+													size = {
+														width = 320,
+														height = 0
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "untitled80",
+										cType = "Sprite",
+										params = {
+											image = "c_25.png",
+											childName = "ImageNode",
+											zOrder = -1,
+											pos = {
+												x = 41.8,
+												y = 52.5
+											}
+										},
+										children = {
+											{
+												name = "untitled132",
+												cType = "Sprite",
+												params = {
+													image = "sk_100001.png",
+													childName = "skillImage",
+													scale = 0.95,
+													pos = {
+														x = 39,
+														y = 39
+													}
+												},
+												children = {}
+											},
+											{
+												name = "skillLogo",
+												cType = "Sprite",
+												params = {
+													image = "xksg_15.png",
+													pos = {
+														x = 9.26,
+														y = 64.91
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled146",
+												cType = "Label",
+												params = {
+													hide = true,
+													zOrder = 1,
+													childName = "unActionTips",
+													color = {
+														g = 255,
+														r = 255,
+														b = 255
+													},
+													outlineColor = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 40.63,
+														y = 42.26
+													},
+													text = TR("未激活")
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "baseInfoBgSprite",
+						cType = "Scale9Sprite",
+						params = {
+							image = "grxx_1.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							capInsets = {
+								x = 206,
+								height = 1,
+								width = 1,
+								y = 100
+							},
+							pos = {
+								x = 253.12,
+								y = 35.72
+							},
+							size = {
+								width = 460,
+								height = 350
+							}
+						},
+						children = {
+							{
+								name = "baseInfoScroll",
+								cType = "ScrollView",
+								params = {
+									direction = 1,
+									bounce = true,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									pos = {
+										x = 227.81,
+										y = 340
+									},
+									size = {
+										width = 440,
+										height = 330
+									}
+								},
+								children = {
+									{
+										name = "templateKongfuTitleCell",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = 0,
+												y = 98.5
+											},
+											size = {
+												width = 440,
+												height = 140
+											}
+										},
+										children = {
+											{
+												name = "untitled188",
+												cType = "Label",
+												params = {
+													fontSize = 26,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 220,
+														y = 112
+													},
+													text = TR("基础属性")
+												},
+												children = {
+													{
+														name = "untitled189",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															reverse = 1,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															pos = {
+																x = 270.68,
+																y = 15
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled190",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															anchor = {
+																x = 1,
+																y = 0.5
+															},
+															pos = {
+																x = -6.39,
+																y = 15
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									},
+									{
+										name = "templateKongfuDesCell",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled212-text",
+												name = "desLabel",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 0,
+												y = -1
+											},
+											size = {
+												width = 440,
+												height = 190
+											}
+										},
+										children = {
+											{
+												name = "untitled209",
+												cType = "Label",
+												params = {
+													fontSize = 26,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 220,
+														y = 145
+													},
+													text = TR("招式简介")
+												},
+												children = {
+													{
+														name = "untitled210",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															reverse = 1,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															pos = {
+																x = 271.76,
+																y = 15.01
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled211",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															anchor = {
+																x = 1,
+																y = 0.5
+															},
+															pos = {
+																x = -6.16,
+																y = 15.39
+															}
+														},
+														children = {}
+													}
+												}
+											},
+											{
+												name = "untitled212",
+												cType = "Label",
+												params = {
+													fontSize = 18,
+													text = "kongfuDes",
+													align = 0,
+													valign = 0,
+													anchor = {
+														x = 0,
+														y = 1
+													},
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 10,
+														y = 131.89
+													},
+													size = {
+														width = 420,
+														height = 110
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "templateKongfuStepCell",
+										cType = "TemplateNode",
+										params = {
+											pos = {
+												x = -1,
+												y = 69.22
+											},
+											size = {
+												width = 440,
+												height = 250
+											}
+										},
+										children = {
+											{
+												name = "untitled205",
+												cType = "Label",
+												params = {
+													fontSize = 26,
+													color = {
+														g = 37,
+														r = 37,
+														b = 37
+													},
+													pos = {
+														x = 220,
+														y = 220
+													},
+													text = TR("升重天赋")
+												},
+												children = {
+													{
+														name = "untitled206",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															reverse = 1,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															pos = {
+																x = 271.52,
+																y = 15
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled207",
+														cType = "Sprite",
+														params = {
+															image = "c_36.png",
+															anchor = {
+																x = 1,
+																y = 0.5
+															},
+															pos = {
+																x = -6.63,
+																y = 15
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled150",
+						cType = "Scale9Sprite",
+						params = {
+							image = "xksg_16.png",
+							pos = {
+								x = 17.66,
+								y = 439.88
+							}
+						},
+						children = {
+							{
+								name = "untitled152",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									align = 1,
+									isRichText = true,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 34.69,
+										y = 236.98
+									},
+									size = {
+										width = 20,
+										height = 100
+									},
+									text = TR("装备于")
+								},
+								children = {}
+							},
+							{
+								name = "ownerLabel",
+								cType = "Label",
+								params = {
+									fontSize = 26,
+									align = 1,
+									isRichText = true,
+									anchor = {
+										x = 0.5,
+										y = 1
+									},
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 34.69,
+										y = 137.98
+									},
+									size = {
+										width = 20,
+										height = 0
+									},
+									text = TR("装备于")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mLeftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 9,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled136",
+		cType = "Button",
+		params = {
+			clickAction = "onCloseLayer",
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 9,
+			image = "c_1.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled140",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			zOrder = 9,
+			posApt = 1,
+			image = "xksg_20.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 97,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled142",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			zOrder = 10,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mRightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 9,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled215",
+		cType = "Button",
+		params = {
+			clickAction = "onGotoGetWays",
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 9,
+			image = "tb_gn_72.png",
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 1039.95,
+				y = 125.12
+			}
+		},
+		children = {}
+	}
+}
+slot1 = require("common.ShaderManager")
+slot0.ctor = function (slot0, slot1)
+	slot0.mkongfuInfo = slot1 and slot1.kongfuInfo
+	slot0.reStroreHeroId = slot1 and slot1.heroModelId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createKongfuInfo(slot0)
+	slot0.createScrollview(slot0)
+	slot0.cbChangeBtnRedDotVisible(slot0)
+	slot0.cbLevelUpBtnRedDotVisible(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if slot0.reStroreHeroId then
+		LayerManager.setRestoreData("hero.HeroMainLayer", {
+			defModelId = slot0.reStroreHeroId
+		})
+	end
+
+	return 
+end
+slot0.createScrollview = function (slot0)
+	slot0.baseInfoScroll:removeAllChildren()
+
+	slot1 = {}
+	slot2 = {}
+	slot4 = {}
+
+	for slot9, slot10 in ipairs(slot5) do
+		if not Utility.isHeroHide(slot10) then
+			table.insert(slot4, tonumber(slot10))
+		end
+	end
+
+	table.insert(slot2, {
+		height = 140,
+		node = slot0.createLayoutTemplateNode(slot0, "templateKongfuTitleCell", {})
+	})
+
+	for slot11, slot12 in ipairs(slot7) do
+		slot14 = string.split(slot12, "|")[2]*NewKongfuStepRelation.items[slot3.stepClassID][slot0.mkongfuInfo.Step].attrUpR
+
+		if Utility.isAttrNeedPercent(tonumber(string.split(slot12, "|")[1])) then
+			slot14 = slot14/100 .. "%"
+		end
+
+		slot6.addChild(slot6, UIWrap.newControl("Label", {
+			fontSize = 20,
+			isRichText = true,
+			text = TR("#252525%s+%s", FightAttrTypeName[tonumber(slot13[1])], slot14),
+			pos = cc.p((slot11 - 1)*150 + 60, 55)
+		}))
+	end
+
+	table.insert(slot2, {
+		height = 240,
+		node = slot0.createLayoutTemplateNode(slot0, "templateKongfuStepCell", {})
+	})
+
+	slot9 = -40
+
+	for slot14 = 1, #NewKongfuStepRelation.items[slot3.stepClassID], 1 do
+		if slot10[slot14].attrStr ~= "" then
+			slot16 = nil
+			slot16 = (slot14 ~= 3 or TR("第%d重 精通", slot14)) and (slot14 ~= 5 or TR("第%d重 圆满", slot14)) and TR("第%d重", slot14)
+
+			slot8.addChild(slot8, slot17)
+			slot8.addChild(slot8, UIWrap.newControl("Label", {
+				fontSize = 20,
+				text = Utility.analysisStrAttrToFromat(slot15.attrStr, "%s+%s", "  "),
+				anchor = cc.p(0, 0.5),
+				color = cc.c3b(95, 95, 95),
+				pos = cc.p(slot9 + 230, slot14*35 - 215)
+			}))
+
+			if slot14 == 3 or slot14 == 5 then
+				slot21 = UIWrap.newControl("Sprite", {
+					image = (slot14 == 5 and "xksg_13.png") or "xksg_14.png"
+				})
+
+				slot21.setPosition(slot21, slot9 + 92, slot14*35 - 215)
+				slot8.addChild(slot8, slot21)
+
+				slot22 = UIWrap.newControl("Button", {
+					image = "c_3.png",
+					scale = 0.9,
+					clickAction = function ()
+						if slot0.mHeroModelId then
+							LayerManager.addLayer({
+								cleanUp = false,
+								name = "hero.HeroKongFuUpPreviewLayer",
+								popRestore = true,
+								data = {
+									heroModelId = slot0.mHeroModelId,
+									kongfuId = slot0.mkongfuInfo.ModelId,
+									step = slot0.mkongfuInfo.Step
+								},
+								zOrder = Enums.ZOrderType.ePopLayer
+							})
+						else
+							ui.showFlashView(TR("未装备侠客"))
+						end
+
+						return 
+					end
+				})
+
+				slot22.setPosition(slot22, slot9 + 50, slot14*35 - 215)
+				slot8.addChild(slot8, slot22)
+			end
+
+			if slot14 <= slot0.mkongfuInfo.Step then
+				slot19.setColor(slot19, cc.c3b(37, 37, 37))
+				slot17.setColor(slot17, cc.c3b(37, 37, 37))
+			end
+		end
+	end
+
+	if 0 < #slot4 then
+		for slot14, slot15 in ipairs(slot4) do
+			slot17 = NewKongfuModel.items[slot0.mkongfuInfo.ModelId].maxStep
+			slot18 = nil
+
+			for slot22, slot23 in pairs(slot16) do
+				slot18 = slot22
+
+				break
+			end
+
+			slot19 = slot16[slot18][slot17].KFSkill
+
+			slot0.heroListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "heroLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot15
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eName
+					}
+				},
+				skillIntro = Resource.getSplitColorValueStr(Resource.getSkillIntroStr(slot20, slot22, slot23, "#252525", "#252525", {
+					kongfuRatio = slot16[slot18][slot17].skillRatio
+				})),
+				skillPic = SkillModel.items[HeroModel.items[slot15].skillAttackId].skillPic .. ".png"
+			}))
+
+			if Utility.isHeroHide(slot15) then
+				slot25.heroCard.mHeaderSprite:setTexture("txdy_9.png")
+				slot25.heroCard.mShowAttrControl[Enums.CardShowAttr.eName].label:setString("")
+				slot25.heroCard:setClickAction(function ()
+					ui.showFlashView(TR("暂未开放"))
+
+					return 
+				end)
+			end
+		end
+
+		slot0.mNullTips:setVisible(false)
+	else
+		slot0.mNullTips:setVisible(true)
+	end
+
+	table.insert(slot2, {
+		height = 160,
+		node = slot0.createLayoutTemplateNode(slot0, "templateKongfuDesCell", {
+			desLabel = slot3.intro
+		})
+	})
+
+	slot12 = 0
+
+	for slot16, slot17 in ipairs(slot2) do
+		slot12 = slot12 + slot17.height
+	end
+
+	if slot12 < 340 then
+		slot12 = 340
+	end
+
+	slot0.baseInfoScroll:setInnerContainerSize(cc.size(440, slot12))
+
+	if not slot0.mkongfuInfo.IsCombat then
+		slot0.baseInfoScroll:setContentSize(440, 450)
+		slot0.baseInfoScroll:setInnerContainerSize(cc.size(440, slot12))
+		slot0.baseInfoBgSprite:setContentSize(cc.size(460, 470))
+		slot0.baseInfoScroll:setPosition(227, 460)
+	end
+
+	slot13 = slot12
+
+	for slot17, slot18 in ipairs(slot2) do
+		slot18.node:setIgnoreAnchorPointForPosition(false)
+		slot18.node:setAnchorPoint(cc.p(0, 0))
+		slot18.node:setPosition(10, slot13 - slot18.height)
+		slot0.baseInfoScroll:addChild(slot18.node)
+
+		slot13 = slot13 - slot18.height
+	end
+
+	if slot0.mkongfuInfo.EntityId == Utility.EMPTY_ENTITY_ID then
+		slot0.levelUpBtn:setVisible(false)
+		slot0.changeBtn:setVisible(false)
+		slot0.downBtn:setVisible(false)
+	end
+
+	return 
+end
+slot0.createKongfuInfo = function (slot0)
+	slot0.nameSprite:setTexture(NewKongfuModel.items[slot0.mkongfuInfo.ModelId].namePic .. ".png")
+	slot0.stepLabel:setVisible(0 < slot0.mkongfuInfo.Step)
+	slot0.stepSprite:setVisible(0 < slot0.mkongfuInfo.Step)
+
+	if 0 < slot0.mkongfuInfo.Step then
+		slot2 = slot0.nameSprite:getContentSize()
+
+		slot0.stepLabel:setString(slot0.mkongfuInfo.Step)
+	end
+
+	if HeroObj:getHeroByKFEntityId(slot0.mkongfuInfo.EntityId) then
+		slot0.mHeroModelId = slot2.ModelId
+
+		slot0.ownerLabel:setString("#C04141" .. HeroModel.items[slot0.mHeroModelId].name)
+
+		slot3 = NewKongfuSkillRelation.items[slot0.mHeroModelId] and NewKongfuSkillRelation.items[slot0.mHeroModelId][Utility.getKongfuIdByHeroId(slot0.mHeroModelId)]
+
+		if 15 <= HeroModel.items[slot0.mHeroModelId].quality and slot3 then
+		end
+	else
+		slot0.ownerLabel:setString(TR("未装备"))
+		slot0.downBtn:setVisible(false)
+		slot0.changeBtn:setVisible(false)
+		slot0.levelUpBtn:setPositionX(224.36)
+	end
+
+	slot0.refreshJibanKongfu(slot0)
+
+	return 
+end
+slot0.refreshJibanKongfu = function (slot0)
+	slot0.mSkillInfoNode:removeAllChildren()
+
+	if not slot0.mHeroModelId then
+		return 
+	end
+
+	if NewKongfuSkillRelation.items[slot0.mHeroModelId] and NewKongfuSkillRelation.items[slot0.mHeroModelId][Utility.getKongfuIdByHeroId(slot0.mHeroModelId)] then
+		slot2 = NewKongfuModel.items[slot1[0].needKongFu]
+
+		if slot0.mkongfuInfo then
+			if slot3.ModelId == slot2.modelId then
+				slot11 = slot0.createLayoutTemplateNode(slot0, "templateKongfuJihuoCell", {
+					skillImage = SkillModel.items[HeroModel.items[slot0.mHeroModelId].skillAttackId].skillPic .. ".png",
+					skillDes = Resource.getSplitColorValueStr(Resource.getSkillIntroStr(slot6, slot9, HeroObj:getHeroByKFEntityId(slot3.EntityId).Star, "#252525", "#252525", {
+						kongfuRatio = slot1[slot3.Step].skillRatio
+					}))
+				})
+
+				slot0.mSkillInfoNode:addChild(slot11)
+				slot11.skillNameScrollview:setInnerContainerSize(cc.size(320, (slot11.skillDesLabel:getContentSize().height < 100 and 100) or slot11.skillDesLabel:getContentSize().height))
+				slot11.skillDesLabel:setPositionY((slot11.skillDesLabel:getContentSize().height < 100 and 100) or slot11.skillDesLabel:getContentSize().height)
+			else
+				slot11 = slot0.createLayoutTemplateNode(slot0, "templateKongfuJihuoCell", {
+					skillImage = SkillModel.items[HeroModel.items[slot0.mHeroModelId].skillAttackId].skillPic .. ".png",
+					skillDes = Resource.getSplitColorValueStr(Resource.getSkillIntroStr(slot6, slot9, HeroObj:getItem(slot0.mHeroModelId).Star, "#252525", "#8BA857", {
+						kongfuRatio = slot1[0].skillRatio
+					}))
+				})
+
+				slot11.ImageNode.skillImage:setGLProgram(slot12)
+				slot11.ImageNode.unActionTips:setVisible(true)
+				slot0.mSkillInfoNode:addChild(slot11)
+				slot11.skillNameScrollview:setInnerContainerSize(cc.size(320, (slot11.skillDesLabel:getContentSize().height < 100 and 100) or slot11.skillDesLabel:getContentSize().height))
+				slot11.skillDesLabel:setPositionY((slot11.skillDesLabel:getContentSize().height < 100 and 100) or slot11.skillDesLabel:getContentSize().height)
+
+				if false then
+				end
+			end
+		end
+	end
+
+	return 
+end
+slot0.onCloseLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		image = "tc_1.png",
+		textList = {
+			TR("1.每位侠客可以装备一个招式，招式能为装备侠客提供属性和天赋加成"),
+			TR("2.15资质及以上侠客有招式技，需要装备指定招式才能激活招式技"),
+			TR("3.招式可以领悟升重，升重可提升招式属性解锁新天赋"),
+			TR("4.侠客装备的指定招式升到一定重数时，可以提升招式技")
+		}
+	})
+
+	return 
+end
+slot0.onSkillClick = function (slot0)
+	if slot0.mHeroModelId then
+		clone(slot0.mkongfuInfo).HeroModelId = slot0.mHeroModelId
+
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "hero.HeroNewKongFuSkillLayer",
+			popRestore = true,
+			data = {
+				kongfuInfo = clone(slot0.mkongfuInfo)
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		ui.showFlashView(TR("未装备侠客"))
+	end
+
+	return 
+end
+slot0.onGetClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.GoodsGetWaysLayer",
+		popRestore = true,
+		data = {
+			resourceId = slot0.mkongfuInfo.ModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onStepClick = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.KongfuLvUpNewLayer",
+		data = {
+			kongfuInfo = slot0.mkongfuInfo,
+			callBack = function (slot0)
+				slot0:refeshKongfuInfo(slot0)
+
+				return 
+			end
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.refeshUi = function (slot0, slot1)
+	slot0.mkongfuInfo = kongInfo
+
+	slot0.createKongfuInfo(slot0)
+	slot0.createScrollview(slot0)
+
+	return 
+end
+slot0.refeshKongfuInfo = function (slot0, slot1)
+	if slot1.EntityId == slot0.mkongfuInfo.EntityId then
+		slot0.mkongfuInfo = slot1
+
+		slot0.createScrollview(slot0)
+		slot0.nameSprite:setTexture(NewKongfuModel.items[slot0.mkongfuInfo.ModelId].namePic .. ".png")
+		slot0.stepLabel:setVisible(0 < slot0.mkongfuInfo.Step)
+		slot0.stepSprite:setVisible(0 < slot0.mkongfuInfo.Step)
+
+		if 0 < slot0.mkongfuInfo.Step then
+			slot3 = slot0.nameSprite:getContentSize()
+
+			slot0.stepLabel:setString(slot0.mkongfuInfo.Step)
+		end
+	end
+
+	return 
+end
+slot0.onChangeClick = function (slot0)
+	LayerManager.addLayer({
+		name = "hero.HeroKongfuSelectLayer",
+		data = {
+			heroModelId = HeroObj:getHeroByKFEntityId(slot0.mkongfuInfo.EntityId).ModelId,
+			callBack = function (slot0)
+				LayerManager.setRestoreData("hero.HeroKongfuInfoLayer", {
+					kongfuInfo = slot0
+				})
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+slot0.onGotoGetWays = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "commonlayer.GoodsGetWaysLayer",
+		data = {
+			resourceId = slot0.mkongfuInfo.ModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onDownKongfu = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "UpOrDown",
+		moduleName = "NewKongfuInfo",
+		methodData = {
+			slot0.mHeroModelId,
+			Utility.EMPTY_ENTITY_ID
+		},
+		successCallback = function (slot0)
+			HeroObj:modifyItem(slot0.HeroInfo)
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.cbChangeBtnRedDotVisible = function (slot0)
+	dump(slot1, tostring(slot0.mHeroModelId))
+	slot0.changeBtn.redDot:setVisible(RedDotObj:isValid(ModuleSub.eHeroAttrPoint, tostring(slot0.mHeroModelId) .. "_IfKongfuReplace"))
+
+	return 
+end
+slot0.cbLevelUpBtnRedDotVisible = function (slot0)
+	slot0.levelUpBtn.redDot:setVisible(RedDotObj:isValid(ModuleSub.eHeroAttrPoint, tostring(slot0.mHeroModelId) .. "_IfKongfuStep"))
+
+	return 
+end
+
+return slot0

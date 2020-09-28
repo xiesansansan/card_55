@@ -1,0 +1,233 @@
+slot0 = class("NewKongfuSkillActivedPopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled7",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mBg",
+				cType = "Sprite",
+				params = {
+					image = "xksg_7.png",
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled3",
+						cType = "Label",
+						params = {
+							fontSize = 26,
+							color = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							outlineColor = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 457.6,
+								y = 200.62
+							},
+							text = TR("恭喜您成功领悟招式")
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Sprite",
+						params = {
+							image = "xksg_18.png",
+							pos = {
+								x = 457.48,
+								y = 289.36
+							}
+						},
+						children = {}
+					},
+					{
+						name = "skillViewNode",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 457.43,
+								y = 91.64
+							},
+							size = {
+								width = 600,
+								height = 160
+							}
+						},
+						children = {
+							{
+								name = "untitled10",
+								cType = "Sprite",
+								params = {
+									image = "c_25.png",
+									pos = {
+										x = 64.66,
+										y = 111.98
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Sprite",
+								params = {
+									image = "sk_111011.png",
+									childName = "skillSprite",
+									scale = 0.95,
+									pos = {
+										x = 64.66,
+										y = 111.98
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									image = "xksg_15.png",
+									pos = {
+										x = 37.69,
+										y = 125.15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "mTips",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_60.png",
+									hide = true,
+									pos = {
+										x = 320,
+										y = -102.06
+									}
+								},
+								children = {}
+							},
+							{
+								name = "showingView",
+								cType = "ScrollView",
+								params = {
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									conSize = {
+										width = 470,
+										height = 100
+									},
+									pos = {
+										x = 102.47,
+										y = 48.16
+									},
+									size = {
+										width = 471.53,
+										height = 115.43
+									}
+								},
+								children = {
+									{
+										name = "introLabel",
+										cType = "Label",
+										params = {
+											text = "Label",
+											isRichText = true,
+											childName = "introLabel",
+											anchor = {
+												x = 0,
+												y = 1
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											outlineColor = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 23.61,
+												y = 55.59
+											},
+											size = {
+												width = 445,
+												height = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	dump(slot1, "params")
+
+	slot0.mKongfuInfo = slot1.kongfuInfo
+
+	slot0.super.ctor(slot0, {
+		swallow = true,
+		endedEvent = function ()
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end
+	})
+	slot0.initUI(slot0)
+	MqAudio.playEffect("xiakeshengong.mp3")
+	slot0.showActiveEffect(slot0)
+	Utility.performWithDelay(slot0, function ()
+		slot0.mTips:setVisible(true)
+		slot0.mTips:runAction(cc.RepeatForever:create(cc.Sequence:create(cc.FadeOut:create(0.8), cc.FadeIn:create(0.4))))
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.skillViewNode.skillSprite:setTexture(SkillModel.items[HeroObj:getHeroRealModelInfo(HeroObj:getHeroByKFEntityId(slot0.mKongfuInfo.EntityId).ModelId).skillAttackId].skillPic .. ".png")
+	slot0.introLabel:setString(slot10)
+	slot0.showingView:setInnerContainerSize(cc.size(470, (slot0.introLabel:getContentSize().height < 110 and 110) or slot0.introLabel:getContentSize().height))
+	slot0.introLabel:setPositionY((slot0.introLabel:getContentSize().height < 110 and 110) or slot0.introLabel:getContentSize().height)
+
+	return 
+end
+slot0.showActiveEffect = function (slot0)
+	return 
+end
+
+return slot0

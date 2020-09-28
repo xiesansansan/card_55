@@ -1,0 +1,121 @@
+slot0 = class("DlgWorldBestStartTipsLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled3",
+		cType = "MsgBoxBg",
+		params = {
+			hideCloseButton = true,
+			posApt = 1,
+			closeAction = "onBtnBackClickAction",
+			needTouchClose = true,
+			image = "txdy_20.png",
+			pos = {
+				x = 568,
+				y = 360
+			}
+		},
+		children = {
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "txdy_21.png",
+					pos = {
+						x = 380,
+						y = 222.72
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "txdy_22.png",
+					pos = {
+						x = 380,
+						y = 105
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					pos = {
+						x = 380,
+						y = -10
+					},
+					text = TR("每周五23:30结束本周角逐")
+				},
+				children = {}
+			},
+			{
+				name = "mStartTimeLabel",
+				cType = "Label",
+				params = {
+					text = "",
+					pos = {
+						x = 380,
+						y = -45.07
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, slot0.upDateTime, 1)
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	slot0.mStartTimeLabel:setVisible(true)
+
+	if 0 < PlayerAttrObj:getPlayerAttrByName("WorldnumoneOpenTime") - Player:getCurrentTime() then
+		slot0.mStartTimeLabel:setString(TR("下一轮开启倒计时:") .. MqTime.completeFormat(slot2))
+	else
+		slot0.mStartTimeLabel:setVisible(false)
+		slot0.mStartTimeLabel:setString(TR("下一轮开启倒计时:00时00分00秒"))
+
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+
+			LayerManager.removeLayer(slot0)
+		end
+	end
+
+	return 
+end
+slot0.onBtnBackClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

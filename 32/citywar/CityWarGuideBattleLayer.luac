@@ -1,0 +1,816 @@
+slot0 = class("CityWarGuideBattleLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mMapScrollView",
+		cType = "ScrollView",
+		children = {
+			{
+				name = "mMapSprite",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_34.jpg",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				}
+			},
+			{
+				name = "mViewSprite",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "c_pure.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				}
+			}
+		},
+		params = {
+			direction = 2,
+			conSize = {
+				width = 1380,
+				height = 1136
+			},
+			pos = {
+				x = 0,
+				y = 0
+			},
+			size = {
+				width = 640,
+				height = 1136
+			}
+		}
+	},
+	{
+		name = "untitled13",
+		cType = "Node",
+		children = {
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_5.png",
+					pos = {
+						x = 319.93,
+						y = 1096.97
+					}
+				}
+			},
+			{
+				name = "mCityNameLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 319.22,
+						y = 1112.85
+					},
+					text = TR("武林盟")
+				}
+			},
+			{
+				name = "mAttackNameLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 117.61,
+						y = 1115.9
+					},
+					text = TR("攻方部队")
+				}
+			},
+			{
+				name = "mAttackFlag",
+				cType = "GuildFlag",
+				children = {},
+				params = {
+					fontSize = 60,
+					hide = true,
+					scale = 0.35,
+					pos = {
+						x = 37.66,
+						y = 1108.87
+					}
+				}
+			},
+			{
+				name = "mDefenceNameLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 520.04,
+						y = 1115.19
+					},
+					text = TR("守方部队")
+				}
+			},
+			{
+				name = "mDefenceFlag",
+				cType = "GuildFlag",
+				children = {},
+				params = {
+					fontSize = 60,
+					hide = true,
+					scale = 0.35,
+					pos = {
+						x = 604.15,
+						y = 1108.87
+					}
+				}
+			},
+			{
+				name = "untitled17",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_15.png",
+					pos = {
+						x = 526.08,
+						y = 1083.13
+					}
+				}
+			},
+			{
+				name = "mNPCCountProgress",
+				cType = "ProgressBar",
+				children = {},
+				params = {
+					maxValue = 100,
+					normalImage = "czhan_16.png",
+					currValue = 100,
+					pos = {
+						x = 525.37,
+						y = 1083.51
+					}
+				}
+			},
+			{
+				name = "mNPCCountLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					fontSize = 20,
+					text = "100/100",
+					color = {
+						g = 34,
+						r = 69,
+						b = 13
+					},
+					pos = {
+						x = 520.9,
+						y = 1083.4
+					}
+				}
+			},
+			{
+				name = "untitled19",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_17.png",
+					pos = {
+						x = 417.03,
+						y = 1083.77
+					}
+				}
+			},
+			{
+				name = "untitled22",
+				cType = "Sprite",
+				children = {
+					{
+						name = "untitled24",
+						cType = "Sprite",
+						children = {},
+						params = {
+							image = "czhan_4.png",
+							pos = {
+								x = 7.84,
+								y = 114.28
+							}
+						}
+					},
+					{
+						name = "untitled26",
+						cType = "Button",
+						children = {},
+						custom = {
+							{
+								value = 1,
+								name = "sideTag",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "cbClickScanTeam",
+							image = "c_pure.png",
+							pos = {
+								x = 66.53,
+								y = 29.13
+							},
+							size = {
+								width = 100,
+								height = 35.4
+							},
+							titleColor = {
+								g = 231,
+								r = 255,
+								b = 72
+							},
+							titleText = TR("查看")
+						}
+					},
+					{
+						name = "untitled43",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 44.16,
+								y = 123.3
+							},
+							text = TR("上")
+						}
+					},
+					{
+						name = "mAttackTopNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 123.23
+							}
+						}
+					},
+					{
+						name = "mAttackTopAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 123.23
+							}
+						}
+					},
+					{
+						name = "untitled44",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 44.04,
+								y = 97.22
+							},
+							text = TR("中")
+						}
+					},
+					{
+						name = "mAttackMiddleNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 97.06
+							}
+						}
+					},
+					{
+						name = "mAttackMiddleAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 97.06
+							}
+						}
+					},
+					{
+						name = "untitled45",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 43.28,
+								y = 71.73
+							},
+							text = TR("下")
+						}
+					},
+					{
+						name = "mAttackBottomNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 71.66
+							}
+						}
+					},
+					{
+						name = "mAttackBottomAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 71.66
+							}
+						}
+					}
+				},
+				params = {
+					image = "czhan_2.png",
+					pos = {
+						x = 98.54,
+						y = 989.99
+					}
+				}
+			},
+			{
+				name = "untitled21",
+				cType = "Sprite",
+				children = {
+					{
+						name = "untitled23",
+						cType = "Sprite",
+						children = {},
+						params = {
+							image = "czhan_3.png",
+							pos = {
+								x = 121.7,
+								y = 114.61
+							}
+						}
+					},
+					{
+						name = "untitled25",
+						cType = "Button",
+						children = {},
+						custom = {
+							{
+								value = 2,
+								name = "sideTag",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "cbClickScanTeam",
+							image = "c_pure.png",
+							pos = {
+								x = 66.49,
+								y = 34.05
+							},
+							size = {
+								width = 100,
+								height = 35.4
+							},
+							titleColor = {
+								g = 231,
+								r = 255,
+								b = 72
+							},
+							titleText = TR("查看")
+						}
+					},
+					{
+						name = "untitled49",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 44.16,
+								y = 123.3
+							},
+							text = TR("上")
+						}
+					},
+					{
+						name = "mDefenceTopNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 123.18
+							}
+						}
+					},
+					{
+						name = "mDefenceTopAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 123.18
+							}
+						}
+					},
+					{
+						name = "untitled50",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 44.04,
+								y = 97.22
+							},
+							text = TR("中")
+						}
+					},
+					{
+						name = "mDefenceMiddleNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 96.83
+							}
+						}
+					},
+					{
+						name = "mDefenceMiddleAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 96.83
+							}
+						}
+					},
+					{
+						name = "untitled51",
+						cType = "Label",
+						children = {},
+						params = {
+							pos = {
+								x = 43.28,
+								y = 71.73
+							},
+							text = TR("下")
+						}
+					},
+					{
+						name = "mDefenceBottomNumLabel",
+						cType = "Label",
+						children = {},
+						params = {
+							fontSize = 20,
+							text = "0",
+							pos = {
+								x = 85.36,
+								y = 72.46
+							}
+						}
+					},
+					{
+						name = "mDefenceBottomAddEffect",
+						cType = "Effect",
+						children = {},
+						params = {
+							loop = false,
+							dataFile = "effect_ui_yingdaodianji",
+							scale = 0.3,
+							isPlayAnimation = false,
+							animation = "dian",
+							pos = {
+								x = 85.36,
+								y = 72.46
+							}
+						}
+					}
+				},
+				params = {
+					image = "czhan_1.png",
+					pos = {
+						x = 544.85,
+						y = 989.41
+					}
+				}
+			}
+		},
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		children = {
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				children = {},
+				params = {
+					image = "czhan_48.png",
+					pos = {
+						x = 320.31,
+						y = 38.12
+					}
+				}
+			},
+			{
+				name = "untitled3",
+				cType = "Button",
+				children = {},
+				params = {
+					image = "czhan_6.png",
+					clickAction = "cbClickCloseBtn",
+					pos = {
+						x = 583.16,
+						y = 34.5
+					}
+				}
+			},
+			{
+				name = "mAttackRecallBtn",
+				cType = "Button",
+				children = {},
+				custom = {
+					{
+						value = 1,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "czhan_8.png",
+					clickAction = "cbClickRecall",
+					pos = {
+						x = 376.39,
+						y = 46.58
+					}
+				}
+			},
+			{
+				name = "mDefenceBtn",
+				cType = "Button",
+				children = {},
+				custom = {
+					{
+						value = 2,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "czhan_9.png",
+					clickAction = "cbClickAddTeam",
+					pos = {
+						x = 376.39,
+						y = 46.58
+					}
+				}
+			},
+			{
+				name = "mDefenceRecallBtn",
+				cType = "Button",
+				children = {},
+				custom = {
+					{
+						value = 2,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "czhan_8.png",
+					clickAction = "cbClickRecall",
+					pos = {
+						x = 268.99,
+						y = 48.23
+					}
+				}
+			},
+			{
+				name = "mAttackBtn",
+				cType = "Button",
+				children = {},
+				custom = {
+					{
+						value = 1,
+						name = "sideTag",
+						type = "integer"
+					}
+				},
+				params = {
+					image = "czhan_7.png",
+					pos = {
+						x = 269.32,
+						y = 46.26
+					}
+				}
+			},
+			{
+				name = "mTipLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					fontSize = 20,
+					hide = true,
+					color = {
+						g = 248,
+						r = 255,
+						b = 234
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 113.31,
+						y = 47.15
+					},
+					text = TR("未加入帮派")
+				}
+			},
+			{
+				name = "mStatusLabel",
+				cType = "Label",
+				children = {},
+				params = {
+					fontSize = 20,
+					color = {
+						g = 44,
+						r = 234,
+						b = 0
+					},
+					outlineColor = {
+						g = 42,
+						r = 51,
+						b = 24
+					},
+					pos = {
+						x = 113.24,
+						y = 22.78
+					},
+					text = TR("不可占领")
+				}
+			}
+		},
+		params = {
+			pos = {
+				x = 0,
+				y = 0
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		noNaviagate = true
+	})
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.cbClickAddTeam = function (slot0, slot1)
+	if slot1.sideTag == 1 then
+		ui.showCampReady({
+			minCount = 5,
+			showStatusBar = true,
+			titleText = TR("派遣部队"),
+			statusList = {},
+			vitCostR = PlayerAttrObj:getPlayerAttrByName("TitleCityWarVitCostR") or 0,
+			callback = function (slot0)
+				slot0:executeGuide()
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.cbClickCloseBtn = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.cbClickScanTeam = function (slot0, slot1)
+	return 
+end
+slot0.cbClickRecall = function (slot0, slot1)
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[70000] = {
+			clickNode = slot0.mAttackBtn
+		},
+		[70003] = {
+			extCallback = function (...)
+				LayerManager.removeLayer(LayerManager.removeLayer)
+				display.getRunningScene():exeNavigateGuide()
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,280 @@
+return {
+	{
+		music = {
+			volume = 0.5,
+			file = "wulin4.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			order = 9,
+			file = "zy_bg.jpg",
+			tag = "bg",
+			scaleX = 2,
+			scaleY = 1.85,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0, TalkView.DEF.HEIGHT*0.75)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			parent = "bg",
+			file = "zy_1101.png",
+			tag = "bg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(800, 840)
+		}
+	},
+	{
+		action = {
+			sync = false,
+			tag = "bg",
+			what = {
+				spawn = {
+					{
+						bezier = {
+							time = 6,
+							to = cc.p(TalkView.DEF.WIDTH*1, TalkView.DEF.HEIGHT*0.15),
+							control = {
+								cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.35),
+								cc.p(TalkView.DEF.WIDTH*0.75, TalkView.DEF.HEIGHT*0.25)
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		delay = {
+			time = 5
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_r",
+			params = {
+				"yxd_lh",
+				"yxd_lhname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_01.mp3",
+				TR("攒了这么久钱，终于买下了这块庄园，本掌柜东山再起的机会终于来啦！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"zj_lh",
+				"zj_lhname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"jq_zy_02.mp3",
+				TR("你以前不是跑商的吗，怎么现在倒搞起庄园来了？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_03.mp3",
+				TR("现在到处兵荒马乱的，跑商太危险了，还是当个庄主比较保险。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_04.mp3",
+				TR("本掌柜……不！是本庄主真是太英明了！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_05.mp3",
+				TR("快……快说：庄主英明！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"zj_lh",
+				"zj_lhname",
+				"jq_zy_06.mp3",
+				TR("瞧把你得意的，小心又亏得血本无归。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_07.mp3",
+				TR("闭上你的乌鸦嘴，你可是我的小伙计，好好帮本庄主经营，好处少不了你的。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"zj_lh",
+				"zj_lhname",
+				"jq_zy_08.mp3",
+				TR("是！庄主大人。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_09.mp3",
+				TR("嗯！小伙计，给我手脚麻利的。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namel",
+				"zj_lh",
+				"zj_lhname",
+				"jq_zy_10.mp3",
+				TR("啧啧啧……你这德行可真是像极了地主家的肥老婆。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"yxd_lh",
+				"yxd_lhname",
+				"jq_zy_11.mp3",
+				TR("胡说，本姑娘哪里肥了！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"zj_lh",
+				"zj_lhname",
+				"yxd_lh",
+				"yxd_lhname"
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"bg",
+				"back_board"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		},
+		zj_lh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"zj_lh",
+						"effect_lihui_baojiannan",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-240",
+						"zj_lhname",
+						"@main"
+					}
+				}
+			}
+		},
+		yxd_lh = {
+			{
+				load = {
+					tmpl = "model_lh",
+					params = {
+						"yxd_lh",
+						"effect_lihui_nvzhu_yu",
+						"40",
+						"0",
+						"0.8",
+						"0.8",
+						"-200",
+						"yxd_lhname",
+						"夜小蝶"
+					}
+				}
+			}
+		}
+	}
+}

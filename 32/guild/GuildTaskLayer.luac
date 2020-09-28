@@ -1,0 +1,466 @@
+slot0 = class("GuildTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopAction",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "jh_42.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "refreshTime",
+				cType = "Label",
+				params = {
+					fontSize = 19,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 509.22,
+						y = 298.08
+					},
+					text = TR("下次刷新:00:00:00")
+				},
+				children = {}
+			},
+			{
+				name = "rewardBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onRequestReward",
+					pos = {
+						x = 390.79,
+						y = 103.63
+					},
+					titleText = TR("领 取")
+				},
+				children = {}
+			},
+			{
+				name = "clickBtn",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					pos = {
+						x = 390.79,
+						y = 103.63
+					},
+					titleText = TR("前 往")
+				},
+				children = {}
+			},
+			{
+				name = "rewardListView",
+				cType = "ListView",
+				params = {
+					direction = false,
+					bounce = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 251.38,
+						y = 206.24
+					},
+					size = {
+						width = 275,
+						height = 95
+					}
+				},
+				children = {
+					{
+						name = "rewardLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled12-initParams",
+								name = "cardParams",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 92,
+								height = 95
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "CardNode",
+								params = {
+									scale = 0.9,
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 46.5,
+										y = 47.5
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "taskLabel",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 390.79,
+						y = 329.13
+					},
+					text = TR("占领门派-逍遥宫")
+				},
+				children = {}
+			},
+			{
+				name = "taskCitySprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.65,
+					image = "c_pure.png",
+					pos = {
+						x = 258.79,
+						y = 182.63
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onClose",
+					pos = {
+						x = 715.22,
+						y = 425.76
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled18",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 390.79,
+						y = 358.13
+					},
+					text = TR("任务目标")
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -90,
+								y = 7.86
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled20",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 176,
+								y = 7.86
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled13",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 390.79,
+						y = 271
+					},
+					text = TR("任务奖励")
+				},
+				children = {
+					{
+						name = "untitled17",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_36.png",
+							pos = {
+								x = -90,
+								y = 7.86
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Scale9Sprite",
+						params = {
+							reverse = 1,
+							image = "c_36.png",
+							pos = {
+								x = 176,
+								y = 7.86
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.guildTaskInfo = slot1.guildTaskInfo
+	slot0.foucusCallBack = slot1.foucusCallBack
+	slot0.callback = slot1.callback
+	slot0.ownCityInfo = slot1.ownCityInfo
+	slot0.mapRollBack = slot1.mapRollCallBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.onPopAction = function (slot0)
+	slot0.executeGuide(slot0)
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = slot0.guildTaskInfo.MissionGroupId
+	slot2 = nil
+	slot3 = ""
+	slot4 = nil
+	slot5 = 0
+
+	slot0.taskCitySprite:setVisible(true)
+
+	if 0 < slot0.guildTaskInfo.CurrentNum then
+		if GuildMissionRelation.items[slot1][slot0.guildTaskInfo.CurrentNum].missionTypeId == 1 then
+			slot3 = TR("占领门派-%s", CitywarCityConfig.items[slot2.missionParameter].name)
+			slot5 = slot2.missionParameter
+		elseif slot2.missionTypeId == 2 then
+			slot3 = TR("加入或创建任意一个帮派")
+
+			slot0.taskCitySprite:setVisible(false)
+		elseif slot2.missionTypeId == 3 then
+			slot3 = TR("击败%s个守卫(%d/%s)", slot2.missionParameter, slot0.guildTaskInfo.Progress, slot2.missionParameter)
+
+			slot0.taskCitySprite:setVisible(false)
+
+			slot6 = {}
+
+			for slot10, slot11 in pairs(CitywarCityConfig.items) do
+				if slot11.cityType == Enums.CityType.ePass and slot11.openNeedPlayerLv <= PlayerAttrObj:getPlayerAttrByName("Lv") and not table.indexof(slot0.ownCityInfo, slot11.chapterModelId) then
+					table.insert(slot6, slot11.chapterModelId)
+				end
+			end
+
+			slot5 = slot6[math.random(1, #slot6)]
+		elseif slot2.missionTypeId == 4 then
+			slot3 = TR("参与占领1座小型门派")
+		elseif slot2.missionTypeId == 5 then
+			slot3 = TR("参与占领1座中型门派")
+		elseif slot2.missionTypeId == 6 then
+			slot3 = TR("参与占领1座大型门派")
+		end
+
+		slot4 = slot2.reward
+	else
+		slot2 = GuildDailytaskConfig.items[slot0.guildTaskInfo.TaskId]
+
+		if slot0.guildTaskInfo.CityId ~= 0 then
+			slot3 = TR("占领门派-%s", CitywarCityConfig.items[slot0.guildTaskInfo.CityId].name)
+		elseif not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+			slot3 = "加入或创建任意一个帮派"
+		end
+
+		slot4 = slot2 and slot2.taskReward
+		slot5 = slot0.guildTaskInfo.CityId
+	end
+
+	slot0.taskLabel:setString(slot3)
+	slot0.rewardListView:removeAllItems()
+
+	for slot10, slot11 in ipairs(slot6) do
+		slot0.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+			cardParams = {
+				cardInfo = {
+					modelId = slot11.resourceId,
+					num = slot11.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	if slot0.guildTaskInfo.Draw and slot0.guildTaskInfo.CurrentNum <= 0 then
+		slot0.clickBtn:setVisible(false)
+		slot0.rewardBtn:setVisible(true)
+		slot0.rewardBtn:setTitleText(TR("已领取"))
+		slot0.rewardBtn:setEnabled(false)
+	else
+		slot0.clickBtn:setVisible(not slot0.guildTaskInfo.Achieve)
+		slot0.rewardBtn:setVisible(slot0.guildTaskInfo.Achieve)
+		slot0.clickBtn:setClickAction(function ()
+			if slot0.foucusCallBack and 0 < slot1 then
+				slot0.foucusCallBack(slot1)
+			elseif 0 < slot0.guildTaskInfo.CurrentNum and slot2.missionTypeId == 2 then
+				LayerManager.showModuleLayer(ModuleSub.eGuild)
+			elseif slot0.guildTaskInfo.CurrentNum < 0 and not Utility.isEntityId(PlayerAttrObj:getPlayerAttrByName("GuildInfo").GuildId) then
+				LayerManager.showModuleLayer(ModuleSub.eGuild)
+			end
+
+			LayerManager.removeLayer(LayerManager.removeLayer)
+
+			return 
+		end)
+	end
+
+	slot0.refreshTime:setVisible(slot0.guildTaskInfo.CurrentNum <= 0)
+
+	if slot0.guildTaskInfo.CurrentNum <= 0 then
+		slot0.updateTiem(slot0)
+	end
+
+	return 
+end
+slot0.updateTiem = function (slot0)
+	slot0.refreshTime:setString(TR("奖励结算:%s", MqTime.formatAsHour(slot0.guildTaskInfo.RefreshTime - Player:getCurrentTime())))
+	Utility.schedule(slot0.refreshTime, function ()
+		if 0 < slot0.guildTaskInfo.RefreshTime - Player:getCurrentTime() then
+			slot0.refreshTime:setString(TR("奖励结算:%s", MqTime.formatAsHour(slot0)))
+		else
+			slot0:socketRequest({
+				methodName = "GetMissionInfo",
+				moduleName = "Guild",
+				needWait = false,
+				methodData = {},
+				successCallback = function (slot0)
+					slot0.guildTaskInfo = slot0.GuildMissionInfo
+
+					slot0:refreshLayer()
+
+					return 
+				end
+			})
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onRequestReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawMissionReawrd",
+		moduleName = "Guild",
+		methodData = {},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+
+			slot0.guildTaskInfo = slot0.GuildMissionInfo
+
+			if slot0.BaseGetGameResourceList[1].Hero then
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "recruit.RecruitShowHeroLayer",
+					data = {
+						IsConvert = false,
+						showFap = true,
+						heroModelId = slot0.BaseGetGameResourceList[1].Hero[1].ModelId
+					},
+					zOrder = Enums.ZOrderType.ePopLayer
+				})
+			end
+
+			if slot0.callback then
+				slot0.callback(slot0)
+			end
+
+			if slot0.GuildMissionInfo.IsFinish then
+				ui.showFlashView(TR("帮派任务已经完成"))
+				LayerManager.removeLayer(slot0)
+			else
+				slot0:refreshLayer()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.executeGuide = function (slot0)
+	Guide.manager:exeGuideList({
+		[201207] = {
+			saveStep = true,
+			overClose = true,
+			clickNode = slot0.clickBtn
+		}
+	})
+
+	return 
+end
+
+return slot0

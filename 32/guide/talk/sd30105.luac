@@ -1,0 +1,645 @@
+return {
+	{
+		load = {
+			tmpl = "name_parent"
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jq_xiakeshilian.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_cyyewan01.png",
+				"1.1"
+			}
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.1,
+			file = "jqmh_0009.png",
+			tag = "mhbg01",
+			order = 10,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		model = {
+			opacity = 255,
+			scale = 1.05,
+			file = "jqmhbg01.png",
+			tag = "mhbg02",
+			order = 5,
+			type = TalkView.DEF.PIC,
+			pos = cc.p(TalkView.DEF.WIDTH*0.5, TalkView.DEF.HEIGHT*0.5),
+			rotation3D = cc.vec3(0, 180, 0)
+		}
+	},
+	{
+		load = {
+			tmpl = "talklong"
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line1",
+				"1000",
+				"600",
+				"jqdh_12.png",
+				"1.25",
+				"line1bg",
+				"line1zm",
+				TR("草原，无名孤山")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line2",
+				"950",
+				"600",
+				"jqdh_13.png",
+				"1.3",
+				"line2bg",
+				"line2zm",
+				TR("瞎眼的梅超风挟持了华筝")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line3",
+				"900",
+				"600",
+				"jqdh_12.png",
+				"2.7",
+				"line3bg",
+				"line3zm",
+				TR("马钰道长与六怪扮作全真七子与其对峙")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mhzm",
+			params = {
+				"line4",
+				"850",
+				"600",
+				"jqdh_13.png",
+				"1.45",
+				"line4bg",
+				"line4zm",
+				TR("双方各有忌惮，陷入了僵持")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk30"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"line1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"line2"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"line3"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "delaytalk05"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"line4"
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"talklong"
+			}
+		}
+	},
+	{
+		action = {
+			sync = true,
+			tag = "mhbg01",
+			what = {
+				spawn = {
+					{
+						fadeout = {
+							time = 0.8
+						}
+					},
+					{
+						scale = {
+							time = 0.8,
+							by = 1.6
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_mr",
+			params = {
+				"mcf",
+				"mcfname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"mcf",
+				"mcfname",
+				"sd3jq_0408.mp3",
+				TR("全真七子，你们到草原上来，是为了对付我梅超风吗？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mtor",
+			params = {
+				"mcf",
+				"mcfname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"my",
+				"myname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"my",
+				"myname",
+				"sd3jq_0409.mp3",
+				TR("我们只是来草原拜访故人，恰逢其会罢了")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_m",
+			params = {
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hxy",
+				"hxyname",
+				"sd3jq_0410.mp3",
+				TR("梅超风，你师承桃花岛，先师与桃花岛主交情不浅，还请不要继续为恶，败坏岛主名声")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out1",
+			params = {
+				"my",
+				"myname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mtol",
+			params = {
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namer",
+				"mcf",
+				"mcfname",
+				"sd3jq_0411.mp3",
+				TR("我一介叛徒，早已没有回头之路了，若想救我手下之人，须得回答我几个问题")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"mcf",
+				"mcfname",
+				"sd3jq_0412.mp3",
+				TR("三花聚顶，五气朝元，对你们全真教当作何妙解。")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out21",
+			params = {
+				"mcf",
+				"mcfname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "ltom",
+			params = {
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "turnback",
+			params = {
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r",
+			params = {
+				"namem",
+				"hxy",
+				"hxyname",
+				"sd3jq_0413.mp3",
+				TR("梅超风手里有人质，我怕时间久了她会识破我们，到时就危险了")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hxy",
+				"hxyname",
+				"sd3jq_0414.mp3",
+				TR("不知靖儿回去寻到帮手了没有")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mtor",
+			params = {
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"kze",
+				"kzename"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"kze",
+				"kzename",
+				"sd3jq_0415.mp3",
+				TR("哼！那人不过是无名之辈，听了梅超风的名头，怕是吓得不敢来了")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"kze",
+				"kzename",
+				"hxy",
+				"hxyname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "remove_tb"
+		}
+	},
+	{
+		remove = {
+			model = {
+				"bg",
+				"bg_pic1",
+				"bg_pic2",
+				"bg_pic3"
+			}
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jqbgm_jilie.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "zmbg1"
+		}
+	},
+	{
+		load = {
+			tmpl = "zmall",
+			params = {
+				"100",
+				"0",
+				"-50",
+				"0",
+				TR("说话间"),
+				TR("你飞身来到山顶"),
+				TR("一招接下梅超风的九阴白骨爪"),
+				TR("剑出"),
+				TR("如龙惊鸿"),
+				TR("金人将你们二人团团围住"),
+				TR("梅超风只觉喉间"),
+				TR("寒气直入体内"),
+				TR("惊恐之下"),
+				TR("急速退走"),
+				TR("趁着月色消失无踪"),
+				TR("金人将你们二人团团围住")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "zminall",
+			params = {
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmnil",
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmin",
+				"zmnil"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "zmoutall",
+			params = {
+				"11",
+				"12",
+				"13",
+				"14",
+				"15",
+				"16",
+				"21",
+				"22",
+				"23",
+				"24",
+				"25",
+				"26",
+				"2.4",
+				"1"
+			}
+		}
+	},
+	{
+		music = {
+			volume = 0.3,
+			file = "jqbgm_beichang.mp3"
+		}
+	},
+	{
+		load = {
+			tmpl = "bg_join",
+			params = {
+				"jqbg_cyyewan01.png",
+				"1.1"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "text_board"
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_m",
+			params = {
+				"hz",
+				"hzname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"hz",
+				"hzname",
+				"sd3jq_0425.mp3",
+				TR("师父？梅超风——她逃了？")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out12",
+			params = {
+				"hz",
+				"hzname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_mr",
+			params = {
+				"kze",
+				"kzename"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"kze",
+				"kzename",
+				"sd3jq_0426.mp3",
+				TR("哼，果然也是心术不正之辈，竟然放走那恶徒！")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "mtor",
+			params = {
+				"kze",
+				"kzename"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_in_l",
+			params = {
+				"my",
+				"myname"
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_l",
+			params = {
+				"my",
+				"myname",
+				"sd3jq_0427.mp3",
+				TR("柯兄！你错怪这位小兄弟了，他只是强撑着气势逼退了梅超风而已")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_e",
+			params = {
+				"my",
+				"myname",
+				"sd3jq_0428.mp3",
+				TR("此刻已是强弩之末，昏过去了")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "talk_r_e",
+			params = {
+				"namer",
+				"kze",
+				"kzename",
+				"sd3jq_0429.mp3",
+				TR("好吧，算我错怪他了，可惜了这个机会")
+			}
+		}
+	},
+	{
+		load = {
+			tmpl = "move_out3",
+			params = {
+				"my",
+				"myname",
+				"kze",
+				"kzename"
+			}
+		}
+	},
+	{
+		remove = {
+			model = {
+				"bg",
+				"back_board"
+			}
+		}
+	},
+	template = {
+		zmbg = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"sc_2.png",
+						"1.6"
+					}
+				}
+			}
+		},
+		zmbg1 = {
+			{
+				load = {
+					tmpl = "bg_zm",
+					params = {
+						"bp_70.png",
+						"1.1"
+					}
+				}
+			}
+		}
+	}
+}

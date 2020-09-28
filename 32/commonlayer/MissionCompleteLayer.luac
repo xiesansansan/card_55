@@ -1,0 +1,254 @@
+slot0 = class("MissionCompleteLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled5",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "bgSp",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 0,
+						y = -72
+					},
+					size = {
+						width = 435,
+						height = 99
+					}
+				},
+				children = {
+					{
+						name = "expandedEffect",
+						cType = "Effect",
+						params = {
+							dataFile = "effect_ui_zhuxianrenwutishi",
+							pos = {
+								x = 213.43,
+								y = 42.43
+							}
+						},
+						children = {}
+					},
+					{
+						name = "contentNode",
+						cType = "Node",
+						params = {
+							hide = true,
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "ui1",
+								cType = "Sprite",
+								params = {
+									image = "c_133.png",
+									pos = {
+										x = 217.5,
+										y = 60
+									}
+								},
+								children = {}
+							},
+							{
+								name = "goBtn",
+								cType = "Button",
+								params = {
+									image = "c_pure.png",
+									clickAction = "onGoBtnAction",
+									pos = {
+										x = 217.5,
+										y = 49.5
+									},
+									size = {
+										width = 435,
+										height = 99
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled1",
+								cType = "Sprite",
+								params = {
+									rotationAngle = -90,
+									image = "c_77.png",
+									pos = {
+										x = 400,
+										y = 26.22
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled4",
+								cType = "Sprite",
+								params = {
+									image = "c_134.png",
+									pos = {
+										x = 30.57,
+										y = 41.81
+									}
+								},
+								children = {}
+							},
+							{
+								name = "tigLabel",
+								cType = "Label",
+								params = {
+									fontSize = 24,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 217.5,
+										y = 27
+									},
+									text = TR("任务内容内容")
+								},
+								children = {}
+							},
+							{
+								name = "shineEffect",
+								cType = "Effect",
+								params = {
+									loop = false,
+									dataFile = "effect_ui_zhuxianrenwutishi",
+									animation = "texiao",
+									pos = {
+										x = 195.43,
+										y = 42.43
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.missionInfo = slot1.missionInfo or {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	slot0.isCanTouch = false
+	slot0.showTime = 4
+
+	if LocalData:getGameDataValue("ShowMissionCompleteLayer") and slot2.isShow then
+		LocalData:saveGameDataValue("ShowMissionCompleteLayer", {
+			isShow = false,
+			info = {}
+		})
+	end
+
+	slot0.requestUpdateNoticeIds(slot0, slot0.missionInfo.num)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.tigLabel:setString(TR("%s", slot0.missionInfo.infoText or ""))
+	slot0.bgSp:setPosition(slot0.tigLabel)
+	slot0.bgSp:runAction(cc.Sequence:create({
+		cc.EaseBackOut:create(cc.MoveTo:create(0.6, cc.p(slot0.bgSp:getPosition()))),
+		cc.CallFunc:create(function ()
+			slot0.isCanTouch = true
+
+			MqAudio.playEffect("xingongnengkaiqi.mp3")
+			MqAudio.playEffect.expandedEffect:playAnimation("huazhou", 1)
+			MqAudio.playEffect.expandedEffect.playAnimation.expandedEffect:registerLuaHandler("complete", function ()
+				slot0:onExpandedDoneCallBack()
+
+				return 
+			end)
+
+			return 
+		end),
+		cc.DelayTime:create(3.5),
+		cc.CallFunc:create(function ()
+			cc.CallFunc.create.bgSp:runAction(cc.Sequence:create({
+				cc.MoveTo:create(1, slot0),
+				cc.CallFunc:create(function ()
+					slot0.isCanTouch = false
+
+					return 
+				end)
+			}))
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.onExpandedDoneCallBack = function (slot0)
+	slot0.contentNode:setOpacity(0)
+	slot0.contentNode:setCascadeOpacityEnabled(true)
+	slot0.contentNode:setVisible(true)
+	slot0.shineEffect:playAnimation("texiao", 1)
+	slot0.contentNode:runAction(cc.Sequence:create({
+		cc.FadeIn:create(0.5),
+		cc.CallFunc:create(function ()
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.onGoBtnAction = function (slot0)
+	slot1, slot2 = Guide.manager:getGuideInfo()
+
+	if slot2 then
+		return 
+	end
+
+	if slot0.isCanTouch then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "home.YTWLTaskMainLayer",
+			popRestore = true,
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+		LayerManager.removeLayer(slot0)
+	end
+
+	return 
+end
+slot0.requestUpdateNoticeIds = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "UpdateNoticeIds",
+		moduleName = "Maintask",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

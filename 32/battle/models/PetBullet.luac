@@ -1,0 +1,129 @@
+slot0 = require("battle.common.Const")
+slot1 = require("battle.common.AttrHelper")
+slot2 = require("battle.common.BuffHelper")
+slot3 = require("battle.common.Random")
+slot4 = require("battle.managers.BattleManager")
+slot5 = require("battle.managers.ViewDelegate")
+slot6 = require("battle.managers.BuffManager")
+slot7 = require("battle.common.Formula")
+slot8 = require("battle.managers.StatisticsManager")
+slot9 = class("PetBullet")
+slot9.ctor = function (slot0, slot1)
+	slot0.uid = 0
+	slot0.attr = {}
+	slot0.targetUids = {}
+	slot0.triggers = {}
+	slot0.owner = slot1
+	slot0.dt = 0
+	slot0.totalTime = 0
+	slot0.petSkill = nil
+	slot0.skillDamageIdx = 0
+	slot0.isLastTrigger = false
+
+	return 
+end
+slot9.update = function (slot0, slot1)
+	if slot0.isFreezing() then
+		return 
+	end
+
+	slot0.dt = slot0.dt + slot1
+
+	for slot5 = #slot0.triggers, 1, -1 do
+		if slot0.triggers[slot5].time <= slot0.dt then
+			slot0.triggerEvent(slot0, slot6)
+			table.remove(slot0.triggers, slot5)
+		else
+			break
+		end
+	end
+
+	slot1.updateBullet(slot0.uid, slot1)
+
+	if slot0.totalTime < slot0.dt then
+		slot1.removeBullet(slot0.uid)
+
+		return true
+	end
+
+	return false
+end
+slot9.triggerEvent = function (slot0, slot1)
+	if slot1.name == "bullet_fly" then
+		slot0.bulletFly(slot0.uid, slot0.owner.uid, slot0.targetUids, slot1)
+	elseif slot1.name == "bullet_effect" then
+		slot0.bulletEffect(slot0.uid, slot0.owner, slot1.effect, slot1.animation, slot1.scale, slot1.follow, slot0.petSkill)
+	elseif slot1.name == "daji" then
+		slot0.isLastTrigger = slot0.petSkill.totalCount <= slot0.skillDamageIdx and slot1.lastTrigger == true
+
+		if slot0.displayDamage(slot0, slot1.getDepartRatio(slot0.petSkill.totalCount, slot0.skillDamageIdx)*slot1.getDepartRatio(slot0.damageCount, slot1.idx)) then
+			slot0.bulletHit(slot0.uid, slot0.targetUids, slot1.effect, slot1.animation, slot1.scale, slot1.int)
+		end
+	elseif slot1.name == "duang_start" then
+		if slot1.int then
+			slot0.startShake(slot1.int)
+		end
+	elseif slot1.name == "duang_end" then
+		slot0.stopShake()
+	end
+
+	return 
+end
+slot9.displayDamage = function (slot0, slot1)
+	slot2 = false
+
+	for slot6, slot7 in ipairs(slot0.targetUids) do
+		slot8 = slot0.getUnitByUid(slot7)
+		slot11 = 0
+		slot12 = 0
+
+		if 0 < slot0.petSkill.dmgInfos[slot7].damage*slot1 then
+			slot11, slot12 = slot8.updateDamage(slot8, slot10, false, false, slot0.isLastTrigger, false, slot0.owner)
+
+			slot1.damageStatistics(slot0.owner, slot12)
+			slot2.showTotalDamage(slot0.owner.uid + 100, slot10, slot0.isLastTrigger)
+		end
+
+		if slot11 ~= 2 then
+			slot2 = true
+		end
+	end
+
+	if slot0.isLastTrigger == true then
+		if slot0.buffIds then
+			for slot6, slot7 in ipairs(slot0.targetUids) do
+				slot8 = slot0.getUnitByUid(slot7)
+
+				for slot12, slot13 in ipairs(slot0.buffIds) do
+					slot15 = slot3.getBuffAddRatio(slot14, slot0.petSkill.level, slot0.petSkill.star)
+
+					if slot3.readBuff(slot13).IfRatioAverage then
+						slot15 = slot15/#slot0.targetUids
+					end
+
+					if slot4:random() <= slot15 then
+						slot5.addBuff(slot13, slot8, slot0.owner, slot0.petSkill.conf.skillType, slot0.petSkill.level, slot0.petSkill.star, slot0.petSkill.dmgInfos[slot7])
+					end
+				end
+			end
+		end
+
+		slot0.owner:useNextSkills()
+		slot0.playerSkill(slot0.owner.group, slot0.targetUids, slot0.petSkill.dmgInfos)
+
+		for slot6, slot7 in ipairs(slot0.targetUids) do
+			if not slot0.getUnitByUid(slot7):isAlive() then
+				slot8.killInfo = {
+					uid = -1,
+					dmgInfo = clone(slot9),
+					skillType = slot0.petSkill.conf.skillType,
+					atkpos = slot0.owner.group .. slot0.owner.order
+				}
+			end
+		end
+	end
+
+	return slot2
+end
+
+return slot9

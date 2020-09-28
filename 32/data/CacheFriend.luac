@@ -1,0 +1,235 @@
+slot0 = class("CacheFriend", {})
+slot0.ctor = function (slot0)
+	slot0.mFriendList = nil
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mFriendList = nil
+
+	return 
+end
+slot0.getFriendList = function (slot0, slot1, slot2)
+	if slot2 ~= nil and slot2 == true then
+		slot0.reset(slot0)
+	end
+
+	if slot0.mFriendList ~= nil then
+		if slot1 ~= nil then
+			slot1(slot0.mFriendList)
+		end
+	else
+		slot0.requestGetFriendList(slot0, slot1)
+	end
+
+	return 
+end
+slot0.setFriendList = function (slot0, slot1)
+	slot0.mFriendList = slot1 or {}
+
+	return 
+end
+slot0.deleteFriends = function (slot0, slot1)
+	slot2 = pairs
+	slot3 = slot1 or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		slot0.deleteFriendById(slot0, slot6.PlayerId)
+	end
+
+	return 
+end
+slot0.deleteFriendById = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot0.mFriendList) do
+		if slot1 == slot6.PlayerId then
+			table.remove(slot0.mFriendList, slot5)
+
+			break
+		end
+	end
+
+	return 
+end
+slot0.insertFriendList = function (slot0, slot1)
+	slot2 = pairs
+	slot3 = slot1 or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		if not slot0.playerIsFriend(slot0, slot6.PlayerId) then
+			table.insert(slot0.mFriendList, slot6)
+		end
+	end
+
+	return 
+end
+slot0.playerIsFriend = function (slot0, slot1)
+	slot2 = pairs
+	slot3 = slot0.mFriendList or {}
+
+	for slot5, slot6 in slot2(slot3) do
+		if slot6.PlayerId == slot1 then
+			return true
+		end
+	end
+
+	return false
+end
+slot0.sortFriendList = function (slot0, slot1)
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.IsActive and not slot1.IsActive then
+			return true
+		elseif not slot0.IsActive and slot1.IsActive then
+			return false
+		end
+
+		if slot0.OutTime ~= slot1.OutTime then
+			return slot0.OutTime < slot1.OutTime
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.requestGetFriendList = function (slot0, slot1)
+	require("network.GameSocket"):socketRequest({
+		methodName = "GetFriendList",
+		moduleName = "Friend",
+		ignoreNode = true,
+		methodData = {},
+		successCallback = function (slot0)
+			table.sort(slot0.FriendData or {}, function (slot0, slot1)
+				if slot0.IsActive and not slot1.IsActive then
+					return true
+				elseif not slot0.IsActive and slot1.IsActive then
+					return false
+				end
+
+				if slot0.OutTime ~= slot1.OutTime then
+					return slot0.OutTime < slot1.OutTime
+				end
+
+				return 
+			end)
+			slot0:setFriendList(slot0.FriendData or {})
+			EventAuto:postEvent(EventDefine.eFriendChanged)
+
+			if (slot0.FriendData or {}) ~= nil then
+				slot1(slot1)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestFriendApply = function (slot0, slot1, slot2, slot3)
+	require("network.GameSocket"):socketRequest({
+		methodName = "FriendApply",
+		moduleName = "FriendMessage",
+		ignoreNode = true,
+		methodData = {
+			slot1,
+			slot2 or TR("大侠，交个朋友吧~")
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("发送好友请求成功"))
+
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBatchFriendApply = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "BatchFriendApply",
+		moduleName = "FriendMessage",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("一键发送好友请求成功"))
+
+			if slot0 then
+				slot0()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDeleteFriend = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "DeleteFriend",
+		moduleName = "Friend",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			ui.showFlashView(TR("删除好友成功"))
+			EventAuto:postEvent(EventDefine.eFriendChanged)
+
+			if slot0 then
+				slot0(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetPlayerInfo = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "GetPlayerInfo",
+		moduleName = "Player",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			EventAuto:postEvent(EventDefine.eFriendChanged)
+
+			if slot0 then
+				slot0(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestGetPlayerInfoById = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "GetPlayerInfoById",
+		moduleName = "Player",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			EventAuto:postEvent(EventDefine.eFriendChanged)
+
+			if slot0 then
+				slot0(slot0)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

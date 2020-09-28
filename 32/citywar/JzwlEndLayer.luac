@@ -1,0 +1,98 @@
+slot0 = class("JzwlEndLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newControl("Layer", {
+		scale = display.minScale,
+		size = display.size,
+		pos = cc.p(display.cxInPixels, display.cyInPixels),
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			image = "jzwl_16.png",
+			pos = {
+				x = 320,
+				y = 568
+			}
+		},
+		children = {
+			{
+				name = "titleLabel",
+				cType = "Label",
+				params = {
+					fontSize = 30,
+					pos = {
+						x = 440.27,
+						y = 309.49
+					},
+					text = TR("恭喜 帮派帮派帮派 成功夺魁")
+				},
+				children = {}
+			},
+			{
+				name = "remainLabel",
+				cType = "Label",
+				params = {
+					fontSize = 27,
+					color = {
+						g = 102,
+						r = 255,
+						b = 243
+					},
+					pos = {
+						x = 440.26,
+						y = 245
+					},
+					text = TR("玩家玩家玩家#fff8ea晋升为盟主")
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Button",
+				params = {
+					image = "c_13.png",
+					clickAction = "onClose",
+					pos = {
+						x = 450.59,
+						y = 155.11
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.endData = slot1.endData
+	slot0.callback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.titleLabel:setString(TR("恭喜 #ff974a%s #fff8ea一统武林", slot0.endData.GuildName))
+	slot0.remainLabel:setString(TR("%s#fff8ea晋升为武林盟主", slot0.endData.Name))
+
+	return 
+end
+slot0.onClose = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	if slot0.callback then
+		slot1()
+	end
+
+	return 
+end
+
+return slot0

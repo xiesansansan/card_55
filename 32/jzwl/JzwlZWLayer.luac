@@ -1,0 +1,149 @@
+slot0 = class("JzwlZWLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 940,
+				height = 408
+			},
+			titleText = TR("助威")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 450,
+						y = 342
+					},
+					text = TR("点击选择您所支持的帮派为其助威，增加战意!")
+				},
+				children = {}
+			},
+			{
+				name = "listview",
+				cType = "ListView",
+				params = {
+					direction = false,
+					pos = {
+						x = 30.3,
+						y = 37.43
+					},
+					size = {
+						width = 880,
+						height = 300
+					}
+				},
+				children = {
+					{
+						name = "layout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 216,
+								height = 280
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Sprite",
+								params = {
+									image = "jzwl_66.png",
+									childName = "bg",
+									pos = {
+										x = 108,
+										y = 140
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.groupId = slot1.groupId
+	slot0.data = slot1.data or {}
+	slot0.mycheerNum = slot1.mycheerNum or 0
+	slot0.parentLayer = slot1.parentLayer
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {
+		"jzwl_66.png",
+		"jzwl_67.png",
+		"jzwl_68.png",
+		"jzwl_69.png"
+	}
+
+	for slot5 = 1, 4, 1 do
+		if slot0.parentLayer:refreshOneGuild(slot5, slot0.createLayoutTemplateNode(slot0, "layout")) then
+			slot9 = slot0.parentLayer:findGuildInfo(slot5)
+
+			slot7.setPosition(slot7, cc.p(slot6.getContentSize(slot6).width/2, slot6.getContentSize(slot6).height/2))
+			slot7.btn:setClickAction(function ()
+				if slot0.CityArmNum <= 0 then
+					ui.showFlashView("此公会已淘汰，无法助威")
+
+					return 
+				end
+
+				LayerManager.addLayer({
+					cleanUp = false,
+					name = "jzwl.JzwlBarrageTextSendLayer",
+					data = {
+						groupId = slot1.groupId,
+						sendTimes = slot1.mycheerNum,
+						lastSendTime = slot1.lastSendTime,
+						guildId = slot0.GuildId,
+						callBack = function (slot0)
+							slot0.lastSendTime = slot0
+
+							LayerManager.removeLayer(slot0)
+
+							return 
+						end
+					}
+				})
+
+				return 
+			end)
+		end
+
+		slot6.bg:setTexture(slot1[slot5])
+		slot0.listview:pushBackCustomItem(slot6)
+	end
+
+	return 
+end
+
+return slot0

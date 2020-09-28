@@ -1,0 +1,356 @@
+slot0 = class("VegetablesSeedSelLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_1.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 346,
+				height = 545
+			},
+			titleText = TR("矿 石")
+		},
+		children = {
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 23.98,
+						y = 97.3
+					},
+					size = {
+						width = 300,
+						height = 405.41
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled9-text",
+								name = "name",
+								type = "string"
+							},
+							{
+								value = "untitled10-id",
+								name = "id",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -0.06,
+								y = 283
+							},
+							size = {
+								width = 299.35,
+								height = 111.28
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_94.png",
+									pos = {
+										x = 149.68,
+										y = 55.64
+									},
+									size = {
+										width = 289.7,
+										height = 111.28
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "CardNode",
+								params = {
+									childName = "head",
+									allowClick = true,
+									pos = {
+										x = 60.06,
+										y = 57.08
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									isRichText = true,
+									childName = "name",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 107.95,
+										y = 56.43
+									},
+									text = TR("名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled10",
+								cType = "Checkbox",
+								custom = {
+									{
+										value = 1,
+										name = "id",
+										type = "integer"
+									}
+								},
+								params = {
+									selectImage = "c_44.png",
+									callback = "onCheckBoxAction",
+									normalImage = "c_43.png",
+									childName = "checkBox",
+									pos = {
+										x = 244.67,
+										y = 56.56
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12",
+								cType = "Button",
+								params = {
+									childName = "button",
+									image = "c_pure.png",
+									clickAction = "onClickAction",
+									pos = {
+										x = 149.68,
+										y = 55.64
+									},
+									size = {
+										width = 299.35,
+										height = 111.28
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 173.52,
+						y = 88.65
+					},
+					size = {
+						width = 300,
+						height = 2
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mConfirmBtn",
+				cType = "Button",
+				params = {
+					image = "c_32.png",
+					clickAction = "onClickOK",
+					pos = {
+						x = 173.44,
+						y = 51.32
+					},
+					titleText = TR("修 复")
+				},
+				children = {}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 174.49,
+						y = 270.82
+					},
+					text = TR("请在矿石商店购买矿石")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.type = slot1.eType
+	slot0.mLandId = slot1.landId
+	slot0.callback = slot1.callback
+	slot0.mSeedList = {}
+	slot0.mSelectSeedId = 0
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestSeedInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onClickOK = function (slot0, slot1)
+	if not slot0.mLandId then
+		ui.showFlashView(TR("剑冢id错误"))
+
+		return 
+	elseif not slot0.mSelectSeedId or slot0.mSelectSeedId == 0 then
+		ui.showFlashView(TR("请先选择一个矿石"))
+
+		return 
+	end
+
+	slot0.requestSeed(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.mListView:removeAllChildren()
+	slot0.mEmptyHint:setVisible(false)
+
+	if slot0.mSeedList and next(slot0.mSeedList) then
+		slot1 = pairs
+		slot2 = slot0.mSeedList or {}
+
+		for slot4, slot5 in slot1(slot2) do
+			slot8, slot16 = Utility.getColorValue(slot7)
+
+			slot0.createLayoutTemplateNode(slot0, "itemLayout", {
+				name = string.format("%s%s", slot9, GoodsModel.items[slot5.ModelId].name),
+				id = slot5.Id
+			}).head:setCardData({}, {
+				Enums.CardShowAttr.eBorder,
+				Enums.CardShowAttr.eNum
+			}, slot5)
+			slot0.mListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "itemLayout", {
+				name = string.format("%s%s", slot9, GoodsModel.items[slot5.ModelId].name),
+				id = slot5.Id
+			}))
+		end
+	else
+		slot0.mEmptyHint:setVisible(true)
+		slot0.mConfirmBtn:setEnabled(false)
+	end
+
+	return 
+end
+slot0.onCheckBoxAction = function (slot0, slot1)
+	slot0.checkBoxCallBack(slot0, slot1)
+
+	return 
+end
+slot0.checkBoxCallBack = function (slot0, slot1)
+	print(slot1.id, "pSender.id")
+
+	slot3 = slot1.isSelected(slot1)
+	slot0.curItem = slot0.curItem or slot1.getParent(slot1)
+
+	slot0.curItem.checkBox:setSelected(false)
+
+	slot0.mSelectSeedId = 0
+
+	if not slot3 then
+		slot1.setSelected(slot1, true)
+
+		slot0.mSelectSeedId = slot1.id
+	else
+		slot1.setSelected(slot1, false)
+
+		slot0.mSelectSeedId = 0
+	end
+
+	slot0.curItem = slot2
+
+	return 
+end
+slot0.onClickAction = function (slot0, slot1)
+	slot0.checkBoxCallBack(slot0, slot1.getParent(slot1).checkBox)
+
+	return 
+end
+slot0.getModuleName = function (slot0)
+	slot1 = nil
+
+	if slot0.type == 1 then
+		slot1 = "MergedVegetablesInfo"
+	elseif slot0.type == 2 then
+		slot1 = "NormalCrossVegetablesInfo"
+	end
+
+	return slot1
+end
+slot0.requestSeedInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetSeed",
+		moduleName = slot0.getModuleName(slot0),
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mSeedList = slot0.VegetablesGoods
+
+			slot0:refreshUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestSeed = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Seed",
+		moduleName = slot0.getModuleName(slot0),
+		methodData = {
+			slot0.mLandId,
+			slot0.mSelectSeedId
+		},
+		successCallback = function (slot0)
+			if slot0.callback then
+				slot0.callback(slot0)
+			end
+
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

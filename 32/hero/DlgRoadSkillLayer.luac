@@ -1,0 +1,138 @@
+slot0 = class("DlgRoadSkillLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			closeAction = "onBackBtnClickAction",
+			needTouchClose = true,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 512,
+				height = 331
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 255.42,
+						y = 147.64
+					},
+					size = {
+						width = 450,
+						height = 210
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillBg",
+				cType = "Sprite",
+				params = {
+					image = "xkxx_80.png",
+					pos = {
+						x = 88.42,
+						y = 189.34
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillSprite",
+				cType = "Sprite",
+				params = {
+					scale = 0.9,
+					image = "sk_100001.png",
+					pos = {
+						x = 88.42,
+						y = 191.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "skillNameLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 255.42,
+						y = 277.64
+					},
+					text = TR("生死轮回")
+				},
+				children = {}
+			},
+			{
+				name = "skillDescLabel",
+				cType = "Label",
+				params = {
+					align = 0,
+					isRichText = true,
+					valign = 0,
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 148.42,
+						y = 237.64
+					},
+					size = {
+						width = 310,
+						height = 0
+					},
+					text = TR("主角技攻触发，有30%%几率对目标造成血量上限%s%%+%s等量伤害，持续2回合。")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSkillModelId = slot1.skillModelId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.skillSprite:setTexture(SkillModel.items[slot0.mSkillModelId].skillPic .. ".png")
+	slot0.skillNameLabel:setString(SkillModel.items[slot0.mSkillModelId].skillName)
+	slot0.skillDescLabel:setString(Resource.getSkillIntroStr(slot0.mSkillModelId, 1, 1, "#252525", "#258711"))
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

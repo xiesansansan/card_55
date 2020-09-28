@@ -1,0 +1,540 @@
+slot0 = class("ShopGDDHLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "FileLayer",
+		params = {
+			onlyEditer = true,
+			file = "shop/ShopLayer.lua"
+		},
+		children = {}
+	},
+	{
+		name = "untitled10",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mGridView",
+				cType = "GridView",
+				params = {
+					createColCb = "onGridAction",
+					itemNum = 1,
+					selectIndex = 1,
+					colCount = 4,
+					celHeight = 246,
+					pos = {
+						x = 104.69,
+						y = 17.58
+					},
+					size = {
+						width = 768.07,
+						height = 467.82
+					}
+				},
+				children = {
+					{
+						name = "mTemplateGrid",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled7-goodId",
+								name = "goodId",
+								type = "string"
+							},
+							{
+								value = "untitled3-initParams",
+								name = "cardParams",
+								type = "string"
+							},
+							{
+								value = "untitled4-text",
+								name = "nameText",
+								type = "string"
+							},
+							{
+								value = "untitled5-modelId",
+								name = "costResId",
+								type = "string"
+							},
+							{
+								value = "untitled4-color",
+								name = "nameColor",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = 517.31,
+								y = 282.71
+							}
+						},
+						children = {
+							{
+								name = "untitled12",
+								cType = "Sprite",
+								params = {
+									image = "sc_26.png",
+									pos = {
+										x = 0,
+										y = 107.43
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled15",
+								cType = "Sprite",
+								params = {
+									image = "sc_27.png",
+									pos = {
+										x = 0.05,
+										y = -7.96
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled3",
+								cType = "CardNode",
+								params = {
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 0,
+										y = 23.93
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled4",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									childName = "name",
+									text = "name",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 0,
+										y = 91.25
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									isRichText = true,
+									align = 1,
+									childName = "buyCountLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 0,
+										y = -28.48
+									},
+									size = {
+										width = 148.15,
+										height = 18
+									},
+									text = TR("今日购买次数已用完")
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									hide = true,
+									align = 1,
+									childName = "needRankLabel",
+									text = "limit",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 0,
+										y = -56.72
+									},
+									size = {
+										width = 139,
+										height = 25.03
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled9",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									hide = true,
+									text = "Label",
+									childName = "progressLabel",
+									color = {
+										g = 135,
+										r = 37,
+										b = 17
+									},
+									pos = {
+										x = 0,
+										y = -55.02
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "goodId",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "button",
+									image = "c_32.png",
+									scale = 0.8,
+									clickAction = "onBuyAction",
+									pos = {
+										x = 0,
+										y = -84.29
+									}
+								},
+								children = {
+									{
+										name = "untitled5",
+										cType = "ResLabel",
+										params = {
+											fontSize = 20,
+											modelId = 1111,
+											num = 0,
+											childName = "priceLabel",
+											outlineColor = {
+												g = 24,
+												r = 24,
+												b = 24
+											},
+											pos = {
+												x = -31,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled14",
+				cType = "Sprite",
+				params = {
+					image = "sc_18.png",
+					pos = {
+						x = 506.32,
+						y = -253.97
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = 1121
+slot0.ctor = function (slot0, slot1)
+	slot0.mShopInfo = {}
+	slot0.mPlayerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.selectRealShopData = function (slot0, slot1)
+	slot0.mShopInfo = {}
+
+	for slot5, slot6 in ipairs(slot1) do
+		if (slot6.PreviewLvMin or 1) <= slot0.mPlayerLv then
+			table.insert(slot0.mShopInfo, clone(slot6))
+		end
+	end
+
+	return 
+end
+slot0.onGridAction = function (slot0, slot1, slot2)
+	if slot0.mShopInfo[slot2] == nil then
+		return 
+	end
+
+	slot10.nameColor, slot6 = Utility.getColorValue(Resource.getColorLv((0 < slot3.ModelId and slot3.ModelId) or slot3.TypeId))
+	slot7 = slot0.createLayoutTemplateNode(slot0, "mTemplateGrid", {
+		goodId = slot3.ShopId,
+		cardParams = {
+			cardInfo = {
+				modelId = (0 < slot3.ModelId and slot3.ModelId) or slot3.TypeId,
+				num = slot3.Num
+			},
+			showAttrs = {
+				Enums.CardShowAttr.eNum,
+				Enums.CardShowAttr.eSynthetic
+			}
+		},
+		nameText = Resource.getName((0 < slot3.ModelId and slot3.ModelId) or slot3.TypeId),
+		costResId = slot0,
+		nameColor = slot5
+	})
+
+	slot7.setPosition(slot7, slot1.getContentSize(slot1).width/2, slot1.getContentSize(slot1).height/2)
+	slot1.addChild(slot1, slot7)
+
+	slot7.refreshCell = function (slot0)
+		slot1 = nil
+
+		for slot5, slot6 in ipairs(slot0.mShopInfo) do
+			if slot1.ShopId == slot6.ShopId then
+				slot1 = slot6
+
+				break
+			end
+		end
+
+		slot2 = Resource.getCount(Resource.getCount)
+
+		if slot1.NeedLv <= slot0.mPlayerLv then
+			slot0.buyCountLabel:setString(slot1.strBuyCount)
+
+			if slot1.color then
+				slot0.buyCountLabel:setColor(slot1.color)
+			end
+
+			if slot1.fontSize then
+				slot0.buyCountLabel:setFontSize(slot1.fontSize)
+			end
+		else
+			slot0.buyCountLabel:setString(TR("#252525购买等级达到:#EA2C00%d", slot1.NeedLv))
+		end
+
+		slot0.button:setEnabled(slot1.isRemainCount)
+		slot0.button.priceLabel:setString(slot1.NeedGDDHCoin, (slot1.NeedGDDHCoin <= slot2 and cc.c3b(98, 127, 34)) or cc.c3b(211, 22, 22))
+
+		if HeroModel.items[(GoodsModel.items[slot1.ModelId] and GoodsModel.items[slot3].outputModelID) or 0] then
+			slot0.progressLabel:setVisible(true)
+
+			slot5 = ""
+			slot6 = ""
+			slot8 = GoodsObj:getItemCount(slot3)
+
+			if HeroObj:getItem(slot4) and next(slot7) then
+				if HeroStarRelation.items[slot4][slot7.Star + 1] == nil then
+					slot5 = TR("星级已满")
+					slot6 = slot8
+				else
+					slot5 = TR("升星")
+					slot6 = TR("%s/%s", slot8, slot9.needDebrisNum)
+				end
+			else
+				slot5 = TR("合成")
+				slot6 = TR("%s/%s", slot8, GoodsModel.items[slot3].outputNeedNum)
+			end
+
+			slot0.progressLabel:setString(TR("%s: %s", slot5, slot6))
+		elseif 0 < slot1.NeedRank then
+			slot0.needRankLabel:setVisible(true)
+			slot0.needRankLabel:setString(TR("历史排名达到%s名", slot1.NeedRank))
+			slot0.needRankLabel:setPosition(cc.p(slot0.progressLabel:getPosition()))
+		else
+			slot0.progressLabel:setVisible(false)
+		end
+
+		return 
+	end
+
+	slot7.refreshCell(slot7)
+
+	return 
+end
+slot0.onBuyAction = function (slot0, slot1)
+	slot2 = slot1.goodId
+	slot3 = nil
+
+	for slot7, slot8 in ipairs(slot0.mShopInfo) do
+		if slot2 == slot8.ShopId then
+			slot3 = slot8
+
+			break
+		end
+	end
+
+	if slot3 == nil then
+		return 
+	end
+
+	if not Resource.isEnough(slot0, slot3.NeedGDDHCoin) then
+		return 
+	end
+
+	if 1 < math.min(math.floor(Resource.getCount(slot0)/slot3.NeedGDDHCoin), slot3.remainCount or 0) then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.commBuyGoodSeclectLayer",
+			data = {
+				info = {
+					modelId = (0 < slot3.ModelId and slot3.ModelId) or slot3.TypeId,
+					goodsNum = slot3.Num,
+					sellTypeID = slot0,
+					sellNum = slot3.NeedGDDHCoin,
+					maxNum = slot5
+				},
+				callBack = function (slot0)
+					if PlayerAttrObj:getPlayerAttrByName("Lv") < slot0.NeedLv then
+						ui.showFlashView(TR("%d级可购买", slot0.NeedLv))
+
+						return 
+					end
+
+					slot1:requestBuy(slot1.requestBuy, slot0)
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	elseif slot5 == 1 then
+		if PlayerAttrObj:getPlayerAttrByName("Lv") < slot3.NeedLv then
+			ui.showFlashView(TR("%d级可购买", slot3.NeedLv))
+
+			return 
+		end
+
+		slot0.requestBuy(slot0, slot2, slot5)
+	end
+
+	return 
+end
+slot0.sortData = function (slot0)
+	for slot4, slot5 in ipairs(slot0.mShopInfo) do
+		slot5.strBuyCount = ""
+		slot5.isRemainCount = false
+		slot5.remainCount = 0
+
+		if 0 < slot5.PerMaxNum then
+			slot5.isRemainCount = 0 < slot5.PerMaxNum - slot5.BuyNum
+			slot5.remainCount = slot5.PerMaxNum - slot5.BuyNum
+
+			if slot5.isRemainCount then
+				slot5.strBuyCount = TR("今日还可购买%d次", slot5.PerMaxNum - slot5.BuyNum)
+			else
+				slot5.strBuyCount = TR("今日购买次数已用完")
+				slot5.color = cc.c3b(234, 44, 0)
+				slot5.fontSize = 16
+			end
+		elseif 0 < slot5.SeasonMaxNum then
+			slot5.isRemainCount = 0 < slot5.SeasonMaxNum - slot5.BuySeasonNum
+			slot5.remainCount = slot5.SeasonMaxNum - slot5.BuySeasonNum
+
+			if slot5.isRemainCount then
+				slot5.strBuyCount = TR("本赛季还可购买%d次", slot5.SeasonMaxNum - slot5.BuySeasonNum)
+			else
+				slot5.strBuyCount = TR("本赛季购买次数已用完")
+				slot5.color = cc.c3b(234, 44, 0)
+				slot5.fontSize = 14
+			end
+		elseif 0 < slot5.TotalMaxNum then
+			slot5.isRemainCount = 0 < slot5.TotalMaxNum - slot5.BuyTotalNum
+			slot5.remainCount = slot5.TotalMaxNum - slot5.BuyTotalNum
+
+			if slot5.isRemainCount then
+				slot5.strBuyCount = TR("总共还可购买%d次", slot5.TotalMaxNum - slot5.BuyTotalNum)
+			else
+				slot5.strBuyCount = TR("总购买次数已用完")
+				slot5.color = cc.c3b(234, 44, 0)
+			end
+		end
+	end
+
+	table.sort(slot0.mShopInfo, function (slot0, slot1)
+		if slot0.isRemainCount ~= slot1.isRemainCount then
+			return slot0.isRemainCount == true
+		end
+
+		return slot0.ShopId < slot1.ShopId
+	end)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetWrestleRaceShopInfo",
+		moduleName = "GddhShop",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0:selectRealShopData(slot0 or {})
+			slot0:sortData()
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "WrestleRaceShopBuy",
+		moduleName = "GddhShop",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashView(TR("购买成功"))
+			end
+
+			slot0:selectRealShopData(slot0.ShopInfo or {})
+			slot0:sortData()
+			slot0.mGridView:setItemNum(#slot0.mShopInfo)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

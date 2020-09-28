@@ -1,0 +1,178 @@
+slot0 = class("ComposeDebriesLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 650,
+				height = 500
+			},
+			titleText = TR("碎片合成")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "bb_16.png",
+					pos = {
+						x = 326.2,
+						y = 308.01
+					},
+					size = {
+						width = 580,
+						height = 280
+					}
+				},
+				children = {}
+			},
+			{
+				name = "selectCountView",
+				cType = "SelectCountView",
+				params = {
+					currSelCount = 1,
+					pos = {
+						x = 326.41,
+						y = 131.55
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "composebtn",
+				cType = "Button",
+				params = {
+					isNeedOutline = false,
+					image = "c_32.png",
+					titleisRichText = "false",
+					pos = {
+						x = 326.31,
+						y = 64.01
+					},
+					titleText = TR("合 成")
+				},
+				children = {}
+			},
+			{
+				name = "headCard",
+				cType = "CardNode",
+				params = {
+					allowClick = true,
+					pos = {
+						x = 327.04,
+						y = 372.28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "curHaveLabel",
+				cType = "Label",
+				params = {
+					isRichText = "false",
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 326.09,
+						y = 283.08
+					}
+				},
+				children = {}
+			},
+			{
+				name = "needLabel",
+				cType = "Label",
+				params = {
+					isRichText = "false",
+					text = "Label",
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 326.09,
+						y = 246.08
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mInfo = slot1.info
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	if math.floor(slot0.mInfo.Num/Resource.getModelInfo(slot0.mInfo.ModelId).outputNeedNum) <= 0 then
+		slot2 = 1
+	end
+
+	slot0.mSelectNum = slot2
+
+	slot0.headCard:setCardData({
+		modelId = slot0.mInfo.ModelId
+	}, {
+		Enums.CardShowAttr.eName
+	})
+	slot0.curHaveLabel:setString(TR("当前拥有：#258711%s", slot0.mInfo.Num))
+	slot0.needLabel:setString(TR("合成需要：#258711%s", slot1.outputNeedNum))
+	slot0.selectCountView:setMaxCount(slot2)
+	slot0.selectCountView:setCount(slot2)
+	slot0.selectCountView:setChangeCallback(function (slot0)
+		slot0.mSelectNum = slot0
+
+		return 
+	end)
+	slot0.composebtn:setClickAction(function ()
+		if slot0.mInfo.Num < slot0.mSelectNum*slot1.outputNeedNum then
+			ui.showFlashView(TR("碎片不足"))
+
+			return 
+		end
+
+		if slot0.mCallBack then
+			slot0.mCallBack(slot0.mSelectNum*slot1.outputNeedNum)
+		end
+
+		LayerManager.removeLayer(LayerManager.removeLayer)
+
+		return 
+	end)
+
+	return 
+end
+
+return slot0

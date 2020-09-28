@@ -1,0 +1,2869 @@
+slot0 = class("HeroArtifactLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBg",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkzw_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "m41Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			zOrder = 2,
+			isLiuHai = true,
+			scaleApt = 2,
+			pos = {
+				x = 284,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "bgSpr",
+				cType = "Sprite",
+				params = {
+					image = "xkzw_2.png",
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 60.55,
+						y = -320
+					}
+				},
+				children = {
+					{
+						name = "untitled1246",
+						cType = "Sprite",
+						params = {
+							image = "xkzw_3.png",
+							pos = {
+								x = 344,
+								y = 340
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled1247",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = 360.7,
+								y = 564.5
+							},
+							size = {
+								width = 200,
+								height = 39
+							}
+						},
+						children = {
+							{
+								name = "ArtifactLabel",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									outlineSize = 2,
+									color = {
+										g = 230,
+										r = 240,
+										b = 206
+									},
+									outlineColor = {
+										g = 33,
+										r = 42,
+										b = 16
+									},
+									pos = {
+										x = 94.45,
+										y = 19.95
+									},
+									text = TR("专属武器名字")
+								},
+								children = {}
+							},
+							{
+								name = "starNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 38,
+										y = -16
+									}
+								},
+								children = {
+									{
+										name = "untitled1302",
+										cType = "Sprite",
+										params = {
+											image = "c_5.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "artifactSTView",
+						cType = "SliderTableView",
+						params = {
+							selectIndex = 1,
+							selectItemChanged = "onSelectedItemChanged",
+							sliderItemAtIndex = "onShowItemAtIndex",
+							onItemClicked = "onItemClickedCallback",
+							itemCountOfSlider = "onGetSTViewItemCount",
+							itemSize = {
+								width = 400,
+								height = 480
+							},
+							pos = {
+								x = 345,
+								y = 330
+							},
+							size = {
+								width = 440,
+								height = 600
+							}
+						},
+						children = {}
+					},
+					{
+						name = "skillNode",
+						cType = "Node",
+						params = {
+							zOrder = 1,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 345,
+								y = 330
+							},
+							size = {
+								width = 540,
+								height = 600
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 107.29,
+										y = 421.66
+									}
+								},
+								children = {
+									{
+										name = "untitled7",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1287",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled80",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled89",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1254",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											hide = true,
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled26",
+								cType = "Button",
+								custom = {
+									{
+										value = 2,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 71.97,
+										y = 322.6
+									}
+								},
+								children = {
+									{
+										name = "untitled27",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1288",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled30",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled28",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled84",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled120",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1255",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled11",
+								cType = "Button",
+								custom = {
+									{
+										value = 3,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 82.65,
+										y = 219.03
+									}
+								},
+								children = {
+									{
+										name = "untitled12",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1289",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled81",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled117",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1256",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled31",
+								cType = "Button",
+								custom = {
+									{
+										value = 4,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 152.68,
+										y = 142.07
+									}
+								},
+								children = {
+									{
+										name = "untitled32",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1290",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled35",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled33",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled85",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled121",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1257",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled16",
+								cType = "Button",
+								custom = {
+									{
+										value = 5,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 251.58,
+										y = 115.81
+									}
+								},
+								children = {
+									{
+										name = "untitled17",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1291",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled20",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled82",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled118",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1258",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled36",
+								cType = "Button",
+								custom = {
+									{
+										value = 6,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 359.19,
+										y = 134.25
+									}
+								},
+								children = {
+									{
+										name = "untitled37",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1292",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled40",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled38",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled86",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled122",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1259",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled21",
+								cType = "Button",
+								custom = {
+									{
+										value = 7,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 446.12,
+										y = 202.36
+									}
+								},
+								children = {
+									{
+										name = "untitled22",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1293",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled25",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled23",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled83",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled119",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1260",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled41",
+								cType = "Button",
+								custom = {
+									{
+										value = 8,
+										name = "orderId",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onArtifactSkillCallback",
+									scale = 0.9,
+									pressedAction = false,
+									image = "c_25.png",
+									pos = {
+										x = 465.81,
+										y = 310.7
+									}
+								},
+								children = {
+									{
+										name = "untitled42",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1294",
+										cType = "Sprite",
+										params = {
+											childName = "selectSprite",
+											scale = 0.9,
+											hide = true,
+											image = "c_26.png",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled45",
+										cType = "Sprite",
+										params = {
+											image = "c_38.png",
+											childName = "arrowSpr",
+											pos = {
+												x = 30,
+												y = 35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled43",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											childName = "lvBg",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled87",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "123",
+											pos = {
+												x = 0,
+												y = -35
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled123",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											hide = true,
+											zOrder = 2,
+											align = 1,
+											text = " ",
+											outlineSize = 2,
+											childName = "warningLabel",
+											valign = 1,
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 0,
+												y = 0
+											},
+											size = {
+												width = 80,
+												height = 20
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1261",
+										cType = "Effect",
+										params = {
+											dataFile = "effect_ui_xiakezhuanwu",
+											childName = "guangEffect",
+											animation = "sao",
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled1252",
+								cType = "Sprite",
+								params = {
+									childName = "leftArrowSpr",
+									image = "c_4.png",
+									hide = true,
+									pos = {
+										x = 19.17,
+										y = 328.78
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled1253",
+								cType = "Sprite",
+								params = {
+									childName = "rightArrowSpr",
+									reverse = 1,
+									hide = true,
+									image = "c_4.png",
+									pos = {
+										x = 514.15,
+										y = 328.42
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "m43Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 2,
+			pos = {
+				x = 852,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled1244",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_9.png",
+					pos = {
+						x = 0,
+						y = -20
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tabView",
+				cType = "TabView",
+				params = {
+					selectTag = 1,
+					onSelectChange = "onTabviewTurnPageCallBack",
+					lightedImage = "c_7.png",
+					direction = false,
+					normalImage = "c_8.png",
+					allowChangeCallback = "onTabviewAllowChangCallBack",
+					btnInfos = {
+						{
+							title = TR("强化")
+						},
+						{
+							title = TR("升星")
+						}
+					},
+					pos = {
+						x = -220.11,
+						y = 218.66
+					},
+					size = {
+						width = 250,
+						height = 45
+					}
+				},
+				children = {}
+			},
+			{
+				name = "costLayout",
+				cType = "Layout",
+				custom = {
+					{
+						value = "untitled1300-initParams",
+						name = "cardData",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						z = 0,
+						x = -79.06,
+						y = -237.45
+					},
+					size = {
+						width = 84,
+						height = 120
+					}
+				},
+				children = {
+					{
+						name = "untitled1300",
+						cType = "CardNode",
+						params = {
+							scale = 0.85,
+							childName = "card",
+							allowClick = true,
+							initParams = {},
+							pos = {
+								x = 42,
+								y = 80
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "pageNode1",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled1278",
+						cType = "Sprite",
+						params = {
+							image = "c_2.png",
+							pos = {
+								x = -122.39,
+								y = 199.33
+							}
+						},
+						children = {
+							{
+								name = "untitled1279",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 64,
+										y = 17
+									},
+									text = TR("强化属性")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "contentNode",
+						cType = "Scale9Sprite",
+						params = {
+							opacity = 125,
+							image = "c_24.png",
+							pos = {
+								x = 0,
+								y = 29
+							},
+							size = {
+								width = 400,
+								height = 300
+							}
+						},
+						children = {
+							{
+								name = "lvInfoNode",
+								cType = "TemplateNode",
+								custom = {
+									{
+										value = "untitled1271-text",
+										name = "skillLv",
+										type = "string"
+									},
+									{
+										value = "untitled1267-text",
+										name = "skillDesc",
+										type = "string"
+									},
+									{
+										value = "untitled1269-image",
+										name = "skillImage",
+										type = "string"
+									}
+								},
+								params = {
+									pos = {
+										x = 6.5,
+										y = 167
+									},
+									size = {
+										width = 380,
+										height = 127
+									}
+								},
+								children = {
+									{
+										name = "untitled1266",
+										cType = "Scale9Sprite",
+										params = {
+											image = "xkzw_6.png",
+											pos = {
+												x = 190,
+												y = 63.5
+											},
+											size = {
+												width = 380,
+												height = 127
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1267",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											isRichText = true,
+											align = 0,
+											text = "Label",
+											childName = "descLabel",
+											valign = 1,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 130,
+												y = 63.5
+											},
+											size = {
+												width = 220,
+												height = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1268",
+										cType = "Sprite",
+										params = {
+											image = "c_25.png",
+											pos = {
+												x = 65,
+												y = 63.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1269",
+										cType = "Sprite",
+										params = {
+											image = "sk_111054.png",
+											childName = "skillSpr",
+											scale = 0.9,
+											pos = {
+												x = 65,
+												y = 63.5
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1270",
+										cType = "Sprite",
+										params = {
+											image = "c_79.png",
+											pos = {
+												x = 65,
+												y = 25
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled1271",
+										cType = "Label",
+										params = {
+											fontSize = 16,
+											childName = "lvLabel",
+											text = "0",
+											pos = {
+												x = 65,
+												y = 25
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "downArrowSprite",
+						cType = "Sprite",
+						params = {
+							image = "xkzw_7.png",
+							pos = {
+								x = 0,
+								y = 24
+							}
+						},
+						children = {}
+					},
+					{
+						name = "intensiveCostListView",
+						cType = "ListView",
+						params = {
+							direction = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = -180
+							},
+							size = {
+								width = 84,
+								height = 120
+							}
+						},
+						children = {}
+					},
+					{
+						name = "tenLvUpBtn",
+						cType = "Button",
+						custom = {
+							{
+								value = false,
+								name = "isEnough",
+								type = "bool"
+							},
+							{
+								value = 10,
+								name = "num",
+								type = "integer"
+							},
+							{
+								value = 5,
+								name = "realCount",
+								type = "integer"
+							}
+						},
+						params = {
+							clickAction = "onLvUpCallback",
+							image = "c_39.png",
+							pos = {
+								x = 100,
+								y = -270
+							},
+							size = {
+								width = 105,
+								height = 46
+							},
+							titleText = TR("升5级")
+						},
+						children = {}
+					},
+					{
+						name = "oneLvUpBtn",
+						cType = "Button",
+						custom = {
+							{
+								value = false,
+								name = "isEnough",
+								type = "bool"
+							},
+							{
+								value = 1,
+								name = "num",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "c_27.png",
+							clickAction = "onLvUpCallback",
+							pos = {
+								x = -100,
+								y = -270
+							},
+							titleText = TR("升 级")
+						},
+						children = {}
+					},
+					{
+						name = "fullLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 0,
+								y = -62
+							},
+							text = TR("当前已满级")
+						},
+						children = {}
+					},
+					{
+						name = "lvUpConditionLabel",
+						cType = "Label",
+						params = {
+							hide = true,
+							color = {
+								g = 65,
+								r = 192,
+								b = 65
+							},
+							pos = {
+								x = 0,
+								y = -304.37
+							},
+							text = TR("升级条件")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "pageNode2",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "starUpNode",
+						cType = "Node",
+						params = {
+							pos = {
+								x = 0,
+								y = -320
+							}
+						},
+						children = {
+							{
+								name = "starUpListView",
+								cType = "ListView",
+								params = {
+									direction = false,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 0,
+										y = 160
+									},
+									size = {
+										width = 82.7,
+										height = 120
+									}
+								},
+								children = {}
+							},
+							{
+								name = "starUpBtn",
+								cType = "Button",
+								custom = {
+									{
+										value = false,
+										name = "isEnough",
+										type = "bool"
+									},
+									{
+										value = "LVUP",
+										name = "type",
+										type = "string"
+									}
+								},
+								params = {
+									image = "c_27.png",
+									clickAction = "onStarsUpCallBack",
+									pos = {
+										x = 3.61,
+										y = 70
+									},
+									titleText = TR("升 星")
+								},
+								children = {}
+							},
+							{
+								name = "starUpConditionLabel",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									hide = true,
+									color = {
+										g = 65,
+										r = 192,
+										b = 65
+									},
+									pos = {
+										x = 0,
+										y = 30
+									},
+									text = TR("升星条件")
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "artifactInfoNode",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_pure.png",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = -0.17,
+								y = -320
+							},
+							size = {
+								width = 433,
+								height = 290
+							}
+						},
+						children = {
+							{
+								name = "untitled50",
+								cType = "Sprite",
+								params = {
+									childName = "title1Node",
+									image = "xkzw_5.png",
+									hide = true,
+									pos = {
+										x = 85,
+										y = 265
+									}
+								},
+								children = {
+									{
+										name = "untitled51",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 70,
+												y = 15
+											},
+											text = TR("基础属性")
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled52",
+								cType = "Sprite",
+								params = {
+									childName = "title2Node",
+									image = "xkzw_5.png",
+									hide = true,
+									pos = {
+										x = 85,
+										y = 136.91
+									}
+								},
+								children = {
+									{
+										name = "untitled53",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 70,
+												y = 15
+											},
+											text = TR("技能加成")
+										},
+										children = {}
+									},
+									{
+										name = "skillDescView",
+										cType = "ListView",
+										params = {
+											margin = 2,
+											direction = true,
+											childName = "",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = 7.03,
+												y = -112.61
+											},
+											size = {
+												width = 420,
+												height = 110
+											}
+										},
+										children = {
+											{
+												name = "skillDescItem",
+												cType = "Layout",
+												custom = {
+													{
+														value = "skillDescLabel-text",
+														name = "desc",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 420,
+														height = 40
+													}
+												},
+												children = {
+													{
+														name = "skillDescLabel",
+														cType = "Label",
+														params = {
+															fontSize = 20,
+															align = 0,
+															text = "Label",
+															isRichText = true,
+															valign = 1,
+															anchor = {
+																x = 0,
+																y = 0.5
+															},
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 30,
+																y = 20
+															},
+															size = {
+																width = 370,
+																height = 0
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled1251",
+						cType = "Scale9Sprite",
+						params = {
+							image = "c_11.png",
+							pos = {
+								x = 0.98,
+								y = -88.06
+							}
+						},
+						children = {}
+					},
+					{
+						name = "attrScrollView",
+						cType = "ScrollView",
+						params = {
+							bounce = true,
+							pos = {
+								x = -213.04,
+								y = -86.78
+							},
+							size = {
+								width = 425,
+								height = 300
+							}
+						},
+						children = {}
+					},
+					{
+						name = "attrTempNode",
+						cType = "TemplateNode",
+						custom = {
+							{
+								value = "untitled1250-text",
+								name = "titleStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								x = -203.23,
+								y = 41.09
+							},
+							size = {
+								width = 200,
+								height = 50
+							}
+						},
+						children = {
+							{
+								name = "untitled1249",
+								cType = "Sprite",
+								params = {
+									image = "c_2.png",
+									pos = {
+										x = 100,
+										y = 25
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled1250",
+								cType = "Label",
+								params = {
+									fontSize = 22,
+									text = "Label",
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									pos = {
+										x = 100,
+										y = 24
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = {
+	[18.0] = 16050013,
+	[15.0] = 16050040,
+	[13.0] = 16050041
+}
+slot2 = {
+	cc.p(70, 5),
+	cc.p(70, 5),
+	cc.p(70, 5),
+	cc.p(45, 75),
+	cc.p(0, 85),
+	cc.p(-45, 65),
+	cc.p(-65, 45),
+	cc.p(-70, 5)
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mModuleInfo = slot1.moduleInfo or {}
+	slot0.mHeroModelId = slot1.heroModelId
+	slot0.mSelectTag = slot1.tag or 1
+	slot0.mSelectOrderId = 1
+	slot0.mPlayerLv = PlayerAttrObj:getPlayerAttrByName("Lv")
+
+	slot0.initData(slot0, slot1)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initData = function (slot0, slot1)
+	slot0.mHeroList = {}
+	slot3 = Utility.getConfigItems("ModuleSubConfig")[ModuleSub.eHeroArtifact].openLv
+
+	for slot7, slot8 in ipairs(slot2) do
+		if slot3 <= HeroObj:getItem(slot8).Lv then
+			table.insert(slot0.mHeroList, slot8)
+		end
+	end
+
+	slot0.mCurHeroModel = slot1.heroModelId
+	slot0.mCurHeroQuality = HeroModel.items[slot0.mCurHeroModel].quality
+	slot0.mCurArtiType = HeroModel.items[slot0.mCurHeroModel].profession
+	slot0.mArtifactInfo = (next(HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo) and slot4) or {
+		StepLv = 0,
+		SkillInfo = {}
+	}
+
+	return 
+end
+slot0.immediateRefreshUi = function (slot0, slot1)
+	slot0.mCurHeroModel = slot1.heroModelId
+
+	slot0.artifactSTView:setSelectItemIndex(table.indexof(slot0.mHeroList, slot0.mCurHeroModel), false, true)
+	slot0.refreshArtifactSkill(slot0)
+	slot0.refreshPage(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot1 = {
+		{
+			tag = 1,
+			subKey = "_IfArtifactLv",
+			title = TR("强化"),
+			moduleId = ModuleSub.eHeroAttrPoint
+		},
+		{
+			tag = 2,
+			subKey = "_IfArtifactStar",
+			title = TR("升星"),
+			moduleId = ModuleSub.eHeroAttrPoint
+		}
+	}
+	slot2 = table.indexof(slot0.mHeroList, slot0.mCurHeroModel)
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "artifactSTView" then
+			slot1.selectIndex = slot0
+		elseif slot0.name == "tabView" then
+			slot1.selectTag = slot1.mSelectTag
+			slot1.btnInfos = slot1.mSelectTag
+		end
+
+		return 
+	end)
+
+	for slot6, slot7 in pairs(slot0.tabView:getTabBtns()) do
+		slot7.redDot = UIWrap.newControl("RedDot", {
+			moduleId = slot1[slot6].moduleId,
+			visibleFunc = function (slot0)
+				slot0:onReddotVisibleFunc(slot0, slot1[slot0].subKey)
+
+				return 
+			end,
+			offset = cc.p(0.8, 0.8)
+		})
+
+		slot7.addChild(slot7, UIWrap.newControl("RedDot", {
+			moduleId = slot1[slot6].moduleId,
+			visibleFunc = function (slot0)
+				slot0.onReddotVisibleFunc(slot0, slot1[slot0].subKey)
+
+				return 
+			end,
+			offset = cc.p(0.8, 0.8)
+		}))
+	end
+
+	slot0.btnInfos = slot1
+
+	return 
+end
+slot0.refreshArtifactInfo_new = function (slot0)
+	slot0.attrScrollView:removeAllChildren()
+
+	if 300 <= slot0.addAttrNode(slot0, slot1).getContentSize(slot2).height + slot0.addSkillMarkUpNode(slot0, slot1).getContentSize(slot4).height then
+		slot0.attrScrollView:setInnerContainerSize(cc.size(425, slot3.height + slot5.height))
+		slot2.setPosition(slot2, 0, slot5.height)
+		slot4.setPosition(slot4, 0, 0)
+		slot0.attrScrollView:addChild(slot2)
+		slot0.attrScrollView:addChild(slot4)
+	else
+		slot0.attrScrollView:setInnerContainerSize(cc.size(425, 300))
+		slot2.setPosition(slot2, 0, slot3.height - 300)
+		slot4.setPosition(slot4, 0, slot3.height - 300 - slot5.height)
+		slot0.attrScrollView:addChild(slot2)
+		slot0.attrScrollView:addChild(slot4)
+	end
+
+	return 
+end
+slot3 = {
+	left = cc.p(-40, -15),
+	center = cc.p(0, -15),
+	right = cc.p(40, -15)
+}
+slot0.addAttrNode = function (slot0, slot1)
+	slot2 = UIWrap.newControl("Node", {
+		pos = cc.p(10, 10),
+		size = cc.size(420, 100)
+	})
+	slot3 = slot2.getContentSize(slot2)
+	slot4 = cc.size(slot3.width/2, slot3.height/2)
+	slot5 = slot0.createLayoutTemplateNode(slot0, "attrTempNode", {
+		titleStr = TR("基础加成")
+	})
+
+	slot5.setAnchorPoint(slot5, cc.p(0, 1))
+	slot5.setPosition(slot5, cc.p(0, slot3.height))
+	slot2.addChild(slot2, slot5)
+
+	function slot6(slot0, slot1, slot2)
+		slot1:addChild(UIWrap.newControl("Label", {
+			fontSize = 18,
+			isRichText = true,
+			text = TR("#252525专武强化属性%d%%", slot0),
+			anchor = slot1,
+			pos = cc.p(slot0.width + slot2.x, slot0.height + slot2.y)
+		}))
+
+		return 
+	end
+
+	slot8 = ArtifactStarRelation.items[slot0.mCurHeroModel][slot0.mArtifactInfo.Stars]
+
+	if not ArtifactStarRelation.items[slot0.mCurHeroModel][slot0.mArtifactInfo.Stars + 1] then
+		slot6(slot8.artifactAttrTR/100, cc.p(0.5, 0.5), slot0.center)
+	else
+		slot6(slot8.artifactAttrTR/100, cc.p(1, 0.5), slot0.left)
+		slot6(slot9.artifactAttrTR/100, cc.p(0, 0.5), slot0.right)
+		slot2.addChild(slot2, UIWrap.newControl("Sprite", {
+			image = "c_23.png",
+			pos = cc.p(slot4.width, slot4.height - 15)
+		}))
+	end
+
+	return slot2
+end
+slot0.addSkillMarkUpNode = function (slot0, slot1)
+	slot2 = HeroModel.items[slot1.ModelId].quality
+	slot3 = UIWrap.newControl("Node", {
+		pos = cc.p(10, 10)
+	})
+	slot4 = slot0.createLayoutTemplateNode(slot0, "attrTempNode", {
+		titleStr = TR("技能加成")
+	})
+	slot5 = {}
+	slot6 = 0
+	slot7 = slot1.Star
+
+	for slot11, slot12 in ipairs(ArtifactStarRelation.items[slot0.mCurHeroModel]) do
+		if slot12.skillId ~= 0 then
+			slot13 = slot0.mArtifactInfo.SkillInfo[slot11] or {}
+			slot17 = UIWrap.newControl("Label", {
+				fontSize = 20,
+				isRichText = true,
+				text = TR("%s专武%d星开启: %s%s", (slot12.stars <= slot0.mArtifactInfo.Stars and "#252525") or "#5f5f5f", slot11, (slot12.skillId ~= 0 and string.format("(%s) ", SkillModel.items[slot12.skillId].skillName)) or "", Utility.getHeroArtifactSkillStarUpDes(slot0.mCurHeroModel, slot7, slot11, 1, (slot12.stars <= slot0.mArtifactInfo.Stars and "#252525") or "#5f5f5f")),
+				pos = cc.p(10, 10),
+				anchor = cc.p(0, 1),
+				color = cc.c3b(37, 37, 37),
+				size = cc.size(390, 0)
+			})
+			slot6 = slot6 + slot17.getContentSize(slot17).height + 10
+
+			table.insert(slot5, slot17)
+		end
+	end
+
+	if #slot5 == 0 then
+		slot8 = UIWrap.newControl("Label", {
+			fontSize = 20,
+			text = TR("进行神器突破获得专属技能加成"),
+			pos = cc.p(10, 10),
+			anchor = cc.p(0, 1),
+			color = cc.c3b(37, 37, 37),
+			size = cc.size(390, 0)
+		})
+		slot6 = slot6 + slot8.getContentSize(slot8).height + 10
+
+		table.insert(slot5, slot8)
+	end
+
+	slot3.setContentSize(slot3, cc.size(595, slot6 + 60))
+	slot4.setPosition(slot4, 0, slot6 + 10)
+	slot3.addChild(slot3, slot4)
+
+	slot8 = 0
+
+	for slot12, slot13 in ipairs(slot5) do
+		slot13.setPosition(slot13, 25, slot6 - slot8)
+
+		slot8 = slot8 + slot13.getContentSize(slot13).height + 10
+
+		slot3.addChild(slot3, slot13)
+	end
+
+	return slot3
+end
+slot0.refreshArtifactCost = function (slot0)
+	slot0.starUpListView:removeAllChildren()
+	slot0.starUpListView:setContentSize(cc.size(((3 <= #Utility.analysisStrResList(ArtifactStarRelation.items[slot0.mCurHeroModel][slot0.mArtifactInfo.Stars].consume) and 3) or #slot2)*84, 120))
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.addOwnLabelToCard(slot0, slot0.createLayoutTemplateNode(slot0, "costLayout", {
+			cardData = {
+				cardInfo = {
+					modelId = slot7.resourceId,
+					num = slot7.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}).card, Resource.getCount(slot7.resourceId), slot7.num)
+		slot0.starUpListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "costLayout", {
+			cardData = {
+				cardInfo = {
+					modelId = slot7.resourceId,
+					num = slot7.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	if ArtifactStarRelation.items[slot0.mCurHeroModel][slot0.mArtifactInfo.Stars + 1] then
+		slot0.starUpBtn:setEnabled(slot3.needHeroLv <= HeroObj:getItem(slot0.mCurHeroModel).Lv)
+		slot0.starUpBtn:setTitleText(TR("升 星"))
+		slot0.starUpConditionLabel:setVisible(slot4 < slot3.needHeroLv)
+		slot0.starUpConditionLabel:setString(TR("需要侠客等级%d", slot3.needHeroLv))
+	else
+		slot0.starUpBtn:setEnabled(false)
+		slot0.starUpBtn:setTitleText(TR("已满级"))
+	end
+
+	return 
+end
+slot0.refreshArtifactSkill = function (slot0, slot1)
+	if not slot1 then
+		for slot5, slot6 in ipairs(slot0.getCustomChildren(slot0, slot0.skillNode, "orderId")) do
+			if not cc.FileUtils:getInstance():isFileExist(HeroArtifactRelation.items[slot0.mCurHeroModel][slot6.orderId].smallPic .. ".png") then
+				slot8 = "c_25.png"
+			end
+
+			slot6.skillSpr:setTexture(slot8)
+			slot6.warningLabel:setString(TR("%s级开启", slot7.openHeroLv))
+		end
+	end
+
+	slot2 = HeroObj:getItem(slot0.mCurHeroModel).Lv
+
+	for slot6, slot7 in ipairs(slot0.getCustomChildren(slot0, slot0.skillNode, "orderId")) do
+		slot0.mArtifactInfo.SkillInfo[slot7.orderId] = (next(slot0.mArtifactInfo.SkillInfo) and slot0.mArtifactInfo.SkillInfo[slot7.orderId]) or {
+			Lv = 1,
+			Id = slot7.orderId
+		}
+
+		slot7.lvLabel:setString(TR("%s", (next(slot0.mArtifactInfo.SkillInfo) and slot0.mArtifactInfo.SkillInfo[slot7.orderId]) or {
+			Lv = 1,
+			Id = slot7.orderId
+		}.Lv))
+
+		slot10 = HeroArtifactRelation.items[slot0.mCurHeroModel][slot7.orderId].openHeroLv <= slot2
+
+		slot7.arrowSpr:stopAllActions()
+		slot7.arrowSpr:setPositionY(35)
+
+		slot12 = HeroArtifactSkillLvRelation.items[(next(slot0.mArtifactInfo.SkillInfo) and slot0.mArtifactInfo.SkillInfo[slot7.orderId]) or {
+			Lv = 1,
+			Id = slot7.orderId
+		}.Lv + 1][slot0.mSelectOrderId]
+		slot13 = true
+
+		if HeroArtifactSkillLvRelation.items[slot9.Lv] then
+			for slot18, slot19 in ipairs(slot14) do
+				if Resource.getCount(slot19.resourceId) < slot19.num then
+					slot13 = false
+
+					break
+				end
+			end
+		end
+
+		slot14 = slot10 and slot12 and slot12.needHeroLv <= slot2 and slot13
+
+		if not slot10 then
+			slot7.guangEffect:setVisible(false)
+		else
+			slot7.guangEffect:setVisible(true)
+			slot7.guangEffect:setScale(1.1)
+		end
+
+		if slot14 then
+			slot7.arrowSpr:runAction(cc.RepeatForever:create(cc.Sequence:create({
+				cc.MoveBy:create(0.2, cc.p(0, 10)),
+				cc.MoveBy:create(0.3, cc.p(0, -10)),
+				cc.DelayTime:create(2)
+			})))
+		end
+
+		slot7.warningLabel:setVisible(not slot10)
+		slot7.setBright(slot7, slot10)
+		slot7.skillSpr:setGray(not slot10)
+		slot7.lvBg:setVisible(slot10)
+		slot7.lvLabel:setVisible(slot10)
+		slot7.arrowSpr:setVisible(slot14)
+
+		slot7.canOpera = slot10
+
+		slot7.selectSprite:setVisible(slot0.mSelectOrderId == slot7.orderId)
+	end
+
+	slot0.starNode:removeAllChildren()
+
+	slot3 = 4
+
+	for slot7 = 1, 5, 1 do
+		slot9 = UIWrap.newControl("Sprite", {
+			image = (slot7 <= slot0.mArtifactInfo.Stars and "c_5.png") or "c_89.png"
+		})
+
+		slot9.setPosition(slot9, cc.p((slot7 - 1)*24 + slot3*(slot7 - 1), 0))
+		slot0.starNode:addChild(slot9)
+	end
+
+	return 
+end
+slot0.showStepUpArtifactEffect = function (slot0)
+	MqAudio.playEffect("xiakezhuanwu.mp3")
+	slot0.bgSpr:addChild(UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "glow",
+		autoDelete = true,
+		dataFile = "effect_ui_xiakezhuanwu",
+		pos = cc.p(560, 350),
+		complete = function ()
+			return 
+		end
+	}), 99)
+
+	return 
+end
+slot0.showStepUpEffect = function (slot0, slot1)
+	if not slot0.mFristLockedNode then
+		if slot1 then
+			slot1()
+		end
+
+		return 
+	end
+
+	slot0.mFristLockedNode:addChild(UIWrap.newControl("Effect", {
+		speed = 2.5,
+		animation = "lnk",
+		loop = false,
+		autoDelete = true,
+		dataFile = "effect_ui_xiakezhuanwu",
+		pos = cc.p(0, 0),
+		complete = function ()
+			slot0.mFristLockedNode:setBright(true)
+			slot0.mFristLockedNode.setBright.mFristLockedNode.skillSpr:setGray(false)
+
+			if slot0.mFristLockedNode.setBright.mFristLockedNode.skillSpr then
+				slot1()
+			end
+
+			return 
+		end
+	}), 1)
+
+	return 
+end
+slot0.onReddotVisibleFunc = function (slot0, slot1, slot2)
+	slot1.setVisible(slot1, RedDotObj:isValid(ModuleSub.eHeroAttrPoint, slot3))
+
+	return 
+end
+slot0.onLayerCloseCallback = function (slot0, slot1)
+	LayerManager.setRestoreData("hero.HeroFormationLayer", {
+		lastShowModelId = slot0.mCurHeroModel
+	})
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onArtifactSkillCallback = function (slot0, slot1)
+	slot2 = slot1.orderId
+
+	for slot6, slot7 in ipairs(slot0.getCustomChildren(slot0, slot0.skillNode, "orderId")) do
+		slot7.selectSprite:setVisible(slot2 == slot7.orderId)
+	end
+
+	slot0.mSelectOrderId = slot2
+
+	slot0.refreshPage(slot0)
+
+	return 
+end
+slot0.onCardFSCallback = function (slot0, slot1)
+	if #Utility.getDropWayList(slot1.mModelId) ~= 0 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "commonlayer.GoodsGetWaysLayer",
+			popRestore = true,
+			data = {
+				resourceId = slot2
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		return 
+	end
+
+	ui.showMessageBox({
+		diyUICallback = function (slot0, slot1)
+			slot0.addChild(slot0, slot2)
+			slot0.addChild(slot0, slot5)
+			slot0.addChild(slot0, slot6)
+			slot0.addChild(slot0, slot7)
+			slot0.addChild(slot0, UIWrap.newControl("Label", {
+				align = 1,
+				valign = 0,
+				text = Resource.getIntro(slot0),
+				anchor = cc.p(0.5, 1),
+				pos = cc.p(slot1.width/2, slot1.height/2 - 30),
+				size = cc.size(slot1.width - 40, 0),
+				color = cc.c3b(37, 37, 37)
+			}))
+
+			return 
+		end,
+		msgBoxParams = {
+			needTouchClose = true,
+			image = "tc_1.png",
+			hideCloseButton = true,
+			size = cc.size(512, 331)
+		}
+	})
+
+	return 
+end
+slot0.lookRedDotLost = function (slot0, slot1)
+	if RedDotObj:isValid(ModuleSub.eHeroAttrPoint, tostring(slot0.mCurHeroModel) .. slot1) then
+		RedDotObj:seeRedDot("ArtifactReddot", tostring(slot0.mCurHeroModel))
+	end
+
+	return 
+end
+slot0.onGetSTViewItemCount = function (slot0)
+	return table.maxn(slot0.mHeroList)
+end
+slot0.onShowItemAtIndex = function (slot0, slot1, slot2)
+	slot4 = cc.Node:create()
+
+	slot4.setContentSize(slot4, cc.size(400, 450))
+	slot4.setPosition(slot4, cc.p(80, 150))
+	slot4.setScale(slot4, 0.75)
+
+	if cc.FileUtils:getInstance():isFileExist(slot3 .. ".skel") then
+		slot6 = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			dataFile = slot3
+		})
+
+		slot6.setPosition(slot6, cc.p(200, 225))
+		slot4.addChild(slot4, slot6)
+	else
+		slot4.addChild(slot4, UIWrap.newControl("Sprite", {
+			image = slot3 .. ".png",
+			pos = cc.p(200, 225)
+		}))
+	end
+
+	return slot4
+end
+slot0.onSelectedItemChanged = function (slot0, slot1)
+	slot0.mCurHeroModel = slot0.mHeroList[slot1]
+	slot0.mCurHeroQuality = HeroModel.items[slot0.mCurHeroModel].quality
+	slot0.mSpecialRepGoodsId = HeroModel.items[slot0.mCurHeroModel].specialRepGoodsId
+	slot0.mCurArtiType = HeroModel.items[slot0.mCurHeroModel].profession
+	slot0.mArtifactInfo = (next(HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo) and slot2) or {
+		StepLv = 0,
+		SkillInfo = {}
+	}
+
+	slot0.ArtifactLabel:setString(TR("%s", HeroModel.items[slot0.mCurHeroModel].specialGoodsName))
+	slot0.skillNode.leftArrowSpr:setVisible(slot1 ~= 1)
+	slot0.skillNode.rightArrowSpr:setVisible(slot1 ~= slot0.onGetSTViewItemCount(slot0))
+	slot0.refreshArtifactSkill(slot0)
+
+	if slot0.mSelectTag == 2 and not slot0.onTabviewAllowChangCallBack(slot0, slot0.mSelectTag) then
+		slot0.mSelectTag = 1
+
+		slot0.tabView:activeTabBtnByTag2(1)
+	else
+		slot0.refreshPage(slot0)
+	end
+
+	for slot6, slot7 in pairs(slot0.tabView:getTabBtns()) do
+		if slot7.redDot and not tolua.isnull(slot7.redDot) then
+			slot0.onReddotVisibleFunc(slot0, slot7.redDot, slot0.btnInfos[slot6].subKey)
+		end
+	end
+
+	EventAuto:postEvent(EventDefine.eHeroSubPageChangeHero, slot0.mCurHeroModel)
+
+	return 
+end
+slot0.onItemClickedCallback = function (slot0, slot1, slot2)
+	return 
+end
+slot0.onTabviewAllowChangCallBack = function (slot0, slot1)
+	if slot1 == 2 then
+		if Resource.getQualityColorLv(slot0.mCurHeroQuality) <= 4 then
+			ui.showFlashView(TR("橙色及以上侠客可升星"))
+
+			return false
+		elseif HeroObj:getItem(slot0.mCurHeroModel).Lv < ModuleSubConfig.items[ModuleSub.eHeroArtifactStar].openLv then
+			ui.showFlashView(TR("侠客%d级后开启升星", ModuleSubConfig.items[ModuleSub.eHeroArtifactStar].openLv))
+
+			return false
+		end
+	end
+
+	return true
+end
+slot0.onTabviewTurnPageCallBack = function (slot0, slot1)
+	slot0.mSelectTag = slot1
+
+	slot0.refreshPage(slot0)
+
+	return 
+end
+slot0.refreshPage = function (slot0)
+	slot0.pageNode1:setVisible(slot0.mSelectTag == 1)
+	slot0.pageNode2:setVisible(slot0.mSelectTag == 2)
+	slot0.lookRedDotLost(slot0, "_IfArtifactCanOperate")
+
+	if slot0.mSelectTag == 1 then
+		slot0.lookRedDotLost(slot0, "_IfArtifactLv")
+		slot0.refreshIntensivePage(slot0)
+	elseif slot0.mSelectTag == 2 then
+		slot0.lookRedDotLost(slot0, "_IfArtifactStar")
+		slot0.refreshStarUpPage(slot0)
+	end
+
+	return 
+end
+slot4 = {
+	top = cc.p(6.5, 167),
+	bottom = cc.p(6.5, 2)
+}
+slot0.refreshIntensivePage = function (slot0)
+	if not cc.FileUtils:getInstance():isFileExist(HeroArtifactRelation.items[slot0.mCurHeroModel][clone(HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo.SkillInfo[slot0.mSelectOrderId]) or {
+		Lv = 1,
+		Id = slot0.mSelectOrderId
+	}.Id].smallPic .. ".png") then
+		slot4 = "sk_111054.png"
+	end
+
+	slot5 = slot3.openHeroLv <= slot1.Lv
+	slot8 = HeroArtifactSkillLvRelation.items[slot2.Lv][slot0.mSelectOrderId].needHeroLv
+	slot9 = math.min(HeroArtifactSkillLvRelation.items_count, slot2.Lv + 1)
+	slot10 = HeroArtifactSkillLvRelation.items[slot2.Lv + 1] and HeroArtifactSkillLvRelation.items[slot2.Lv + 1][slot0.mSelectOrderId]
+	slot0.mCurLvInfoNode = slot0.refreshOneLvInfoNode(slot0, slot0.mCurLvInfoNode, {
+		slot4,
+		slot2.Lv,
+		Utility.getHeroArtifacLvUpDes(slot0.mCurHeroModel, slot1.Star, slot2.Id, slot2.Lv)
+	})
+
+	slot0.mCurLvInfoNode:setPosition(slot0.top)
+
+	slot0.mNextLvInfoNode = slot0.refreshOneLvInfoNode(slot0, slot0.mNextLvInfoNode, slot13)
+
+	slot0.mNextLvInfoNode:setPosition(slot0.bottom)
+	slot0.mNextLvInfoNode:setVisible(not (slot2.Lv == HeroArtifactSkillLvRelation.items_count))
+	slot0.fullLabel:setVisible(slot2.Lv == HeroArtifactSkillLvRelation.items_count)
+	slot0.intensiveCostListView:removeAllChildren()
+	slot0.intensiveCostListView:setContentSize(cc.size(((3 <= #Utility.analysisStrResList(HeroArtifactSkillLvRelation.items[slot2.Lv][slot0.mSelectOrderId].lvUpConsume) and 3) or #slot14)*84, 120))
+
+	for slot18, slot19 in ipairs(slot14) do
+		slot0.addOwnLabelToCard(slot0, slot0.createLayoutTemplateNode(slot0, "costLayout", {
+			cardData = {
+				cardInfo = {
+					modelId = slot19.resourceId,
+					num = slot19.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}).card, Resource.getCount(slot19.resourceId), slot19.num)
+		slot0.intensiveCostListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "costLayout", {
+			cardData = {
+				cardInfo = {
+					modelId = slot19.resourceId,
+					num = slot19.num
+				},
+				showAttrs = {
+					Enums.CardShowAttr.eBorder,
+					Enums.CardShowAttr.eNum
+				}
+			}
+		}))
+	end
+
+	slot0.oneLvUpBtn:setEnabled(slot5 and slot10 and slot10.needHeroLv <= slot1.Lv)
+	slot0.tenLvUpBtn:setEnabled(slot5 and slot10 and slot10.needHeroLv <= slot1.Lv)
+	slot0.lvUpConditionLabel:setVisible(not slot6 and not (slot10 and slot10.needHeroLv <= slot1.Lv))
+	slot0.lvUpConditionLabel:setString(TR("需要侠客等级%d", slot9))
+
+	return 
+end
+slot0.refreshOneLvInfoNode = function (slot0, slot1, slot2)
+	if not slot1 or tolua.isnull(slot1) then
+		slot0.contentNode:addChild(slot0.createLayoutTemplateNode(slot0, "lvInfoNode", {
+			skillImage = slot2[1],
+			skillLv = slot2[2],
+			skillDesc = slot2[3]
+		}))
+	else
+		slot1.skillSpr:setTexture(slot2[1])
+		slot1.lvLabel:setString(TR("%s", slot2[2]))
+		slot1.descLabel:setString(TR("%s", slot2[3]))
+	end
+
+	return slot1
+end
+slot0.refreshStarUpPage = function (slot0)
+	slot0.refreshArtifactCost(slot0)
+	slot0.refreshArtifactInfo_new(slot0)
+
+	return 
+end
+slot0.addOwnLabelToCard = function (slot0, slot1, slot2, slot3)
+	if not slot1 or tolua.isnull(slot1) then
+		return 
+	end
+
+	slot1.addChild(slot1, slot4)
+	slot4.addChild(slot4, UIWrap.newControl("Label", {
+		fontSize = 17,
+		outlineSize = 1,
+		isRichText = true,
+		text = TR("%s%s/%s", (slot3 <= slot2 and "#37ff40") or "#ff4a46", Utility.numberWithUnit(slot2), Utility.numberWithUnit(slot3)),
+		pos = cc.p(50, 12),
+		outlineColor = cc.c3b(37, 37, 37)
+	}))
+
+	return 
+end
+slot0.onLvUpCallback = function (slot0, slot1)
+	slot3 = clone(HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo.SkillInfo[slot0.mSelectOrderId]) or {
+		Lv = 1,
+		Id = slot0.mSelectOrderId
+	}
+
+	for slot8, slot9 in ipairs(slot4) do
+		if Resource.getCount(slot9.resourceId) < slot9.num then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.GoodsGetWaysLayer",
+				popRestore = true,
+				data = {
+					resourceId = slot9.resourceId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "ArtifactSkillLvUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.mCurHeroModel,
+			slot0.mSelectOrderId,
+			slot1.realCount or 1
+		},
+		successCallback = function (slot0)
+			if slot0.ArtifactInfo then
+				dump(slot0.ArtifactInfo)
+
+				slot0.mArtifactInfo = slot0.ArtifactInfo
+				HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo = slot0.ArtifactInfo
+
+				HeroObj:modifyItem(HeroObj.getItem(slot0.mCurHeroModel))
+			end
+
+			slot0:refreshPage()
+			slot0:refreshArtifactSkill()
+			slot0:showStepUpArtifactEffect()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onStarsUpCallBack = function (slot0)
+	for slot6, slot7 in ipairs(slot2) do
+		if Resource.getCount(slot7.resourceId) < slot7.num then
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "commonlayer.GoodsGetWaysLayer",
+				popRestore = true,
+				data = {
+					resourceId = slot7.resourceId
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+
+			return 
+		end
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "ArtifactStarsUp",
+		moduleName = "Hero",
+		methodData = {
+			slot0.mCurHeroModel
+		},
+		successCallback = function (slot0)
+			if slot0.ArtifactInfo then
+				dump(slot0.ArtifactInfo)
+
+				slot0.mArtifactInfo = slot0.ArtifactInfo
+				HeroObj:getItem(slot0.mCurHeroModel).ArtifactInfo = slot0.ArtifactInfo
+
+				HeroObj:modifyItem(HeroObj.getItem(slot0.mCurHeroModel))
+			end
+
+			slot1 = ""
+
+			MqAudio.playEffect("shenbing_qianghua.mp3")
+			slot0:refreshPage()
+			slot0:refreshArtifactSkill()
+			slot0:showStepUpArtifactEffect()
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "hero.HeroArtifactStarUpSuccessLayer",
+				data = {
+					heroId = slot0.mCurHeroModel
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

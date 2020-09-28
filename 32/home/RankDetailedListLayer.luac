@@ -1,0 +1,786 @@
+slot0 = class("RankDetailedListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			sizeApt = 2,
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("排行榜")
+		},
+		children = {
+			{
+				name = "untitled31",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 421.27,
+						y = 423.38
+					},
+					size = {
+						width = 780,
+						height = 28
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 131.29,
+						y = 423
+					},
+					text = TR("排名")
+				},
+				children = {}
+			},
+			{
+				name = "untitled8",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 339.23,
+						y = 423
+					},
+					text = TR("玩家")
+				},
+				children = {}
+			},
+			{
+				name = "untitled7",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 553.42,
+						y = 423
+					},
+					text = TR("帮派")
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 756.92,
+						y = 423
+					},
+					text = TR("战力")
+				},
+				children = {}
+			},
+			{
+				name = "typeBtn_1",
+				cType = "Button",
+				custom = {
+					{
+						value = 1,
+						name = "tag",
+						type = "number"
+					}
+				},
+				params = {
+					image = "c_30.png",
+					clickAction = "onTagChange",
+					pos = {
+						x = 84.69,
+						y = 470.97
+					},
+					titleText = TR("战力榜")
+				},
+				children = {}
+			},
+			{
+				name = "typeBtn_2",
+				cType = "Button",
+				custom = {
+					{
+						value = 2,
+						name = "tag",
+						type = "number"
+					}
+				},
+				params = {
+					image = "c_31.png",
+					clickAction = "onTagChange",
+					pos = {
+						x = 194.64,
+						y = 470.34
+					},
+					titleText = TR("侠客榜")
+				},
+				children = {}
+			},
+			{
+				name = "untitled32",
+				cType = "ScrollView",
+				params = {
+					pos = {
+						x = 30.5,
+						y = 81
+					},
+					size = {
+						width = 790,
+						height = 320
+					}
+				},
+				children = {
+					{
+						name = "tableView",
+						cType = "TableView",
+						params = {
+							numOfCellsFunc = "cbNumOfCellsFunc",
+							isVertical = true,
+							cellUpdateFunc = "cbCellUpdateFunc",
+							cellSizeFunc = "cbCellSizeFunc",
+							cellFillFunc = "cbCellFillFunc",
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 790,
+								height = 320
+							}
+						},
+						children = {
+							{
+								name = "tempNode",
+								cType = "TemplateNode",
+								params = {
+									pos = {
+										x = -4.09,
+										y = -297.2
+									},
+									size = {
+										width = 790,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "untitled15",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_34.png",
+											pos = {
+												x = 395,
+												y = 50
+											},
+											size = {
+												width = 780,
+												height = 95
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled12",
+										cType = "Sprite",
+										params = {
+											image = "c_51.png",
+											childName = "rankImage",
+											pos = {
+												x = 85,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled13",
+										cType = "Label",
+										params = {
+											text = "999",
+											isRichText = true,
+											childName = "RankLabel",
+											fontName = "c_54.png",
+											pos = {
+												x = 85,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled14",
+										cType = "CardNode",
+										params = {
+											scale = 0.8,
+											childName = "headCard",
+											allowClick = true,
+											initParams = {},
+											pos = {
+												x = 234.58,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled16",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											text = "Label",
+											childName = "playerName",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 65,
+												r = 192,
+												b = 65
+											},
+											pos = {
+												x = 276.6,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled17",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "guildName",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 515.62,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled18",
+										cType = "Label",
+										params = {
+											fontSize = 22,
+											childName = "Fap",
+											text = "Label",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 725.16,
+												y = 50
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled30",
+										cType = "Button",
+										params = {
+											childName = "headClickBtn",
+											image = "c_pure.png",
+											clickAction = "onHeadClickAction",
+											pos = {
+												x = 234.03,
+												y = 50
+											},
+											size = {
+												width = 65,
+												height = 65
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "myRank",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 118.71,
+						y = 50
+					},
+					text = TR("我的排名")
+				},
+				children = {}
+			},
+			{
+				name = "myLv",
+				cType = "Label",
+				params = {
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 718.57,
+						y = 50
+					},
+					text = TR("我的等级")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "addFriendBox",
+		cType = "TemplateNode",
+		custom = {
+			{
+				value = "untitled25-playerId|untitled26-playerId|untitled27-playerId|untitled28-playerId",
+				name = "playerId",
+				type = "string"
+			},
+			{
+				value = "untitled26-playerName",
+				name = "PlayerName",
+				type = "string"
+			}
+		},
+		params = {
+			pos = {
+				x = 497.61,
+				y = 298.01
+			}
+		},
+		children = {
+			{
+				name = "untitled20",
+				cType = "MsgBoxBg",
+				params = {
+					hideCloseButton = true,
+					closeAction = "onBoxCloseClickAction",
+					needTouchClose = true,
+					image = "c_59.png",
+					pos = {
+						x = -12.35,
+						y = 43.27
+					},
+					size = {
+						width = 124,
+						height = 184
+					}
+				},
+				children = {
+					{
+						name = "untitled25",
+						cType = "Button",
+						custom = {
+							{
+								value = "",
+								name = "playerId",
+								type = "string"
+							}
+						},
+						params = {
+							clickAction = "onAddFrindClickAction",
+							image = "c_pure.png",
+							pos = {
+								x = 62,
+								y = 156.34
+							},
+							size = {
+								width = 100,
+								height = 32
+							},
+							titleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							titleText = TR("加好友")
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Button",
+						custom = {
+							{
+								value = "",
+								name = "playerId",
+								type = "string"
+							},
+							{
+								value = "",
+								name = "playerName",
+								type = "string"
+							}
+						},
+						params = {
+							clickAction = "onMailClickAction",
+							image = "c_pure.png",
+							pos = {
+								x = 62,
+								y = 114.92
+							},
+							size = {
+								width = 100,
+								height = 32
+							},
+							titleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							titleText = TR("发邮件")
+						},
+						children = {}
+					},
+					{
+						name = "untitled27",
+						cType = "Button",
+						custom = {
+							{
+								value = "",
+								name = "playerId",
+								type = "string"
+							}
+						},
+						params = {
+							clickAction = "onFightClickAction",
+							image = "c_pure.png",
+							pos = {
+								x = 62,
+								y = 70.14
+							},
+							size = {
+								width = 100,
+								height = 32
+							},
+							titleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							titleText = TR("切 磋")
+						},
+						children = {}
+					},
+					{
+						name = "untitled28",
+						cType = "Button",
+						custom = {
+							{
+								value = "",
+								name = "playerId",
+								type = "string"
+							}
+						},
+						params = {
+							clickAction = "onTeamClickAction",
+							image = "c_pure.png",
+							pos = {
+								x = 62,
+								y = 27.58
+							},
+							size = {
+								width = 100,
+								height = 32
+							},
+							titleColor = {
+								g = 255,
+								r = 255,
+								b = 255
+							},
+							titleText = TR("阵 容")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.defaultTag = slot1.tag or 1
+	slot0.tag = 0
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.onTagChange(slot0, slot0.defaultTag)
+
+	return 
+end
+slot0.onTagChange = function (slot0, slot1)
+	if slot0.tag == ((type(slot1) == "number" and slot1) or slot1.tag) then
+		return 
+	end
+
+	slot0.tag = slot2
+
+	slot0.typeBtn_1:loadTextures((slot0.tag == 1 and "c_30.png") or "c_31.png", (slot0.tag == 1 and "c_30.png") or "c_31.png")
+	slot0.typeBtn_1.titleLabel:setColor((slot0.tag == 1 and cc.c3b(255, 255, 255)) or cc.c3b(0, 0, 0))
+	slot0.typeBtn_2:loadTextures((slot0.tag == 2 and "c_30.png") or "c_31.png", (slot0.tag == 2 and "c_30.png") or "c_31.png")
+	slot0.typeBtn_2.titleLabel:setColor((slot0.tag == 2 and cc.c3b(255, 255, 255)) or cc.c3b(0, 0, 0))
+	slot0.requestGetRankInfo(slot0, slot0.tag)
+
+	return 
+end
+slot0.showRankList = function (slot0)
+	slot1 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot2 = slot0.RankData.Rank.PlayerRanking
+
+	if slot0.tag == 1 then
+		slot0.myRank:setString(TR("我的排名:%s", slot2.RankingId or TR("暂无排名")))
+		slot0.myLv:setString((slot2.PlayerFap ~= nil and TR("战力:%s", Utility.numberWithUnit(slot2.PlayerFap))) or "")
+	else
+		slot0.myRank:setString(TR("我的排名:%s", slot2.RankingId or TR("暂无排名")))
+		slot0.myLv:setString("")
+	end
+
+	slot0.tableView:reloadData()
+
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 790, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.RankData.Rank.RankingList
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = {
+		"c_51.png",
+		"c_52.png",
+		"c_53.png"
+	}
+	slot4 = slot0.createLayoutTemplateNode(slot0, "tempNode", {})
+	slot4.refreshNode = function (slot0, slot1)
+		slot0.rankImage:setTexture(slot1[slot0.RankData.Rank.RankingList[slot1 + 1].RankingId] or "c_pure.png")
+		slot0.RankLabel:setString(slot2.RankingId)
+		slot0.playerName:setString((slot0.tag == 1 and slot2.PlayerName) or TR("%s[%s]", slot2.HeroName, slot2.PlayerName))
+		slot0.playerName:setColor(slot0.playerName.setString)
+		slot0.guildName:setString((slot2.GuildName ~= "" and slot2.GuildName) or TR("无"))
+		slot0.Fap:setString(Utility.numberWithUnit((slot0.tag == 1 and slot2.PlayerFap) or slot2.HeroFap))
+		slot0.headCard:setCardData({
+			modelId = slot2.HeadImageId or slot2.CombatModelId
+		})
+
+		if slot0.headCard.mShowAttrControl[Enums.CardShowAttr.eRightText] then
+			slot0.headCard.mShowAttrControl[Enums.CardShowAttr.eRightText].sprite:removeFromParent()
+
+			slot0.headCard.mShowAttrControl[Enums.CardShowAttr.eRightText] = nil
+		end
+
+		slot0.headCard:setClickAction(function ()
+			return 
+		end)
+
+		slot0.headClickBtn.rankInfo = slot2
+
+		return 
+	end
+
+	slot4.refreshNode(slot4, slot2)
+	slot4.setPositionY(slot4, 0)
+	slot1.addChild(slot1, slot4)
+
+	slot1.tempLayout = slot4
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.tempLayout:refreshNode(slot2)
+
+	return 
+end
+slot0.onBoxCloseClickAction = function (slot0, slot1)
+	slot1.removeFromParent(slot1)
+
+	slot1 = nil
+
+	return 
+end
+slot0.onHeadClickAction = function (slot0, slot1)
+	slot5 = (slot1.rankNum ~= 3 and slot0.convertToNodeSpace(slot0, slot2).x + 120) or slot0.convertToNodeSpace(slot0, slot2).x - 100
+	slot5 = slot0.createLayoutTemplateNode(slot0, "addFriendBox", {
+		playerId = slot1.rankInfo.PlayerId,
+		PlayerName = slot1.rankInfo.PlayerName
+	})
+
+	slot5.setPosition(slot5, cc.p)
+	slot0.addChild(slot0, slot5)
+
+	slot0.mBox = slot5
+
+	return 
+end
+slot0.onAddFrindClickAction = function (slot0, slot1)
+	if FriendObj:playerIsFriend(slot1.playerId) then
+		ui.showFlashView(TR("已添加该好友"))
+
+		return 
+	else
+		FriendObj:requestFriendApply(slot1.playerId)
+	end
+
+	if slot0.mBox and not tolua.isnull(slot0.mBox) then
+		slot0.mBox:removeFromParent()
+
+		slot0.mBox = nil
+	end
+
+	return 
+end
+slot0.onMailClickAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "mail.MailWriteLayer",
+		data = {
+			mailType = Enums.MailType.ePerson,
+			addressee = slot1.playerName,
+			playerId = slot1.playerId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	if slot0.mBox and not tolua.isnull(slot0.mBox) then
+		slot0.mBox:removeFromParent()
+
+		slot0.mBox = nil
+	end
+
+	return 
+end
+slot0.onFightClickAction = function (slot0, slot1)
+	slot0.playerId = slot1.playerId
+
+	ui.showCampReady({
+		noNeedVit = true,
+		callModelSub = ModuleSub.ePvp,
+		titleText = TR("切磋布阵"),
+		callback = function (slot0)
+			slot0:socketRequest({
+				methodName = "Study",
+				moduleName = "Pvp",
+				methodData = {
+					slot0.playerId,
+					table.concat(slot0, ",")
+				},
+				successCallback = function (slot0)
+					slot0.FightInfo.hideWinRewardTips = true
+
+					require("common.BattleEntry"):StartBattle({
+						fightInfo = slot0.FightInfo,
+						extraData = {
+							IsWin = slot0.IsWin
+						}
+					})
+
+					return 
+				end
+			})
+
+			return 
+		end
+	})
+
+	if slot0.mBox and not tolua.isnull(slot0.mBox) then
+		slot0.mBox:removeFromParent()
+
+		slot0.mBox = nil
+	end
+
+	return 
+end
+slot0.onTeamClickAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = {
+			playerId = slot1.playerId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	if slot0.mBox and not tolua.isnull(slot0.mBox) then
+		slot0.mBox:removeFromParent()
+
+		slot0.mBox = nil
+	end
+
+	return 
+end
+slot0.requestGetRankInfo = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "RankingList",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.RankData = slot0.RankInfo
+
+			slot0:showRankList()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

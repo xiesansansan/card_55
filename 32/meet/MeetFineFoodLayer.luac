@@ -1,0 +1,1433 @@
+slot0 = class("MeetFineFoodLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "jhqy_ms_2.jpg",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "bottomNode",
+		cType = "Node",
+		params = {
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled52",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled53",
+				cType = "Button",
+				params = {
+					image = "c_1.png",
+					clickAction = "onClose",
+					pos = {
+						x = 125.38,
+						y = -29.5
+					}
+				},
+				children = {
+					{
+						name = "untitled54",
+						cType = "Sprite",
+						params = {
+							image = "c_pure.png",
+							pos = {
+								x = 21.57,
+								y = 3.04
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "mCenterNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mNpcNode",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_chibaozhi",
+					animation = "laotou_daiji",
+					pos = {
+						x = 0.02,
+						y = 335
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPlayerNode",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_chibaozhi",
+					animation = "nanzhu_chijitui",
+					pos = {
+						x = 0.02,
+						y = 335
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPlayerStatusNode",
+				cType = "Effect",
+				params = {
+					hide = true,
+					dataFile = "effect_ui_jiuguandaiji",
+					pos = {
+						x = 0.02,
+						y = 335
+					}
+				},
+				children = {
+					{
+						name = "untitled84",
+						cType = "Scale9Sprite",
+						params = {
+							image = "jhqy_ms_1.png",
+							pos = {
+								x = 100,
+								y = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled96",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									anchor = {
+										x = 0,
+										y = 1
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 24.96,
+										y = 74.52
+									},
+									size = {
+										width = 190,
+										height = 0
+									},
+									text = TR("我是不是上当了…白请老乞丐吃了这么多…")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mTimeLabel",
+				cType = "Label",
+				params = {
+					text = "3",
+					charCount = 12,
+					hide = true,
+					fontName = "c_81.png",
+					isRichText = true,
+					pos = {
+						x = 0,
+						y = 575.82
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mStartTimeLabel",
+				cType = "Label",
+				params = {
+					text = "3",
+					charCount = 12,
+					scale = 2.4,
+					isRichText = true,
+					fontName = "c_81.png",
+					pos = {
+						x = 0,
+						y = 575
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "m44Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled55",
+				cType = "Button",
+				params = {
+					fontSize = 28,
+					clickAction = "onStartClickAction",
+					hide = true,
+					image = "c_127.png",
+					zOrder = 1,
+					scale = 0.8,
+					pos = {
+						x = -58.93,
+						y = 533.92
+					},
+					titleColor = {
+						g = 229,
+						r = 153,
+						b = 61
+					},
+					titleText = TR("开始")
+				},
+				children = {}
+			},
+			{
+				name = "untitled68",
+				cType = "Button",
+				params = {
+					fontSize = 28,
+					clickAction = "onPrepareClickAction",
+					hide = true,
+					image = "c_127.png",
+					zOrder = 1,
+					scale = 0.8,
+					pos = {
+						x = -58.93,
+						y = 445.59
+					},
+					titleColor = {
+						g = 229,
+						r = 153,
+						b = 61
+					},
+					titleText = TR("准备")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mDeskSprite",
+		cType = "Sprite",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			image = "jhqy_ms_3.png",
+			anchor = {
+				x = 0.5,
+				y = 0
+			},
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {}
+	},
+	{
+		name = "mGoodsNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			zOrder = 5,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "tmpSpeedItem",
+				cType = "TemplateNode",
+				custom = {
+					{
+						value = "untitled74-image",
+						name = "image",
+						type = "string"
+					},
+					{
+						value = "untitled74-goodType",
+						name = "goodType",
+						type = "string"
+					}
+				},
+				params = {
+					pos = {
+						x = 411,
+						y = 140
+					}
+				},
+				children = {
+					{
+						name = "untitled74",
+						cType = "Button",
+						custom = {
+							{
+								value = 0,
+								name = "goodType",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "jhqy_ms_5.png",
+							clickAction = "onClickGoodsAction",
+							childName = "btn",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "m42Node",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "mPlayerFoodNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 230.74,
+						y = 88.59
+					}
+				},
+				children = {
+					{
+						name = "untitled92",
+						cType = "Scale9Sprite",
+						params = {
+							image = "jhqy_ms_6.png",
+							childName = "foodStatus",
+							pos = {
+								x = 0,
+								y = 33
+							},
+							size = {
+								width = 284,
+								height = 146
+							}
+						},
+						children = {
+							{
+								name = "untitled95",
+								cType = "Sprite",
+								params = {
+									childName = "exSprite",
+									image = "jhqy_ms_21.png",
+									hide = true,
+									pos = {
+										x = 90,
+										y = 55
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mNpcFoodNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = -181.22,
+						y = 85.91
+					}
+				},
+				children = {
+					{
+						name = "untitled93",
+						cType = "Scale9Sprite",
+						params = {
+							image = "jhqy_ms_6.png",
+							childName = "foodStatus",
+							pos = {
+								x = 0,
+								y = 33
+							},
+							size = {
+								width = 284,
+								height = 146
+							}
+						},
+						children = {
+							{
+								name = "untitled94",
+								cType = "Sprite",
+								params = {
+									childName = "exSprite",
+									image = "jhqy_ms_21.png",
+									hide = true,
+									pos = {
+										x = 90,
+										y = 55
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot1 = require("common.SpineManager")
+slot2 = {
+	cc.p(390, 150),
+	cc.p(450, 110),
+	cc.p(0, 150),
+	cc.p(0, 110)
+}
+slot3 = {
+	[0] = {
+		n_foodType = 1,
+		f_image = "jhqy_ms_6.png",
+		c_image = "jhqy_ms_6.png",
+		c_foodType = 0
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_6.png",
+		c_image = "jhqy_ms_7.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_7.png",
+		c_image = "jhqy_ms_8.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_8.png",
+		c_image = "jhqy_ms_9.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_9.png",
+		c_image = "jhqy_ms_10.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_10.png",
+		c_image = "jhqy_ms_11.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_11.png",
+		c_image = "jhqy_ms_12.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_12.png",
+		c_image = "jhqy_ms_13.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_13.png",
+		c_image = "jhqy_ms_14.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 1,
+		f_image = "jhqy_ms_14.png",
+		c_image = "jhqy_ms_15.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 2,
+		f_image = "jhqy_ms_15.png",
+		c_image = "jhqy_ms_16.png",
+		c_foodType = 1
+	},
+	{
+		n_foodType = 2,
+		f_image = "jhqy_ms_16.png",
+		c_image = "jhqy_ms_17.png",
+		c_foodType = 2
+	},
+	{
+		n_foodType = 2,
+		f_image = "jhqy_ms_17.png",
+		c_image = "jhqy_ms_18.png",
+		c_foodType = 2
+	},
+	{
+		n_foodType = 0,
+		f_image = "jhqy_ms_18.png",
+		c_image = "c_pure.png",
+		c_foodType = 2
+	}
+}
+slot4 = {
+	{
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1
+	},
+	{
+		-1,
+		-1,
+		-1,
+		0,
+		0,
+		1,
+		1,
+		1,
+		0,
+		0,
+		-1,
+		-1,
+		1,
+		1
+	},
+	{
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		-1,
+		-1,
+		-1,
+		1,
+		1,
+		1
+	},
+	{
+		0,
+		0,
+		0,
+		1,
+		1,
+		1,
+		1,
+		1,
+		-1,
+		-1,
+		-1,
+		0,
+		1,
+		1
+	},
+	{
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1,
+		1
+	}
+}
+slot5 = {
+	{
+		strongNum = 0.8,
+		image = "jhqy_ms_5.png",
+		time = 2
+	},
+	{
+		strongNum = 0.4,
+		image = "jhqy_ms_4.png",
+		time = 1
+	}
+}
+slot6 = {
+	NpcWin = 2,
+	TimeOver = 0,
+	PlaceWin = 3,
+	PlayerWin = 1
+}
+slot0.ctor = function (slot0, slot1)
+	require("socket")
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.defaultTag = slot1.tag or 1
+	slot0.mCallback = slot1.callback
+	slot0.tag = 0
+
+	slot0.initUI(slot0)
+	slot0.createTouchLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.mPlayerNode.ff_isPlayer = true
+	slot0.mPlayerFoodList = {}
+	slot0.mNpcFoodList = {}
+
+	slot0.resetStatus(slot0)
+	slot0.addStartTimeAction(slot0, function ()
+		slot0:addFigureAction()
+		slot0.addFigureAction:startGame()
+
+		return 
+	end)
+
+	return 
+end
+slot0.addFigureAction = function (slot0)
+	if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+		slot0.figureIdleEffect:removeFromParent()
+
+		slot0.figureIdleEffect = nil
+	end
+
+	slot0.figureIdleEffect = ui.addNodeFigureAnimation(slot0.mPlayerFoodNode, cc.p(0, 40))
+
+	Utility.performWithDelay(slot0, function ()
+		if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+			slot0.figureIdleEffect:removeFromParent()
+
+			slot0.figureIdleEffect.removeFromParent.figureIdleEffect = nil
+		end
+
+		return 
+	end, 3)
+
+	return 
+end
+slot0.addStartTimeAction = function (slot0, slot1)
+	slot0.mStartTimeLabel:runAction(cc.Sequence:create({
+		cc.CallFunc:create(function ()
+			slot0.mStartTimeLabel:setVisible(true)
+			slot0.mStartTimeLabel.setVisible.mStartTimeLabel:setScale(3)
+			slot0.mStartTimeLabel.setVisible.mStartTimeLabel.setScale.mStartTimeLabel:setString(TR("%d", 3))
+
+			return 
+		end),
+		cc.ScaleTo:create(0.1, 1),
+		cc.DelayTime:create(0.9),
+		cc.CallFunc:create(function ()
+			slot0.mStartTimeLabel:setScale(3)
+			slot0.mStartTimeLabel.setScale.mStartTimeLabel:setString(TR("%d", 2))
+
+			return 
+		end),
+		cc.ScaleTo:create(0.1, 1),
+		cc.DelayTime:create(0.9),
+		cc.CallFunc:create(function ()
+			slot0.mStartTimeLabel:setScale(3)
+			slot0.mStartTimeLabel.setScale.mStartTimeLabel:setString(TR("%d", 1))
+
+			return 
+		end),
+		cc.ScaleTo:create(0.1, 1),
+		cc.DelayTime:create(0.9),
+		cc.CallFunc:create(function ()
+			slot0.mStartTimeLabel:setVisible(false)
+			slot0.mStartTimeLabel.setVisible.mTimeLabel:setVisible(true)
+
+			if slot0.mStartTimeLabel.setVisible.mTimeLabel then
+				slot1()
+			end
+
+			return 
+		end)
+	}))
+
+	return 
+end
+slot0.resetStatus = function (slot0)
+	slot0.mStartTimeLabel:stopAllActions()
+
+	if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+		slot0.figureIdleEffect:removeFromParent()
+
+		slot0.figureIdleEffect = nil
+	end
+
+	slot0.stopTimer(slot0)
+	slot0.mGoodsNode:removeAllChildren()
+	slot0.mPlayerNode:stopAllActions()
+	slot0.mPlayerNode:setVisible(true)
+	slot0.mNpcNode:stopAllActions()
+	slot0.mNpcNode:setVisible(true)
+	slot0.mTimeLabel:setVisible(false)
+	slot0.mPlayerStatusNode:stopAllActions()
+	slot0.mPlayerStatusNode:setVisible(false)
+
+	slot0.mIsGameRunning = false
+	slot0.mTotaltime = 30
+	slot0.mTotalTaskValue = 500
+	slot0.mRecordIter = 0.2
+	slot0.mPointNum = 0
+	slot0.mPointInterList = {}
+	slot0.mGameTime = 30
+	slot0.mMuchUnitTime = 0
+	slot0.mNpcSpeedEnumType = math.random(1, 5)
+	slot0.mTakeoutGoodsNum = 0
+	slot0.mFoodNum = 13
+	slot0.mFixGameTime = slot0.mGameTime
+	slot0.mRegulator_num1 = 0.2
+	slot0.mRegulator_num2 = 3
+	slot0.mRegulator_num3 = 1.2
+
+	slot0.mTimeLabel:setString(string.format("%d", slot0.mGameTime))
+
+	slot0.mNpcSpeed = slot0.mTotalTaskValue/(slot0.mTotaltime*1000)
+	slot0.mPlayerStableSpeed = slot0.mTotalTaskValue/(slot0.mTotaltime*1000)
+	slot0.mPlayerNode.ff_curValue = 0
+	slot0.mPlayerNode.ff_lastPointNum = 0
+	slot0.mPlayerNode.ff_eatNum = 0
+	slot0.mNpcNode.ff_curValue = 0
+	slot0.mNpcNode.ff_lastPointNum = 0
+	slot0.mNpcNode.ff_eatNum = 0
+	slot0.mPlayerNode.buffOverTime = 0
+	slot0.mPlayerNode.goodType = 0
+
+	slot0.playAnimationRecord(slot0, slot0.mPlayerNode, "nanzhu_daiji")
+	slot0.mPlayerNode:setTimeScale(1)
+	slot0.mPlayerNode:registerLuaHandler("complete", function ()
+		if slot0.mPlayerNode.ff_curAnimName == "nanzhu_chijitui" then
+			slot0.mPlayerNode.ff_eatNum = slot0.mPlayerNode.ff_eatNum + 1
+
+			slot0.mPlayerNode:playAnimationRecord(slot0.mPlayerNode, "nanzhu_daiji")
+
+			if slot0.mFoodNum <= slot0.mPlayerNode.playAnimationRecord.mPlayerNode.ff_eatNum then
+				slot0:refreshFoodStatus(true, false)
+				slot0.refreshFoodStatus:gameOver(slot1.PlayerWin)
+			end
+		end
+
+		if slot0.mPlayerNode.ff_curAnimName == "nanzhu_chibaozi" then
+			slot0.mPlayerNode.ff_eatNum = slot0.mPlayerNode.ff_eatNum + 1
+
+			slot0.mPlayerNode:playAnimationRecord(slot0.mPlayerNode, "nanzhu_daiji")
+		end
+
+		return 
+	end)
+	slot0.playAnimationRecord(slot0, slot0.mNpcNode, "laotou_daiji")
+	slot0.mNpcNode:setTimeScale(1)
+	slot0.mNpcNode:registerLuaHandler("complete", function ()
+		if slot0.mNpcNode.ff_curAnimName == "laotou_chijitui" then
+			slot0.mNpcNode.ff_eatNum = slot0.mNpcNode.ff_eatNum + 1
+
+			if slot0.mFoodNum <= slot0.mNpcNode.mNpcNode.ff_eatNum then
+				slot0:refreshFoodStatus(false, false)
+				slot0.refreshFoodStatus:gameOver(slot1.NpcWin)
+			end
+		end
+
+		if slot0.mNpcNode.ff_curAnimName == "laotou_chibaozi" then
+			slot0.mNpcNode.ff_eatNum = slot0.mNpcNode.ff_eatNum + 1
+
+			if slot2[slot0.mNpcNode.ff_eatNum].n_foodType == 2 then
+				slot0:playAnimationRecord(slot0.mNpcNode, "laotou_daiji")
+			end
+		end
+
+		return 
+	end)
+	slot0.mPlayerFoodNode.foodStatus:setTexture("jhqy_ms_6.png")
+	slot0.mPlayerFoodNode.foodStatus.exSprite:setVisible(false)
+	slot0.mNpcFoodNode.foodStatus:setTexture("jhqy_ms_6.png")
+	slot0.mNpcFoodNode.foodStatus.exSprite:setVisible(false)
+
+	return 
+end
+slot0.refreshFoodStatus = function (slot0, slot1, slot2)
+	slot3 = {
+		[0] = {
+			image = "jhqy_ms_6.png"
+		},
+		{
+			image = "jhqy_ms_7.png"
+		},
+		{
+			image = "jhqy_ms_8.png"
+		},
+		{
+			image = "jhqy_ms_9.png"
+		},
+		{
+			image = "jhqy_ms_10.png"
+		},
+		{
+			image = "jhqy_ms_11.png"
+		},
+		{
+			image = "jhqy_ms_12.png"
+		},
+		{
+			image = "jhqy_ms_13.png"
+		},
+		{
+			image = "jhqy_ms_14.png"
+		},
+		{
+			image = "jhqy_ms_15.png"
+		},
+		{
+			image = "jhqy_ms_16.png"
+		},
+		{
+			image = "jhqy_ms_17.png"
+		},
+		{
+			exImage = "jhqy_ms_19.png",
+			image = "jhqy_ms_18.png"
+		},
+		{
+			exImage = "jhqy_ms_20.png",
+			image = "c_pure.png"
+		},
+		{
+			exImage = "jhqy_ms_21.png",
+			image = "c_pure.png"
+		}
+	}
+
+	if slot1 then
+		slot0.mPlayerFoodNode.foodStatus:setTexture(slot3[slot0.mPlayerNode.ff_eatNum + 1].image)
+
+		if slot3[slot0.mPlayerNode.ff_eatNum + 1].exImage then
+			slot0.mPlayerFoodNode.foodStatus.exSprite:setVisible(true)
+			slot0.mPlayerFoodNode.foodStatus.exSprite:setTexture(slot3[slot4].exImage)
+		else
+			slot0.mPlayerFoodNode.foodStatus.exSprite:setVisible(false)
+			slot0.mPlayerFoodNode.foodStatus.exSprite:setTexture("c_pure.png")
+		end
+
+		slot0.mPlayerFoodNode.foodStatus:setContentSize(cc.size(284, 146))
+	else
+		slot0.mNpcFoodNode.foodStatus:setTexture(slot3[slot0.mNpcNode.ff_eatNum + 1].image)
+
+		if slot3[slot0.mNpcNode.ff_eatNum + 1].exImage then
+			slot0.mNpcFoodNode.foodStatus.exSprite:setVisible(true)
+			slot0.mNpcFoodNode.foodStatus.exSprite:setTexture(slot3[slot4].exImage)
+		else
+			slot0.mNpcFoodNode.foodStatus.exSprite:setVisible(false)
+			slot0.mNpcFoodNode.foodStatus.exSprite:setTexture("c_pure.png")
+		end
+
+		slot0.mNpcFoodNode.foodStatus:setContentSize(cc.size(284, 146))
+	end
+
+	return 
+end
+slot0.upDateTime_GameTime = function (slot0)
+	if not slot0.mIsGameRunning then
+		slot0.resetStatus(slot0)
+
+		return 
+	end
+
+	slot0.mGameTime = slot0.mGameTime - 1
+
+	if slot0.mGameTime <= 0 then
+		slot0.gameOver(slot0, slot0.TimeOver)
+	end
+
+	slot0.mTimeLabel:setString(string.format("%d", slot0.mGameTime))
+
+	return 
+end
+slot0.upDateTime_Goods = function (slot0)
+	if not slot0.mIsGameRunning then
+		slot0.resetStatus(slot0)
+
+		return 
+	end
+
+	slot1 = math.random(1, 100)
+
+	if 3 < slot0.mFixGameTime - slot0.mGameTime then
+		if not slot0.isBoxAppear and 0 < MeetObj:getMeetBoxNum() then
+			slot0.addBox(slot0)
+		elseif 30 <= slot1 then
+			slot0.addRandom_Goods(slot0)
+		end
+	end
+
+	return 
+end
+slot0.addBox = function (slot0)
+	slot0.isBoxAppear = true
+
+	slot0.mGoodsNode:removeAllChildren()
+	slot0.mGoodsNode:addChild(UIWrap.newControl("Button", {
+		image = "jhqy_ms_22.png",
+		pos = cc.p(slot0[math.random(1, 4)].x + 30, slot0[math.random(1, 4)].y - 25),
+		clickAction = function ()
+			slot0.boxClickNum = slot0.boxClickNum or 0
+			slot0.boxClickNum = slot0.boxClickNum + 1
+
+			if 3 <= slot0.boxClickNum then
+				ui.showFlashView(TR("收取到宝箱"))
+
+				ui.showFlashView.isGetBox = true
+
+				ui.showFlashView.mGoodsNode:removeAllChildren()
+			end
+
+			return 
+		end
+	}))
+
+	if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+		slot0.figureIdleEffect:removeFromParent()
+
+		slot0.figureIdleEffect = nil
+	end
+
+	slot0.figureIdleEffect = ui.addNodeFigureAnimation(slot2, cc.p(0, 0))
+
+	Utility.performWithDelay(slot0, function ()
+		if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+			slot0.figureIdleEffect:removeFromParent()
+
+			slot0.figureIdleEffect.removeFromParent.figureIdleEffect = nil
+		end
+
+		return 
+	end, 2)
+	slot0.mGoodsNode:addChild(UIWrap.newControl("Effect", {
+		loop = false,
+		dataFile = "effect_ui_shenmibaoxiang",
+		pos = cc.p(0, 320)
+	}))
+	MqAudio.playEffect("shenmibaoxiao.mp3")
+
+	return 
+end
+slot0.addRandom_Goods = function (slot0)
+	slot3 = 0
+
+	slot0.mGoodsNode:removeAllChildren()
+
+	slot5 = slot0.createLayoutTemplateNode(slot0, "tmpSpeedItem", {
+		image = slot0[(30 <= math.random(1, 100) and 2) or 1].image,
+		goodType = (30 <= math.random(1, 100) and 2) or 1
+	})
+
+	slot5.setPosition(slot5, cc.p(slot1[math.random(1, 4)].x + 30, slot1[math.random(1, 4)].y - 25))
+	slot5.btn:setFlippedX(true)
+	slot0.mGoodsNode:addChild(slot5)
+
+	slot0.mTakeoutGoodsNum = slot0.mTakeoutGoodsNum + 1
+
+	if slot0.mTakeoutGoodsNum == 1 then
+		if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+			slot0.figureIdleEffect:removeFromParent()
+
+			slot0.figureIdleEffect = nil
+		end
+
+		slot0.figureIdleEffect = ui.addNodeFigureAnimation(slot5, cc.p(0, 0))
+
+		Utility.performWithDelay(slot0, function ()
+			if slot0.figureIdleEffect and not tolua.isnull(slot0.figureIdleEffect) then
+				slot0.figureIdleEffect:removeFromParent()
+
+				slot0.figureIdleEffect.removeFromParent.figureIdleEffect = nil
+			end
+
+			return 
+		end, 2)
+	end
+
+	return 
+end
+slot0.onClickGoodsAction = function (slot0, slot1)
+	if not slot0.mIsGameRunning and slot1 and not tolua.isnull(slot1) then
+		slot1.removeFromParent(slot1)
+
+		return 
+	end
+
+	slot0.mPlayerNode.goodType = slot1.goodType
+	slot0.mPlayerNode.buffOverTime = socket.gettime() + slot0[slot1.goodType].time
+
+	if slot1 and not tolua.isnull(slot1) then
+		slot1.removeFromParent(slot1)
+	end
+
+	return 
+end
+slot0.setTimer = function (slot0)
+	slot0.mInitGame = true
+
+	slot0.upDateTime(slot0)
+
+	slot0.mSchelTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime), slot0.mRecordIter)
+	slot0.mSchelTime_Goods = Utility.schedule(slot0, handler(slot0, slot0.upDateTime_Goods), 3)
+	slot0.mSchelTime_GameTime = Utility.schedule(slot0, handler(slot0, slot0.upDateTime_GameTime), 1)
+
+	return 
+end
+slot0.stopTimer = function (slot0)
+	if slot0.mSchelTime then
+		slot0.stopAction(slot0, slot0.mSchelTime)
+
+		slot0.mSchelTime = nil
+	end
+
+	if slot0.mSchelTime_Goods then
+		slot0.stopAction(slot0, slot0.mSchelTime_Goods)
+
+		slot0.mSchelTime_Goods = nil
+	end
+
+	if slot0.mSchelTime_GameTime then
+		slot0.stopAction(slot0, slot0.mSchelTime_GameTime)
+
+		slot0.mSchelTime_GameTime = nil
+	end
+
+	return 
+end
+slot0.upDateTime = function (slot0)
+	if not slot0.mIsGameRunning then
+		if slot0.mSchelTime then
+			slot0.stopAction(slot0, slot0.mSchelTime)
+
+			slot0.mSchelTime = nil
+		end
+
+		slot0.resetStatus(slot0)
+
+		return 
+	end
+
+	if not slot0.mInitGame then
+		slot0.mNpcNode.ff_curValue = slot0.mNpcNode.ff_curValue + slot0.mNpcSpeed*slot0.mRecordIter*1000
+	end
+
+	if slot0[slot0.mNpcSpeedEnumType][slot0.mNpcNode.ff_eatNum] then
+		slot0.adjustSpeed_NPC(slot0, slot0.mNpcNode, math.random(1, 12)*0.1*slot0[slot0.mNpcSpeedEnumType][slot0.mNpcNode.ff_eatNum], slot0.mInitGame)
+	else
+		slot0.adjustSpeed_NPC(slot0, slot0.mNpcNode, 0, slot0.mInitGame)
+	end
+
+	if slot0.mInitGame then
+		slot0.recordBengin(slot0)
+
+		slot0.mInitGame = false
+	end
+
+	slot0.recordEnd(slot0)
+
+	if 0 < slot0.mPlayerNode.ff_lastPointNum then
+		slot0.mPlayerNode.ff_curValue = slot0.mPlayerNode.ff_curValue + (slot0.mPlayerStableSpeed + (slot0.mPlayerNode.ff_lastPointNum*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))*slot0.mRecordIter*1000
+	end
+
+	if slot0.getRecord(slot0) == 0 and 1 < slot0.mPlayerNode.ff_lastPointNum then
+		slot1 = slot0.mPlayerNode.ff_lastPointNum - 1
+	else
+		if 0 < slot1 and socket.gettime() < slot0.mPlayerNode.buffOverTime then
+			slot1 = slot1 + slot1[slot0.mPlayerNode.goodType].strongNum
+		end
+
+		slot0.mMuchUnitTime = slot0.mMuchUnitTime + 1
+
+		if 0 < slot1 then
+			slot1 = slot1 + (slot0.mPointNum*1)/(slot0.mMuchUnitTime*5)
+		end
+	end
+
+	slot0.adjustSpeed_Player(slot0, slot0.mPlayerNode, slot1)
+
+	return 
+end
+slot0.eatOneFood = function (slot0)
+	return 
+end
+slot0.recordBengin = function (slot0)
+	slot0.recordBeinIndex = slot0.mPointNum
+
+	return 
+end
+slot0.recordEnd = function (slot0)
+	slot0.recordEndIndex = slot0.mPointNum
+
+	return 
+end
+slot0.getRecord = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(slot0.mPointInterList) do
+		if slot6 and next(slot6) ~= nil then
+			slot1[tostring(slot6.realPointNum)] = {
+				slot6.startTime,
+				slot6.endTime
+			}
+		end
+	end
+
+	for slot5 = slot0.recordBeinIndex, slot0.recordEndIndex - 1, 1 do
+		if not slot1[tostring(slot5)] and 0 < slot5 then
+			dump(TR("记录数据有误 %d(%d - %d)", slot5, slot0.recordBeinIndex, slot0.recordEndIndex - 1))
+
+			slot0.mPointNum = slot5
+			slot0.recordEndIndex = slot0.mPointNum - 1
+
+			if slot0.recordEndIndex < slot0.recordBeinIndex then
+				slot0.recordBeinIndex = slot0.recordEndIndex
+			end
+
+			break
+		end
+	end
+
+	slot0.recordBeinIndex = slot0.recordEndIndex
+
+	return slot0.recordEndIndex - slot0.recordBeinIndex
+end
+slot0.onPrepareClickAction = function (slot0)
+	slot0.resetStatus(slot0)
+
+	return 
+end
+slot0.createTouchLayer = function (slot0)
+	slot1 = cc.LayerColor:create(cc.c4b(255, 0, 0, 50))
+
+	slot1.setPosition(slot1, cc.p(95, 50))
+	slot0.mCenterNode:addChild(slot1)
+	slot1.setContentSize(slot1, slot2)
+	ui.addTouchEvent({
+		swallowTouch = false,
+		node = slot1,
+		beganEvent = function (slot0, slot1)
+			if cc.rectContainsPoint(cc.rect(0, 0, slot1.width, slot1.height), slot0:convertToNodeSpace(slot0.getLocation(slot0))) then
+				slot2.mPointNum = slot2.mPointNum + 1
+				slot2.mStartTime = math.floor(socket.gettime()*1000)
+
+				return true
+			end
+
+			return false
+		end,
+		endedEvent = function ()
+			slot0 = math.floor(socket.gettime()*1000)
+			slot0.mPointInterList[(slot0.mPointNum - 1)%15 + 1] = {
+				realPointNum = slot0.mPointNum,
+				startTime = slot0.mStartTime,
+				endTime = slot0
+			}
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onStartClickAction = function (slot0)
+	slot0.resetStatus(slot0)
+	slot0.addStartTimeAction(slot0, function ()
+		slot0:addFigureAction()
+		slot0.addFigureAction:startGame()
+
+		return 
+	end)
+
+	return 
+end
+slot0.onPauseClickAction = function (slot0)
+	return 
+end
+slot0.startGame = function (slot0)
+	slot0.mIsGameRunning = true
+
+	slot0.setTimer(slot0)
+	slot0.adjustSpeed_Player(slot0, slot0.mPlayerNode, 0)
+	slot0.adjustSpeed_NPC(slot0, slot0.mNpcNode, 0)
+
+	return 
+end
+slot0.gameOver = function (slot0, slot1)
+	slot0.stopTimer(slot0)
+	slot0.mGoodsNode:removeAllChildren()
+
+	slot0.mIsGameRunning = false
+
+	slot0.mPlayerNode:stopAllActions()
+	slot0.mNpcNode:stopAllActions()
+
+	slot2 = TR("游戏结束!")
+	slot0.mIsWin = (slot1 == slot0.PlayerWin and 1) or 0
+
+	if slot1 == slot0.PlayerWin then
+		slot2 = TR("你赢了！")
+
+		slot0.playAnimationRecord(slot0, slot0.mPlayerNode, "nanzhu_shenli")
+		slot0.mPlayerNode:setTimeScale(1)
+		slot0.playAnimationRecord(slot0, slot0.mNpcNode, "laotou_daiji")
+		slot0.mNpcNode:setTimeScale(1)
+	elseif slot1 == slot0.NpcWin then
+		slot2 = TR("你输了！")
+
+		slot0.playAnimationRecord(slot0, slot0.mNpcNode, "laotou_shenli")
+		slot0.mNpcNode:setTimeScale(1)
+		slot0.mPlayerNode:setVisible(false)
+		slot0.mPlayerStatusNode:setVisible(true)
+	end
+
+	Utility.performWithDelay(slot0, function ()
+		slot0:requesetGetReward(slot0.mIsWin)
+
+		return 
+	end, 0.5)
+
+	return 
+end
+slot0.getCurrProessVaule = function (slot0, slot1)
+	return slot0.mTotalTaskValue - slot1.ff_curValue
+end
+slot0.adjustSpeed_NPC = function (slot0, slot1, slot2, slot3)
+	slot1.stopAllActions(slot1)
+
+	slot4 = 1
+	slot5 = 1
+	slot1.ff_speedSet = {
+		time = (slot0.getCurrProessVaule(slot0, slot1)/(slot0.mNpcSpeed + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))*1)/1000,
+		timeScale = (slot0.mNpcSpeed + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))/slot0.mNpcSpeed,
+		isIdle = isIdle
+	}
+
+	slot0.goToEatFood(slot0, slot1, not slot3)
+
+	return 
+end
+slot0.adjustSpeed_Player = function (slot0, slot1, slot2)
+	if slot2 <= 0 then
+		slot2 = 0
+	end
+
+	if 20 <= slot2 then
+		slot2 = 20
+	end
+
+	slot1.ff_lastPointNum = slot2
+	slot3 = 1
+	slot4 = 1
+	slot5 = false
+	slot6 = slot0.getCurrProessVaule(slot0, slot1)
+
+	if not slot1.ff_isPlayer then
+		slot3 = (slot6/(slot0.mNpcSpeed + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))*1)/1000
+		slot4 = (slot0.mNpcSpeed + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))/slot0.mNpcSpeed
+	elseif 0 < slot2 then
+		slot3 = (slot6/(slot0.mPlayerStableSpeed + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000))*1)/1000
+		slot4 = (slot0.mPlayerStableSpeed*slot0.mRegulator_num1 + (slot2*slot0.mRegulator_num3)/(slot0.mRecordIter*1000)*slot0.mRegulator_num2)/slot0.mPlayerStableSpeed
+	else
+		slot5 = true
+	end
+
+	slot1.ff_speedSet = {
+		time = slot3,
+		timeScale = slot4,
+		isIdle = slot5
+	}
+
+	slot0.goToEatFood(slot0, slot1)
+
+	return 
+end
+slot0.playAnimationRecord = function (slot0, slot1, slot2, slot3)
+	slot4 = 1
+
+	if slot3 then
+		slot4 = slot3
+	end
+
+	slot1.setTimeScale(slot1, slot4)
+
+	if slot2 == "laotou_chibaozi" or slot2 == "laotou_chijitui" then
+		slot0.refreshFoodStatus(slot0, false, true)
+	end
+
+	if slot2 == "nanzhu_chibaozi" or slot2 == "nanzhu_chijitui" then
+		slot0.refreshFoodStatus(slot0, true, true)
+	end
+
+	if slot1.ff_curAnimName and slot2 == slot1.ff_curAnimName then
+		return 
+	end
+
+	slot1.ff_curAnimName = slot2
+
+	slot1.playAnimation(slot1, slot2)
+	slot1.setTimeScale(slot1, slot4)
+
+	return 
+end
+slot0.goToEatFood = function (slot0, slot1)
+	slot2 = 1
+	slot3 = 1
+	slot4 = false
+
+	if slot1.ff_speedSet then
+		slot2 = slot1.ff_speedSet.timeScale
+		slot3 = slot1.ff_speedSet.time
+		slot4 = slot1.ff_speedSet.isIdle
+	end
+
+	slot5 = "laotou_"
+
+	if slot1.ff_isPlayer then
+		slot5 = "nanzhu_"
+	end
+
+	slot6 = slot5 .. "daiji"
+	slot7 = slot5 .. "chijitui"
+	slot8 = slot5 .. "chibaozi"
+
+	if slot4 and slot1.ff_curAnimName ~= slot7 and slot1.ff_curAnimName ~= slot8 then
+		slot0.playAnimationRecord(slot0, slot0.mPlayerNode, slot6)
+
+		return 
+	end
+
+	slot9 = slot1.ff_eatNum
+
+	if slot0.mFoodNum < slot1.ff_eatNum then
+		assert(false, "该吃完了呀，检查代码哟")
+	end
+
+	slot0.playAnimationRecord(slot0, slot1, (slot0[slot1.ff_eatNum].n_foodType == 1 and slot8) or slot7, slot2)
+
+	return 
+end
+slot0.requesetGetReward = function (slot0, slot1)
+	dump({
+		MeetObj.MeetType.eMeiShi,
+		slot1,
+		0
+	}, "1222")
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "Meeting",
+		methodData = {
+			MeetObj.MeetType.eMeiShi,
+			slot1,
+			(slot0.isGetBox and 1) or 0
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward(slot0)
+			MeetObj:updateMeet(slot0.Meeting)
+			Utility.performWithDelay(slot0, function ()
+				slot0:onClose()
+
+				return 
+			end, 5)
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onClose = function (slot0)
+	if slot0.mIsWin then
+		MeetObj:setTalkStatus((slot0.mIsWin == 1 and MeetObj.TalkStatus.eWin) or MeetObj.TalkStatus.eLose)
+	end
+
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

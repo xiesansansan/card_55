@@ -1,0 +1,184 @@
+slot0 = class("VegetablesLogLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 151)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("公告牌")
+		},
+		children = {
+			{
+				name = "untitled6",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_92.png",
+					pos = {
+						x = 423.88,
+						y = 297.28
+					},
+					size = {
+						width = 782.77,
+						height = 360.79
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					pos = {
+						x = 424.16,
+						y = 60.85
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 46.96,
+						y = 118.5
+					},
+					size = {
+						width = 753.71,
+						height = 357.6
+					}
+				},
+				children = {
+					{
+						name = "itemLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled5-text",
+								name = "text",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 753.71,
+								height = 10
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "Label",
+								params = {
+									text = "Label",
+									isRichText = true,
+									childName = "text",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 376.86,
+										y = 5
+									},
+									size = {
+										width = 753.71,
+										height = 0
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mEmptyHint",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 423.75,
+						y = 264.69
+					},
+					text = TR("暂时没有公告日志")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mMsgData = slot1.msgData
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	if #clone(slot0.mMsgData) <= 0 then
+		slot0.mEmptyHint:setVisible(true)
+
+		return 
+	end
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot8 = string.format("%s", MqTime.toDownFormat(Player:getCurrentTime() - slot6.Crdate))
+		slot9 = ""
+
+		if slot6.OperateType == 2 or slot6.OperateType == 3 then
+			if slot6.OperateType == 2 then
+				slot9 = TR("#FF974A%s#252525悄悄的给#252525%s#252525%s", slot6.OperatorName, TR("您"), TR("雇佣了铁匠"))
+			elseif slot6.OperateType == 3 then
+				slot11 = ""
+
+				for slot15, slot16 in pairs(slot10) do
+					slot17 = Utility.analysisStrResList(slot16)
+					slot19, slot24 = Utility.getColorValue(slot18)
+					slot11 = slot11 .. string.format("%s%s%s*%s ", slot20, Resource.getName(slot17[1].resourceId), "#ffffff", slot17[1].num)
+				end
+
+				slot9 = TR("#FF974A%s#252525收取了%s", slot6.OperatorName, slot11)
+			end
+
+			slot10 = slot0.createLayoutTemplateNode(slot0, "itemLayout", {
+				text = string.format("%s   %s", slot8, slot9)
+			})
+
+			slot10.setContentSize(slot10, cc.size(753.71, slot10.text:getContentSize().height))
+			slot10.text:setPositionY(slot10.text.getContentSize().height/2)
+			slot0.mListView:pushBackCustomItem(slot10)
+		end
+	end
+
+	return 
+end
+
+return slot0

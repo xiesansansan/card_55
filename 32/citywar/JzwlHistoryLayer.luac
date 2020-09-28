@@ -1,0 +1,533 @@
+slot0 = class("JzwlHistoryLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_3.png",
+			titleText = TR("名人堂")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "jzwl_14.png",
+					pos = {
+						x = 320,
+						y = 623
+					}
+				},
+				children = {
+					{
+						name = "cliNode",
+						cType = "ClippingNode",
+						params = {
+							alpha = 1,
+							pos = {
+								x = 0,
+								y = 0
+							},
+							size = {
+								width = 600,
+								height = 460
+							}
+						},
+						children = {
+							{
+								name = "headNode",
+								cType = "Node",
+								params = {
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {
+									{
+										name = "headItem",
+										cType = "TemplateNode",
+										custom = {
+											{
+												value = "untitled18-heroModelId",
+												name = "heroModelId",
+												type = "string"
+											},
+											{
+												value = "guildFlag-flagInfo",
+												name = "flagInfo",
+												type = "string"
+											},
+											{
+												value = "guildFlag-flagLogo",
+												name = "flagLogo",
+												type = "string"
+											},
+											{
+												value = "untitled18-stepLv",
+												name = "stepLv",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {
+											{
+												name = "untitled18",
+												cType = "FigureHero",
+												params = {
+													heroModelId = 12011103,
+													stepLv = 1,
+													scale = 0.5,
+													pos = {
+														x = 285,
+														y = -303.19
+													}
+												},
+												children = {}
+											},
+											{
+												name = "guildFlag",
+												cType = "GuildFlag",
+												params = {
+													flagInfo = "",
+													flagLogo = "",
+													pos = {
+														x = 76.98,
+														y = 365.06
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "nowTime",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									emptyInit = true,
+									color = {
+										g = 248,
+										r = 255,
+										b = 234
+									},
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 298.5,
+										y = 33.44
+									},
+									text = TR("就任于2018-11-15")
+								},
+								children = {}
+							},
+							{
+								name = "numBg",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_186.png",
+									pos = {
+										x = 298.5,
+										y = 80
+									},
+									size = {
+										width = 185,
+										height = 50
+									}
+								},
+								children = {
+									{
+										name = "nowNum",
+										cType = "Label",
+										params = {
+											fontSize = 28,
+											emptyInit = true,
+											pos = {
+												x = 100,
+												y = 25
+											},
+											text = TR("第三任盟主")
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "empty",
+						cType = "Sprite",
+						params = {
+							image = "jzwl_56.png",
+							hide = true,
+							pos = {
+								x = 320,
+								y = 198
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled4",
+				cType = "Scale9Sprite",
+				params = {
+					image = "jzwl_15.png",
+					pos = {
+						x = 320,
+						y = 378.13
+					},
+					size = {
+						width = 597,
+						height = 31
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 320,
+						y = 375
+					},
+					size = {
+						width = 590,
+						height = 340
+					}
+				},
+				children = {
+					{
+						name = "item",
+						cType = "Layout",
+						custom = {
+							{
+								value = "head-modelId",
+								name = "headImageId",
+								type = "string"
+							},
+							{
+								value = "numLabel-text",
+								name = "num",
+								type = "string"
+							},
+							{
+								value = "playerName-text",
+								name = "playerName",
+								type = "string"
+							},
+							{
+								value = "time-text",
+								name = "time",
+								type = "string"
+							},
+							{
+								value = "guildName-text",
+								name = "guildName",
+								type = "string"
+							},
+							{
+								value = "head-modelId",
+								name = "playerHead",
+								type = "string"
+							},
+							{
+								value = "head-headPicId",
+								name = "headPicId",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 590,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "untitled8",
+								cType = "Scale9Sprite",
+								params = {
+									image = "jzwl_55.png",
+									pos = {
+										x = 295,
+										y = 70
+									}
+								},
+								children = {
+									{
+										name = "head",
+										cType = "PlayerHeroNode",
+										custom = {
+											{
+												name = "playerInfo",
+												type = "table",
+												value = {}
+											}
+										},
+										params = {
+											headPicId = 1,
+											modelId = 19010000,
+											allowClick = false,
+											pos = {
+												x = 80,
+												y = 58
+											}
+										},
+										children = {}
+									},
+									{
+										name = "numLabel",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 140.43,
+												y = 84.24
+											},
+											text = TR("第一任盟主")
+										},
+										children = {}
+									},
+									{
+										name = "playerName",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 248,
+												r = 255,
+												b = 234
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 247.16,
+												y = 34
+											},
+											text = TR("名字")
+										},
+										children = {}
+									},
+									{
+										name = "time",
+										cType = "Label",
+										params = {
+											fontSize = 20,
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 453.05,
+												y = 58
+											},
+											text = TR("就任于2018-11-12")
+										},
+										children = {}
+									},
+									{
+										name = "guildName",
+										cType = "Label",
+										params = {
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 34,
+												r = 69,
+												b = 13
+											},
+											pos = {
+												x = 161,
+												y = 34
+											},
+											text = TR("【帮派】")
+										},
+										children = {}
+									},
+									{
+										name = "guildItemFlag",
+										cType = "GuildFlag",
+										params = {
+											scale = 0.3,
+											pos = {
+												x = 148.93,
+												y = 33.76
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "tig",
+				cType = "Sprite",
+				params = {
+					image = "c_185.png",
+					hide = true,
+					pos = {
+						x = 320,
+						y = 210
+					}
+				},
+				children = {
+					{
+						name = "untitled15",
+						cType = "Label",
+						params = {
+							pos = {
+								x = 200,
+								y = 70
+							},
+							text = TR("暂无信息")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mHistoryList = slot1.historyList or {}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.refreshUI(slot0)
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	slot0.listView:removeAllChildren()
+	slot0.empty:setVisible(#slot0.mHistoryList == 0)
+	slot0.tig:setVisible(#slot0.mHistoryList == 0)
+	slot0.cliNode:setVisible(#slot0.mHistoryList ~= 0)
+
+	for slot4, slot5 in ipairs(slot0.mHistoryList) do
+		slot6 = slot0.createLayoutTemplateNode(slot0, "item", {
+			headImageId = slot5.HeadImageId,
+			headPicId = slot5.HeadPicId,
+			num = TR("第%s任盟主", Utility.getChineseNum(slot4)),
+			guildName = string.format("【%s】", slot5.GuildName),
+			playerName = TR("%s", slot5.Name),
+			playerHead = slot5.HeadImageId,
+			time = TR("就任于%s", MqTime.formatTimestamp(slot5.Crdate, {
+				hour = false,
+				min = false,
+				sec = false,
+				month = true,
+				year = true,
+				day = true
+			}))
+		})
+
+		if slot5.BannerInfo and slot5.Logo then
+			slot6.guildItemFlag:setFlag(slot5.BannerInfo)
+			slot6.guildItemFlag:setString(slot5.Logo)
+		else
+			slot6.guildItemFlag:setVisible(false)
+		end
+
+		if slot5.FashionLevel then
+			slot6.playerName:setColor(Utility.getPlayerNameColor(slot5.FashionLevel))
+		end
+
+		slot7, slot12 = slot6.guildName:getPosition()
+
+		slot6.playerName:setPosition(slot7 + slot6.guildName:getContentSize().width + 10, slot8)
+		slot0.listView:pushBackCustomItem(slot6)
+	end
+
+	if slot0.mHistoryList[#slot0.mHistoryList] then
+		slot0.headNode:removeAllChildren()
+
+		slot3 = slot0
+		slot4 = "headItem"
+		slot5 = {
+			heroModelId = slot1.HeadImageId,
+			headPicId = slot1.HeadPicId,
+			flagInfo = slot1.BannerInfo,
+			flagLogo = slot1.Logo,
+			stepLv = slot1.HeroStepLv or 0
+		}
+
+		slot0.headNode:addChild(slot0.createLayoutTemplateNode)
+		slot0.nowNum:setString(TR("第%s任盟主", Utility.getChineseNum(#slot0.mHistoryList)))
+		slot0.nowTime:setString(TR("就任于%s", MqTime.formatTimestamp(slot1.Crdate, {
+			hour = false,
+			min = false,
+			sec = false,
+			month = true,
+			year = true,
+			day = true
+		})))
+	end
+
+	return 
+end
+slot0.onCheckAction = function (slot0, slot1)
+	if slot1.playerInfo.IsRobot then
+		ui.showFlashView(TR("机器人无法查看信息"))
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "player.OtherPlayerInfoLayer",
+			data = {
+				playerId = slot1.playerInfo.PlayerId
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+
+return slot0

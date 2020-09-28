@@ -1,0 +1,422 @@
+slot0 = class("DlgBwldSeasonRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 178)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_3.png",
+			titleText = TR("比武胜场奖励")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_72.png",
+					pos = {
+						x = 320.3,
+						y = 441
+					},
+					size = {
+						width = 585.23,
+						height = 830
+					}
+				},
+				children = {
+					{
+						name = "untitled65",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 75,
+								y = 800
+							},
+							text = TR("胜场")
+						},
+						children = {}
+					},
+					{
+						name = "untitled66",
+						cType = "Label",
+						params = {
+							color = {
+								g = 34,
+								r = 69,
+								b = 13
+							},
+							pos = {
+								x = 279,
+								y = 800
+							},
+							text = TR("比武胜场奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "levelListView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					pos = {
+						x = 34,
+						y = 35
+					},
+					size = {
+						width = 575,
+						height = 770
+					}
+				},
+				children = {
+					{
+						name = "levelLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled73-image",
+								name = "levelImage",
+								type = "string"
+							},
+							{
+								value = "untitled72-winNum",
+								name = "winNum",
+								type = "string"
+							},
+							{
+								value = "untitled72-titleText",
+								name = "btnTitle",
+								type = "string"
+							},
+							{
+								value = "untitled72-isDisable",
+								name = "btnDisable",
+								type = "string"
+							},
+							{
+								value = "untitled71-animation",
+								name = "levelEffect",
+								type = "string"
+							},
+							{
+								value = "untitled74-hide",
+								name = "btnEffectIsVisible",
+								type = "string"
+							},
+							{
+								value = "untitled75-hide",
+								name = "doneSpriteIsVisible",
+								type = "string"
+							},
+							{
+								value = "untitled72-hide",
+								name = "btnIsVisible",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 575,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "xkxx_3.png",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 0,
+										y = 0
+									},
+									size = {
+										width = 575,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rewardList",
+								cType = "ListView",
+								params = {
+									direction = false,
+									swallowTouch = false,
+									anchor = {
+										x = 0.5,
+										y = 0
+									},
+									pos = {
+										x = 285,
+										y = 0
+									},
+									size = {
+										width = 330,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled27-initParams",
+												name = "cardData",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "CardNode",
+												params = {
+													scale = 0.9,
+													childName = "headCard",
+													allowClick = true,
+													anchor = {
+														x = 0.5,
+														y = 0.5
+													},
+													initParams = {},
+													pos = {
+														x = 50,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled72",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "winNum",
+										type = "integer"
+									}
+								},
+								params = {
+									isDisable = false,
+									clickAction = "onGetReward",
+									hide = false,
+									image = "c_13.png",
+									childName = "btn",
+									pos = {
+										x = 505,
+										y = 50
+									},
+									titleText = TR("领  取")
+								},
+								children = {
+									{
+										name = "untitled74",
+										cType = "Effect",
+										params = {
+											hide = true,
+											childName = "effect",
+											dataFile = "effect_ui_lingqu",
+											pos = {
+												x = -1.44,
+												y = -0.72
+											}
+										},
+										children = {}
+									}
+								}
+							},
+							{
+								name = "untitled73",
+								cType = "Sprite",
+								params = {
+									scale = 0.4,
+									image = "bwld_50.png",
+									pos = {
+										x = 57.22,
+										y = 53.15
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled71",
+								cType = "Effect",
+								params = {
+									dataFile = "effect_ui_biwulundao",
+									scale = 0.4,
+									animation = "xinxiu",
+									pos = {
+										x = 51,
+										y = 57.98
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled75",
+								cType = "Sprite",
+								params = {
+									childName = "doneSprite",
+									image = "c_162.png",
+									hide = false,
+									pos = {
+										x = 505,
+										y = 50
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mLayerData = slot1.layerData or {}
+	slot0.callBack = slot1.callBack
+	slot0.mMyWinNum = slot0.mLayerData.CrossData.PlyerInfo.WinNum or 0
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.sortData(slot0)
+
+	return 
+end
+slot0.sortData = function (slot0)
+	slot0.mListData = {}
+
+	for slot4, slot5 in pairs(BiwuRankWinnumConfig.items) do
+		if slot5.winRewardStr and slot5.winRewardStr ~= "" then
+			table.insert(slot0.mListData, clone(slot5))
+		end
+	end
+
+	slot1 = string.splitBySep(slot0.mLayerData.BiwuInfo.GetRewardStr or "", ",")
+
+	for slot5, slot6 in ipairs(slot0.mListData) do
+		if slot0.mMyWinNum < slot6.winNum then
+			slot6.rewardStatus = 2
+		else
+			slot6.rewardStatus = 1
+
+			for slot10, slot11 in ipairs(slot1) do
+				if tonumber(slot11) == slot6.winNum then
+					slot6.rewardStatus = 3
+
+					break
+				end
+			end
+		end
+	end
+
+	table.sort(slot0.mListData, function (slot0, slot1)
+		if slot0.rewardStatus ~= slot1.rewardStatus then
+			return slot0.rewardStatus < slot1.rewardStatus
+		end
+
+		return slot0.winNum < slot1.winNum
+	end)
+	slot0.refreshListView(slot0)
+
+	return 
+end
+slot0.refreshListView = function (slot0)
+	slot0.levelListView:removeAllChildren()
+
+	for slot4, slot5 in ipairs(slot0.mListData) do
+		slot7 = slot0
+		slot8 = "levelLayout"
+		slot9 = {
+			levelImage = slot5.winNumPicTwo,
+			levelEffect = slot5.winNumPicTwoEffect,
+			winNum = slot5.winNum,
+			btnTitle = (slot5.rewardStatus == 3 and TR("已领取")) or TR("领  取"),
+			btnDisable = slot5.rewardStatus ~= 1,
+			btnEffectIsVisible = slot5.rewardStatus ~= 1,
+			doneSpriteIsVisible = slot5.rewardStatus ~= 3,
+			btnIsVisible = slot5.rewardStatus == 3
+		}
+
+		slot0.levelListView:pushBackCustomItem(slot0.createLayoutTemplateNode)
+
+		for slot11, slot12 in ipairs(slot7) do
+			slot6.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardData = {
+					cardInfo = {
+						modelId = slot12.resourceId,
+						num = slot12.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.onGetReward = function (slot0, slot1)
+	dump(slot1.winNum, "aaaaaaa")
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "BiwuInfo",
+		methodData = {
+			slot1.winNum
+		},
+		successCallback = function (slot0)
+			dump(slot0, "response")
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.mLayerData.BiwuInfo = slot0.BiwuInfo or {}
+
+			slot0:sortData()
+
+			if slot0.callBack then
+				slot0.callBack(slot0.BiwuInfo or {})
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

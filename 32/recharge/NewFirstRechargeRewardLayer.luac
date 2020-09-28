@@ -1,0 +1,870 @@
+slot0 = class("NewFirstRechargeRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "bgSprite",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "shc_35.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled32",
+				cType = "Effect",
+				params = {
+					loop = true,
+					isPlayAnimation = true,
+					dataFile = "effect_ui_huiyuandenglong",
+					pos = {
+						x = 1202.76,
+						y = 214.04
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled422",
+				cType = "Effect",
+				params = {
+					loop = true,
+					isPlayAnimation = true,
+					dataFile = "effect_ui_huiyuandenglong",
+					pos = {
+						x = 190.39,
+						y = 210.17
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "heroNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled425",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onClickHeroCallback",
+					pos = {
+						x = 108.93,
+						y = -37.94
+					},
+					size = {
+						width = 150.38,
+						height = 587.07
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			isFullScale = true,
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "rewardTemplateNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -173.44,
+						y = -35.6
+					}
+				},
+				children = {
+					{
+						name = "untitled19",
+						cType = "Sprite",
+						params = {
+							image = "shc_12.png",
+							pos = {
+								x = 13.94,
+								y = 14.89
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled25",
+						cType = "Label",
+						params = {
+							childName = "dayLabel",
+							pos = {
+								x = 3.09,
+								y = 198.31
+							},
+							text = TR("第一天")
+						},
+						children = {}
+					},
+					{
+						name = "untitled24",
+						cType = "CardNode",
+						params = {
+							childName = "cardNode",
+							allowClick = false,
+							pos = {
+								x = -0.32,
+								y = 104.53
+							}
+						},
+						children = {}
+					},
+					{
+						name = "listParent",
+						cType = "Node",
+						params = {
+							pos = {
+								x = -98.46,
+								y = -164.13
+							},
+							size = {
+								width = 205.07,
+								height = 386.39
+							}
+						},
+						children = {
+							{
+								name = "untitled421",
+								cType = "ListView",
+								params = {
+									childName = "rewardListView",
+									direction = false,
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 102.4,
+										y = 115.75
+									},
+									size = {
+										width = 179.23,
+										height = 60
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled11-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 60,
+												height = 60
+											}
+										},
+										children = {
+											{
+												name = "untitled11",
+												cType = "CardNode",
+												params = {
+													scale = 0.75,
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 29.45,
+														y = 29.81
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled21",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 2.83,
+								y = 37.5
+							},
+							text = TR("超值首充礼包")
+						},
+						children = {}
+					},
+					{
+						name = "untitled26",
+						cType = "Sprite",
+						params = {
+							image = "shc_36.png",
+							pos = {
+								x = -34.82,
+								y = 4.13
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							text = "0",
+							charCount = 10,
+							childName = "dimCountLabel",
+							fontName = "shc_10.png",
+							isRichText = true,
+							pos = {
+								x = 43.59,
+								y = 3.99
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Button",
+						custom = {
+							{
+								value = 1,
+								name = "dayTag",
+								type = "integer"
+							}
+						},
+						params = {
+							childName = "chargeBtn",
+							image = "c_32.png",
+							clickAction = "onGetBtnAction",
+							pos = {
+								x = 3.77,
+								y = -123.33
+							},
+							size = {
+								width = 120,
+								height = 50
+							},
+							titleText = TR("领 取")
+						},
+						children = {}
+					},
+					{
+						name = "untitled31",
+						cType = "Scale9Sprite",
+						params = {
+							image = "shc_38.png",
+							childName = "line",
+							anchor = {
+								x = 0.5,
+								y = 0
+							},
+							pos = {
+								x = 3.86,
+								y = 222.94
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	},
+	{
+		name = "topNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled30",
+				cType = "Sprite",
+				params = {
+					zOrder = 1,
+					image = "shc_34.png",
+					pos = {
+						x = -166.33,
+						y = -77
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled423",
+				cType = "Sprite",
+				params = {
+					zOrder = 1,
+					image = "shc_21.png",
+					pos = {
+						x = 368.87,
+						y = -78.57
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled426",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled34",
+				cType = "Sprite",
+				params = {
+					zOrder = 1,
+					image = "shc_20.png",
+					pos = {
+						x = 97.44,
+						y = 294.66
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled35",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onEffectShowAction",
+					zOrder = 1,
+					pos = {
+						x = 151.75,
+						y = 393.35
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled428",
+				cType = "Sprite",
+				params = {
+					image = "shc_44.png",
+					pos = {
+						x = 207.28,
+						y = 157.19
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled427",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "fourthSprite",
+				cType = "Sprite",
+				params = {
+					image = "cz_110.png",
+					hide = true,
+					pos = {
+						x = -54.87,
+						y = 407.61
+					}
+				},
+				children = {}
+			},
+			{
+				name = "shopBtn",
+				cType = "Button",
+				params = {
+					image = "shc_37.png",
+					clickAction = "onShopAction",
+					pos = {
+						x = -69.42,
+						y = 214.61
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled22",
+		cType = "TopResourceNode",
+		params = {
+			scaleApt = 2,
+			posApt = 1,
+			anchor = {
+				x = 1,
+				y = 1
+			},
+			moduleIdList = {
+				1111,
+				1112,
+				1114
+			},
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled4",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					clickAction = "onCloseAction",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled6",
+				cType = "Sprite",
+				params = {
+					image = "cz_98.png",
+					pos = {
+						x = 159.3,
+						y = -24.59
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled36",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			hide = true,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled424",
+				cType = "Scale9Sprite",
+				params = {
+					image = "shc_43.png",
+					pos = {
+						x = -36.8,
+						y = 57.95
+					},
+					size = {
+						width = 690,
+						height = 33
+					}
+				},
+				children = {}
+			},
+			{
+				name = "leftLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = -296.2,
+						y = 58.14
+					},
+					text = TR("首充98元可直升")
+				},
+				children = {}
+			},
+			{
+				name = "untitled38",
+				cType = "Sprite",
+				params = {
+					image = "vip_8.png",
+					pos = {
+						x = -176.26,
+						y = 57.45
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled39",
+				cType = "Label",
+				params = {
+					text = "3",
+					charCount = 10,
+					isRichText = true,
+					fontName = "vip_9.png",
+					pos = {
+						x = -121.81,
+						y = 58.04
+					}
+				},
+				children = {}
+			},
+			{
+				name = "rightLabel",
+				cType = "Label",
+				params = {
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					pos = {
+						x = 101.3,
+						y = 57.3
+					},
+					text = TR("尊享十连半价招募、副本自动推图等特权！")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled429",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled42",
+				cType = "Button",
+				params = {
+					image = "tb_gn_120.png",
+					clickAction = "onVipGift",
+					pos = {
+						x = 341.89,
+						y = 63.23
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mParams = slot1 or {}
+
+	slot0.super.ctor(slot0)
+
+	slot0.mShowHeroModelId = 12013207
+
+	slot0.initUI(slot0)
+
+	slot0.pos = {
+		cc.p(-173.44, -35.6),
+		cc.p(52.3, -66.31),
+		cc.p(284.67, -40.31)
+	}
+	slot0.lineHeight = {
+		cc.size(9, 41),
+		cc.size(9, 71),
+		cc.size(9, 41)
+	}
+
+	slot0.requestInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.leftLabel:enableShadow()
+	slot0.rightLabel:enableShadow()
+
+	if HeroModel.items[slot0.mShowHeroModelId].drawingPicB ~= "" and cc.FileUtils:getInstance():isFileExist(slot1.drawingPicB .. ".skel") then
+		slot0.heroEffect = UIWrap.newControl("Effect", {
+			loop = true,
+			animation = "animation",
+			scale = 0.65,
+			dataFile = slot1.drawingPicB
+		})
+
+		if display.isIpadClass then
+			slot0.heroEffect:setPosition(cc.p(120, -390))
+		else
+			slot0.heroEffect:setPosition(cc.p(220, -390))
+		end
+
+		slot0.heroEffect:setRotation3D(cc.vec3(0, 180, 0))
+		slot0.heroNode:addChild(slot0.heroEffect)
+	end
+
+	if display.isIpadClass then
+		slot0.topNode:setPositionY(slot0.topNode:getPositionY() - 60)
+	end
+
+	if PlayerAttrObj:getPlayerAttrByName("IsShowNewFirstCharge") == 0 then
+		slot0.fourthSprite:setVisible(true)
+	end
+
+	return 
+end
+slot0.refreshRewardUI = function (slot0)
+	slot0.mCurrentDay = ((slot0.mChargeInfo.Day or 1) <= 3 and (slot0.mChargeInfo.Day or 1)) or 3
+
+	slot0.refreshRewardList(slot0)
+
+	return 
+end
+slot0.refreshRewardList = function (slot0)
+	slot0.centerNode:removeAllChildren()
+
+	for slot4 = 1, 3, 1 do
+		slot0.createLayoutTemplateNode(slot0, "rewardTemplateNode").line:setContentSize(slot0.lineHeight[slot4])
+
+		slot7 = Utility.analysisStrResList
+		slot8 = ChargeNewFirstConfig.items[slot4].reward or ""
+
+		for slot11, slot12 in ipairs(slot7) do
+			slot13 = slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot12.resourceId,
+						num = slot12.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			})
+
+			if slot12.resourceId == 16050026 then
+				slot13.card:setLiubian("effect_ui_touxiangkuang", "cheng")
+			end
+
+			slot5.listParent.rewardListView:pushBackCustomItem(slot13)
+		end
+
+		slot5.listParent.rewardListView:setContentSize(cc.size(#slot7*60, 60))
+		slot5.listParent.rewardListView:setPositionX(slot5.listParent:getContentSize().width/2)
+		slot5.dimCountLabel:setString(slot6.getReward or 0)
+
+		if slot0.getRewardStatusOfDay(slot0, slot4) == 1 then
+			slot5.chargeBtn:setBright(false)
+			slot5.chargeBtn:setTitleText(TR("已领取"))
+			slot5.chargeBtn:setClickAction(function ()
+				ui.showFlashView(TR("已领取"))
+
+				return 
+			end)
+		else
+			slot5.chargeBtn:setEnabled(true)
+			slot5.chargeBtn:setTitleText(TR("领 取"))
+
+			if slot0.mCurrentDay < slot4 then
+				slot5.chargeBtn:setBright(false)
+				slot5.chargeBtn:setClickAction(function ()
+					ui.showFlashView(TR("未到领取天数"))
+
+					return 
+				end)
+			end
+		end
+
+		slot5.dayLabel:setString(TR("第%s天", Utility.getChineseNum(slot4)))
+
+		slot5.chargeBtn.dayTag = slot4
+
+		slot5.cardNode:setCardData({
+			modelId = 1111
+		})
+		slot5.setPosition(slot5, slot0.pos[slot4])
+		slot0.centerNode:addChild(slot5)
+	end
+
+	return 
+end
+slot0.onEffectShowAction = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot0.mShowHeroModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getRewardStatusOfDay = function (slot0, slot1)
+	if not slot0.mChargeInfo.IsActive then
+		return 3
+	end
+
+	slot2 = slot0.mChargeInfo.DrawNums or ""
+
+	for slot7, slot8 in ipairs(slot3) do
+		if tonumber(slot8) == slot1 then
+			return 1
+		end
+	end
+
+	if slot1 <= (slot0.mChargeInfo.Day or 1) then
+		return 2
+	else
+		return 3
+	end
+
+	return 
+end
+slot0.onCloseAction = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onShopAction = function (slot0)
+	LayerManager.showModuleLayer(ModuleSub.eCharge)
+
+	return 
+end
+slot0.onVipGift = function (slot0)
+	LayerManager.addLayer({
+		name = "recharge.PrivilegeLayer"
+	})
+
+	return 
+end
+slot0.onClickHeroCallback = function (slot0)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "hero.HeroDetialViewLayer",
+		data = {
+			heroModelId = slot0.mShowHeroModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "ChargeInfo",
+		moduleName = "ChargeNewfristInfo",
+		successCallback = function (slot0)
+			slot0.mChargeInfo = slot0 or {}
+
+			slot0:refreshRewardUI()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onGetBtnAction = function (slot0, slot1)
+	if PlayerAttrObj:getPlayerAttrByName("IsChargeNewFirstGift") == 0 then
+		return ui.showFlashView(TR("充值任意金额可领取首充礼包"))
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "DrawReward",
+		moduleName = "ChargeNewfristInfo",
+		methodData = {
+			slot1.dayTag
+		},
+		successCallback = function (slot0)
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			slot0.mChargeInfo = slot0.ChargeInfo or {}
+
+			slot0:refreshRewardUI()
+
+			if slot0.mParams.callback then
+				slot0.mParams.callback()
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

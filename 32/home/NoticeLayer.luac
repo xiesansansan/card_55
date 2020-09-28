@@ -1,0 +1,216 @@
+slot0 = class("NoticeLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopActionEnd",
+			posApt = 1,
+			closeAction = "onOkCallback",
+			hideCloseButton = true,
+			image = "gg_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_pure.png",
+					pos = {
+						x = 629.18,
+						y = 207.66
+					},
+					size = {
+						width = 668,
+						height = 278
+					}
+				},
+				children = {}
+			},
+			{
+				name = "checkBox",
+				cType = "Checkbox",
+				params = {
+					selectImage = "c_44.png",
+					hide = true,
+					callback = "onNoTipToday",
+					normalImage = "c_43.png",
+					pos = {
+						x = 767.08,
+						y = 54.38
+					}
+				},
+				children = {}
+			},
+			{
+				name = "tishi",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					hide = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 873.12,
+						y = 53.67
+					},
+					text = TR("今日不再自动弹出")
+				},
+				children = {}
+			},
+			{
+				name = "untitled1",
+				cType = "Button",
+				params = {
+					image = "kfbp_4.png",
+					clickAction = "onOkCallback",
+					pos = {
+						x = 979.61,
+						y = 564.22
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = -99
+slot2 = -98
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.showWhenLogined = slot1.showWhenLogined
+	slot0.mcConfigContent = slot1.mcConfigContent
+	slot0.mCallback = slot1.callback
+	slot0.isAuto = slot1.isAuto
+	slot0.mConfigTitle = slot1.configTitle
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	if slot0.isAuto then
+		slot0.tishi:setVisible(true)
+		slot0.checkBox:setVisible(true)
+	end
+
+	return 
+end
+slot0.onOkCallback = function (slot0)
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPopActionEnd = function (slot0)
+	slot0._webView = ccexp.WebView:create()
+
+	slot0._webView:setPosition(334, 139)
+	slot0._webView:setContentSize(668, 278)
+	slot0.bgSprite:addChild(slot0._webView)
+
+	if slot0.mcConfigContent then
+		slot0._webView:loadHTMLString(slot0.mcConfigContent)
+		slot0._webView:setScalesPageToFit(true)
+
+		slot0.noticeInfo = {
+			{
+				Title = slot0.mConfigTitle or TR("登陆公告")
+			}
+		}
+
+		slot0.initTitles(slot0)
+	else
+		slot0.requestNoticeInfo(slot0)
+	end
+
+	return 
+end
+slot0.initTitles = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.noticeInfo) do
+		table.insert(slot1, {
+			title = slot6.Title,
+			tag = slot5
+		})
+	end
+
+	slot0.msgBox:addChild(UIWrap.newControl("TabView", {
+		lightedImage = "gg_3.png",
+		direction = true,
+		normalImage = "gg_2.png",
+		pos = cc.p(107, 78),
+		size = cc.size(180, 300),
+		btnInfos = slot1,
+		titleOffset = cc.p(0.5, 0.5),
+		onSelectChange = function (slot0)
+			if slot0.noticeInfo[slot0].Url and slot0.noticeInfo[slot0].Url ~= "" then
+				IPlatform:getInstance():openUrl(slot0.noticeInfo[slot0].Url)
+			elseif not slot0.mcConfigContent then
+				slot0._webView:loadHTMLString(slot0.noticeInfo[slot0].Content)
+				slot0._webView:setScalesPageToFit(true)
+			end
+
+			return 
+		end
+	}))
+
+	return 
+end
+slot0.requestNoticeInfo = function (slot0)
+	function slot1(slot0)
+		slot1 = {}
+
+		for slot5, slot6 in pairs(slot0) do
+			table.insert(slot1, slot6)
+		end
+
+		table.sort(slot1, function (slot0, slot1)
+			return slot0.Order < slot1.Order
+		end)
+
+		return slot1
+	end
+
+	slot0.socketRequest(slot0, {
+		methodName = "GetNoticeList",
+		moduleName = "Notice",
+		successCallback = function (slot0)
+			slot0.noticeInfo = slot1(slot0)
+
+			slot0:initTitles()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onNoTipToday = function (slot0, slot1)
+	LocalData:saveGameDataValue("SystemNoticeTime", (slot1.isSelected(slot1) and Player:getCurrentTime()) or 0)
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,270 @@
+slot0 = class({})
+slot1 = cc.Director:getInstance():getScheduler()
+slot0.open = function (slot0, slot1, slot2, slot3)
+	slot0.manualClose = false
+	slot0.reconnectNum = 0
+	slot0.timeHandler = {}
+	slot0.url = slot1
+	slot0.hanlders = slot3
+	slot0.isChat = slot2
+	slot0.globalID = 1
+	slot0.mCallbackMap = {}
+
+	printInfo("连接socket:%s", slot0.url)
+	slot0._connect(slot0)
+
+	return 
+end
+slot0._connect = function (slot0)
+	slot1 = slot0.url
+
+	if not slot0.isChat then
+		slot1 = "ws://" .. slot1 .. "/client"
+	end
+
+	slot0.webSocket = cc.WebSocket:create(slot1)
+
+	slot0.webSocket:registerScriptHandler(function ()
+		slot0.reconnectNum = 0
+
+		slot0:login()
+
+		return 
+	end, cc.WEBSOCKET_OPEN)
+	slot0.webSocket:registerScriptHandler(function ()
+		slot0:accidentClose(false)
+
+		return 
+	end, cc.WEBSOCKET_CLOSE)
+	slot0.webSocket:registerScriptHandler(function (slot0)
+		if string.len(slot0) == 0 then
+			return 
+		end
+
+		if cjson.decode(slot0).Code ~= 0 then
+			slot0:dealErrorData(slot1)
+
+			return 
+		end
+
+		if slot0.isChat then
+			if string.len(slot1.MethodName) == 0 then
+				return 
+			end
+
+			if slot1.MethodName == "Login" then
+				slot0:_onLogin()
+			elseif slot0.hanlders and slot0.hanlders.onMessage and slot1.Data then
+				slot0.hanlders.onMessage(slot1.MethodName, slot1.Data)
+			end
+		elseif slot1.Id and 0 < slot1.Id then
+			if slot0.mCallbackMap[slot1.Id] then
+				slot0.mCallbackMap[slot1.Id](slot1)
+
+				slot0.mCallbackMap[slot1.Id] = nil
+			end
+		elseif slot0.hanlders and slot0.hanlders.onMessage then
+			slot0.hanlders.onMessage(slot1)
+		end
+
+		return 
+	end, cc.WEBSOCKET_MESSAGE)
+
+	return 
+end
+slot0._onLogin = function (slot0)
+	if not slot0.timeHandler.heartHandler then
+		slot0.timeHandler.heartHandler = slot0:scheduleScriptFunc(function ()
+			slot0.webSocket:sendString("")
+
+			return 
+		end, 5, false)
+	end
+
+	if slot0.hanlders and slot0.hanlders.onLogin then
+		slot0.hanlders.onLogin()
+	end
+
+	return 
+end
+slot0.accidentClose = function (slot0, slot1)
+	if slot0.webSocket then
+		slot0.webSocket:unregisterScriptHandler(cc.WEBSOCKET_OPEN)
+		slot0.webSocket:unregisterScriptHandler(cc.WEBSOCKET_CLOSE)
+		slot0.webSocket:unregisterScriptHandler(cc.WEBSOCKET_MESSAGE)
+
+		slot0.webSocket = nil
+	end
+
+	if slot0.timeHandler.heartHandler then
+		slot0:unscheduleScriptEntry(slot0.timeHandler.heartHandler)
+
+		slot0.timeHandler.heartHandler = nil
+	end
+
+	if slot0.hanlders and slot0.hanlders.onClose then
+		slot0.hanlders.onClose()
+	end
+
+	if not slot0.manualClose then
+		if 1 < slot0.reconnectNum and not slot1 then
+			ui.showFlashView(TR("%s服务器连接失败!", (slot0.isChat and TR("聊天")) or ""))
+		else
+			printInfo("开始第%d次重连网络:%s", slot0.reconnectNum, slot0.url)
+			slot0.reconnect(slot0)
+		end
+	end
+
+	return 
+end
+slot0.checkNetwork = function (slot0)
+	if (not slot0.webSocket or slot0.webSocket:getReadyState() ~= cc.WEBSOCKET_STATE_OPEN) and 1 < slot0.reconnectNum then
+		slot0.accidentClose(slot0, true)
+	end
+
+	return 
+end
+slot0.login = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+	if slot0.isChat then
+		slot0.send(slot0, "Login", {
+			slot1,
+			PlayerAttrObj:getPlayerAttrByName("ChatToken"),
+			tonumber(IPlatform:getInstance():getConfigItem("PartnerID")),
+			Player:getSelectServer().ServerID
+		})
+	else
+		slot0.sendCmd(slot0, {
+			ModuleName = "Player",
+			MethodName = "Login",
+			Parameters = {
+				slot1
+			}
+		}, handler(slot0, slot0._onLogin))
+	end
+
+	return 
+end
+slot0.send = function (slot0, slot1, slot2)
+	if not slot0.isConnected(slot0) then
+		return 
+	end
+
+	print("SocketMng:sendMessage: " .. slot3)
+	slot0.webSocket:sendString(json.encode({
+		MethodName = slot1,
+		Parameters = slot2
+	}))
+
+	return 
+end
+slot0.sendCmd = function (slot0, slot1, slot2)
+	if not slot0.isConnected(slot0) then
+		return 
+	end
+
+	slot1.Id = slot0.globalID
+
+	print("SocketMng:sendCmd: " .. json.encode)
+	slot0.webSocket:sendString(json.encode(slot1 or {}))
+
+	if slot2 then
+		slot0.mCallbackMap[slot0.globalID] = slot2
+	end
+
+	slot0.globalID = slot0.globalID + 1
+
+	return 
+end
+slot0.isConnected = function (slot0)
+	return slot0.webSocket and slot0.webSocket:getReadyState() == cc.WEBSOCKET_STATE_OPEN
+end
+slot0.reconnect = function (slot0)
+	if not slot0.timeHandler.reconnectHandler then
+		slot0.reconnectNum = slot0.reconnectNum + 1
+		slot0.timeHandler.reconnectHandler = slot0:scheduleScriptFunc(function ()
+			if slot0.timeHandler.reconnectHandler then
+				slot1:unscheduleScriptEntry(slot0.timeHandler.reconnectHandler)
+
+				slot1.unscheduleScriptEntry.timeHandler.reconnectHandler = nil
+			end
+
+			slot0:_connect()
+
+			return 
+		end, 10, false)
+	end
+
+	return 
+end
+slot0.close = function (slot0)
+	slot1 = pairs
+	slot2 = slot0.timeHandler or {}
+
+	for slot4, slot5 in slot1(slot2) do
+		slot0:unscheduleScriptEntry(slot5)
+
+		slot0.timeHandler[slot4] = nil
+	end
+
+	if slot0.webSocket then
+		slot0.manualClose = true
+		slot0.reconnectNum = 0
+
+		if slot0.isChat then
+			slot0.send(slot0, "Logout", {})
+		end
+
+		slot0.webSocket:close()
+
+		slot0.webSocket = nil
+	end
+
+	return 
+end
+slot0.dealErrorData = function (slot0, slot1)
+	dump(slot1, "socket error data")
+	require("network.SocketStates")
+
+	slot2 = nil
+
+	if ((not slot0.isChat or SocketStates.chatCode[slot1.Code]) and SocketStates.errorCode[slot1.Code]) == nil then
+		slot2 = TR("未知错误, 错误码(%d)", slot1.Code)
+	end
+
+	slot3 = TR("提示:%s", slot2)
+
+	if ({
+		[-18.0] = true
+	})[slot1.Code] then
+		slot0.close(slot0)
+		ui.showMessageBox({
+			text = slot3,
+			okCallback = function ()
+				IPlatform:getInstance():logout()
+
+				return 
+			end
+		})
+	else
+		ui.showFlashView(slot3)
+	end
+
+	return 
+end
+slot0.getExtendInfo = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("GuildInfo") or {}
+
+	return cjson.encode({
+		Name = PlayerAttrObj:getPlayerAttrByName("PlayerName"),
+		Lv = PlayerAttrObj:getPlayerAttrByName("Lv"),
+		Vip = PlayerAttrObj:getPlayerAttrByName("Vip"),
+		Fap = PlayerAttrObj:getPlayerAttrByName("Fap"),
+		HeadImageId = PlayerAttrObj:getPlayerAttrByName("HeadImageId"),
+		CombatHeadPicId = PlayerAttrObj:getPlayerAttrByName("CombatHeadPicId"),
+		FashionLevel = PlayerAttrObj:getPlayerAttrByName("FashionLevel")
+	})
+end
+
+return slot0

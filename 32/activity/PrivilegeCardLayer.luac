@@ -1,0 +1,267 @@
+slot0 = class("PrivilegeCardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 128)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onPopCallBack",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "cz_28.png",
+			pos = {
+				x = 488,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled13",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_105.png",
+					pos = {
+						x = 442.28,
+						y = 163.62
+					},
+					size = {
+						width = 260,
+						height = 40
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 615,
+						y = 450
+					}
+				},
+				children = {}
+			},
+			{
+				name = "introNode",
+				cType = "TemplateNode",
+				params = {
+					delayInit = true,
+					pos = {
+						x = 317.96,
+						y = 324.36
+					}
+				},
+				children = {
+					{
+						name = "untitled8",
+						cType = "Label",
+						params = {
+							fontSize = 20,
+							text = "Label",
+							childName = "introLabel",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 16,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Sprite",
+						params = {
+							image = "c_78.png",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "giftLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 435.18,
+						y = 166.95
+					},
+					text = TR("赠送xx元宝")
+				},
+				children = {}
+			},
+			{
+				name = "giftBtn",
+				cType = "Button",
+				params = {
+					image = "c_39.png",
+					clickAction = "onBuyBtn",
+					outlineColor = {
+						g = 88,
+						r = 180,
+						b = 47
+					},
+					pos = {
+						x = 442.61,
+						y = 111.85
+					},
+					titleColor = {
+						g = 244,
+						r = 253,
+						b = 232
+					},
+					titleText = TR("x元购买")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Label",
+				params = {
+					fontSize = 24,
+					color = {
+						g = 65,
+						r = 192,
+						b = 65
+					},
+					pos = {
+						x = 449.88,
+						y = 368.11
+					},
+					text = TR("*特权卡不参与任何充值活动")
+				},
+				children = {}
+			},
+			{
+				name = "doneLabel",
+				cType = "Sprite",
+				params = {
+					image = "cz_29.png",
+					pos = {
+						x = 445.21,
+						y = 113.85
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.refreshFun = slot1.callback
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. tostring(4), function (slot0)
+		ui.showFlashView(TR("激活成功"))
+
+		if slot0.refreshFun then
+			slot0.refreshFun()
+		end
+
+		LayerManager.removeLayer(slot0)
+
+		return 
+	end)
+	RedDotObj:saveOnceRedDot(ModuleSub.ePrivilegeCard, false)
+
+	return 
+end
+slot1 = {
+	"武林传记扫荡免费次数+1",
+	"庄园建造每天10次免费加速",
+	"庄园粮仓和金库储藏上限翻倍"
+}
+slot0.initUI = function (slot0)
+	slot1 = PrivilegeConfig.items[1]
+
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "giftBtn" then
+			slot1.titleText = TR("%d元购买", slot0.buyCostRmb)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onCloseBtn = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onPopCallBack = function (slot0)
+	slot1 = PrivilegeConfig.items[1]
+
+	for slot5, slot6 in ipairs(slot0) do
+		slot7 = slot0.createLayoutTemplateNode(slot0, "introNode")
+
+		slot7.setPosition(slot7, 307, (slot5 - 1)*27 - 340)
+		slot0.msgBox:addChild(slot7)
+		slot7.introLabel:setString(slot6)
+	end
+
+	slot0.giftLabel:setString(TR("购买即送{%s}%d", Resource.getDaibiImg(Utility.analysisStrResList(slot1.buySend)[1].resourceId), Utility.analysisStrResList(slot1.buySend)[1].num))
+	slot0.doneLabel:setVisible(slot3)
+	slot0.giftBtn:setVisible(not PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege"))
+
+	return 
+end
+slot0.onBuyBtn = function (slot0)
+	slot0.requestGetInfo(slot0)
+
+	return 
+end
+slot0.requestGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Privilege",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.mChargeInfo = {
+				chargeType = 4,
+				price = slot0.ConfigDesc.BuyCostRmb,
+				productId = slot0.ConfigDesc.ProductId
+			}
+
+			slot0:requestBuy()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestBuy = function (slot0)
+	Utility.recharge(slot0.mChargeInfo)
+
+	return 
+end
+
+return slot0

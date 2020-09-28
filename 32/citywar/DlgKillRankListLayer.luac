@@ -1,0 +1,511 @@
+slot0 = class("DlgKillRankListLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("杀敌榜")
+		},
+		children = {
+			{
+				name = "untitled44",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_94.png",
+					pos = {
+						x = 423.51,
+						y = 469.57
+					},
+					size = {
+						width = 774,
+						height = 34
+					}
+				},
+				children = {
+					{
+						name = "untitled50",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 55,
+								y = 17
+							},
+							text = TR("排名")
+						},
+						children = {}
+					},
+					{
+						name = "untitled51",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 180,
+								y = 16
+							},
+							text = TR("玩家名称")
+						},
+						children = {}
+					},
+					{
+						name = "untitled52",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 393,
+								y = 16
+							},
+							text = TR("帮派名称")
+						},
+						children = {}
+					},
+					{
+						name = "untitled53",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 529,
+								y = 16
+							},
+							text = TR("杀敌数")
+						},
+						children = {}
+					},
+					{
+						name = "untitled46",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 671,
+								y = 16
+							},
+							text = TR("奖励")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "tableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "cbNumOfCellsFunc",
+					isVertical = true,
+					cellUpdateFunc = "cbCellUpdateFunc",
+					cellSizeFunc = "cbCellSizeFunc",
+					cellFillFunc = "cbCellFillFunc",
+					pos = {
+						x = 35.34,
+						y = 54.11
+					},
+					size = {
+						width = 780,
+						height = 390
+					}
+				},
+				children = {
+					{
+						name = "killTemplate",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = -100.67
+							},
+							size = {
+								width = 780,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled59",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 390,
+										y = 50
+									},
+									size = {
+										width = 780,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled60",
+								cType = "Sprite",
+								params = {
+									image = "c_51.png",
+									childName = "indexSprite",
+									pos = {
+										x = 61.42,
+										y = 50.81
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled61",
+								cType = "Label",
+								params = {
+									text = "11",
+									fontName = "c_54.png",
+									childName = "indexLabel",
+									pos = {
+										x = 52.7,
+										y = 50.91
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12323",
+								cType = "PlayerHeroNode",
+								params = {
+									modelId = 19010000,
+									childName = "playerHead",
+									allowClick = false,
+									pos = {
+										x = 161.17,
+										y = 49.33
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled64",
+								cType = "Label",
+								params = {
+									childName = "playerName",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 211,
+										y = 50
+									},
+									text = TR("玩家名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled65",
+								cType = "Label",
+								params = {
+									childName = "guildName",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 393,
+										y = 50
+									},
+									text = TR("帮派名字")
+								},
+								children = {}
+							},
+							{
+								name = "untitled63",
+								cType = "Label",
+								params = {
+									text = "5",
+									childName = "count",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 517,
+										y = 50
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled12321",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									bounce = true,
+									direction = false,
+									pos = {
+										x = 563.32,
+										y = 0
+									},
+									size = {
+										width = 210,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled68-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 80,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled68",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													childName = "cardNode",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 40,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "myRank",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 37.98,
+						y = 36.73
+					},
+					text = TR("我的排名：4名")
+				},
+				children = {}
+			},
+			{
+				name = "myKill",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 270.98,
+						y = 36.73
+					},
+					text = TR("我的杀敌：5")
+				},
+				children = {}
+			},
+			{
+				name = "untitled55",
+				cType = "Label",
+				params = {
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 473.98,
+						y = 36.73
+					},
+					text = TR("每日 00:30 结算奖励通过邮件发放")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	"c_51.png",
+	"c_52.png",
+	"c_53.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mKillData = slot1.data
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.tableView:reloadData()
+	slot0.myKill:setString(TR("我的杀敌：%d", slot0.mKillData.KillNum))
+
+	if slot0.mKillData.RandNum == 0 then
+		slot0.myRank:setString(TR("我的排名：未上榜"))
+	else
+		slot0.myRank:setString(TR("我的排名：%d", slot0.mKillData.RandNum))
+	end
+
+	return 
+end
+slot0.refreshUI = function (slot0)
+	return 
+end
+slot0.cbCellSizeFunc = function (slot0, slot1, slot2)
+	return 780, 100
+end
+slot0.cbNumOfCellsFunc = function (slot0, slot1)
+	return #slot0.mKillData.RankInfo
+end
+slot0.cbCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "killTemplate")
+
+	slot3.setPosition(slot3, cc.p(0, 0))
+	slot1.addChild(slot1, slot3)
+
+	slot1.refreshCell = function (slot0)
+		if 3 < slot0.mKillData.RankInfo[slot0 + 1].Rank then
+			slot1.indexSprite:setVisible(false)
+			slot1.indexLabel:setVisible(true)
+			slot1.indexLabel:setString(slot1.Rank)
+		else
+			slot1.indexSprite:setVisible(true)
+			slot1.indexLabel:setVisible(false)
+			slot1.indexSprite:setTexture(slot2[slot1.Rank])
+		end
+
+		slot1.playerName:setString(slot1.PlayerName)
+		slot1.guildName:setString(slot1.GuildName)
+		slot1.count:setString(slot1.KillNum)
+
+		slot2 = nil
+
+		for slot7, slot8 in ipairs(slot3) do
+			if slot8.rankMax <= slot1.Rank and slot1.Rank <= slot8.rankMin then
+				slot2 = slot8.reward
+
+				break
+			end
+		end
+
+		if slot2 ~= nil then
+			slot1.listView:removeAllItems()
+
+			for slot8, slot9 in pairs(slot4) do
+				slot1.listView:pushBackCustomItem(slot0:createLayoutTemplateNode("rewardLayout", {
+					cardInfo = {
+						cardInfo = {
+							modelId = slot9.resourceId,
+							num = slot9.num
+						},
+						showAttrs = {
+							Enums.CardShowAttr.eBorder,
+							Enums.CardShowAttr.eNum
+						}
+					}
+				}))
+			end
+		end
+
+		return 
+	end
+
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.cbCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.refreshCell(slot2)
+
+	return 
+end
+slot0.getExpConfig = function (slot0)
+	slot1 = PlayerAttrObj:getPlayerAttrByName("Lv")
+	slot2 = 1
+	slot3 = {}
+
+	for slot7, slot8 in pairs(CitywarMonsterkillExpRelation.items) do
+		if slot2 <= slot7 and slot7 <= slot1 then
+			slot2 = slot7
+			slot3 = slot8
+		end
+	end
+
+	return slot3
+end
+
+return slot0

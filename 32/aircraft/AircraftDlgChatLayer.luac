@@ -1,0 +1,820 @@
+slot0 = class("AircraftDlgChatLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			needAction = true,
+			hideCloseButton = false,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 655,
+				height = 505
+			},
+			titleText = TR("团队交流")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "TabView",
+				params = {
+					onSelectChange = "onTabviewAction",
+					lightedImage = "c_30.png",
+					direction = false,
+					normalImage = "c_31.png",
+					btnInfos = {
+						{
+							title = TR("快 捷")
+						},
+						{
+							title = TR("聊 天")
+						},
+						{
+							title = TR("战 绩")
+						}
+					},
+					pos = {
+						x = 38.98,
+						y = 415.29
+					},
+					size = {
+						width = 580,
+						height = 60
+					},
+					titleOffset = {
+						x = 0.5,
+						y = 0.5
+					}
+				},
+				children = {}
+			},
+			{
+				name = "bgSprite",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 327.5,
+						y = 402.76
+					},
+					size = {
+						width = 601,
+						height = 370
+					}
+				},
+				children = {}
+			},
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					anchor = {
+						x = 0.5,
+						y = 1
+					},
+					pos = {
+						x = 327.5,
+						y = 395
+					},
+					size = {
+						width = 598,
+						height = 355
+					}
+				},
+				children = {
+					{
+						name = "mQuickChatCell",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled7-text",
+								name = "strText",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 598,
+								height = 56
+							}
+						},
+						children = {
+							{
+								name = "untitled6",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 299,
+										y = 28
+									},
+									size = {
+										width = 598,
+										height = 48
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled7",
+								cType = "Label",
+								params = {
+									text = "Label",
+									outlineColor = {
+										g = 42,
+										r = 51,
+										b = 24
+									},
+									pos = {
+										x = 299,
+										y = 28
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled8",
+								cType = "Button",
+								params = {
+									childName = "sendBtn",
+									swallowTouch = false,
+									pressedAction = false,
+									image = "c_pure.png",
+									pos = {
+										x = 299,
+										y = 28
+									},
+									size = {
+										width = 598,
+										height = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mScoreCell",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled19-text",
+								name = "strName",
+								type = "string"
+							},
+							{
+								value = "untitled20-text",
+								name = "strZone",
+								type = "string"
+							},
+							{
+								value = "untitled21-text",
+								name = "strLevel",
+								type = "string"
+							},
+							{
+								value = "untitled22-text",
+								name = "strKill",
+								type = "string"
+							},
+							{
+								value = "untitled23-text",
+								name = "strScore",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 1.06,
+								y = 276.31
+							},
+							size = {
+								width = 598,
+								height = 35
+							}
+						},
+						children = {
+							{
+								name = "untitled19",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 33,
+										y = 17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled20",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 205,
+										y = 17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled21",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 336,
+										y = 17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled22",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 434,
+										y = 17
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled23",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Label",
+									isRichText = true,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 512,
+										y = 17
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "mNormalChatCell",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled26-text",
+								name = "strText",
+								type = "string"
+							},
+							{
+								value = "untitled26-color",
+								name = "textColor",
+								type = "string"
+							},
+							{
+								value = "untitled25-hide",
+								name = "isOther",
+								type = "string"
+							},
+							{
+								value = "untitled28-hide",
+								name = "isSelf",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0,
+								y = 170
+							},
+							size = {
+								width = 598,
+								height = 70
+							}
+						},
+						children = {
+							{
+								name = "untitled25",
+								cType = "Scale9Sprite",
+								params = {
+									hide = true,
+									image = "lt_4.png",
+									childName = "chatBg_2",
+									anchor = {
+										x = 0,
+										y = 0
+									},
+									pos = {
+										x = 5,
+										y = 3
+									},
+									size = {
+										width = 550,
+										height = 62
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled28",
+								cType = "Scale9Sprite",
+								params = {
+									childName = "chatBg_1",
+									reverse = 1,
+									hide = true,
+									image = "lt_10.png",
+									pos = {
+										x = 313,
+										y = 35
+									},
+									size = {
+										width = 550,
+										height = 62
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled26",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									align = 0,
+									childName = "infoLabel",
+									valign = 1,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 20,
+										y = 32
+									},
+									size = {
+										width = 520,
+										height = 60
+									},
+									text = TR("北京天安门广场上的人群北京天安门广场上的人群北京天安门广场上的人群北京天安门广场上的人群北京天安门广")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "msgEditBox",
+				cType = "EditBox",
+				params = {
+					fontSize = 22,
+					hide = true,
+					maxLength = 50,
+					image = "c_41.png",
+					placeColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					placeHolder = TR("点击输入文字"),
+					pos = {
+						x = 239.31,
+						y = 60.77
+					},
+					size = {
+						width = 400,
+						height = 48
+					}
+				},
+				children = {
+					{
+						name = "btnSend",
+						cType = "Button",
+						params = {
+							image = "c_32.png",
+							clickAction = "onBtnSendAction",
+							pos = {
+								x = 507.31,
+								y = 24.77
+							},
+							titleText = TR("发 送")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "bgScore",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 37.64,
+						y = 352.25
+					},
+					size = {
+						width = 580,
+						height = 50
+					}
+				},
+				children = {
+					{
+						name = "untitled13",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 20,
+								y = 26
+							},
+							text = TR("玩家名字")
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 190,
+								y = 26
+							},
+							text = TR("区服")
+						},
+						children = {}
+					},
+					{
+						name = "untitled15",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 320,
+								y = 26
+							},
+							text = TR("等级")
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 415,
+								y = 26
+							},
+							text = TR("击杀")
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Label",
+						params = {
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 490,
+								y = 26
+							},
+							text = TR("抢点")
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.curTag = 1
+
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0.listView, {
+		AircraftHelper.Events.eGodDomainFightResult
+	}, function ()
+		LayerManager.removeLayer(LayerManager.removeLayer)
+
+		return 
+	end)
+	EventAuto:registerAutoEvent(slot0.btnSend, {
+		AircraftHelper.Events.eGodDomainFightOver
+	}, function (slot0, slot1)
+		if ((slot1.isWin and slot1.targetPlayerId) or slot1.attackPlayerId) == PlayerAttrObj:getPlayerAttrByName("PlayerId") then
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	return 
+end
+slot0.onExit = function (slot0)
+	if slot0.msgEditBox then
+		slot0.msgEditBox:setVisible(false)
+	end
+
+	return 
+end
+slot0.onTabviewAction = function (slot0, slot1)
+	slot0.curTag = slot1
+
+	slot0.bgScore:setVisible(slot1 == 3)
+	slot0.msgEditBox:setVisible(slot1 == 2)
+
+	if slot1 == 2 then
+		slot0.bgSprite:setContentSize(cc.size(601, 310))
+	else
+		slot0.bgSprite:setContentSize(cc.size(601, 370))
+	end
+
+	slot0.listView:removeAllItems()
+
+	if slot1 == 2 then
+		slot0.listView:setContentSize(cc.size(598, 295))
+		slot0.listView:setPosition(327.5, 395)
+	elseif slot1 == 3 then
+		slot0.listView:setContentSize(cc.size(598, 315))
+		slot0.listView:setPosition(327.5, 350)
+	else
+		slot0.listView:setContentSize(cc.size(598, 355))
+		slot0.listView:setPosition(327.5, 395)
+	end
+
+	if slot1 == 1 then
+		slot0.createQuickChatLayer(slot0)
+	elseif slot1 == 2 then
+		slot0.createNormalChatLayer(slot0)
+	elseif slot1 == 3 then
+		AircraftHelper:playerViewBattle(function (slot0)
+			AircraftHelper.reportList = slot0 or {}
+
+			slot0:createReportLayer()
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.onBtnSendAction = function (slot0)
+	if slot0.msgEditBox:getText() == nil or #slot1 == 0 then
+		ui.showFlashView(TR("消息不能为空"))
+
+		return 
+	end
+
+	AircraftHelper:chatToAll(slot1, function ()
+		slot0.msgEditBox:setText("")
+
+		return 
+	end)
+
+	return 
+end
+slot0.createQuickChatLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(AircraftTeamchatRelation.items) do
+		table.insert(slot1, slot6)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.ID < slot1.ID
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.createLayoutTemplateNode(slot0, "mQuickChatCell", {
+			strText = slot6.chatText
+		}).sendBtn:setClickAction(function ()
+			AircraftHelper:chatToAll(slot0.chatText, function ()
+				LayerManager.removeLayer(LayerManager.removeLayer)
+
+				return 
+			end)
+
+			return 
+		end)
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mQuickChatCell", {
+			strText = slot6.chatText
+		}))
+	end
+
+	return 
+end
+slot0.createNormalChatLayer = function (slot0)
+	function slot1(slot0)
+		if slot0.name == PlayerAttrObj:getPlayerAttrByName("PlayerName") then
+			slot0.isSelf = true
+		end
+
+		slot1 = slot0.name or TR("#258711系统消息")
+		slot2 = cc.c3b(0, 0, 0)
+
+		if slot0.isSelf ~= nil and slot0.isSelf == true then
+			slot1 = TR("我")
+			slot2 = cc.c3b(255, 255, 255)
+		end
+
+		slot3 = slot0:createLayoutTemplateNode("mNormalChatCell", {
+			strText = "[" .. slot1 .. "]:" .. slot0.message,
+			textColor = slot2,
+			isOther = slot0.isSelf ~= nil and slot0.isSelf == true,
+			isSelf = slot0.isSelf == nil or slot0.isSelf ~= true
+		})
+
+		if slot0.isSelf ~= nil and slot0.isSelf == true then
+			slot3.infoLabel:setPositionX(58)
+		end
+
+		slot0.listView:pushBackCustomItem(slot3)
+
+		return 
+	end
+
+	slot2 = 0
+
+	for slot6, slot7 in ipairs(AircraftHelper.chatCache) do
+		slot1(slot7)
+
+		slot2 = slot2 + 1
+	end
+
+	ui.setListviewItemShow(slot0.listView, slot2)
+	EventAuto:registerAutoEvent(slot0.btnSend, {
+		AircraftHelper.Events.eGodDomainChatInfo
+	}, function (slot0, slot1)
+		if slot1 ~= nil and type(slot1) == "string" then
+			return 
+		end
+
+		if slot0.curTag == 2 then
+			for slot6 = slot1 + 1, table.nums(AircraftHelper.chatCache), 1 do
+				slot2(AircraftHelper.chatCache[slot6])
+
+				slot1 = slot1 + 1
+			end
+
+			ui.setListviewItemShow(slot0.listView, slot1)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.createReportLayer = function (slot0)
+	slot1 = AircraftConfig.items[1].killsScore or 0
+	slot2 = {}
+	slot3 = pairs
+	slot4 = AircraftHelper.reportList.Data or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		slot8 = clone(slot7)
+		slot8.killScore = slot8.KillNum*slot1
+
+		table.insert(slot2, slot8)
+	end
+
+	table.sort(slot2, function (slot0, slot1)
+		return slot1.killScore < slot0.killScore
+	end)
+
+	for slot6, slot7 in ipairs(slot2) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "mScoreCell", {
+			strName = ((slot7.TeamName == AircraftHelper.myTeamName and "#37FF40") or "#EA2C00") .. slot7.Name,
+			strZone = ((slot7.TeamName == AircraftHelper.myTeamName and "#37FF40") or "#EA2C00") .. slot7.ServerName,
+			strLevel = ((slot7.TeamName == AircraftHelper.myTeamName and "#37FF40") or "#EA2C00") .. slot7.Lv,
+			strKill = ((slot7.TeamName == AircraftHelper.myTeamName and "#37FF40") or "#EA2C00") .. slot7.KillNum,
+			strScore = ((slot7.TeamName == AircraftHelper.myTeamName and "#37FF40") or "#EA2C00") .. slot7.OccupyResNum
+		}))
+	end
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,474 @@
+slot0 = class("UpdateResourceLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled4",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "dl_bg.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "gcjz_1.png",
+					pos = {
+						x = 0,
+						y = -285
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mProgressBar",
+				cType = "ProgressBar",
+				params = {
+					normalImage = "gcjz_3.png",
+					bgImage = "gcjz_2.png",
+					pos = {
+						x = 0,
+						y = -285.1
+					}
+				},
+				children = {}
+			},
+			{
+				name = "label_state",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					outlineSize = 2,
+					color = {
+						g = 255,
+						r = 255,
+						b = 255
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = -266.79
+					},
+					text = TR("正在获取更新列表")
+				},
+				children = {}
+			},
+			{
+				name = "label_speed",
+				cType = "Label",
+				params = {
+					fontSize = 18,
+					outlineSize = 2,
+					text = "0/s",
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					color = {
+						g = 245,
+						r = 233,
+						b = 246
+					},
+					outlineColor = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 0,
+						y = -303.63
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = cc.EventAssetsManagerEx.EventCode
+slot2 = {
+	eUpToDate = 1,
+	eFailed = -1,
+	eSuccess = 0
+}
+slot0.ctor = function (slot0, slot1)
+	require("network.ViceUpdater").stop()
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	Utility.newCpInvoke(135)
+	dump(slot1)
+
+	slot0.params = slot1
+
+	math.newrandomseed()
+
+	slot0.am_ = require("network.AssetsMgr").new()
+
+	slot0.am_:setPackageUrl(slot1.Url, slot1.ResourceVersionName)
+
+	slot0.failedCnt_ = 0
+	slot0.failedFiles_ = {}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot0.speed = {
+		downloadSize_ = 0,
+		outtime_ = 0,
+		lasttime_ = 0,
+		lastSize_ = 0
+	}
+
+	slot0.label_speed:scheduleUpdateWithPriorityLua(function (slot0)
+		slot0.speed.outtime_ = slot0.speed.outtime_ + slot0
+
+		if 0.7 <= slot0.speed.outtime_ - slot0.speed.lasttime_ then
+			if (slot0.speed.downloadSize_ - slot0.speed.lastSize_)/slot1 < 0 then
+				slot2 = 0
+			end
+
+			slot3 = Utility.btyeToViewStr(slot2)
+
+			if slot0.readable_total_str_ then
+				slot0.label_speed:setString(string.format(TR("本次下载%.02f/%.02f %s，速度%s，版本号%s(%s)"), slot0.readable_done_str_[1], slot0.readable_total_str_[1], slot0.readable_total_str_[2], slot3 .. "/s", slot1, slot2))
+			end
+
+			slot0.speed.lastSize_ = slot0.speed.downloadSize_
+			slot0.speed.lasttime_ = slot0.speed.outtime_
+		end
+
+		return 
+	end, 1)
+	slot0.label_speed:setString(TR("版本号:%s(%s)", slot1, string.sub(LocalData:getResourceVerName(), 12, 20)))
+
+	for slot6, slot7 in pairs(slot0) do
+		if slot0["on_" .. slot6] then
+			slot0.am_:on(slot7, function (...)
+				if tolua.isnull(tolua.isnull) then
+					return 
+				end
+
+				slot0["on_" .. ](slot0["on_" .. ], ...)
+
+				return 
+			end)
+		end
+	end
+
+	return 
+end
+slot0.onEnterTransitionFinish = function (slot0)
+	if slot0.onEnterTransitionFinished_ then
+		return 
+	end
+
+	slot0.onEnterTransitionFinished_ = true
+	slot0.failedFiles_ = {}
+	slot0.failedCnt_ = 0
+	slot0.speed = {
+		downloadSize_ = 0,
+		outtime_ = 0,
+		lasttime_ = 0,
+		lastSize_ = 0
+	}
+
+	slot0.label_state:setString(TR("正在获取更新列表"))
+	slot0.am_:update()
+
+	return 
+end
+slot0.on_NEW_VERSION_FOUND = function (slot0, slot1)
+	dump(slot2, "Remote Manifest Version")
+	slot0.label_state:setString(TR("解析中"))
+	slot0.am_:update()
+
+	return 
+end
+slot0.on_UNZIP = function (slot0, slot1, slot2)
+	slot0.label_state:setString(string.format(TR("解压中(%d/%d)"), slot1, slot2))
+
+	return 
+end
+slot0.on_UNZIP_FAILED = function (slot0)
+	slot0.retryCnt_ = slot0.retryCnt_ or 0
+
+	function slot1(slot0)
+		slot0.failedCnt_ = 0
+		slot0.failedFiles_ = {}
+
+		slot0.am_:downloadMainFailedAssets(slot0 or 30)
+
+		return 
+	end
+
+	slot2 = release_print(s)
+
+	slot0.tips(slot0, string.format(TR("解压出错: %d"), MQUnCompress:getInstance():getError()), nil, function ()
+		slot0.label_state:setString(TR("下载中"))
+		slot0.label_state(30)
+
+		return 
+	end)
+
+	return 
+end
+slot0.on_ALREADY_UP_TO_DATE = function (slot0, ...)
+	if slot0.params.onEnd then
+		slot0.params.onEnd(slot0.eUpToDate, event)
+	end
+
+	slot0.reboot(slot0)
+
+	return 
+end
+slot0.on_ERROR_NO_LOCAL_MANIFEST = function (slot0, ...)
+	slot0.onFailed(slot0, ...)
+	slot0.tips(slot0, ({
+		TR("本地配置文件丢失"),
+		TR("本地配置文件在躲猫猫")
+	})[math.random(1, #{
+		TR("本地配置文件丢失"),
+		TR("本地配置文件在躲猫猫")
+	})])
+
+	return 
+end
+slot0.on_ERROR_PARSE_MANIFEST = function (slot0, ...)
+	slot0.onFailed(slot0, ...)
+	slot0.tips(slot0, ({
+		TR("配置文件解析出错"),
+		TR("配置文件又调皮了")
+	})[math.random(1, #{
+		TR("配置文件解析出错"),
+		TR("配置文件又调皮了")
+	})])
+
+	return 
+end
+slot0.on_ERROR_DOWNLOAD_MANIFEST = function (slot0, ...)
+	slot0.onFailed(slot0, ...)
+	slot0.tips(slot0, ({
+		TR("配置文件下载出错"),
+		TR("远程配置文件也爱躲猫猫"),
+		TR("服务器正在打瞌睡")
+	})[math.random(1, #{
+		TR("配置文件下载出错"),
+		TR("远程配置文件也爱躲猫猫"),
+		TR("服务器正在打瞌睡")
+	})])
+
+	return 
+end
+slot0.on_UPDATE_FAILED = function (slot0, ...)
+	slot0.retryCnt_ = slot0.retryCnt_ or 0
+
+	function slot2(slot0)
+		slot0.failedCnt_ = 0
+		slot0.failedFiles_ = {}
+
+		slot0.am_:downloadMainFailedAssets(slot0 or 30)
+
+		return 
+	end
+
+	slot3 = pairs
+	slot4 = slot0.failedFiles_ or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		release_print("失败文件: " .. slot7)
+	end
+
+	if slot0.retryCnt_ < 3 then
+		slot0.retryCnt_ = slot0.retryCnt_ + 1
+
+		release_print("自动重试: " .. slot0.retryCnt_)
+		slot2(15)
+	else
+		slot0.onFailed(slot0, ...)
+		slot0.tips(slot0, ({
+			TR("更新有点小问题，%s个文件未完成", slot0.failedCnt_),
+			TR("这不是一次完美的更新，有%s个文件未完成", slot0.failedCnt_),
+			TR("如果给我再来一次的机会...我会把另外%s个文件撩到手", slot0.failedCnt_)
+		})[math.random(1, #{
+			TR("更新有点小问题，%s个文件未完成", slot0.failedCnt_),
+			TR("这不是一次完美的更新，有%s个文件未完成", slot0.failedCnt_),
+			TR("如果给我再来一次的机会...我会把另外%s个文件撩到手", slot0.failedCnt_)
+		})], nil, function ()
+			slot0.label_state:setString(TR("下载中"))
+
+			slot0.label_state.setString.retryCnt_ = 0
+
+			0(30)
+
+			return 
+		end)
+	end
+
+	return 
+end
+slot0.on_UPDATE_FINISHED = function (slot0, slot1)
+	slot0.label_state:setString(TR("更新完成"))
+	Utility.newCpInvoke(140)
+
+	if slot0.params.onEnd then
+		slot0.params.onEnd(slot0.eSuccess, slot1)
+	end
+
+	slot0.reboot(slot0)
+
+	return 
+end
+slot0.on_ASSET_UPDATED = function (slot0, slot1)
+	return 
+end
+slot0.on_ERROR_UPDATING = function (slot0, slot1)
+	slot0.failedCnt_ = slot0.failedCnt_ + 1
+
+	table.insert(slot0.failedFiles_, slot1.getAssetId(slot1))
+
+	return 
+end
+slot0.on_ERROR_DECOMPRESS = function (slot0, ...)
+	slot0.onFailed(slot0, ...)
+
+	return 
+end
+slot0.on_UPDATE_PROGRESSION = function (slot0, slot1)
+	slot3 = slot1.getPercent(slot1)
+	slot4 = ""
+
+	if slot1.getAssetId(slot1) == cc.AssetsManagerExStatic.VERSION_ID then
+		slot4 = string.format("Version file: %d%%", slot3)
+	elseif slot2 == cc.AssetsManagerExStatic.MANIFEST_ID then
+		slot0.label_state:setString(TR("正在获取更新列表 %d%%", slot3))
+
+		slot4 = string.format("Manifest file: %.02f%%", slot3)
+	else
+		slot0.label_state:setString(TR("下载中"))
+
+		slot4 = string.format("%s %d%%", slot2, slot3)
+		slot6 = (slot3*slot1.getTotalSize(slot1))/100
+		slot7 = slot0.speed.downloadSize_ or 0
+
+		if slot7 <= slot6 then
+			slot0.speed.downloadSize_ = slot6
+			slot7, slot8 = Utility.btyeToViewStr(slot5)
+			slot9, slot0.readable_done_str_ = Utility.btyeToViewStr(slot6, nil, slot8[2])
+			slot0.readable_total_str_ = slot8
+
+			slot0.mProgressBar:setCurrValue(slot3)
+		end
+	end
+
+	return 
+end
+slot0.onFailed = function (slot0, slot1)
+	slot0.label_state:setString(TR("更新中断<%s>", slot1.getEventCode(slot1)))
+
+	return 
+end
+slot0.tips = function (slot0, slot1, slot2, slot3)
+	ui.showMessageBox({
+		text = string.format("%s\n%s", slot1, slot0.genMotion(slot0)),
+		msgBoxParams = {
+			needTouchClose = false,
+			hideCloseButton = true,
+			okText = TR("重新下载"),
+			cancelText = TR("清理缓存")
+		},
+		okCallback = function (slot0)
+			slot0.am_:release()
+			LayerManager.removeLayer(slot0)
+			LayerManager.addLayer({
+				cleanUp = true,
+				name = "login.UpdateResourceLayer",
+				data = slot0.params
+			})
+
+			return 
+		end,
+		cancelCallback = function (slot0)
+			cc.UserDefault:getInstance():setBoolForKey("needUnzipFlag", true)
+
+			if cc.FileUtils:getInstance():isDirectoryExist(cc.FileUtils:getInstance():getWritablePath() .. "Download/") then
+				cc.FileUtils:getInstance():removeDirectory(slot1)
+			end
+
+			slot0:reboot()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.genMotion = function (slot0)
+	return ({
+		TR("o_O"),
+		TR("x_x"),
+		TR("+_+"),
+		TR("- -."),
+		TR("(- -)"),
+		TR("- -#"),
+		TR("- -!"),
+		TR("@_@"),
+		TR("\\\\(ToT)//")
+	})[math.random(1, #{
+		TR("o_O"),
+		TR("x_x"),
+		TR("+_+"),
+		TR("- -."),
+		TR("(- -)"),
+		TR("- -#"),
+		TR("- -!"),
+		TR("@_@"),
+		TR("\\\\(ToT)//")
+	})]
+end
+slot0.reboot = function (slot0)
+	slot0.am_:release()
+	Utility.performWithDelay(slot0, function (...)
+		LayerManager.removeTopCleanUpLayer(false)
+		require("common.SpineManager").clearCaches()
+		cc.Director:getInstance():purgeCachedData()
+		cc.exports.rebootLua()
+
+		return 
+	end, 0)
+
+	return 
+end
+
+return slot0

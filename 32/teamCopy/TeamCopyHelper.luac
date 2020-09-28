@@ -1,0 +1,741 @@
+slot0 = require("network.GameSocket")
+TeamCopyHelper = {
+	HelpRewardNum = 0,
+	playerListMd5 = "",
+	IsHelp = false,
+	RoomId = "",
+	IsAutoReady = true,
+	BuyNum = 0,
+	JoinType = 0,
+	FapLimit = 0,
+	FormationInfo = "",
+	LeaderId = "",
+	NodeId = 0,
+	TeamFightNum = 0,
+	TeamMaxNodeId = 0,
+	lastWorldShareTime = 0,
+	SingleMaxNodeId = 1,
+	IsGetReward = false,
+	HelpFightNum = 0,
+	RestoreTime = 0,
+	PlayerList = {},
+	modifyBaseInfo = function (slot0, slot1)
+		dump(slot1, "baseInfo:")
+
+		slot0.TeamFightNum = slot1 or {}.TeamFightNum or 0
+		slot0.RestoreTime = slot1 or {}.RestoreTime or 0
+		slot0.HelpFightNum = slot1 or {}.HelpFightNum or 0
+		slot0.HelpRewardNum = slot1 or {}.HelpRewardNum or 0
+		slot0.BuyNum = slot1 or {}.BuyNum or 0
+		slot0.IsGetReward = slot1 or {}.IsGetReward or false
+		slot0.IsHelp = slot1 or {}.IsHelp or false
+		slot0.IsAutoReady = slot1 or {}.IsAutoReady or false
+
+		if slot1.SingleMaxNodeId ~= nil then
+			slot0.SingleMaxNodeId = slot1.SingleMaxNodeId
+		end
+
+		if slot1.TeamMaxNodeId ~= nil then
+			slot0.TeamMaxNodeId = slot1.TeamMaxNodeId
+		end
+
+		if slot1.FormationInfo ~= nil then
+			slot0.FormationInfo = slot1.FormationInfo or ""
+		end
+
+		return 
+	end,
+	modifyRoomInfo = function (slot0, slot1)
+		dump(slot1, "modifyRoomInfo roomInfo:")
+
+		slot0.RoomId = slot1 or {}.RoomId or ""
+		slot0.FapLimit = slot1 or {}.FapLimit or 0
+		slot0.NodeId = slot1 or {}.NodeId or 0
+		slot0.LeaderId = slot1 or {}.LeaderId or ""
+		slot0.JoinType = slot1 or {}.JoinType or 0
+		slot0.PlayerList = slot1 or {}.PlayerList or {}
+		slot0.playerListMd5 = string.md5Content(cjson.encode(slot0.PlayerList))
+
+		EventAuto:postEvent(EventDefine.eTeamCopyRoomInfoChanged)
+
+		return 
+	end,
+	dealPushShareInfo = function (slot0, slot1)
+		if not slot1 or not slot1.Message then
+			return 
+		end
+
+		dump(slot1, "shareInfo:")
+
+		slot2 = slot1.ToPlayer and next(slot1.ToPlayer) ~= nil
+
+		if slot1.FromPlayer and slot1.FromPlayer.ExtendInfo then
+			slot1.FromPlayer.ExtendInfo = cjson.decode(slot1.FromPlayer.ExtendInfo)
+		end
+
+		if slot1.ToPlayer and slot1.ToPlayer.ExtendInfo then
+			slot1.ToPlayer.ExtendInfo = cjson.decode(slot1.ToPlayer.ExtendInfo)
+		end
+
+		slot1.TeamCopyRoom = slot1.Message
+		slot1.TimeStamp = Player:getCurrentTime()
+		slot1.Message = (TeamCopyNodeModel.items[slot1.Message.NodeId] and TR("%s 请大侠组队帮忙", slot4.name)) or TR("请大侠出手相助")
+		slot1.Channel = (slot2 and Enums.ChatChanne.ePrivate) or Enums.ChatChanne.eWorld
+		slot1.Id = 999999999
+
+		ChatMng:onMessage("SendMessage", slot1)
+
+		slot5 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+		if slot2 and slot5 == slot1.ToPlayerId then
+			EventAuto:postEvent(EventDefine.eTeamCopyNewFriendInvite)
+		end
+
+		EventAuto:postEvent(EventDefine.eTeamCopyFriendInviteChanged)
+
+		return 
+	end,
+	getFriendInviteList = function (slot0)
+		slot1 = {}
+		slot2 = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+		for slot7, slot8 in ipairs(slot3) do
+			for slot13, slot14 in ipairs(slot9) do
+				if slot14.TeamCopyRoom and next(slot14.TeamCopyRoom) and slot14.ToPlayerId == slot2 and (not slot1[slot14.TeamCopyRoom.RoomId] or slot1[slot15].TimeStamp < slot14.TimeStamp) then
+					slot1[slot15] = slot14
+				end
+			end
+		end
+
+		slot4 = {}
+
+		for slot8, slot9 in pairs(slot1) do
+			table.insert(slot4, slot9)
+		end
+
+		table.sort(slot4, function (slot0, slot1)
+			return slot1.TimeStamp < slot0.TimeStamp
+		end)
+
+		return slot4
+	end,
+	selfIsLeader = function (slot0)
+		return PlayerAttrObj:getPlayerAttrByName("PlayerId") == slot0.LeaderId
+	end,
+	setWorldShareCD = function (slot0)
+		slot0.lastWorldShareTime = Player:getCurrentTime()
+
+		return 
+	end,
+	getWorldShareCD = function (slot0)
+		return math.max(0, Player:getCurrentTime() - slot0.lastWorldShareTime - 300)
+	end,
+	getFightRestoreTime = function (slot0)
+		slot2 = -31536000
+
+		if slot0.RestoreTime - Player:getCurrentTime() < 0 and slot2 < slot1 and not slot0.refreshing then
+			slot0.refreshing = true
+
+			slot0.requestGetInfo(slot0)
+		else
+			slot0.refreshing = false
+		end
+
+		return math.max(0, slot1)
+	end,
+	requestGetInfo = function (slot0, slot1)
+		dump("requestGetInfo:")
+		slot0:socketRequest({
+			methodName = "GetInfo",
+			moduleName = "TeamCopyInfo",
+			methodData = {},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+				slot0 or {}:modifyRoomInfo(slot0 or {}.RoomInfo)
+
+				if slot0 or {}.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (...)
+				dump({
+					...
+				}, "failedCallback:")
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestGetFightInfo = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "GetFightInfo",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.copyModelId
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				if slot0 or {}.successCallback then
+					slot0.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestFight = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "Fight",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.copyModelId,
+				slot1 or {}.fightResult,
+				slot1 or {}.operationData
+			},
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			_dependLayer = slot1 or {}.dependLayer,
+			successCallback = function (slot0)
+				if slot0 or {}.needShowReward and slot0.BaseGetGameResourceList then
+					ui.showFlashReward({
+						BaseGetGameResourceList = slot0.BaseGetGameResourceList
+					})
+				end
+
+				if slot0.successCallback then
+					slot0.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestStartFight = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "StartFight",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+				slot0 or {}:modifyRoomInfo(slot0 or {}.RoomInfo)
+
+				if slot0 or {}.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestCreateRoom = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "CreateRoom",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.copyNodeId,
+				slot1 or {}.limitFap,
+				slot1 or {}.joinType
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				if slot0 or {}.TeamFightNum then
+					slot0:modifyBaseInfo(slot0)
+					slot0:modifyRoomInfo(slot0.RoomInfo)
+				else
+					slot0:modifyRoomInfo(slot0)
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestAlterRoom = function (slot0, slot1)
+		dump(slot1 or {}, "requestAlterRoom params:")
+		slot0:socketRequest({
+			methodName = "AlterRoom",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.limitFap,
+				slot1 or {}.joinType
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				if slot0 and slot0.RoomId then
+					slot0:modifyRoomInfo(slot0)
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestJoinRoom = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "JoinRoom",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				if slot0 or {}.TeamFightNum then
+					slot0:modifyBaseInfo(slot0)
+					slot0:modifyRoomInfo(slot0.RoomInfo)
+				else
+					slot0:modifyRoomInfo(slot0)
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0 or {}.Status == -110005 then
+					ChatMng:deleteTeamCopyMsg(slot0.roomId)
+					EventAuto:postEvent(EventDefine.eTeamCopyFriendInviteChanged)
+				end
+
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestKickOut = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "KickOut",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.playerId
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				if slot0 and next(slot0) then
+					slot0:modifyRoomInfo(slot0)
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestSetFightIndex = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "SetFightIndex",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.playerIdList
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				dump(slot0, "response:")
+
+				if slot0.successCallback then
+					slot0.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestExitRoom = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "ExitRoom",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0:modifyRoomInfo(slot0)
+
+				if slot0.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestSetReady = function (slot0, slot1)
+		dump(slot1 or {}, "requestSetReady params:")
+		slot0:socketRequest({
+			methodName = "SetReady",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.isReady
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0:modifyRoomInfo(slot0)
+
+				if slot0.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestSetHelp = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "SetHelp",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.isHelp
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+				slot0 or {}:modifyRoomInfo(slot0 or {}.RoomInfo)
+
+				if slot0 or {}.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestSetAutoReady = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "SetAutoReady",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.roomId,
+				slot1 or {}.isAuto
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+				slot0 or {}:modifyRoomInfo(slot0 or {}.RoomInfo)
+
+				if slot0 or {}.modifyRoomInfo.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestGetReward = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "GetReward",
+			moduleName = "TeamCopyInfo",
+			methodData = {},
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				dump(slot0, "requestGetReward response:")
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+
+				if slot0 or {}.RoomInfo then
+					slot0:modifyRoomInfo(slot0.RoomInfo)
+				end
+
+				if slot1.needShowReward and slot0.BaseGetGameResourceList then
+					ui.showFlashReward({
+						BaseGetGameResourceList = slot0.BaseGetGameResourceList
+					})
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	requestBuyFightNum = function (slot0, slot1)
+		slot0:socketRequest({
+			methodName = "BuyFightNum",
+			moduleName = "TeamCopyInfo",
+			methodData = {
+				slot1 or {}.buyNum
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}:modifyBaseInfo(slot0 or {})
+
+				if slot0 or {}.RoomInfo then
+					slot0:modifyRoomInfo(slot0.RoomInfo)
+				end
+
+				if slot1.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	needCampFormation = function (slot0)
+		if not slot0.FormationInfo or slot0.FormationInfo == "" then
+			return true
+		end
+
+		if slot0.FormationInfo == "0,0,0,0,0" then
+			return true
+		end
+
+		slot1 = 0
+
+		for slot6, slot7 in ipairs(slot2) do
+			if tonumber(slot7) ~= 0 then
+				slot1 = slot1 + 1
+			end
+		end
+
+		if slot1 <= 0 then
+			return true
+		end
+
+		return false
+	end,
+	requestGetFormationInfo = function (slot0, slot1)
+		dump("requestGetFormationInfo begin")
+		slot0:socketRequest({
+			methodName = "GetFormationInfo",
+			moduleName = "SlotFormation",
+			methodData = {
+				ModuleSub.eTeamCopy
+			},
+			_dependLayer = slot1 or {}.dependLayer,
+			ignoreNode = slot1 or {}.dependLayer == nil,
+			successCallback = function (slot0)
+				slot0 or {}.FormationInfo = slot0 or {}.FormationInfo
+
+				if slot0 or {}.successCallback then
+					slot1.successCallback(slot0)
+				end
+
+				return 
+			end,
+			failedCallback = function (slot0)
+				if slot0.failedCallback then
+					slot0.failedCallback(slot0)
+				end
+
+				return 
+			end
+		})
+
+		return 
+	end,
+	campFormation = function (slot0, slot1)
+		slot1 = slot1 or {}
+
+		ui.showCampReady({
+			noNeedVit = true,
+			minCount = 5,
+			isPvp = false,
+			callModelSub = ModuleSub.eTeamCopy,
+			titleText = "群策群力" .. TR("阵容"),
+			currSlotString = slot0.FormationInfo,
+			alreadyGotoWork = {},
+			ignoreCampList = function (slot0)
+				slot2 = {}
+
+				for slot6, slot7 in ipairs(slot1) do
+					table.insert(slot2, tonumber(slot7))
+				end
+
+				return slot2
+			end(TeamCopyLimitRelation.items[os.date("*t", Player:getCurrentTime()).wday - 1] or {}.campLimit or ""),
+			ignoreProfessionList = function (slot0)
+				slot2 = {}
+
+				for slot6, slot7 in ipairs(slot1) do
+					table.insert(slot2, tonumber(slot7))
+				end
+
+				return slot2
+			end(TeamCopyLimitRelation.items[os.date("*t", Player.getCurrentTime()).wday - 1] or {}.jobLimit or ""),
+			callback = function (slot0)
+				slot1 = table.concat(slot0, ",")
+
+				slot0:socketRequest({
+					methodName = "SetFormationInfo",
+					moduleName = "SlotFormation",
+					methodData = {
+						ModuleSub.eTeamCopy,
+						slot1
+					},
+					_dependLayer = slot1.dependLayer,
+					ignoreNode = slot1.dependLayer == nil,
+					successCallback = function (slot0)
+						slot0 or {}.FormationInfo = slot0 or {}.FormationInfo
+
+						if slot0 or {}.successCallback then
+							slot1.successCallback(slot0)
+						end
+
+						return 
+					end
+				})
+
+				return 
+			end
+		})
+
+		return 
+	end
+}
+TeamCopyHelper.enterBattle = function (slot0, slot1)
+	if not Utility.isEntityId(slot0.RoomId) then
+		return 
+	end
+
+	if slot0.isBattling then
+		return 
+	end
+
+	slot0.isBattling = true
+
+	require("common.BattleEntry"):StartBattle({
+		fightInfo = slot1,
+		extraData = {
+			isTeam = true,
+			copyModelId = TeamCopyHelper.NodeId,
+			callback = function ()
+				TeamCopyHelper.isBattling = nil
+
+				return 
+			end
+		}
+	})
+
+	return 
+end
+TeamCopyHelper.isInRoom = function (slot0)
+	if not Utility.isEntityId(slot0.RoomId) then
+		return false
+	end
+
+	if not slot0.PlayerList or #slot0.PlayerList == 0 then
+		return false
+	end
+
+	if not slot0.NodeId or slot0.NodeId == 0 then
+		return false
+	end
+
+	return true
+end
+TeamCopyHelper.showRule = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1、进行单人挑战，解锁当前关卡组队难度，以及后续单人难度关卡"),
+			TR("2、组队以车轮战方式挑战关卡"),
+			TR("3、组队难度开启后，可创建房间或加入房间进行挑战"),
+			TR("4、单人难度仅可通关1次，组队难度可多次进行挑战"),
+			TR("5、组队战斗可进行好友邀请，也可通过聊天求助，寻求其他玩家帮助"),
+			TR("6、队长可滑动角色可调整出战顺序，将玩家从房间踢出"),
+			TR("7、勾选自动准备后，可在本次挑战结束后，自动进行准备"),
+			TR("8、勾选助战后，不消耗挑战次数也依旧可以进行挑战，但无法获得关卡奖励，会给予其他物品作为奖励"),
+			TR("9、所有成员准备完毕后，5秒将自动开战"),
+			TR("10、3名成员均为助战则无法进行挑战")
+		}
+	})
+
+	return 
+end
+
+return 

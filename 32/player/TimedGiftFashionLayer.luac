@@ -1,0 +1,550 @@
+slot0 = class("TimedGiftFashionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 180)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled2",
+		cType = "MsgBoxBg",
+		params = {
+			actionCallback = "onRequesetGetInfo",
+			posApt = 1,
+			hideCloseButton = true,
+			image = "szlb_6.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					image = "c_28.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 864.08,
+						y = 568.33
+					}
+				},
+				children = {}
+			},
+			{
+				name = "effectNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 568.16,
+						y = 340.72
+					}
+				},
+				children = {}
+			},
+			{
+				name = "specialLog",
+				cType = "Sprite",
+				params = {
+					image = "szlb_2.png",
+					pos = {
+						x = 467.2,
+						y = 494.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled23",
+				cType = "Label",
+				params = {
+					fontSize = 16,
+					pos = {
+						x = 397.52,
+						y = 217.13
+					},
+					text = TR("时装属性可叠加")
+				},
+				children = {}
+			},
+			{
+				name = "untitled25",
+				cType = "Label",
+				params = {
+					fontSize = 16,
+					pos = {
+						x = 397.52,
+						y = 201.13
+					},
+					text = TR("最强战力总加成")
+				},
+				children = {}
+			},
+			{
+				name = "mFapLabel",
+				cType = "Label",
+				params = {
+					text = "123",
+					charCount = 11,
+					scale = 0.8,
+					emptyInit = true,
+					fontName = "xschlb_5.png",
+					isRichText = true,
+					pos = {
+						x = 395.62,
+						y = 177.07
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled12",
+				cType = "Button",
+				params = {
+					image = "c_pure.png",
+					clickAction = "onBuy",
+					pos = {
+						x = 773.78,
+						y = 141.67
+					},
+					size = {
+						width = 65.76,
+						height = 68.05
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mPriceLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					emptyInit = true,
+					color = {
+						g = 38,
+						r = 170,
+						b = 38
+					},
+					pos = {
+						x = 776.41,
+						y = 154.29
+					},
+					text = TR("320元")
+				},
+				children = {}
+			},
+			{
+				name = "mBuyLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					color = {
+						g = 38,
+						r = 170,
+						b = 38
+					},
+					pos = {
+						x = 776.41,
+						y = 128.29
+					},
+					text = TR("购买")
+				},
+				children = {}
+			},
+			{
+				name = "untitled16",
+				cType = "Sprite",
+				params = {
+					image = "szlb_1.png",
+					pos = {
+						x = 384.88,
+						y = 391.41
+					}
+				},
+				children = {
+					{
+						name = "mNameLabel",
+						cType = "Label",
+						params = {
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 22.5,
+								y = 100.5
+							},
+							size = {
+								width = 30,
+								height = 100
+							},
+							text = TR("名字")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled20",
+				cType = "Sprite",
+				params = {
+					image = "szlb_5.png",
+					pos = {
+						x = 842.87,
+						y = 422.26
+					}
+				},
+				children = {
+					{
+						name = "untitled21",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							pos = {
+								x = 21.9,
+								y = 110.84
+							},
+							size = {
+								width = 30,
+								height = 100
+							},
+							text = TR("活动倒计时")
+						},
+						children = {}
+					},
+					{
+						name = "mTimeLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							color = {
+								g = 199,
+								r = 223,
+								b = 42
+							},
+							pos = {
+								x = 44.9,
+								y = 80.84
+							},
+							size = {
+								width = 30,
+								height = 100
+							},
+							text = TR("活动倒计时")
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled29",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_2.png",
+					pos = {
+						x = 570.17,
+						y = 85.58
+					},
+					size = {
+						width = 573.54,
+						height = 56.11
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSkillLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					emptyInit = true,
+					pos = {
+						x = 576.13,
+						y = 98.71
+					},
+					text = TR("友方前排侠客在普攻时有30%几率增加自身格挡15%，持续2回合。")
+				},
+				children = {}
+			},
+			{
+				name = "mAttrLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					isRichText = true,
+					emptyInit = true,
+					pos = {
+						x = 576.13,
+						y = 77.71
+					},
+					text = TR("攻击+300 护甲+200")
+				},
+				children = {}
+			},
+			{
+				name = "mSkillBtn",
+				cType = "Button",
+				params = {
+					image = "tb_gn_121.png",
+					clickAction = "onSkillShow",
+					scale = 0.8,
+					pos = {
+						x = 676.49,
+						y = 247.92
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled32",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_shizhuanglibao",
+					animation = "zi",
+					pos = {
+						x = 763.38,
+						y = 411.85
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled33",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_shizhuanglibao",
+					animation = "huaban",
+					pos = {
+						x = 492.73,
+						y = 266.65
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled34",
+				cType = "Effect",
+				params = {
+					dataFile = "effect_ui_shizhuanglibao",
+					animation = "faguang",
+					pos = {
+						x = 776.33,
+						y = 149.12
+					}
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mGiftModelInfo = {}
+	slot0.mGiftModelInfo = clone(FashionGiftConfig.items[table.keys(FashionGiftConfig.items)[1]][table.keys(FashionGiftConfig.items[table.keys(FashionGiftConfig.items)[1]])[1]])
+	slot0.mFashionModelId = Utility.analysisStrResList(slot0.mGiftModelInfo.sellStr)[1].resourceId
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	EventAuto:registerAutoEvent(slot0, EventDefine.eRechargeType .. Enums.chargeType.eSkin, function (slot0)
+		ui.showFlashView(TR("购买成功"))
+		slot0:onRequesetGetInfo()
+
+		return 
+	end)
+
+	if RedDotObj:isValid(ModuleSub.eFashionGiftPoint) then
+		RedDotObj:seeRedDot("FashionGift")
+	end
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.effectNode:removeAllChildren()
+
+	if cc.FileUtils:getInstance():isFileExist(slot2 .. ".skel") then
+		slot0.effectNode:addChild(UIWrap.newControl("Effect", {
+			scale = 0.4,
+			dataFile = slot2,
+			pos = cc.p(0, -150)
+		}))
+	else
+		slot0.effectNode:addChild(UIWrap.newControl("Sprite", {
+			scale = 0.6,
+			image = slot1.pic .. ".png"
+		}))
+	end
+
+	if ({
+		nil,
+		nil,
+		nil,
+		"szlb_2.png",
+		"szlb_3.png",
+		"szlb_4.png"
+	})[slot1.colorLv] then
+		slot0.specialLog:setTexture(slot4)
+	else
+		slot0.specialLog:setVisible(false)
+	end
+
+	slot0.mPriceLabel:setString(TR("%s元", slot0.mGiftModelInfo.priceRMB))
+	slot0.mNameLabel:setString(slot1.name)
+
+	if slot1.actSkillId and slot1.actSkillId ~= "" then
+		slot0.mSkillLabel:setString(SkillModel.items[tonumber(slot1.actSkillId)].skillIntro)
+	end
+
+	if slot1.actAttrStr and slot1.actAttrStr ~= "" then
+		slot0.mAttrLabel:setString(Utility.analysisStrAttrToFromat(slot1.actAttrStr, "#ffffff%s#8ba758+%s", "    "))
+	end
+
+	slot0.mSkillBtn.fashionModelId = slot1.modelId
+
+	return 
+end
+slot0.calcuFap = function (slot0)
+	slot1 = slot0.addedFapList[tostring(slot0.mFashionModelId)]
+	slot2 = 0
+
+	if FashionModel.items[slot0.mFashionModelId].actSkillId and slot3 ~= "" then
+		slot2 = SkillModel.items[tonumber(slot3)].initialSkillFap
+	end
+
+	return slot1 + slot2*2
+end
+slot0.createTimeUpdate = function (slot0)
+	if slot0.mTimeLabel.timeUpdate then
+		slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+		slot0.mTimeLabel.timeUpdate = nil
+	end
+
+	slot0.mTimeLabel.timeUpdate = Utility.schedule(slot0.mTimeLabel, function ()
+		if 0 < slot0.mEndTime - Player:getCurrentTime() then
+			slot0.mTimeLabel:setString(MqTime.completeFormat(slot0))
+		else
+			slot0.mTimeLabel:setString("00:00:00")
+			slot0.mTimeLabel:stopAction(slot0.mTimeLabel.timeUpdate)
+
+			slot0.mTimeLabel.timeUpdate = nil
+
+			PlayerAttrObj:changeAttr({
+				IsShowFashionGift = false
+			})
+			LayerManager.removeLayer(slot0)
+		end
+
+		return 
+	end, 1)
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onSkillShow = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.FashionSkillShowLayer",
+		data = {
+			fashionModelId = slot1.fashionModelId
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.onBuy = function (slot0)
+	function slot1()
+		Utility.recharge({
+			chargeType = Enums.chargeType.eSkin,
+			price = slot0.mGiftModelInfo.priceRMB,
+			productId = slot0.mGiftInfo.ProductId
+		})
+
+		return 
+	end
+
+	if not slot0.mGiftInfo.IsBuy then
+		slot1()
+	elseif not slot0.mGiftInfo.IsReceive then
+		slot0.requestReward(slot0)
+	end
+
+	return 
+end
+slot0.requestFapInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "Fashion",
+		successCallback = function (slot0)
+			slot0.addedFapList = slot0.Fap
+
+			slot0.mFapLabel:setString(Utility.numberWithUnit(slot0:calcuFap()))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onRequesetGetInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetInfo",
+		moduleName = "FashionGift",
+		successCallback = function (slot0)
+			slot0.mEndTime = slot0.GiftInfo[1].EndTime
+			slot0.mGiftInfo = slot0.GiftInfo[1]
+
+			slot0:createTimeUpdate()
+
+			if not slot0.mGiftInfo.IsBuy then
+				slot0.mBuyLabel:setString(TR("购买"))
+				slot0.mBuyLabel:setPositionY(128)
+			elseif slot0.mGiftInfo.IsBuy and not slot0.mGiftInfo.IsReceive then
+				slot0.mBuyLabel:setString(TR("领取"))
+				slot0.mBuyLabel:setPositionY(140)
+				slot0.mPriceLabel:setString("")
+			elseif slot0.mGiftInfo.IsReceive then
+				slot0.mBuyLabel:setString(TR("已领取"))
+				slot0.mBuyLabel:setPositionY(140)
+				slot0.mPriceLabel:setString("")
+			end
+
+			slot0:requestFapInfo()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestReward = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetReward",
+		moduleName = "FashionGift",
+		methodData = {
+			slot0.mGiftModelInfo.giftID
+		},
+		successCallback = function (slot0)
+			slot0.mGiftInfo = slot0.GiftInfo[1]
+
+			ui.showFlashView(TR("领取成功"))
+			PlayerAttrObj:changeAttr({
+				IsShowFashionGift = false
+			})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

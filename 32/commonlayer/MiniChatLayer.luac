@@ -1,0 +1,232 @@
+slot0 = class("MiniChatLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			scaleApt = 2,
+			pos = {
+				x = 0,
+				y = 0
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Sprite",
+				params = {
+					image = "sy_7.png",
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = -2.2,
+						y = -1.02
+					}
+				},
+				children = {
+					{
+						name = "listview",
+						cType = "ListView",
+						params = {
+							bounce = true,
+							direction = true,
+							pos = {
+								x = 0,
+								y = 4.16
+							},
+							size = {
+								width = 320,
+								height = 80
+							}
+						},
+						children = {
+							{
+								name = "chatLayout",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled8-text",
+										name = "text",
+										type = "string"
+									},
+									{
+										value = "untitled9-image",
+										name = "tagImage",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 320,
+										height = 25
+									}
+								},
+								children = {
+									{
+										name = "untitled9",
+										cType = "Sprite",
+										params = {
+											image = "sy_10.png",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											pos = {
+												x = 0,
+												y = 0
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											isRichText = true,
+											text = "32323232",
+											childName = "label",
+											anchor = {
+												x = 0,
+												y = 0
+											},
+											color = {
+												g = 255,
+												r = 255,
+												b = 255
+											},
+											pos = {
+												x = 48.04,
+												y = 0
+											}
+										},
+										children = {}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "untitled5",
+						cType = "Button",
+						params = {
+							clickAction = "onChatClick",
+							swallowTouch = false,
+							image = "c_pure.png",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 42.96
+							},
+							size = {
+								width = 350,
+								height = 80
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.registerChatEvent(slot0)
+
+	return 
+end
+slot0.onChatClick = function (slot0)
+	if Utility.moduleIsOpen(ModuleSub.eChat, true) then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "chat.ChatLayer",
+			data = {
+				defaultChannel = slot0.defaultChannel
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.registerChatEvent = function (slot0)
+	slot1 = {
+		[Enums.ChatChanne.eWorld] = TR("世界"),
+		[Enums.ChatChanne.eGuild] = TR("帮派"),
+		[Enums.ChatChanne.ePrivate] = TR("私聊"),
+		[Enums.ChatChanne.eSystem] = TR("系统"),
+		[Enums.ChatChanne.eClientGM] = "GM"
+	}
+	slot2 = {
+		[Enums.ChatChanne.eWorld] = cc.c3b(255, 255, 255),
+		[Enums.ChatChanne.eGuild] = cc.c3b(0, 255, 0),
+		[Enums.ChatChanne.ePrivate] = cc.c3b(255, 0, 128)
+	}
+	slot3 = {
+		[Enums.ChatChanne.eWorld] = "sy_11.png",
+		[Enums.ChatChanne.eGuild] = "sy_35.png",
+		[Enums.ChatChanne.ePrivate] = "sy_36.png",
+		[Enums.ChatChanne.eSystem] = "sy_10.png"
+	}
+
+	function slot4(slot0)
+		slot0.listview:removeAllItems()
+
+		for slot4, slot5 in ipairs(slot0) do
+			slot6 = slot0:createLayoutTemplateNode("chatLayout", {
+				text = TR("%s%s", (slot5.FromPlayer.Name and slot5.FromPlayer.Name .. ":") or "", slot5.Message),
+				tagImage = slot1[slot5.Channel]
+			})
+
+			slot6.label:setImageElementScale(0.5)
+			slot6.label:setColor(slot2[slot5.Channel])
+			slot0.listview:pushBackCustomItem(slot6)
+		end
+
+		return 
+	end
+
+	EventAuto:registerAutoEvent(slot0.listview, {
+		EventDefine.eChatNewPrefix .. Enums.ChatChanne.eWorld,
+		EventDefine.eChatNewPrefix .. Enums.ChatChanne.ePrivate,
+		EventDefine.eChatNewPrefix .. Enums.ChatChanne.eGuild,
+		EventDefine.eChatNewPrefix .. Enums.ChatChanne.eSystem,
+		EventDefine.eChatNewPrefix .. Enums.ChatChanne.eClientGM
+	}, function ()
+		if #ChatMng:getLastMsg() == 0 then
+			return 
+		end
+
+		slot0(slot0)
+
+		slot1.defaultChannel = slot0[slot1].Channel
+
+		return 
+	end)
+
+	if ChatMng:getLastMsg() and 0 < #slot6 then
+		EventAuto:postEvent(EventDefine.eChatNewPrefix .. slot6[#slot6].Channel, {
+			slot6
+		})
+	end
+
+	return 
+end
+
+return slot0

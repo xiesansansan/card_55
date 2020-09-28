@@ -1,0 +1,480 @@
+slot0 = class("PveMopUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "msgBox",
+		cType = "MsgBoxBg",
+		params = {
+			closeAction = "onBackBtnClickAction",
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 640,
+				height = 420
+			},
+			titleText = TR("挑  战")
+		},
+		children = {
+			{
+				name = "cellListView",
+				cType = "ListView",
+				params = {
+					margin = 13,
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0.5
+					},
+					pos = {
+						x = 318.89,
+						y = 209.45
+					},
+					size = {
+						width = 600,
+						height = 320
+					}
+				},
+				children = {
+					{
+						name = "cellLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "cellBg-image",
+								name = "cellBgImage",
+								type = "string"
+							},
+							{
+								value = "typeLabel-text",
+								name = "typeStr",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = -22.59,
+								y = 179.03
+							},
+							size = {
+								width = 600,
+								height = 140
+							}
+						},
+						children = {
+							{
+								name = "cellBg",
+								cType = "Scale9Sprite",
+								params = {
+									image = "fb_13.png",
+									capInsets = {
+										x = 140,
+										height = 1,
+										width = 1,
+										y = 40
+									},
+									pos = {
+										x = 300,
+										y = 70
+									},
+									size = {
+										width = 600,
+										height = 140
+									}
+								},
+								children = {
+									{
+										name = "typeLabel",
+										cType = "Label",
+										params = {
+											fontSize = 24,
+											align = 1,
+											color = {
+												g = 49,
+												r = 49,
+												b = 49
+											},
+											pos = {
+												x = 300,
+												y = 122
+											},
+											text = TR("普 通")
+										},
+										children = {}
+									},
+									{
+										name = "sweepLabel",
+										cType = "Label",
+										params = {
+											text = "{db_1111.png}666",
+											align = 1,
+											isRichText = true,
+											color = {
+												g = 71,
+												r = 160,
+												b = 31
+											},
+											outlineColor = {
+												g = 42,
+												r = 51,
+												b = 24
+											},
+											pos = {
+												x = 540.7,
+												y = 88
+											}
+										},
+										children = {}
+									},
+									{
+										name = "sweepBtn",
+										cType = "Button",
+										params = {
+											image = "c_27.png",
+											clickAction = "onSweepBtnClickAction",
+											pos = {
+												x = 540.7,
+												y = 41
+											},
+											titleText = TR("扫  荡")
+										},
+										children = {}
+									},
+									{
+										name = "fightBtn",
+										cType = "Button",
+										params = {
+											image = "c_32.png",
+											clickAction = "onFightBtnClickAction",
+											pos = {
+												x = 540.7,
+												y = 56.5
+											},
+											titleText = TR("挑  战")
+										},
+										children = {}
+									},
+									{
+										name = "cardListView",
+										cType = "ListView",
+										params = {
+											margin = -5,
+											direction = false,
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											pos = {
+												x = 8.66,
+												y = 55.42
+											},
+											size = {
+												width = 480,
+												height = 105
+											}
+										},
+										children = {
+											{
+												name = "cardLayout",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled10-initParams",
+														name = "initParams",
+														type = "string"
+													}
+												},
+												params = {
+													pos = {
+														z = 0,
+														x = 0,
+														y = 1
+													},
+													size = {
+														width = 100,
+														height = 100
+													}
+												},
+												children = {
+													{
+														name = "untitled10",
+														cType = "CardNode",
+														params = {
+															scale = 0.9,
+															childName = "cardNode",
+															allowClick = true,
+															anchor = {
+																x = 0.5,
+																y = 1
+															},
+															initParams = {},
+															pos = {
+																x = 50,
+																y = 95
+															}
+														},
+														children = {
+															{
+																name = "untitled13",
+																cType = "BadgeText",
+																params = {
+																	hide = true,
+																	image = "c_76.png",
+																	childName = "badgeText",
+																	anchor = {
+																		x = 1,
+																		y = 1
+																	},
+																	pos = {
+																		x = 80,
+																		y = 80
+																	},
+																	text = TR("双倍")
+																},
+																children = {}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mChapterId = slot1 or {}.chapterId
+	slot0.mNormalPass = slot1 or {}.normalPass
+	slot0.mElitePass = slot1 or {}.elitePass
+	slot0.mModelID = slot1 or {}.modelID or nil
+	slot0.mNeedNum = slot1 or {}.needNum or 0
+	slot0.mCallback = slot1 or {}.callback or nil
+	slot0.mHomeLayerCb = slot1 or {}.homeLayerCb
+	slot0.mChapterModel = PveChapterModel.items[slot1 or {}.chapterId]
+
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+	slot0.initUI(slot0)
+
+	slot0.mShowDouble = PlayerAttrObj:isModuleDoubleIncome(ModuleSub.ePveMoppingUp)
+
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0, function (slot0, slot1)
+		if slot0.name == "msgBox" then
+			slot1.titleText = TR("扫荡·%s", slot0.mChapterModel.name)
+		end
+
+		return 
+	end)
+
+	return 
+end
+slot0.onFightBtnClickAction = function (slot0, slot1)
+	ui.showCampReady({
+		callModelSub = ModuleSub.ePveBandits,
+		currSlotString = PveObj:getBanditsFormationStr(),
+		callback = function (slot0)
+			if not Resource.isEnough(ResourceTypeSub.eVit, Utility.calcNeedVitOfFormation(slot0), true) then
+				return 
+			end
+
+			slot0:requestGetChapterFightInfo(slot0.mChapterId, slot1.dif, table.concat(slot0, ","))
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.onSweepBtnClickAction = function (slot0, slot1)
+	if slot0.mNeedNum ~= 0 then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "pve.MaterialSweepLayer",
+			data = {
+				chapterId = slot0.mChapterId,
+				modelID = slot0.mModelID,
+				needNum = slot0.mNeedNum,
+				sweepType = slot1.dif,
+				callback = function (slot0)
+					if slot0 then
+						LayerManager.removeLayer(slot0)
+					end
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	else
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "pve.DlgBanditsSweepLayer",
+			data = {
+				chapterId = slot0.mChapterId,
+				difId = slot1.dif
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+
+		slot2, slot3 = Guide.manager:getGuideInfo()
+
+		if slot3 and slot3 == 20005 then
+			LayerManager.removeLayer(slot0)
+		end
+	end
+
+	return 
+end
+slot0.onBackBtnClickAction = function (slot0, slot1)
+	if slot0.mCallback then
+		slot0.mCallback()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in pairs(Enums.PveSweepType) do
+		if slot6 == Enums.PveSweepType.eNormal then
+			table.insert(slot1, {
+				cellBgImage = "fb_13.png",
+				banditsType = Enums.PveSweepType.eNormal,
+				typeStr = TR("普 通"),
+				rewardStr = slot0.mChapterModel.baseBanditsOutPut,
+				passed = slot0.mNormalPass,
+				sweepCost = slot0.mChapterModel.baseBanditsNeed
+			})
+		elseif slot6 == Enums.PveSweepType.eElite then
+			table.insert(slot1, {
+				cellBgImage = "fb_13.png",
+				banditsType = Enums.PveSweepType.eElite,
+				typeStr = TR("精 英"),
+				rewardStr = slot0.mChapterModel.elitesBanditsOutPut,
+				passed = slot0.mElitePass,
+				sweepCost = slot0.mChapterModel.elitesBanditsNeed
+			})
+		end
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		return slot0.banditsType < slot1.banditsType
+	end)
+
+	for slot5, slot6 in ipairs(slot1) do
+		slot0.cellListView:pushBackCustomItem(slot7)
+
+		for slot12, slot13 in ipairs(slot8) do
+			slot7.cardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardLayout", {
+				initParams = {
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eName,
+						Enums.CardShowAttr.eNum
+					},
+					cardInfo = {
+						modelId = slot13.resourceId,
+						num = slot13.num
+					}
+				}
+			}))
+
+			if slot0.mShowDouble and slot13.resourceId ~= ResourceTypeSub.eExp then
+				slot14.cardNode.badgeText:setVisible(true)
+			end
+
+			if slot13.resourceId == ResourceTypeSub.eExp and PlayerConfig.items[1].noEnjoyAnyExpAddsLv < PlayerAttrObj:getPlayerAttrByName("Lv") and PlayerAttrObj:getPlayerAttrByName("WorldLvAddR") and 0 < slot15 then
+				slot14.cardNode:addChild(UIWrap.newControl("Label", {
+					fontSize = 15,
+					text = TR("经验+%s%%", slot15*100),
+					color = cc.c3b(55, 255, 64),
+					anchor = cc.p(1, 1),
+					outlineColor = cc.c3b(51, 42, 24),
+					pos = cc.p(85, 88)
+				}))
+			end
+		end
+
+		slot7.fightBtn:setVisible(not slot6.passed)
+
+		slot10 = ""
+		slot11 = cc.c3b(255, 248, 234)
+
+		for slot15, slot16 in ipairs(slot9) do
+			slot10 = (slot15 == #slot9 and slot10 .. string.format("{%s} %s", Resource.getDaibiImg(slot16.resourceId), slot16.num)) or slot10 .. string.format("{%s} %s ", Resource.getDaibiImg(slot16.resourceId), slot16.num)
+
+			if not Resource.isEnough(slot16.resourceId, slot16.num, false) then
+				slot11 = cc.c3b(234, 44, 0)
+			end
+		end
+
+		slot7.sweepLabel:setString(slot10)
+		slot7.sweepLabel:setColor(slot11)
+		slot7.sweepLabel:setVisible(slot6.passed)
+		slot7.sweepBtn:setVisible(slot6.passed)
+
+		slot7.fightBtn.dif = slot5
+		slot7.sweepBtn.dif = slot5
+
+		if slot6.banditsType == Enums.PveSweepType.eElite then
+			slot7.fightBtn:setEnabled(slot0.mNormalPass)
+		end
+	end
+
+	return 
+end
+slot0.requestGetChapterFightInfo = function (slot0, slot1, slot2, slot3)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChapterFightInfo",
+		moduleName = "PveChapter",
+		methodData = {
+			slot1,
+			slot2,
+			slot3
+		},
+		guideInfo = Guide.manager:getCurRequestGuideData(),
+		successCallback = function (slot0)
+			if slot0.mHomeLayerCb then
+				slot0.mHomeLayerCb()
+			end
+
+			PveObj:setBanditsFormationStr(slot0.AttackSlotFormationInfo.FormationInfo)
+			require("common.BattleEntry"):StartBattle({
+				fightInfo = slot0.FightInfo,
+				extraData = {
+					chapterId = slot1,
+					difId = require("common.BattleEntry")
+				}
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

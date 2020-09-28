@@ -1,0 +1,270 @@
+slot0 = class("TreasurStepUpLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled12",
+		cType = "Scale9Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xkxx_67.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "centerNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "attrNode",
+				cType = "TemplateNode",
+				params = {
+					pos = {
+						x = -276.57,
+						y = 50
+					}
+				},
+				children = {
+					{
+						name = "attrLabel",
+						cType = "Label",
+						params = {
+							isRichText = true,
+							text = "Label",
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "arrowSprite",
+						cType = "Sprite",
+						params = {
+							image = "c_23.png",
+							pos = {
+								x = 277.49,
+								y = -0.47
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "lvUpEff",
+				cType = "Effect",
+				params = {
+					loop = false,
+					dataFile = "effect_ui_shengjichenggong",
+					complete = "onEffFinished",
+					pos = {
+						x = 0,
+						y = -47
+					}
+				},
+				children = {}
+			},
+			{
+				name = "oldNameLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					pos = {
+						x = -200,
+						y = 113
+					}
+				},
+				children = {}
+			},
+			{
+				name = "newNameLabel",
+				cType = "Label",
+				params = {
+					text = "Label",
+					pos = {
+						x = 200,
+						y = 113
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled2",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onCloseBtn",
+					pos = {
+						x = 0,
+						y = -222
+					},
+					titleText = TR("确 定")
+				},
+				children = {}
+			},
+			{
+				name = "tipLabel",
+				cType = "Label",
+				params = {
+					isRichText = true,
+					hide = true,
+					pos = {
+						x = 0,
+						y = -171
+					},
+					text = TR("解锁新称号")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mCurModelId = slot1.curModelId
+	slot0.mNextModelId = slot1.nextModelId
+	slot0.curLv = slot1.curLv
+	slot0.guideCallBack = slot1.guideCallBack
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.createAttrView(slot0)
+	MqAudio.playEffect("shengjichenggong.mp3")
+
+	return 
+end
+slot0.createAttrView = function (slot0)
+	slot2 = slot0.getAttrString(slot0, slot0.mNextModelId)
+
+	slot0.oldNameLabel:setString(TreasureModel.items[slot0.mCurModelId].name)
+	slot0.newNameLabel:setString(TreasureModel.items[slot0.mNextModelId].name)
+
+	for slot8, slot9 in ipairs(slot1) do
+		slot10 = slot0.createLayoutTemplateNode(slot0, "attrNode")
+
+		slot0.centerNode:addChild(slot10)
+		slot10.attrLabel:setString(slot9)
+		slot10.setPosition(slot10, -276, (slot8 - 1)*-40 + 80)
+	end
+
+	for slot8, slot9 in ipairs(slot2) do
+		slot10 = slot0.createLayoutTemplateNode(slot0, "attrNode")
+
+		slot10.arrowSprite:setVisible(false)
+		slot0.centerNode:addChild(slot10)
+		slot10.attrLabel:setString(slot9)
+		slot10.setPosition(slot10, 140, (slot8 - 1)*-40 + 80)
+	end
+
+	if 0 < slot4.titleId then
+		if cc.FileUtils:getInstance():isFileExist(TitleConfig.items[slot4.titleId].pic .. ".skel") then
+			slot6 = UIWrap.newControl("Effect", {
+				loop = true,
+				animation = "animation",
+				dataFile = slot5.pic,
+				pos = cc.p(0, 0)
+			})
+
+			slot6.setPosition(slot6, 0, -210)
+			slot0.centerNode:addChild(slot6)
+		else
+			slot6 = cc.Sprite:create(slot5.pic .. ".png")
+
+			slot6.setAnchorPoint(slot6, cc.p(0.5, 0))
+			slot6.setPosition(slot6, 0, -210)
+			slot0.centerNode:addChild(slot6)
+		end
+
+		slot0.tipLabel:setVisible(true)
+	end
+
+	return 
+end
+slot0.getAttrString = function (slot0, slot1, slot2)
+	if not TreasureModel.items[slot1] then
+		return {}
+	end
+
+	slot5 = Utility.analysisStrAttrList(slot3.addAttrStr)
+	slot6 = {}
+
+	for slot10, slot11 in ipairs(slot4) do
+		if not slot6[slot11.fightattr] then
+			slot6[slot11.fightattr] = {
+				order = slot10,
+				attr = slot11.fightattr,
+				value = slot11.value
+			}
+		end
+	end
+
+	slot7 = {}
+
+	for slot11, slot12 in pairs(slot6) do
+		table.insert(slot7, slot12)
+	end
+
+	table.sort(slot7, function (slot0, slot1)
+		return slot0.order < slot1.order
+	end)
+
+	slot8 = {}
+
+	for slot12, slot13 in ipairs(slot7) do
+		slot14 = nil
+
+		table.insert(slot8, (Utility.isAttrNeedPercent(slot13.attr) and ((slot2 or TR("全体%s#37ff40+", FightAttrTypeName[slot13.attr])) and TR("全体%s+", FightAttrTypeName[slot13.attr])) .. slot13.value/100 .. "%") or ((slot2 or TR("全体%s#37ff40+", FightAttrTypeName[slot13.attr])) and TR("全体%s+", FightAttrTypeName[slot13.attr])) .. slot13.value)
+	end
+
+	return slot8
+end
+slot0.onCloseBtn = function (slot0)
+	if slot0.curLv == 2 and Guide.manager:triggerSpecialGuide(8003) and slot0.guideCallBack then
+		slot0.guideCallBack()
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onEffFinished = function (slot0)
+	slot0.centerNode:addChild(UIWrap.newControl("Effect", {
+		animation = "xunhuan",
+		dataFile = "effect_ui_shengjichenggong",
+		pos = cc.p(0, -47)
+	}))
+
+	return 
+end
+
+return slot0

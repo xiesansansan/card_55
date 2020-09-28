@@ -1,0 +1,795 @@
+slot0 = class("HegemonyMatchLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Sprite",
+		params = {
+			isFullScale = true,
+			scaleApt = 2,
+			posApt = 1,
+			image = "xyyz_12.png",
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	},
+	{
+		name = "untitled2",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			anchor = {
+				x = 0,
+				y = 1
+			},
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Button",
+				params = {
+					clickAction = "onExitLayer",
+					image = "c_1.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 0,
+						y = 0
+					}
+				},
+				children = {
+					{
+						name = "untitled4",
+						cType = "Sprite",
+						params = {
+							image = "xyyz_1.png",
+							anchor = {
+								x = 0,
+								y = 1
+							},
+							pos = {
+								x = -35,
+								y = 30
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					clickAction = "onRuleAction",
+					image = "c_3.png",
+					anchor = {
+						x = 0,
+						y = 1
+					},
+					pos = {
+						x = 270,
+						y = -5
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "mCenterNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "mCampNode",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 0,
+						y = -50
+					}
+				},
+				children = {
+					{
+						name = "GroupNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {
+							{
+								name = "untitled20",
+								cType = "Sprite",
+								params = {
+									image = "xyyz_19.png",
+									childName = "orderSprite",
+									pos = {
+										x = 0,
+										y = 0
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled30",
+								cType = "ListView",
+								params = {
+									childName = "ownListView",
+									direction = false,
+									anchor = {
+										x = 1,
+										y = 0.5
+									},
+									pos = {
+										x = -35,
+										y = 0
+									},
+									size = {
+										width = 300,
+										height = 75
+									}
+								},
+								children = {
+									{
+										name = "HeaderLayout",
+										cType = "Layout",
+										params = {
+											size = {
+												width = 85,
+												height = 75
+											}
+										},
+										children = {
+											{
+												name = "untitled33",
+												cType = "CardNode",
+												params = {
+													scale = 0.8,
+													clickAction = "onCardAction",
+													childName = "card",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 42.5,
+														y = 37.5
+													}
+												},
+												children = {}
+											}
+										}
+									},
+									{
+										name = "FapLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled36-text",
+												name = "fapStr",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 75
+											}
+										},
+										children = {
+											{
+												name = "untitled27",
+												cType = "Sprite",
+												params = {
+													scale = 0.4,
+													image = "c_82.png",
+													pos = {
+														x = 50,
+														y = 37.5
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled29",
+												cType = "Sprite",
+												params = {
+													image = "xyyz_8.png",
+													pos = {
+														x = 11.95,
+														y = 40.08
+													}
+												},
+												children = {}
+											},
+											{
+												name = "untitled36",
+												cType = "Label",
+												params = {
+													text = "456789",
+													charCount = 12,
+													scale = 0.4,
+													fontName = "c_81.png",
+													anchor = {
+														x = 0,
+														y = 0
+													},
+													pos = {
+														x = 27.41,
+														y = 28.91
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled31",
+								cType = "ListView",
+								params = {
+									childName = "otherListView",
+									direction = false,
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									pos = {
+										x = 35,
+										y = 0
+									},
+									size = {
+										width = 300,
+										height = 85.34
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "untitled37",
+				cType = "Button",
+				params = {
+					image = "xyyz_10.png",
+					clickAction = "onUnCampAction",
+					pos = {
+						x = -80,
+						y = -260
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled38",
+				cType = "Button",
+				params = {
+					image = "xyyz_11.png",
+					clickAction = "onChallengeAction",
+					pos = {
+						x = 80,
+						y = -260
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "untitled50",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled60",
+				cType = "Sprite",
+				params = {
+					image = "xyyz_5.png",
+					pos = {
+						x = 0,
+						y = -120
+					}
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "leftNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			isLiuHai = true,
+			pos = {
+				x = 0,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled41",
+				cType = "Scale9Sprite",
+				params = {
+					image = "wsjj_4.png",
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					pos = {
+						x = 0,
+						y = -135
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled42",
+				cType = "CardNode",
+				params = {
+					clickAction = "onClickPlayer",
+					childName = "head",
+					allowClick = true,
+					pos = {
+						x = 45,
+						y = -140
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled48",
+				cType = "Label",
+				params = {
+					childName = "duanLabel",
+					emptyInit = true,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 100,
+						y = -135
+					},
+					text = TR("段位：豪侠三段")
+				},
+				children = {}
+			},
+			{
+				name = "untitled49",
+				cType = "Label",
+				params = {
+					childName = "scoreLabel",
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0
+					},
+					pos = {
+						x = 100,
+						y = -175
+					},
+					text = TR("分数：1000")
+				},
+				children = {}
+			}
+		}
+	},
+	{
+		name = "rightNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 1136,
+				y = 640
+			}
+		},
+		children = {
+			{
+				name = "untitled62",
+				cType = "Scale9Sprite",
+				params = {
+					image = "wsjj_4.png",
+					reverse = 1,
+					anchor = {
+						x = 1,
+						y = 0.5
+					},
+					pos = {
+						x = -318,
+						y = -135
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled63",
+				cType = "CardNode",
+				params = {
+					clickAction = "onClickPlayer",
+					childName = "head",
+					allowClick = true,
+					pos = {
+						x = -45,
+						y = -140.08
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled66",
+				cType = "Label",
+				params = {
+					childName = "duanLabel",
+					emptyInit = true,
+					isRichText = true,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = -100,
+						y = -135.08
+					},
+					text = TR("段位：豪侠三段")
+				},
+				children = {}
+			},
+			{
+				name = "untitled67",
+				cType = "Label",
+				params = {
+					childName = "scoreLabel",
+					emptyInit = true,
+					anchor = {
+						x = 1,
+						y = 0
+					},
+					pos = {
+						x = -100,
+						y = -175.08
+					},
+					text = TR("分数：1000")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	5,
+	5,
+	5
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mPlayerName = slot1 or {}.TargetPlayer.PlayerName
+	slot0.mOtherRankInfo = slot1 or {}.TargetHegemonyRank
+	slot0.mOwnRankInfo = slot1 or {}.HegemonyRank
+	slot0.mOtherFormationInfo = {
+		{
+			Fap = slot1 or {}.TargetPlayer.FirstFAP,
+			FormationInfo = slot1 or {}.TargetPlayer.TargetFirstSlotFormation
+		},
+		{
+			Fap = slot1 or {}.TargetPlayer.SecondFAP,
+			FormationInfo = slot1 or {}.TargetPlayer.TargetSecondSlotFormation
+		},
+		{
+			Fap = slot1 or {}.TargetPlayer.ThirdFAP,
+			FormationInfo = slot1 or {}.TargetPlayer.TargetThirdSlotFormation
+		}
+	}
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.leftNode.head:setCardData({
+		resourceId = PlayerAttrObj:getPlayerAttrByName("HeadImageId")
+	})
+	slot0.leftNode.duanLabel:setString(TR("段位：#8ba857%s", HegemonyRankDuanConfig.items[slot0.mOwnRankInfo.Step].name))
+	slot0.leftNode.scoreLabel:setString(TR("分数：%s", slot0.mOwnRankInfo.Score))
+
+	slot0.leftNode.head.playerInfo = {
+		playerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+	}
+
+	slot0.rightNode.head:setCardData({
+		resourceId = slot0.mOtherRankInfo.HeadImageId
+	})
+	slot0.rightNode.head:setRightTextVisible(false)
+	slot0.rightNode.duanLabel:setString(TR("段位：#8ba857%s", HegemonyRankDuanConfig.items[slot0.mOtherRankInfo.Step].name))
+	slot0.rightNode.scoreLabel:setString(TR("分数：%s", slot0.mOtherRankInfo.Score))
+
+	slot0.rightNode.head.playerInfo = {
+		isRobot = slot0.mOtherRankInfo.IsRobot,
+		playerId = slot0.mOtherRankInfo.PlayerId,
+		serverId = slot0.mOtherRankInfo.ServerId,
+		partnerId = slot0.mOtherRankInfo.PartnerId
+	}
+
+	slot0.refreshCamp(slot0)
+
+	return 
+end
+slot0.refreshCamp = function (slot0)
+	slot0.mCampNode:removeAllChildren()
+
+	slot1 = {
+		"xyyz_19.png",
+		"xyyz_20.png",
+		"xyyz_21.png",
+		"xyyz_22.png",
+		"xyyz_23.png"
+	}
+	slot3 = {}
+
+	for slot7 = #Utility.getExtendPos({
+		offset = 80,
+		direction = true,
+		num = #slot0
+	}), 1, -1 do
+		table.insert(slot3, slot2[slot7])
+	end
+
+	slot2 = slot3
+
+	for slot7 = 1, #slot0, 1 do
+		slot8 = slot0.createLayoutTemplateNode(slot0, "GroupNode")
+
+		slot0.mCampNode:addChild(slot8)
+		slot8.setPosition(slot8, slot2[slot7])
+		slot8.orderSprite:setTexture(slot1[slot7])
+		slot0.createLineHero(slot0, true, slot8.ownListView, slot7)
+		slot0.createLineHero(slot0, false, slot8.otherListView, slot7)
+	end
+
+	return 
+end
+slot0.createLineHero = function (slot0, slot1, slot2, slot3)
+	slot4 = nil
+	slot5 = {}
+
+	if slot1 then
+		if Player:getGameData("HegemonyMyTeamInfo")[slot3] then
+			for slot10, slot11 in pairs(slot6) do
+				if 0 < tonumber(slot11) then
+					table.insert(slot5, HeroObj:getItem(slot11))
+				end
+			end
+		end
+	else
+		slot5 = slot0.mOtherFormationInfo[slot3].FormationInfo
+
+		if type(slot0.mOtherFormationInfo[slot3].FormationInfo) == "string" then
+			slot5 = cjson.decode(slot4.FormationInfo)
+		end
+
+		table.sort(slot5, function (slot0, slot1)
+			if (0 < slot0.ModelId) ~= (0 < slot1.ModelId) then
+				return slot2
+			end
+
+			return 
+		end)
+	end
+
+	slot6 = 0
+
+	function slot7()
+		for slot3 = 1, slot0[], 1 do
+			if not slot2[slot3] or {}.ModelId then
+				slot4.ModelId = slot4.HeroModelId
+			end
+
+			slot5 = slot3:createLayoutTemplateNode("HeaderLayout")
+
+			if slot2[slot3] then
+				slot5.card:setCardData({}, {
+					Enums.CardShowAttr.eLevel,
+					Enums.CardShowAttr.eTrainLv,
+					Enums.CardShowAttr.eStar
+				}, slot2[slot3])
+			else
+				slot5.card:setCardData({}, {
+					Enums.CardShowAttr.eAddMark
+				})
+			end
+
+			slot4:pushBackCustomItem(slot5)
+
+			slot5.card.isOwn = slot5
+			slot5.card.groupId = slot1
+			slot6 = slot5.card + slot5.getContentSize(slot5).width
+		end
+
+		return 
+	end
+
+	function slot8()
+		slot0 = slot0.createLayoutTemplateNode(slot1, "FapLayout", {
+			fapStr = Utility.numberWithUnit((slot0.createLayoutTemplateNode and slot1.Fap) or 0)
+		})
+
+		"FapLayout":pushBackCustomItem(slot0)
+
+		slot3 = slot0 + slot0.getContentSize(slot0).width
+
+		return 
+	end
+
+	if slot1 then
+		slot8()
+		slot7()
+	else
+		slot7()
+		slot8()
+	end
+
+	slot2.setContentSize(slot2, slot6, 75)
+
+	return 
+end
+slot0.isTeamEnough = function ()
+	function slot0(slot0, slot1)
+		slot2 = 0
+		slot3 = string.split
+		slot4 = slot1 or ""
+
+		for slot7, slot8 in ipairs(slot3) do
+			if HeroModel.items[tonumber(slot8) or 0] then
+				slot2 = slot2 + 1
+			end
+		end
+
+		return slot0 <= slot2
+	end
+
+	slot1 = Player:getGameData("HegemonyMyTeamInfo") or {}
+	slot2 = true
+
+	for slot6 = 1, #slot0, 1 do
+		if slot1[slot6] == nil or slot1[slot6].FormationInfo == nil then
+			slot2 = false
+
+			break
+		end
+
+		if slot0(slot0[slot6], slot1[slot6].FormationInfo) == false then
+			slot2 = false
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeTopCleanUpLayer(false)
+	LayerManager.removeTopCleanUpLayer(true)
+
+	return 
+end
+slot0.onRuleAction = function (slot0)
+	ui.showRuleMsg({
+		textList = {
+			TR("1，玩家需要出战15个人，组成3个队伍匹配其他玩家进行战斗"),
+			TR("2，对战分为总共3场战斗，3战2胜。"),
+			TR("3，玩家初始默认为少侠段位，胜利会增加段位分数，当段位分数达到升段时，则可以进行提升段位，挑战失败也会扣除段位分数"),
+			TR("4，巅峰对决为跨服玩法，将会遇到各种强力对手"),
+			TR("5，遇到实力强劲的对手，采用田忌赛马的战术是你获得胜利的关键"),
+			TR("6，周天晚上11:30~12:00点结算段位和排名奖励。奖励结算之后赛季和段位重置，周一开始下个赛季的挑战。"),
+			TR("7，每个赛季各种奖励非常丰富，记得多参与，拿满奖励哦~")
+		}
+	})
+
+	return 
+end
+slot0.onUnCampAction = function (slot0)
+	Player:saveGameData("HegemonyMyTeamInfo", {})
+	slot0.refreshCamp(slot0)
+
+	return 
+end
+slot0.onChallengeAction = function (slot0)
+	if not slot0.isTeamEnough() then
+		ui.showFlashView(TR("请先完成布阵！"))
+
+		return 
+	end
+
+	slot0.requestFight(slot0)
+
+	return 
+end
+slot0.onCardAction = function (slot0, slot1)
+	if slot1.isOwn then
+		LayerManager.addLayer({
+			cleanUp = false,
+			name = "hegemony.HegemonyDlgCampLayer",
+			data = {
+				teamId = slot1.groupId,
+				callback = function ()
+					slot0:refreshCamp()
+
+					return 
+				end
+			},
+			zOrder = Enums.ZOrderType.ePopLayer
+		})
+	end
+
+	return 
+end
+slot0.onClickPlayer = function (slot0, slot1)
+	if not slot1.playerInfo or slot1.playerInfo.isRobot then
+		return 
+	end
+
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "player.OtherPlayerInfoLayer",
+		data = slot1.playerInfo,
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.requestFight = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "Fight",
+		moduleName = "Hegemony",
+		methodData = {
+			slot0.mOtherRankInfo.PlayerId
+		},
+		successCallback = function (slot0)
+			LayerManager.getRestoreData("hegemony.HegemonyMainLayer") or {}.isOpenReport = true
+
+			LayerManager.setRestoreData("hegemony.HegemonyMainLayer", LayerManager.getRestoreData("hegemony.HegemonyMainLayer") or {})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

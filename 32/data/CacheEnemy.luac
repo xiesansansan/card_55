@@ -1,0 +1,92 @@
+slot0 = class("CacheEnemy", {})
+slot0.ctor = function (slot0)
+	slot0.mEnemyList = nil
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mEnemyList = nil
+
+	return 
+end
+slot0.getEnemyList = function (slot0, slot1)
+	if slot0.mEnemyList ~= nil then
+		slot1(clone(slot0.mEnemyList))
+	else
+		require("network.GameSocket"):socketRequest({
+			methodName = "GetEnemyList",
+			moduleName = "Enemy",
+			ignoreNode = true,
+			methodData = {},
+			successCallback = function (slot0)
+				slot0.mEnemyList = slot0 or {}
+
+				slot0(clone(slot0.mEnemyList))
+
+				return 
+			end
+		})
+	end
+
+	return 
+end
+slot0.isInEnemy = function (slot0, slot1)
+	slot2 = false
+	slot3 = ipairs
+	slot4 = slot0.mEnemyList or {}
+
+	for slot6, slot7 in slot3(slot4) do
+		if slot7.PlayerId == slot1 then
+			slot2 = true
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.addEnemy = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "AddEnemy",
+		moduleName = "Enemy",
+		ignoreNode = true,
+		methodData = {
+			slot1,
+			""
+		},
+		successCallback = function (slot0)
+			slot0.mEnemyList = slot0 or {}
+
+			if slot1 then
+				slot1(clone(slot0.mEnemyList))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.deleteEnemy = function (slot0, slot1, slot2)
+	require("network.GameSocket"):socketRequest({
+		methodName = "DeleteEnemy",
+		moduleName = "Enemy",
+		ignoreNode = true,
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.mEnemyList = slot0 or {}
+
+			if slot1 then
+				slot1(clone(slot0.mEnemyList))
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

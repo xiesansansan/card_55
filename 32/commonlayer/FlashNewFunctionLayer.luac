@@ -1,0 +1,94 @@
+slot0 = class("FlashNewFunctionLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = true,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "parentNode",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0, {
+		swallow = true
+	})
+
+	slot0.mParams = slot1
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1, slot2 = Utility.getCurLvActionModuleIds()
+	slot0.shanziEffect = UIWrap.newControl("Effect", {
+		loop = false,
+		animation = "huazhou",
+		dataFile = "effect_ui_xingongnengkaiqi",
+		pos = cc.p(0, 0),
+		complete = function ()
+			return 
+		end
+	})
+
+	slot0.parentNode:addChild(slot0.shanziEffect)
+	Utility.performWithDelay(slot0.parentNode, function ()
+		slot0.guangEffect = UIWrap.newControl("Effect", {
+			loop = false,
+			animation = "boom",
+			dataFile = "effect_ui_xingongnengkaiqi",
+			pos = cc.p(0, 0),
+			complete = function ()
+				slot0.shanziEffect:removeFromParent()
+				slot0.shanziEffect.removeFromParent.guangEffect:removeFromParent()
+				slot0.shanziEffect.removeFromParent.guangEffect.removeFromParent.tbSprite:runAction(cc.Sequence:create(cc.MoveTo:create(1.5, slot0.parentNode:convertToNodeSpace(slot0.mParams.needMovePos)), cc.CallFunc:create(function ()
+					if slot0.mParams.callback then
+						slot0.mParams.callback()
+					end
+
+					LayerManager.removeLayer(LayerManager.removeLayer)
+
+					return 
+				end)))
+
+				return 
+			end
+		})
+
+		slot0.parentNode:addChild(slot0.guangEffect)
+
+		return 
+	end, 0.2)
+
+	slot0.tbSprite = UIWrap.newControl("Sprite", {
+		anchor = cc.p(0.5, 0.5),
+		pos = cc.p(42, 62),
+		image = slot2[slot0.mParams.newFunctionModuleId].pic .. ".png"
+	})
+
+	slot0.tbSprite:setVisible(false)
+	slot0.parentNode:addChild(slot0.tbSprite)
+	Utility.performWithDelay(slot0, function ()
+		slot0.tbSprite:setVisible(true)
+
+		return 
+	end, 1)
+	MqAudio.playEffect("xingongnengkaiqi.mp3")
+
+	return 
+end
+
+return slot0

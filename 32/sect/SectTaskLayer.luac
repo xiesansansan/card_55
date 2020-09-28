@@ -1,0 +1,848 @@
+slot0 = class("SectTaskLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "Node",
+		params = {
+			posApt = 1,
+			scaleApt = 2,
+			pos = {
+				x = 568,
+				y = 320
+			}
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "tc_2.png",
+					pos = {
+						x = 0,
+						y = 0
+					},
+					size = {
+						width = 890,
+						height = 540
+					}
+				},
+				children = {
+					{
+						name = "untitled23",
+						cType = "Sprite",
+						params = {
+							image = "xxzy_1.png",
+							pos = {
+								x = 187.33,
+								y = 273.05
+							}
+						},
+						children = {
+							{
+								name = "heroSprite",
+								cType = "Sprite",
+								params = {
+									scale = 0.7,
+									image = "c_pure.png",
+									pos = {
+										x = 210.33,
+										y = 262.04
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled25",
+								cType = "Sprite",
+								params = {
+									image = "zm_68.png",
+									pos = {
+										x = 161,
+										y = 59
+									}
+								},
+								children = {
+									{
+										name = "heroListView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											pos = {
+												x = -2,
+												y = 5
+											},
+											size = {
+												width = 320,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "heroTemplate",
+												cType = "Layout",
+												params = {
+													pos = {
+														x = 0,
+														y = 0
+													},
+													size = {
+														width = 80,
+														height = 100
+													}
+												},
+												children = {
+													{
+														name = "untitled30",
+														cType = "Sprite",
+														params = {
+															image = "zm_69.png",
+															pos = {
+																x = 40,
+																y = 50
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled33",
+														cType = "Scale9Sprite",
+														params = {
+															image = "c_61.png",
+															childName = "selectSprite",
+															pos = {
+																x = 40,
+																y = 50
+															},
+															size = {
+																width = 90,
+																height = 116
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled28",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															childName = "card",
+															allowClick = false,
+															pos = {
+																x = 40,
+																y = 60
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled29",
+														cType = "Label",
+														params = {
+															fontSize = 18,
+															childName = "nameLabel",
+															text = "Label",
+															color = {
+																g = 37,
+																r = 37,
+																b = 37
+															},
+															pos = {
+																x = 40,
+																y = 16
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled31",
+														cType = "Sprite",
+														params = {
+															image = "c_21.png",
+															childName = "lockSprite",
+															pos = {
+																x = 40,
+																y = 61
+															}
+														},
+														children = {}
+													},
+													{
+														name = "untitled34",
+														cType = "Button",
+														params = {
+															image = "c_pure.png",
+															childName = "btn",
+															pos = {
+																x = 40,
+																y = 50
+															},
+															size = {
+																width = 80,
+																height = 100
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "bubbleSprite",
+								cType = "Scale9Sprite",
+								params = {
+									image = "bp_4.png",
+									pos = {
+										x = 81.1,
+										y = 428.79
+									},
+									size = {
+										width = 150,
+										height = 80
+									}
+								},
+								children = {}
+							},
+							{
+								name = "bubbleLabel",
+								cType = "Label",
+								params = {
+									fontSize = 16,
+									text = "Label",
+									align = 0,
+									valign = 0,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 82.61,
+										y = 432.71
+									},
+									size = {
+										width = 140,
+										height = 60
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "taskListView",
+						cType = "ListView",
+						params = {
+							direction = true,
+							swallowTouch = false,
+							anchor = {
+								x = 0.5,
+								y = 0.5
+							},
+							pos = {
+								x = 608.85,
+								y = 310.75
+							},
+							size = {
+								width = 520,
+								height = 400
+							}
+						},
+						children = {
+							{
+								name = "taskTemplate",
+								cType = "Layout",
+								custom = {
+									{
+										value = "untitled7-image",
+										name = "taskLevelImg",
+										type = "string"
+									},
+									{
+										value = "untitled8-text",
+										name = "taskNameStr",
+										type = "string"
+									},
+									{
+										value = "untitled10-image",
+										name = "btnImg",
+										type = "string"
+									},
+									{
+										value = "untitled10-clickAction",
+										name = "btnClickAction",
+										type = "string"
+									},
+									{
+										value = "untitled9-id",
+										name = "id",
+										type = "string"
+									}
+								},
+								params = {
+									size = {
+										width = 520,
+										height = 118
+									}
+								},
+								children = {
+									{
+										name = "untitled6",
+										cType = "Scale9Sprite",
+										params = {
+											image = "c_95.png",
+											pos = {
+												x = 260,
+												y = 59
+											},
+											size = {
+												width = 520,
+												height = 118
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled7",
+										cType = "Sprite",
+										params = {
+											image = "zm_9.png",
+											pos = {
+												x = 27,
+												y = 100
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled8",
+										cType = "Label",
+										params = {
+											childName = "nameLabel",
+											anchor = {
+												x = 0,
+												y = 0.5
+											},
+											color = {
+												g = 168,
+												r = 139,
+												b = 87
+											},
+											pos = {
+												x = 50,
+												y = 100
+											},
+											text = TR("任务名字")
+										},
+										children = {}
+									},
+									{
+										name = "untitled15",
+										cType = "Label",
+										params = {
+											fontSize = 18,
+											childName = "tipsLabel",
+											text = "",
+											color = {
+												g = 37,
+												r = 37,
+												b = 37
+											},
+											pos = {
+												x = 440,
+												y = 69.02
+											}
+										},
+										children = {}
+									},
+									{
+										name = "untitled10",
+										cType = "Button",
+										params = {
+											childName = "btn",
+											image = "c_27.png",
+											clickAction = "",
+											pos = {
+												x = 440,
+												y = 37
+											},
+											titleText = TR("前往调查")
+										},
+										children = {}
+									},
+									{
+										name = "rewardListView",
+										cType = "ListView",
+										params = {
+											direction = false,
+											swallowTouch = false,
+											pos = {
+												x = 11.77,
+												y = 6.6
+											},
+											size = {
+												width = 360,
+												height = 80
+											}
+										},
+										children = {
+											{
+												name = "cardTemplate",
+												cType = "Layout",
+												custom = {
+													{
+														value = "untitled13-initParams",
+														name = "cardInfo",
+														type = "string"
+													}
+												},
+												params = {
+													size = {
+														width = 80,
+														height = 80
+													}
+												},
+												children = {
+													{
+														name = "untitled13",
+														cType = "CardNode",
+														params = {
+															scale = 0.8,
+															allowClick = true,
+															initParams = {},
+															pos = {
+																x = 40,
+																y = 40
+															}
+														},
+														children = {}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					{
+						name = "countDownLabel",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 428.52,
+								y = 80.92
+							},
+							text = TR("重置宗门任务倒计时: 21:25:30")
+						},
+						children = {}
+					},
+					{
+						name = "untitled14",
+						cType = "Label",
+						params = {
+							fontSize = 18,
+							anchor = {
+								x = 0,
+								y = 0.5
+							},
+							color = {
+								g = 37,
+								r = 37,
+								b = 37
+							},
+							pos = {
+								x = 429.71,
+								y = 46.6
+							},
+							text = TR("宗门声望级别越高，越容易出现高级宗门任务")
+						},
+						children = {}
+					},
+					{
+						name = "untitled21",
+						cType = "Button",
+						params = {
+							childName = "btn",
+							image = "c_32.png",
+							clickAction = "onRefreshCallBack",
+							pos = {
+								x = 792.61,
+								y = 82.08
+							},
+							titleText = TR("刷 新")
+						},
+						children = {}
+					},
+					{
+						name = "emptyTipsLabel",
+						cType = "Sprite",
+						params = {
+							image = "bp_25.png",
+							hide = true,
+							pos = {
+								x = 640.85,
+								y = 282.75
+							}
+						},
+						children = {
+							{
+								name = "untitled18",
+								cType = "Label",
+								params = {
+									fontSize = 18,
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 242.5,
+										y = 50
+									},
+									size = {
+										width = 180,
+										height = 100
+									},
+									text = TR("任务已经全部完成")
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mSectID = slot1.sectID or 1
+	slot0.data = slot1.data
+	slot0.mSectCfg = SectModel.items[slot0.mSectID]
+	slot0.mLv = PlayerAttrObj:getPlayerAttrByName("SectPrestigeLv")
+	slot0.mLv = math.min(4, slot0.mLv)
+	slot0.mLvCfg = SectExplvRelation.items[slot0.mSectID][slot0.mLv]
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+	slot0.requestGetTaskInfo(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.bubbleSprite:setScaleX(-slot0.bubbleSprite:getScale())
+	Utility.schedule(slot0.countDownLabel, function ()
+		if not slot0.taskResetTime then
+			return 
+		end
+
+		slot0, slot1 = Utility.getCountDownStr(slot0.taskResetTime)
+
+		if slot0 then
+			slot0.countDownLabel:setString(TR("重置宗门任务倒计时: %s", slot1))
+		else
+			slot0.countDownLabel:setString("")
+		end
+
+		return 
+	end, 0.5)
+	function ()
+		if not slot0.taskResetTime then
+			return 
+		end
+
+		slot0, slot1 = Utility.getCountDownStr(slot0.taskResetTime)
+
+		if slot0 then
+			slot0.countDownLabel.setString(TR("重置宗门任务倒计时: %s", slot1))
+		else
+			slot0.countDownLabel.setString("")
+		end
+
+		return 
+	end()
+
+	return 
+end
+slot1 = {
+	{
+		pic = "zm_17.png",
+		color = cc.c3b(255, 255, 255)
+	},
+	{
+		pic = "zm_9.png",
+		color = cc.c3b(139, 168, 87)
+	},
+	{
+		pic = "zm_10.png",
+		color = cc.c3b(92, 167, 187)
+	},
+	{
+		pic = "zm_11.png",
+		color = cc.c3b(170, 51, 221)
+	},
+	{
+		pic = "zm_12.png",
+		color = cc.c3b(203, 125, 69)
+	}
+}
+slot0.refreshLayer = function (slot0)
+	slot0.taskListView:removeAllChildren()
+
+	function slot1(slot0, slot1)
+		table.insert(Utility.analysisStrResList(slot0), Utility.analysisStrResList(slot1)[1])
+
+		return Utility.analysisStrResList(slot0)
+	end
+
+	slot0.emptyTipsLabel:setVisible(#slot0.baseInfoList == 0)
+
+	for slot5, slot6 in ipairs(slot0.baseInfoList) do
+		slot11 = slot6.Status == 1
+		slot15 = "taskTemplate"
+		slot18, slot15 = Utility.getColorValue(slot8.typeColorLv, true)
+
+		slot0.createLayoutTemplateNode(slot0, slot15, {
+			id = slot6.SeasonId,
+			taskLevelImg = slot0[SectTasktypeModel.items[SectTaskRelation.items[slot6.TaskId].taskType].typeColorLv].pic,
+			taskNameStr = slot7.name,
+			btnImg = (slot6.Status == 1 and slot6.EndTime < Player:getCurrentTime() and "c_32.png") or "c_27.png",
+			btnClickAction = function ()
+				slot1 = slot0.Status == 1
+
+				if slot0.Status == 1 and slot0.EndTime < slot0 then
+					slot1:requestDrawTask(slot0.SeasonId)
+					dump("111")
+				elseif slot1 then
+					ui.showFlashView(TR("任务调查中.."))
+					dump("222")
+				else
+					dump("333")
+					LayerManager.addLayer({
+						cleanUp = false,
+						name = "sect.SectTaskSelectHeroLayer",
+						data = {
+							taskInfo = slot0,
+							usedHeros = slot1.usedHeros,
+							completeCallBack = function (slot0, slot1)
+								LayerManager.removeLayer(slot0)
+								slot0:requestDoTask(slot1.SeasonId, table.concat(slot1, ","))
+
+								return 
+							end
+						},
+						zOrder = Enums.ZOrderType.ePopLayer
+					})
+				end
+
+				return 
+			end
+		}).nameLabel:setColor(slot0)
+
+		if slot12 then
+			slot13.btn:setVisible(true)
+			slot13.tipsLabel:setPosition(cc.p(440, 69))
+			slot13.btn:setTitleText(TR("领取奖励"))
+			slot13.tipsLabel:setString(TR("调查成功"))
+		elseif slot11 then
+			slot13.btn:setVisible(false)
+			slot13.tipsLabel:setPosition(cc.p(420, 45))
+			slot13.btn:setTitleText(TR("正在调查"))
+			Utility.schedule(slot13.tipsLabel, function ()
+				slot0, slot1 = Utility.getCountDownStr(slot0.EndTime)
+
+				if slot0 then
+					slot1.tipsLabel:setString(TR("调查中:%s", slot1))
+				else
+					slot1.tipsLabel:setString("")
+				end
+
+				return 
+			end, 0.5)
+		else
+			slot13.btn:setVisible(true)
+			slot13.tipsLabel:setPosition(cc.p(440, 69))
+			slot13.btn:setTitleText(TR("前往调查"))
+		end
+
+		slot16 = slot1
+		slot17 = slot7.reward
+		slot18 = slot6.SectExp or ""
+
+		slot13.rewardListView:removeAllChildren()
+
+		for slot20, slot21 in ipairs(slot16) do
+			slot13.rewardListView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "cardTemplate", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot21.resourceId,
+						num = slot21.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+
+		slot0.taskListView:pushBackCustomItem(slot13)
+	end
+
+	slot0.heroListView:removeAllChildren()
+	slot0.heroSprite:setTexture(HeroModel.items[SectExplvRelation.items[slot0.mSectID][slot0.mLv].heroId].drawingPicA .. ".png")
+	slot0.bubbleLabel:setString(slot0.mLvCfg.bubble)
+
+	for slot7, slot8 in ipairs(SectExplvRelation.items[slot0.mSectID]) do
+		if 4 < slot7 then
+			return 
+		end
+
+		slot0.createLayoutTemplateNode(slot0, "heroTemplate").selectSprite:setVisible(slot2 == slot8.expLv)
+		slot9.lockSprite:setVisible(slot2 < slot8.expLv)
+		slot9.btn:setClickAction(function ()
+			if slot1 < slot0.expLv then
+				ui.showFlashView(TR("声望级别达到【%s】后自动解锁", slot0.name))
+			end
+
+			return 
+		end)
+		slot9.setCascadeOpacityEnabled(slot9, true)
+		slot9.setOpacity(slot9, (slot8.expLv <= slot2 and 255) or 220)
+		slot9.card:setCardData({
+			modelId = slot8.heroId
+		})
+		slot9.card:setRightTextVisible(false)
+		slot9.nameLabel:setString(slot8.heroName)
+		slot0.heroListView:pushBackCustomItem(slot9)
+	end
+end
+slot0.onRefreshCallBack = function (slot0, slot1)
+	ui.showMessageBox({
+		titleText = TR("刷新任务"),
+		text = TR("是否消耗%d元宝刷新任务？", Utility.analysisStrResList(SectConfig.items[1].sectTaskRefreshUse)[1].num),
+		okCallback = function ()
+			slot0:requestRefreshTask(slot1.id)
+
+			return 
+		end,
+		cancelCallback = function ()
+			return 
+		end
+	})
+
+	return 
+end
+slot0.sortTaskList = function (slot0)
+	slot1 = Player:getCurrentTime()
+
+	table.sort(slot0.baseInfoList, function (slot0, slot1)
+		if (slot0.Status == 1 and slot0.EndTime < slot0) ~= (slot1.Status == 1 and slot1.EndTime < slot0) then
+			return slot4 == true
+		elseif slot2 ~= slot3 then
+			return slot2 ~= true
+		end
+
+		return SectTaskRelation.items[slot1.TaskId].taskType < SectTaskRelation.items[slot0.TaskId].taskType
+	end)
+
+	return 
+end
+slot0.requestGetTaskInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetTaskInfo",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.usedHeros = slot0.UsedHeros
+			slot0.baseInfoList = slot0.BaseInfo
+			slot0.taskResetTime = slot0.TaskResetTime
+
+			slot0:sortTaskList()
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestRefreshTask = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "RefreshTask",
+		moduleName = "Sect",
+		methodData = {},
+		successCallback = function (slot0)
+			slot0.baseInfoList = slot0.BaseInfo
+
+			slot0:sortTaskList()
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDoTask = function (slot0, slot1, slot2)
+	slot0.socketRequest(slot0, {
+		methodName = "DoTask",
+		moduleName = "Sect",
+		methodData = {
+			slot1,
+			slot2
+		},
+		successCallback = function (slot0)
+			slot0.usedHeros = slot0.UsedHeros
+			slot0.baseInfoList = slot0.BaseInfo
+
+			slot0:sortTaskList()
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+slot0.requestDrawTask = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawTaskReward",
+		moduleName = "Sect",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			slot0.usedHeros = slot0.UsedHeros
+			slot0.baseInfoList = slot0.BaseInfo
+
+			slot0:sortTaskList()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+			slot0:refreshLayer()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

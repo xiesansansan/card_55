@@ -1,0 +1,263 @@
+slot0 = class("ActivityExchangePopLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "mBgSprite",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("兑换")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 259.1,
+						y = 202.45
+					},
+					size = {
+						width = 454.45,
+						height = 220.32
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mListView",
+				cType = "ListView",
+				params = {
+					childName = "rewardListView",
+					direction = false,
+					swallowTouch = false,
+					pos = {
+						x = 50.49,
+						y = 198.21
+					},
+					size = {
+						width = 420,
+						height = 90
+					}
+				},
+				children = {
+					{
+						name = "CardLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled5",
+								cType = "CardNode",
+								params = {
+									childName = "card",
+									allowClick = true,
+									initParams = {},
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					},
+					{
+						name = "ArrowLayout",
+						cType = "Layout",
+						params = {
+							size = {
+								width = 90,
+								height = 90
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_23.png",
+									pos = {
+										x = 45,
+										y = 45
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mCountView",
+				cType = "SelectCountView",
+				params = {
+					changeCallback = "onNumChanged",
+					currSelCount = 1,
+					pos = {
+						x = 258.85,
+						y = 140.98
+					},
+					size = {
+						width = 450,
+						height = 50
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Button",
+				custom = {
+					{
+						value = true,
+						name = "isAll",
+						type = "bool"
+					}
+				},
+				params = {
+					image = "c_32.png",
+					clickAction = "onExchanged",
+					pos = {
+						x = 147.91,
+						y = 60
+					},
+					titleText = TR("全部兑换")
+				},
+				children = {}
+			},
+			{
+				name = "untitled10",
+				cType = "Button",
+				params = {
+					image = "c_27.png",
+					clickAction = "onExchanged",
+					pos = {
+						x = 352.99,
+						y = 60
+					},
+					titleText = TR("兑换")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mExchangeData = slot1.exchangeData
+	slot0.mCallback = slot1.callback
+	slot0.mMaxNum = slot0.getMaxNum(slot0)
+	slot0.mCurNum = 1
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(slot0.mExchangeData.NeedGameResourceList) do
+		slot0.createLayoutTemplateNode(slot0, "CardLayout").card:setCardData({
+			modelId = slot6.ResourceId,
+			num = slot6.Num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		table.insert(slot1, slot0.createLayoutTemplateNode(slot0, "CardLayout"))
+
+		slot9 = (Resource.getCount(slot6.ResourceId) < slot6.Num and "#ea2c00") or "#37ff40"
+
+		if slot8 < slot6.Num then
+			slot7.card:setGray()
+		end
+	end
+
+	table.insert(slot1, slot2)
+
+	for slot6, slot7 in ipairs(slot0.mExchangeData.ExchaneGameResourceList) do
+		slot0.createLayoutTemplateNode(slot0, "CardLayout").card:setCardData({
+			modelId = slot7.ResourceId,
+			num = slot7.Num
+		}, {
+			Enums.CardShowAttr.eNum
+		})
+		table.insert(slot1, slot0.createLayoutTemplateNode(slot0, "CardLayout"))
+	end
+
+	if #slot1 <= 4 then
+		slot4 = (#slot1*90 - 420)*0.5
+
+		for slot8, slot9 in ipairs(slot1) do
+			slot9.setPosition(slot9, (slot8 - 0.5)*slot3 + slot4, 200)
+			slot0.mBgSprite:addChild(slot9)
+		end
+	else
+		for slot6, slot7 in ipairs(slot1) do
+			slot0.mListView:pushBackCustomItem(slot7)
+		end
+	end
+
+	slot0.mCountView:setMaxCount(slot0.mMaxNum)
+
+	return 
+end
+slot0.getMaxNum = function (slot0)
+	slot1 = nil
+
+	if slot0.mExchangeData.GlobalNum then
+		slot1 = (not slot1 or math.min(slot1, slot0.mExchangeData.GlobalNum)) and slot0.mExchangeData.GlobalNum
+	end
+
+	if slot0.mExchangeData.PersonalNum then
+		slot1 = (not slot1 or math.min(slot1, slot0.mExchangeData.PersonalNum)) and slot0.mExchangeData.PersonalNum
+	end
+
+	if 0 <= slot0.mExchangeData.DailyNum then
+		slot1 = (not slot1 or math.min(slot1, slot0.mExchangeData.DailyNum)) and slot0.mExchangeData.DailyNum
+		slot2 = nil
+	end
+
+	for slot6, slot7 in ipairs(slot0.mExchangeData.NeedGameResourceList) do
+		slot8 = math.floor(Resource.getCount(slot7.ResourceId)/slot7.Num)
+
+		if not slot2 or slot8 < slot2 then
+			slot2 = slot8
+		end
+	end
+
+	return (not slot1 or math.min(slot2, slot1)) and slot2
+end
+slot0.onNumChanged = function (slot0, slot1)
+	slot0.mCurNum = slot1
+
+	return 
+end
+slot0.onExchanged = function (slot0, slot1)
+	if slot0.mCallback then
+		slot0.mCallback((slot1.isAll and slot0.mMaxNum) or slot0.mCurNum)
+	end
+
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+
+return slot0

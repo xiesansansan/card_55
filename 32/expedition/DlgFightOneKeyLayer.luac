@@ -1,0 +1,429 @@
+slot0 = class("DlgFightOneKeyLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 530,
+				height = 438
+			},
+			titleText = TR("扫 荡")
+		},
+		children = {
+			{
+				name = "untitled3",
+				cType = "Sprite",
+				params = {
+					image = "bzlj_7.png",
+					pos = {
+						x = 58,
+						y = 353
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled4",
+				cType = "Sprite",
+				params = {
+					image = "bzlj_7.png",
+					pos = {
+						x = 58,
+						y = 323
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Sprite",
+				params = {
+					image = "bzlj_7.png",
+					pos = {
+						x = 58,
+						y = 293
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mFirstTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 73,
+						y = 353
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mSecondTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 73,
+						y = 323
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mThirdTipLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					text = "Label",
+					emptyInit = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 73,
+						y = 293
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled9",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_11.png",
+					pos = {
+						x = 261.51,
+						y = 250
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mOptionFirstLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 160,
+						y = 213
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mOptionSecondLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 160,
+						y = 173
+					}
+				},
+				children = {}
+			},
+			{
+				name = "mOptionThirdLabel",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					emptyInit = true,
+					text = "Label",
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 160,
+						y = 133
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled13",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onClickFightOneKey",
+					pos = {
+						x = 269.62,
+						y = 69.25
+					},
+					titleText = TR("扫 荡")
+				},
+				children = {}
+			},
+			{
+				name = "mCheckBoxGroup",
+				cType = "Node",
+				params = {
+					pos = {
+						x = 15,
+						y = 23
+					}
+				},
+				children = {
+					{
+						name = "untitled15",
+						cType = "Checkbox",
+						custom = {
+							{
+								value = 1,
+								name = "checkTag",
+								type = "integer"
+							}
+						},
+						params = {
+							normalImage = "c_43.png",
+							selectImage = "c_44.png",
+							callback = "cbCheckBoxChanged",
+							pos = {
+								x = 120,
+								y = 190
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled16",
+						cType = "Checkbox",
+						custom = {
+							{
+								value = 2,
+								name = "checkTag",
+								type = "integer"
+							}
+						},
+						params = {
+							normalImage = "c_43.png",
+							selectImage = "c_44.png",
+							callback = "cbCheckBoxChanged",
+							pos = {
+								x = 120,
+								y = 150
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled17",
+						cType = "Checkbox",
+						custom = {
+							{
+								value = 3,
+								name = "checkTag",
+								type = "integer"
+							}
+						},
+						params = {
+							isSelect = true,
+							selectImage = "c_44.png",
+							callback = "cbCheckBoxChanged",
+							normalImage = "c_43.png",
+							pos = {
+								x = 120,
+								y = 110
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mNodeIdList = slot1.nodeIdList
+	slot0.mCallback = slot1.callback
+	slot0.mCurrentCheckIndex = 3
+	slot0.mOptionsConfig = {
+		5,
+		3,
+		2
+	}
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+
+	function slot1(slot0)
+		for slot4, slot5 in ipairs(slot0.mNodeIdList) do
+			if slot5 == slot0 then
+				return slot4
+			end
+		end
+
+		return nil
+	end
+
+	slot2 = ExpeditionConfig.items[1].sweepNodeNum - 1000
+
+	if PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege") and PrivilegeConfig.items[1].expeditionSweepNeedLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+		slot2 = PrivilegeConfig.items[1].lvExpeditionSweepMaxNode - 1000
+	elseif PlayerAttrObj:getPlayerAttrByName("IsActivePrivilege") then
+		slot2 = PrivilegeConfig.items[1].expeditionSweepMaxNode - 1000
+	elseif PrivilegeConfig.items[1].expeditionSweepNeedLv <= PlayerAttrObj:getPlayerAttrByName("Lv") then
+		slot2 = PrivilegeConfig.items[1].expeditionSweepMaxNode - 1000
+	end
+
+	slot0.mFirstTipLabel:setString(TR("可扫荡前%d关，并自动获得翻牌和宝箱奖励。", slot2))
+	slot0.mSecondTipLabel:setString(TR("扫荡过程不会损耗干粮，也不会增长战意。"))
+	slot0.mThirdTipLabel:setString(TR("若手动挑战了第一关，则本轮不可使用扫荡。"))
+	slot0.mOptionFirstLabel:setString(TR("购买所有翻牌奖励 {%s}%d", slot0.getPrice(slot0).priceIcon, slot0.getPrice(slot0).price*slot2))
+	slot0.mOptionSecondLabel:setString(TR("每关购买一次翻牌奖励 {%s}%d", slot0.getPrice(slot0, 3).priceIcon, slot0.getPrice(slot0, 3).price*slot2))
+	slot0.mOptionThirdLabel:setString(TR("不购买额外翻牌奖励"))
+
+	return 
+end
+slot0.getPrice = function (slot0, slot1)
+	table.insert(slot3, slot2(FlopConfig.items[1].fifthNeed))
+	table.insert(slot3, slot2(FlopConfig.items[1].fourthNeed))
+	table.insert({}, function (slot0)
+		slot1 = {}
+
+		if slot0 then
+			slot1.priceIcon = Resource.getDaibiImg(Utility.analysisStrResList(slot0)[1].resourceId)
+			slot1.price = Utility.analysisStrResList(slot0)[1].num
+		end
+
+		return slot1
+	end(FlopConfig.items[1].thirdNeed))
+
+	if slot1 and slot3[slot1] then
+		return slot3[slot1]
+	else
+		return {
+			priceIcon = slot3[1].priceIcon,
+			price = slot3[1].price + slot3[2].price + slot3[3].price
+		}
+	end
+
+	return 
+end
+slot0.cbCheckBoxChanged = function (slot0, slot1)
+	slot0.mCurrentCheckIndex = slot1.checkTag
+
+	for slot6, slot7 in pairs(slot2) do
+		if slot1.checkTag ~= slot6 then
+			slot7.setSelected(slot7, false)
+		else
+			slot7.setSelected(slot7, true)
+		end
+	end
+
+	return 
+end
+slot0.onClickFightOneKey = function (slot0)
+	slot0.requestFightOneKey(slot0, slot0.mOptionsConfig[slot0.mCurrentCheckIndex])
+
+	return 
+end
+slot0.requestFightOneKey = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "FightOneKey",
+		moduleName = "Expedition",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "==========data")
+
+			if slot0.mCallback then
+				slot0.mCallback(slot0)
+			end
+
+			LayerManager.addLayer({
+				cleanUp = false,
+				name = "expedition.DlgFightOneKeyRewardLayer",
+				data = {
+					rewardList = slot0
+				},
+				zOrder = Enums.ZOrderType.ePopLayer
+			})
+			LayerManager.removeLayer(slot0)
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

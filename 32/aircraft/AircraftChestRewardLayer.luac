@@ -1,0 +1,370 @@
+slot0 = class("AircraftChestRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 580,
+				height = 501
+			},
+			titleText = TR("每日宝箱奖励")
+		},
+		children = {
+			{
+				name = "untitled12",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 290.06,
+						y = 224.58
+					},
+					size = {
+						width = 530,
+						height = 385
+					}
+				},
+				children = {}
+			},
+			{
+				name = "introLabel",
+				cType = "Label",
+				params = {
+					fontSize = 22,
+					isRichText = true,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 33.4,
+						y = 438.48
+					},
+					text = TR("技能名字")
+				},
+				children = {}
+			},
+			{
+				name = "boxList",
+				cType = "ListView",
+				params = {
+					margin = 5,
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 290.03,
+						y = 33.88
+					},
+					size = {
+						width = 530,
+						height = 380
+					}
+				},
+				children = {
+					{
+						name = "boxLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled6-text",
+								name = "introStr",
+								type = "string"
+							},
+							{
+								value = "getBtn-rewardID",
+								name = "rewardID",
+								type = "string"
+							}
+						},
+						params = {
+							size = {
+								width = 530,
+								height = 150
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_95.png",
+									pos = {
+										x = 260,
+										y = 75
+									},
+									size = {
+										width = 520,
+										height = 145
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									fontSize = 20,
+									text = "Lable",
+									anchor = {
+										x = 0,
+										y = 0.5
+									},
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 18.72,
+										y = 128.7
+									}
+								},
+								children = {}
+							},
+							{
+								name = "getBtn",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "rewardID",
+										type = "integer"
+									}
+								},
+								params = {
+									image = "c_32.png",
+									clickAction = "onGetRewardAction",
+									pos = {
+										x = 450,
+										y = 64
+									},
+									titleText = TR("领  取")
+								},
+								children = {}
+							},
+							{
+								name = "rewardList",
+								cType = "ListView",
+								params = {
+									bounce = true,
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 15.72,
+										y = 9
+									},
+									size = {
+										width = 360,
+										height = 100
+									}
+								},
+								children = {
+									{
+										name = "rewardLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled10-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											size = {
+												width = 100,
+												height = 100
+											}
+										},
+										children = {
+											{
+												name = "untitled10",
+												cType = "CardNode",
+												params = {
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 50,
+														y = 50
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "getSprite",
+								cType = "Sprite",
+								params = {
+									image = "c_55.png",
+									pos = {
+										x = 450.06,
+										y = 64.38
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.mWinNum = slot1.winNum
+	slot0.mTodayNum = slot1.todayNum
+	slot0.mType = slot1.chestType
+	slot0.mDrawList = string.splitBySep(slot1.drawStr, ",")
+	slot0.mCallback = slot1.callback
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.dealData(slot0)
+	slot0.refreshLayer(slot0)
+
+	return 
+end
+slot0.dealData = function (slot0)
+	slot1 = nil
+	slot1 = (slot0.mType ~= 1 or AircraftWinboxPersonRelation.items) and AircraftWinboxGuildRelation.items
+	slot0.mRewardList = {}
+
+	for slot5, slot6 in pairs(slot1) do
+		table.insert(slot0.mRewardList, slot6)
+	end
+
+	table.sort(slot0.mRewardList, function (slot0, slot1)
+		return slot0.winNum < slot1.winNum
+	end)
+
+	return 
+end
+slot0.refreshLayer = function (slot0)
+	slot1 = TR("%s今日已获胜%s%s场，%s已参与%s%s场", "#000000", "#8ba857", slot0.mWinNum or 0, "#000000", "#8ba857", slot0.mTodayNum or 0)
+
+	if slot0.mType == 2 then
+		slot1 = slot1 .. "  " .. TR("#8ba857(仅限好友组队)")
+	end
+
+	slot0.introLabel:setString(slot1)
+	slot0.boxList:removeAllItems()
+
+	for slot5, slot6 in ipairs(slot0.mRewardList) do
+		slot0.boxList:pushBackCustomItem(slot7)
+
+		slot8 = slot0.isCanGetRewarded(slot0, slot6.Id)
+
+		slot0.createLayoutTemplateNode(slot0, "boxLayout", {
+			introStr = TR("今日获胜%s场或参与%s场，可获以下奖励", slot6.winNum, slot6.partNum),
+			rewardID = slot6.Id
+		}).getBtn:setEnabled(slot6.winNum <= slot0.mWinNum or slot6.partNum <= slot0.mTodayNum)
+
+		if not slot8 and (slot6.winNum <= slot0.mWinNum or slot6.partNum <= slot0.mTodayNum) then
+			slot7.getBtn:setVisible(false)
+			slot7.getSprite:setVisible(true)
+		else
+			slot7.getBtn:setVisible(true)
+			slot7.getSprite:setVisible(false)
+		end
+
+		for slot13, slot14 in ipairs(slot9) do
+			slot7.rewardList:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "rewardLayout", {
+				cardInfo = {
+					cardInfo = {
+						modelId = slot14.resourceId,
+						num = slot14.num
+					},
+					showAttrs = {
+						Enums.CardShowAttr.eBorder,
+						Enums.CardShowAttr.eNum
+					}
+				}
+			}))
+		end
+	end
+
+	return 
+end
+slot0.isCanGetRewarded = function (slot0, slot1)
+	slot2 = true
+
+	for slot6, slot7 in ipairs(slot0.mDrawList) do
+		if tonumber(slot7) == slot1 then
+			slot2 = false
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.onGetRewardAction = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "GetChallengeReward",
+		moduleName = "Aircraft",
+		methodData = {
+			slot1.rewardID,
+			slot0.mType
+		},
+		successCallback = function (slot0)
+			if slot0.mType == 1 then
+				slot0.mDrawList = string.splitBySep(slot0.GetRewardNums, ",")
+
+				if slot0.mCallback then
+					slot0.mCallback(slot0.GetRewardNums)
+				end
+			else
+				slot0.mDrawList = string.splitBySep(slot0.TeamGetRewardNums, ",")
+
+				if slot0.mCallback then
+					slot0.mCallback(slot0.TeamGetRewardNums)
+				end
+			end
+
+			slot0:refreshLayer()
+			ui.showFlashReward({
+				BaseGetGameResourceList = slot0.BaseGetGameResourceList
+			})
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

@@ -1,0 +1,115 @@
+slot0 = class("CacheArtifact", {})
+slot0.ctor = function (slot0)
+	slot0.reset(slot0)
+
+	return 
+end
+slot0.reset = function (slot0)
+	slot0.mArtifactList = {}
+
+	return 
+end
+slot0.setArtifactList = function (slot0, slot1)
+	slot0.mArtifactList = slot1
+
+	return 
+end
+slot0.getArtifactList = function (slot0)
+	return clone(slot0.mArtifactList)
+end
+slot0.modifyArtifact = function (slot0, slot1)
+	if not slot1.ModelId then
+		return 
+	end
+
+	slot3 = false
+
+	for slot7, slot8 in ipairs(slot0.mArtifactList) do
+		if slot8.ModelId == slot1.ModelId then
+			slot3 = true
+			slot0.mArtifactList[slot7] = slot1
+
+			break
+		end
+	end
+
+	if not slot3 then
+		table.insert(slot0.mArtifactList, slot1)
+	end
+
+	return 
+end
+slot0.modifyArtifactList = function (slot0, slot1)
+	for slot5, slot6 in pairs(slot1) do
+		slot0.modifyArtifact(slot0, slot6)
+	end
+
+	return 
+end
+slot0.getArtifactInfoByModelID = function (slot0, slot1)
+	slot2 = {}
+
+	for slot6, slot7 in pairs(slot0.mArtifactList) do
+		if slot7.ModelId == slot1 then
+			slot2 = slot7
+		end
+	end
+
+	return slot2
+end
+slot0.isArtifactAllActive = function (slot0)
+	for slot4, slot5 in pairs(slot0.mArtifactList) do
+		if not slot5.IsActive then
+			return false
+		end
+	end
+
+	return true
+end
+slot0.getCurrentTaskArtifact = function (slot0)
+	slot2 = {}
+
+	for slot6, slot7 in ipairs(slot1) do
+		if not slot7.IsActive then
+			slot2 = slot7
+
+			break
+		end
+	end
+
+	return slot2
+end
+slot0.getGuideTaskArtifact = function (slot0)
+	slot2 = ArtifactObj:getCurrentTaskArtifact().FinishProgress or {}
+	slot3 = slot1.ModelId or 1
+	slot4 = 0
+	slot5 = 0
+	slot6 = nil
+	slot7 = false
+
+	for slot11, slot12 in ipairs(slot2) do
+		if slot12.Status == 1 then
+			slot7 = true
+
+			break
+		end
+	end
+
+	for slot11, slot12 in ipairs(slot2) do
+		slot4 = slot12.Status or 0
+		slot5 = slot12.ReachedNum1
+		slot6 = ThroneTaskRelation.items[slot3][slot12.TaskOrder or 1]
+
+		if slot7 then
+			if slot4 == 1 then
+				break
+			end
+		elseif slot4 ~= 2 then
+			break
+		end
+	end
+
+	return slot4, slot5, slot6
+end
+
+return slot0

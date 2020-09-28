@@ -1,0 +1,185 @@
+slot0 = class("PlayerGemGetwayLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 125)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_2.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("获取途径")
+		},
+		children = {
+			{
+				name = "untitled2",
+				cType = "Scale9Sprite",
+				params = {
+					image = "c_24.png",
+					pos = {
+						x = 257,
+						y = 213
+					},
+					size = {
+						width = 446,
+						height = 172
+					}
+				},
+				children = {}
+			},
+			{
+				name = "untitled3",
+				cType = "Label",
+				params = {
+					fontSize = 20,
+					color = {
+						g = 49,
+						r = 49,
+						b = 49
+					},
+					pos = {
+						x = 257,
+						y = 263
+					},
+					text = TR("当前部位没有合适的宝石，请从下列途径获取")
+				},
+				children = {}
+			},
+			{
+				name = "untitled5",
+				cType = "Button",
+				params = {
+					image = "c_19.png",
+					clickAction = "onExitLayer",
+					pos = {
+						x = 257,
+						y = 68
+					},
+					titleText = TR("确定")
+				},
+				children = {}
+			},
+			{
+				name = "ordinaryWaysNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 265,
+						y = 195
+					}
+				},
+				children = {
+					{
+						name = "untitled6",
+						cType = "Button",
+						custom = {
+							{
+								value = 1105,
+								name = "moduleId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tb_gn_212.png",
+							clickAction = "onGotoLayer",
+							pos = {
+								x = 60,
+								y = 0
+							}
+						},
+						children = {}
+					},
+					{
+						name = "untitled12",
+						cType = "Button",
+						custom = {
+							{
+								value = 4611,
+								name = "moduleId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tb_gn_80.png",
+							clickAction = "onGotoLayer",
+							pos = {
+								x = -60,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			},
+			{
+				name = "rareWaysNode",
+				cType = "Node",
+				params = {
+					hide = true,
+					pos = {
+						x = 265,
+						y = 195
+					}
+				},
+				children = {
+					{
+						name = "untitled11",
+						cType = "Button",
+						custom = {
+							{
+								value = 25300,
+								name = "moduleId",
+								type = "integer"
+							}
+						},
+						params = {
+							image = "tb_sy_hd_56.png",
+							clickAction = "onGotoLayer",
+							pos = {
+								x = 0,
+								y = 0
+							}
+						},
+						children = {}
+					}
+				}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.mIsRare = slot1.isRare or false
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.ordinaryWaysNode:setVisible(not slot0.mIsRare)
+	slot0.rareWaysNode:setVisible(slot0.mIsRare)
+
+	return 
+end
+slot0.onExitLayer = function (slot0)
+	LayerManager.removeLayer(slot0)
+
+	return 
+end
+slot0.onGotoLayer = function (slot0, slot1)
+	LayerManager.removeLayer(slot0)
+	LayerManager.showModuleLayer(slot1.moduleId)
+
+	return 
+end
+
+return slot0

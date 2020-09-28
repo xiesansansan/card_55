@@ -1,0 +1,134 @@
+return {
+	initData = {
+		skip = true,
+		script2 = "sd3112032",
+		script1 = "sd3112031",
+		hitPoint = 0,
+		bg = "effect_zhandou_zhulin"
+	},
+	steps = {
+		{
+			cmd = "music",
+			params = {
+				loop = true,
+				file = "battle9.mp3"
+			}
+		},
+		{
+			cmd = "addUnit",
+			params = {
+				isLocal = false,
+				attacker = {
+					{
+						normalSkill = true,
+						name = "粉衣少女",
+						step = 0,
+						skillLv = 25,
+						level = 30,
+						energy = 20,
+						modelId = 12013207,
+						star = 1,
+						order = 1
+					},
+					{
+						normalSkill = true,
+						name = "华筝",
+						step = 0,
+						skillLv = 15,
+						level = 15,
+						energy = 50,
+						modelId = 12011401,
+						star = 1,
+						order = 4
+					},
+					{
+						normalSkill = true,
+						name = "托雷",
+						step = 0,
+						skillLv = 15,
+						level = 15,
+						energy = 50,
+						modelId = 12011405,
+						star = 1,
+						order = 3
+					}
+				},
+				defender = {
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "紫衣女侍",
+						level = 12,
+						skillLv = 1,
+						energy = 20,
+						modelId = 12013403,
+						star = 1,
+						order = 3
+					},
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "白驼侍女",
+						level = 30,
+						skillLv = 1,
+						energy = 20,
+						modelId = 12013402,
+						star = 1,
+						order = 1
+					},
+					{
+						normalSkill = true,
+						cacheName = true,
+						step = 0,
+						name = "黄衣女侍",
+						level = 12,
+						skillLv = 1,
+						energy = 20,
+						modelId = 12012406,
+						star = 1,
+						order = 4
+					}
+				}
+			}
+		},
+		{
+			cmd = "delay",
+			params = {
+				delayTime = 0.5
+			}
+		},
+		{
+			cmd = "dialog",
+			params = {
+				script = "zd0203"
+			}
+		},
+		{
+			cmd = "skill",
+			params = {
+				group = 1,
+				skillid = "normal",
+				order = 3
+			}
+		},
+		{
+			cmd = "skill",
+			params = {
+				group = 1,
+				skillid = "normal",
+				order = 4
+			}
+		},
+		{
+			cmd = "auto",
+			params = {
+				turn = -1
+			}
+		},
+		{
+			cmd = "endGame"
+		}
+	}
+}

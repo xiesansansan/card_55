@@ -1,0 +1,377 @@
+slot0 = class("CrownsDlgPreliminariesReportLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			image = "tc_2.png",
+			posApt = 1,
+			pos = {
+				x = 568,
+				y = 320
+			},
+			size = {
+				width = 620,
+				height = 536
+			},
+			titleText = TR("预选赛战报")
+		},
+		children = {
+			{
+				name = "listView",
+				cType = "ListView",
+				params = {
+					direction = true,
+					bounce = true,
+					anchor = {
+						x = 0.5,
+						y = 0
+					},
+					pos = {
+						x = 310.69,
+						y = 45.69
+					},
+					size = {
+						width = 530,
+						height = 425
+					}
+				},
+				children = {
+					{
+						name = "reportLayout",
+						cType = "Layout",
+						custom = {
+							{
+								value = "untitled68-image",
+								name = "isWinImage",
+								type = "string"
+							},
+							{
+								value = "untitled69-tag",
+								name = "tag",
+								type = "string"
+							},
+							{
+								value = "untitled65-modelId",
+								name = "playerModelId1",
+								type = "string"
+							},
+							{
+								value = "untitled67-modelId",
+								name = "playerModelId2",
+								type = "string"
+							},
+							{
+								value = "untitled65-fashionLv",
+								name = "playerFashionLv1",
+								type = "string"
+							},
+							{
+								value = "untitled67-fashionLv",
+								name = "playerFashionLv2",
+								type = "string"
+							},
+							{
+								value = "untitled65-headPicId",
+								name = "headPicId1",
+								type = "string"
+							},
+							{
+								value = "untitled67-headPicId",
+								name = "headPicId2",
+								type = "string"
+							},
+							{
+								value = "untitled82-text",
+								name = "playerName1",
+								type = "string"
+							},
+							{
+								value = "untitled83-text",
+								name = "playerName2",
+								type = "string"
+							}
+						},
+						params = {
+							pos = {
+								z = 0,
+								x = 0.8,
+								y = 673.72
+							},
+							size = {
+								width = 530,
+								height = 130
+							}
+						},
+						children = {
+							{
+								name = "untitled7",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_94.png",
+									anchor = {
+										x = 0.5,
+										y = 0.5
+									},
+									pos = {
+										x = 265,
+										y = 65
+									},
+									size = {
+										width = 520,
+										height = 120
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled65",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									childName = "playerNode1",
+									allowClick = false,
+									pos = {
+										x = 79.9,
+										y = 57.37
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled67",
+								cType = "PlayerHeroNode",
+								params = {
+									headPicId = 1,
+									fashionLv = 1,
+									modelId = 19010000,
+									childName = "playerNode2",
+									allowClick = false,
+									pos = {
+										x = 454.39,
+										y = 57.2
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled68",
+								cType = "Sprite",
+								params = {
+									scale = 0.7,
+									image = "xyyz_15.png",
+									pos = {
+										x = 264.89,
+										y = 97.66
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled69",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "tag",
+										type = "integer"
+									}
+								},
+								params = {
+									clickAction = "onReportBtnAction",
+									image = "c_27.png",
+									pos = {
+										x = 265.47,
+										y = 41.38
+									},
+									size = {
+										width = 120,
+										height = 60
+									},
+									titleText = TR("查  看")
+								},
+								children = {}
+							},
+							{
+								name = "untitled82",
+								cType = "Label",
+								params = {
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 78.7,
+										y = 109.61
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled83",
+								cType = "Label",
+								params = {
+									text = "Label",
+									isRichText = true,
+									color = {
+										g = 255,
+										r = 255,
+										b = 255
+									},
+									outlineColor = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 455.76,
+										y = 109.91
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "mNoDataLabel",
+				cType = "Label",
+				params = {
+					fontSize = 32,
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 310.11,
+						y = 258.59
+					},
+					text = TR("暂无数据")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot1 = {
+	"c_101.png",
+	"c_102.png",
+	"c_103.png"
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.super.ctor(slot0)
+
+	slot0.detailBattleInfoList = slot1.detailBattleInfoList
+	slot0.myPlayerId = PlayerAttrObj:getPlayerAttrByName("PlayerId")
+
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.requestGetReportInfo(slot0)
+
+	return 
+end
+slot0.refreshReportListView = function (slot0)
+	slot0.listView:removeAllItems()
+
+	if next(slot0.mReportData) == nil then
+		slot0.mNoDataLabel:setString(TR("暂无战报"))
+		slot0.mNoDataLabel:setVisible(true)
+
+		return 
+	else
+		slot0.mNoDataLabel:setVisible(false)
+	end
+
+	for slot4, slot5 in ipairs(slot0.mReportData) do
+		slot0.listView:pushBackCustomItem(slot0.createLayoutTemplateNode(slot0, "reportLayout", {
+			isWinImage = (slot5.IsWin and "xyyz_15.png") or "xyyz_16.png",
+			tag = slot4,
+			playerModelId1 = PlayerAttrObj:getPlayerAttrByName("HeadImageId") or 19010000,
+			playerFashionLv1 = PlayerAttrObj:getPlayerAttrByName("FashionLevel") or 0,
+			headPicId1 = PlayerAttrObj:getPlayerAttrByName("HeadPicId") or 0,
+			playerName1 = "#37FF40" .. (PlayerAttrObj:getPlayerAttrByName("PlayerName") or ""),
+			playerModelId2 = slot5.TargetPlayerInfo.HeadImageId or 19010000,
+			playerFashionLv2 = slot5.TargetPlayerInfo.FashionLevel or 0,
+			headPicId2 = slot0.getHeadPicIdBySeverData(slot0, slot5.TargetPlayerInfo.BaseInfo),
+			playerName2 = slot5.TargetPlayerInfo.Name or ""
+		}))
+	end
+
+	if Player:getGameData("CrownPerBattleClickTag") and 0 < slot1 then
+		slot0.onReportBtnAction(slot0, {
+			tag = slot1
+		})
+	end
+
+	return 
+end
+slot0.onReportBtnAction = function (slot0, slot1)
+	LayerManager.addLayer({
+		cleanUp = false,
+		name = "crowns.CrownsDlgReplayLayer",
+		data = {
+			battleInfo = slot0.mReportData[slot1.tag],
+			clickTag = slot1.tag
+		},
+		zOrder = Enums.ZOrderType.ePopLayer
+	})
+
+	return 
+end
+slot0.getHeadPicIdBySeverData = function (slot0, slot1)
+	if not slot1 or slot1 == "" then
+		return 0
+	end
+
+	return cjson.decode(slot1).HeadPicId or 0
+end
+slot0.requestGetReportInfo = function (slot0)
+	slot0.socketRequest(slot0, {
+		methodName = "GetFightDetailInfo",
+		moduleName = "Universenumone",
+		methodData = {
+			slot0.detailBattleInfoList
+		},
+		successCallback = function (slot0)
+			slot0.mReportData = {}
+			slot1 = pairs
+			slot2 = slot0 or {}
+
+			for slot4, slot5 in slot1(slot2) do
+				table.insert(slot0.mReportData, clone(slot5))
+			end
+
+			table.sort(slot0.mReportData, function (slot0, slot1)
+				return slot0.OrderId < slot1.OrderId
+			end)
+			slot0:refreshReportListView()
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0

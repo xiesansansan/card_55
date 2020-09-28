@@ -1,0 +1,375 @@
+slot0 = class("GuildBossPersonRewardLayer", require("common.BaseLayer"), function ()
+	return UIWrap.newRootLayer({
+		fullScreen = false,
+		color = cc.c4b(0, 0, 0, 150)
+	})
+end)
+slot0.uiTree = {
+	{
+		name = "untitled1",
+		cType = "MsgBoxBg",
+		params = {
+			posApt = 1,
+			image = "tc_1.png",
+			pos = {
+				x = 568,
+				y = 320
+			},
+			titleText = TR("奖励")
+		},
+		children = {
+			{
+				name = "rewardTableView",
+				cType = "TableView",
+				params = {
+					numOfCellsFunc = "onNumOfCellFunc",
+					isVertical = true,
+					cellUpdateFunc = "onCellUpdateFunc",
+					cellSizeFunc = "onCellSizeFunc",
+					cellFillFunc = "onCellFillFunc",
+					pos = {
+						x = 32.24,
+						y = 32.28
+					},
+					size = {
+						width = 784,
+						height = 400
+					}
+				},
+				children = {
+					{
+						name = "rewardNode",
+						cType = "TemplateNode",
+						params = {
+							pos = {
+								x = -0.65,
+								y = -99.27
+							},
+							size = {
+								width = 784,
+								height = 100
+							}
+						},
+						children = {
+							{
+								name = "untitled4",
+								cType = "Scale9Sprite",
+								params = {
+									image = "c_98.png",
+									pos = {
+										x = 391.51,
+										y = 48.82
+									},
+									size = {
+										width = 784,
+										height = 100
+									}
+								},
+								children = {}
+							},
+							{
+								name = "untitled5",
+								cType = "Label",
+								params = {
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 103.18,
+										y = 68.51
+									},
+									text = TR("挑战次数")
+								},
+								children = {}
+							},
+							{
+								name = "untitled6",
+								cType = "Label",
+								params = {
+									childName = "winTime",
+									text = "0",
+									color = {
+										g = 37,
+										r = 37,
+										b = 37
+									},
+									pos = {
+										x = 99.72,
+										y = 32.77
+									}
+								},
+								children = {}
+							},
+							{
+								name = "rewardListView",
+								cType = "ListView",
+								params = {
+									childName = "listView",
+									direction = false,
+									swallowTouch = false,
+									pos = {
+										x = 217.59,
+										y = 8.15
+									},
+									size = {
+										width = 399.49,
+										height = 80
+									}
+								},
+								children = {
+									{
+										name = "goodLayout",
+										cType = "Layout",
+										custom = {
+											{
+												value = "untitled9-initParams",
+												name = "cardInfo",
+												type = "string"
+											}
+										},
+										params = {
+											pos = {
+												z = 0,
+												x = -8.98,
+												y = -3.43
+											},
+											size = {
+												width = 84,
+												height = 84
+											}
+										},
+										children = {
+											{
+												name = "untitled9",
+												cType = "CardNode",
+												params = {
+													childName = "head",
+													allowClick = true,
+													initParams = {},
+													pos = {
+														x = 40.87,
+														y = 41.31
+													}
+												},
+												children = {}
+											}
+										}
+									}
+								}
+							},
+							{
+								name = "untitled10",
+								cType = "Button",
+								custom = {
+									{
+										value = 1,
+										name = "id",
+										type = "integer"
+									}
+								},
+								params = {
+									childName = "drawBtn",
+									image = "c_27.png",
+									clickAction = "onGetBtn",
+									pos = {
+										x = 686.86,
+										y = 48.27
+									},
+									titleText = TR("领取")
+								},
+								children = {}
+							},
+							{
+								name = "untitled11",
+								cType = "Sprite",
+								params = {
+									childName = "drawIcon",
+									image = "c_55.png",
+									hide = true,
+									pos = {
+										x = 687.59,
+										y = 48.18
+									}
+								},
+								children = {}
+							}
+						}
+					}
+				}
+			},
+			{
+				name = "totalNumLabel",
+				cType = "Label",
+				params = {
+					fontSize = 26,
+					anchor = {
+						x = 0,
+						y = 0.5
+					},
+					color = {
+						g = 37,
+						r = 37,
+						b = 37
+					},
+					pos = {
+						x = 43.65,
+						y = 461.99
+					},
+					text = TR("当前累计挑战次数")
+				},
+				children = {}
+			}
+		}
+	}
+}
+slot0.ctor = function (slot0, slot1)
+	slot0.challengeNumRewards = slot1.challengeNumRewards
+	slot0.totalChallengeNum = slot1.totalChallengeNum
+	slot0.mCallBack = slot1.callBack
+
+	slot0.super.ctor(slot0)
+	slot0.initUI(slot0)
+
+	return 
+end
+slot0.initUI = function (slot0)
+	slot0.createUITree(slot0)
+	slot0.handleData(slot0)
+	slot0.totalNumLabel:setString(TR("当前累计挑战次数：%s", slot0.totalChallengeNum))
+
+	return 
+end
+slot0.handleData = function (slot0)
+	slot1 = {}
+
+	for slot5, slot6 in ipairs(GuildbossNumrewardConfig.items) do
+		slot7 = clone(slot6)
+
+		if slot6.challengeNum <= slot0.totalChallengeNum then
+			slot7.status = 2
+		else
+			slot7.status = 1
+		end
+
+		if table.indexof(slot0.challengeNumRewards, slot6.challengeNum) then
+			slot7.status = 0
+		end
+
+		table.insert(slot1, slot7)
+	end
+
+	table.sort(slot1, function (slot0, slot1)
+		if slot0.status ~= slot1.status then
+			return slot1.status < slot0.status
+		end
+
+		if slot0.challengeNum ~= slot1.challengeNum then
+			return slot0.challengeNum < slot1.challengeNum
+		end
+
+		return 
+	end)
+
+	slot0.mRewardList = slot1
+
+	slot0.rewardTableView:reloadData()
+
+	return 
+end
+slot0.onCellSizeFunc = function (slot0, slot1, slot2)
+	return 784, 100
+end
+slot0.onNumOfCellFunc = function (slot0, slot1)
+	return #slot0.mRewardList
+end
+slot0.onCellFillFunc = function (slot0, slot1, slot2)
+	slot3 = slot0.createLayoutTemplateNode(slot0, "rewardNode")
+	slot3.refreshCell = function (slot0, slot1)
+		slot0.winTime:setString(slot0.mRewardList[slot1 + 1].challengeNum)
+		slot0.rewardListView:removeAllChildren()
+
+		for slot7, slot8 in ipairs(slot3) do
+			slot0.rewardListView:pushBackCustomItem(slot0:createLayoutTemplateNode("goodLayout", {
+				cardInfo = {
+					showAttrs = {
+						Enums.CardShowAttr.eNum
+					},
+					instanceData = {
+						modelId = slot8.resourceId,
+						num = slot8.num
+					}
+				}
+			}))
+		end
+
+		slot0.drawBtn.Id = slot2.challengeNum
+
+		slot0.drawBtn:setEnabled(true)
+
+		if slot2.status == 0 then
+			slot0.drawIcon:setVisible(true)
+			slot0.drawBtn:setVisible(false)
+		elseif slot2.status == 2 then
+			slot0.drawIcon:setVisible(false)
+			slot0.drawBtn:setVisible(true)
+		else
+			slot0.drawIcon:setVisible(false)
+			slot0.drawBtn:setVisible(true)
+			slot0.drawBtn:setEnabled(false)
+		end
+
+		return 
+	end
+
+	slot3.refreshCell(slot3, slot2)
+	slot3.setPositionY(slot3, 0)
+	slot1.addChild(slot1, slot3)
+
+	slot1.layout = slot3
+
+	return 
+end
+slot0.onCellUpdateFunc = function (slot0, slot1, slot2)
+	slot1.layout:refreshCell(slot2)
+
+	return 
+end
+slot0.onGetBtn = function (slot0, slot1)
+	slot0.requestGetReward(slot0, slot1.Id)
+
+	return 
+end
+slot0.requestGetReward = function (slot0, slot1)
+	slot0.socketRequest(slot0, {
+		methodName = "DrawChallengeNumReward",
+		moduleName = "Guildboss",
+		methodData = {
+			slot1
+		},
+		successCallback = function (slot0)
+			dump(slot0, "DrawChallengeNumReward")
+
+			if slot0.BaseGetGameResourceList then
+				ui.showFlashReward({
+					BaseGetGameResourceList = slot0.BaseGetGameResourceList
+				})
+			end
+
+			slot0.challengeNumRewards = slot0.ChallengeNumRewards
+
+			slot0:handleData()
+
+			if slot0.mCallBack then
+				slot0.mCallBack(slot0.ChallengeNumRewards)
+			end
+
+			return 
+		end
+	})
+
+	return 
+end
+
+return slot0
